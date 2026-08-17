@@ -1,0 +1,108 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/mylang/master/tsSyntax.schema.json",
+  "name": "v++",
+  "scopeName": "source.vpp",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#constants" },
+    { "include": "#functions" },
+    { "include": "#numbers" },
+    { "include": "#operators" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.vpp",
+          "match": "//.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.vpp",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.vpp",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.vpp",
+          "match": "\\b(if|else|while|for|in|return)\\b"
+        },
+        {
+          "name": "keyword.declaration.vpp",
+          "match": "\\b(let|fn)\\b"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "storage.type.vpp",
+          "match": "\\b(int|float|bool|string)\\b"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.vpp",
+          "match": "\\b(true|false)\\b"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "name": "entity.name.function.vpp",
+          "match": "(?<=\\bfn\\s+)\\w+"
+        },
+        {
+          "name": "support.function.builtin.vpp",
+          "match": "\\b(print|len)\\b(?=\\s*\\()"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.vpp",
+          "match": "\\b\\d+\\.\\d+\\b"
+        },
+        {
+          "name": "constant.numeric.integer.vpp",
+          "match": "\\b\\d+\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.arrow.vpp",
+          "match": "->"
+        },
+        {
+          "name": "keyword.operator.range.vpp",
+          "match": "\\.\\."
+        },
+        {
+          "name": "keyword.operator.vpp",
+          "match": "(==|!=|<=|>=|&&|\\|\\||[+\\-*/%<>!]=?)"
+        }
+      ]
+    }
+  }
+}

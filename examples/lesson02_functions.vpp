@@ -1,0 +1,22 @@
+// Lesson 2: Functions and conditionals
+
+import "std/math.vpp"
+
+fn grade(score: int) -> string {
+    if score >= 90 {
+        return "A"
+    }
+    if score >= 80 {
+        return "B"
+    }
+    return "C"
+}
+
+fn main() -> int {
+    print(grade(92))
+    print(grade(85))
+    print(add(10, max(3, 7)))
+    return 0
+}
+
+main()

@@ -1,0 +1,11 @@
+// Lesson 1: Variables, math, and printing
+
+let x = 10
+let y = 3
+print(x + y)
+print(x - y)
+print(x * y)
+print(x / y)
+
+let name = "student"
+print("Hello, " + name + "!")

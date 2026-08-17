@@ -1,0 +1,13 @@
+fn ok_val() -> Result<int, string> {
+    return Ok(42)
+}
+
+let r = ok_val()
+match r {
+    Ok(n) => {
+        print(n)
+    }
+    Err(e) => {
+        print(e)
+    }
+}

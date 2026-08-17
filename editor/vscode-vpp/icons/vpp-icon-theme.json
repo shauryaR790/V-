@@ -1,0 +1,13 @@
+{
+  "iconDefinitions": {
+    "vpp-file": {
+      "iconPath": "./vpp-file.png"
+    }
+  },
+  "fileExtensions": {
+    "vpp": "vpp-file"
+  },
+  "languageIds": {
+    "vpp": "vpp-file"
+  }
+}

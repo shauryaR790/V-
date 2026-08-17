@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "*.vpp": "vpp"
+  },
+  "debug.allowBreakpointsEverywhere": false
+}

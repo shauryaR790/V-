@@ -1,0 +1,19 @@
+let users = ["Alex", "Sam", "John"]
+
+for user in users {
+    print(user)
+}
+
+let nums = [1, 2, 3, 4, 5]
+print(nums[0])
+print(len(nums))
+
+let sum = 0
+for n in nums {
+    sum = sum + n
+}
+print(sum)
+
+for i in 0..3 {
+    print(i)
+}

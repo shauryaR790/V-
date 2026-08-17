@@ -1,0 +1,9 @@
+import "std/math.vpp"
+
+test "addition" {
+    assert_eq(add(1, 1), 2)
+}
+
+test "power" {
+    assert_eq(pow(3, 2), 9)
+}

@@ -1,0 +1,18 @@
+// Lesson 3: Loops, arrays, and break/continue
+
+let total = 0
+for n in 1..6 {
+    if n == 3 {
+        continue
+    }
+    if n == 5 {
+        break
+    }
+    total = total + n
+}
+print(total)
+
+let nums = [1, 2, 3, 4]
+for item in nums {
+    print(item)
+}

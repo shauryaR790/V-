@@ -1,0 +1,9 @@
+fn greet(name: string) -> int {
+    print("Hello, " + name + "!")
+    return 0
+}
+
+fn println(msg: string) -> int {
+    print(msg)
+    return 0
+}

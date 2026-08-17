@@ -1,0 +1,57 @@
+[package]
+name = "vpp"
+version = "0.1.0"
+edition = "2021"
+description = "The v++ programming language compiler"
+license = "MIT"
+default-run = "vpp"
+
+[[bin]]
+name = "vpp"
+path = "src/main.rs"
+
+[lib]
+name = "vpp"
+path = "src/lib.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+thiserror = "2"
+miette = { version = "7", features = ["fancy"] }
+
+[dependencies.tower-lsp]
+version = "0.20"
+optional = true
+
+[dependencies.tokio]
+version = "1"
+features = ["full"]
+optional = true
+
+[[bin]]
+name = "vppls"
+path = "src/bin/vppls.rs"
+required-features = ["lsp"]
+
+[dependencies.inkwell]
+git = "https://github.com/TheDan64/inkwell"
+branch = "master"
+default-features = false
+features = ["llvm22-1-no-llvm-linking"]
+optional = true
+
+[dependencies.llvm-sys]
+version = "221"
+features = ["disable-alltargets-init", "no-llvm-linking"]
+optional = true
+
+[features]
+default = []
+lsp = ["dep:tower-lsp", "dep:tokio"]
+codegen = ["dep:inkwell", "dep:llvm-sys"]
+
+[build-dependencies]
+cc = "1"
+
+[dev-dependencies]
+insta = { version = "1", features = ["glob"] }

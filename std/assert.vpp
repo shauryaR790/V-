@@ -1,0 +1,9 @@
+// Re-exports assert helpers (implemented as compiler builtins).
+// Import this module to use assert / assert_eq in tests.
+
+fn assert_true(condition: bool) -> int {
+    if condition {
+        return 0
+    }
+    return 1
+}

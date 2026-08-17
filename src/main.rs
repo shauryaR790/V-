@@ -1,0 +1,187 @@
+use std::path::{Path, PathBuf};
+use std::process::ExitCode;
+
+use clap::{Parser, Subcommand};
+use miette::{Context, IntoDiagnostic};
+
+#[derive(Parser)]
+#[command(name = "vpp", version, about = "The v++ programming language")]
+struct Cli {
+    #[command(subcommand)]
+    command: Commands,
+}
+
+#[derive(Subcommand)]
+enum Commands {
+    /// Type-check a v++ file without generating code
+    Check {
+        file: PathBuf,
+    },
+    /// Compile a v++ file to an executable
+    Build {
+        file: Option<PathBuf>,
+        #[arg(short, long)]
+        output: Option<PathBuf>,
+    },
+    /// Compile and run a v++ file (or project entry when no file is given)
+    Run {
+        file: Option<PathBuf>,
+    },
+    /// Emit LLVM IR for debugging
+    Compile {
+        file: PathBuf,
+        #[arg(short, long)]
+        output: Option<PathBuf>,
+    },
+    /// Format a v++ source file in place
+    Fmt {
+        file: PathBuf,
+    },
+    /// Start the v++ language server (stdio)
+    Lsp,
+    /// Run tests in the current v++ project
+    Test {
+        path: Option<PathBuf>,
+    },
+    /// Create a new v++ project
+    Init {
+        name: Option<String>,
+        #[arg(short, long)]
+        path: Option<PathBuf>,
+    },
+}
+
+fn read_source(path: &Path) -> miette::Result<String> {
+    std::fs::read_to_string(path)
+        .into_diagnostic()
+        .with_context(|| format!("failed to read `{}`", path.display()))
+}
+
+fn resolve_run_path(file: &Option<PathBuf>) -> miette::Result<PathBuf> {
+    if let Some(path) = file {
+        return Ok(path.clone());
+    }
+    let cwd = std::env::current_dir().into_diagnostic()?;
+    let (entry, _) = vpp::project_entry(&cwd).map_err(miette::Report::new)?;
+    Ok(entry)
+}
+
+fn main() -> ExitCode {
+    let cli = Cli::parse();
+
+    let result = match cli.command {
+        Commands::Check { file } => cmd_check(&file),
+        Commands::Build { file, output } => cmd_build(file.as_ref(), output),
+        Commands::Run { file } => cmd_run(file.as_ref()),
+        Commands::Compile { file, output } => cmd_compile(&file, output),
+        Commands::Fmt { file } => cmd_fmt(&file),
+        Commands::Lsp => cmd_lsp(),
+        Commands::Test { path } => cmd_test(path.as_deref()),
+        Commands::Init { name, path } => cmd_init(name.as_deref(), path.as_deref()),
+    };
+
+    match result {
+        Ok(()) => ExitCode::SUCCESS,
+        Err(report) => {
+            eprintln!("{report:?}");
+            ExitCode::FAILURE
+        }
+    }
+}
+
+fn cmd_check(file: &PathBuf) -> miette::Result<()> {
+    vpp::check_path(file)
+        .map_err(|e| {
+            if let Ok(source) = std::fs::read_to_string(file) {
+                e.with_source(source)
+            } else {
+                miette::Report::new(e)
+            }
+        })?;
+    println!("✓ `{}` type-checks successfully", file.display());
+    Ok(())
+}
+
+fn cmd_build(file: Option<&PathBuf>, output: Option<PathBuf>) -> miette::Result<()> {
+    let path = resolve_run_path(&file.cloned())?;
+    let source = read_source(&path)?;
+    vpp::compile(
+        &source,
+        &path,
+        vpp::CompileOptions {
+            emit_ir: None,
+            output,
+        },
+    )
+    .map_err(|e| e.with_source(source))?;
+    Ok(())
+}
+
+fn cmd_run(file: Option<&PathBuf>) -> miette::Result<()> {
+    let path = resolve_run_path(&file.cloned())?;
+    let source = read_source(&path)?;
+    vpp::run(&source, &path).map_err(|e| e.with_source(source))
+}
+
+fn cmd_lsp() -> miette::Result<()> {
+    #[cfg(feature = "lsp")]
+    {
+        tokio::runtime::Runtime::new()
+            .into_diagnostic()?
+            .block_on(vpp::lsp::run_server());
+        Ok(())
+    }
+    #[cfg(not(feature = "lsp"))]
+    {
+        Err(miette::miette!(
+            "LSP requires the `lsp` feature. Rebuild with: cargo build --features lsp\n\
+             On Windows, use the MSVC toolchain (Visual Studio Build Tools) for best compatibility."
+        ))
+    }
+}
+
+fn cmd_test(path: Option<&Path>) -> miette::Result<()> {
+    let start = path
+        .map(Path::to_path_buf)
+        .unwrap_or_else(|| std::env::current_dir().expect("current dir"));
+    vpp::run_tests_in_project(&start).map_err(miette::Report::new)
+}
+
+fn cmd_init(name: Option<&str>, path: Option<&Path>) -> miette::Result<()> {
+    let dir = path
+        .map(Path::to_path_buf)
+        .unwrap_or_else(|| std::env::current_dir().expect("current dir"));
+    let name = name.unwrap_or(
+        dir.file_name()
+            .and_then(|s| s.to_str())
+            .unwrap_or("myapp"),
+    );
+    vpp::init_project(&dir, name).map_err(miette::Report::new)?;
+    println!("Created v++ project `{name}` in `{}`", dir.display());
+    println!();
+    println!("  cd {}", dir.display());
+    println!("  vpp run          # run src/main.vpp");
+    println!("  vpp test         # run tests in tests/");
+    Ok(())
+}
+
+fn cmd_compile(file: &PathBuf, output: Option<PathBuf>) -> miette::Result<()> {
+    let source = read_source(file)?;
+    let ir_path = output.unwrap_or_else(|| file.with_extension("ll"));
+    vpp::emit_ir(&source, file, &ir_path)
+        .map_err(|e| e.with_source(source))?;
+    println!("Wrote LLVM IR to `{}`", ir_path.display());
+    Ok(())
+}
+
+fn cmd_fmt(file: &PathBuf) -> miette::Result<()> {
+    vpp::fmt::format_file(file).map_err(|e| {
+        if let Ok(source) = std::fs::read_to_string(file) {
+            e.with_source(source)
+        } else {
+            miette::Report::new(e)
+        }
+    })?;
+    println!("Formatted `{}`", file.display());
+    Ok(())
+}

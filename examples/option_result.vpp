@@ -1,0 +1,33 @@
+fn divide(a: int, b: int) -> Result<int, string> {
+    if b == 0 {
+        return Err("division by zero")
+    }
+    return Ok(a / b)
+}
+
+fn maybe_double(n: int) -> Option<int> {
+    if n < 0 {
+        return None
+    }
+    return Some(n * 2)
+}
+
+let r = divide(10, 2)
+match r {
+    Ok(n) => {
+        print(n)
+    }
+    Err(e) => {
+        print(e)
+    }
+}
+
+let m = maybe_double(7)
+match m {
+    Some(v) => {
+        print(v)
+    }
+    None => {
+        print("none")
+    }
+}

@@ -1,0 +1,14 @@
+struct Person {
+    name: string
+    age: int
+}
+
+let alex = Person { name: "Alex", age: 20 }
+print(alex.name)
+print(alex.age)
+
+fn greet(p: Person) -> string {
+    return p.name
+}
+
+print(greet(alex))

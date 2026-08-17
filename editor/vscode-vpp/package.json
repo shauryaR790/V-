@@ -1,0 +1,121 @@
+{
+  "name": "vpp",
+  "displayName": "v++ Language",
+  "description": "Run, syntax highlight, and icons for the v++ programming language (.vpp files)",
+  "version": "0.3.0",
+  "publisher": "vpp-lang",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": ["Programming Languages"],
+  "activationEvents": [
+    "onLanguage:vpp"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "vpp",
+        "aliases": ["v++", "vpp"],
+        "extensions": [".vpp"],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/vpp.png",
+          "dark": "./icons/vpp-dark.png"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "vpp",
+        "scopeName": "source.vpp",
+        "path": "./syntaxes/vpp.tmLanguage.json"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "vpp-icons",
+        "label": "v++ Icons",
+        "path": "./icons/vpp-icon-theme.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "vpp.runFile",
+        "title": "v++: Run File",
+        "icon": "$(play)"
+      },
+      {
+        "command": "vpp.checkFile",
+        "title": "v++: Check File",
+        "icon": "$(check)"
+      },
+      {
+        "command": "vpp.testProject",
+        "title": "v++: Run Tests",
+        "icon": "$(beaker)"
+      }
+    ],
+    "menus": {
+      "editor/title/run": [
+        {
+          "command": "vpp.runFile",
+          "when": "resourceLangId == vpp",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "vpp.runFile",
+          "when": "resourceLangId == vpp",
+          "group": "navigation@1"
+        },
+        {
+          "command": "vpp.checkFile",
+          "when": "resourceLangId == vpp",
+          "group": "navigation@2"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "vpp.runFile",
+          "when": "resourceLangId == vpp"
+        },
+        {
+          "command": "vpp.checkFile",
+          "when": "resourceLangId == vpp"
+        },
+        {
+          "command": "vpp.testProject"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "vpp.runFile",
+        "key": "ctrl+shift+r",
+        "when": "resourceLangId == vpp && editorTextFocus"
+      },
+      {
+        "command": "vpp.runFile",
+        "key": "f5",
+        "when": "resourceLangId == vpp && editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "v++",
+      "properties": {
+        "vpp.compilerPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to vpp.exe. Leave empty to auto-detect (vpp.ps1 or target/debug/vpp.exe in workspace)."
+        },
+        "vpp.languageServerPath": {
+          "type": "string",
+          "default": "vppls",
+          "description": "Path to the v++ language server (build with: cargo build --features lsp --bin vppls)"
+        }
+      }
+    }
+  }
+}

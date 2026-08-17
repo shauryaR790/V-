@@ -1,0 +1,7 @@
+print ("Hello, v++!")
+let x  = 10 
+let name  = "Shaurya"
+let active  = true 
+print (x )
+print (name )
+print (active)
