@@ -15,9 +15,13 @@ if ((Test-Path $release) -and (Test-Path $debug)) {
 }
 
 if (-not (Test-Path $bin)) {
-    Write-Host "Building vpp..." -ForegroundColor Yellow
+    Write-Host "Building vpp (codegen + lsp)..." -ForegroundColor Yellow
     Push-Location $PSScriptRoot
-    cargo build
+    if (Test-Path "C:\Program Files\LLVM\bin") {
+        $env:LLVM_SYS_221_PREFIX = "C:\Program Files\LLVM"
+        $env:PATH = "C:\Program Files\LLVM\bin;$env:PATH"
+    }
+    cargo build --features codegen,lsp
     Pop-Location
 }
 

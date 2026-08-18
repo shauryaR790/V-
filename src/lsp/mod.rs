@@ -1,6 +1,7 @@
 #![cfg(feature = "lsp")]
 
 use tower_lsp::jsonrpc::Result;
+use tower_lsp::jsonrpc::Error as JsonRpcError;
 use tower_lsp::lsp_types::*;
 use tower_lsp::{Client, LanguageServer, LspService, Server};
 
@@ -94,14 +95,14 @@ impl LanguageServer for VppLanguageServer {
     ) -> Result<Option<GotoDefinitionResponse>> {
         let uri = params.text_document_position_params.text_document.uri;
         let path = uri.to_file_path().map_err(|_| {
-            jsonrpc_core::Error::invalid_params("only file:// URIs are supported")
+            JsonRpcError::invalid_params("only file:// URIs are supported")
         })?;
         let source = std::fs::read_to_string(&path).map_err(|e| {
-            jsonrpc_core::Error::invalid_params(format!("cannot read file: {e}"))
+            JsonRpcError::invalid_params(format!("cannot read file: {e}"))
         })?;
 
         let typed = check_with_index(&source, &path).map_err(|e| {
-            jsonrpc_core::Error::invalid_params(format!("{e}"))
+            JsonRpcError::invalid_params(format!("{e}"))
         })?;
 
         let word = word_at_position(&source, params.text_document_position_params.position);
@@ -121,10 +122,10 @@ impl LanguageServer for VppLanguageServer {
     async fn completion(&self, params: CompletionParams) -> Result<Option<CompletionResponse>> {
         let uri = params.text_document_position.text_document.uri;
         let path = uri.to_file_path().map_err(|_| {
-            jsonrpc_core::Error::invalid_params("only file:// URIs are supported")
+            JsonRpcError::invalid_params("only file:// URIs are supported")
         })?;
         let source = std::fs::read_to_string(&path).map_err(|e| {
-            jsonrpc_core::Error::invalid_params(format!("cannot read file: {e}"))
+            JsonRpcError::invalid_params(format!("cannot read file: {e}"))
         })?;
 
         let mut items = vec![
@@ -154,7 +155,7 @@ impl LanguageServer for VppLanguageServer {
 fn completion_item(label: &str, insert: &str) -> CompletionItem {
     CompletionItem {
         label: label.to_string(),
-        kind: Some(CompletionItemKind::Snippet),
+        kind: Some(CompletionItemKind::SNIPPET),
         insert_text: Some(insert.to_string()),
         insert_text_format: Some(InsertTextFormat::SNIPPET),
         ..Default::default()
