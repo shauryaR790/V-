@@ -19,16 +19,21 @@ jobs:
             slug: linux-x64
             vpp_bin: vpp
             vppls_bin: vppls
+            llvm_kind: apt
           - os: windows-latest
             target: x86_64-pc-windows-msvc
             slug: windows-x64
             vpp_bin: vpp.exe
             vppls_bin: vppls.exe
+            llvm_kind: win-installer
           - os: macos-latest
-            target: x86_64-apple-darwin
-            slug: macos-x64
+            target: aarch64-apple-darwin
+            slug: macos-arm64
             vpp_bin: vpp
             vppls_bin: vppls
+            llvm_kind: macos-tar
+            llvm_archive: LLVM-22.1.8-macOS-ARM64.tar.xz
+            llvm_dir: LLVM-22.1.8-macOS-ARM64
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -37,9 +42,31 @@ jobs:
         with:
           targets: ${{ matrix.target }}
 
-      - uses: KyleMayes/install-llvm-action@v2
-        with:
-          version: "22"
+      - name: Install LLVM 22 (Linux)
+        if: matrix.llvm_kind == 'apt'
+        run: |
+          wget -q https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          sudo ./llvm.sh 22
+          echo "LLVM_SYS_221_PREFIX=/usr/lib/llvm-22" >> "$GITHUB_ENV"
+          echo "/usr/lib/llvm-22/bin" >> "$GITHUB_PATH"
+
+      - name: Install LLVM 22 (Windows)
+        if: matrix.llvm_kind == 'win-installer'
+        shell: pwsh
+        run: |
+          curl.exe -L -o llvm.exe "https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.8/LLVM-22.1.8-win64.exe"
+          Start-Process -FilePath .\llvm.exe -ArgumentList "/S","/D=C:\LLVM" -Wait
+          "LLVM_SYS_221_PREFIX=C:\LLVM" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "C:\LLVM\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
+
+      - name: Install LLVM 22 (macOS)
+        if: matrix.llvm_kind == 'macos-tar'
+        run: |
+          curl -L -o llvm.tar.xz "https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.8/${{ matrix.llvm_archive }}"
+          tar xf llvm.tar.xz
+          echo "LLVM_SYS_221_PREFIX=$PWD/${{ matrix.llvm_dir }}" >> "$GITHUB_ENV"
+          echo "$PWD/${{ matrix.llvm_dir }}/bin" >> "$GITHUB_PATH"
 
       - name: Build release
         run: cargo build --release --features codegen,lsp --bin vpp --bin vppls
@@ -61,7 +88,6 @@ jobs:
           cp RELEASE.txt run.sh "$DIR/"
           chmod +x "$DIR/run.sh" "$DIR/${{ matrix.vpp_bin }}" "$DIR/${{ matrix.vppls_bin }}"
           tar -czf "${DIR}.tar.gz" "$DIR"
-          echo "BUNDLE=${DIR}.tar.gz" >> "$GITHUB_ENV"
 
       - name: Package bundle (Windows)
         if: matrix.os == 'windows-latest'
@@ -76,13 +102,14 @@ jobs:
           Copy-Item examples/hello.vpp "$dir/examples/"
           Copy-Item GO.bat, RELEASE.txt "$dir/"
           Compress-Archive -Path $dir -DestinationPath "$dir.zip" -Force
-          "BUNDLE=$dir.zip" | Out-File -FilePath $env:GITHUB_ENV -Append
 
       - name: Upload bundle
         uses: actions/upload-artifact@v4
         with:
           name: vpp-${{ matrix.slug }}
-          path: vpp-*-${{ matrix.slug }}.*
+          path: |
+            vpp-*-${{ matrix.slug }}.zip
+            vpp-*-${{ matrix.slug }}.tar.gz
 
   release:
     needs: build
@@ -101,5 +128,5 @@ jobs:
           files: |
             vpp-*-windows-x64.zip
             vpp-*-linux-x64.tar.gz
-            vpp-*-macos-x64.tar.gz
+            vpp-*-macos-arm64.tar.gz
           generate_release_notes: true
