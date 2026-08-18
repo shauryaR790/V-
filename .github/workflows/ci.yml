@@ -18,29 +18,28 @@ jobs:
       - run: cargo run -- check examples/lesson03_loops.vpp
 
   test-native:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
       - name: Install LLVM 22
+        shell: pwsh
         run: |
-          sudo apt-get update
-          sudo apt-get install -y wget gnupg lsb-release software-properties-common
-          wget -q https://apt.llvm.org/llvm.sh
-          chmod +x llvm.sh
-          sudo ./llvm.sh 22
-          sudo apt-get install -y clang-22 lld-22 llvm-22-dev libclang-22-dev
-          echo "LLVM_SYS_221_PREFIX=$(llvm-config-22 --prefix)" >> "$GITHUB_ENV"
-          echo "$(llvm-config-22 --prefix)/bin" >> "$GITHUB_PATH"
-          clang-22 --version
+          curl.exe -L -o llvm.exe "https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.8/LLVM-22.1.8-win64.exe"
+          Start-Process -FilePath .\llvm.exe -ArgumentList "/S","/D=C:\LLVM" -Wait
+          "LLVM_SYS_221_PREFIX=C:\LLVM" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "C:\LLVM\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
+          clang --version
       - name: Native smoke test
+        shell: pwsh
         run: |
           cargo build --features codegen --bin vpp
           cargo test --features codegen --test typecheck --test lexer --test parser -- --test-threads=1
           cargo run --features codegen -- run examples/hello.vpp
-          cargo run --features codegen -- build examples/hello.vpp -o /tmp/vpp-hello
-          chmod +x /tmp/vpp-hello
-          /tmp/vpp-hello
+          cargo run --features codegen -- build examples/hello.vpp -o $env:TEMP\vpp-hello.exe
+          & $env:TEMP\vpp-hello.exe
 
   test-lsp:
     runs-on: ubuntu-latest
