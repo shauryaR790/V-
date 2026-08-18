@@ -1,6 +1,6 @@
-; v++ Windows installer — built in CI, signed via SignPath (see docs/SIGNING.md)
+; v++ Windows installer - built in CI, signed via SignPath (see docs/SIGNING.md)
 #ifndef MyAppVersion
-  #define MyAppVersion "0.4.3"
+  #define MyAppVersion "0.4.4"
 #endif
 #ifndef StagingDir
   #define StagingDir "..\staging"
@@ -18,7 +18,7 @@ DefaultDirName={autopf}\vpp
 DefaultGroupName=v++
 DisableProgramGroupPage=yes
 LicenseFile={#StagingDir}\LICENSE
-OutputDir=output
+OutputDir=..\output
 OutputBaseFilename=vpp-{#MyAppVersion}-setup
 UninstallDisplayIcon={app}\vpp.exe
 ArchitecturesAllowed=x64compatible
@@ -38,8 +38,8 @@ Name: "desktopicon"; Description: "Create a desktop shortcut to run hello.vpp"; 
 Source: "{#StagingDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
-Name: "{group}\v++ — Run hello.vpp"; Filename: "{app}\vpp.exe"; Parameters: "run examples\hello.vpp"; WorkingDir: "{app}"
-Name: "{group}\v++ — Open install folder"; Filename: "{app}"
+Name: "{group}\v++ - Run hello.vpp"; Filename: "{app}\vpp.exe"; Parameters: "run examples\hello.vpp"; WorkingDir: "{app}"
+Name: "{group}\v++ - Open install folder"; Filename: "{app}"
 Name: "{group}\Uninstall v++"; Filename: "{uninstallexe}"
 Name: "{desktop}\v++"; Filename: "{app}\vpp.exe"; Parameters: "run examples\hello.vpp"; WorkingDir: "{app}"; Tasks: desktopicon
 
