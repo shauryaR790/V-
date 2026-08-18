@@ -44,7 +44,7 @@
         },
         {
           "name": "keyword.declaration.vpp",
-          "match": "\\b(let|fn|struct|enum|import|pub|test)\\b"
+          "match": "\\b(let|mut|fn|struct|enum|trait|impl|import|pub|test)\\b"
         },
         {
           "name": "keyword.type.vpp",
