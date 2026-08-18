@@ -1,6 +1,6 @@
-# v++ Language Specification (v0.3)
+# v++ Language Specification (v0.4)
 
-This document describes v++ as implemented in v0.3. If code and spec disagree, parity tests and native execution are authoritative.
+This document describes v++ as implemented in v0.4. If code and spec disagree, parity tests and native execution are authoritative.
 
 ## Types
 
@@ -19,9 +19,9 @@ This document describes v++ as implemented in v0.3. If code and spec disagree, p
 ## Variables
 
 ```
-let x = 10           // inferred int
-let name: string = "hi"
-x = x + 1            // reassignment (mut keyword planned for v0.4)
+let x = 10              // immutable int
+let mut total = 0       // mutable; required for reassignment
+total = total + 1
 ```
 
 ## Functions
@@ -31,10 +31,35 @@ fn add(a: int, b: int) -> int {
     return a + b
 }
 
-fn main() -> int {
-    // entry point when present; interpreter and native both invoke main()
-    return 0
+fn id[T](x: T) -> T {
+    return x
 }
+
+fn main() -> int {
+    let n = id[int](42)
+    return n
+}
+```
+
+Generic calls require explicit type arguments: `id[int](42)`.
+
+When present, `fn main() -> int` is the program entry point (interpreter and native both invoke it).
+
+## Traits
+
+```
+trait Display {
+    fn to_text(self) -> string
+}
+
+impl Display for User {
+    fn to_text(self) -> string {
+        return self.name
+    }
+}
+
+// method call (static dispatch)
+print(user.to_text())
 ```
 
 ## Control flow
@@ -97,8 +122,8 @@ import "legacy/path.vpp"   // still supported
 
 Interpreter and native must produce identical stdout for supported programs.
 
-## Known limitations (v0.3)
+## Known limitations (v0.4)
 
-- No generics or traits (planned v0.4)
-- Match exhaustiveness checked at runtime only
+- Generics use monomorphization with explicit type arguments at call sites (no inference yet)
+- Traits use static dispatch only (no trait objects or bounds)
 - Hosted package registry is local (`registry/index.toml`); no remote publish yet

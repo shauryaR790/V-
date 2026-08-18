@@ -98,7 +98,15 @@ pub enum VppError {
     #[diagnostic(code(vpp::E0104))]
     ImmutableAssign {
         name: String,
-        #[label("`{name}` is not declared with `let` in this scope")]
+        #[label("`{name}` is immutable; use `let mut {name}` to allow reassignment")]
+        span: SourceSpan,
+    },
+
+    #[error("non-exhaustive match; missing variant(s): {missing}")]
+    #[diagnostic(code(vpp::E0107))]
+    NonExhaustiveMatch {
+        missing: String,
+        #[label("match must cover all variants or use `_`")]
         span: SourceSpan,
     },
 
@@ -202,6 +210,7 @@ impl VppError {
             | Self::EmptyArrayNoType { span, .. }
             | Self::ArrayElementMismatch { span, .. }
             | Self::ImmutableAssign { span, .. }
+            | Self::NonExhaustiveMatch { span, .. }
             | Self::MissingReturn { span, .. }
             | Self::InvalidForIter { span, .. }
             | Self::DuplicateImport { span, .. }

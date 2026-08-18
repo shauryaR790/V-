@@ -3,7 +3,7 @@ pub fn make_int_array(values: array[int]) -> array[int] {
 }
 
 pub fn index_of(arr: array[int], target: int) -> int {
-    let i = 0
+    let mut i = 0
     while i < len(arr) {
         if arr[i] == target {
             return i
@@ -18,7 +18,7 @@ pub fn contains(arr: array[int], target: int) -> bool {
 }
 
 pub fn sum(arr: array[int]) -> int {
-    let total = 0
+    let mut total = 0
     for n in arr {
         total = total + n
     }

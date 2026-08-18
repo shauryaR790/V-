@@ -42,7 +42,7 @@ fn main() -> int {
         print(n)
     }
 
-    let total = 0
+    let mut total = 0
     for i in 0..5 {
         total = total + numbers[i]
     }

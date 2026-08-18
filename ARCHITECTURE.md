@@ -74,4 +74,4 @@ See `CHANGELOG.md` and `tests/parity/` for the live matrix. Native codegen must 
 
 - **v0.2** — native foundation, IR, ABI, parity tests
 - **v0.3** — module redesign, package manager (not in v0.2)
-- **v0.4** — generics, traits (not in v0.2)
+- **v0.4** — generics, traits, `mut`, compile-time match exhaustiveness

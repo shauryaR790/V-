@@ -153,18 +153,18 @@ print(add(2, 3))
 
 ### Type inference (MVP)
 
-Only local `let` bindings are inferred. Function signatures are explicit. No generics yet.
+Only local `let` bindings are inferred. Function signatures are explicit. Generics use monomorphization with explicit type arguments at call sites (`id[int](42)`).
 
-### Memory model (v0.3)
+### Memory model (v0.4)
 
 Heap **strings** and **arrays** use ARC reference counting in native code (`runtime/vpp_runtime.c`). See [MEMORY_MODEL.md](MEMORY_MODEL.md).
 
 ## Roadmap
 
-- **v0.4** — generics and traits
-- Hosted package registry (`vpp publish`)
-- REPL, debugger, expanded stdlib (net, time, maps)
+- **v0.5** — hosted registry, REPL, expanded stdlib (net, time, maps)
 - **v1.0** — stable spec, full parity guarantee, curriculum + playground
+
+v0.4 shipped: **generics**, **traits/impls**, **`mut`**, and **compile-time match exhaustiveness**.
 
 ## License
 

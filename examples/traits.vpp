@@ -1,0 +1,30 @@
+enum Status {
+    Active
+    Inactive
+}
+
+struct User {
+    name: string
+    age: int
+    status: Status
+}
+
+trait Display {
+    fn to_text(self) -> string
+}
+
+impl Display for User {
+    fn to_text(self) -> string {
+        return self.name
+    }
+}
+
+fn main() -> int {
+    let user = User {
+        name: "Shaurya"
+        age: 18
+        status: Active
+    }
+    print(user.to_text())
+    return 0
+}

@@ -37,3 +37,57 @@ fn rejects_empty_array() {
     let err = check("let xs = []\n").unwrap_err();
     assert!(matches!(err, VppError::EmptyArrayNoType { .. }));
 }
+
+#[test]
+fn rejects_immutable_reassign() {
+    let err = check("let x = 1\nx = 2\n").unwrap_err();
+    assert!(matches!(err, VppError::ImmutableAssign { .. }));
+}
+
+#[test]
+fn accepts_mut_reassign() {
+    check("let mut x = 1\nx = 2\n").unwrap();
+}
+
+#[test]
+fn rejects_non_exhaustive_enum_match() {
+    let source = r#"
+enum Color { Red Green Blue }
+fn main() -> int {
+    let c: Color = Red
+    match c {
+        Red => { return 0 }
+    }
+}
+"#;
+    let err = check(source).unwrap_err();
+    assert!(matches!(err, VppError::NonExhaustiveMatch { .. }));
+}
+
+#[test]
+fn accepts_exhaustive_enum_match() {
+    let source = r#"
+enum Color { Red Green Blue }
+fn main() -> int {
+    let c: Color = Red
+    match c {
+        Red => { return 0 }
+        Green => { return 1 }
+        Blue => { return 2 }
+    }
+}
+"#;
+    check(source).unwrap();
+}
+
+#[test]
+fn accepts_generic_function() {
+    let source = include_str!("../examples/generics.vpp");
+    check(source).unwrap();
+}
+
+#[test]
+fn accepts_trait_impl() {
+    let source = include_str!("../examples/traits.vpp");
+    check(source).unwrap();
+}

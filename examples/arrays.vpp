@@ -8,7 +8,7 @@ let nums = [1, 2, 3, 4, 5]
 print(nums[0])
 print(len(nums))
 
-let sum = 0
+let mut sum = 0
 for n in nums {
     sum = sum + n
 }

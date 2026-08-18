@@ -1,6 +1,6 @@
 // Lesson 3: Loops, arrays, and break/continue
 
-let total = 0
+let mut total = 0
 for n in 1..6 {
     if n == 3 {
         continue

@@ -1,5 +1,5 @@
 fn sum_nums(nums: array[int]) -> int {
-    let total = 0
+    let mut total = 0
     for n in nums {
         total = total + n
     }

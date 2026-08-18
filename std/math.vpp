@@ -24,8 +24,8 @@ pub fn min(a: int, b: int) -> int {
 }
 
 pub fn pow(base: int, exp: int) -> int {
-    let result = 1
-    let i = 0
+    let mut result = 1
+    let mut i = 0
     while i < exp {
         result = result * base
         i = i + 1

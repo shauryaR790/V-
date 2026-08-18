@@ -6,7 +6,7 @@ use std::collections::HashMap;
 use std::fmt;
 use std::path::PathBuf;
 
-use crate::ast::TypeAnn;
+use crate::ast::{Block, TypeAnn};
 use crate::span::Span;
 use crate::symbols::SymbolIndex;
 
@@ -36,6 +36,7 @@ pub enum Type {
     },
     Void,
     Error,
+    TypeParam(String),
 }
 
 impl Type {
@@ -94,6 +95,7 @@ impl Type {
             Type::Function { .. } => "function".to_string(),
             Type::Void => "void".to_string(),
             Type::Error => "error".to_string(),
+            Type::TypeParam(name) => name.clone(),
         }
     }
 
@@ -159,6 +161,23 @@ pub struct TypedProgram {
 }
 
 #[derive(Debug, Clone)]
+pub struct GenericFunctionInfo {
+    pub name: String,
+    pub type_params: Vec<String>,
+    pub params: Vec<(String, TypeAnn)>,
+    pub ret_type: TypeAnn,
+    pub body: Block,
+    pub span: Span,
+}
+
+#[derive(Debug, Clone)]
+pub struct TraitInfo {
+    pub name: String,
+    pub methods: HashMap<String, (Vec<(String, Type)>, Type)>,
+    pub span: Span,
+}
+
+#[derive(Debug, Clone)]
 pub struct FunctionInfo {
     pub name: String,
     pub params: Vec<(String, Type)>,
@@ -172,6 +191,7 @@ pub enum TypedStmt {
     Let {
         name: String,
         ty: Type,
+        mutable: bool,
         value: TypedExpr,
         span: Span,
     },

@@ -325,7 +325,7 @@ fn merge_module_exports(into: &mut Program, from: &Program, legacy: bool) {
             Item::Function(f) => legacy || f.public,
             Item::Struct(s) => legacy || s.public,
             Item::Enum(e) => legacy || e.public,
-            Item::Statement(_) | Item::Test(_) => false,
+            Item::Statement(_) | Item::Test(_) | Item::Trait(_) | Item::Impl(_) => false,
             Item::Import(_) => false,
         };
         if !include {

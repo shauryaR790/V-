@@ -119,3 +119,13 @@ fn std_builtins_example_parity() {
 fn lesson03_loops_parity() {
     assert_parity("lesson03_loops.vpp");
 }
+
+#[test]
+fn generics_parity() {
+    assert_parity("generics.vpp");
+}
+
+#[test]
+fn traits_parity() {
+    assert_parity("traits.vpp");
+}

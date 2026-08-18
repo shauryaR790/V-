@@ -3,8 +3,8 @@ pub fn upper(s: string) -> string {
 }
 
 pub fn repeat(s: string, n: int) -> string {
-    let out = ""
-    let i = 0
+    let mut out = ""
+    let mut i = 0
     while i < n {
         out = out + s
         i = i + 1

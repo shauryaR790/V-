@@ -23,6 +23,9 @@ pub enum TokenKind {
     Option,
     Result,
     Pub,
+    Mut,
+    Trait,
+    Impl,
 
     // Types
     IntType,
@@ -105,6 +108,9 @@ impl Token {
                 | TokenKind::Continue
                 | TokenKind::Option
                 | TokenKind::Result
+                | TokenKind::Mut
+                | TokenKind::Trait
+                | TokenKind::Impl
                 | TokenKind::IntType
                 | TokenKind::FloatType
                 | TokenKind::BoolType
@@ -130,6 +136,9 @@ impl std::fmt::Display for TokenKind {
             TokenKind::Enum => write!(f, "enum"),
             TokenKind::Import => write!(f, "import"),
             TokenKind::Pub => write!(f, "pub"),
+            TokenKind::Mut => write!(f, "mut"),
+            TokenKind::Trait => write!(f, "trait"),
+            TokenKind::Impl => write!(f, "impl"),
             TokenKind::Match => write!(f, "match"),
             TokenKind::Test => write!(f, "test"),
             TokenKind::Break => write!(f, "break"),

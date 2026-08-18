@@ -10,6 +10,8 @@ pub enum Item {
     Import(ImportDecl),
     Struct(StructDecl),
     Enum(EnumDecl),
+    Trait(TraitDecl),
+    Impl(ImplDecl),
     Function(FnDecl),
     Test(TestDecl),
     Statement(Stmt),
@@ -69,8 +71,33 @@ pub struct EnumVariant {
 }
 
 #[derive(Debug, Clone, PartialEq)]
+pub struct TraitDecl {
+    pub name: String,
+    pub methods: Vec<TraitMethodDecl>,
+    pub public: bool,
+    pub span: Span,
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct TraitMethodDecl {
+    pub name: String,
+    pub params: Vec<Param>,
+    pub ret_type: TypeAnn,
+    pub span: Span,
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct ImplDecl {
+    pub trait_name: String,
+    pub type_name: String,
+    pub methods: Vec<FnDecl>,
+    pub span: Span,
+}
+
+#[derive(Debug, Clone, PartialEq)]
 pub struct FnDecl {
     pub name: String,
+    pub type_params: Vec<String>,
     pub params: Vec<Param>,
     pub ret_type: TypeAnn,
     pub body: Block,
@@ -136,6 +163,7 @@ impl TypeAnn {
 pub enum Stmt {
     Let {
         name: String,
+        mutable: bool,
         ty: Option<TypeAnn>,
         value: Expr,
         span: Span,
@@ -252,6 +280,13 @@ pub enum Expr {
     },
     Call {
         name: String,
+        type_args: Vec<TypeAnn>,
+        args: Vec<Expr>,
+        span: Span,
+    },
+    MethodCall {
+        receiver: Box<Expr>,
+        method: String,
         args: Vec<Expr>,
         span: Span,
     },
@@ -302,6 +337,7 @@ impl Expr {
             | Expr::Binary { span, .. }
             | Expr::Unary { span, .. }
             | Expr::Call { span, .. }
+            | Expr::MethodCall { span, .. }
             | Expr::Index { span, .. }
             | Expr::Field { span, .. }
             | Expr::Array { span, .. }

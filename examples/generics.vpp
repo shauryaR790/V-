@@ -1,0 +1,16 @@
+fn id[T](x: T) -> T {
+    return x
+}
+
+fn first[T](items: array[T]) -> T {
+    return items[0]
+}
+
+fn main() -> int {
+    let n = id[int](42)
+    print(n)
+
+    let words = ["alpha", "beta"]
+    print(first[string](words))
+    return 0
+}

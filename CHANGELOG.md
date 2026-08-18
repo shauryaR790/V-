@@ -2,6 +2,22 @@
 
 All notable changes to v++ are documented here.
 
+## [0.4.0] — 2026-08-18 (Language Core / Phase B)
+
+### Added
+
+- **`mut` keyword** — `let mut x = 1` required for reassignment; bindings are immutable by default
+- **Generics** — monomorphized functions: `fn id[T](x: T) -> T`, calls like `id[int](42)` and `first[string](words)`
+- **Traits and impls** — `trait Display { fn to_text(self) -> string }`, `impl Display for User { ... }`, method calls `user.to_text()`
+- **Compile-time match exhaustiveness** — enums, `Option`, and `Result` must be covered or use `_` (error E0107)
+- **Examples** — [`examples/generics.vpp`](examples/generics.vpp), [`examples/traits.vpp`](examples/traits.vpp)
+- **Tests** — mut/immutability, exhaustiveness, generics, and traits typecheck + parity coverage
+
+### Changed
+
+- All examples and stdlib sources updated to use `let mut` where variables are reassigned
+- [`SPEC.md`](SPEC.md) updated for v0.4 language features
+
 ## [0.3.0] — 2026-08-18 (Usable Language / Ecosystem)
 
 ### Added

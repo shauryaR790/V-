@@ -1,31 +1,41 @@
 use std::collections::{HashMap, HashSet};
 
 use crate::ast::{
-    BinOp, Block, EnumDecl, Expr, FnDecl, Item, MatchArm, Pattern, Program, Stmt, StructDecl,
-    TestDecl, UnOp,
+    BinOp, Block, EnumDecl, Expr, FnDecl, ImplDecl, Item, MatchArm, Param, Pattern, Program, Stmt,
+    StructDecl, TestDecl, TraitDecl, TypeAnn, UnOp,
 };
 use crate::modules::ModuleGraph;
 use crate::error::{span_to_source, type_mismatch, VppError, VppResult};
 use crate::span::Span;
 use crate::symbols::{SymbolDef, SymbolKind};
 use crate::types::{
-    EnumInfo, FunctionInfo, StructInfo, TestInfo, TypedExpr, TypedMatchArm, TypedPattern,
-    TypedProgram, TypedStmt, Type,
+    EnumInfo, FunctionInfo, GenericFunctionInfo, StructInfo, TestInfo, TraitInfo, TypedExpr,
+    TypedMatchArm, TypedPattern, TypedProgram, TypedStmt, Type,
 };
+
+#[derive(Clone)]
+struct Binding {
+    ty: Type,
+    mutable: bool,
+}
 
 pub struct TypeChecker<'source> {
     source: &'source str,
     source_file: std::path::PathBuf,
     functions: HashMap<String, FunctionInfo>,
+    generic_functions: HashMap<String, GenericFunctionInfo>,
+    traits: HashMap<String, TraitInfo>,
+    impl_methods: HashMap<(String, String), String>,
     structs: HashMap<String, StructInfo>,
     enums: HashMap<String, EnumInfo>,
-    scopes: Vec<HashMap<String, Type>>,
+    scopes: Vec<HashMap<String, Binding>>,
     symbols: crate::symbols::SymbolIndex,
     expected_type: Option<Type>,
     current_ret: Option<Type>,
     loop_depth: usize,
     modules: ModuleGraph,
     module_scoped: HashSet<String>,
+    active_type_params: HashSet<String>,
 }
 
 impl<'source> TypeChecker<'source> {
@@ -42,6 +52,9 @@ impl<'source> TypeChecker<'source> {
             source,
             source_file,
             functions: HashMap::new(),
+            generic_functions: HashMap::new(),
+            traits: HashMap::new(),
+            impl_methods: HashMap::new(),
             structs: HashMap::new(),
             enums: HashMap::new(),
             scopes: vec![HashMap::new()],
@@ -51,6 +64,7 @@ impl<'source> TypeChecker<'source> {
             loop_depth: 0,
             modules: ModuleGraph::default(),
             module_scoped: HashSet::new(),
+            active_type_params: HashSet::new(),
         }
     }
 
@@ -60,6 +74,9 @@ impl<'source> TypeChecker<'source> {
             source,
             source_file,
             functions: HashMap::new(),
+            generic_functions: HashMap::new(),
+            traits: HashMap::new(),
+            impl_methods: HashMap::new(),
             structs: HashMap::new(),
             enums: HashMap::new(),
             scopes: vec![HashMap::new()],
@@ -69,14 +86,17 @@ impl<'source> TypeChecker<'source> {
             loop_depth: 0,
             modules,
             module_scoped,
+            active_type_params: HashSet::new(),
         }
     }
 
     pub fn check(mut self, program: &Program) -> VppResult<TypedProgram> {
         self.register_types(program)?;
         for item in &program.items {
-            if let Item::Function(f) = item {
-                self.register_function(f)?;
+            match item {
+                Item::Function(f) => self.register_function(f)?,
+                Item::Trait(t) => self.register_trait(t)?,
+                _ => {}
             }
         }
 
@@ -85,16 +105,19 @@ impl<'source> TypeChecker<'source> {
         for item in &program.items {
             match item {
                 Item::Function(f) => {
-                    let info = self.check_function(f)?;
-                    self.functions.insert(f.name.clone(), info);
+                    if f.type_params.is_empty() {
+                        let info = self.check_function(f)?;
+                        self.functions.insert(f.name.clone(), info);
+                    }
                 }
+                Item::Impl(i) => self.check_impl(i)?,
                 Item::Test(test) => {
                     tests.push(self.check_test(test)?);
                 }
                 Item::Statement(stmt) => {
                     top_level.push(self.check_stmt(stmt)?);
                 }
-                Item::Import(_) | Item::Struct(_) | Item::Enum(_) => {}
+                Item::Import(_) | Item::Struct(_) | Item::Enum(_) | Item::Trait(_) => {}
             }
         }
 
@@ -207,10 +230,28 @@ impl<'source> TypeChecker<'source> {
     }
 
     fn register_function(&mut self, f: &FnDecl) -> VppResult<()> {
-        if self.functions.contains_key(&f.name) {
+        if self.functions.contains_key(&f.name) || self.generic_functions.contains_key(&f.name) {
             return Err(VppError::Other {
                 message: format!("function `{}` is already defined", f.name),
             });
+        }
+        if !f.type_params.is_empty() {
+            self.generic_functions.insert(
+                f.name.clone(),
+                GenericFunctionInfo {
+                    name: f.name.clone(),
+                    type_params: f.type_params.clone(),
+                    params: f
+                        .params
+                        .iter()
+                        .map(|p| (p.name.clone(), p.ty.clone()))
+                        .collect(),
+                    ret_type: f.ret_type.clone(),
+                    body: f.body.clone(),
+                    span: f.span,
+                },
+            );
+            return Ok(());
         }
         let params: Vec<(String, Type)> = f
             .params
@@ -230,7 +271,169 @@ impl<'source> TypeChecker<'source> {
         Ok(())
     }
 
+    fn register_trait(&mut self, t: &TraitDecl) -> VppResult<()> {
+        if self.traits.contains_key(&t.name) {
+            return Err(VppError::Other {
+                message: format!("trait `{}` is already defined", t.name),
+            });
+        }
+        let mut methods = HashMap::new();
+        for method in &t.methods {
+            let params: Vec<(String, Type)> = method
+                .params
+                .iter()
+                .map(|p| {
+                    let ty = if p.name == "self" {
+                        Type::TypeParam("Self".to_string())
+                    } else {
+                        self.resolve_ann(&p.ty)
+                    };
+                    (p.name.clone(), ty)
+                })
+                .collect();
+            methods.insert(
+                method.name.clone(),
+                (params, self.resolve_ann(&method.ret_type)),
+            );
+        }
+        self.traits.insert(
+            t.name.clone(),
+            TraitInfo {
+                name: t.name.clone(),
+                methods,
+                span: t.span,
+            },
+        );
+        Ok(())
+    }
+
+    fn check_impl(&mut self, imp: &ImplDecl) -> VppResult<()> {
+        let trait_info = self.traits.get(&imp.trait_name).cloned().ok_or_else(|| {
+            VppError::Other {
+                message: format!("unknown trait `{}`", imp.trait_name),
+            }
+        })?;
+
+        for (method_name, (expected_params, expected_ret)) in &trait_info.methods {
+            let provided = imp
+                .methods
+                .iter()
+                .find(|m| &m.name == method_name)
+                .ok_or_else(|| VppError::Other {
+                    message: format!(
+                        "impl for `{}` missing trait method `{}`",
+                        imp.type_name, method_name
+                    ),
+                })?;
+
+            let checked = self.check_function(provided)?;
+            if checked.params.len() != expected_params.len() {
+                return Err(VppError::Other {
+                    message: format!(
+                        "impl method `{}` has {} params, trait expects {}",
+                        method_name,
+                        checked.params.len(),
+                        expected_params.len()
+                    ),
+                });
+            }
+            for ((_, got), (_, expected)) in checked.params.iter().zip(expected_params.iter()) {
+                let expected_ty = if matches!(expected, Type::TypeParam(s) if s == "Self") {
+                    Type::Struct {
+                        name: imp.type_name.clone(),
+                        fields: self
+                            .structs
+                            .get(&imp.type_name)
+                            .map(|s| s.fields.clone())
+                            .unwrap_or_default(),
+                    }
+                } else {
+                    expected.clone()
+                };
+                if got != &expected_ty {
+                    return Err(type_mismatch(
+                        self.source,
+                        provided.span,
+                        &expected_ty.name(),
+                        &got.name(),
+                        format!("impl method `{method_name}` param type mismatch"),
+                    ));
+                }
+            }
+            let expected_ret = self.resolve_ann_for_type(&imp.type_name, expected_ret);
+            if checked.ret != expected_ret {
+                return Err(type_mismatch(
+                    self.source,
+                    provided.span,
+                    &expected_ret.name(),
+                    &checked.ret.name(),
+                    format!("impl method `{method_name}` return type mismatch"),
+                ));
+            }
+
+            let mangled = format!("__impl_{}_{}", imp.type_name, method_name);
+            self.impl_methods.insert(
+                (imp.type_name.clone(), method_name.clone()),
+                mangled.clone(),
+            );
+            self.functions.insert(
+                mangled.clone(),
+                FunctionInfo {
+                    name: mangled,
+                    params: checked.params,
+                    ret: checked.ret,
+                    body: checked.body,
+                    span: provided.span,
+                },
+            );
+        }
+
+        for method in &imp.methods {
+            if !trait_info.methods.contains_key(&method.name) {
+                return Err(VppError::Other {
+                    message: format!(
+                        "impl for `{}` has unknown method `{}`",
+                        imp.type_name, method.name
+                    ),
+                });
+            }
+        }
+        Ok(())
+    }
+
+    fn resolve_ann_for_type(&self, type_name: &str, ty: &Type) -> Type {
+        match ty {
+            Type::TypeParam(s) if s == "Self" => {
+                if let Some(s) = self.structs.get(type_name) {
+                    Type::Struct {
+                        name: type_name.to_string(),
+                        fields: s.fields.clone(),
+                    }
+                } else {
+                    Type::Struct {
+                        name: type_name.to_string(),
+                        fields: HashMap::new(),
+                    }
+                }
+            }
+            Type::Array(inner) => Type::Array(Box::new(self.resolve_ann_for_type(type_name, inner))),
+            Type::Option(inner) => {
+                Type::Option(Box::new(self.resolve_ann_for_type(type_name, inner)))
+            }
+            Type::Result { ok, err } => Type::Result {
+                ok: Box::new(self.resolve_ann_for_type(type_name, ok)),
+                err: Box::new(self.resolve_ann_for_type(type_name, err)),
+            },
+            _ => ty.clone(),
+        }
+    }
+
     fn check_function(&mut self, f: &FnDecl) -> VppResult<FunctionInfo> {
+        let saved_type_params = self.active_type_params.clone();
+        for tp in &f.type_params {
+            self.active_type_params.insert(tp.clone());
+        }
+
         self.symbols.insert(
             f.name.clone(),
             SymbolDef {
@@ -241,16 +444,17 @@ impl<'source> TypeChecker<'source> {
         );
         self.push_scope();
         for param in &f.params {
-            let ty = self.resolve_ann(&param.ty);
-            self.define(&param.name, ty);
+            let ty = self.resolve_ann_in_scope(&param.ty);
+            self.define(&param.name, ty, false);
         }
 
-        self.current_ret = Some(self.resolve_ann(&f.ret_type));
+        self.current_ret = Some(self.resolve_ann_in_scope(&f.ret_type));
         let body = self.check_block_stmts(&f.body)?;
         self.current_ret = None;
         self.pop_scope();
+        self.active_type_params = saved_type_params;
 
-        let ret = self.resolve_ann(&f.ret_type);
+        let ret = self.resolve_ann_in_scope(&f.ret_type);
         if ret != Type::Void && !body.is_empty() && !self.body_satisfies_return(&body, &ret) {
             return Err(VppError::MissingReturn {
                 expected: ret.name(),
@@ -263,7 +467,7 @@ impl<'source> TypeChecker<'source> {
             params: f
                 .params
                 .iter()
-                .map(|p| (p.name.clone(), self.resolve_ann(&p.ty)))
+                .map(|p| (p.name.clone(), self.resolve_ann_in_scope(&p.ty)))
                 .collect(),
             ret,
             body,
@@ -340,17 +544,21 @@ impl<'source> TypeChecker<'source> {
 
     fn check_stmt(&mut self, stmt: &Stmt) -> VppResult<TypedStmt> {
         match stmt {
-            Stmt::Let { name, ty, value, span } => {
-                let expected = ty
-                    .as_ref()
-                    .map(|ann| self.resolve_ann(ann));
+            Stmt::Let {
+                name,
+                mutable,
+                ty,
+                value,
+                span,
+            } => {
+                let expected = ty.as_ref().map(|ann| self.resolve_ann(ann));
                 let typed_value = if let Some(expected) = expected.clone() {
                     self.with_expected(expected, |this| this.check_expr(value))?
                 } else {
                     self.check_expr(value)?
                 };
                 let binding_ty = expected.unwrap_or_else(|| typed_value.ty());
-                self.define(name, binding_ty.clone());
+                self.define(name, binding_ty.clone(), *mutable);
                 self.symbols.insert(
                     name.clone(),
                     SymbolDef {
@@ -362,6 +570,7 @@ impl<'source> TypeChecker<'source> {
                 Ok(TypedStmt::Let {
                     name: name.clone(),
                     ty: binding_ty,
+                    mutable: *mutable,
                     value: typed_value,
                     span: *span,
                 })
@@ -542,7 +751,49 @@ impl<'source> TypeChecker<'source> {
             }
         }
 
+        self.verify_match_exhaustive(&scrutinee_ty, &typed_arms, span)?;
+
         Ok((typed_arms, match_ty))
+    }
+
+    fn verify_match_exhaustive(
+        &self,
+        scrutinee_ty: &Type,
+        arms: &[TypedMatchArm],
+        span: Span,
+    ) -> VppResult<()> {
+        if arms
+            .iter()
+            .any(|arm| matches!(arm.pattern, TypedPattern::Wildcard))
+        {
+            return Ok(());
+        }
+
+        let required: HashSet<String> = match scrutinee_ty {
+            Type::Enum { variants, .. } => variants.keys().cloned().collect(),
+            Type::Option(_) => HashSet::from(["Some".to_string(), "None".to_string()]),
+            Type::Result { .. } => HashSet::from(["Ok".to_string(), "Err".to_string()]),
+            _ => return Ok(()),
+        };
+
+        let mut covered = HashSet::new();
+        for arm in arms {
+            if let TypedPattern::Variant { variant, .. } = &arm.pattern {
+                covered.insert(variant.clone());
+            }
+        }
+
+        let missing: Vec<_> = required.difference(&covered).cloned().collect();
+        if missing.is_empty() {
+            return Ok(());
+        }
+
+        let mut missing = missing;
+        missing.sort();
+        Err(VppError::NonExhaustiveMatch {
+            missing: missing.join(", "),
+            span: span_to_source(self.source, span),
+        })
     }
 
     fn check_pattern(&mut self, pattern: &Pattern, scrutinee_ty: &Type) -> VppResult<TypedPattern> {
@@ -580,7 +831,7 @@ impl<'source> TypeChecker<'source> {
                 }
 
                 for (binding, ty) in bindings.iter().zip(payload_types.iter()) {
-                    self.define(binding, ty.clone());
+                    self.define(binding, ty.clone(), false);
                 }
 
                 Ok(TypedPattern::Variant {
@@ -605,7 +856,7 @@ impl<'source> TypeChecker<'source> {
                     let field_ty = struct_fields.get(field).ok_or_else(|| VppError::Other {
                         message: format!("struct `{name}` has no field `{field}`"),
                     })?;
-                    self.define(binding, field_ty.clone());
+                    self.define(binding, field_ty.clone(), false);
                     typed_fields.push((field.clone(), binding.clone(), field_ty.clone()));
                 }
 
@@ -717,7 +968,7 @@ impl<'source> TypeChecker<'source> {
         body: &Block,
     ) -> VppResult<Vec<TypedStmt>> {
         self.push_scope();
-        self.define(var, ty);
+        self.define(var, ty, false);
         let stmts = self.check_block_stmts(body)?;
         self.pop_scope();
         Ok(stmts)
@@ -793,7 +1044,72 @@ impl<'source> TypeChecker<'source> {
                 let inner = self.check_expr(expr)?;
                 self.check_unary(*op, inner, *span)
             }
-            Expr::Call { name, args, span } => self.check_call(name, args, *span),
+            Expr::Call {
+                name,
+                type_args,
+                args,
+                span,
+            } => self.check_call(name, type_args, args, *span),
+            Expr::MethodCall {
+                receiver,
+                method,
+                args,
+                span,
+            } => {
+                let typed_receiver = self.check_expr(receiver)?;
+                let type_name = match typed_receiver.ty() {
+                    Type::Struct { name, .. } => name,
+                    other => {
+                        return Err(VppError::Other {
+                            message: format!(
+                                "method calls require a struct receiver, found {}",
+                                other.name()
+                            ),
+                        });
+                    }
+                };
+                let mangled = self
+                    .impl_methods
+                    .get(&(type_name.clone(), method.clone()))
+                    .cloned()
+                    .ok_or_else(|| VppError::Other {
+                        message: format!("type `{type_name}` has no method `{method}`"),
+                    })?;
+                let mut call_args = vec![typed_receiver];
+                for arg in args {
+                    call_args.push(self.check_expr(arg)?);
+                }
+                let func = self.functions.get(&mangled).cloned().ok_or_else(|| {
+                    VppError::UndefinedFunction {
+                        name: mangled.clone(),
+                        span: span_to_source(self.source, *span),
+                    }
+                })?;
+                if call_args.len() != func.params.len() {
+                    return Err(VppError::WrongArgCount {
+                        name: method.clone(),
+                        expected: func.params.len(),
+                        found: call_args.len(),
+                        span: span_to_source(self.source, *span),
+                    });
+                }
+                for (arg, (_, expected)) in call_args.iter().zip(func.params.iter()) {
+                    if arg.ty() != *expected {
+                        return Err(type_mismatch(
+                            self.source,
+                            *span,
+                            &expected.name(),
+                            &arg.ty().name(),
+                            format!("argument to `{method}`"),
+                        ));
+                    }
+                }
+                Ok(TypedExpr::Call {
+                    name: mangled,
+                    args: call_args,
+                    ty: func.ret,
+                })
+            }
             Expr::Index { target, index, span } => {
                 let target_t = self.check_expr(target)?;
                 let index_t = self.check_expr(index)?;
@@ -852,23 +1168,29 @@ impl<'source> TypeChecker<'source> {
             )),
             Expr::Assign { name, value, span } => {
                 let typed_value = self.check_expr(value)?;
-                let existing = self.lookup(name).ok_or_else(|| VppError::ImmutableAssign {
+                let binding = self.lookup_binding(name).ok_or_else(|| VppError::ImmutableAssign {
                     name: name.clone(),
                     span: span_to_source(self.source, *span),
                 })?;
-                if typed_value.ty() != existing {
+                if !binding.mutable {
+                    return Err(VppError::ImmutableAssign {
+                        name: name.clone(),
+                        span: span_to_source(self.source, *span),
+                    });
+                }
+                if typed_value.ty() != binding.ty {
                     return Err(type_mismatch(
                         self.source,
                         *span,
-                        &existing.name(),
+                        &binding.ty.name(),
                         &typed_value.ty().name(),
-                        format!("`{name}` was declared as {}", existing.name()),
+                        format!("`{name}` was declared as {}", binding.ty.name()),
                     ));
                 }
                 Ok(TypedExpr::Assign {
                     name: name.clone(),
                     value: Box::new(typed_value.clone()),
-                    ty: existing,
+                    ty: binding.ty,
                 })
             }
             Expr::Match {
@@ -1088,7 +1410,13 @@ impl<'source> TypeChecker<'source> {
         })
     }
 
-    fn check_call(&mut self, name: &str, args: &[Expr], span: Span) -> VppResult<TypedExpr> {
+    fn check_call(
+        &mut self,
+        name: &str,
+        type_args: &[TypeAnn],
+        args: &[Expr],
+        span: Span,
+    ) -> VppResult<TypedExpr> {
         if name == "Some" {
             if args.len() != 1 {
                 return Err(VppError::WrongArgCount {
@@ -1236,6 +1564,56 @@ impl<'source> TypeChecker<'source> {
                         span: span_to_source(self.source, span),
                         help,
                     });
+                }
+
+                if let Some(binding) = self.lookup_binding(module_alias) {
+                    if let Type::Struct { name: type_name, .. } = &binding.ty {
+                        if let Some(mangled) = self
+                            .impl_methods
+                            .get(&(type_name.clone(), member.to_string()))
+                            .cloned()
+                        {
+                            let func = self.functions.get(&mangled).cloned().ok_or_else(|| {
+                                VppError::UndefinedFunction {
+                                    name: mangled.clone(),
+                                    span: span_to_source(self.source, span),
+                                }
+                            })?;
+                            let receiver = TypedExpr::Ident {
+                                name: module_alias.to_string(),
+                                ty: binding.ty.clone(),
+                                span,
+                            };
+                            let mut call_args = vec![receiver];
+                            for arg in args {
+                                call_args.push(self.check_expr(arg)?);
+                            }
+                            if call_args.len() != func.params.len() {
+                                return Err(VppError::WrongArgCount {
+                                    name: name.to_string(),
+                                    expected: func.params.len(),
+                                    found: call_args.len(),
+                                    span: span_to_source(self.source, span),
+                                });
+                            }
+                            for (arg, (_, expected)) in call_args.iter().zip(func.params.iter()) {
+                                if arg.ty() != *expected {
+                                    return Err(type_mismatch(
+                                        self.source,
+                                        span,
+                                        &expected.name(),
+                                        &arg.ty().name(),
+                                        format!("argument to `{name}`"),
+                                    ));
+                                }
+                            }
+                            return Ok(TypedExpr::Call {
+                                name: mangled,
+                                args: call_args,
+                                ty: func.ret,
+                            });
+                        }
+                    }
                 }
 
                 let (enum_name, variant) = (parts[0], parts[1]);
@@ -1450,6 +1828,28 @@ impl<'source> TypeChecker<'source> {
                 ty: Type::Int,
             })
         } else {
+            if let Some(generic) = self.generic_functions.get(name).cloned() {
+                if type_args.len() != generic.type_params.len() {
+                    return Err(VppError::Other {
+                        message: format!(
+                            "generic function `{name}` expects {} type argument(s), got {}",
+                            generic.type_params.len(),
+                            type_args.len()
+                        ),
+                    });
+                }
+                let mangled = Self::mangle_generic(name, type_args);
+                if !self.functions.contains_key(&mangled) {
+                    let specialized = self.instantiate_generic(&generic, type_args)?;
+                    self.functions.insert(mangled.clone(), specialized);
+                }
+                return self.check_call(&mangled, &[], args, span);
+            }
+            if !type_args.is_empty() {
+                return Err(VppError::Other {
+                    message: format!("function `{name}` is not generic"),
+                });
+            }
             if self.module_scoped.contains(name) {
                 let hint = self
                     .modules
@@ -1548,18 +1948,116 @@ impl<'source> TypeChecker<'source> {
         self.scopes.pop();
     }
 
-    fn define(&mut self, name: &str, ty: Type) {
+    fn define(&mut self, name: &str, ty: Type, mutable: bool) {
         if let Some(scope) = self.scopes.last_mut() {
-            scope.insert(name.to_string(), ty);
+            scope.insert(
+                name.to_string(),
+                Binding {
+                    ty,
+                    mutable,
+                },
+            );
         }
     }
 
     fn lookup(&self, name: &str) -> Option<Type> {
+        self.lookup_binding(name).map(|b| b.ty.clone())
+    }
+
+    fn lookup_binding(&self, name: &str) -> Option<Binding> {
         for scope in self.scopes.iter().rev() {
-            if let Some(ty) = scope.get(name) {
-                return Some(ty.clone());
+            if let Some(binding) = scope.get(name) {
+                return Some(binding.clone());
             }
         }
         None
+    }
+
+    fn resolve_ann_in_scope(&self, ann: &TypeAnn) -> Type {
+        match ann {
+            TypeAnn::Int => Type::Int,
+            TypeAnn::Float => Type::Float,
+            TypeAnn::Bool => Type::Bool,
+            TypeAnn::String => Type::String,
+            TypeAnn::Named(name) if self.active_type_params.contains(name) => {
+                Type::TypeParam(name.clone())
+            }
+            TypeAnn::Named(name) => self.resolve_ann(ann),
+            TypeAnn::Array(inner) => {
+                Type::Array(Box::new(self.resolve_ann_in_scope(inner)))
+            }
+            TypeAnn::Option(inner) => {
+                Type::Option(Box::new(self.resolve_ann_in_scope(inner)))
+            }
+            TypeAnn::Result { ok, err } => Type::Result {
+                ok: Box::new(self.resolve_ann_in_scope(ok)),
+                err: Box::new(self.resolve_ann_in_scope(err)),
+            },
+        }
+    }
+
+    fn mangle_generic(name: &str, type_args: &[TypeAnn]) -> String {
+        if type_args.is_empty() {
+            name.to_string()
+        } else {
+            format!(
+                "{}${}",
+                name,
+                type_args
+                    .iter()
+                    .map(TypeAnn::name)
+                    .collect::<Vec<_>>()
+                    .join("$")
+            )
+        }
+    }
+
+    fn substitute_ann(ann: &TypeAnn, subst: &HashMap<String, TypeAnn>) -> TypeAnn {
+        match ann {
+            TypeAnn::Named(name) => subst.get(name).cloned().unwrap_or_else(|| ann.clone()),
+            TypeAnn::Array(inner) => {
+                TypeAnn::Array(Box::new(Self::substitute_ann(inner, subst)))
+            }
+            TypeAnn::Option(inner) => {
+                TypeAnn::Option(Box::new(Self::substitute_ann(inner, subst)))
+            }
+            TypeAnn::Result { ok, err } => TypeAnn::Result {
+                ok: Box::new(Self::substitute_ann(ok, subst)),
+                err: Box::new(Self::substitute_ann(err, subst)),
+            },
+            other => other.clone(),
+        }
+    }
+
+    fn instantiate_generic(
+        &mut self,
+        generic: &GenericFunctionInfo,
+        type_args: &[TypeAnn],
+    ) -> VppResult<FunctionInfo> {
+        let subst: HashMap<String, TypeAnn> = generic
+            .type_params
+            .iter()
+            .cloned()
+            .zip(type_args.iter().cloned())
+            .collect();
+        let mangled = Self::mangle_generic(&generic.name, type_args);
+        let fn_decl = FnDecl {
+            name: mangled,
+            type_params: Vec::new(),
+            params: generic
+                .params
+                .iter()
+                .map(|(name, ty)| Param {
+                    name: name.clone(),
+                    ty: Self::substitute_ann(ty, &subst),
+                    span: generic.span,
+                })
+                .collect(),
+            ret_type: Self::substitute_ann(&generic.ret_type, &subst),
+            body: generic.body.clone(),
+            public: false,
+            span: generic.span,
+        };
+        self.check_function(&fn_decl)
     }
 }
