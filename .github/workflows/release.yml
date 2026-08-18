@@ -43,24 +43,25 @@ jobs:
           "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Append
 
       - name: Install Inno Setup
-        run: choco install innosetup -y --no-progress
+        shell: pwsh
+        run: |
+          curl.exe -L -o innosetup.exe "https://github.com/jrsoftware/issrc/releases/download/is-6_7_3/innosetup-6.7.3.exe"
+          Start-Process -FilePath .\innosetup.exe -ArgumentList "/VERYSILENT","/SUPPRESSMSGBOXES","/DIR=C:\InnoSetup6" -Wait
+          $iscc = "C:\InnoSetup6\ISCC.exe"
+          if (-not (Test-Path $iscc)) { throw "ISCC not found at $iscc" }
+          & $iscc /? | Select-Object -First 3
 
       - name: Build Windows installer
         shell: pwsh
         run: |
+          $iscc = "C:\InnoSetup6\ISCC.exe"
+          Get-ChildItem staging -Recurse | Select-Object FullName
           if (-not (Test-Path "staging/LICENSE")) { throw "staging/LICENSE missing" }
           if (-not (Test-Path "staging/vpp.exe")) { throw "staging/vpp.exe missing" }
           New-Item -ItemType Directory -Force -Path output | Out-Null
-          $iscc = @(
-            "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe",
-            "$env:ProgramFiles\Inno Setup 6\ISCC.exe"
-          ) | Where-Object { Test-Path $_ } | Select-Object -First 1
-          if (-not $iscc) { throw "ISCC.exe not found after Inno Setup install" }
-          Write-Host "Using ISCC: $iscc"
           Push-Location installer
           try {
-            & $iscc /DMyAppVersion="$env:VERSION" vpp-setup.iss 2>&1 | Tee-Object -Variable isccLog
-            $isccLog | Out-String | Write-Host
+            & $iscc /DMyAppVersion="$env:VERSION" vpp-setup.iss
             if ($LASTEXITCODE -ne 0) { throw "ISCC failed with exit code $LASTEXITCODE" }
           } finally {
             Pop-Location
