@@ -1,0 +1,19 @@
+v++ — quick start (Windows)
+===========================
+
+1. Install VS Code extension (optional but recommended)
+   - Open VS Code → Extensions → search "v++" → Install "v++ Language"
+
+2. This folder IS your v++ install. No Rust required.
+
+3. Double-click GO.bat   OR   open PowerShell here:
+
+   set VPP_HOME=%CD%
+   set PATH=%CD%;%PATH%
+   vpp run examples\hello.vpp
+
+4. Native compile (optional) — needs LLVM:
+   winget install LLVM.LLVM
+   vpp build examples\hello.vpp -o hello.exe
+
+Docs: https://github.com/shauryaR790/V-/blob/main/docs/INSTALL.md

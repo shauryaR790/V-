@@ -8,22 +8,25 @@
 
 ## Prebuilt binaries (recommended)
 
-Download the archive for your platform from [GitHub Releases](https://github.com/shauryaR790/V-/releases) (tag `v0.3.0` or later). Each bundle includes:
+**Download:** [GitHub Releases](https://github.com/shauryaR790/V-/releases) (latest `v0.4.x`)
 
-- `vpp` / `vpp.exe` — compiler and interpreter
-- `vppls` / `vppls.exe` — language server
-- `std/` — standard library
-- `registry/` — package index for semver deps
+### Windows (easiest)
 
-Extract, add the directory to your `PATH`, and set `VPP_HOME` to that directory (so `import std.*` resolves).
+1. Download `vpp-v0.4.x-windows-x64.zip`
+2. Unzip anywhere (e.g. `C:\vpp`)
+3. Double-click **`GO.bat`**
+4. Install VS Code extension: Extensions → search **v++**
+
+No Rust required. LLVM only needed if you use `vpp build` (native compile).
 
 ```powershell
-$env:VPP_HOME = "C:\path\to\vpp-0.3.0"
+$env:VPP_HOME = "C:\vpp"
 $env:PATH = "$env:VPP_HOME;$env:PATH"
+vpp run examples\hello.vpp
 vpp doctor
 ```
 
-On Windows you still need **LLVM/Clang** on `PATH` for `vpp build` (native compile).
+Each bundle includes `vpp`, `vppls`, `std/`, `registry/`, and a hello example.
 
 ## Build from source
 
@@ -56,10 +59,10 @@ cargo test --features codegen -- --test-threads=1
 
 ## VS Code / Cursor (recommended IDE)
 
-**Install the extension:** search **v++** in VS Code Extensions (after [Marketplace publish](MARKETPLACE.md)), or run `.\setup.ps1` from this repo for a local install.
+**Extension:** [VS Code Marketplace — v++ Language](https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus)  
+Or run `.\setup.ps1` from this repo for a local install.
 
-Full editor guide: [docs/VSCODE.md](VSCODE.md)  
-Publish to Marketplace: [docs/MARKETPLACE.md](MARKETPLACE.md)
+Full editor guide: [docs/VSCODE.md](VSCODE.md)
 
 ## New project
 

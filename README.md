@@ -4,7 +4,15 @@
 
 > Write it simply. Compile it natively. Grow into control when you need it.
 
-## Features (v0.3)
+## Quick start (Windows)
+
+1. **Compiler** — [Download latest release](https://github.com/shauryaR790/V-/releases) → unzip → double-click **`GO.bat`**
+2. **Editor** — VS Code → Extensions → search **v++** → Install [v++ Language](https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus)
+3. Open a `.vpp` file → press **F5**
+
+No Rust required for prebuilt releases. See [docs/INSTALL.md](docs/INSTALL.md).
+
+## Features (v0.4)
 
 - Practical **local type inference** (`let x = 10` → `int`)
 - Functions with explicit signatures; **`fn main() -> int`** entry point

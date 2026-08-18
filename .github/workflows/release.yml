@@ -15,13 +15,19 @@ jobs:
         include:
           - os: ubuntu-latest
             target: x86_64-unknown-linux-gnu
-            artifact: vpp
+            slug: linux-x64
+            vpp_bin: vpp
+            vppls_bin: vppls
           - os: windows-latest
             target: x86_64-pc-windows-msvc
-            artifact: vpp.exe
+            slug: windows-x64
+            vpp_bin: vpp.exe
+            vppls_bin: vppls.exe
           - os: macos-latest
             target: x86_64-apple-darwin
-            artifact: vpp
+            slug: macos-x64
+            vpp_bin: vpp
+            vppls_bin: vppls
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -59,21 +65,44 @@ jobs:
         run: cargo build --release --features codegen,lsp --bin vpp --bin vppls
 
       - name: Smoke test
-        run: |
-          cargo test --release --features codegen -- --test-threads=1
+        run: cargo test --release --features codegen -- --test-threads=1
 
-      - name: Upload artifact
+      - name: Package bundle (Unix)
+        if: matrix.os != 'windows-latest'
+        shell: bash
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+          DIR="vpp-${VERSION}-${{ matrix.slug }}"
+          mkdir -p "$DIR/examples"
+          cp "target/release/${{ matrix.vpp_bin }}" "$DIR/"
+          cp "target/release/${{ matrix.vppls_bin }}" "$DIR/"
+          cp -r std registry runtime "$DIR/"
+          cp examples/hello.vpp "$DIR/examples/"
+          cp RELEASE.txt run.sh "$DIR/"
+          chmod +x "$DIR/run.sh" "$DIR/${{ matrix.vpp_bin }}" "$DIR/${{ matrix.vppls_bin }}"
+          tar -czf "${DIR}.tar.gz" "$DIR"
+          echo "BUNDLE=${DIR}.tar.gz" >> "$GITHUB_ENV"
+
+      - name: Package bundle (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          $version = $env:GITHUB_REF_NAME
+          $dir = "vpp-$version-${{ matrix.slug }}"
+          New-Item -ItemType Directory -Force -Path "$dir/examples" | Out-Null
+          Copy-Item "target/release/${{ matrix.vpp_bin }}" "$dir/"
+          Copy-Item "target/release/${{ matrix.vppls_bin }}" "$dir/"
+          Copy-Item -Recurse std, registry, runtime "$dir/"
+          Copy-Item examples/hello.vpp "$dir/examples/"
+          Copy-Item GO.bat, RELEASE.txt "$dir/"
+          Compress-Archive -Path $dir -DestinationPath "$dir.zip" -Force
+          "BUNDLE=$dir.zip" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Upload bundle
         uses: actions/upload-artifact@v4
         with:
-          name: vpp-${{ matrix.target }}
-          path: |
-            target/release/vpp
-            target/release/vpp.exe
-            target/release/vppls
-            target/release/vppls.exe
-            runtime/vpp_runtime.c
-            std/
-            registry/
+          name: vpp-${{ matrix.slug }}
+          path: vpp-*-${{ matrix.slug }}.*
 
   release:
     needs: build
@@ -83,8 +112,14 @@ jobs:
         with:
           path: artifacts
 
+      - name: Flatten artifacts
+        run: find artifacts -type f \( -name '*.zip' -o -name '*.tar.gz' \) -exec cp {} . \;
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: artifacts/**/*
+          files: |
+            vpp-*-windows-x64.zip
+            vpp-*-linux-x64.tar.gz
+            vpp-*-macos-x64.tar.gz
           generate_release_notes: true

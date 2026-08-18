@@ -2,6 +2,20 @@
 
 All notable changes to v++ are documented here.
 
+## [0.4.1] — 2026-08-18 (Distribution)
+
+### Added
+
+- **GitHub Release bundles** — Windows zip with `GO.bat` one-click launcher; Linux/macOS tarballs with `run.sh`
+- **VS Code Marketplace** — extension published as `vpp-lang.vplusplus`
+- **Docs** — `docs/RELEASE.md`, `docs/MARKETPLACE.md`, simplified `docs/INSTALL.md`
+
+### Fixed
+
+- LSP build (`jsonrpc_core`, `CompletionItemKind::SNIPPET`)
+- `setup.ps1` PowerShell encoding + builds with `codegen,lsp` by default
+- VSIX packaging includes language-client dependencies
+
 ## [0.4.0] — 2026-08-18 (Language Core / Phase B)
 
 ### Added
