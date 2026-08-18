@@ -25,7 +25,7 @@ if ($env:LLVM_SYS_221_PREFIX) {
 
 $hasLlvm = $null -ne (Get-Command clang -ErrorAction SilentlyContinue)
 if (-not $hasLlvm) {
-    Write-Host "Note: LLVM/clang not found — interpreter works; native build needs:" -ForegroundColor Yellow
+    Write-Host "Note: LLVM/clang not found - interpreter works; native build needs:" -ForegroundColor Yellow
     Write-Host "  winget install LLVM.LLVM" -ForegroundColor White
     Write-Host "  then re-run .\setup.ps1" -ForegroundColor White
 }
