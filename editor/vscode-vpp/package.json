@@ -2,7 +2,7 @@
   "name": "vplusplus",
   "displayName": "v++ Language",
   "description": "v++ language support with syntax highlighting, run/debug, diagnostics, IntelliSense, go-to-definition, and project testing for .vpp files.",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "publisher": "vpp-lang",
   "license": "MIT",
   "icon": "icon.png",

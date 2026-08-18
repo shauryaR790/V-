@@ -1,133 +1,186 @@
-name: Release
-
-on:
-  push:
-    tags:
-      - "v*"
-
-permissions:
-  contents: write
-
-jobs:
-  build-windows:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: x86_64-pc-windows-msvc
-
-      - name: Install LLVM 22
-        shell: pwsh
-        run: |
-          curl.exe -L -o llvm.exe "https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.8/LLVM-22.1.8-win64.exe"
-          Start-Process -FilePath .\llvm.exe -ArgumentList "/S","/D=C:\LLVM" -Wait
-          "LLVM_SYS_221_PREFIX=C:\LLVM" | Out-File -FilePath $env:GITHUB_ENV -Append
-          "C:\LLVM\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
-
-      - name: Build release
-        run: cargo build --release --features codegen,lsp --bin vpp --bin vppls
-
-      - name: Package Windows bundle
-        shell: pwsh
-        run: |
-          $version = $env:GITHUB_REF_NAME
-          $dir = "vpp-$version-windows-x64"
-          New-Item -ItemType Directory -Force -Path "$dir/examples" | Out-Null
-          Copy-Item target/release/vpp.exe, target/release/vppls.exe $dir/
-          Copy-Item -Recurse std, registry, runtime $dir/
-          Copy-Item examples/hello.vpp $dir/examples/
-          Copy-Item GO.bat, RELEASE.txt, START-HERE.txt $dir/
-          # Portable clang for `vpp build` — avoids a separate LLVM install
-          New-Item -ItemType Directory -Force -Path "$dir/llvm/bin" | Out-Null
-          Copy-Item C:\LLVM\bin\clang*.exe, C:\LLVM\bin\lld*.exe, C:\LLVM\bin\LLVM*.dll, C:\LLVM\bin\lib*.dll -ErrorAction SilentlyContinue $dir/llvm/bin/
-          $zip = "$dir.zip"
-          Compress-Archive -Path $dir -DestinationPath $zip -Force
-          Get-FileHash $zip -Algorithm SHA256 | ForEach-Object { "$($_.Hash)  $(Split-Path $zip -Leaf)" } | Set-Content "$zip.sha256"
-
-      - name: Upload Windows bundle
-        uses: actions/upload-artifact@v4
-        with:
-          name: vpp-windows-x64
-          path: |
-            vpp-*-windows-x64.zip
-            vpp-*-windows-x64.zip.sha256
-
-  build-unix:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: ubuntu-latest
-            slug: linux-x64
-          - os: macos-latest
-            slug: macos-arm64
-            llvm_archive: LLVM-22.1.8-macOS-ARM64.tar.xz
-            llvm_dir: LLVM-22.1.8-macOS-ARM64
-    runs-on: ${{ matrix.os }}
-    continue-on-error: true
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
-
-      - name: Install LLVM 22 (Linux)
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget gnupg lsb-release software-properties-common
-          wget -q https://apt.llvm.org/llvm.sh
-          chmod +x llvm.sh
-          sudo ./llvm.sh 22
-          sudo apt-get install -y clang-22 lld-22 llvm-22-dev libclang-22-dev
-          echo "LLVM_SYS_221_PREFIX=$(llvm-config-22 --prefix)" >> "$GITHUB_ENV"
-          echo "$(llvm-config-22 --prefix)/bin" >> "$GITHUB_PATH"
-
-      - name: Install LLVM 22 (macOS)
-        if: runner.os == 'macOS'
-        run: |
-          curl -L -o llvm.tar.xz "https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.8/${{ matrix.llvm_archive }}"
-          tar xf llvm.tar.xz
-          echo "LLVM_SYS_221_PREFIX=$PWD/${{ matrix.llvm_dir }}" >> "$GITHUB_ENV"
-          echo "$PWD/${{ matrix.llvm_dir }}/bin" >> "$GITHUB_PATH"
-
-      - name: Build release
-        run: cargo build --release --features codegen,lsp --bin vpp --bin vppls
-
-      - name: Package bundle
-        run: |
-          VERSION="${GITHUB_REF_NAME}"
-          DIR="vpp-${VERSION}-${{ matrix.slug }}"
-          mkdir -p "$DIR/examples"
-          cp target/release/vpp target/release/vppls "$DIR/"
-          cp -r std registry runtime "$DIR/"
-          cp examples/hello.vpp "$DIR/examples/"
-          cp RELEASE.txt run.sh "$DIR/"
-          chmod +x "$DIR/run.sh" "$DIR/vpp" "$DIR/vppls"
-          tar -czf "${DIR}.tar.gz" "$DIR"
-
-      - name: Upload bundle
-        uses: actions/upload-artifact@v4
-        with:
-          name: vpp-${{ matrix.slug }}
-          path: vpp-*-${{ matrix.slug }}.tar.gz
-
-  release:
-    needs: [build-windows]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          path: artifacts
-
-      - name: Flatten artifacts
-        run: find artifacts -type f \( -name '*.zip' -o -name '*.tar.gz' \) -exec cp {} . \; 2>/dev/null || true
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            vpp-*-windows-x64.zip
-            vpp-*-windows-x64.zip.sha256
-            vpp-*-linux-x64.tar.gz
-            vpp-*-macos-arm64.tar.gz
-          generate_release_notes: true
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+
+      - name: Install LLVM 22
+        shell: pwsh
+        run: |
+          curl.exe -L -o llvm.exe "https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.8/LLVM-22.1.8-win64.exe"
+          Start-Process -FilePath .\llvm.exe -ArgumentList "/S","/D=C:\LLVM" -Wait
+          "LLVM_SYS_221_PREFIX=C:\LLVM" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "C:\LLVM\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
+
+      - name: Build release
+        run: cargo build --release --features codegen,lsp --bin vpp --bin vppls
+
+      - name: Stage Windows files
+        shell: pwsh
+        run: |
+          $version = $env:GITHUB_REF_NAME -replace '^v',''
+          $staging = "staging"
+          New-Item -ItemType Directory -Force -Path "$staging/examples" | Out-Null
+          Copy-Item target/release/vpp.exe, target/release/vppls.exe $staging/
+          Copy-Item -Recurse std, registry, runtime $staging/
+          Copy-Item examples/hello.vpp $staging/examples/
+          Copy-Item LICENSE $staging/
+          New-Item -ItemType Directory -Force -Path "$staging/llvm/bin" | Out-Null
+          Copy-Item C:\LLVM\bin\clang*.exe, C:\LLVM\bin\lld*.exe, C:\LLVM\bin\LLVM*.dll, C:\LLVM\bin\lib*.dll -ErrorAction SilentlyContinue $staging/llvm/bin/
+          "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Install Inno Setup
+        run: choco install innosetup -y --no-progress
+
+      - name: Build Windows installer
+        shell: pwsh
+        run: |
+          $iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          & $iscc /DMyAppVersion="$env:VERSION" /DStagingDir="staging" installer/vpp-setup.iss
+
+      - name: Package portable zip
+        shell: pwsh
+        run: |
+          $version = "v$env:VERSION"
+          $dir = "vpp-$version-windows-x64"
+          Copy-Item -Recurse staging $dir
+          Copy-Item GO.bat, RELEASE.txt, START-HERE.txt $dir/
+          $zip = "$dir.zip"
+          Compress-Archive -Path $dir -DestinationPath $zip -Force
+          Get-FileHash $zip -Algorithm SHA256 | ForEach-Object { "$($_.Hash)  $(Split-Path $zip -Leaf)" } | Set-Content "$zip.sha256"
+          Get-FileHash "output/vpp-$env:VERSION-setup.exe" -Algorithm SHA256 | ForEach-Object { "$($_.Hash)  vpp-$($env:VERSION)-setup.exe" } | Set-Content "output/vpp-$env:VERSION-setup.exe.sha256"
+
+      - name: Upload unsigned installer
+        id: upload-installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: vpp-setup-unsigned
+          path: output/vpp-*-setup.exe
+          if-no-files-found: error
+
+      - name: Sign installer (SignPath)
+        if: vars.SIGNPATH_ENABLED == 'true'
+        uses: signpath/github-action-submit-signing-request@v1
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ secrets.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: ${{ secrets.SIGNPATH_PROJECT_SLUG }}
+          signing-policy-slug: ${{ secrets.SIGNPATH_SIGNING_POLICY_SLUG }}
+          artifact-configuration-slug: release-signing
+          github-artifact-id: ${{ steps.upload-installer.outputs.artifact-id }}
+          wait-for-completion: true
+          wait-for-completion-timeout-in-seconds: 600
+          output-artifact-directory: signed
+
+      - name: Upload Windows release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: vpp-windows-x64
+          path: |
+            output/vpp-*-setup.exe
+            output/vpp-*-setup.exe.sha256
+            signed/vpp-*-setup.exe
+            vpp-*-windows-x64.zip
+            vpp-*-windows-x64.zip.sha256
+
+  build-unix:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            slug: linux-x64
+          - os: macos-latest
+            slug: macos-arm64
+            llvm_archive: LLVM-22.1.8-macOS-ARM64.tar.xz
+            llvm_dir: LLVM-22.1.8-macOS-ARM64
+    runs-on: ${{ matrix.os }}
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Install LLVM 22 (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget gnupg lsb-release software-properties-common
+          wget -q https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          sudo ./llvm.sh 22
+          sudo apt-get install -y clang-22 lld-22 llvm-22-dev libclang-22-dev
+          echo "LLVM_SYS_221_PREFIX=$(llvm-config-22 --prefix)" >> "$GITHUB_ENV"
+          echo "$(llvm-config-22 --prefix)/bin" >> "$GITHUB_PATH"
+
+      - name: Install LLVM 22 (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          curl -L -o llvm.tar.xz "https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.8/${{ matrix.llvm_archive }}"
+          tar xf llvm.tar.xz
+          echo "LLVM_SYS_221_PREFIX=$PWD/${{ matrix.llvm_dir }}" >> "$GITHUB_ENV"
+          echo "$PWD/${{ matrix.llvm_dir }}/bin" >> "$GITHUB_PATH"
+
+      - name: Build release
+        run: cargo build --release --features codegen,lsp --bin vpp --bin vppls
+
+      - name: Package bundle
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+          DIR="vpp-${VERSION}-${{ matrix.slug }}"
+          mkdir -p "$DIR/examples"
+          cp target/release/vpp target/release/vppls "$DIR/"
+          cp -r std registry runtime "$DIR/"
+          cp examples/hello.vpp "$DIR/examples/"
+          cp RELEASE.txt run.sh "$DIR/"
+          chmod +x "$DIR/run.sh" "$DIR/vpp" "$DIR/vppls"
+          tar -czf "${DIR}.tar.gz" "$DIR"
+
+      - name: Upload bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: vpp-${{ matrix.slug }}
+          path: vpp-*-${{ matrix.slug }}.tar.gz
+
+  release:
+    needs: [build-windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Flatten artifacts
+        shell: bash
+        run: |
+          find artifacts -type f \( -name '*.zip' -o -name '*.tar.gz' -o -name '*-setup.exe' -o -name '*.sha256' \) -exec cp {} . \;
+          # Prefer signed installer when SignPath ran
+          if ls signed/vpp-*-setup.exe 1>/dev/null 2>&1; then
+            cp signed/vpp-*-setup.exe .
+          fi
+          ls -la
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            vpp-*-setup.exe
+            vpp-*-setup.exe.sha256
+            vpp-*-windows-x64.zip
+            vpp-*-windows-x64.zip.sha256
+            vpp-*-linux-x64.tar.gz
+            vpp-*-macos-arm64.tar.gz
+          generate_release_notes: true
+

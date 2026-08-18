@@ -22,24 +22,19 @@ GitHub Actions (`.github/workflows/release.yml`) builds Windows, Linux, and macO
 
 | File | Platform |
 |------|----------|
-| `vpp-v0.4.1-windows-x64.zip` | Windows — unzip, double-click `GO.bat` |
-| `vpp-v0.4.1-linux-x64.tar.gz` | Linux |
-| `vpp-v0.4.1-macos-x64.tar.gz` | macOS |
+| `vpp-v0.4.3-setup.exe` | **Windows (recommended)** — installer, adds PATH |
+| `vpp-v0.4.3-windows-x64.zip` | Windows portable |
+| `vpp-v0.4.3-linux-x64.tar.gz` | Linux |
+| `vpp-v0.4.3-macos-arm64.tar.gz` | macOS |
 
-Each bundle includes:
-
-- `vpp` / `vpp.exe` — compiler + interpreter
-- `vppls` / `vppls.exe` — language server
-- `std/`, `registry/`, `runtime/`
-- `examples/hello.vpp`
-- `GO.bat` (Windows) or `run.sh` (Unix)
+Code signing (no SmartScreen like Python): see [docs/SIGNING.md](SIGNING.md).
 
 ## User install (Windows)
 
-1. [GitHub Releases](https://github.com/shauryaR790/V-/releases) → download Windows zip
-2. Unzip anywhere (e.g. `C:\vpp`)
-3. Double-click **GO.bat**
-4. Install VS Code extension: search **v++**
+1. [GitHub Releases](https://github.com/shauryaR790/V-/releases) → download **`vpp-*-setup.exe`**
+2. Run installer
+3. Open a new terminal: `vpp run examples\hello.vpp`
+4. VS Code extension: **v++ Language** (vpp-lang)
 
 No Rust. No `cargo build`. LLVM only needed for `vpp build` (native `.exe` output).
 
