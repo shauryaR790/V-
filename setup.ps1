@@ -47,7 +47,8 @@ foreach ($extDest in $extTargets) {
         continue
     }
     if (Test-Path $extDest) { Remove-Item -Recurse -Force $extDest }
-    Copy-Item -Recurse $extSrc $extDest
+    New-Item -ItemType Directory -Path $extDest -Force | Out-Null
+    robocopy $extSrc $extDest /E /XD node_modules .vscode /XF *.vsix /NFL /NDL /NJH /NJS | Out-Null
     Write-Host "  installed -> $extDest" -ForegroundColor Gray
 }
 
