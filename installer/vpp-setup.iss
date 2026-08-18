@@ -1,6 +1,6 @@
 ; v++ Windows installer - built in CI, signed via SignPath (see docs/SIGNING.md)
 #ifndef MyAppVersion
-  #define MyAppVersion "0.4.4"
+  #define MyAppVersion "0.5.0"
 #endif
 
 [Setup]

@@ -4,13 +4,13 @@
 
 > Write it simply. Compile it natively. Grow into control when you need it.
 
-**Author:** [Shaurya](https://github.com/shauryaR790) · **License:** MIT · **Version:** 0.4.4
+**Author:** [Shaurya](https://github.com/shauryaR790) · **License:** MIT · **Version:** 0.5.0
 
 ---
 
 ## Get started in 2 minutes
 
-1. **Download** [`vpp-0.4.4-setup.exe`](https://github.com/shauryaR790/V-/releases/latest) (Windows installer)
+1. **Download** [`vpp-0.5.0-setup.exe`](https://github.com/shauryaR790/V-/releases/latest) (Windows installer)
 2. **Install** [v++ Language](https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus) in VS Code (publisher: **vpp-lang**)
 3. **Run:**
 

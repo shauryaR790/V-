@@ -2,15 +2,18 @@
 
 All notable changes to v++ are documented here.
 
-## [0.5.0] — 2026-08-18 (Documentation / Phase D step 1)
+## [0.5.0] — 2026-08-18
 
 ### Added
 
-- **Documentation hub** — `docs/README.md` with getting-started, language, guides, stdlib, contributing, project sections
+- **Documentation hub** — 30+ guides (`docs/getting-started`, `language`, `guides`, `stdlib`, `project`)
 - **GitHub paperwork** — `CONTRIBUTING.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`
-- **30+ guides** — install, CLI, generics, traits, troubleshooting, FAQ, roadmap
 - **VS Code extension v0.5.0** — Python-style Marketplace README and CHANGELOG
-- **Installer PATH** — registry entries restored for `vpp` and bundled `clang`
+- **Windows installer PATH** — adds `vpp` and bundled `clang` to user PATH on install
+
+### Changed
+
+- Compiler, installer, and release bundle version aligned to **0.5.0**
 
 ## [0.4.4] — 2026-08-18 (Windows installer)
 
