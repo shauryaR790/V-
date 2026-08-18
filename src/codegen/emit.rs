@@ -109,11 +109,38 @@ fn link_executable(module: &Module, output: &Path) -> VppResult<()> {
     let staged_str = staged.to_string_lossy();
     run_cmd("clang", &[&obj, &rt_o, "-o", &staged_str])?;
     std::fs::copy(&staged, output).map_err(|source| VppError::Io { source })?;
+    #[cfg(unix)]
+    {
+        use std::os::unix::fs::PermissionsExt;
+        if let Ok(meta) = std::fs::metadata(output) {
+            let mut perms = meta.permissions();
+            perms.set_mode(0o755);
+            let _ = std::fs::set_permissions(output, perms);
+        }
+    }
     Ok(())
 }
 
+fn tool_in_llvm_bin(name: &str) -> String {
+    if let Ok(prefix) = std::env::var("LLVM_SYS_221_PREFIX") {
+        let bin = std::path::PathBuf::from(prefix).join("bin");
+        for candidate in [name.to_string(), format!("{name}-22")] {
+            let path = bin.join(&candidate);
+            if path.exists() {
+                return path.to_string_lossy().into_owned();
+            }
+        }
+    }
+    name.to_string()
+}
+
 fn run_cmd(program: &str, args: &[&str]) -> VppResult<()> {
-    let output = Command::new(program).args(args).output().map_err(|e| VppError::Other {
+    let program = if program == "clang" {
+        tool_in_llvm_bin("clang")
+    } else {
+        program.to_string()
+    };
+    let output = Command::new(&program).args(args).output().map_err(|e| VppError::Other {
         message: format!("failed to run `{program}`: {e}. Ensure clang/LLVM is installed."),
     })?;
     if !output.status.success() {
