@@ -31,7 +31,7 @@ jobs:
           Start-Process -FilePath .\llvm.exe -ArgumentList "/S","/D=C:\LLVM" -Wait
           "LLVM_SYS_221_PREFIX=C:\LLVM" | Out-File -FilePath $env:GITHUB_ENV -Append
           "C:\LLVM\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
-          clang --version
+          & C:\LLVM\bin\clang.exe --version
       - name: Native smoke test
         shell: pwsh
         run: |
