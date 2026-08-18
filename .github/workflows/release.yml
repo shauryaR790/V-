@@ -48,7 +48,8 @@ jobs:
       - name: Build Windows installer
         shell: pwsh
         run: |
-          $staging = (Resolve-Path "staging").Path
+          if (-not (Test-Path "staging/LICENSE")) { throw "staging/LICENSE missing" }
+          if (-not (Test-Path "staging/vpp.exe")) { throw "staging/vpp.exe missing" }
           New-Item -ItemType Directory -Force -Path output | Out-Null
           $iscc = @(
             "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe",
@@ -56,9 +57,14 @@ jobs:
           ) | Where-Object { Test-Path $_ } | Select-Object -First 1
           if (-not $iscc) { throw "ISCC.exe not found after Inno Setup install" }
           Write-Host "Using ISCC: $iscc"
-          Write-Host "StagingDir: $staging"
-          & $iscc /DMyAppVersion="$env:VERSION" /DStagingDir="$staging" installer/vpp-setup.iss
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Push-Location installer
+          try {
+            & $iscc /DMyAppVersion="$env:VERSION" vpp-setup.iss 2>&1 | Tee-Object -Variable isccLog
+            $isccLog | Out-String | Write-Host
+            if ($LASTEXITCODE -ne 0) { throw "ISCC failed with exit code $LASTEXITCODE" }
+          } finally {
+            Pop-Location
+          }
           Get-ChildItem output
 
       - name: Package portable zip
