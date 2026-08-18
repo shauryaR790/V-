@@ -1,8 +1,8 @@
 {
   "name": "vplusplus",
   "displayName": "v++ Language",
-  "description": "v++ language support with syntax highlighting, run/debug, diagnostics, IntelliSense, go-to-definition, and project testing for .vpp files.",
-  "version": "0.4.4",
+  "description": "Official v++ language support for VS Code — syntax highlighting, run/debug, diagnostics, IntelliSense, go-to-definition, formatting, and project testing for .vpp files.",
+  "version": "0.5.0",
   "publisher": "vpp-lang",
   "license": "MIT",
   "icon": "icon.png",
@@ -27,7 +27,7 @@
   "engines": {
     "vscode": "^1.80.0"
   },
-  "categories": ["Programming Languages"],
+  "categories": ["Programming Languages", "Debuggers", "Formatters", "Testing"],
   "activationEvents": [
     "onLanguage:vpp"
   ],

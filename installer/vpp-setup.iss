@@ -41,3 +41,30 @@ Name: "{autodesktop}\v++"; Filename: "{app}\vpp.exe"; Parameters: "run examples\
 
 [Run]
 Filename: "{app}\vpp.exe"; Parameters: "run examples\hello.vpp"; Description: "Run the hello.vpp example"; Flags: postinstall nowait skipifsilent
+
+[Registry]
+Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{olddata};{app}"; Check: NeedsAddAppPath
+Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{olddata};{app}\llvm\bin"; Check: NeedsAddLlvmPath
+
+[Code]
+function NeedsAddPath(Param: string): Boolean;
+var
+  OrigPath: string;
+begin
+  if not RegQueryStringValue(HKEY_CURRENT_USER, 'Environment', 'Path', OrigPath) then
+  begin
+    Result := True;
+    exit;
+  end;
+  Result := Pos(';' + Param + ';', ';' + OrigPath + ';') = 0;
+end;
+
+function NeedsAddAppPath: Boolean;
+begin
+  Result := NeedsAddPath(ExpandConstant('{app}'));
+end;
+
+function NeedsAddLlvmPath: Boolean;
+begin
+  Result := NeedsAddPath(ExpandConstant('{app}') + '\llvm\bin');
+end;
