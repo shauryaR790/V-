@@ -35,4 +35,4 @@ Settings (`File → Preferences → Settings`, search `vpp`):
 | v++: Check File | Command Palette |
 | v++: Run Tests | Command Palette |
 
-Full guide: [docs/VSCODE.md](../VSCODE.md).
+See also: [Language server](../guides/language-server.md), [Troubleshooting](../guides/troubleshooting.md).

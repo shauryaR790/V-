@@ -3,7 +3,7 @@
 ## Windows (recommended)
 
 1. Download **`vpp-0.5.0-setup.exe`** from [GitHub Releases](https://github.com/shauryaR790/V-/releases/latest).
-2. Run the installer. If SmartScreen warns, choose **More info → Run anyway** (unsigned until SignPath approval).
+2. Run the installer. If Windows SmartScreen appears, choose **More info → Run anyway**.
 3. Open a **new** terminal:
 
 ```powershell

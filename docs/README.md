@@ -1,22 +1,22 @@
 # v++ Documentation
 
-Welcome to the v++ documentation hub. Start here, then drill into the topic you need.
+Welcome to the v++ documentation. Start with [Install](getting-started/install.md) or [Hello, v++](getting-started/hello-world.md).
 
-## New to v++?
+## Getting started
 
 | Guide | Description |
 |-------|-------------|
-| [Install](getting-started/install.md) | Download installer, VS Code extension, PATH |
+| [Install](getting-started/install.md) | Windows installer, VS Code extension, PATH |
 | [Hello, v++](getting-started/hello-world.md) | First program in 5 minutes |
-| [VS Code setup](getting-started/vscode-setup.md) | F5 run, LSP, settings |
-| [Your first project](getting-started/first-project.md) | `vpp new`, folders, tests |
+| [VS Code setup](getting-started/vscode-setup.md) | Run, debug, LSP settings |
+| [Your first project](getting-started/first-project.md) | `vpp new`, layout, tests |
 
-## Language
+## Language reference
 
 | Guide | Description |
 |-------|-------------|
-| [Language overview](language/README.md) | Syntax philosophy and index |
-| [Types & inference](language/types-and-inference.md) | `int`, `string`, `let`, function signatures |
+| [Overview](language/README.md) | Syntax and index |
+| [Types & inference](language/types-and-inference.md) | `int`, `string`, `let`, signatures |
 | [Functions](language/functions.md) | `fn`, `return`, `main` |
 | [Control flow](language/control-flow.md) | `if`, `while`, `for`, `match` |
 | [Structs & enums](language/structs-and-enums.md) | Custom types |
@@ -24,13 +24,13 @@ Welcome to the v++ documentation hub. Start here, then drill into the topic you 
 | [Generics](language/generics.md) | `fn id[T](x: T)` |
 | [Traits & impls](language/traits.md) | Interfaces with static dispatch |
 | [`mut` & immutability](language/mut-and-immutability.md) | Reassignment rules |
+| [Modules](language/modules.md) | `import`, `pub`, `std.*` |
 
 ## Guides
 
 | Guide | Description |
 |-------|-------------|
 | [CLI reference](guides/cli-reference.md) | Every `vpp` command |
-| [Modules](language/modules.md) | `import`, `pub`, `std.*` |
 | [Package manager](guides/package-manager.md) | `vpp.toml`, deps, lockfile |
 | [Testing](guides/testing.md) | `test` blocks, `vpp test` |
 | [Native compilation](guides/native-compilation.md) | `vpp build`, LLVM, `.exe` |
@@ -51,24 +51,12 @@ Welcome to the v++ documentation hub. Start here, then drill into the topic you 
 | `std.json` | [stdlib/json.md](stdlib/json.md) |
 | `std.process` | [stdlib/process.md](stdlib/process.md) |
 
-## Tools & distribution
-
-| Doc | Description |
-|-----|-------------|
-| [Install (detailed)](INSTALL.md) | Prebuilt vs source |
-| [VS Code (detailed)](VSCODE.md) | Extension + Marketplace |
-| [Releases](RELEASE.md) | GitHub Releases workflow |
-| [Code signing](SIGNING.md) | SignPath / trusted installs |
-| [Privacy](PRIVACY.md) | Data collection policy |
-| [Marketplace publish](MARKETPLACE.md) | For extension maintainers |
-
 ## Project
 
 | Doc | Description |
 |-----|-------------|
-| [Roadmap](project/roadmap.md) | v0.5 → v1.0 plan |
+| [Roadmap](project/roadmap.md) | Planned features |
 | [FAQ](project/faq.md) | Common questions |
-| [Full manual (v0.1)](VPP_COMPLETE_MANUAL_v0.1.0.md) | Legacy comprehensive manual |
 | [SPEC](../SPEC.md) | Language specification |
 | [CHANGELOG](../CHANGELOG.md) | Version history |
 
@@ -79,4 +67,11 @@ Welcome to the v++ documentation hub. Start here, then drill into the topic you 
 | [Contributing](../CONTRIBUTING.md) | How to help |
 | [Build from source](contributing/building-from-source.md) | `cargo build`, features |
 | [Run tests](contributing/running-tests.md) | CI parity, local tests |
-| [Release process](contributing/release-process.md) | Tags, installer, Marketplace |
+
+## Legal
+
+| Doc | Description |
+|-----|-------------|
+| [Privacy](PRIVACY.md) | Data collection policy |
+| [Security](../SECURITY.md) | Vulnerability reporting |
+| [Code of Conduct](../CODE_OF_CONDUCT.md) | Community standards |

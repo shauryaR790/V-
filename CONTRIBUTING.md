@@ -33,6 +33,13 @@ Thanks for helping improve v++!
 
 Use clear summaries: `Fix …`, `Add …`, `Docs: …` — same style as existing history.
 
+## Releases (maintainers)
+
+1. Bump versions in `Cargo.toml` and `editor/vscode-vpp/package.json`
+2. Update `CHANGELOG.md` and commit
+3. Tag and push: `git tag v0.x.y && git push origin main && git push origin v0.x.y`
+4. Confirm the [Release workflow](https://github.com/shauryaR790/V-/actions) succeeds and assets appear on [GitHub Releases](https://github.com/shauryaR790/V-/releases)
+
 ## License
 
 By contributing, you agree your work is licensed under the project MIT license.

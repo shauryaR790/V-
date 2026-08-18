@@ -57,6 +57,7 @@ Full guide: **[docs/getting-started/hello-world.md](docs/getting-started/hello-w
 | Issues | https://github.com/shauryaR790/V-/issues |
 | Contributing | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | Security | [SECURITY.md](SECURITY.md) |
+| Privacy | [docs/PRIVACY.md](docs/PRIVACY.md) |
 
 ---
 

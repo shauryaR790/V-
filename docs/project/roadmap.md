@@ -6,9 +6,10 @@
 - Toolchain: vpp, vppls, package manager, stdlib
 - Distribution: Windows installer, VS Code extension, CI/CD
 
-## v0.5 (next)
+## v0.5 (current)
 
-- [ ] Installer PATH fix + SignPath signing
+- [x] Documentation hub and install guides
+- [ ] SignPath code signing
 - [ ] Website (landing + docs mirror)
 - [ ] REPL (`vpp repl`)
 - [ ] Expanded stdlib (maps, time)

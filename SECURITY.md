@@ -4,8 +4,8 @@
 
 | Version | Supported |
 |---------|-----------|
-| 0.4.x   | Yes       |
-| < 0.4   | No        |
+| 0.5.x   | Yes       |
+| < 0.5   | No        |
 
 ## Reporting a vulnerability
 
@@ -16,7 +16,7 @@ Email **shauryajiku@gmail.com** with:
 - Description of the issue
 - Steps to reproduce
 - Impact assessment
-- Affected version (e.g. v0.4.4)
+- Affected version (e.g. v0.5.0)
 
 We aim to respond within 7 days.
 

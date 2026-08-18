@@ -6,7 +6,7 @@ A compiled language with Python-like syntax, static typing, and native codegen v
 
 ## Is v++ ready for production?
 
-It's **v0.4** — early but real. Expect language changes until v1.0.
+It's **v0.5** — early but real. Expect language changes until v1.0.
 
 ## How is v++ different from Python?
 

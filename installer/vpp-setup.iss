@@ -1,4 +1,4 @@
-; v++ Windows installer - built in CI, signed via SignPath (see docs/SIGNING.md)
+; v++ Windows installer — built in CI (Release workflow)
 #ifndef MyAppVersion
   #define MyAppVersion "0.5.0"
 #endif

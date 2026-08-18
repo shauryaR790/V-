@@ -8,7 +8,7 @@
 
 ## SmartScreen / security warning
 
-Unsigned installer until SignPath approves. See [SIGNING.md](../SIGNING.md).
+Open-source installers may trigger a one-time Windows SmartScreen prompt. Choose **More info → Run anyway**, or verify the download from [GitHub Releases](https://github.com/shauryaR790/V-/releases).
 
 ## `vpp build` fails — clang not found
 
