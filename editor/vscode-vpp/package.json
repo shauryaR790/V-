@@ -1,9 +1,29 @@
 {
   "name": "vpp",
   "displayName": "v++ Language",
-  "description": "Run, syntax highlight, and icons for the v++ programming language (.vpp files)",
-  "version": "0.3.0",
+  "description": "Syntax highlighting, F5 run, diagnostics, and completion for the v++ programming language (.vpp files).",
+  "version": "0.4.0",
   "publisher": "vpp-lang",
+  "license": "MIT",
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#1a1a1a",
+    "theme": "dark"
+  },
+  "keywords": [
+    "vpp",
+    "v++",
+    "programming language",
+    "vpp-lang"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shauryaR790/V-.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shauryaR790/V-/issues"
+  },
+  "homepage": "https://github.com/shauryaR790/V-#readme",
   "engines": {
     "vscode": "^1.80.0"
   },

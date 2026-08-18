@@ -54,16 +54,12 @@ vpp test
 cargo test --features codegen -- --test-threads=1
 ```
 
-## VS Code / Cursor extension
+## VS Code / Cursor (recommended IDE)
 
-```powershell
-cd editor/vscode-vpp
-npm install
-cd ../..
-.\setup.ps1
-```
+**Install the extension:** search **v++** in VS Code Extensions (after [Marketplace publish](MARKETPLACE.md)), or run `.\setup.ps1` from this repo for a local install.
 
-Enable the v++ extension. The language server (`vppls`) starts automatically when `vpp.enableLanguageServer` is true.
+Full editor guide: [docs/VSCODE.md](VSCODE.md)  
+Publish to Marketplace: [docs/MARKETPLACE.md](MARKETPLACE.md)
 
 ## New project
 

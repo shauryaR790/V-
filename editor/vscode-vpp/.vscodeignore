@@ -1,6 +1,6 @@
 .vscode/**
 .vscode-test/**
-node_modules/**
 *.vsix
 publish.ps1
 .gitignore
+package-lock.json
