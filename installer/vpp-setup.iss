@@ -37,7 +37,7 @@ Source: "..\staging\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs cr
 Name: "{group}\v++ - Run hello.vpp"; Filename: "{app}\vpp.exe"; Parameters: "run examples\hello.vpp"; WorkingDir: "{app}"
 Name: "{group}\v++ - Open install folder"; Filename: "{app}"
 Name: "{group}\Uninstall v++"; Filename: "{uninstallexe}"
-Name: "{desktop}\v++"; Filename: "{app}\vpp.exe"; Parameters: "run examples\hello.vpp"; WorkingDir: "{app}"; Tasks: desktopicon
+Name: "{autodesktop}\v++"; Filename: "{app}\vpp.exe"; Parameters: "run examples\hello.vpp"; WorkingDir: "{app}"; Tasks: desktopicon
 
 [Run]
 Filename: "{app}\vpp.exe"; Parameters: "run examples\hello.vpp"; Description: "Run the hello.vpp example"; Flags: postinstall nowait skipifsilent
