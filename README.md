@@ -4,19 +4,19 @@
 
 > Write it simply. Compile it natively. Grow into control when you need it.
 
-## Features (MVP)
+## Features (v0.3)
 
 - Practical **local type inference** (`let x = 10` → `int`)
-- Functions with explicit signatures
-- Control flow: `if`/`else`, `while`, `for` over ranges and arrays
-- Strings, arrays, `print`, `len`, `assert`, `assert_eq`
-- **Structs**, **Option/Result**, **match**, **modules/imports**
+- Functions with explicit signatures; **`fn main() -> int`** entry point
+- Control flow: `if`/`else`, `while`, `for` over ranges and arrays, `match`, `break`/`continue`
+- **Structs**, **user enums**, **Option/Result**, **match**
+- **Modules**: `import std.io`, `pub` exports, namespaced calls
+- **Package manager**: `vpp.toml`, lockfile, path/git/registry deps
+- **Stdlib**: `std/io`, `std/math`, `std/string`, `std/collections`, `std/fs`, `std/json`, `std/process`
+- **Native codegen** for fs/json/process + full v0.2 feature parity
 - **`test` blocks** with `vpp test` runner
-- **`break` / `continue`**, project manifest (`vpp.toml`)
-- **Standard library** (`std/math`, `std/io`, `std/string`)
-- **Numbered compiler diagnostics** with source spans and help text
-- **LLVM native codegen** via `inkwell` (optional feature)
-- CLI: `run`, `build`, `check`, `compile`, `fmt`, `test`, `init`, `lsp`
+- **LSP** diagnostics, completion, go-to-definition
+- CLI: `run`, `build`, `check`, `compile`, `fmt`, `test`, `init`, `doctor`, `lsp`
 
 ## Prerequisites
 
@@ -72,6 +72,16 @@ The extension includes a **v++ logo** (indigo badge with a `V` and `++`) shown i
 
 ## Usage
 
+**Recommended on Windows** — use the local wrapper (always up to date):
+
+```powershell
+.\vpp.ps1 run stress.vpp
+.\vpp.ps1 build stress.vpp -o stress.exe
+.\stress.ps1    # automatic interpreter vs native parity test
+```
+
+Or install globally once: `.\install.ps1` (then reopen terminal).
+
 ```powershell
 # Create a new project
 vpp init myapp
@@ -79,39 +89,45 @@ cd myapp
 vpp run
 vpp test
 
-# Type-check without codegen
-vpp check examples/hello.vpp
+# Type-check
+vpp check stress.vpp
 
 # Format source
 vpp fmt examples/hello.vpp
+vpp doctor
 ```
+
+See [docs/INSTALL.md](docs/INSTALL.md) for prebuilt binaries and LLVM setup.
 
 ### Run programs
 
-`vpp run` uses a **built-in interpreter** — no LLVM required:
+`vpp run` uses the **interpreter** (no LLVM required). It runs top-level statements and calls `fn main()` when present.
 
 ```powershell
-vpp run examples\hello.vpp
-vpp run examples\lesson01_basics.vpp
+.\vpp.ps1 run stress.vpp
 ```
 
-Expected output for `hello.vpp`:
+Expected output includes:
 
 ```
-Hello, v++!
-10
-Shaurya
-true
+=== v++ hello ===
+30
+...
+active
+42
+...
+=== done ===
 ```
 
-`vpp build` (native executable via LLVM) requires `--features codegen` and MSVC + LLVM on Windows.
+`vpp build` produces a native executable (requires LLVM 22 + `--features codegen`).
 
 ```powershell
-# Emit LLVM IR
-vpp compile examples/hello.vpp -o hello.ll
+$env:LLVM_SYS_221_PREFIX = "C:\Program Files\LLVM"
+.\vpp.ps1 build stress.vpp -o stress.exe
+.\stress.exe
 ```
 
-See [LANGUAGE.md](LANGUAGE.md) for the full language reference and teaching curriculum.
+See [SPEC.md](SPEC.md) for the language reference. Full manual: [docs/VPP_COMPLETE_MANUAL_v0.1.0.md](docs/VPP_COMPLETE_MANUAL_v0.1.0.md).
 
 ## Example
 
@@ -139,34 +155,16 @@ print(add(2, 3))
 
 Only local `let` bindings are inferred. Function signatures are explicit. No generics yet.
 
-### Memory model (bootstrap)
+### Memory model (v0.3)
 
-The bootstrap runtime uses `malloc` without `free` — **temporary only**. Heap allocation is abstracted behind a runtime shim so a hybrid memory model (stack values + ARC heap + optional unsafe) can replace it later.
-
-## Project layout
-
-```
-src/
-  lexer/       Tokenizer
-  parser/      Recursive-descent parser
-  ast/         Untyped AST
-  types/       Local inference + type checker
-  codegen/     LLVM IR generation (inkwell)
-  fmt/         Basic formatter
-  driver.rs    compile/check pipelines
-runtime/
-  vpp_runtime.c  Bootstrap C runtime
-examples/
-  hello.vpp, fib.vpp, arrays.vpp
-```
+Heap **strings** and **arrays** use ARC reference counting in native code (`runtime/vpp_runtime.c`). See [MEMORY_MODEL.md](MEMORY_MODEL.md).
 
 ## Roadmap
 
-- Generics and traits
-- Hybrid memory model (ARC + unsafe opt-in)
-- Package registry and `vpp publish`
-- Full native codegen for structs/match on all platforms
-- Enhanced LSP (go-to-def, completions)
+- **v0.4** — generics and traits
+- Hosted package registry (`vpp publish`)
+- REPL, debugger, expanded stdlib (net, time, maps)
+- **v1.0** — stable spec, full parity guarantee, curriculum + playground
 
 ## License
 

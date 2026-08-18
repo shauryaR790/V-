@@ -30,8 +30,9 @@ mod native {
         let output = Command::new(&exe).output().expect("run hello.exe");
         assert!(output.status.success(), "hello.exe crashed");
         let stdout = String::from_utf8_lossy(&output.stdout);
-        assert!(stdout.contains("Hello, v++!"));
+        assert!(stdout.contains("=== v++ hello ==="));
         assert!(stdout.contains("Shaurya"));
+        assert!(stdout.contains("active"));
         let _ = std::fs::remove_file(&exe);
     }
 

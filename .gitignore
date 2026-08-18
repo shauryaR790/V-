@@ -6,3 +6,8 @@
 *.ll
 *.obj
 .vpp-cache/
+.vpp/
+interpreter.txt
+native.txt
+vpp_test.txt
+vpp_std_fs_test.txt

@@ -31,6 +31,24 @@ All notable changes to v++ are documented here.
 - Function parameters lost after `return` inside `if` branches during codegen
 - Empty stdout under piped test runs (`fflush` in runtime prints; staged link output)
 
+## [0.3.1] — 2026-08-18 (Phase A polish)
+
+### Fixed
+
+- User-defined enum types resolved correctly in function params, struct fields, and match patterns
+- Bare enum variant literals in struct fields (e.g. `status: Active`)
+- Native entry point: LLVM `main` calls `vpp_user_main` instead of symbol collision
+- Path lookup for `vpp run hello.vpp` searches `examples/`, `src/`, `tests/`
+
+### Added
+
+- [`stress.vpp`](stress.vpp) and [`stress.ps1`](stress.ps1) — one-command interpreter/native parity test
+- `.gitignore` entries for `.vpp/`, test output artifacts
+
+### Changed
+
+- [`SPEC.md`](SPEC.md) and [`README.md`](README.md) updated for v0.3
+
 ## [0.2.0] — 2026-08-18
 
 ### Added

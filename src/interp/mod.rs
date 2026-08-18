@@ -822,12 +822,16 @@ impl PartialEq for Value {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::driver::check;
+    use std::path::PathBuf;
+
+    use crate::driver::{check, check_path};
 
     #[test]
     fn runs_hello() {
-        let source = include_str!("../../examples/hello.vpp");
-        let typed = check(source).unwrap();
+        let path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+            .join("examples")
+            .join("hello.vpp");
+        let typed = check_path(&path).unwrap();
         run(&typed).unwrap();
     }
 

@@ -39,32 +39,44 @@ pub enum Type {
 }
 
 impl Type {
-    pub fn from_ann(ann: &TypeAnn, structs: &HashMap<String, StructInfo>) -> Type {
+    pub fn from_ann(
+        ann: &TypeAnn,
+        structs: &HashMap<String, StructInfo>,
+        enums: &HashMap<String, EnumInfo>,
+    ) -> Type {
         match ann {
             TypeAnn::Int => Type::Int,
             TypeAnn::Float => Type::Float,
             TypeAnn::Bool => Type::Bool,
             TypeAnn::String => Type::String,
-            TypeAnn::Array(inner) => Type::Array(Box::new(Type::from_ann(inner, structs))),
-            TypeAnn::Named(name) => structs
-                .get(name)
-                .map(|s| Type::Struct {
-                    name: name.clone(),
-                    fields: s.fields.clone(),
-                })
-                .unwrap_or(Self::named_or_error(name.clone())),
-            TypeAnn::Option(inner) => Type::Option(Box::new(Type::from_ann(inner, structs))),
+            TypeAnn::Array(inner) => {
+                Type::Array(Box::new(Type::from_ann(inner, structs, enums)))
+            }
+            TypeAnn::Named(name) => {
+                if let Some(s) = structs.get(name) {
+                    Type::Struct {
+                        name: name.clone(),
+                        fields: s.fields.clone(),
+                    }
+                } else if let Some(e) = enums.get(name) {
+                    Type::Enum {
+                        name: name.clone(),
+                        variants: e.variants.clone(),
+                    }
+                } else {
+                    Type::Struct {
+                        name: name.clone(),
+                        fields: HashMap::new(),
+                    }
+                }
+            }
+            TypeAnn::Option(inner) => {
+                Type::Option(Box::new(Type::from_ann(inner, structs, enums)))
+            }
             TypeAnn::Result { ok, err } => Type::Result {
-                ok: Box::new(Type::from_ann(ok, structs)),
-                err: Box::new(Type::from_ann(err, structs)),
+                ok: Box::new(Type::from_ann(ok, structs, enums)),
+                err: Box::new(Type::from_ann(err, structs, enums)),
             },
-        }
-    }
-
-    fn named_or_error(name: String) -> Type {
-        Type::Struct {
-            name: name.clone(),
-            fields: HashMap::new(),
         }
     }
 

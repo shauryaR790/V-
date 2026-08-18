@@ -2,13 +2,30 @@ import std.fs
 import std.json
 import std.process
 
+enum Status {
+    Active
+    Inactive
+}
+
 struct User {
     name: string
     age: int
+    status: Status
 }
 
 fn add(a: int, b: int) -> int {
     return a + b
+}
+
+fn describe(status: Status) -> string {
+    match status {
+        Active => {
+            return "active"
+        }
+        Inactive => {
+            return "inactive"
+        }
+    }
 }
 
 fn ok_val() -> Result<int, string> {
@@ -34,9 +51,11 @@ fn main() -> int {
     let user = User {
         name: "Shaurya"
         age: 18
+        status: Active
     }
     print(user.name)
     print(user.age)
+    print(describe(user.status))
 
     let r = ok_val()
     match r {

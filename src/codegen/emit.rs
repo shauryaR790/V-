@@ -328,7 +328,12 @@ impl<'ctx> Emit<'ctx> {
         for func in &ir.functions {
             let param_types: Vec<IrType> = func.params.iter().map(|(_, t)| t.clone()).collect();
             let fn_type = self.function_type(&param_types, &func.ret);
-            let function = self.module.add_function(&func.name, fn_type, None);
+            let llvm_name = if func.name == "main" {
+                "vpp_user_main"
+            } else {
+                &func.name
+            };
+            let function = self.module.add_function(llvm_name, fn_type, None);
             for (i, (name, _)) in func.params.iter().enumerate() {
                 function.get_nth_param(i as u32).unwrap().set_name(name);
             }
@@ -376,6 +381,7 @@ impl<'ctx> Emit<'ctx> {
     }
 
     fn compile_main(&mut self, ir: &IrModule) -> VppResult<()> {
+        let has_user_main = ir.functions.iter().any(|f| f.name == "main");
         let fn_type = self.i64_type.fn_type(&[], false);
         let function = self
             .module
@@ -389,9 +395,20 @@ impl<'ctx> Emit<'ctx> {
         }
         if self.builder.get_insert_block().unwrap().get_terminator().is_none() {
             self.exit_scope();
-            self.builder
-                .build_return(Some(&self.i64_type.const_int(0, false)))
-                .unwrap();
+            if has_user_main {
+                let user_main = *self.functions.get("main").unwrap();
+                let ret = self
+                    .builder
+                    .build_call(user_main, &[], "user_main")
+                    .unwrap();
+                self.builder
+                    .build_return(Some(&self.call_value(ret)))
+                    .unwrap();
+            } else {
+                self.builder
+                    .build_return(Some(&self.i64_type.const_int(0, false)))
+                    .unwrap();
+            }
         } else {
             self.clear_scope_state();
         }

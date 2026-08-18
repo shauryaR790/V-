@@ -29,6 +29,10 @@ pub struct TypeChecker<'source> {
 }
 
 impl<'source> TypeChecker<'source> {
+    fn resolve_ann(&self, ann: &crate::ast::TypeAnn) -> Type {
+        Type::from_ann(ann, &self.structs, &self.enums)
+    }
+
     pub fn new(source: &'source str) -> Self {
         Self::with_file(source, std::path::PathBuf::from("<source>"))
     }
@@ -138,7 +142,7 @@ impl<'source> TypeChecker<'source> {
         for field in &s.fields {
             fields.insert(
                 field.name.clone(),
-                Type::from_ann(&field.ty, &self.structs),
+                self.resolve_ann(&field.ty),
             );
         }
         self.symbols.insert(
@@ -171,7 +175,7 @@ impl<'source> TypeChecker<'source> {
             let payload: Vec<Type> = variant
                 .payload
                 .iter()
-                .map(|t| Type::from_ann(t, &self.structs))
+                .map(|t| self.resolve_ann(t))
                 .collect();
             self.symbols.insert(
                 format!("{}.{}", e.name, variant.name),
@@ -211,14 +215,14 @@ impl<'source> TypeChecker<'source> {
         let params: Vec<(String, Type)> = f
             .params
             .iter()
-            .map(|p| (p.name.clone(), Type::from_ann(&p.ty, &self.structs)))
+            .map(|p| (p.name.clone(), self.resolve_ann(&p.ty)))
             .collect();
         self.functions.insert(
             f.name.clone(),
             FunctionInfo {
                 name: f.name.clone(),
                 params,
-                ret: Type::from_ann(&f.ret_type, &self.structs),
+                ret: self.resolve_ann(&f.ret_type),
                 body: Vec::new(),
                 span: f.span,
             },
@@ -237,24 +241,21 @@ impl<'source> TypeChecker<'source> {
         );
         self.push_scope();
         for param in &f.params {
-            let ty = Type::from_ann(&param.ty, &self.structs);
+            let ty = self.resolve_ann(&param.ty);
             self.define(&param.name, ty);
         }
 
-        self.current_ret = Some(Type::from_ann(&f.ret_type, &self.structs));
+        self.current_ret = Some(self.resolve_ann(&f.ret_type));
         let body = self.check_block_stmts(&f.body)?;
         self.current_ret = None;
         self.pop_scope();
 
-        let ret = Type::from_ann(&f.ret_type, &self.structs);
-        if ret != Type::Void && !body.is_empty() {
-            let has_return = body.iter().any(|s| matches!(s, TypedStmt::Return { .. }));
-            if !has_return {
-                return Err(VppError::MissingReturn {
-                    expected: ret.name(),
-                    span: span_to_source(self.source, f.span),
-                });
-            }
+        let ret = self.resolve_ann(&f.ret_type);
+        if ret != Type::Void && !body.is_empty() && !self.body_satisfies_return(&body, &ret) {
+            return Err(VppError::MissingReturn {
+                expected: ret.name(),
+                span: span_to_source(self.source, f.span),
+            });
         }
 
         Ok(FunctionInfo {
@@ -262,12 +263,69 @@ impl<'source> TypeChecker<'source> {
             params: f
                 .params
                 .iter()
-                .map(|p| (p.name.clone(), Type::from_ann(&p.ty, &self.structs)))
+                .map(|p| (p.name.clone(), self.resolve_ann(&p.ty)))
                 .collect(),
             ret,
             body,
             span: f.span,
         })
+    }
+
+    fn body_satisfies_return(&self, body: &[TypedStmt], expected: &Type) -> bool {
+        if body
+            .iter()
+            .any(|s| matches!(s, TypedStmt::Return { .. }))
+        {
+            return true;
+        }
+        body.last()
+            .map(|stmt| self.stmt_satisfies_return(stmt, expected))
+            .unwrap_or(false)
+    }
+
+    fn stmt_satisfies_return(&self, stmt: &TypedStmt, expected: &Type) -> bool {
+        match stmt {
+            TypedStmt::Return { .. } => true,
+            TypedStmt::Match { arms, ty, .. } => {
+                ty == expected
+                    && arms
+                        .iter()
+                        .all(|arm| self.arm_body_satisfies_return(&arm.body, expected))
+            }
+            TypedStmt::If {
+                then_block,
+                else_block,
+                ..
+            } => {
+                self.block_satisfies_return(then_block, expected)
+                    && else_block
+                        .as_ref()
+                        .map(|b| self.block_satisfies_return(b, expected))
+                        .unwrap_or(false)
+            }
+            TypedStmt::Expr(expr) => expr.ty() == *expected,
+            TypedStmt::Block(stmts) => self.body_satisfies_return(stmts, expected),
+            _ => false,
+        }
+    }
+
+    fn block_satisfies_return(&self, stmts: &[TypedStmt], expected: &Type) -> bool {
+        self.body_satisfies_return(stmts, expected)
+    }
+
+    fn arm_body_satisfies_return(&self, body: &[TypedStmt], expected: &Type) -> bool {
+        if body
+            .iter()
+            .any(|s| matches!(s, TypedStmt::Return { .. }))
+        {
+            return true;
+        }
+        body.last()
+            .and_then(|s| match s {
+                TypedStmt::Expr(expr) => Some(expr.ty() == *expected),
+                _ => None,
+            })
+            .unwrap_or(false)
     }
 
     fn check_block_stmts(&mut self, block: &Block) -> VppResult<Vec<TypedStmt>> {
@@ -285,7 +343,7 @@ impl<'source> TypeChecker<'source> {
             Stmt::Let { name, ty, value, span } => {
                 let expected = ty
                     .as_ref()
-                    .map(|ann| Type::from_ann(ann, &self.structs));
+                    .map(|ann| self.resolve_ann(ann));
                 let typed_value = if let Some(expected) = expected.clone() {
                     self.with_expected(expected, |this| this.check_expr(value))?
                 } else {
@@ -605,16 +663,12 @@ impl<'source> TypeChecker<'source> {
             })?
             .clone();
 
-        if !matches!(scrutinee_ty, Type::Enum { .. }) {
-            let expected = Type::Enum {
-                name: enum_name.clone(),
-                variants: enum_info.variants.clone(),
-            };
-            if *scrutinee_ty != expected {
+        if !matches!(scrutinee_ty, Type::Enum { name: scr, .. } if scr == &enum_name) {
+            if scrutinee_ty.name() != enum_name {
                 return Err(type_mismatch(
                     self.source,
                     span,
-                    &expected.name(),
+                    &enum_name,
                     &scrutinee_ty.name(),
                     "variant pattern does not match scrutinee",
                 ));
@@ -699,6 +753,23 @@ impl<'source> TypeChecker<'source> {
                         payload: Vec::new(),
                         ty,
                     });
+                }
+                if let Some(Type::Enum {
+                    name: enum_name,
+                    variants,
+                }) = self.expected_type.clone()
+                {
+                    if variants.contains_key(name) {
+                        return Ok(TypedExpr::Variant {
+                            enum_name: enum_name.clone(),
+                            variant: name.clone(),
+                            payload: Vec::new(),
+                            ty: Type::Enum {
+                                name: enum_name,
+                                variants,
+                            },
+                        });
+                    }
                 }
                 let ty = self
                     .lookup(name)
