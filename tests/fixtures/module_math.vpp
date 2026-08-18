@@ -1,0 +1,6 @@
+import std.math
+
+fn main() -> int {
+    let x = math.add(1, 2)
+    return x
+}

@@ -1,0 +1,14 @@
+// File I/O via compiler/runtime builtins (read_file, write_file, file_exists).
+
+pub fn read(path: string) -> string {
+    return read_file(path)
+}
+
+pub fn write(path: string, contents: string) -> int {
+    write_file(path, contents)
+    return 0
+}
+
+pub fn exists(path: string) -> bool {
+    return file_exists(path)
+}

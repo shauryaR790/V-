@@ -1,23 +1,10 @@
 use std::path::{Path, PathBuf};
 
 use crate::error::{VppError, VppResult};
+use crate::pkg;
 
-#[derive(Debug, Clone)]
-pub struct Manifest {
-    pub name: String,
-    pub version: String,
-    pub entry: PathBuf,
-}
-
-impl Default for Manifest {
-    fn default() -> Self {
-        Self {
-            name: "app".to_string(),
-            version: "0.1.0".to_string(),
-            entry: PathBuf::from("src/main.vpp"),
-        }
-    }
-}
+pub use crate::pkg::DependencySpec;
+pub use crate::pkg::Manifest;
 
 pub fn find_project_root(start: &Path) -> Option<PathBuf> {
     let mut dir = if start.is_file() {
@@ -41,31 +28,7 @@ pub fn load_manifest(project_root: &Path) -> VppResult<Manifest> {
     let text = std::fs::read_to_string(&path).map_err(|e| VppError::Other {
         message: format!("failed to read `{}`: {e}", path.display()),
     })?;
-    parse_manifest(&text)
-}
-
-pub fn parse_manifest(text: &str) -> VppResult<Manifest> {
-    let mut manifest = Manifest::default();
-
-    for line in text.lines() {
-        let line = line.split('#').next().unwrap_or(line).trim();
-        if line.is_empty() {
-            continue;
-        }
-        let Some((key, value)) = line.split_once('=') else {
-            continue;
-        };
-        let key = key.trim();
-        let value = value.trim().trim_matches('"').trim_matches('\'');
-        match key {
-            "name" => manifest.name = value.to_string(),
-            "version" => manifest.version = value.to_string(),
-            "entry" => manifest.entry = PathBuf::from(value),
-            _ => {}
-        }
-    }
-
-    Ok(manifest)
+    pkg::parse_manifest_toml(&text)
 }
 
 pub fn std_search_paths(project_root: Option<&Path>) -> Vec<PathBuf> {
@@ -73,6 +36,11 @@ pub fn std_search_paths(project_root: Option<&Path>) -> Vec<PathBuf> {
 
     if let Some(root) = project_root {
         paths.push(root.join("std"));
+        if let Ok(dep_paths) = pkg::dependency_search_paths(root) {
+            for dep in dep_paths {
+                paths.push(dep.join("std"));
+            }
+        }
     }
 
     if let Ok(vpp_home) = std::env::var("VPP_HOME") {
@@ -88,10 +56,10 @@ pub fn std_search_paths(project_root: Option<&Path>) -> Vec<PathBuf> {
         }
     }
 
-    // When developing v++ from source
     paths.push(PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("std"));
 
     paths.retain(|p| p.exists());
+    paths.dedup();
     paths
 }
 
@@ -109,21 +77,19 @@ pub fn init_project(dir: &Path, name: &str) -> VppResult<()> {
         message: format!("failed to create tests/: {e}"),
     })?;
 
-    let manifest = format!(
-        r#"name = "{name}"
-version = "0.1.0"
-entry = "src/main.vpp"
-"#
-    );
-    std::fs::write(dir.join("vpp.toml"), manifest).map_err(|e| VppError::Other {
-        message: format!("failed to write vpp.toml: {e}"),
-    })?;
+    let manifest = Manifest {
+        name: name.to_string(),
+        version: "0.1.0".to_string(),
+        entry: PathBuf::from("src/main.vpp"),
+        dependencies: Default::default(),
+    };
+    pkg::write_manifest(dir, &manifest)?;
 
     let main_vpp = format!(
-        r#"import "std/io.vpp"
+        r#"import std.io
 
 fn main() -> int {{
-    greet("{name}")
+    io.greet("{name}")
     return 0
 }}
 "#
@@ -132,11 +98,11 @@ fn main() -> int {{
         message: format!("failed to write src/main.vpp: {e}"),
     })?;
 
-    let test_vpp = r#"import "std/math.vpp"
+    let test_vpp = r#"import std.math
 
 test "math works" {
-    assert_eq(add(2, 2), 4)
-    assert_eq(pow(2, 3), 8)
+    assert_eq(math.add(2, 2), 4)
+    assert_eq(math.pow(2, 3), 8)
 }
 
 test "strings work" {
@@ -156,10 +122,12 @@ mod tests {
 
     #[test]
     fn parses_manifest() {
-        let m = parse_manifest(r#"name = "demo"
+        let m = pkg::parse_manifest_toml(
+            r#"name = "demo"
 version = "1.0.0"
 entry = "src/main.vpp"
-"#)
+"#,
+        )
         .unwrap();
         assert_eq!(m.name, "demo");
         assert_eq!(m.entry, PathBuf::from("src/main.vpp"));

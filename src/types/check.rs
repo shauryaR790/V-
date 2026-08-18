@@ -1,9 +1,10 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 
 use crate::ast::{
     BinOp, Block, EnumDecl, Expr, FnDecl, Item, MatchArm, Pattern, Program, Stmt, StructDecl,
     TestDecl, UnOp,
 };
+use crate::modules::ModuleGraph;
 use crate::error::{span_to_source, type_mismatch, VppError, VppResult};
 use crate::span::Span;
 use crate::symbols::{SymbolDef, SymbolKind};
@@ -23,6 +24,8 @@ pub struct TypeChecker<'source> {
     expected_type: Option<Type>,
     current_ret: Option<Type>,
     loop_depth: usize,
+    modules: ModuleGraph,
+    module_scoped: HashSet<String>,
 }
 
 impl<'source> TypeChecker<'source> {
@@ -42,6 +45,26 @@ impl<'source> TypeChecker<'source> {
             expected_type: None,
             current_ret: None,
             loop_depth: 0,
+            modules: ModuleGraph::default(),
+            module_scoped: HashSet::new(),
+        }
+    }
+
+    pub fn with_modules(source: &'source str, source_file: std::path::PathBuf, modules: ModuleGraph) -> Self {
+        let module_scoped = modules.scoped_functions.clone();
+        Self {
+            source,
+            source_file,
+            functions: HashMap::new(),
+            structs: HashMap::new(),
+            enums: HashMap::new(),
+            scopes: vec![HashMap::new()],
+            symbols: crate::symbols::SymbolIndex::new(),
+            expected_type: None,
+            current_ret: None,
+            loop_depth: 0,
+            modules,
+            module_scoped,
         }
     }
 
@@ -1080,6 +1103,70 @@ impl<'source> TypeChecker<'source> {
         if name.contains('.') {
             let parts: Vec<&str> = name.split('.').collect();
             if parts.len() == 2 {
+                let (module_alias, member) = (parts[0], parts[1]);
+                if let Some(exports) = self.modules.namespaces.get(module_alias) {
+                    if exports.functions.contains(member) {
+                        if let Some(func) = self.functions.get(member).cloned() {
+                            if args.len() != func.params.len() {
+                                return Err(VppError::WrongArgCount {
+                                    name: name.to_string(),
+                                    expected: func.params.len(),
+                                    found: args.len(),
+                                    span: span_to_source(self.source, span),
+                                });
+                            }
+                            let mut typed_args = Vec::new();
+                            for (arg, (_, expected)) in args.iter().zip(func.params.iter()) {
+                                let typed = self.check_expr(arg)?;
+                                if typed.ty() != *expected {
+                                    return Err(type_mismatch(
+                                        self.source,
+                                        arg.span(),
+                                        &expected.name(),
+                                        &typed.ty().name(),
+                                        format!("argument to `{name}` must be {}", expected.name()),
+                                    ));
+                                }
+                                typed_args.push(typed);
+                            }
+                            return Ok(TypedExpr::Call {
+                                name: member.to_string(),
+                                args: typed_args,
+                                ty: func.ret,
+                            });
+                        }
+                        return Err(VppError::UnknownModuleMember {
+                            module: module_alias.to_string(),
+                            name: member.to_string(),
+                            span: span_to_source(self.source, span),
+                            help: format!("import `{module_alias}` and call `{module_alias}.{member}(…)`"),
+                        });
+                    }
+                    if exports.structs.contains(member) || exports.enums.contains(member) {
+                        return Err(VppError::Other {
+                            message: format!("`{module_alias}.{member}` is a type, not a function"),
+                        });
+                    }
+                    let suggestions: Vec<_> = exports
+                        .functions
+                        .iter()
+                        .filter(|f| f.starts_with(member) || member.starts_with(f.as_str()))
+                        .take(3)
+                        .cloned()
+                        .collect();
+                    let help = if suggestions.is_empty() {
+                        format!("available: {}", exports.functions.iter().cloned().collect::<Vec<_>>().join(", "))
+                    } else {
+                        format!("did you mean: {}", suggestions.join(", "))
+                    };
+                    return Err(VppError::UnknownModuleMember {
+                        module: module_alias.to_string(),
+                        name: member.to_string(),
+                        span: span_to_source(self.source, span),
+                        help,
+                    });
+                }
+
                 let (enum_name, variant) = (parts[0], parts[1]);
                 if let Some(enum_info) = self.enums.get(enum_name).cloned() {
                     let payload_types = enum_info.variants.get(variant).ok_or_else(|| {
@@ -1209,7 +1296,101 @@ impl<'source> TypeChecker<'source> {
                 args: vec![left, right],
                 ty: Type::Void,
             })
+        } else if name == "read_file" {
+            if args.len() != 1 {
+                return Err(VppError::WrongArgCount {
+                    name: name.to_string(),
+                    expected: 1,
+                    found: args.len(),
+                    span: span_to_source(self.source, span),
+                });
+            }
+            let arg = self.check_expr(&args[0])?;
+            self.expect_type(&arg, &Type::String, args[0].span())?;
+            Ok(TypedExpr::Call {
+                name: name.to_string(),
+                args: vec![arg],
+                ty: Type::String,
+            })
+        } else if name == "write_file" {
+            if args.len() != 2 {
+                return Err(VppError::WrongArgCount {
+                    name: name.to_string(),
+                    expected: 2,
+                    found: args.len(),
+                    span: span_to_source(self.source, span),
+                });
+            }
+            let path = self.check_expr(&args[0])?;
+            let contents = self.check_expr(&args[1])?;
+            self.expect_type(&path, &Type::String, args[0].span())?;
+            self.expect_type(&contents, &Type::String, args[1].span())?;
+            Ok(TypedExpr::Call {
+                name: name.to_string(),
+                args: vec![path, contents],
+                ty: Type::Void,
+            })
+        } else if name == "file_exists" {
+            if args.len() != 1 {
+                return Err(VppError::WrongArgCount {
+                    name: name.to_string(),
+                    expected: 1,
+                    found: args.len(),
+                    span: span_to_source(self.source, span),
+                });
+            }
+            let arg = self.check_expr(&args[0])?;
+            self.expect_type(&arg, &Type::String, args[0].span())?;
+            Ok(TypedExpr::Call {
+                name: name.to_string(),
+                args: vec![arg],
+                ty: Type::Bool,
+            })
+        } else if name == "json_parse" || name == "json_stringify" {
+            if args.len() != 1 {
+                return Err(VppError::WrongArgCount {
+                    name: name.to_string(),
+                    expected: 1,
+                    found: args.len(),
+                    span: span_to_source(self.source, span),
+                });
+            }
+            let arg = self.check_expr(&args[0])?;
+            self.expect_type(&arg, &Type::String, args[0].span())?;
+            Ok(TypedExpr::Call {
+                name: name.to_string(),
+                args: vec![arg],
+                ty: Type::String,
+            })
+        } else if name == "process_run" {
+            if args.len() != 1 {
+                return Err(VppError::WrongArgCount {
+                    name: name.to_string(),
+                    expected: 1,
+                    found: args.len(),
+                    span: span_to_source(self.source, span),
+                });
+            }
+            let arg = self.check_expr(&args[0])?;
+            self.expect_type(&arg, &Type::String, args[0].span())?;
+            Ok(TypedExpr::Call {
+                name: name.to_string(),
+                args: vec![arg],
+                ty: Type::Int,
+            })
         } else {
+            if self.module_scoped.contains(name) {
+                let hint = self
+                    .modules
+                    .namespaces
+                    .iter()
+                    .find(|(_, exports)| exports.functions.contains(name))
+                    .map(|(alias, _)| format!("use `{alias}.{name}(…)`"))
+                    .unwrap_or_else(|| format!("`{name}` is exported from an imported module"));
+                return Err(VppError::Other {
+                    message: format!("function `{name}` is not in scope; {hint}"),
+                });
+            }
             let func = self
                 .functions
                 .get(name)

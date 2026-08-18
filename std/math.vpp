@@ -1,29 +1,29 @@
-fn add(a: int, b: int) -> int {
+pub fn add(a: int, b: int) -> int {
     return a + b
 }
 
-fn abs(n: int) -> int {
+pub fn abs(n: int) -> int {
     if n < 0 {
         return 0 - n
     }
     return n
 }
 
-fn max(a: int, b: int) -> int {
+pub fn max(a: int, b: int) -> int {
     if a > b {
         return a
     }
     return b
 }
 
-fn min(a: int, b: int) -> int {
+pub fn min(a: int, b: int) -> int {
     if a < b {
         return a
     }
     return b
 }
 
-fn pow(base: int, exp: int) -> int {
+pub fn pow(base: int, exp: int) -> int {
     let result = 1
     let i = 0
     while i < exp {
@@ -31,4 +31,14 @@ fn pow(base: int, exp: int) -> int {
         i = i + 1
     }
     return result
+}
+
+pub fn clamp(n: int, lo: int, hi: int) -> int {
+    if n < lo {
+        return lo
+    }
+    if n > hi {
+        return hi
+    }
+    return n
 }

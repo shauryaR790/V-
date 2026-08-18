@@ -1,0 +1,26 @@
+pub fn make_int_array(values: array[int]) -> array[int] {
+    return values
+}
+
+pub fn index_of(arr: array[int], target: int) -> int {
+    let i = 0
+    while i < len(arr) {
+        if arr[i] == target {
+            return i
+        }
+        i = i + 1
+    }
+    return -1
+}
+
+pub fn contains(arr: array[int], target: int) -> bool {
+    return index_of(arr, target) >= 0
+}
+
+pub fn sum(arr: array[int]) -> int {
+    let total = 0
+    for n in arr {
+        total = total + n
+    }
+    return total
+}

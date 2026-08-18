@@ -10,15 +10,17 @@ if (-not (Test-Path "$env:USERPROFILE\.cargo\bin\cargo.exe")) {
 }
 
 Push-Location $PSScriptRoot
-cargo build --release
-cargo install --path . --force
+cargo build --release --features codegen,lsp
+cargo install --path . --features codegen,lsp --force
 Pop-Location
 
-Write-Host "`nDone. Close and reopen Cursor, then from ANY folder:" -ForegroundColor Green
-Write-Host "  vpp run examples\hello.vpp" -ForegroundColor White
-Write-Host "  vpp init myapp" -ForegroundColor White
+Write-Host "`nDone. Close and reopen your terminal, then from the project folder:" -ForegroundColor Green
+Write-Host "  vpp run stress.vpp" -ForegroundColor White
+Write-Host "  vpp build stress.vpp -o stress.exe" -ForegroundColor White
+Write-Host "  .\stress.ps1          # automatic interpreter vs native compare" -ForegroundColor White
 Write-Host ""
-Write-Host "In Cursor: open a .vpp file and press F5 or click the Run button." -ForegroundColor Green
+Write-Host "Or always use the local wrapper (no install needed):" -ForegroundColor Green
+Write-Host "  .\vpp.ps1 run stress.vpp" -ForegroundColor White
 Write-Host ""
 
-vpp run "$PSScriptRoot\examples\hello.vpp"
+& (Join-Path $PSScriptRoot "stress.ps1")

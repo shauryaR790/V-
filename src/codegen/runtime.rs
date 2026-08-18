@@ -1,8 +1,5 @@
-//! Runtime shim for v++ bootstrap compilation.
-//!
-//! Temporary: uses malloc without free. This will be replaced by a proper
-//! memory model (likely hybrid ARC). Heap allocation is abstracted so the
-//! backend can swap allocators without changing codegen call sites.
+//! Runtime shim for v++ native compilation.
+//! Heap strings/arrays use ARC — see MEMORY_MODEL.md.
 
 use std::path::Path;
 

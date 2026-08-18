@@ -280,6 +280,7 @@ impl<'source> Lexer<'source> {
             "struct" => TokenKind::Struct,
             "enum" => TokenKind::Enum,
             "import" => TokenKind::Import,
+            "pub" => TokenKind::Pub,
             "match" => TokenKind::Match,
             "test" => TokenKind::Test,
             "break" => TokenKind::Break,

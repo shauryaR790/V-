@@ -1,0 +1,9 @@
+// Process helpers via runtime builtins.
+
+pub fn run(cmd: string) -> int {
+    return process_run(cmd)
+}
+
+pub fn exit_code(cmd: string) -> int {
+    return process_run(cmd)
+}

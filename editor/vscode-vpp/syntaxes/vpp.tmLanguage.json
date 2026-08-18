@@ -40,11 +40,15 @@
       "patterns": [
         {
           "name": "keyword.control.vpp",
-          "match": "\\b(if|else|while|for|in|return)\\b"
+          "match": "\\b(if|else|while|for|in|return|match|break|continue)\\b"
         },
         {
           "name": "keyword.declaration.vpp",
-          "match": "\\b(let|fn)\\b"
+          "match": "\\b(let|fn|struct|enum|import|pub|test)\\b"
+        },
+        {
+          "name": "keyword.type.vpp",
+          "match": "\\b(Option|Result)\\b"
         }
       ]
     },
@@ -72,7 +76,7 @@
         },
         {
           "name": "support.function.builtin.vpp",
-          "match": "\\b(print|len)\\b(?=\\s*\\()"
+          "match": "\\b(print|len|assert|assert_eq|read_file|write_file|file_exists|json_parse|json_stringify|process_run)\\b(?=\\s*\\()"
         }
       ]
     },

@@ -1,0 +1,13 @@
+import std.fs
+import std.json
+
+fn main() -> int {
+    fs.write("vpp_std_fs_test.txt", "parity")
+    print(fs.read("vpp_std_fs_test.txt"))
+    if fs.exists("vpp_std_fs_test.txt") {
+        print("yes")
+    }
+    let j = json.parse("{\"ok\":true}")
+    print(json.stringify(j))
+    return 0
+}

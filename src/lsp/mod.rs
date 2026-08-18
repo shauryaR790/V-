@@ -20,7 +20,7 @@ impl VppLanguageServer {
     async fn publish_diagnostics(&self, uri: Url, source: &str, path: &std::path::Path) {
         let diagnostics = match check_with_index(source, path) {
             Ok(_) => Vec::new(),
-            Err(err) => vec![error_to_diagnostic(&err)],
+            Err(err) => vec![error_to_diagnostic(&err, source)],
         };
 
         self.client
@@ -161,9 +161,14 @@ fn completion_item(label: &str, insert: &str) -> CompletionItem {
     }
 }
 
-fn error_to_diagnostic(err: &VppError) -> Diagnostic {
+fn error_to_diagnostic(err: &VppError, source: &str) -> Diagnostic {
+    let range = err
+        .source_span()
+        .map(|span| span_to_range(source, Span::new(span.offset(), span.offset() + span.len())))
+        .unwrap_or_default();
+
     Diagnostic {
-        range: Range::default(),
+        range,
         severity: Some(DiagnosticSeverity::ERROR),
         source: Some("vpp".to_string()),
         message: err.to_string(),

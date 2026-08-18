@@ -2,7 +2,8 @@ use std::path::{Path, PathBuf};
 
 use crate::error::{VppError, VppResult};
 use crate::modules::{LoadContext, LoadedProgram};
-use crate::project::{find_project_root, load_manifest, std_search_paths, Manifest};
+use crate::pkg::Manifest;
+use crate::project::{find_project_root, load_manifest, std_search_paths};
 use crate::types::{TypeChecker, TypedProgram};
 
 pub struct CompileOptions {
@@ -14,6 +15,7 @@ pub fn load_context_for(path: &Path) -> LoadContext {
     let project_root = find_project_root(path);
     LoadContext {
         std_paths: std_search_paths(project_root.as_deref()),
+        is_entry: false,
     }
 }
 
@@ -34,6 +36,15 @@ pub fn typecheck(source: &str, program: &crate::ast::Program, source_file: &Path
     TypeChecker::with_file(source, source_file.to_path_buf()).check(program)
 }
 
+pub fn typecheck_with_modules(
+    source: &str,
+    program: &crate::ast::Program,
+    source_file: &Path,
+    modules: crate::modules::ModuleGraph,
+) -> VppResult<TypedProgram> {
+    TypeChecker::with_modules(source, source_file.to_path_buf(), modules).check(program)
+}
+
 pub fn check(source: &str) -> VppResult<TypedProgram> {
     check_file(source, Path::new("<source>"))
 }
@@ -46,7 +57,12 @@ pub fn check_file(source: &str, source_path: &Path) -> VppResult<TypedProgram> {
 pub fn check_path(source_path: &Path) -> VppResult<TypedProgram> {
     let ctx = load_context_for(source_path);
     let loaded = crate::modules::load_with_context(source_path, ctx)?;
-    typecheck(&loaded.source, &loaded.program, &loaded.entry_path)
+    typecheck_with_modules(
+        &loaded.source,
+        &loaded.program,
+        &loaded.entry_path,
+        loaded.modules,
+    )
 }
 
 pub fn load_program(path: &Path) -> VppResult<LoadedProgram> {
@@ -183,8 +199,15 @@ pub fn format_source(source: &str) -> VppResult<String> {
 }
 
 pub fn check_with_index(source: &str, source_path: &Path) -> VppResult<TypedProgram> {
+    let ctx = load_context_for(source_path);
     if source_path.exists() {
-        check_path(source_path)
+        let disk = std::fs::read_to_string(source_path).unwrap_or_default();
+        if disk == source {
+            return check_path(source_path);
+        }
+        let entry = parse(source)?;
+        let (program, modules) = crate::modules::resolve_imports(source_path, entry, ctx)?;
+        typecheck_with_modules(source, &program, source_path, modules)
     } else {
         check_file(source, source_path)
     }

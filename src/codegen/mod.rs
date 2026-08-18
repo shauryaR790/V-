@@ -1,6 +1,9 @@
 pub mod runtime;
 
 #[cfg(feature = "codegen")]
+mod emit;
+
+#[cfg(feature = "codegen")]
 mod llvm;
 
 #[cfg(feature = "codegen")]

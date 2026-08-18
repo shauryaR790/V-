@@ -1,10 +1,14 @@
 pub mod ast;
+pub mod builtins;
 pub mod codegen;
+pub mod doctor;
 pub mod driver;
 pub mod error;
 pub mod fmt;
 pub mod interp;
+pub mod ir;
 pub mod lexer;
+pub mod pkg;
 pub mod project;
 #[cfg(feature = "lsp")]
 pub mod lsp;
@@ -29,5 +33,10 @@ pub use driver::{
     check, check_file, check_path, check_with_index, compile, format_source, init_project,
     parse, project_entry, run, run_tests_in_project, emit_ir, CompileOptions,
 };
-pub use project::{find_project_root, load_manifest, Manifest};
+pub use pkg::{
+    add_dependency, parse_manifest_toml, remove_dependency, resolve_and_lock, resolve_dependencies,
+    resolve_from_registry, update_dependencies, DependencySpec, Lockfile, Manifest,
+};
+pub use project::find_project_root;
+pub use doctor::run_doctor;
 pub use error::{VppError, VppResult};

@@ -16,15 +16,33 @@ pub enum Item {
 }
 
 #[derive(Debug, Clone, PartialEq)]
+pub enum ImportSpec {
+    /// Legacy: `import "relative/path.vpp"`
+    FilePath(String),
+    /// Canonical module path: `import std.io`
+    Module(Vec<String>),
+}
+
+#[derive(Debug, Clone, PartialEq)]
 pub struct ImportDecl {
-    pub path: String,
+    pub spec: ImportSpec,
     pub span: Span,
+}
+
+impl ImportDecl {
+    pub fn legacy_path(&self) -> Option<&str> {
+        match &self.spec {
+            ImportSpec::FilePath(p) => Some(p.as_str()),
+            ImportSpec::Module(_) => None,
+        }
+    }
 }
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct StructDecl {
     pub name: String,
     pub fields: Vec<StructField>,
+    pub public: bool,
     pub span: Span,
 }
 
@@ -39,6 +57,7 @@ pub struct StructField {
 pub struct EnumDecl {
     pub name: String,
     pub variants: Vec<EnumVariant>,
+    pub public: bool,
     pub span: Span,
 }
 
@@ -55,6 +74,7 @@ pub struct FnDecl {
     pub params: Vec<Param>,
     pub ret_type: TypeAnn,
     pub body: Block,
+    pub public: bool,
     pub span: Span,
 }
 

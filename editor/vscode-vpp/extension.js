@@ -3,6 +3,8 @@ const { execFile, exec } = require("child_process");
 const path = require("path");
 const fs = require("fs");
 
+let languageClient;
+
 /** @returns {string | undefined} */
 function workspaceRoot() {
   const folders = vscode.workspace.workspaceFolders;
@@ -30,7 +32,7 @@ function resolveRunner(root) {
     return { kind: "cmd", path: cmd };
   }
 
-  for (const sub of ["target/release/vpp.exe", "target/debug/vpp.exe", "target/release/vpp", "target/debug/vpp"]) {
+  for (const sub of ["target/release/vpp.exe", "target/debug/vpp.exe", "target/release/vppls.exe", "target/debug/vppls.exe", "target/release/vpp", "target/debug/vpp"]) {
     const candidate = path.join(root, sub);
     if (fs.existsSync(candidate)) {
       return { kind: "exe", path: candidate };
@@ -38,6 +40,26 @@ function resolveRunner(root) {
   }
 
   return undefined;
+}
+
+/** @param {string} root */
+function resolveLanguageServer(root) {
+  const config = vscode.workspace.getConfiguration("vpp");
+  const configured = config.get("languageServerPath", "vppls");
+  if (configured && (path.isAbsolute(configured) ? fs.existsSync(configured) : true)) {
+    if (path.isAbsolute(configured) && fs.existsSync(configured)) {
+      return configured;
+    }
+    if (!path.isAbsolute(configured)) {
+      for (const sub of [`target/debug/${configured}.exe`, `target/release/${configured}.exe`, `target/debug/${configured}`, `target/release/${configured}`]) {
+        const candidate = path.join(root, sub);
+        if (fs.existsSync(candidate)) {
+          return candidate;
+        }
+      }
+    }
+  }
+  return configured;
 }
 
 /** @param {{ kind: string, path: string }} runner @param {string[]} args @param {string} cwd */
@@ -60,7 +82,7 @@ function runRunner(runner, args, cwd) {
   };
 }
 
-/** @param {string} filePath @param {string} subcommand */
+/** @param {string} subcommand @param {string} filePath */
 async function runVpp(subcommand, filePath) {
   const root = workspaceRoot();
   if (!root) {
@@ -88,14 +110,37 @@ async function runVpp(subcommand, filePath) {
     }
   }
 
+  const output = vscode.window.createOutputChannel("v++");
+  output.clear();
+  output.show(true);
+  output.appendLine(`> vpp ${subcommand} ${filePath}`);
+  output.appendLine("");
+
   const { command, argv } = runRunner(runner, [subcommand, filePath], root);
-  const term = vscode.window.createTerminal({
-    name: `v++ ${subcommand}`,
-    cwd: root,
-    hideFromUser: false,
+  const execOpts = { cwd: root, maxBuffer: 10 * 1024 * 1024 };
+
+  await new Promise((resolve) => {
+    execFile(command, argv, execOpts, (err, stdout, stderr) => {
+      if (stdout) {
+        output.append(stdout);
+      }
+      if (stderr) {
+        output.append(stderr);
+      }
+      if (err) {
+        output.appendLine("");
+        output.appendLine(`Exit code: ${err.code ?? 1}`);
+        vscode.window.showErrorMessage(
+          `v++ ${subcommand} failed — see the "v++" output panel for details`
+        );
+      } else if (subcommand === "run" && !stdout.trim()) {
+        output.appendLine("(program finished with no stdout)");
+      } else if (subcommand === "check") {
+        vscode.window.showInformationMessage("✓ File type-checks successfully");
+      }
+      resolve(undefined);
+    });
   });
-  term.show(true);
-  term.sendText([command, ...argv.map((a) => (a.includes(" ") ? `"${a}"` : a))].join(" "));
 }
 
 /** @param {string} root */
@@ -107,7 +152,7 @@ function buildCompiler(root) {
       env.PATH = `${cargoBin};${env.PATH || ""}`;
     }
 
-    exec("cargo build", { cwd: root, env }, (err, stdout, stderr) => {
+    exec("cargo build --features lsp,codegen", { cwd: root, env }, (err, stdout, stderr) => {
       if (err) {
         vscode.window.showErrorMessage(`cargo build failed: ${stderr || err.message}`);
         reject(err);
@@ -118,7 +163,55 @@ function buildCompiler(root) {
   });
 }
 
+function startLanguageServer(context) {
+  const root = workspaceRoot();
+  if (!root) {
+    return;
+  }
+
+  const config = vscode.workspace.getConfiguration("vpp");
+  if (!config.get("enableLanguageServer", true)) {
+    return;
+  }
+
+  let LanguageClient;
+  let TransportKind;
+  try {
+    ({ LanguageClient, TransportKind } = require("vscode-languageclient/node"));
+  } catch {
+    vscode.window.showWarningMessage(
+      "v++ LSP: run `npm install` in editor/vscode-vpp to enable language server integration."
+    );
+    return;
+  }
+
+  const serverPath = resolveLanguageServer(root);
+  languageClient = new LanguageClient(
+    "vppLanguageServer",
+    "v++ Language Server",
+    {
+      command: serverPath,
+      args: [],
+      transport: TransportKind.stdio,
+      options: { cwd: root },
+    },
+    {
+      documentSelector: [{ scheme: "file", language: "vpp" }],
+      synchronize: {
+        fileEvents: vscode.workspace.createFileSystemWatcher("**/*.vpp"),
+      },
+    }
+  );
+
+  languageClient.start();
+  context.subscriptions.push({
+    dispose: () => languageClient && languageClient.stop(),
+  });
+}
+
 function activate(context) {
+  startLanguageServer(context);
+
   context.subscriptions.push(
     vscode.commands.registerCommand("vpp.runFile", () => {
       const editor = vscode.window.activeTextEditor;
@@ -154,6 +247,10 @@ function activate(context) {
   );
 }
 
-function deactivate() {}
+function deactivate() {
+  if (languageClient) {
+    return languageClient.stop();
+  }
+}
 
 module.exports = { activate, deactivate };

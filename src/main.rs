@@ -17,7 +17,7 @@ enum Commands {
     Check {
         file: PathBuf,
     },
-    /// Compile a v++ file to an executable
+    /// Compile a v++ project or file to an executable
     Build {
         file: Option<PathBuf>,
         #[arg(short, long)]
@@ -44,11 +44,39 @@ enum Commands {
         path: Option<PathBuf>,
     },
     /// Create a new v++ project
+    New {
+        name: Option<String>,
+        #[arg(short, long)]
+        path: Option<PathBuf>,
+    },
+    /// Create a new v++ project (alias for `new`)
     Init {
         name: Option<String>,
         #[arg(short, long)]
         path: Option<PathBuf>,
     },
+    /// Add a dependency to vpp.toml and update the lockfile
+    Add {
+        name: String,
+        #[arg(long)]
+        path: Option<PathBuf>,
+        #[arg(long)]
+        git: Option<String>,
+        #[arg(long)]
+        tag: Option<String>,
+        #[arg(long)]
+        branch: Option<String>,
+        #[arg(long)]
+        version: Option<String>,
+    },
+    /// Remove a dependency from vpp.toml
+    Remove {
+        name: String,
+    },
+    /// Resolve dependencies and refresh vpp.lock
+    Update,
+    /// Check toolchain and project health
+    Doctor,
 }
 
 fn read_source(path: &Path) -> miette::Result<String> {
@@ -57,13 +85,49 @@ fn read_source(path: &Path) -> miette::Result<String> {
         .with_context(|| format!("failed to read `{}`", path.display()))
 }
 
+fn resolve_user_file(path: PathBuf) -> miette::Result<PathBuf> {
+    if path.exists() {
+        return Ok(path);
+    }
+
+    let cwd = std::env::current_dir().into_diagnostic()?;
+    let name = path
+        .file_name()
+        .map(|s| s.to_owned())
+        .unwrap_or_else(|| path.as_os_str().to_owned());
+
+    for candidate in [
+        cwd.join(&path),
+        cwd.join("examples").join(&name),
+        cwd.join("src").join(&name),
+        cwd.join("tests").join(&name),
+    ] {
+        if candidate.exists() {
+            return Ok(candidate);
+        }
+    }
+
+    Err(miette::miette!(
+        "cannot find `{}`\n  hint: try `vpp run examples\\{}` or open the file and press F5",
+        path.display(),
+        name.to_string_lossy()
+    ))
+}
+
 fn resolve_run_path(file: &Option<PathBuf>) -> miette::Result<PathBuf> {
     if let Some(path) = file {
-        return Ok(path.clone());
+        return resolve_user_file(path.clone());
     }
     let cwd = std::env::current_dir().into_diagnostic()?;
     let (entry, _) = vpp::project_entry(&cwd).map_err(miette::Report::new)?;
     Ok(entry)
+}
+
+fn project_root() -> miette::Result<PathBuf> {
+    let cwd = std::env::current_dir().into_diagnostic()?;
+    vpp::find_project_root(&cwd).ok_or_else(|| {
+        miette::miette!("not in a v++ project (no vpp.toml found)")
+    })
 }
 
 fn main() -> ExitCode {
@@ -77,7 +141,20 @@ fn main() -> ExitCode {
         Commands::Fmt { file } => cmd_fmt(&file),
         Commands::Lsp => cmd_lsp(),
         Commands::Test { path } => cmd_test(path.as_deref()),
-        Commands::Init { name, path } => cmd_init(name.as_deref(), path.as_deref()),
+        Commands::New { name, path } | Commands::Init { name, path } => {
+            cmd_init(name.as_deref(), path.as_deref())
+        }
+        Commands::Add {
+            name,
+            path,
+            git,
+            tag,
+            branch,
+            version,
+        } => cmd_add(&name, path.as_deref(), git.as_deref(), tag.as_deref(), branch.as_deref(), version.as_deref()),
+        Commands::Remove { name } => cmd_remove(&name),
+        Commands::Update => cmd_update(),
+        Commands::Doctor => cmd_doctor(),
     };
 
     match result {
@@ -90,15 +167,16 @@ fn main() -> ExitCode {
 }
 
 fn cmd_check(file: &PathBuf) -> miette::Result<()> {
-    vpp::check_path(file)
+    let path = resolve_user_file(file.clone())?;
+    vpp::check_path(&path)
         .map_err(|e| {
-            if let Ok(source) = std::fs::read_to_string(file) {
+            if let Ok(source) = std::fs::read_to_string(&path) {
                 e.with_source(source)
             } else {
                 miette::Report::new(e)
             }
         })?;
-    println!("✓ `{}` type-checks successfully", file.display());
+    println!("✓ `{}` type-checks successfully", path.display());
     Ok(())
 }
 
@@ -163,6 +241,54 @@ fn cmd_init(name: Option<&str>, path: Option<&Path>) -> miette::Result<()> {
     println!("  vpp run          # run src/main.vpp");
     println!("  vpp test         # run tests in tests/");
     Ok(())
+}
+
+fn cmd_add(
+    name: &str,
+    path: Option<&Path>,
+    git: Option<&str>,
+    tag: Option<&str>,
+    branch: Option<&str>,
+    version: Option<&str>,
+) -> miette::Result<()> {
+    let root = project_root()?;
+    let spec = if let Some(path) = path {
+        vpp::DependencySpec::from_path(path)
+    } else if let Some(git) = git {
+        vpp::DependencySpec::from_git(
+            git,
+            tag.map(str::to_string),
+            branch.map(str::to_string),
+        )
+    } else if let Some(version) = version {
+        vpp::DependencySpec::Version(version.to_string())
+    } else {
+        return Err(miette::miette!(
+            "specify --path, --git, or --version for dependency `{name}`"
+        ));
+    };
+    vpp::add_dependency(&root, name, spec).map_err(miette::Report::new)?;
+    println!("Added dependency `{name}` and updated vpp.lock");
+    Ok(())
+}
+
+fn cmd_remove(name: &str) -> miette::Result<()> {
+    let root = project_root()?;
+    vpp::remove_dependency(&root, name).map_err(miette::Report::new)?;
+    println!("Removed dependency `{name}`");
+    Ok(())
+}
+
+fn cmd_update() -> miette::Result<()> {
+    let root = project_root()?;
+    vpp::update_dependencies(&root).map_err(miette::Report::new)?;
+    println!("Updated vpp.lock");
+    Ok(())
+}
+
+fn cmd_doctor() -> miette::Result<()> {
+    let root = vpp::find_project_root(&std::env::current_dir().unwrap_or_default());
+    vpp::run_doctor(root.as_deref()).map_err(miette::Report::new)
 }
 
 fn cmd_compile(file: &PathBuf, output: Option<PathBuf>) -> miette::Result<()> {

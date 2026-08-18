@@ -1,0 +1,9 @@
+// Minimal JSON helpers via runtime builtins.
+
+pub fn parse(raw: string) -> string {
+    return json_parse(raw)
+}
+
+pub fn stringify(raw: string) -> string {
+    return json_stringify(raw)
+}

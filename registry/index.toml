@@ -1,0 +1,7 @@
+# v++ central package registry (v0.3)
+# Packages listed here resolve bare semver deps: helper = "0.1.0"
+
+[[packages]]
+name = "hello-lib"
+version = "0.1.0"
+path = "fixtures/hello-lib"

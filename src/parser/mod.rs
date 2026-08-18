@@ -1,6 +1,6 @@
 use crate::ast::{
-    BinOp, Block, EnumDecl, EnumVariant, Expr, FnDecl, ImportDecl, Item, MatchArm, Param, Pattern,
-    Program, Stmt, StructDecl, StructField, TestDecl, TypeAnn, UnOp,
+    BinOp, Block, EnumDecl, EnumVariant, Expr, FnDecl, ImportDecl, ImportSpec, Item, MatchArm, Param,
+    Pattern, Program, Stmt, StructDecl, StructField, TestDecl, TypeAnn, UnOp,
 };
 use crate::error::{span_to_source, VppError, VppResult};
 use crate::lexer::{Token, TokenKind};
@@ -34,11 +34,12 @@ impl Parser {
     }
 
     fn parse_item(&mut self) -> VppResult<Item> {
+        let public = self.match_token(&TokenKind::Pub);
         match self.peek_kind() {
             TokenKind::Import => Ok(Item::Import(self.parse_import()?)),
-            TokenKind::Struct => Ok(Item::Struct(self.parse_struct()?)),
-            TokenKind::Enum => Ok(Item::Enum(self.parse_enum()?)),
-            TokenKind::Fn => Ok(Item::Function(self.parse_function()?)),
+            TokenKind::Struct => Ok(Item::Struct(self.parse_struct(public)?)),
+            TokenKind::Enum => Ok(Item::Enum(self.parse_enum(public)?)),
+            TokenKind::Fn => Ok(Item::Function(self.parse_function(public)?)),
             TokenKind::Test => Ok(Item::Test(self.parse_test()?)),
             _ => Ok(Item::Statement(self.parse_stmt()?)),
         }
@@ -47,24 +48,41 @@ impl Parser {
     fn parse_import(&mut self) -> VppResult<ImportDecl> {
         let start = self.current_span();
         self.expect(&TokenKind::Import)?;
-        let path = match self.advance_kind() {
-            TokenKind::StringLit(path) => path,
+        let spec = match self.peek_kind() {
+            TokenKind::StringLit(path) => {
+                let TokenKind::StringLit(path) = self.advance_kind() else {
+                    unreachable!()
+                };
+                ImportSpec::FilePath(path)
+            }
+            TokenKind::Ident(_) => ImportSpec::Module(self.parse_module_path()?),
             other => {
                 return Err(VppError::UnexpectedToken {
                     found: other.to_string(),
-                    expected: "string path".to_string(),
-                    span: span_to_source(&self.source, self.previous_span()),
-                    expected_help: "use `import \"file.vpp\"`".to_string(),
+                    expected: "module path or string".to_string(),
+                    span: span_to_source(&self.source, self.current_span()),
+                    expected_help: "use `import std.io` or `import \"file.vpp\"`".to_string(),
                 });
             }
         };
         Ok(ImportDecl {
-            path,
+            spec,
             span: start.merge(self.previous_span()),
         })
     }
 
-    fn parse_struct(&mut self) -> VppResult<StructDecl> {
+    fn parse_module_path(&mut self) -> VppResult<Vec<String>> {
+        let mut segments = Vec::new();
+        loop {
+            segments.push(self.expect_ident()?);
+            if !self.match_token(&TokenKind::Dot) {
+                break;
+            }
+        }
+        Ok(segments)
+    }
+
+    fn parse_struct(&mut self, public: bool) -> VppResult<StructDecl> {
         let start = self.current_span();
         self.expect(&TokenKind::Struct)?;
         let name = self.expect_ident()?;
@@ -89,11 +107,12 @@ impl Parser {
         Ok(StructDecl {
             name,
             fields,
+            public,
             span: start.merge(self.previous_span()),
         })
     }
 
-    fn parse_enum(&mut self) -> VppResult<EnumDecl> {
+    fn parse_enum(&mut self, public: bool) -> VppResult<EnumDecl> {
         let start = self.current_span();
         self.expect(&TokenKind::Enum)?;
         let name = self.expect_ident()?;
@@ -132,11 +151,12 @@ impl Parser {
         Ok(EnumDecl {
             name,
             variants,
+            public,
             span: start.merge(self.previous_span()),
         })
     }
 
-    fn parse_function(&mut self) -> VppResult<FnDecl> {
+    fn parse_function(&mut self, public: bool) -> VppResult<FnDecl> {
         let start = self.current_span();
         self.expect(&TokenKind::Fn)?;
         let name = self.expect_ident()?;
@@ -170,6 +190,7 @@ impl Parser {
             params,
             ret_type,
             body,
+            public,
             span: start.merge(body_span),
         })
     }

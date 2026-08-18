@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  test:
+  test-interpreter:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,3 +16,21 @@ jobs:
       - run: cargo run -- run examples/lesson01_basics.vpp
       - run: cargo run -- check examples/lesson02_functions.vpp
       - run: cargo run -- check examples/lesson03_loops.vpp
+
+  test-native:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install LLVM/clang
+        run: sudo apt-get update && sudo apt-get install -y clang llvm
+      - run: export LLVM_SYS_221_PREFIX=/usr/lib/llvm-22 && cargo test --features codegen --all-targets -- --test-threads=1
+      - run: cargo run --features codegen -- build examples/hello.vpp -o /tmp/hello
+      - run: /tmp/hello
+
+  test-lsp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo build --features lsp --bin vppls

@@ -1,0 +1,18 @@
+fn sum_nums(nums: array[int]) -> int {
+    let total = 0
+    for n in nums {
+        total = total + n
+    }
+    return total
+}
+
+fn first(items: array[string]) -> string {
+    return items[0]
+}
+
+let nums = [1, 2, 3, 4]
+print(sum_nums(nums))
+print(sum_nums([10, 20]))
+
+let words = ["alpha", "beta", "gamma"]
+print(first(words))

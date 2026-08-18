@@ -1,9 +1,8 @@
-fn upper(s: string) -> string {
-    // Placeholder: v++ stdlib will add native string ops in codegen.
+pub fn upper(s: string) -> string {
     return s
 }
 
-fn repeat(s: string, n: int) -> string {
+pub fn repeat(s: string, n: int) -> string {
     let out = ""
     let i = 0
     while i < n {
@@ -11,4 +10,12 @@ fn repeat(s: string, n: int) -> string {
         i = i + 1
     }
     return out
+}
+
+pub fn len_str(s: string) -> int {
+    return len(s)
+}
+
+pub fn is_empty(s: string) -> bool {
+    return len(s) == 0
 }

@@ -1,0 +1,7 @@
+// Scope shadowing: inner block must not leak bindings.
+let x = 10
+if true {
+    let x = 20
+    print(x)
+}
+print(x)

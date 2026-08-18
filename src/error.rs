@@ -118,6 +118,45 @@ pub enum VppError {
         span: SourceSpan,
     },
 
+    #[error("import not found: `{spec}`")]
+    #[diagnostic(code(vpp::E0400))]
+    ImportNotFound {
+        spec: String,
+        #[help("{hint}")]
+        hint: String,
+    },
+
+    #[error("circular import at `{path}`")]
+    #[diagnostic(code(vpp::E0401))]
+    ImportCycle { path: String },
+
+    #[error("duplicate import of module `{module}`")]
+    #[diagnostic(code(vpp::E0402))]
+    DuplicateImport {
+        module: String,
+        #[label("already imported")]
+        span: SourceSpan,
+    },
+
+    #[error("unknown module `{module}`")]
+    #[diagnostic(code(vpp::E0403))]
+    UnknownModule {
+        module: String,
+        #[label("no such imported module")]
+        span: SourceSpan,
+    },
+
+    #[error("module `{module}` has no export `{name}`")]
+    #[diagnostic(code(vpp::E0404))]
+    UnknownModuleMember {
+        module: String,
+        name: String,
+        #[label("not exported from `{module}`")]
+        span: SourceSpan,
+        #[help("{help}")]
+        help: String,
+    },
+
     #[error("{message}")]
     #[diagnostic(code(vpp::E0300))]
     Codegen {
@@ -148,6 +187,29 @@ pub fn span_to_source(_source: &str, span: Span) -> SourceSpan {
 impl VppError {
     pub fn with_source(self, source: impl Into<String>) -> miette::Report {
         miette::Report::new(self).with_source_code(source.into())
+    }
+
+    pub fn source_span(&self) -> Option<SourceSpan> {
+        match self {
+            Self::InvalidCharacter { span, .. }
+            | Self::UnterminatedString { span, .. }
+            | Self::UnexpectedToken { span, .. }
+            | Self::UnexpectedEof { span, .. }
+            | Self::TypeMismatch { span, .. }
+            | Self::UndefinedVariable { span, .. }
+            | Self::UndefinedFunction { span, .. }
+            | Self::WrongArgCount { span, .. }
+            | Self::EmptyArrayNoType { span, .. }
+            | Self::ArrayElementMismatch { span, .. }
+            | Self::ImmutableAssign { span, .. }
+            | Self::MissingReturn { span, .. }
+            | Self::InvalidForIter { span, .. }
+            | Self::DuplicateImport { span, .. }
+            | Self::UnknownModule { span, .. }
+            | Self::UnknownModuleMember { span, .. }
+            | Self::Codegen { span, .. } => Some(*span),
+            _ => None,
+        }
     }
 }
 

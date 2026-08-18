@@ -22,6 +22,7 @@ pub enum TokenKind {
     Continue,
     Option,
     Result,
+    Pub,
 
     // Types
     IntType,
@@ -128,6 +129,7 @@ impl std::fmt::Display for TokenKind {
             TokenKind::Struct => write!(f, "struct"),
             TokenKind::Enum => write!(f, "enum"),
             TokenKind::Import => write!(f, "import"),
+            TokenKind::Pub => write!(f, "pub"),
             TokenKind::Match => write!(f, "match"),
             TokenKind::Test => write!(f, "test"),
             TokenKind::Break => write!(f, "break"),

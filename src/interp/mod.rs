@@ -106,8 +106,12 @@ pub fn run(program: &TypedProgram) -> VppResult<()> {
     for stmt in &program.top_level {
         interp.exec_stmt(stmt)?;
         if interp.returning {
-            break;
+            return Ok(());
         }
+    }
+
+    if program.functions.contains_key("main") {
+        interp.call_function("main", &[])?;
     }
     Ok(())
 }
@@ -395,6 +399,114 @@ impl Interpreter {
                 });
             }
             return Ok(Value::Void);
+        }
+
+        if name == "read_file" {
+            let path = match self.eval_expr(&args[0])? {
+                Value::String(s) => s,
+                other => {
+                    return Err(VppError::Other {
+                        message: format!("read_file expects string path, found {other:?}"),
+                    });
+                }
+            };
+            let text = std::fs::read_to_string(path.as_str()).map_err(|e| VppError::Other {
+                message: format!("read_file failed: {e}"),
+            })?;
+            return Ok(Value::String(Rc::new(text)));
+        }
+
+        if name == "write_file" {
+            let path = match self.eval_expr(&args[0])? {
+                Value::String(s) => s,
+                other => {
+                    return Err(VppError::Other {
+                        message: format!("write_file expects string path, found {other:?}"),
+                    });
+                }
+            };
+            let contents = match self.eval_expr(&args[1])? {
+                Value::String(s) => s,
+                other => {
+                    return Err(VppError::Other {
+                        message: format!("write_file expects string contents, found {other:?}"),
+                    });
+                }
+            };
+            std::fs::write(path.as_str(), contents.as_str()).map_err(|e| VppError::Other {
+                message: format!("write_file failed: {e}"),
+            })?;
+            return Ok(Value::Void);
+        }
+
+        if name == "file_exists" {
+            let path = match self.eval_expr(&args[0])? {
+                Value::String(s) => s,
+                other => {
+                    return Err(VppError::Other {
+                        message: format!("file_exists expects string path, found {other:?}"),
+                    });
+                }
+            };
+            return Ok(Value::Bool(std::path::Path::new(path.as_str()).exists()));
+        }
+
+        if name == "json_parse" {
+            let raw = match self.eval_expr(&args[0])? {
+                Value::String(s) => s,
+                other => {
+                    return Err(VppError::Other {
+                        message: format!("json_parse expects string, found {other:?}"),
+                    });
+                }
+            };
+            serde_json::from_str::<serde_json::Value>(raw.as_str()).map_err(|e| VppError::Other {
+                message: format!("json_parse failed: {e}"),
+            })?;
+            return Ok(Value::String(raw));
+        }
+
+        if name == "json_stringify" {
+            let raw = match self.eval_expr(&args[0])? {
+                Value::String(s) => s,
+                other => {
+                    return Err(VppError::Other {
+                        message: format!("json_stringify expects string, found {other:?}"),
+                    });
+                }
+            };
+            let value = if raw.starts_with('{') || raw.starts_with('[') {
+                serde_json::from_str(raw.as_str()).map_err(|e| VppError::Other {
+                    message: format!("json_stringify failed: {e}"),
+                })?
+            } else {
+                serde_json::Value::String(raw.to_string())
+            };
+            return Ok(Value::String(Rc::new(value.to_string())));
+        }
+
+        if name == "process_run" {
+            let cmd = match self.eval_expr(&args[0])? {
+                Value::String(s) => s,
+                other => {
+                    return Err(VppError::Other {
+                        message: format!("process_run expects string command, found {other:?}"),
+                    });
+                }
+            };
+            let status = if cfg!(windows) {
+                std::process::Command::new("cmd")
+                    .args(["/C", cmd.as_str()])
+                    .status()
+            } else {
+                std::process::Command::new("sh")
+                    .args(["-c", cmd.as_str()])
+                    .status()
+            }
+            .map_err(|e| VppError::Other {
+                message: format!("process_run failed: {e}"),
+            })?;
+            return Ok(Value::Int(status.code().unwrap_or(1) as i64));
         }
 
         let func = self

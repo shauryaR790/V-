@@ -30,8 +30,9 @@ Write-Host ""
 Write-Host 'Optional: run .\install.ps1 to put vpp on PATH forever' -ForegroundColor Yellow
 Write-Host ""
 Write-Host 'Or from terminal:' -ForegroundColor Green
-Write-Host '  .\vpp.ps1 run examples\hello.vpp' -ForegroundColor White
+Write-Host '  .\vpp.ps1 run stress.vpp' -ForegroundColor White
+Write-Host '  .\stress.ps1                 # interpreter vs native parity test' -ForegroundColor White
 Write-Host ""
 
-$hello = Join-Path $PSScriptRoot "examples\hello.vpp"
-& (Join-Path $PSScriptRoot "vpp.ps1") run $hello
+$stress = Join-Path $PSScriptRoot "stress.vpp"
+& (Join-Path $PSScriptRoot "stress.ps1")
