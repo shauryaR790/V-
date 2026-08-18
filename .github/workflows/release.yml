@@ -11,6 +11,7 @@ permissions:
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         include:
           - os: ubuntu-latest
@@ -36,30 +37,9 @@ jobs:
         with:
           targets: ${{ matrix.target }}
 
-      - name: Install LLVM (Linux)
-        if: matrix.os == 'ubuntu-latest'
-        run: sudo apt-get update && sudo apt-get install -y clang llvm
-
-      - name: Install LLVM (Windows)
-        if: matrix.os == 'windows-latest'
-        run: choco install llvm --version=22.1.8 -y
-
-      - name: Install LLVM (macOS)
-        if: matrix.os == 'macos-latest'
-        run: brew install llvm@22
-
-      - name: Set LLVM env (Linux)
-        if: matrix.os == 'ubuntu-latest'
-        run: echo "LLVM_SYS_221_PREFIX=/usr/lib/llvm-22" >> $GITHUB_ENV
-
-      - name: Set LLVM env (Windows)
-        if: matrix.os == 'windows-latest'
-        shell: bash
-        run: echo "LLVM_SYS_221_PREFIX=/c/Program Files/LLVM" >> $GITHUB_ENV
-
-      - name: Set LLVM env (macOS)
-        if: matrix.os == 'macos-latest'
-        run: echo "LLVM_SYS_221_PREFIX=$(brew --prefix llvm@22)" >> $GITHUB_ENV
+      - uses: KyleMayes/install-llvm-action@v2
+        with:
+          version: "22"
 
       - name: Build release
         run: cargo build --release --features codegen,lsp --bin vpp --bin vppls
