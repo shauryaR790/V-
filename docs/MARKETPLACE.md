@@ -2,8 +2,8 @@
 
 Do this once. Updates later are just bump version + publish.
 
-**Your extension ID:** `vpp-lang.vpp`  
-**Marketplace URL (after publish):** https://marketplace.visualstudio.com/items?itemName=vpp-lang.vpp
+**Your extension ID:** `vpp-lang.vplusplus`  
+**Marketplace URL (after publish):** https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus
 
 ---
 
@@ -98,7 +98,7 @@ First publish can take 5–15 minutes to show on the Marketplace.
 **From terminal:**
 
 ```powershell
-code --install-extension vpp-lang.vpp
+code --install-extension vpp-lang.vplusplus
 ```
 
 Users still need the **vpp compiler** separately (GitHub Release or `setup.ps1`). The extension does not bundle it.

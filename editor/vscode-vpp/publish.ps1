@@ -34,7 +34,7 @@ try {
         Write-Host "(You must run 'vsce login vpp-lang' once before this works.)" -ForegroundColor Gray
         vsce publish
         Write-Host "`nPublished! Users can install with:" -ForegroundColor Green
-        Write-Host "  code --install-extension vpp-lang.vpp" -ForegroundColor White
+        Write-Host "  code --install-extension vpp-lang.vplusplus" -ForegroundColor White
     } else {
         Write-Host "Packaging .vsix..." -ForegroundColor Yellow
         vsce package

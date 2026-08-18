@@ -78,7 +78,7 @@ code --install-extension vpp-0.4.0.vsix
 **Option C — Manual copy**
 
 ```powershell
-Copy-Item -Recurse editor\vscode-vpp "$env:USERPROFILE\.vscode\extensions\vpp-lang.vpp-0.4.0"
+Copy-Item -Recurse editor\vscode-vpp "$env:USERPROFILE\.vscode\extensions\vpp-lang.vplusplus-0.4.0"
 ```
 
 Then reload VS Code.
@@ -206,12 +206,12 @@ First publish can take a few minutes to appear on the Marketplace.
 
 Your extension URL will be:
 
-`https://marketplace.visualstudio.com/items?itemName=vpp-lang.vpp`
+`https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus`
 
 Users install with:
 
 ```powershell
-code --install-extension vpp-lang.vpp
+code --install-extension vpp-lang.vplusplus
 ```
 
 Or search **v++** in the Extensions sidebar.

@@ -36,8 +36,8 @@ Pop-Location
 $extVersion = "0.4.0"
 $extSrc = Join-Path $PSScriptRoot "editor\vscode-vpp"
 $extTargets = @(
-    (Join-Path $env:USERPROFILE ".vscode\extensions\vpp-lang.vpp-$extVersion"),
-    (Join-Path $env:USERPROFILE ".cursor\extensions\vpp-lang.vpp-$extVersion")
+    (Join-Path $env:USERPROFILE ".vscode\extensions\vpp-lang.vplusplus-$extVersion"),
+    (Join-Path $env:USERPROFILE ".cursor\extensions\vpp-lang.vplusplus-$extVersion")
 )
 Write-Host "Installing v++ editor extension..." -ForegroundColor Yellow
 foreach ($extDest in $extTargets) {
