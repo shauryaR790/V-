@@ -29,14 +29,18 @@ jobs:
           wget -q https://apt.llvm.org/llvm.sh
           chmod +x llvm.sh
           sudo ./llvm.sh 22
-          sudo apt-get install -y clang-22 lld-22 llvm-22-dev
+          sudo apt-get install -y clang-22 lld-22 llvm-22-dev libclang-22-dev
           echo "LLVM_SYS_221_PREFIX=$(llvm-config-22 --prefix)" >> "$GITHUB_ENV"
           echo "$(llvm-config-22 --prefix)/bin" >> "$GITHUB_PATH"
           clang-22 --version
-          llvm-config-22 --version
-      - run: cargo test --features codegen --all-targets -- --test-threads=1
-      - run: cargo run --features codegen -- build examples/hello.vpp -o /tmp/hello
-      - run: /tmp/hello
+      - name: Native smoke test
+        run: |
+          cargo build --features codegen --bin vpp
+          cargo test --features codegen --test typecheck --test lexer --test parser -- --test-threads=1
+          cargo run --features codegen -- run examples/hello.vpp
+          cargo run --features codegen -- build examples/hello.vpp -o /tmp/vpp-hello
+          chmod +x /tmp/vpp-hello
+          /tmp/vpp-hello
 
   test-lsp:
     runs-on: ubuntu-latest

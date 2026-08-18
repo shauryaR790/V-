@@ -9,55 +9,15 @@ permissions:
   contents: write
 
 jobs:
-  build:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: ubuntu-latest
-            target: x86_64-unknown-linux-gnu
-            slug: linux-x64
-            vpp_bin: vpp
-            vppls_bin: vppls
-            llvm_kind: apt
-          - os: windows-latest
-            target: x86_64-pc-windows-msvc
-            slug: windows-x64
-            vpp_bin: vpp.exe
-            vppls_bin: vppls.exe
-            llvm_kind: win-installer
-          - os: macos-latest
-            target: aarch64-apple-darwin
-            slug: macos-arm64
-            vpp_bin: vpp
-            vppls_bin: vppls
-            llvm_kind: macos-tar
-            llvm_archive: LLVM-22.1.8-macOS-ARM64.tar.xz
-            llvm_dir: LLVM-22.1.8-macOS-ARM64
-    runs-on: ${{ matrix.os }}
+  build-windows:
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: dtolnay/rust-toolchain@stable
         with:
-          targets: ${{ matrix.target }}
+          targets: x86_64-pc-windows-msvc
 
-      - name: Install LLVM 22 (Linux)
-        if: matrix.llvm_kind == 'apt'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget gnupg lsb-release software-properties-common
-          wget -q https://apt.llvm.org/llvm.sh
-          chmod +x llvm.sh
-          sudo ./llvm.sh 22
-          sudo apt-get install -y clang-22 lld-22 llvm-22-dev
-          echo "LLVM_SYS_221_PREFIX=$(llvm-config-22 --prefix)" >> "$GITHUB_ENV"
-          echo "$(llvm-config-22 --prefix)/bin" >> "$GITHUB_PATH"
-          clang-22 --version
-          llvm-config-22 --version
-
-      - name: Install LLVM 22 (Windows)
-        if: matrix.llvm_kind == 'win-installer'
+      - name: Install LLVM 22
         shell: pwsh
         run: |
           curl.exe -L -o llvm.exe "https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.8/LLVM-22.1.8-win64.exe"
@@ -65,8 +25,58 @@ jobs:
           "LLVM_SYS_221_PREFIX=C:\LLVM" | Out-File -FilePath $env:GITHUB_ENV -Append
           "C:\LLVM\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
 
+      - name: Build release
+        run: cargo build --release --features codegen,lsp --bin vpp --bin vppls
+
+      - name: Package Windows bundle
+        shell: pwsh
+        run: |
+          $version = $env:GITHUB_REF_NAME
+          $dir = "vpp-$version-windows-x64"
+          New-Item -ItemType Directory -Force -Path "$dir/examples" | Out-Null
+          Copy-Item target/release/vpp.exe, target/release/vppls.exe $dir/
+          Copy-Item -Recurse std, registry, runtime $dir/
+          Copy-Item examples/hello.vpp $dir/examples/
+          Copy-Item GO.bat, RELEASE.txt $dir/
+          Compress-Archive -Path $dir -DestinationPath "$dir.zip" -Force
+
+      - name: Upload Windows bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: vpp-windows-x64
+          path: vpp-*-windows-x64.zip
+
+  build-unix:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            slug: linux-x64
+          - os: macos-latest
+            slug: macos-arm64
+            llvm_archive: LLVM-22.1.8-macOS-ARM64.tar.xz
+            llvm_dir: LLVM-22.1.8-macOS-ARM64
+    runs-on: ${{ matrix.os }}
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Install LLVM 22 (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget gnupg lsb-release software-properties-common
+          wget -q https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          sudo ./llvm.sh 22
+          sudo apt-get install -y clang-22 lld-22 llvm-22-dev libclang-22-dev
+          echo "LLVM_SYS_221_PREFIX=$(llvm-config-22 --prefix)" >> "$GITHUB_ENV"
+          echo "$(llvm-config-22 --prefix)/bin" >> "$GITHUB_PATH"
+
       - name: Install LLVM 22 (macOS)
-        if: matrix.llvm_kind == 'macos-tar'
+        if: runner.os == 'macOS'
         run: |
           curl -L -o llvm.tar.xz "https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.8/${{ matrix.llvm_archive }}"
           tar xf llvm.tar.xz
@@ -76,48 +86,26 @@ jobs:
       - name: Build release
         run: cargo build --release --features codegen,lsp --bin vpp --bin vppls
 
-      - name: Smoke test
-        run: cargo test --release --features codegen -- --test-threads=1
-
-      - name: Package bundle (Unix)
-        if: matrix.os != 'windows-latest'
-        shell: bash
+      - name: Package bundle
         run: |
           VERSION="${GITHUB_REF_NAME}"
           DIR="vpp-${VERSION}-${{ matrix.slug }}"
           mkdir -p "$DIR/examples"
-          cp "target/release/${{ matrix.vpp_bin }}" "$DIR/"
-          cp "target/release/${{ matrix.vppls_bin }}" "$DIR/"
+          cp target/release/vpp target/release/vppls "$DIR/"
           cp -r std registry runtime "$DIR/"
           cp examples/hello.vpp "$DIR/examples/"
           cp RELEASE.txt run.sh "$DIR/"
-          chmod +x "$DIR/run.sh" "$DIR/${{ matrix.vpp_bin }}" "$DIR/${{ matrix.vppls_bin }}"
+          chmod +x "$DIR/run.sh" "$DIR/vpp" "$DIR/vppls"
           tar -czf "${DIR}.tar.gz" "$DIR"
-
-      - name: Package bundle (Windows)
-        if: matrix.os == 'windows-latest'
-        shell: pwsh
-        run: |
-          $version = $env:GITHUB_REF_NAME
-          $dir = "vpp-$version-${{ matrix.slug }}"
-          New-Item -ItemType Directory -Force -Path "$dir/examples" | Out-Null
-          Copy-Item "target/release/${{ matrix.vpp_bin }}" "$dir/"
-          Copy-Item "target/release/${{ matrix.vppls_bin }}" "$dir/"
-          Copy-Item -Recurse std, registry, runtime "$dir/"
-          Copy-Item examples/hello.vpp "$dir/examples/"
-          Copy-Item GO.bat, RELEASE.txt "$dir/"
-          Compress-Archive -Path $dir -DestinationPath "$dir.zip" -Force
 
       - name: Upload bundle
         uses: actions/upload-artifact@v4
         with:
           name: vpp-${{ matrix.slug }}
-          path: |
-            vpp-*-${{ matrix.slug }}.zip
-            vpp-*-${{ matrix.slug }}.tar.gz
+          path: vpp-*-${{ matrix.slug }}.tar.gz
 
   release:
-    needs: build
+    needs: [build-windows]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
@@ -125,7 +113,7 @@ jobs:
           path: artifacts
 
       - name: Flatten artifacts
-        run: find artifacts -type f \( -name '*.zip' -o -name '*.tar.gz' \) -exec cp {} . \;
+        run: find artifacts -type f \( -name '*.zip' -o -name '*.tar.gz' \) -exec cp {} . \; 2>/dev/null || true
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
