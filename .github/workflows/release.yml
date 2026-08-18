@@ -37,14 +37,21 @@ jobs:
           Copy-Item target/release/vpp.exe, target/release/vppls.exe $dir/
           Copy-Item -Recurse std, registry, runtime $dir/
           Copy-Item examples/hello.vpp $dir/examples/
-          Copy-Item GO.bat, RELEASE.txt $dir/
-          Compress-Archive -Path $dir -DestinationPath "$dir.zip" -Force
+          Copy-Item GO.bat, RELEASE.txt, START-HERE.txt $dir/
+          # Portable clang for `vpp build` — avoids a separate LLVM install
+          New-Item -ItemType Directory -Force -Path "$dir/llvm/bin" | Out-Null
+          Copy-Item C:\LLVM\bin\clang*.exe, C:\LLVM\bin\lld*.exe, C:\LLVM\bin\LLVM*.dll, C:\LLVM\bin\lib*.dll -ErrorAction SilentlyContinue $dir/llvm/bin/
+          $zip = "$dir.zip"
+          Compress-Archive -Path $dir -DestinationPath $zip -Force
+          Get-FileHash $zip -Algorithm SHA256 | ForEach-Object { "$($_.Hash)  $(Split-Path $zip -Leaf)" } | Set-Content "$zip.sha256"
 
       - name: Upload Windows bundle
         uses: actions/upload-artifact@v4
         with:
           name: vpp-windows-x64
-          path: vpp-*-windows-x64.zip
+          path: |
+            vpp-*-windows-x64.zip
+            vpp-*-windows-x64.zip.sha256
 
   build-unix:
     strategy:
@@ -120,6 +127,7 @@ jobs:
         with:
           files: |
             vpp-*-windows-x64.zip
+            vpp-*-windows-x64.zip.sha256
             vpp-*-linux-x64.tar.gz
             vpp-*-macos-arm64.tar.gz
           generate_release_notes: true

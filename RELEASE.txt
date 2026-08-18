@@ -1,19 +1,31 @@
 v++ — quick start (Windows)
 ===========================
 
+IMPORTANT — avoid Windows security prompts
+------------------------------------------
+Before extracting the zip:
+  Right-click the .zip  ->  Properties  ->  check "Unblock"  ->  OK
+
+If you already extracted:
+  PowerShell in this folder:  Unblock-File -Path . -Recurse
+
+See START-HERE.txt for details. Prompts appear because the download is
+unsigned open-source software — not because anything is malicious.
+
+
 1. Install VS Code extension (optional but recommended)
-   - Open VS Code → Extensions → search "v++" → Install "v++ Language"
+   - Open VS Code -> Extensions -> search "v++ Language" (publisher: vpp-lang)
 
 2. This folder IS your v++ install. No Rust required.
 
-3. Double-click GO.bat   OR   open PowerShell here:
+3. Double-click GO.bat   OR   open cmd here:
 
    set VPP_HOME=%CD%
    set PATH=%CD%;%PATH%
    vpp run examples\hello.vpp
 
-4. Native compile (optional) — needs LLVM:
-   winget install LLVM.LLVM
+4. Native compile (optional):
    vpp build examples\hello.vpp -o hello.exe
+   (uses llvm\bin\clang if bundled, else install: winget install LLVM.LLVM)
 
 Docs: https://github.com/shauryaR790/V-/blob/main/docs/INSTALL.md

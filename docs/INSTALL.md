@@ -13,11 +13,14 @@
 ### Windows (easiest)
 
 1. Download `vpp-v0.4.x-windows-x64.zip`
-2. Unzip anywhere (e.g. `C:\vpp`)
-3. Double-click **`GO.bat`**
-4. Install VS Code extension: Extensions → search **v++**
+2. **Right-click the zip → Properties → check *Unblock* → OK** (removes security prompts)
+3. Unzip anywhere (e.g. `C:\vpp`)
+4. Read **`START-HERE.txt`**, then double-click **`GO.bat`**
+5. Install VS Code extension: Extensions → search **v++ Language** (publisher: vpp-lang)
 
-No Rust required. LLVM only needed if you use `vpp build` (native compile).
+No Rust required. Recent Windows bundles include portable `clang` under `llvm\` for `vpp build`.
+
+If Windows still warns about unsigned software: click **Run** or **More info → Run anyway**. This is normal for open-source tools without a code-signing certificate.
 
 ```powershell
 $env:VPP_HOME = "C:\vpp"

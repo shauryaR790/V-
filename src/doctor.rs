@@ -10,9 +10,9 @@ pub fn run_doctor(project_root: Option<&Path>) -> VppResult<()> {
     println!("==========");
     println!();
 
-    check_rust()?;
-    check_llvm()?;
-    check_git()?;
+    check_rust();
+    check_llvm();
+    check_git();
     if let Some(root) = project_root {
         check_project(root)?;
     }
@@ -22,52 +22,53 @@ pub fn run_doctor(project_root: Option<&Path>) -> VppResult<()> {
     Ok(())
 }
 
-fn check_rust() -> VppResult<()> {
+fn check_rust() {
     print!("Rust toolchain ... ");
     match Command::new("rustc").arg("--version").output() {
         Ok(out) if out.status.success() => {
             println!("ok ({})", String::from_utf8_lossy(&out.stdout).trim());
-            Ok(())
         }
         _ => {
-            println!("MISSING");
-            Err(VppError::Other {
-                message: "rustc not found; install Rust from https://rustup.rs".to_string(),
-            })
+            println!("not installed (optional — only needed to compile v++ from source)");
         }
     }
 }
 
-fn check_llvm() -> VppResult<()> {
+fn clang_version() -> Option<String> {
+    for program in ["clang", "clang.exe"] {
+        if let Ok(out) = Command::new(program).arg("--version").output() {
+            if out.status.success() {
+                let line = String::from_utf8_lossy(&out.stdout)
+                    .lines()
+                    .next()
+                    .unwrap_or("clang")
+                    .to_string();
+                return Some(line);
+            }
+        }
+    }
+    None
+}
+
+fn check_llvm() {
     print!("LLVM (clang) ... ");
-    match Command::new("clang").arg("--version").output() {
-        Ok(out) if out.status.success() => {
-            let line = String::from_utf8_lossy(&out.stdout)
-                .lines()
-                .next()
-                .unwrap_or("clang")
-                .to_string();
-            println!("ok ({line})");
-            Ok(())
-        }
-        _ => {
-            println!("MISSING (native build disabled)");
-            println!("  Install LLVM/Clang and set LLVM_SYS_221_PREFIX for codegen.");
-            Ok(())
-        }
+    if let Some(line) = clang_version() {
+        println!("ok ({line})");
+        return;
     }
+    println!("not installed (optional — only needed for `vpp build`)");
+    println!("  Install: winget install LLVM.LLVM");
+    println!("  Or use a release bundle with llvm\\ included.");
 }
 
-fn check_git() -> VppResult<()> {
+fn check_git() {
     print!("git ... ");
     match Command::new("git").arg("--version").output() {
         Ok(out) if out.status.success() => {
             println!("ok ({})", String::from_utf8_lossy(&out.stdout).trim());
-            Ok(())
         }
         _ => {
-            println!("MISSING (git dependencies unavailable)");
-            Ok(())
+            println!("not installed (optional — only needed for git-based packages)");
         }
     }
 }

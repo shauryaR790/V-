@@ -1,0 +1,48 @@
+v++ for Windows — start here
+============================
+
+Windows may show a security prompt the first time you run files from this
+folder. That happens because the zip was downloaded from the internet and
+the tools are not code-signed yet (normal for open-source releases).
+
+REMOVE THE PROMPTS (do this once, before or after extracting)
+-------------------------------------------------------------
+  1. Right-click the downloaded  vpp-...-windows-x64.zip
+  2. Properties  ->  General  ->  check  [Unblock]  ->  OK
+  3. Extract the zip (e.g. to C:\vpp)
+
+If you already extracted without unblocking, open PowerShell in this folder:
+
+  Unblock-File -Path . -Recurse
+
+Then double-click GO.bat again.
+
+
+QUICK START
+-----------
+  Double-click  GO.bat
+
+Or in PowerShell / cmd:
+
+  set VPP_HOME=%CD%
+  set PATH=%CD%;%PATH%
+  vpp run examples\hello.vpp
+
+
+WHAT WORKS WITHOUT EXTRA INSTALLS
+---------------------------------
+  vpp run   — run .vpp files (interpreter)
+  vpp check — type-check
+  vppls     — language server (VS Code extension)
+
+Native compile (vpp build) needs LLVM — this bundle includes a portable
+copy under llvm\ when available, or install:  winget install LLVM.LLVM
+
+
+VERIFY DOWNLOAD (optional)
+--------------------------
+Compare SHA256 of the zip with the .sha256 file on the GitHub Release page:
+  https://github.com/shauryaR790/V-/releases
+
+
+Source code: https://github.com/shauryaR790/V-
