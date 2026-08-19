@@ -21,6 +21,8 @@ NAV = [
     ("courses.html", "Courses"),
 ]
 
+ASSET_PREFIX = "/V-/"
+
 EXTRA_MD = [
     ROOT / "SPEC.md",
     ROOT / "ARCHITECTURE.md",
@@ -38,6 +40,7 @@ def md_to_html(text: str) -> str:
     in_code = False
     in_table = False
     code_lang = ""
+    code_lines: list[str] = []
     list_open = False
 
     def close_list():
@@ -46,6 +49,30 @@ def md_to_html(text: str) -> str:
             out.append("</ul>")
             list_open = False
 
+    def close_code_block():
+        nonlocal in_code, code_lines, code_lang
+        if not in_code:
+            return
+        label = code_lang or "text"
+        if label in ("powershell", "shell", "bash", "sh"):
+            display = "Shell"
+        elif label in ("vpp", "v++"):
+            display = "v++"
+        elif label == "toml":
+            display = "TOML"
+        else:
+            display = label if label else "text"
+        out.append('<div class="code-window">')
+        out.append('<pre class="code-block"><table class="code-table"><tbody>')
+        for n, cline in enumerate(code_lines, 1):
+            out.append(f'<tr><td class="ln">{n}</td><td class="lc">{html.escape(cline)}</td></tr>')
+        out.append("</tbody></table></pre>")
+        out.append(f'<div class="code-footer-bar"><span>{html.escape(display)}</span></div>')
+        out.append("</div>")
+        in_code = False
+        code_lines = []
+        code_lang = ""
+
     i = 0
     while i < len(lines):
         line = lines[i]
@@ -53,17 +80,16 @@ def md_to_html(text: str) -> str:
         if line.strip().startswith("```"):
             close_list()
             if in_code:
-                out.append("</code></pre>")
-                in_code = False
+                close_code_block()
             else:
                 code_lang = line.strip()[3:].strip()
-                out.append(f'<pre class="code-block"><code class="lang-{html.escape(code_lang)}">')
+                code_lines = []
                 in_code = True
             i += 1
             continue
 
         if in_code:
-            out.append(html.escape(line))
+            code_lines.append(line)
             i += 1
             continue
 
@@ -98,7 +124,16 @@ def md_to_html(text: str) -> str:
 
         if not line.strip():
             close_list()
-            out.append("")
+            i += 1
+            continue
+
+        if re.match(r"^-{3,}\s*$", line.strip()):
+            close_list()
+            out.append("<hr>")
+            i += 1
+            continue
+
+        if line.strip().startswith("<!--") or line.strip().startswith("&lt;!--"):
             i += 1
             continue
 
@@ -129,7 +164,7 @@ def md_to_html(text: str) -> str:
 
     close_list()
     if in_code:
-        out.append("</code></pre>")
+        close_code_block()
     if in_table:
         out.append("</tbody></table></div>")
     return "\n".join(out)
@@ -152,9 +187,8 @@ def collect_md(paths: list[Path]) -> str:
     parts = []
     for p in paths:
         if p.exists():
-            parts.append(f"\n\n---\n\n<!-- source: {p.relative_to(ROOT).as_posix()} -->\n\n")
             parts.append(p.read_text(encoding="utf-8"))
-    return "\n".join(parts)
+    return "\n\n".join(parts)
 
 
 def headings_from_html(content: str) -> list[tuple[str, str]]:
@@ -167,7 +201,7 @@ def headings_from_html(content: str) -> list[tuple[str, str]]:
 
 def shell(active: str, title: str, body: str, sidebar_html: str, toc_html: str, desc: str = "") -> str:
     nav_items = "\n".join(
-        f'<a href="{href}" class="nav-link{" active" if href == active else ""}">{label}</a>'
+        f'<a href="{ASSET_PREFIX}{href}" class="nav-link{" active" if href == active else ""}">{label}</a>'
         for href, label in NAV
     )
     meta = f'<meta name="description" content="{html.escape(desc)}">' if desc else ""
@@ -181,13 +215,13 @@ def shell(active: str, title: str, body: str, sidebar_html: str, toc_html: str, 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="{ASSET_PREFIX}css/style.css">
+  <link rel="icon" href="{ASSET_PREFIX}assets/logo.png">
 </head>
 <body class="page-docs">
   <header class="site-header">
     <div class="header-inner">
-      <a href="index.html" class="brand"><img src="assets/logo.png" alt="v++" class="brand-logo"><span class="brand-text">v++</span></a>
+      <a href="{ASSET_PREFIX}index.html" class="brand"><img src="{ASSET_PREFIX}assets/logo.png" alt="v++" class="brand-logo" height="36"><span class="brand-text">v++</span></a>
       <nav class="top-nav">{nav_items}</nav>
       <div class="header-actions">
         <a href="https://github.com/shauryaR790/V-" class="icon-btn" aria-label="GitHub" target="_blank" rel="noopener">
@@ -218,9 +252,18 @@ def shell(active: str, title: str, body: str, sidebar_html: str, toc_html: str, 
       </div>
     </div>
   </footer>
-  <script src="js/main.js"></script>
+  <script src="{ASSET_PREFIX}js/main.js"></script>
 </body>
 </html>"""
+
+
+def doc_href(href: str) -> str:
+    if href.startswith("http") or href.startswith("/"):
+        return href
+    if "#" in href:
+        file, frag = href.split("#", 1)
+        return f"{ASSET_PREFIX}{file}#{frag}"
+    return f"{ASSET_PREFIX}{href}"
 
 
 def build_sidebar(groups: dict[str, list[tuple[str, str]]], active: str) -> str:
@@ -228,8 +271,8 @@ def build_sidebar(groups: dict[str, list[tuple[str, str]]], active: str) -> str:
     for group, links in groups.items():
         parts.append(f'<p class="sidebar-group">{html.escape(group)}</p><ul>')
         for href, label in links:
-            cls = ' class="active"' if href == active else ""
-            parts.append(f'<li><a href="{href}"{cls}>{html.escape(label)}</a></li>')
+            cls = ' class="active"' if href == active or href.split("#")[0] == active else ""
+            parts.append(f'<li><a href="{doc_href(href)}"{cls}>{html.escape(label)}</a></li>')
         parts.append("</ul>")
     return "\n".join(parts)
 

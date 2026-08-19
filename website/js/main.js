@@ -93,6 +93,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const path = location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll(".nav-link").forEach((a) => {
-    if (a.getAttribute("href") === path) a.classList.add("active");
+    const href = a.getAttribute("href") || "";
+    if (href.endsWith(path) || (path === "" && href.endsWith("index.html"))) {
+      a.classList.add("active");
+    }
   });
 });
