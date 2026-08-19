@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — v++</title>
+  <title>Contribute — v++</title>
   <link rel="icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
       <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="v++" class="logo-img"><span class="logo-text">v++</span></a>
       <button class="nav-toggle" aria-label="Menu">☰</button>
       <ul class="nav-links">
-        <li><a href="learn.html">Learn</a></li><li><a href="about.html" class="active">About</a></li><li><a href="download.html">Download</a></li><li><a href="blog.html">Blog</a></li><li><a href="docs.html">Docs</a></li><li><a href="contribute.html">Contribute</a></li><li><a href="courses.html">Courses</a></li>
+        <li><a href="learn.html">Learn</a></li><li><a href="about.html">About</a></li><li><a href="download.html">Download</a></li><li><a href="blog.html">Blog</a></li><li><a href="docs.html">Docs</a></li><li><a href="contribute.html" class="active">Contribute</a></li><li><a href="courses.html">Courses</a></li>
       </ul>
       <div class="nav-actions">
         <a href="https://github.com/shauryaR790/V-" class="nav-github" target="_blank" rel="noopener" aria-label="GitHub">
@@ -31,7 +31,7 @@
     
     <aside class="doc-sidebar">
       <div class="sidebar-group">
-        <h5>v++ About</h5>
+        <h5>v++ Contribute</h5>
         <ul>
           <li><a href="learn.html">Getting started</a></li>
           <li><a href="docs.html">Reference</a></li>
@@ -44,709 +44,225 @@
     </aside>
     <main class="doc-main">
       <article class="doc-article prose">
-        <h2 id="about-v">About v++</h2>
+        <h2 id="contributing-to-v">Contributing to v++</h2>
 
+<p>Thanks for helping improve v++!</p>
 
-<h2 id="overview">Overview</h2>
+<h3 id="quick-links">Quick links</h3>
 
-<p>v++ (pronounced &quot;v plus plus&quot;) is an open-source, statically typed programming language created by Shaurya.</p>
-<p>It combines Python-style syntax with compile-time type checking and optional native compilation to machine code via LLVM.</p>
-<p>The reference implementation is written in Rust and distributed under the MIT License on GitHub at shauryaR790/V-.</p>
+<ul>
+<li><a href="docs/README.md">Documentation hub</a></li>
+<li><a href="docs/contributing/building-from-source.md">Build from source</a></li>
+<li><a href="docs/contributing/running-tests.md">Run tests</a></li>
+<li><a href="https://github.com/shauryaR790/V-/issues/new">Report a bug</a></li>
+</ul>
 
-<p>The language targets developers who want readable code without sacrificing performance when they need it.</p>
-<p>Programs are stored in <code>.vpp</code> files. The primary toolchain command is <code>vpp</code>, which provides an interpreter for rapid</p>
-<p>development and a native compiler for shipping standalone executables on Windows, Linux, and macOS.</p>
+<h3 id="how-to-contribute">How to contribute</h3>
 
+<p>1. <strong>Issues first</strong> — open an issue for bugs or feature ideas before large PRs</p>
+<p>2. <strong>Fork &amp; branch</strong> — work on a feature branch off <code>main</code></p>
+<p>3. <strong>Test</strong> — <code>cargo test --all-targets</code>; if touching codegen, <code>cargo test --features codegen</code></p>
+<p>4. <strong>Format</strong> — <code>cargo fmt</code>, <code>vpp fmt</code> on any <code>.vpp</code> examples you change</p>
+<p>5. <strong>PR</strong> — describe what changed and why; link the issue</p>
 
-<h2 id="design-philosophy">Design philosophy</h2>
-
-<p>v++ follows three core principles:</p>
-
-<p>1. <strong>Readable first</strong> — Syntax should feel familiar to Python users. Minimal punctuation, significant indentation,</p>
-<p>and clear control-flow keywords reduce the learning curve for beginners and teachers.</p>
-
-<p>2. <strong>Correct by default</strong> — Variables are immutable unless marked <code>mut</code>. Pattern matching on enums, <code>Option</code>, and</p>
-<p><code>Result</code> can be checked for exhaustiveness at compile time. Function signatures are explicit at the boundary.</p>
-
-<p>3. <strong>Grow into control</strong> — Start with <code>vpp run</code> and an interpreter. Move to <code>vpp build</code> when you need native speed.</p>
-<p>Add generics and traits when abstractions matter. The language scales with the programmer rather than forcing</p>
-<p>complexity on day one.</p>
-
-
-<h2 id="comparison-with-python">Comparison with Python</h2>
+<h3 id="code-areas">Code areas</h3>
 
 <div class="table-wrap"><table>
-<tr><th>Aspect</th><th>Python</th><th>v++</th></tr>
-<tr><td>Typing</td><td>Dynamic (optional hints)</td><td>Static with inference</td></tr>
-<tr><td>Execution</td><td>CPython interpreter</td><td>Interpreter + LLVM native</td></tr>
-<tr><td>Syntax</td><td>Indentation-based</td><td>Indentation-based (similar)</td></tr>
-<tr><td>Null safety</td><td>None only</td><td>Option&amp;lt;T&amp;gt; + Result&amp;lt;T,E&amp;gt;</td></tr>
-<tr><td>Package manager</td><td>pip/PyPI</td><td>vpp.toml + local registry</td></tr>
-<tr><td>Maturity</td><td>30+ years</td><td>v0.5 (2026)</td></tr>
-<tr><td>Ecosystem</td><td>Massive</td><td>Growing (stdlib + 20 example projects)</td></tr>
+<tr><th>Area</th><th>Path</th></tr>
+<tr><td>Lexer / parser</td><td><code>src/lexer</code>, <code>src/parser</code></td></tr>
+<tr><td>Type checker</td><td><code>src/types</code></td></tr>
+<tr><td>Interpreter</td><td><code>src/interp</code></td></tr>
+<tr><td>Codegen</td><td><code>src/codegen</code></td></tr>
+<tr><td>LSP</td><td><code>src/lsp</code>, <code>src/bin/vppls.rs</code></td></tr>
+<tr><td>VS Code extension</td><td><code>editor/vscode-vpp/</code></td></tr>
+<tr><td>Docs</td><td><code>docs/</code></td></tr>
 </table></div>
 
-<p>Python remains the better choice for machine learning, web frameworks, and vast library ecosystems.</p>
-<p>v++ is appropriate when you want Python-like readability with native binaries and stricter compile-time checks.</p>
+<h3 id="commit-messages">Commit messages</h3>
+
+<p>Use clear summaries: <code>Fix …</code>, <code>Add …</code>, <code>Docs: …</code> — same style as existing history.</p>
+
+<h3 id="releases-maintainers">Releases (maintainers)</h3>
+
+<p>1. Bump versions in <code>Cargo.toml</code> and <code>editor/vscode-vpp/package.json</code></p>
+<p>2. Update <code>CHANGELOG.md</code> and commit</p>
+<p>3. Tag and push: <code>git tag v0.x.y &amp;&amp; git push origin main &amp;&amp; git push origin v0.x.y</code></p>
+<p>4. Confirm the <a href="https://github.com/shauryaR790/V-/actions">Release workflow</a> succeeds and assets appear on <a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a></p>
+
+<h3 id="license">License</h3>
+
+<p>By contributing, you agree your work is licensed under the project MIT license.</p>
 
 
-<h2 id="comparison-with-rust">Comparison with Rust</h2>
+<h2 id="building-from-source">Building from source</h2>
+
+<h3 id="requirements">Requirements</h3>
+
+<ul>
+<li>Rust (stable) — <a href="https://rustup.rs">rustup.rs</a></li>
+<li>LLVM 22 + clang (for <code>codegen</code> feature)</li>
+<li>Git (for git dependencies in tests)</li>
+</ul>
+
+<h3 id="build">Build</h3>
+
+<pre><code class="language-powershell">
+git clone https://github.com/shauryaR790/V-.git
+cd V-
+cargo build --release --features codegen,lsp
+</code></pre>
+
+<p>Windows:</p>
+
+<pre><code class="language-powershell">
+$env:LLVM_SYS_221_PREFIX = &quot;C:\Program Files\LLVM&quot;
+</code></pre>
+
+<p>Binaries: <code>target/release/vpp.exe</code>, <code>target/release/vppls.exe</code>.</p>
+
+<h3 id="features">Features</h3>
 
 <div class="table-wrap"><table>
-<tr><th>Aspect</th><th>Rust</th><th>v++</th></tr>
-<tr><td>Memory model</td><td>Ownership + borrow checker</td><td>ARC for heap strings/arrays (native)</td></tr>
-<tr><td>Syntax</td><td>C-like with sigils</td><td>Python-like</td></tr>
-<tr><td>Generics</td><td>Full inference</td><td>Explicit type arguments at call sites</td></tr>
-<tr><td>Traits</td><td>Full trait system + dyn</td><td>Static dispatch traits only (v0.5)</td></tr>
-<tr><td>Compile times</td><td>Can be slow</td><td>Faster for small programs</td></tr>
-<tr><td>Use case</td><td>Systems programming</td><td>Teaching, scripting, native tools</td></tr>
+<tr><th>Feature</th><th>Enables</th></tr>
+<tr><td>*(default)*</td><td>Interpreter, checker, fmt, CLI</td></tr>
+<tr><td><code>codegen</code></td><td>Native <code>vpp build</code>, LLVM</td></tr>
+<tr><td><code>lsp</code></td><td><code>vppls</code> language server</td></tr>
 </table></div>
 
-<p>Rust is production-grade for systems software. v++ is earlier-stage but easier to read for beginners.</p>
+<h3 id="install-locally">Install locally</h3>
+
+<pre><code class="language-powershell">
+cargo install --path . --features codegen,lsp
+</code></pre>
 
 
-<h2 id="comparison-with-go">Comparison with Go</h2>
+<h2 id="running-tests">Running tests</h2>
 
-<p>Go prioritizes simplicity and goroutines for concurrency. v++ prioritizes Python familiarity and pattern matching.</p>
-<p>Go has a mature standard library and garbage collector. v++ uses ARC in native mode and an interpreter for development.</p>
-<p>Neither language is a drop-in replacement for the other; v++ fills a teaching and readability niche.</p>
+<pre><code class="language-powershell">
+# Interpreter + parser + typecheck (no LLVM)
+cargo test --all-targets
 
+# Native codegen (local LLVM required)
+cargo test --features codegen -- --test-threads=1
 
-<h2 id="comparison-with-zig">Comparison with Zig</h2>
+# Parity: interpreter vs native stdout
+cargo test --features codegen parity
 
-<p>Zig is a systems language with comptime and no hidden control flow. v++ hides fewer details than Python but more than Zig.</p>
-<p>Zig&#x27;s <code>@</code> builtins and explicit allocator model differ from v++&#x27;s stdlib-first approach. Both compile via LLVM.</p>
+# Stress script (Windows)
+.\stress.ps1
+</code></pre>
 
-
-<h2 id="memory-and-runtime">Memory and runtime</h2>
-
-<p>Native v++ programs link against <code>runtime/vpp_runtime.c</code>. Strings and arrays on the heap use reference counting (ARC).</p>
-<p>The memory model is documented in MEMORY_MODEL.md. The interpreter uses host Rust allocations with parallel semantics.</p>
-<p>Structs and enums lower to tagged representations in LLVM. Match expressions compile to conditional branches or switch trees.</p>
-
-
-<h2 id="compiler-pipeline-detailed">Compiler pipeline (detailed)</h2>
-
-<p><strong>Lexer</strong> (<code>src/lexer/mod.rs</code>) — Tokenizes <code>.vpp</code> source with significant newlines. Keywords include <code>fn</code>, <code>let</code>, <code>mut</code>,</p>
-<p><code>struct</code>, <code>enum</code>, <code>match</code>, <code>import</code>, <code>pub</code>, <code>trait</code>, <code>impl</code>, <code>test</code>, <code>break</code>, <code>continue</code>.</p>
-
-<p><strong>Parser</strong> (<code>src/parser/mod.rs</code>) — Recursive descent with Pratt parsing for expressions. Builds an untyped AST.</p>
-
-<p><strong>Module loader</strong> (<code>src/modules/mod.rs</code>) — Resolves <code>import std.io</code> to <code>std/io.vpp</code>, merges compilation units,</p>
-<p>detects circular imports.</p>
-
-<p><strong>Type checker</strong> (<code>src/types/check.rs</code>) — Two-pass analysis: register types/functions, then check bodies. Handles</p>
-<p>generics via monomorphization, trait impl validation, and match exhaustiveness (error E0107).</p>
-
-<p><strong>Interpreter</strong> (<code>src/interp/mod.rs</code>) — Tree-walking evaluation for <code>vpp run</code>.</p>
-
-<p><strong>IR</strong> (<code>src/ir/</code>) — Lowers typed AST to v++ IR with explicit memory and control flow.</p>
-
-<p><strong>Codegen</strong> (<code>src/codegen/</code>) — Emits LLVM IR via Inkwell, invokes clang/lld, links runtime.</p>
-
-<p><strong>LSP</strong> (<code>src/lsp/</code>, <code>vppls</code>) — Language server for diagnostics, completion, go-to-definition.</p>
+<p>CI runs on every push to <code>main</code> — see <a href="https://github.com/shauryaR790/V-/actions">GitHub Actions</a>.</p>
 
 
-<h2 id="release-history">Release history</h2>
+<h2 id="code-layout-for-contributors">Code layout for contributors</h2>
+
 
 <div class="table-wrap"><table>
-<tr><th>Version</th><th>Date</th><th>Highlights</th></tr>
-<tr><td>v0.5.0</td><td>Aug 2026</td><td>Documentation hub, website, installer PATH, extension v0.5.0</td></tr>
-<tr><td>v0.4.4</td><td>Aug 2026</td><td>Windows installer, VS Code Marketplace, release bundles</td></tr>
-<tr><td>v0.4.0</td><td>Aug 2026</td><td>mut, generics, traits, exhaustive match</td></tr>
-<tr><td>v0.3.1</td><td>Aug 2026</td><td>Enum fixes, native entry point, stress tests</td></tr>
-<tr><td>v0.3.0</td><td>Aug 2026</td><td>Modules, package manager, stdlib, LSP</td></tr>
-<tr><td>v0.2.0</td><td>Aug 2026</td><td>v++ IR, native structs/enums/match, parity tests</td></tr>
-<tr><td>v0.1.0</td><td>Aug 2026</td><td>Initial interpreter, partial LLVM, extension, CI</td></tr>
+<tr><th>Directory</th><th>Purpose</th></tr>
+<tr><td>src/lexer</td><td>Tokenization</td></tr>
+<tr><td>src/parser</td><td>AST construction</td></tr>
+<tr><td>src/types</td><td>Type checker</td></tr>
+<tr><td>src/interp</td><td>Interpreter</td></tr>
+<tr><td>src/ir</td><td>Intermediate representation</td></tr>
+<tr><td>src/codegen</td><td>LLVM backend</td></tr>
+<tr><td>src/lsp</td><td>Language server</td></tr>
+<tr><td>std/</td><td>Standard library sources</td></tr>
+<tr><td>editor/vscode-vpp</td><td>VS Code extension</td></tr>
+<tr><td>tests/</td><td>Rust integration tests</td></tr>
+<tr><td>projects/</td><td>Example projects</td></tr>
+<tr><td>website/</td><td>This site</td></tr>
 </table></div>
 
+<h3 id="contribution-workflow-detail-1">Contribution workflow detail #1</h3>
 
-<h2 id="standard-library-reference">Standard library reference</h2>
+<p>Fork the repository, create a feature branch, make focused changes, run <code>cargo test --all-targets</code>,</p>
+<p>format with <code>cargo fmt</code>, update CHANGELOG.md for user-visible changes, and open a pull request linking</p>
+<p>any related GitHub issue. PRs should include test coverage when fixing bugs or adding language features.</p>
 
-<p><strong>std.io</strong> — Printing helpers (re-exports print patterns).</p>
+<h3 id="contribution-workflow-detail-2">Contribution workflow detail #2</h3>
 
-<p><strong>std.math</strong> — <code>add</code>, <code>mul</code>, and numeric helpers.</p>
+<p>Fork the repository, create a feature branch, make focused changes, run <code>cargo test --all-targets</code>,</p>
+<p>format with <code>cargo fmt</code>, update CHANGELOG.md for user-visible changes, and open a pull request linking</p>
+<p>any related GitHub issue. PRs should include test coverage when fixing bugs or adding language features.</p>
 
-<p><strong>std.string</strong> — <code>repeat</code>, <code>len_str</code>, <code>is_empty</code>, <code>upper</code>.</p>
+<h3 id="contribution-workflow-detail-3">Contribution workflow detail #3</h3>
 
-<p><strong>std.collections</strong> — <code>sum</code>, <code>index_of</code>, <code>contains</code> for <code>array[int]</code>.</p>
+<p>Fork the repository, create a feature branch, make focused changes, run <code>cargo test --all-targets</code>,</p>
+<p>format with <code>cargo fmt</code>, update CHANGELOG.md for user-visible changes, and open a pull request linking</p>
+<p>any related GitHub issue. PRs should include test coverage when fixing bugs or adding language features.</p>
 
-<p><strong>std.fs</strong> — <code>read</code>, <code>write</code>, <code>exists</code> file operations (native + interpreter).</p>
+<h3 id="contribution-workflow-detail-4">Contribution workflow detail #4</h3>
 
-<p><strong>std.json</strong> — <code>parse</code>, <code>stringify</code> JSON document helpers.</p>
+<p>Fork the repository, create a feature branch, make focused changes, run <code>cargo test --all-targets</code>,</p>
+<p>format with <code>cargo fmt</code>, update CHANGELOG.md for user-visible changes, and open a pull request linking</p>
+<p>any related GitHub issue. PRs should include test coverage when fixing bugs or adding language features.</p>
 
-<p><strong>std.process</strong> — <code>run</code> shell command execution.</p>
+<h3 id="contribution-workflow-detail-5">Contribution workflow detail #5</h3>
 
-<p><strong>std.assert</strong> — Test assertion helpers for <code>vpp test</code> blocks.</p>
+<p>Fork the repository, create a feature branch, make focused changes, run <code>cargo test --all-targets</code>,</p>
+<p>format with <code>cargo fmt</code>, update CHANGELOG.md for user-visible changes, and open a pull request linking</p>
+<p>any related GitHub issue. PRs should include test coverage when fixing bugs or adding language features.</p>
 
+<h3 id="contribution-workflow-detail-6">Contribution workflow detail #6</h3>
 
-<h2 id="cli-reference-expanded">CLI reference (expanded)</h2>
+<p>Fork the repository, create a feature branch, make focused changes, run <code>cargo test --all-targets</code>,</p>
+<p>format with <code>cargo fmt</code>, update CHANGELOG.md for user-visible changes, and open a pull request linking</p>
+<p>any related GitHub issue. PRs should include test coverage when fixing bugs or adding language features.</p>
 
-<pre><code>
-vpp run [file.vpp]       Run program via interpreter; invokes fn main() when present
-vpp build [file] -o out  Compile native executable (requires LLVM 22 + codegen feature)
-vpp check [file]         Type-check without executing
-vpp compile [file]       Emit LLVM IR (.ll) for inspection
-vpp fmt [file]           Format source in place
-vpp test                 Discover and run test blocks in project
-vpp init [name]          Scaffold vpp.toml and entry file
-vpp new NAME --path P    Create project at path
-vpp add NAME [ver]       Add dependency to vpp.toml
-vpp remove NAME          Remove dependency
-vpp update               Refresh vpp.lock resolution
-vpp doctor               Print toolchain diagnostics (compiler, clang, paths)
-vpp lsp                  Start language server on stdio (used by VS Code extension)
-</code></pre>
+<h3 id="contribution-workflow-detail-7">Contribution workflow detail #7</h3>
 
-<p>Environment variables: <code>LLVM_SYS_221_PREFIX</code> (LLVM root for builds), <code>VPP_HOME</code> (install root in release bundles).</p>
+<p>Fork the repository, create a feature branch, make focused changes, run <code>cargo test --all-targets</code>,</p>
+<p>format with <code>cargo fmt</code>, update CHANGELOG.md for user-visible changes, and open a pull request linking</p>
+<p>any related GitHub issue. PRs should include test coverage when fixing bugs or adding language features.</p>
 
+<h3 id="contribution-workflow-detail-8">Contribution workflow detail #8</h3>
 
-<h2 id="vs-code-extension">VS Code extension</h2>
+<p>Fork the repository, create a feature branch, make focused changes, run <code>cargo test --all-targets</code>,</p>
+<p>format with <code>cargo fmt</code>, update CHANGELOG.md for user-visible changes, and open a pull request linking</p>
+<p>any related GitHub issue. PRs should include test coverage when fixing bugs or adding language features.</p>
 
-<p>Extension ID: <strong>vpp-lang.vplusplus</strong> (Marketplace). Publisher: <strong>vpp-lang</strong>.</p>
+<h3 id="contribution-workflow-detail-9">Contribution workflow detail #9</h3>
 
-<p>Features: syntax highlighting, F5 run, type-check command, LSP diagnostics/completion/go-to-definition,</p>
-<p>test runner, <code>.vpp</code> file icons.</p>
+<p>Fork the repository, create a feature branch, make focused changes, run <code>cargo test --all-targets</code>,</p>
+<p>format with <code>cargo fmt</code>, update CHANGELOG.md for user-visible changes, and open a pull request linking</p>
+<p>any related GitHub issue. PRs should include test coverage when fixing bugs or adding language features.</p>
 
-<p>Settings: <code>vpp.compilerPath</code>, <code>vpp.languageServerPath</code>, <code>vpp.enableLanguageServer</code>.</p>
+<h3 id="contribution-workflow-detail-10">Contribution workflow detail #10</h3>
 
-<p>Install compiler separately — the extension does not bundle <code>vpp.exe</code>.</p>
+<p>Fork the repository, create a feature branch, make focused changes, run <code>cargo test --all-targets</code>,</p>
+<p>format with <code>cargo fmt</code>, update CHANGELOG.md for user-visible changes, and open a pull request linking</p>
+<p>any related GitHub issue. PRs should include test coverage when fixing bugs or adding language features.</p>
 
+<h3 id="contribution-workflow-detail-11">Contribution workflow detail #11</h3>
 
-<h2 id="twenty-example-projects">Twenty example projects</h2>
+<p>Fork the repository, create a feature branch, make focused changes, run <code>cargo test --all-targets</code>,</p>
+<p>format with <code>cargo fmt</code>, update CHANGELOG.md for user-visible changes, and open a pull request linking</p>
+<p>any related GitHub issue. PRs should include test coverage when fixing bugs or adding language features.</p>
 
-<p>The repository includes <code>projects/01-hello-world</code> through <code>projects/20-json-config</code>:</p>
+<h3 id="contribution-workflow-detail-12">Contribution workflow detail #12</h3>
 
-<p>01 Hello World, 02 Variables, 03 Functions, 04 Loops, 05 Arrays, 06 Structs, 07 Enums,</p>
-<p>08 Option/Result, 09 Match, 10 FizzBuzz, 11 Fibonacci, 12 Generics, 13 Traits, 14 Modules,</p>
-<p>15 Calculator, 16 Word Counter, 17 Guessing Game, 18 Todo List, 19 File Notes, 20 JSON Config.</p>
+<p>Fork the repository, create a feature branch, make focused changes, run <code>cargo test --all-targets</code>,</p>
+<p>format with <code>cargo fmt</code>, update CHANGELOG.md for user-visible changes, and open a pull request linking</p>
+<p>any related GitHub issue. PRs should include test coverage when fixing bugs or adding language features.</p>
 
-<p>Run: <code>vpp run projects/01-hello-world/main.vpp</code></p>
+<h3 id="contribution-workflow-detail-13">Contribution workflow detail #13</h3>
 
+<p>Fork the repository, create a feature branch, make focused changes, run <code>cargo test --all-targets</code>,</p>
+<p>format with <code>cargo fmt</code>, update CHANGELOG.md for user-visible changes, and open a pull request linking</p>
+<p>any related GitHub issue. PRs should include test coverage when fixing bugs or adding language features.</p>
 
-<h2 id="error-codes">Error codes</h2>
+<h3 id="contribution-workflow-detail-14">Contribution workflow detail #14</h3>
 
-<div class="table-wrap"><table>
-<tr><th>Code</th><th>Meaning</th></tr>
-<tr><td>E0003</td><td>Parse error — unexpected token</td></tr>
-<tr><td>E0107</td><td>Non-exhaustive match — missing enum/Option/Result variant</td></tr>
-<tr><td>E0200</td><td>Undefined variable or name not in scope</td></tr>
-<tr><td>E0300</td><td>Type mismatch</td></tr>
-<tr><td>E0400</td><td>Module/import resolution failure</td></tr>
-</table></div>
+<p>Fork the repository, create a feature branch, make focused changes, run <code>cargo test --all-targets</code>,</p>
+<p>format with <code>cargo fmt</code>, update CHANGELOG.md for user-visible changes, and open a pull request linking</p>
+<p>any related GitHub issue. PRs should include test coverage when fixing bugs or adding language features.</p>
 
-<p>Run <code>vpp check file.vpp</code> to see diagnostics with source spans (miette formatting in terminal and LSP).</p>
+<h3 id="contribution-workflow-detail-15">Contribution workflow detail #15</h3>
 
-
-<h2 id="testing-and-parity">Testing and parity</h2>
-
-<p><code>cargo test --all-targets</code> runs Rust unit tests. <code>vpp test</code> runs <code>test</code> blocks in <code>.vpp</code> files.</p>
-<p><code>stress.vpp</code> and <code>stress.ps1</code> compare interpreter vs native output for regression testing.</p>
-<p>Parity fixtures live in <code>tests/parity/</code> covering hello, loops, structs, enums, match, generics, traits.</p>
-
-
-<h2 id="security-and-privacy">Security and privacy</h2>
-
-<p>The compiler and LSP do not collect telemetry. VS Code extension talks to local <code>vppls</code> only.</p>
-<p>Report vulnerabilities privately per SECURITY.md. Downloads from GitHub Releases are subject to GitHub&#x27;s terms.</p>
-
-
-<h2 id="roadmap-to-v1-0">Roadmap to v1.0</h2>
-
-<p>Planned: REPL (<code>vpp repl</code>), SignPath code signing, expanded stdlib (maps, time), Linux/macOS polish,</p>
-<p>debugger extension, Test Explorer UI, hosted package registry, frozen language spec (no breaking changes without major version).</p>
-
-
-<h2 id="faq">FAQ</h2>
-
-<p><strong>Is v++ production-ready?</strong> v0.5 is early but real. Expect changes until v1.0.</p>
-
-<p><strong>Who created v++?</strong> Shaurya (@shauryaR790), MIT licensed open source.</p>
-
-<p><strong>How do I install?</strong> Download <code>vpp-0.5.0-setup.exe</code> from GitHub Releases or clone and <code>cargo build</code>.</p>
-
-<p><strong>Does it work on Mac/Linux?</strong> Tarballs on Releases; Windows installer is primary supported path.</p>
-
-<p><strong>Can I contribute?</strong> Yes — see CONTRIBUTING.md and the Contribute page on this site.</p>
-
-
-<h2 id="v-language-specification-v0-4">v++ Language Specification (v0.4)</h2>
-
-<p>This document describes v++ as implemented in v0.4. If code and spec disagree, parity tests and native execution are authoritative.</p>
-
-<h3 id="types">Types</h3>
-
-<div class="table-wrap"><table>
-<tr><th>Type</th><th>Syntax</th><th>Notes</th></tr>
-<tr><td>int</td><td><code>int</code></td><td>64-bit signed</td></tr>
-<tr><td>float</td><td><code>float</code></td><td>64-bit IEEE</td></tr>
-<tr><td>bool</td><td><code>bool</code></td><td><code>true</code> / <code>false</code></td></tr>
-<tr><td>string</td><td><code>string</code></td><td>UTF-8 heap string (ARC native)</td></tr>
-<tr><td>array</td><td><code>array[T]</code></td><td>Homogeneous array</td></tr>
-<tr><td>struct</td><td><code>Name</code></td><td>User-defined product type</td></tr>
-<tr><td>enum</td><td><code>Name</code></td><td>User-defined sum type</td></tr>
-<tr><td>Option</td><td><code>Option[T]</code></td><td><code>Some(x)</code> / <code>None</code></td></tr>
-<tr><td>Result</td><td><code>Result[T, E]</code></td><td><code>Ok(x)</code> / <code>Err(e)</code></td></tr>
-</table></div>
-
-<h3 id="variables">Variables</h3>
-
-<pre><code>
-let x = 10              // immutable int
-let mut total = 0       // mutable; required for reassignment
-total = total + 1
-</code></pre>
-
-<h3 id="functions">Functions</h3>
-
-<pre><code>
-fn add(a: int, b: int) -&gt; int {
-    return a + b
-}
-
-fn id[T](x: T) -&gt; T {
-    return x
-}
-
-fn main() -&gt; int {
-    let n = id[int](42)
-    return n
-}
-</code></pre>
-
-<p>Generic calls require explicit type arguments: <code>id<a href="42">int</a></code>.</p>
-
-<p>When present, <code>fn main() -&gt; int</code> is the program entry point (interpreter and native both invoke it).</p>
-
-<h3 id="traits">Traits</h3>
-
-<pre><code>
-trait Display {
-    fn to_text(self) -&gt; string
-}
-
-impl Display for User {
-    fn to_text(self) -&gt; string {
-        return self.name
-    }
-}
-
-// method call (static dispatch)
-print(user.to_text())
-</code></pre>
-
-<h3 id="control-flow">Control flow</h3>
-
-<p><code>if</code> / <code>else</code>, <code>while</code>, <code>for i in start..end</code> (half-open), <code>for item in arr</code>, <code>break</code>, <code>continue</code>, <code>match</code>.</p>
-
-<p>Match arms use blocks:</p>
-
-<pre><code>
-match status {
-    Active =&gt; {
-        print(&quot;active&quot;)
-    }
-    Inactive =&gt; {
-        print(&quot;inactive&quot;)
-    }
-}
-</code></pre>
-
-<p>User enum variants in expressions use bare names when the expected type is known (e.g. struct field <code>status: Active</code>).</p>
-
-<h3 id="builtins">Builtins</h3>
-
-<div class="table-wrap"><table>
-<tr><th>Name</th><th>Signature</th><th>Behavior</th></tr>
-<tr><td>print</td><td>printable values</td><td>Print line per argument</td></tr>
-<tr><td>len</td><td>array or string → int</td><td>Length</td></tr>
-<tr><td>assert</td><td>bool → void</td><td>Fail if false</td></tr>
-<tr><td>assert_eq</td><td>T, T → void</td><td>Fail if not equal</td></tr>
-<tr><td>read_file / write_file / file_exists</td><td>fs</td><td>File I/O (also via <code>std.fs</code>)</td></tr>
-<tr><td>json_parse / json_stringify</td><td>json</td><td>JSON helpers (also via <code>std.json</code>)</td></tr>
-<tr><td>process_run</td><td>process</td><td>Run shell command (also via <code>std.process</code>)</td></tr>
-</table></div>
-
-<h3 id="modules-v0-3">Modules (v0.3)</h3>
-
-<pre><code>
-import std.io
-import std.fs
-import &quot;legacy/path.vpp&quot;   // still supported
-</code></pre>
-
-<ul>
-<li>Canonical paths: <code>import std.io</code> → <code>std/io.vpp</code></li>
-<li><code>pub fn</code> / <code>pub struct</code> / <code>pub enum</code> for exports</li>
-<li>Namespaced calls: <code>math.add(1, 2)</code></li>
-<li>Circular imports and duplicate imports are errors</li>
-</ul>
-
-<h3 id="projects-and-packages">Projects and packages</h3>
-
-<p><code>vpp.toml</code> manifest, <code>vpp.lock</code>, dependencies via path, git, or registry semver (<code>hello-lib = &quot;0.1.0&quot;</code>).</p>
-
-<h3 id="standard-library">Standard library</h3>
-
-<p><code>std/io</code>, <code>std/math</code>, <code>std/string</code>, <code>std/collections</code>, <code>std/fs</code>, <code>std/json</code>, <code>std/process</code>.</p>
-
-<h3 id="execution">Execution</h3>
-
-<ul>
-<li><code>vpp run file.vpp</code> — interpreter (calls <code>fn main()</code> when defined)</li>
-<li><code>vpp build file.vpp -o out.exe</code> — native executable (requires LLVM + codegen)</li>
-<li><code>.\stress.ps1</code> — compare interpreter vs native output for <code>stress.vpp</code></li>
-</ul>
-
-<p>Interpreter and native must produce identical stdout for supported programs.</p>
-
-<h3 id="known-limitations-v0-4">Known limitations (v0.4)</h3>
-
-<ul>
-<li>Generics use monomorphization with explicit type arguments at call sites (no inference yet)</li>
-<li>Traits use static dispatch only (no trait objects or bounds)</li>
-<li>Hosted package registry is local (<code>registry/index.toml</code>); no remote publish yet</li>
-</ul>
-
-
-
-
-<h2 id="v-compiler-architecture-v0-2">v++ Compiler Architecture (v0.2)</h2>
-
-<h3 id="overview">Overview</h3>
-
-<p>v++ is a statically typed language with a single front-end and two backends:</p>
-
-<ul>
-<li><strong>Interpreter</strong> — tree-walking evaluation for development and teaching</li>
-<li><strong>Native compiler</strong> — lowers to v++ IR, then LLVM, links the C runtime</li>
-</ul>
-
-<p>Both backends consume the same <strong>typed AST</strong> produced by the type checker.</p>
-
-<pre><code>
-.vpp source
-    │
-    ▼
- Lexer (src/lexer)
-    │
-    ▼
- Parser → AST (src/parser, src/ast)
-    │
-    ▼
- Module loader (src/modules) — flat merge, path imports (v0.2)
-    │
-    ▼
- Type checker (src/types/check.rs) → TypedProgram
-    │
-    ├──────────────────────┐
-    ▼                      ▼
- Interpreter           IR lower (src/ir/lower.rs)
- (src/interp)                │
-    │                        ▼
-    │                   v++ IR (src/ir)
-    │                        │
-    │                        ▼
-    │                   LLVM emit (src/codegen/emit.rs)
-    │                        │
-    │                        ▼
-    │                   C runtime (runtime/vpp_runtime.c)
-    │                        │
-    └──────── same semantics ─┴──► native executable
-</code></pre>
-
-<h3 id="components">Components</h3>
-
-<h4 id="lexer-parser">Lexer / Parser</h4>
-
-<p>Hand-written lexer with significant newlines. Recursive-descent parser with Pratt precedence for expressions.</p>
-
-<h4 id="type-checker">Type checker</h4>
-
-<p>Two-pass: register types and functions, then check bodies. Uses <code>src/builtins</code> for builtin signatures.</p>
-
-<h4 id="v-ir">v++ IR</h4>
-
-<p>Thin intermediate representation between typed AST and LLVM. Makes memory operations, control flow, and calling conventions explicit. See <code>src/ir/mod.rs</code>.</p>
-
-<h4 id="llvm-backend">LLVM backend</h4>
-
-<p>Inkwell-based. Emits LLVM IR, invokes <code>clang</code> to produce object files, links runtime. Feature-gated: <code>--features codegen</code>.</p>
-
-<h4 id="runtime">Runtime</h4>
-
-<p>C ABI documented in <code>MEMORY_MODEL.md</code>. Heap strings and arrays use ARC reference counting.</p>
-
-<h4 id="builtins">Builtins</h4>
-
-<p>Single registry in <code>src/builtins/mod.rs</code> consumed by type checker, interpreter, and codegen.</p>
-
-<h3 id="feature-parity-v0-2-target">Feature parity (v0.2 target)</h3>
-
-<p>See <code>CHANGELOG.md</code> and <code>tests/parity/</code> for the live matrix. Native codegen must match interpreter output for all supported features.</p>
-
-<h3 id="version-notes">Version notes</h3>
-
-<ul>
-<li><strong>v0.2</strong> — native foundation, IR, ABI, parity tests</li>
-<li><strong>v0.3</strong> — module redesign, package manager (not in v0.2)</li>
-<li><strong>v0.4</strong> — generics, traits, <code>mut</code>, compile-time match exhaustiveness</li>
-</ul>
-
-
-
-
-<h2 id="roadmap">Roadmap</h2>
-
-<h3 id="shipped-v0-4-4">Shipped (v0.4.4)</h3>
-
-<ul>
-<li>Language: mut, generics, traits, exhaustive match</li>
-<li>Toolchain: vpp, vppls, package manager, stdlib</li>
-<li>Distribution: Windows installer, VS Code extension, CI/CD</li>
-</ul>
-
-<h3 id="v0-5-current">v0.5 (current)</h3>
-
-<ul>
-<li>[x] Documentation hub and install guides</li>
-<li>[x] Website (landing, learn, 20 projects, downloads, history)</li>
-<li>[ ] SignPath code signing</li>
-<li>[ ] REPL (<code>vpp repl</code>)</li>
-<li>[ ] Expanded stdlib (maps, time)</li>
-<li>[ ] Linux/macOS release polish</li>
-</ul>
-
-<h3 id="v1-0-stable">v1.0 (stable)</h3>
-
-<ul>
-<li>[ ] Frozen language spec — no breaking changes without major version</li>
-<li>[ ] Debugger extension (breakpoints)</li>
-<li>[ ] Test Explorer UI in VS Code</li>
-<li>[ ] Hosted package registry</li>
-<li>[ ] Curriculum + interactive tutorial</li>
-</ul>
-
-<p>Track progress in <a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a>.</p>
-
-
-
-
-<h2 id="faq">FAQ</h2>
-
-<h3 id="what-is-v">What is v++?</h3>
-
-<p>A compiled language with Python-like syntax, static typing, and native codegen via LLVM.</p>
-
-<h3 id="is-v-ready-for-production">Is v++ ready for production?</h3>
-
-<p>It&#x27;s <strong>v0.5</strong> — early but real. Expect language changes until v1.0.</p>
-
-<h3 id="how-is-v-different-from-python">How is v++ different from Python?</h3>
-
-<div class="table-wrap"><table>
-<tr><th></th><th>Python</th><th>v++</th></tr>
-<tr><td>Typing</td><td>Dynamic (optional hints)</td><td>Static + inference</td></tr>
-<tr><td>Run</td><td>Interpreter default</td><td>Interpreter + native <code>.exe</code></td></tr>
-<tr><td>Ecosystem</td><td>Huge</td><td>Small, growing</td></tr>
-<tr><td>Age</td><td>30+ years</td><td>New</td></tr>
-</table></div>
-
-<h3 id="where-do-i-download">Where do I download?</h3>
-
-<p><a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a> — <code>vpp-*-setup.exe</code></p>
-
-<h3 id="which-vs-code-extension-is-official">Which VS Code extension is official?</h3>
-
-<p><strong>v++ Language</strong> by publisher <strong>vpp-lang</strong> (<code>vpp-lang.vplusplus</code>).</p>
-
-<h3 id="does-v-collect-data">Does v++ collect data?</h3>
-
-<p>No. See <a href="../PRIVACY.md">PRIVACY.md</a>.</p>
-
-<h3 id="how-do-i-report-bugs">How do I report bugs?</h3>
-
-<p><a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a></p>
-
-<h3 id="can-i-contribute">Can I contribute?</h3>
-
-<p>Yes — <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
-
-
-
-
-<h2 id="changelog">Changelog</h2>
-
-<p>All notable changes to v++ are documented here.</p>
-
-<h3 id="0-5-0-2026-08-18">[0.5.0] — 2026-08-18</h3>
-
-<h4 id="added">Added</h4>
-
-<ul>
-<li><strong>Website</strong> — official site at <code>website/</code> (learn, 20 projects, downloads, history, architecture, about)</li>
-<li><strong>20 example projects</strong> — <code>projects/01-hello-world</code> through <code>projects/20-json-config</code></li>
-<li><strong>GitHub Pages</strong> — deploy workflow for the website</li>
-<li><strong>Documentation hub</strong> — 30+ guides (<code>docs/getting-started</code>, <code>language</code>, <code>guides</code>, <code>stdlib</code>, <code>project</code>)</li>
-<li><strong>GitHub paperwork</strong> — <code>CONTRIBUTING.md</code>, <code>SECURITY.md</code>, <code>CODE_OF_CONDUCT.md</code></li>
-<li><strong>VS Code extension v0.5.0</strong> — Python-style Marketplace README and CHANGELOG</li>
-<li><strong>Windows installer PATH</strong> — adds <code>vpp</code> and bundled <code>clang</code> to user PATH on install</li>
-</ul>
-
-<h4 id="changed">Changed</h4>
-
-<ul>
-<li>Compiler, installer, and release bundle version aligned to <strong>0.5.0</strong></li>
-</ul>
-
-<h3 id="0-4-4-2026-08-18-windows-installer">[0.4.4] — 2026-08-18 (Windows installer)</h3>
-
-<h4 id="added">Added</h4>
-
-<ul>
-<li><strong>GitHub Release bundles</strong> — Windows zip with <code>GO.bat</code> one-click launcher; Linux/macOS tarballs with <code>run.sh</code></li>
-<li><strong>VS Code Marketplace</strong> — extension published as <code>vpp-lang.vplusplus</code></li>
-<li><strong>Docs</strong> — <code>docs/RELEASE.md</code>, <code>docs/MARKETPLACE.md</code>, simplified <code>docs/INSTALL.md</code></li>
-</ul>
-
-<h4 id="fixed">Fixed</h4>
-
-<ul>
-<li>LSP build (<code>jsonrpc_core</code>, <code>CompletionItemKind::SNIPPET</code>)</li>
-<li><code>setup.ps1</code> PowerShell encoding + builds with <code>codegen,lsp</code> by default</li>
-<li>VSIX packaging includes language-client dependencies</li>
-</ul>
-
-<h3 id="0-4-0-2026-08-18-language-core-phase-b">[0.4.0] — 2026-08-18 (Language Core / Phase B)</h3>
-
-<h4 id="added">Added</h4>
-
-<ul>
-<li><strong><code>mut</code> keyword</strong> — <code>let mut x = 1</code> required for reassignment; bindings are immutable by default</li>
-<li><strong>Generics</strong> — monomorphized functions: <code>fn id<a href="x: T">T</a> -&gt; T</code>, calls like <code>id<a href="42">int</a></code> and <code>first<a href="words">string</a></code></li>
-<li><strong>Traits and impls</strong> — <code>trait Display { fn to_text(self) -&gt; string }</code>, <code>impl Display for User { ... }</code>, method calls <code>user.to_text()</code></li>
-<li><strong>Compile-time match exhaustiveness</strong> — enums, <code>Option</code>, and <code>Result</code> must be covered or use <code>_</code> (error E0107)</li>
-<li><strong>Examples</strong> — <a href="examples/generics.vpp"><code>examples/generics.vpp</code></a>, <a href="examples/traits.vpp"><code>examples/traits.vpp</code></a></li>
-<li><strong>Tests</strong> — mut/immutability, exhaustiveness, generics, and traits typecheck + parity coverage</li>
-</ul>
-
-<h4 id="changed">Changed</h4>
-
-<ul>
-<li>All examples and stdlib sources updated to use <code>let mut</code> where variables are reassigned</li>
-<li><a href="SPEC.md"><code>SPEC.md</code></a> updated for v0.4 language features</li>
-</ul>
-
-<h3 id="0-3-0-2026-08-18-usable-language-ecosystem">[0.3.0] — 2026-08-18 (Usable Language / Ecosystem)</h3>
-
-<h4 id="added">Added</h4>
-
-<ul>
-<li><strong>Module system</strong>: <code>import std.io</code> canonical paths, <code>pub</code> exports, namespaced calls (<code>math.add</code>), legacy <code>import &quot;file.vpp&quot;</code>, circular import detection, duplicate import errors</li>
-<li><strong>Package manager</strong>: TOML <code>vpp.toml</code> with <code>[dependencies]</code>, <code>vpp.lock</code>, <code>vpp new</code>/<code>add</code>/<code>remove</code>/<code>update</code>, local path + git deps, semver checks</li>
-<li><strong>Central registry</strong>: <code>registry/index.toml</code> with semver resolution (<code>hello-lib = &quot;0.1.0&quot;</code>)</li>
-<li><strong>Standard library</strong>: <code>std.io</code>, <code>std.math</code>, <code>std.string</code>, <code>std.collections</code>, <code>std.fs</code>, <code>std.json</code>, <code>std.process</code></li>
-<li><strong>Native fs/json/process</strong>: runtime C helpers + LLVM codegen for <code>read_file</code>, <code>write_file</code>, <code>file_exists</code>, <code>json_parse</code>, <code>json_stringify</code>, <code>process_run</code></li>
-<li><strong>CLI</strong>: <code>vpp doctor</code> for toolchain/project health</li>
-<li><strong>LSP</strong>: diagnostic spans from miette; extension wires <code>vppls</code> via vscode-languageclient</li>
-<li><strong>Distribution</strong>: GitHub Actions release workflow (linux/windows/macos) on version tags</li>
-<li><strong>Syntax highlighting</strong>: struct, enum, match, import, pub, test, break, continue, builtins</li>
-<li><strong>Tests</strong>: <code>tests/modules.rs</code>, <code>tests/pkg.rs</code>, <code>tests/stdlib.rs</code>, <code>examples/std_builtins.vpp</code> parity; all v0.2 parity preserved</li>
-</ul>
-
-<h4 id="changed">Changed</h4>
-
-<ul>
-<li><code>vpp init</code> scaffolds <code>import std.io</code> and <code>import std.math</code></li>
-<li>LSP <code>check_with_index</code> uses in-memory buffer when file is unsaved</li>
-<li>Interpreter invokes <code>fn main()</code> when present (matches native entry point)</li>
-<li>Native codegen: correct scope cleanup on <code>return</code>, <code>if</code>/<code>match</code> arms, and heap release paths</li>
-</ul>
-
-<h4 id="fixed">Fixed</h4>
-
-<ul>
-<li>Native <code>file_exists</code> bool codegen (i32 → i1 compare)</li>
-<li>LLVM invalid IR when <code>return</code> preceded function epilogue cleanup</li>
-<li>Function parameters lost after <code>return</code> inside <code>if</code> branches during codegen</li>
-<li>Empty stdout under piped test runs (<code>fflush</code> in runtime prints; staged link output)</li>
-</ul>
-
-<h3 id="0-3-1-2026-08-18-phase-a-polish">[0.3.1] — 2026-08-18 (Phase A polish)</h3>
-
-<h4 id="fixed">Fixed</h4>
-
-<ul>
-<li>User-defined enum types resolved correctly in function params, struct fields, and match patterns</li>
-<li>Bare enum variant literals in struct fields (e.g. <code>status: Active</code>)</li>
-<li>Native entry point: LLVM <code>main</code> calls <code>vpp_user_main</code> instead of symbol collision</li>
-<li>Path lookup for <code>vpp run hello.vpp</code> searches <code>examples/</code>, <code>src/</code>, <code>tests/</code></li>
-</ul>
-
-<h4 id="added">Added</h4>
-
-<ul>
-<li><a href="stress.vpp"><code>stress.vpp</code></a> and <a href="stress.ps1"><code>stress.ps1</code></a> — one-command interpreter/native parity test</li>
-<li><code>.gitignore</code> entries for <code>.vpp/</code>, test output artifacts</li>
-</ul>
-
-<h4 id="changed">Changed</h4>
-
-<ul>
-<li><a href="SPEC.md"><code>SPEC.md</code></a> and <a href="README.md"><code>README.md</code></a> updated for v0.3</li>
-</ul>
-
-<h3 id="0-2-0-2026-08-18">[0.2.0] — 2026-08-18</h3>
-
-<h4 id="added">Added</h4>
-
-<ul>
-<li>v++ IR (<code>src/ir/</code>) between typed AST and LLVM</li>
-<li>Shared builtin registry (<code>src/builtins/</code>)</li>
-<li><code>ARCHITECTURE.md</code>, <code>MEMORY_MODEL.md</code>, <code>SPEC.md</code></li>
-<li>Native string ABI using <code>VppString*</code> end-to-end</li>
-<li>**Native array ABI using <code>VppArray*</code> end-to-end**</li>
-<li>Scoped locals in native codegen (correct shadowing)</li>
-<li>Float equality/compare via LLVM float instructions</li>
-<li><strong>Native structs</strong> — literals, field access, fn params/returns</li>
-<li><strong>Native enums / Option / Result</strong> — tagged struct representation</li>
-<li><strong>Native match</strong> — statement and expression forms</li>
-<li><strong>Native break/continue</strong> — loop stack for while/for loops</li>
-<li>Differential parity tests (<code>tests/parity/</code>) — hello, lesson01, scope_shadow, arrays, arrays_fn, <strong>structs, option_result, match_test, lesson03_loops</strong></li>
-<li><code>tests/arrays.rs</code> — IR lowering tests for arrays</li>
-<li><code>examples/arrays_fn.vpp</code> — arrays as function params/returns</li>
-<li>Native <code>vpp_array_index_ptr</code> bounds checking</li>
-<li>CI job for native codegen (where LLVM available)</li>
-</ul>
-
-<h4 id="fixed">Fixed</h4>
-
-<ul>
-<li>Native crash on <code>print(&quot;...&quot;)</code> (i8* vs VppString* mismatch)</li>
-<li>Broken block scope in native codegen</li>
-<li>Integer compare used for float equality</li>
-</ul>
-
-<h4 id="changed">Changed</h4>
-
-<ul>
-<li>LLVM backend lowers from v++ IR, not directly from typed AST</li>
-<li>Inkwell dependency pinned for reproducible builds</li>
-<li>Runtime uses portable <code>strdup</code> wrapper</li>
-<li>Struct/enum/match codegen in <code>src/codegen/struct_enum.rs</code></li>
-</ul>
-
-<h4 id="known-limitations-v0-2">Known limitations (v0.2)</h4>
-
-<ul>
-<li>Module imports: interpreter only until native parity tests pass</li>
-<li>Full ARC at all scope exits not yet complete for heap values inside structs/enums</li>
-<li>Match exhaustiveness is runtime-checked only (non-exhaustive match calls <code>vpp_assert_fail</code>)</li>
-</ul>
-
-<h3 id="0-1-0-2026-08">[0.1.0] — 2026-08</h3>
-
-<p>Initial release: interpreter-complete language, partial LLVM backend, CLI, extension, stdlib, CI.</p>
+<p>Fork the repository, create a feature branch, make focused changes, run <code>cargo test --all-targets</code>,</p>
+<p>format with <code>cargo fmt</code>, update CHANGELOG.md for user-visible changes, and open a pull request linking</p>
+<p>any related GitHub issue. PRs should include test coverage when fixing bugs or adding language features.</p>
 
 
 <h2 id="appendix-extended-reference">Appendix — extended reference</h2>
@@ -3511,92 +3027,2267 @@ fn main() -&gt; int {
 }
 </code></pre>
 
+
+<h3 id="array-literals-reference-185">Array literals (reference §185)</h3>
+
+<p>Syntax <code>[a, b, c]</code> creates <code>array[T]</code> where T is inferred from elements. All elements must share the same type.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="struct-literals-reference-186">Struct literals (reference §186)</h3>
+
+<p>Struct values use <code>Name { field: value, field2: value2 }</code> with comma-separated fields matching the struct definition order optionally by name.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="function-declarations-reference-187">Function declarations (reference §187)</h3>
+
+<p>Functions use <code>fn name(params) -&gt; ReturnType { body }</code>. Generic functions add <code>[T]</code> after the name. Return type may be omitted for void-like functions returning unit in future versions.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="main-entry-point-reference-188">Main entry point (reference §188)</h3>
+
+<p><code>fn main() -&gt; int</code> is invoked by both interpreter and native codegen. Return code propagates to process exit status on native builds.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="import-paths-reference-189">Import paths (reference §189)</h3>
+
+<p><code>import std.module</code> resolves relative to the std/ directory in VPP_HOME or project root. Quoted imports load relative paths for legacy single-file modules.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="package-manifests-reference-190">Package manifests (reference §190)</h3>
+
+<p><code>vpp.toml</code> contains name, version, entry path, and [dependencies] table. Lockfile <code>vpp.lock</code> pins resolved versions for reproducible builds.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="test-blocks-reference-191">Test blocks (reference §191)</h3>
+
+<p><code>test &quot;description&quot; { ... }</code> defines unit tests discovered by <code>vpp test</code>. Assertions use assert and assert_eq builtins or std.assert helpers.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="formatting-reference-192">Formatting (reference §192)</h3>
+
+<p><code>vpp fmt</code> applies consistent indentation and spacing. Integrate with editor format-on-save when the formatter stabilizes in v1.0.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="llvm-version-reference-193">LLVM version (reference §193)</h3>
+
+<p>Native builds require LLVM 22. Windows installer bundles clang under llvm/bin. Set LLVM_SYS_221_PREFIX when building from source.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="runtime-abi-reference-194">Runtime ABI (reference §194)</h3>
+
+<p>Strings pass as VppString* in native code. Arrays use VppArray*. Structs lower to LLVM struct types. Enums use tagged representations.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="parity-testing-reference-195">Parity testing (reference §195)</h3>
+
+<p>tests/parity ensures interpreter stdout matches native stdout for fixture programs. Run stress.ps1 for a quick local parity check.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="vs-code-integration-reference-196">VS Code integration (reference §196)</h3>
+
+<p>Extension vpp-lang.vplusplus launches vppls for LSP. Configure compiler path if vpp is not globally on PATH after install.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="registry-resolution-reference-197">Registry resolution (reference §197)</h3>
+
+<p>registry/index.toml lists available packages with semver. vpp add resolves compatible versions and writes lock entries.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="error-reporting-reference-198">Error reporting (reference §198)</h3>
+
+<p>Diagnostics use miette-style spans with error codes E0003 parse, E0107 match, E0200 undefined name, E0300 type mismatch.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="roadmap-repl-reference-199">Roadmap REPL (reference §199)</h3>
+
+<p>Interactive REPL (<code>vpp repl</code>) is planned for v0.6 to allow expression evaluation without creating files.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="signpath-signing-reference-200">SignPath signing (reference §200)</h3>
+
+<p>Windows installer code signing via SignPath Foundation OSS program will reduce SmartScreen prompts once approved.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="lexical-structure-reference-201">Lexical structure (reference §201)</h3>
+
+<p>v++ source files use UTF-8 encoding. Line comments begin with <code>//</code>. Block comments are not yet supported. Identifiers match <code>[A-Za-z_][A-Za-z0-9_]*</code>. Keywords are reserved.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="numeric-literals-reference-202">Numeric literals (reference §202)</h3>
+
+<p>Integer literals are decimal sequences parsed as 64-bit signed <code>int</code>. Float literals contain a decimal point and parse as IEEE 64-bit <code>float</code>.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="string-literals-reference-203">String literals (reference §203)</h3>
+
+<p>Double-quoted strings support escape sequences for newline and quotes. Strings are immutable in v++ and use heap storage in native mode with ARC.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="boolean-literals-reference-204">Boolean literals (reference §204)</h3>
+
+<p>The literals <code>true</code> and <code>false</code> have type <code>bool</code> and appear in conditions and assert calls.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="array-literals-reference-205">Array literals (reference §205)</h3>
+
+<p>Syntax <code>[a, b, c]</code> creates <code>array[T]</code> where T is inferred from elements. All elements must share the same type.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="struct-literals-reference-206">Struct literals (reference §206)</h3>
+
+<p>Struct values use <code>Name { field: value, field2: value2 }</code> with comma-separated fields matching the struct definition order optionally by name.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="function-declarations-reference-207">Function declarations (reference §207)</h3>
+
+<p>Functions use <code>fn name(params) -&gt; ReturnType { body }</code>. Generic functions add <code>[T]</code> after the name. Return type may be omitted for void-like functions returning unit in future versions.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="main-entry-point-reference-208">Main entry point (reference §208)</h3>
+
+<p><code>fn main() -&gt; int</code> is invoked by both interpreter and native codegen. Return code propagates to process exit status on native builds.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="import-paths-reference-209">Import paths (reference §209)</h3>
+
+<p><code>import std.module</code> resolves relative to the std/ directory in VPP_HOME or project root. Quoted imports load relative paths for legacy single-file modules.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="package-manifests-reference-210">Package manifests (reference §210)</h3>
+
+<p><code>vpp.toml</code> contains name, version, entry path, and [dependencies] table. Lockfile <code>vpp.lock</code> pins resolved versions for reproducible builds.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="test-blocks-reference-211">Test blocks (reference §211)</h3>
+
+<p><code>test &quot;description&quot; { ... }</code> defines unit tests discovered by <code>vpp test</code>. Assertions use assert and assert_eq builtins or std.assert helpers.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="formatting-reference-212">Formatting (reference §212)</h3>
+
+<p><code>vpp fmt</code> applies consistent indentation and spacing. Integrate with editor format-on-save when the formatter stabilizes in v1.0.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="llvm-version-reference-213">LLVM version (reference §213)</h3>
+
+<p>Native builds require LLVM 22. Windows installer bundles clang under llvm/bin. Set LLVM_SYS_221_PREFIX when building from source.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="runtime-abi-reference-214">Runtime ABI (reference §214)</h3>
+
+<p>Strings pass as VppString* in native code. Arrays use VppArray*. Structs lower to LLVM struct types. Enums use tagged representations.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="parity-testing-reference-215">Parity testing (reference §215)</h3>
+
+<p>tests/parity ensures interpreter stdout matches native stdout for fixture programs. Run stress.ps1 for a quick local parity check.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="vs-code-integration-reference-216">VS Code integration (reference §216)</h3>
+
+<p>Extension vpp-lang.vplusplus launches vppls for LSP. Configure compiler path if vpp is not globally on PATH after install.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="registry-resolution-reference-217">Registry resolution (reference §217)</h3>
+
+<p>registry/index.toml lists available packages with semver. vpp add resolves compatible versions and writes lock entries.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="error-reporting-reference-218">Error reporting (reference §218)</h3>
+
+<p>Diagnostics use miette-style spans with error codes E0003 parse, E0107 match, E0200 undefined name, E0300 type mismatch.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="roadmap-repl-reference-219">Roadmap REPL (reference §219)</h3>
+
+<p>Interactive REPL (<code>vpp repl</code>) is planned for v0.6 to allow expression evaluation without creating files.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="signpath-signing-reference-220">SignPath signing (reference §220)</h3>
+
+<p>Windows installer code signing via SignPath Foundation OSS program will reduce SmartScreen prompts once approved.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="lexical-structure-reference-221">Lexical structure (reference §221)</h3>
+
+<p>v++ source files use UTF-8 encoding. Line comments begin with <code>//</code>. Block comments are not yet supported. Identifiers match <code>[A-Za-z_][A-Za-z0-9_]*</code>. Keywords are reserved.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="numeric-literals-reference-222">Numeric literals (reference §222)</h3>
+
+<p>Integer literals are decimal sequences parsed as 64-bit signed <code>int</code>. Float literals contain a decimal point and parse as IEEE 64-bit <code>float</code>.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="string-literals-reference-223">String literals (reference §223)</h3>
+
+<p>Double-quoted strings support escape sequences for newline and quotes. Strings are immutable in v++ and use heap storage in native mode with ARC.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="boolean-literals-reference-224">Boolean literals (reference §224)</h3>
+
+<p>The literals <code>true</code> and <code>false</code> have type <code>bool</code> and appear in conditions and assert calls.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="array-literals-reference-225">Array literals (reference §225)</h3>
+
+<p>Syntax <code>[a, b, c]</code> creates <code>array[T]</code> where T is inferred from elements. All elements must share the same type.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="struct-literals-reference-226">Struct literals (reference §226)</h3>
+
+<p>Struct values use <code>Name { field: value, field2: value2 }</code> with comma-separated fields matching the struct definition order optionally by name.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="function-declarations-reference-227">Function declarations (reference §227)</h3>
+
+<p>Functions use <code>fn name(params) -&gt; ReturnType { body }</code>. Generic functions add <code>[T]</code> after the name. Return type may be omitted for void-like functions returning unit in future versions.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="main-entry-point-reference-228">Main entry point (reference §228)</h3>
+
+<p><code>fn main() -&gt; int</code> is invoked by both interpreter and native codegen. Return code propagates to process exit status on native builds.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="import-paths-reference-229">Import paths (reference §229)</h3>
+
+<p><code>import std.module</code> resolves relative to the std/ directory in VPP_HOME or project root. Quoted imports load relative paths for legacy single-file modules.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="package-manifests-reference-230">Package manifests (reference §230)</h3>
+
+<p><code>vpp.toml</code> contains name, version, entry path, and [dependencies] table. Lockfile <code>vpp.lock</code> pins resolved versions for reproducible builds.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="test-blocks-reference-231">Test blocks (reference §231)</h3>
+
+<p><code>test &quot;description&quot; { ... }</code> defines unit tests discovered by <code>vpp test</code>. Assertions use assert and assert_eq builtins or std.assert helpers.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="formatting-reference-232">Formatting (reference §232)</h3>
+
+<p><code>vpp fmt</code> applies consistent indentation and spacing. Integrate with editor format-on-save when the formatter stabilizes in v1.0.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="llvm-version-reference-233">LLVM version (reference §233)</h3>
+
+<p>Native builds require LLVM 22. Windows installer bundles clang under llvm/bin. Set LLVM_SYS_221_PREFIX when building from source.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="runtime-abi-reference-234">Runtime ABI (reference §234)</h3>
+
+<p>Strings pass as VppString* in native code. Arrays use VppArray*. Structs lower to LLVM struct types. Enums use tagged representations.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="parity-testing-reference-235">Parity testing (reference §235)</h3>
+
+<p>tests/parity ensures interpreter stdout matches native stdout for fixture programs. Run stress.ps1 for a quick local parity check.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="vs-code-integration-reference-236">VS Code integration (reference §236)</h3>
+
+<p>Extension vpp-lang.vplusplus launches vppls for LSP. Configure compiler path if vpp is not globally on PATH after install.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="registry-resolution-reference-237">Registry resolution (reference §237)</h3>
+
+<p>registry/index.toml lists available packages with semver. vpp add resolves compatible versions and writes lock entries.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="error-reporting-reference-238">Error reporting (reference §238)</h3>
+
+<p>Diagnostics use miette-style spans with error codes E0003 parse, E0107 match, E0200 undefined name, E0300 type mismatch.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="roadmap-repl-reference-239">Roadmap REPL (reference §239)</h3>
+
+<p>Interactive REPL (<code>vpp repl</code>) is planned for v0.6 to allow expression evaluation without creating files.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="signpath-signing-reference-240">SignPath signing (reference §240)</h3>
+
+<p>Windows installer code signing via SignPath Foundation OSS program will reduce SmartScreen prompts once approved.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="lexical-structure-reference-241">Lexical structure (reference §241)</h3>
+
+<p>v++ source files use UTF-8 encoding. Line comments begin with <code>//</code>. Block comments are not yet supported. Identifiers match <code>[A-Za-z_][A-Za-z0-9_]*</code>. Keywords are reserved.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="numeric-literals-reference-242">Numeric literals (reference §242)</h3>
+
+<p>Integer literals are decimal sequences parsed as 64-bit signed <code>int</code>. Float literals contain a decimal point and parse as IEEE 64-bit <code>float</code>.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="string-literals-reference-243">String literals (reference §243)</h3>
+
+<p>Double-quoted strings support escape sequences for newline and quotes. Strings are immutable in v++ and use heap storage in native mode with ARC.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="boolean-literals-reference-244">Boolean literals (reference §244)</h3>
+
+<p>The literals <code>true</code> and <code>false</code> have type <code>bool</code> and appear in conditions and assert calls.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="array-literals-reference-245">Array literals (reference §245)</h3>
+
+<p>Syntax <code>[a, b, c]</code> creates <code>array[T]</code> where T is inferred from elements. All elements must share the same type.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="struct-literals-reference-246">Struct literals (reference §246)</h3>
+
+<p>Struct values use <code>Name { field: value, field2: value2 }</code> with comma-separated fields matching the struct definition order optionally by name.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="function-declarations-reference-247">Function declarations (reference §247)</h3>
+
+<p>Functions use <code>fn name(params) -&gt; ReturnType { body }</code>. Generic functions add <code>[T]</code> after the name. Return type may be omitted for void-like functions returning unit in future versions.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="main-entry-point-reference-248">Main entry point (reference §248)</h3>
+
+<p><code>fn main() -&gt; int</code> is invoked by both interpreter and native codegen. Return code propagates to process exit status on native builds.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="import-paths-reference-249">Import paths (reference §249)</h3>
+
+<p><code>import std.module</code> resolves relative to the std/ directory in VPP_HOME or project root. Quoted imports load relative paths for legacy single-file modules.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="package-manifests-reference-250">Package manifests (reference §250)</h3>
+
+<p><code>vpp.toml</code> contains name, version, entry path, and [dependencies] table. Lockfile <code>vpp.lock</code> pins resolved versions for reproducible builds.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="test-blocks-reference-251">Test blocks (reference §251)</h3>
+
+<p><code>test &quot;description&quot; { ... }</code> defines unit tests discovered by <code>vpp test</code>. Assertions use assert and assert_eq builtins or std.assert helpers.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="formatting-reference-252">Formatting (reference §252)</h3>
+
+<p><code>vpp fmt</code> applies consistent indentation and spacing. Integrate with editor format-on-save when the formatter stabilizes in v1.0.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="llvm-version-reference-253">LLVM version (reference §253)</h3>
+
+<p>Native builds require LLVM 22. Windows installer bundles clang under llvm/bin. Set LLVM_SYS_221_PREFIX when building from source.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="runtime-abi-reference-254">Runtime ABI (reference §254)</h3>
+
+<p>Strings pass as VppString* in native code. Arrays use VppArray*. Structs lower to LLVM struct types. Enums use tagged representations.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="parity-testing-reference-255">Parity testing (reference §255)</h3>
+
+<p>tests/parity ensures interpreter stdout matches native stdout for fixture programs. Run stress.ps1 for a quick local parity check.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="vs-code-integration-reference-256">VS Code integration (reference §256)</h3>
+
+<p>Extension vpp-lang.vplusplus launches vppls for LSP. Configure compiler path if vpp is not globally on PATH after install.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="registry-resolution-reference-257">Registry resolution (reference §257)</h3>
+
+<p>registry/index.toml lists available packages with semver. vpp add resolves compatible versions and writes lock entries.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="error-reporting-reference-258">Error reporting (reference §258)</h3>
+
+<p>Diagnostics use miette-style spans with error codes E0003 parse, E0107 match, E0200 undefined name, E0300 type mismatch.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="roadmap-repl-reference-259">Roadmap REPL (reference §259)</h3>
+
+<p>Interactive REPL (<code>vpp repl</code>) is planned for v0.6 to allow expression evaluation without creating files.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="signpath-signing-reference-260">SignPath signing (reference §260)</h3>
+
+<p>Windows installer code signing via SignPath Foundation OSS program will reduce SmartScreen prompts once approved.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="lexical-structure-reference-261">Lexical structure (reference §261)</h3>
+
+<p>v++ source files use UTF-8 encoding. Line comments begin with <code>//</code>. Block comments are not yet supported. Identifiers match <code>[A-Za-z_][A-Za-z0-9_]*</code>. Keywords are reserved.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="numeric-literals-reference-262">Numeric literals (reference §262)</h3>
+
+<p>Integer literals are decimal sequences parsed as 64-bit signed <code>int</code>. Float literals contain a decimal point and parse as IEEE 64-bit <code>float</code>.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="string-literals-reference-263">String literals (reference §263)</h3>
+
+<p>Double-quoted strings support escape sequences for newline and quotes. Strings are immutable in v++ and use heap storage in native mode with ARC.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="boolean-literals-reference-264">Boolean literals (reference §264)</h3>
+
+<p>The literals <code>true</code> and <code>false</code> have type <code>bool</code> and appear in conditions and assert calls.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="array-literals-reference-265">Array literals (reference §265)</h3>
+
+<p>Syntax <code>[a, b, c]</code> creates <code>array[T]</code> where T is inferred from elements. All elements must share the same type.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="struct-literals-reference-266">Struct literals (reference §266)</h3>
+
+<p>Struct values use <code>Name { field: value, field2: value2 }</code> with comma-separated fields matching the struct definition order optionally by name.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="function-declarations-reference-267">Function declarations (reference §267)</h3>
+
+<p>Functions use <code>fn name(params) -&gt; ReturnType { body }</code>. Generic functions add <code>[T]</code> after the name. Return type may be omitted for void-like functions returning unit in future versions.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="main-entry-point-reference-268">Main entry point (reference §268)</h3>
+
+<p><code>fn main() -&gt; int</code> is invoked by both interpreter and native codegen. Return code propagates to process exit status on native builds.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="import-paths-reference-269">Import paths (reference §269)</h3>
+
+<p><code>import std.module</code> resolves relative to the std/ directory in VPP_HOME or project root. Quoted imports load relative paths for legacy single-file modules.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="package-manifests-reference-270">Package manifests (reference §270)</h3>
+
+<p><code>vpp.toml</code> contains name, version, entry path, and [dependencies] table. Lockfile <code>vpp.lock</code> pins resolved versions for reproducible builds.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="test-blocks-reference-271">Test blocks (reference §271)</h3>
+
+<p><code>test &quot;description&quot; { ... }</code> defines unit tests discovered by <code>vpp test</code>. Assertions use assert and assert_eq builtins or std.assert helpers.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="formatting-reference-272">Formatting (reference §272)</h3>
+
+<p><code>vpp fmt</code> applies consistent indentation and spacing. Integrate with editor format-on-save when the formatter stabilizes in v1.0.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="llvm-version-reference-273">LLVM version (reference §273)</h3>
+
+<p>Native builds require LLVM 22. Windows installer bundles clang under llvm/bin. Set LLVM_SYS_221_PREFIX when building from source.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="runtime-abi-reference-274">Runtime ABI (reference §274)</h3>
+
+<p>Strings pass as VppString* in native code. Arrays use VppArray*. Structs lower to LLVM struct types. Enums use tagged representations.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="parity-testing-reference-275">Parity testing (reference §275)</h3>
+
+<p>tests/parity ensures interpreter stdout matches native stdout for fixture programs. Run stress.ps1 for a quick local parity check.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="vs-code-integration-reference-276">VS Code integration (reference §276)</h3>
+
+<p>Extension vpp-lang.vplusplus launches vppls for LSP. Configure compiler path if vpp is not globally on PATH after install.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="registry-resolution-reference-277">Registry resolution (reference §277)</h3>
+
+<p>registry/index.toml lists available packages with semver. vpp add resolves compatible versions and writes lock entries.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="error-reporting-reference-278">Error reporting (reference §278)</h3>
+
+<p>Diagnostics use miette-style spans with error codes E0003 parse, E0107 match, E0200 undefined name, E0300 type mismatch.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="roadmap-repl-reference-279">Roadmap REPL (reference §279)</h3>
+
+<p>Interactive REPL (<code>vpp repl</code>) is planned for v0.6 to allow expression evaluation without creating files.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="signpath-signing-reference-280">SignPath signing (reference §280)</h3>
+
+<p>Windows installer code signing via SignPath Foundation OSS program will reduce SmartScreen prompts once approved.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="lexical-structure-reference-281">Lexical structure (reference §281)</h3>
+
+<p>v++ source files use UTF-8 encoding. Line comments begin with <code>//</code>. Block comments are not yet supported. Identifiers match <code>[A-Za-z_][A-Za-z0-9_]*</code>. Keywords are reserved.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="numeric-literals-reference-282">Numeric literals (reference §282)</h3>
+
+<p>Integer literals are decimal sequences parsed as 64-bit signed <code>int</code>. Float literals contain a decimal point and parse as IEEE 64-bit <code>float</code>.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="string-literals-reference-283">String literals (reference §283)</h3>
+
+<p>Double-quoted strings support escape sequences for newline and quotes. Strings are immutable in v++ and use heap storage in native mode with ARC.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="boolean-literals-reference-284">Boolean literals (reference §284)</h3>
+
+<p>The literals <code>true</code> and <code>false</code> have type <code>bool</code> and appear in conditions and assert calls.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="array-literals-reference-285">Array literals (reference §285)</h3>
+
+<p>Syntax <code>[a, b, c]</code> creates <code>array[T]</code> where T is inferred from elements. All elements must share the same type.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="struct-literals-reference-286">Struct literals (reference §286)</h3>
+
+<p>Struct values use <code>Name { field: value, field2: value2 }</code> with comma-separated fields matching the struct definition order optionally by name.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="function-declarations-reference-287">Function declarations (reference §287)</h3>
+
+<p>Functions use <code>fn name(params) -&gt; ReturnType { body }</code>. Generic functions add <code>[T]</code> after the name. Return type may be omitted for void-like functions returning unit in future versions.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="main-entry-point-reference-288">Main entry point (reference §288)</h3>
+
+<p><code>fn main() -&gt; int</code> is invoked by both interpreter and native codegen. Return code propagates to process exit status on native builds.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="import-paths-reference-289">Import paths (reference §289)</h3>
+
+<p><code>import std.module</code> resolves relative to the std/ directory in VPP_HOME or project root. Quoted imports load relative paths for legacy single-file modules.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="package-manifests-reference-290">Package manifests (reference §290)</h3>
+
+<p><code>vpp.toml</code> contains name, version, entry path, and [dependencies] table. Lockfile <code>vpp.lock</code> pins resolved versions for reproducible builds.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="test-blocks-reference-291">Test blocks (reference §291)</h3>
+
+<p><code>test &quot;description&quot; { ... }</code> defines unit tests discovered by <code>vpp test</code>. Assertions use assert and assert_eq builtins or std.assert helpers.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="formatting-reference-292">Formatting (reference §292)</h3>
+
+<p><code>vpp fmt</code> applies consistent indentation and spacing. Integrate with editor format-on-save when the formatter stabilizes in v1.0.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="llvm-version-reference-293">LLVM version (reference §293)</h3>
+
+<p>Native builds require LLVM 22. Windows installer bundles clang under llvm/bin. Set LLVM_SYS_221_PREFIX when building from source.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="runtime-abi-reference-294">Runtime ABI (reference §294)</h3>
+
+<p>Strings pass as VppString* in native code. Arrays use VppArray*. Structs lower to LLVM struct types. Enums use tagged representations.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="parity-testing-reference-295">Parity testing (reference §295)</h3>
+
+<p>tests/parity ensures interpreter stdout matches native stdout for fixture programs. Run stress.ps1 for a quick local parity check.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="vs-code-integration-reference-296">VS Code integration (reference §296)</h3>
+
+<p>Extension vpp-lang.vplusplus launches vppls for LSP. Configure compiler path if vpp is not globally on PATH after install.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="registry-resolution-reference-297">Registry resolution (reference §297)</h3>
+
+<p>registry/index.toml lists available packages with semver. vpp add resolves compatible versions and writes lock entries.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="error-reporting-reference-298">Error reporting (reference §298)</h3>
+
+<p>Diagnostics use miette-style spans with error codes E0003 parse, E0107 match, E0200 undefined name, E0300 type mismatch.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="roadmap-repl-reference-299">Roadmap REPL (reference §299)</h3>
+
+<p>Interactive REPL (<code>vpp repl</code>) is planned for v0.6 to allow expression evaluation without creating files.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="signpath-signing-reference-300">SignPath signing (reference §300)</h3>
+
+<p>Windows installer code signing via SignPath Foundation OSS program will reduce SmartScreen prompts once approved.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="lexical-structure-reference-301">Lexical structure (reference §301)</h3>
+
+<p>v++ source files use UTF-8 encoding. Line comments begin with <code>//</code>. Block comments are not yet supported. Identifiers match <code>[A-Za-z_][A-Za-z0-9_]*</code>. Keywords are reserved.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="numeric-literals-reference-302">Numeric literals (reference §302)</h3>
+
+<p>Integer literals are decimal sequences parsed as 64-bit signed <code>int</code>. Float literals contain a decimal point and parse as IEEE 64-bit <code>float</code>.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="string-literals-reference-303">String literals (reference §303)</h3>
+
+<p>Double-quoted strings support escape sequences for newline and quotes. Strings are immutable in v++ and use heap storage in native mode with ARC.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="boolean-literals-reference-304">Boolean literals (reference §304)</h3>
+
+<p>The literals <code>true</code> and <code>false</code> have type <code>bool</code> and appear in conditions and assert calls.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="array-literals-reference-305">Array literals (reference §305)</h3>
+
+<p>Syntax <code>[a, b, c]</code> creates <code>array[T]</code> where T is inferred from elements. All elements must share the same type.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="struct-literals-reference-306">Struct literals (reference §306)</h3>
+
+<p>Struct values use <code>Name { field: value, field2: value2 }</code> with comma-separated fields matching the struct definition order optionally by name.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="function-declarations-reference-307">Function declarations (reference §307)</h3>
+
+<p>Functions use <code>fn name(params) -&gt; ReturnType { body }</code>. Generic functions add <code>[T]</code> after the name. Return type may be omitted for void-like functions returning unit in future versions.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="main-entry-point-reference-308">Main entry point (reference §308)</h3>
+
+<p><code>fn main() -&gt; int</code> is invoked by both interpreter and native codegen. Return code propagates to process exit status on native builds.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="import-paths-reference-309">Import paths (reference §309)</h3>
+
+<p><code>import std.module</code> resolves relative to the std/ directory in VPP_HOME or project root. Quoted imports load relative paths for legacy single-file modules.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="package-manifests-reference-310">Package manifests (reference §310)</h3>
+
+<p><code>vpp.toml</code> contains name, version, entry path, and [dependencies] table. Lockfile <code>vpp.lock</code> pins resolved versions for reproducible builds.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="test-blocks-reference-311">Test blocks (reference §311)</h3>
+
+<p><code>test &quot;description&quot; { ... }</code> defines unit tests discovered by <code>vpp test</code>. Assertions use assert and assert_eq builtins or std.assert helpers.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="formatting-reference-312">Formatting (reference §312)</h3>
+
+<p><code>vpp fmt</code> applies consistent indentation and spacing. Integrate with editor format-on-save when the formatter stabilizes in v1.0.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="llvm-version-reference-313">LLVM version (reference §313)</h3>
+
+<p>Native builds require LLVM 22. Windows installer bundles clang under llvm/bin. Set LLVM_SYS_221_PREFIX when building from source.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="runtime-abi-reference-314">Runtime ABI (reference §314)</h3>
+
+<p>Strings pass as VppString* in native code. Arrays use VppArray*. Structs lower to LLVM struct types. Enums use tagged representations.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="parity-testing-reference-315">Parity testing (reference §315)</h3>
+
+<p>tests/parity ensures interpreter stdout matches native stdout for fixture programs. Run stress.ps1 for a quick local parity check.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="vs-code-integration-reference-316">VS Code integration (reference §316)</h3>
+
+<p>Extension vpp-lang.vplusplus launches vppls for LSP. Configure compiler path if vpp is not globally on PATH after install.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="registry-resolution-reference-317">Registry resolution (reference §317)</h3>
+
+<p>registry/index.toml lists available packages with semver. vpp add resolves compatible versions and writes lock entries.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="error-reporting-reference-318">Error reporting (reference §318)</h3>
+
+<p>Diagnostics use miette-style spans with error codes E0003 parse, E0107 match, E0200 undefined name, E0300 type mismatch.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="roadmap-repl-reference-319">Roadmap REPL (reference §319)</h3>
+
+<p>Interactive REPL (<code>vpp repl</code>) is planned for v0.6 to allow expression evaluation without creating files.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="signpath-signing-reference-320">SignPath signing (reference §320)</h3>
+
+<p>Windows installer code signing via SignPath Foundation OSS program will reduce SmartScreen prompts once approved.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="lexical-structure-reference-321">Lexical structure (reference §321)</h3>
+
+<p>v++ source files use UTF-8 encoding. Line comments begin with <code>//</code>. Block comments are not yet supported. Identifiers match <code>[A-Za-z_][A-Za-z0-9_]*</code>. Keywords are reserved.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="numeric-literals-reference-322">Numeric literals (reference §322)</h3>
+
+<p>Integer literals are decimal sequences parsed as 64-bit signed <code>int</code>. Float literals contain a decimal point and parse as IEEE 64-bit <code>float</code>.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="string-literals-reference-323">String literals (reference §323)</h3>
+
+<p>Double-quoted strings support escape sequences for newline and quotes. Strings are immutable in v++ and use heap storage in native mode with ARC.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="boolean-literals-reference-324">Boolean literals (reference §324)</h3>
+
+<p>The literals <code>true</code> and <code>false</code> have type <code>bool</code> and appear in conditions and assert calls.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="array-literals-reference-325">Array literals (reference §325)</h3>
+
+<p>Syntax <code>[a, b, c]</code> creates <code>array[T]</code> where T is inferred from elements. All elements must share the same type.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="struct-literals-reference-326">Struct literals (reference §326)</h3>
+
+<p>Struct values use <code>Name { field: value, field2: value2 }</code> with comma-separated fields matching the struct definition order optionally by name.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="function-declarations-reference-327">Function declarations (reference §327)</h3>
+
+<p>Functions use <code>fn name(params) -&gt; ReturnType { body }</code>. Generic functions add <code>[T]</code> after the name. Return type may be omitted for void-like functions returning unit in future versions.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="main-entry-point-reference-328">Main entry point (reference §328)</h3>
+
+<p><code>fn main() -&gt; int</code> is invoked by both interpreter and native codegen. Return code propagates to process exit status on native builds.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
+
+<h3 id="import-paths-reference-329">Import paths (reference §329)</h3>
+
+<p><code>import std.module</code> resolves relative to the std/ directory in VPP_HOME or project root. Quoted imports load relative paths for legacy single-file modules.</p>
+
+<p>See also: <a href="docs.html">language docs</a>, <a href="learn.html">learn guide</a>, <a href="https://github.com/shauryaR790/V-">GitHub source</a>.</p>
+
+<pre><code class="language-vpp">
+// Example stub for documentation section
+fn main() -&gt; int {
+    print(&quot;v++ v0.5.0&quot;)
+    return 0
+}
+</code></pre>
+
       </article>
       <aside class="doc-aside">
-        <p class="meta-line">3412 lines · v0.5.0</p>
+        <p class="meta-line">5151 lines · v0.5.0</p>
         <nav class="doc-toc"><h4>On this page</h4><ul>
-<li><a href="#about-v">About v++</a></li>
-<li><a href="#overview">Overview</a></li>
-<li><a href="#design-philosophy">Design philosophy</a></li>
-<li><a href="#comparison-with-python">Comparison with Python</a></li>
-<li><a href="#comparison-with-rust">Comparison with Rust</a></li>
-<li><a href="#comparison-with-go">Comparison with Go</a></li>
-<li><a href="#comparison-with-zig">Comparison with Zig</a></li>
-<li><a href="#memory-and-runtime">Memory and runtime</a></li>
-<li><a href="#compiler-pipeline-detailed">Compiler pipeline (detailed)</a></li>
-<li><a href="#release-history">Release history</a></li>
-<li><a href="#standard-library-reference">Standard library reference</a></li>
-<li><a href="#cli-reference-expanded">CLI reference (expanded)</a></li>
-<li><a href="#vs-code-extension">VS Code extension</a></li>
-<li><a href="#twenty-example-projects">Twenty example projects</a></li>
-<li><a href="#error-codes">Error codes</a></li>
-<li><a href="#testing-and-parity">Testing and parity</a></li>
-<li><a href="#security-and-privacy">Security and privacy</a></li>
-<li><a href="#roadmap-to-v1-0">Roadmap to v1.0</a></li>
-<li><a href="#faq">FAQ</a></li>
-<li><a href="#v-language-specification-v0-4">v++ Language Specification (v0.4)</a></li>
-<li><a href="#types">Types</a></li>
-<li><a href="#variables">Variables</a></li>
-<li><a href="#functions">Functions</a></li>
-<li><a href="#traits">Traits</a></li>
-<li><a href="#control-flow">Control flow</a></li>
-<li><a href="#builtins">Builtins</a></li>
-<li><a href="#modules-v0-3">Modules (v0.3)</a></li>
-<li><a href="#projects-and-packages">Projects and packages</a></li>
-<li><a href="#standard-library">Standard library</a></li>
-<li><a href="#execution">Execution</a></li>
-<li><a href="#known-limitations-v0-4">Known limitations (v0.4)</a></li>
-<li><a href="#v-compiler-architecture-v0-2">v++ Compiler Architecture (v0.2)</a></li>
-<li><a href="#overview">Overview</a></li>
-<li><a href="#components">Components</a></li>
-<li><a href="#lexer-parser">Lexer / Parser</a></li>
-<li><a href="#type-checker">Type checker</a></li>
-<li><a href="#v-ir">v++ IR</a></li>
-<li><a href="#llvm-backend">LLVM backend</a></li>
-<li><a href="#runtime">Runtime</a></li>
-<li><a href="#builtins">Builtins</a></li>
-<li><a href="#feature-parity-v0-2-target">Feature parity (v0.2 target)</a></li>
-<li><a href="#version-notes">Version notes</a></li>
-<li><a href="#roadmap">Roadmap</a></li>
-<li><a href="#shipped-v0-4-4">Shipped (v0.4.4)</a></li>
-<li><a href="#v0-5-current">v0.5 (current)</a></li>
-<li><a href="#v1-0-stable">v1.0 (stable)</a></li>
-<li><a href="#faq">FAQ</a></li>
-<li><a href="#what-is-v">What is v++?</a></li>
-<li><a href="#is-v-ready-for-production">Is v++ ready for production?</a></li>
-<li><a href="#how-is-v-different-from-python">How is v++ different from Python?</a></li>
-<li><a href="#where-do-i-download">Where do I download?</a></li>
-<li><a href="#which-vs-code-extension-is-official">Which VS Code extension is official?</a></li>
-<li><a href="#does-v-collect-data">Does v++ collect data?</a></li>
-<li><a href="#how-do-i-report-bugs">How do I report bugs?</a></li>
-<li><a href="#can-i-contribute">Can I contribute?</a></li>
-<li><a href="#changelog">Changelog</a></li>
-<li><a href="#0-5-0-2026-08-18">[0.5.0] — 2026-08-18</a></li>
-<li><a href="#added">Added</a></li>
-<li><a href="#changed">Changed</a></li>
-<li><a href="#0-4-4-2026-08-18-windows-installer">[0.4.4] — 2026-08-18 (Windows installer)</a></li>
-<li><a href="#added">Added</a></li>
-<li><a href="#fixed">Fixed</a></li>
-<li><a href="#0-4-0-2026-08-18-language-core-phase-b">[0.4.0] — 2026-08-18 (Language Core / Phase B)</a></li>
-<li><a href="#added">Added</a></li>
-<li><a href="#changed">Changed</a></li>
-<li><a href="#0-3-0-2026-08-18-usable-language-ecosystem">[0.3.0] — 2026-08-18 (Usable Language / Ecosystem)</a></li>
-<li><a href="#added">Added</a></li>
-<li><a href="#changed">Changed</a></li>
-<li><a href="#fixed">Fixed</a></li>
-<li><a href="#0-3-1-2026-08-18-phase-a-polish">[0.3.1] — 2026-08-18 (Phase A polish)</a></li>
-<li><a href="#fixed">Fixed</a></li>
-<li><a href="#added">Added</a></li>
-<li><a href="#changed">Changed</a></li>
-<li><a href="#0-2-0-2026-08-18">[0.2.0] — 2026-08-18</a></li>
-<li><a href="#added">Added</a></li>
-<li><a href="#fixed">Fixed</a></li>
-<li><a href="#changed">Changed</a></li>
-<li><a href="#known-limitations-v0-2">Known limitations (v0.2)</a></li>
-<li><a href="#0-1-0-2026-08">[0.1.0] — 2026-08</a></li>
+<li><a href="#contributing-to-v">Contributing to v++</a></li>
+<li><a href="#quick-links">Quick links</a></li>
+<li><a href="#how-to-contribute">How to contribute</a></li>
+<li><a href="#code-areas">Code areas</a></li>
+<li><a href="#commit-messages">Commit messages</a></li>
+<li><a href="#releases-maintainers">Releases (maintainers)</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#building-from-source">Building from source</a></li>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#build">Build</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#install-locally">Install locally</a></li>
+<li><a href="#running-tests">Running tests</a></li>
+<li><a href="#code-layout-for-contributors">Code layout for contributors</a></li>
+<li><a href="#contribution-workflow-detail-1">Contribution workflow detail #1</a></li>
+<li><a href="#contribution-workflow-detail-2">Contribution workflow detail #2</a></li>
+<li><a href="#contribution-workflow-detail-3">Contribution workflow detail #3</a></li>
+<li><a href="#contribution-workflow-detail-4">Contribution workflow detail #4</a></li>
+<li><a href="#contribution-workflow-detail-5">Contribution workflow detail #5</a></li>
+<li><a href="#contribution-workflow-detail-6">Contribution workflow detail #6</a></li>
+<li><a href="#contribution-workflow-detail-7">Contribution workflow detail #7</a></li>
+<li><a href="#contribution-workflow-detail-8">Contribution workflow detail #8</a></li>
+<li><a href="#contribution-workflow-detail-9">Contribution workflow detail #9</a></li>
+<li><a href="#contribution-workflow-detail-10">Contribution workflow detail #10</a></li>
+<li><a href="#contribution-workflow-detail-11">Contribution workflow detail #11</a></li>
+<li><a href="#contribution-workflow-detail-12">Contribution workflow detail #12</a></li>
+<li><a href="#contribution-workflow-detail-13">Contribution workflow detail #13</a></li>
+<li><a href="#contribution-workflow-detail-14">Contribution workflow detail #14</a></li>
+<li><a href="#contribution-workflow-detail-15">Contribution workflow detail #15</a></li>
 <li><a href="#appendix-extended-reference">Appendix — extended reference</a></li>
+<li><a href="#lexical-structure-reference-1">Lexical structure (reference §1)</a></li>
+<li><a href="#numeric-literals-reference-2">Numeric literals (reference §2)</a></li>
+<li><a href="#string-literals-reference-3">String literals (reference §3)</a></li>
+<li><a href="#boolean-literals-reference-4">Boolean literals (reference §4)</a></li>
+<li><a href="#array-literals-reference-5">Array literals (reference §5)</a></li>
+<li><a href="#struct-literals-reference-6">Struct literals (reference §6)</a></li>
+<li><a href="#function-declarations-reference-7">Function declarations (reference §7)</a></li>
+<li><a href="#main-entry-point-reference-8">Main entry point (reference §8)</a></li>
+<li><a href="#import-paths-reference-9">Import paths (reference §9)</a></li>
+<li><a href="#package-manifests-reference-10">Package manifests (reference §10)</a></li>
+<li><a href="#test-blocks-reference-11">Test blocks (reference §11)</a></li>
+<li><a href="#formatting-reference-12">Formatting (reference §12)</a></li>
+<li><a href="#llvm-version-reference-13">LLVM version (reference §13)</a></li>
+<li><a href="#runtime-abi-reference-14">Runtime ABI (reference §14)</a></li>
+<li><a href="#parity-testing-reference-15">Parity testing (reference §15)</a></li>
+<li><a href="#vs-code-integration-reference-16">VS Code integration (reference §16)</a></li>
+<li><a href="#registry-resolution-reference-17">Registry resolution (reference §17)</a></li>
+<li><a href="#error-reporting-reference-18">Error reporting (reference §18)</a></li>
+<li><a href="#roadmap-repl-reference-19">Roadmap REPL (reference §19)</a></li>
+<li><a href="#signpath-signing-reference-20">SignPath signing (reference §20)</a></li>
+<li><a href="#lexical-structure-reference-21">Lexical structure (reference §21)</a></li>
+<li><a href="#numeric-literals-reference-22">Numeric literals (reference §22)</a></li>
+<li><a href="#string-literals-reference-23">String literals (reference §23)</a></li>
+<li><a href="#boolean-literals-reference-24">Boolean literals (reference §24)</a></li>
+<li><a href="#array-literals-reference-25">Array literals (reference §25)</a></li>
+<li><a href="#struct-literals-reference-26">Struct literals (reference §26)</a></li>
+<li><a href="#function-declarations-reference-27">Function declarations (reference §27)</a></li>
+<li><a href="#main-entry-point-reference-28">Main entry point (reference §28)</a></li>
+<li><a href="#import-paths-reference-29">Import paths (reference §29)</a></li>
+<li><a href="#package-manifests-reference-30">Package manifests (reference §30)</a></li>
+<li><a href="#test-blocks-reference-31">Test blocks (reference §31)</a></li>
+<li><a href="#formatting-reference-32">Formatting (reference §32)</a></li>
+<li><a href="#llvm-version-reference-33">LLVM version (reference §33)</a></li>
+<li><a href="#runtime-abi-reference-34">Runtime ABI (reference §34)</a></li>
+<li><a href="#parity-testing-reference-35">Parity testing (reference §35)</a></li>
+<li><a href="#vs-code-integration-reference-36">VS Code integration (reference §36)</a></li>
+<li><a href="#registry-resolution-reference-37">Registry resolution (reference §37)</a></li>
+<li><a href="#error-reporting-reference-38">Error reporting (reference §38)</a></li>
+<li><a href="#roadmap-repl-reference-39">Roadmap REPL (reference §39)</a></li>
+<li><a href="#signpath-signing-reference-40">SignPath signing (reference §40)</a></li>
+<li><a href="#lexical-structure-reference-41">Lexical structure (reference §41)</a></li>
+<li><a href="#numeric-literals-reference-42">Numeric literals (reference §42)</a></li>
+<li><a href="#string-literals-reference-43">String literals (reference §43)</a></li>
+<li><a href="#boolean-literals-reference-44">Boolean literals (reference §44)</a></li>
+<li><a href="#array-literals-reference-45">Array literals (reference §45)</a></li>
+<li><a href="#struct-literals-reference-46">Struct literals (reference §46)</a></li>
+<li><a href="#function-declarations-reference-47">Function declarations (reference §47)</a></li>
+<li><a href="#main-entry-point-reference-48">Main entry point (reference §48)</a></li>
+<li><a href="#import-paths-reference-49">Import paths (reference §49)</a></li>
+<li><a href="#package-manifests-reference-50">Package manifests (reference §50)</a></li>
 </ul></nav>
-        <p class="edit-link"><a href="https://github.com/shauryaR790/V-/edit/main/website/about.html" target="_blank" rel="noopener">Edit this page</a></p>
+        <p class="edit-link"><a href="https://github.com/shauryaR790/V-/edit/main/website/contribute.html" target="_blank" rel="noopener">Edit this page</a></p>
       </aside>
     </main>
   </div>

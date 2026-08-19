@@ -3,116 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>v++ — Write simply. Compile natively.</title>
-  <meta name="description" content="v++ is an open-source programming language with Python-style readability, static typing, and native performance. Download, learn, build.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>v</text></svg>">
+  <title>v++ — Run native code everywhere</title>
+  <meta name="description" content="v++ is a free, open-source, cross-platform language with Python-style syntax and native compilation.">
+  <link rel="icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="home-page">
+  <div class="grid-bg"></div>
+
   <header class="site-header">
     <nav class="nav-inner">
-      <a href="index.html" class="logo">v<span>++</span></a>
+      <a href="index.html" class="logo-link">
+        <img src="assets/logo.png" alt="v++" class="logo-img">
+        <span class="logo-text">v++</span>
+      </a>
       <button class="nav-toggle" aria-label="Menu">☰</button>
       <ul class="nav-links">
         <li><a href="learn.html">Learn</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="download.html">Download</a></li>
-        <li><a href="extension.html">VS Code</a></li>
-        <li><a href="history.html">History</a></li>
-        <li><a href="architecture.html">How it works</a></li>
         <li><a href="about.html">About</a></li>
+        <li><a href="download.html">Download</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="docs.html">Docs</a></li>
+        <li><a href="contribute.html">Contribute</a></li>
+        <li><a href="courses.html">Courses</a></li>
       </ul>
+      <div class="nav-actions">
+        <a href="https://github.com/shauryaR790/V-" class="nav-github" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+      </div>
     </nav>
   </header>
 
-  <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <span class="hero-badge">Open source · v0.5.0</span>
-        <h1>Write it simply.<br><em>Compile it natively.</em></h1>
-        <p class="hero-tagline">A programming language built from scratch — Python-style readability, static types, native .exe output. Fully open on GitHub.</p>
-        <div class="hero-actions">
-          <a href="download.html" class="btn btn-primary">Download v0.5.0</a>
-          <a href="learn.html" class="btn btn-secondary">Start learning</a>
-          <a href="https://github.com/shauryaR790/V-" class="btn btn-secondary" target="_blank" rel="noopener">View source</a>
-        </div>
+  <section class="hero-home">
+    <div class="hero-left">
+      <h1>Run native code everywhere</h1>
+      <p>v++ is a free, open-source, cross-platform language with Python-style readability, static typing, and native executables via LLVM.</p>
+      <div class="btn-row">
+        <a href="download.html" class="btn btn-primary">Get v++ 0.5.0</a>
+        <a href="learn.html" class="btn btn-outline">Learn v++</a>
       </div>
-      <div class="hero-code">
-        <div class="hero-code-header"><span></span><span></span><span></span></div>
-        <pre><code>import std.io
+      <p class="hero-note">Already installed? <a href="learn.html">Start the tutorial</a> or <a href="docs.html">read the docs</a>.</p>
+    </div>
 
-fn greet(name: string) -> string {
-    return "Hello, " + name + "!"
+    <div class="hero-right">
+      <div class="code-panel">
+        <div class="code-tabs" role="tablist">
+          <button class="code-tab active" data-tab="hello" role="tab">Hello world</button>
+          <button class="code-tab" data-tab="match" role="tab">Pattern match</button>
+          <button class="code-tab" data-tab="traits" role="tab">Traits</button>
+          <button class="code-tab" data-tab="build" role="tab">Native build</button>
+        </div>
+        <div class="code-body">
+          <pre id="tab-hello" class="tab-content"><code><span class="kw">fn</span> <span class="fn">main</span>() -> <span class="ty">int</span> {
+  <span class="fn">print</span>(<span class="str">"Hello, v++!"</span>)
+  <span class="kw">return</span> <span class="num">0</span>
+}</code></pre>
+          <pre id="tab-match" class="tab-content hidden"><code><span class="kw">match</span> result {
+  <span class="fn">Ok</span>(n) => {
+    <span class="fn">print</span>(n)
+  }
+  <span class="fn">Err</span>(e) => {
+    <span class="fn">print</span>(e)
+  }
+}</code></pre>
+          <pre id="tab-traits" class="tab-content hidden"><code><span class="kw">trait</span> <span class="ty">Display</span> {
+  <span class="kw">fn</span> <span class="fn">to_text</span>(self) -> <span class="ty">string</span>
 }
 
-fn main() -> int {
-    print(greet("world"))
-    return 0
-}</code></pre>
+<span class="fn">print</span>(user.<span class="fn">to_text</span>())</code></pre>
+          <pre id="tab-build" class="tab-content hidden"><code><span class="cm"># Terminal</span>
+vpp run app.vpp
+vpp build app.vpp -o app.exe
+vpp test</code></pre>
+        </div>
+        <div class="code-footer">
+          <span>app.vpp</span>
+          <button class="copy-btn" type="button">Copy to clipboard</button>
+        </div>
       </div>
+      <p class="hero-learn-link">Learn more about what v++ offers with our <a href="learn.html">learning materials</a>.</p>
     </div>
   </section>
 
-  <div class="container">
-    <div class="stats">
-      <div class="stat"><div class="stat-num">20</div><div class="stat-label">Example projects</div></div>
-      <div class="stat"><div class="stat-num">30+</div><div class="stat-label">Documentation guides</div></div>
-      <div class="stat"><div class="stat-num">7</div><div class="stat-label">Release versions</div></div>
-      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Open source MIT</div></div>
-    </div>
-
-    <section>
-      <h2>Everything you need</h2>
-      <div class="card-grid">
-        <div class="card">
-          <div class="card-icon">📘</div>
-          <h3>Step-by-step learning</h3>
-          <p>From hello world to generics, traits, and stdlib — a structured path with runnable examples.</p>
-          <a href="learn.html" class="card-link">Start the curriculum →</a>
-        </div>
-        <div class="card">
-          <div class="card-icon">🛠</div>
-          <h3>20 open-source projects</h3>
-          <p>Simple to complex .vpp projects you can run, read, and fork. Every line on GitHub.</p>
-          <a href="projects.html" class="card-link">Browse projects →</a>
-        </div>
-        <div class="card">
-          <div class="card-icon">⬇</div>
-          <h3>One-click install</h3>
-          <p>Windows installer, portable zip, VS Code extension on the Marketplace.</p>
-          <a href="download.html" class="card-link">Get v++ →</a>
-        </div>
-        <div class="card">
-          <div class="card-icon">⚙</div>
-          <h3>See how it's built</h3>
-          <p>Rust compiler, LLVM backend, LSP, package manager — the full architecture, documented.</p>
-          <a href="architecture.html" class="card-link">Read the architecture →</a>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Why v++ exists</h2>
-      <p><strong>Most languages force a tradeoff:</strong> easy to write (Python) or fast to run (C/Rust). v++ is an experiment in having both — readable syntax you can learn in an afternoon, with a compiler that emits native binaries when you're ready.</p>
-      <p>Built by <a href="about.html">Shaurya</a> as a real, shippable language — not a parser demo. Interpreter for learning. LLVM for production. Everything open.</p>
-      <a href="about.html" class="btn btn-secondary">The story &amp; ideology →</a>
-    </section>
-  </div>
-
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <ul class="footer-links">
-        <li><a href="https://github.com/shauryaR790/V-">GitHub</a></li>
-        <li><a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">Marketplace</a></li>
-        <li><a href="https://github.com/shauryaR790/V-/blob/main/docs/README.md">Docs</a></li>
-        <li><a href="https://github.com/shauryaR790/V-/issues">Issues</a></li>
-      </ul>
-      <p class="footer-copy">MIT License · v++ by Shaurya · 2026</p>
-    </div>
-  </footer>
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -25,6 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Build site pages
+        run: python website/build_site.py
       - uses: actions/upload-pages-artifact@v3
         with:
           path: website
