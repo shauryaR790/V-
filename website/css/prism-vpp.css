@@ -41,7 +41,7 @@
 
 .code-panel .code-tab.active {
   color: #e6edf3;
-  border-bottom-color: #f5c400;
+  border-bottom-color: var(--yellow);
   font-weight: 600;
 }
 
