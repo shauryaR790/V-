@@ -516,12 +516,12 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   margin: 1.5rem 0 0.4rem;
   padding-top: 0;
   border-top: none;
-  color: var(--yellow);
+  color: var(--text);
   letter-spacing: -0.02em;
 }
 
-.docs-article h3 { font-size: 1rem; font-weight: 600; margin: 1.1rem 0 0.35rem; color: var(--yellow); }
-.docs-article h4 { font-size: 0.9rem; font-weight: 600; margin: 0.85rem 0 0.25rem; color: var(--yellow); }
+.docs-article h3 { font-size: 1rem; font-weight: 600; margin: 1.1rem 0 0.35rem; color: var(--text); }
+.docs-article h4 { font-size: 0.9rem; font-weight: 600; margin: 0.85rem 0 0.25rem; color: var(--text); }
 
 .docs-article p { margin-bottom: 0.55rem; color: var(--text-muted); max-width: 72ch; line-height: 1.55; }
 
@@ -684,7 +684,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(245, 196, 0, 0.06);
+  background: rgba(251, 219, 90, 0.06);
   border: 1px solid var(--border-accent);
   border-radius: var(--radius);
   padding: 1rem 1.25rem;
