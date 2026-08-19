@@ -1,0 +1,30 @@
+struct Todo {
+    title: string
+    done: bool
+}
+
+fn print_todo(t: Todo) -> int {
+    if t.done {
+        print("[x] " + t.title)
+    } else {
+        print("[ ] " + t.title)
+    }
+    return 0
+}
+
+fn main() -> int {
+    let t1 = Todo { title: "learn v++", done: true }
+    let t2 = Todo { title: "build a project", done: false }
+    let t3 = Todo { title: "ship v1.0", done: false }
+
+    print_todo(t1)
+    print_todo(t2)
+    print_todo(t3)
+
+    let mut done_count = 0
+    if t1.done { done_count = done_count + 1 }
+    if t2.done { done_count = done_count + 1 }
+    if t3.done { done_count = done_count + 1 }
+    print(done_count)
+    return 0
+}

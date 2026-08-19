@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download v++ — All versions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="index.html" class="logo">v<span>++</span></a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="learn.html">Learn</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="download.html">Download</a></li>
+        <li><a href="extension.html">VS Code</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="architecture.html">How it works</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page container">
+    <h1 class="page-title">Download</h1>
+    <p class="page-lead">Prebuilt binaries for Windows. No Rust required. Install the VS Code extension separately for the full IDE experience.</p>
+
+    <section>
+      <h2>Latest — v0.5.0</h2>
+      <div class="hero-actions" style="margin-bottom: 2rem;">
+        <a href="https://github.com/shauryaR790/V-/releases/download/v0.5.0/vpp-0.5.0-setup.exe" class="btn btn-primary">Windows installer (.exe)</a>
+        <a href="https://github.com/shauryaR790/V-/releases/download/v0.5.0/vpp-v0.5.0-windows-x64.zip" class="btn btn-secondary">Portable zip</a>
+        <a href="extension.html" class="btn btn-secondary">VS Code extension</a>
+      </div>
+      <pre><code># After install, open a new terminal:
+vpp run examples\hello.vpp
+vpp doctor</code></pre>
+    </section>
+
+    <section>
+      <h2>All releases</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Version</th><th>Date</th><th>Highlights</th><th>Download</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>v0.5.0</strong> <span class="tag-latest">latest</span></td>
+              <td>Aug 2026</td>
+              <td>Docs hub, installer PATH fix, extension v0.5.0</td>
+              <td><a href="https://github.com/shauryaR790/V-/releases/tag/v0.5.0" class="btn-sm">Release</a></td>
+            </tr>
+            <tr>
+              <td><strong>v0.4.4</strong></td>
+              <td>Aug 2026</td>
+              <td>Windows installer, Marketplace extension, release bundles</td>
+              <td><a href="https://github.com/shauryaR790/V-/releases/tag/v0.4.4" class="btn-sm">Release</a></td>
+            </tr>
+            <tr>
+              <td><strong>v0.4.0</strong></td>
+              <td>Aug 2026</td>
+              <td><code>mut</code>, generics, traits, exhaustive match</td>
+              <td><a href="https://github.com/shauryaR790/V-/releases/tag/v0.4.0" class="btn-sm">Release</a></td>
+            </tr>
+            <tr>
+              <td><strong>v0.3.1</strong></td>
+              <td>Aug 2026</td>
+              <td>Enum fixes, native entry point, stress tests</td>
+              <td><a href="https://github.com/shauryaR790/V-/releases/tag/v0.3.1" class="btn-sm">Release</a></td>
+            </tr>
+            <tr>
+              <td><strong>v0.3.0</strong></td>
+              <td>Aug 2026</td>
+              <td>Modules, package manager, stdlib, LSP</td>
+              <td><a href="https://github.com/shauryaR790/V-/releases/tag/v0.3.0" class="btn-sm">Release</a></td>
+            </tr>
+            <tr>
+              <td><strong>v0.2.0</strong></td>
+              <td>Aug 2026</td>
+              <td>v++ IR, native structs/enums/match, parity tests</td>
+              <td><a href="https://github.com/shauryaR790/V-/releases/tag/v0.2.0" class="btn-sm">Release</a></td>
+            </tr>
+            <tr>
+              <td><strong>v0.1.0</strong></td>
+              <td>Aug 2026</td>
+              <td>Initial release — interpreter, partial LLVM, extension</td>
+              <td><a href="https://github.com/shauryaR790/V-/releases/tag/v0.1.0" class="btn-sm">Release</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top: 1rem;">Full changelog: <a href="https://github.com/shauryaR790/V-/blob/main/CHANGELOG.md">CHANGELOG.md</a> · Version timeline: <a href="history.html">History</a></p>
+    </section>
+
+    <section>
+      <h2>Build from source</h2>
+      <pre><code>git clone https://github.com/shauryaR790/V-.git
+cd V-
+cargo build --release --features codegen,lsp</code></pre>
+      <p><a href="https://github.com/shauryaR790/V-/blob/main/docs/contributing/building-from-source.md">Building from source guide →</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <ul class="footer-links">
+        <li><a href="https://github.com/shauryaR790/V-/releases">All releases</a></li>
+        <li><a href="extension.html">VS Code</a></li>
+      </ul>
+      <p class="footer-copy">MIT License · v++ by Shaurya</p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

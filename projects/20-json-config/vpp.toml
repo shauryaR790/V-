@@ -1,0 +1,5 @@
+name = "json-config-demo"
+version = "0.1.0"
+entry = "main.vpp"
+
+[dependencies]

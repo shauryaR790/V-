@@ -1,0 +1,4 @@
+fn main() -> int {
+    print("Hello, v++!")
+    return 0
+}

@@ -1,0 +1,24 @@
+fn sum(nums: array[int]) -> int {
+    let mut total = 0
+    for n in nums {
+        total = total + n
+    }
+    return total
+}
+
+fn max_of(nums: array[int]) -> int {
+    let mut best = nums[0]
+    for n in nums {
+        if n > best {
+            best = n
+        }
+    }
+    return best
+}
+
+fn main() -> int {
+    let nums = [3, 7, 2, 9, 4]
+    print(sum(nums))
+    print(max_of(nums))
+    return 0
+}

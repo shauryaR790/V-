@@ -1,0 +1,26 @@
+import std.json
+
+struct AppConfig {
+    name: string
+    version: string
+    debug: bool
+}
+
+fn parse_config(raw: string) -> string {
+    let doc = json.parse(raw)
+    return json.stringify(doc)
+}
+
+fn main() -> int {
+    let raw = "{\"name\":\"v++\",\"version\":\"0.5.0\",\"debug\":false}"
+    print(parse_config(raw))
+
+    let cfg = AppConfig {
+        name: "v++"
+        version: "0.5.0"
+        debug: true
+    }
+    print(cfg.name)
+    print(cfg.version)
+    return 0
+}

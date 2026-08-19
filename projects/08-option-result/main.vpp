@@ -1,0 +1,41 @@
+fn safe_div(a: int, b: int) -> Result<int, string> {
+    if b == 0 {
+        return Err("division by zero")
+    }
+    return Ok(a / b)
+}
+
+fn find_first(nums: array[int], target: int) -> Option<int> {
+    let mut i = 0
+    while i < len(nums) {
+        if nums[i] == target {
+            return Some(nums[i])
+        }
+        i = i + 1
+    }
+    return None
+}
+
+fn main() -> int {
+    let r = safe_div(10, 2)
+    match r {
+        Ok(n) => {
+            print(n)
+        }
+        Err(e) => {
+            print(e)
+        }
+    }
+
+    let nums = [1, 5, 9]
+    let found = find_first(nums, 5)
+    match found {
+        Some(n) => {
+            print(n)
+        }
+        None => {
+            print("not found")
+        }
+    }
+    return 0
+}

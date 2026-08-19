@@ -27,6 +27,7 @@ Full guide: **[docs/getting-started/hello-world.md](docs/getting-started/hello-w
 | | |
 |---|---|
 | **[Documentation hub](docs/README.md)** | Index of all guides |
+| **[Website](https://shauryaR790.github.io/V-/)** | Learn, projects, downloads, history |
 | [Install](docs/getting-started/install.md) | Installer, PATH, extension |
 | [Language reference](docs/language/README.md) | Types, control flow, generics, traits |
 | [CLI reference](docs/guides/cli-reference.md) | Every `vpp` command |

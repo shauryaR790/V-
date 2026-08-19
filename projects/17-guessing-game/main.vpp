@@ -1,0 +1,29 @@
+fn hint(guess: int, secret: int) -> string {
+    if guess < secret {
+        return "too low"
+    }
+    if guess > secret {
+        return "too high"
+    }
+    return "correct"
+}
+
+fn play_round(secret: int, guess: int) -> bool {
+    let message = hint(guess, secret)
+    print(message)
+    return message == "correct"
+}
+
+fn main() -> int {
+    let secret = 42
+    let guesses = [10, 30, 50, 42]
+
+    for g in guesses {
+        print(g)
+        if play_round(secret, g) {
+            print("you win")
+            return 0
+        }
+    }
+    return 0
+}

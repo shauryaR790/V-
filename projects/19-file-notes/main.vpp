@@ -1,0 +1,13 @@
+import std.fs
+
+fn main() -> int {
+    let path = "note.txt"
+    let body = "v++ file notes\nBuilt by Shaurya\nOpen source on GitHub"
+
+    fs.write(path, body)
+    print(fs.exists(path))
+
+    let content = fs.read(path)
+    print(content)
+    return 0
+}

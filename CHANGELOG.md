@@ -6,6 +6,9 @@ All notable changes to v++ are documented here.
 
 ### Added
 
+- **Website** — official site at `website/` (learn, 20 projects, downloads, history, architecture, about)
+- **20 example projects** — `projects/01-hello-world` through `projects/20-json-config`
+- **GitHub Pages** — deploy workflow for the website
 - **Documentation hub** — 30+ guides (`docs/getting-started`, `language`, `guides`, `stdlib`, `project`)
 - **GitHub paperwork** — `CONTRIBUTING.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`
 - **VS Code extension v0.5.0** — Python-style Marketplace README and CHANGELOG

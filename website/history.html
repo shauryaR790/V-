@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Version History — v++</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="index.html" class="logo">v<span>++</span></a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="learn.html">Learn</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="download.html">Download</a></li>
+        <li><a href="extension.html">VS Code</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="architecture.html">How it works</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page container">
+    <h1 class="page-title">Version history</h1>
+    <p class="page-lead">From first interpreter to Marketplace extension and Windows installer — every major release documented in the open.</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="timeline-version">v0.5.0</span><span class="timeline-date">August 18, 2026</span>
+        <h3>Documentation &amp; distribution polish</h3>
+        <ul>
+          <li>30+ documentation guides (getting started, language, stdlib)</li>
+          <li>Windows installer adds <code>vpp</code> and <code>clang</code> to PATH</li>
+          <li>VS Code extension v0.5.0 on Marketplace</li>
+          <li>CONTRIBUTING, SECURITY, CODE_OF_CONDUCT</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-version">v0.4.4</span><span class="timeline-date">August 18, 2026</span>
+        <h3>Ship to users</h3>
+        <ul>
+          <li>Windows installer (<code>vpp-*-setup.exe</code>) and portable zip</li>
+          <li>Extension published: <code>vpp-lang.vplusplus</code></li>
+          <li>GitHub Actions release workflow on tags</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-version">v0.4.0</span><span class="timeline-date">August 18, 2026</span>
+        <h3>Modern language features</h3>
+        <ul>
+          <li><code>mut</code> keyword — immutability by default</li>
+          <li>Generics with monomorphization</li>
+          <li>Traits and static dispatch</li>
+          <li>Compile-time match exhaustiveness</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-version">v0.3.0</span><span class="timeline-date">August 18, 2026</span>
+        <h3>Ecosystem</h3>
+        <ul>
+          <li>Module system (<code>import std.*</code>)</li>
+          <li>Package manager (<code>vpp.toml</code>, lockfile, registry)</li>
+          <li>Standard library: io, math, string, collections, fs, json, process</li>
+          <li>Language server (<code>vppls</code>) + LSP diagnostics</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-version">v0.2.0</span><span class="timeline-date">August 18, 2026</span>
+        <h3>Native compiler foundation</h3>
+        <ul>
+          <li>v++ IR between typed AST and LLVM</li>
+          <li>Native structs, enums, Option/Result, match</li>
+          <li>Interpreter/native parity test suite</li>
+          <li>ARCHITECTURE.md, MEMORY_MODEL.md, SPEC.md</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-version">v0.1.0</span><span class="timeline-date">August 2026</span>
+        <h3>First release</h3>
+        <ul>
+          <li>Tree-walking interpreter for full language subset</li>
+          <li>Partial LLVM backend</li>
+          <li>CLI (<code>vpp run</code>, <code>check</code>)</li>
+          <li>VS Code syntax highlighting extension</li>
+          <li>CI on GitHub Actions</li>
+        </ul>
+      </div>
+    </div>
+
+    <section style="margin-top: 3rem;">
+      <h2>Road to v1.0</h2>
+      <p>Next: REPL, expanded stdlib, code signing, debugger, Test Explorer, frozen spec. Track progress on <a href="https://github.com/shauryaR790/V-/blob/main/docs/project/roadmap.md">roadmap</a>.</p>
+      <a href="download.html" class="btn btn-primary">Download latest</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <ul class="footer-links">
+        <li><a href="https://github.com/shauryaR790/V-/blob/main/CHANGELOG.md">Full changelog</a></li>
+        <li><a href="download.html">Download</a></li>
+      </ul>
+      <p class="footer-copy">MIT License · v++ by Shaurya</p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

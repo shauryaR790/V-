@@ -1,0 +1,31 @@
+enum TrafficLight {
+    Red
+    Yellow
+    Green
+}
+
+struct Signal {
+    light: TrafficLight
+}
+
+fn action(signal: Signal) -> string {
+    match signal.light {
+        Red => {
+            return "stop"
+        }
+        Yellow => {
+            return "slow"
+        }
+        Green => {
+            return "go"
+        }
+    }
+}
+
+fn main() -> int {
+    let stop = Signal { light: Red }
+    let go = Signal { light: Green }
+    print(action(stop))
+    print(action(go))
+    return 0
+}

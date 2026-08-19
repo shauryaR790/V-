@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About v++ — Ideology &amp; open source</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="index.html" class="logo">v<span>++</span></a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="learn.html">Learn</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="download.html">Download</a></li>
+        <li><a href="extension.html">VS Code</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="architecture.html">How it works</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page container">
+    <h1 class="page-title">About v++</h1>
+    <p class="page-lead">An open-source programming language — designed, implemented, and shipped by one person. Everything is on GitHub. No secrets.</p>
+
+    <section>
+      <h2>The idea</h2>
+      <p><strong>Write it simply. Compile it natively. Grow into control when you need it.</strong></p>
+      <p>Python proved that readable syntax matters. Rust and C proved that native speed matters. v++ asks: what if you didn't have to pick one on day one?</p>
+      <ul style="margin-left: 1.25rem; color: var(--text-muted);">
+        <li>Start with <code>vpp run</code> — instant feedback, no build step</li>
+        <li>Add types when you want safety — inference handles the easy cases</li>
+        <li>Ship with <code>vpp build</code> — real native executables via LLVM</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Built in the open</h2>
+      <p>Every line of the compiler is MIT licensed on GitHub:</p>
+      <ul style="margin-left: 1.25rem; color: var(--text-muted);">
+        <li><strong>Lexer &amp; parser</strong> — hand-written, from scratch</li>
+        <li><strong>Type checker</strong> — generics, traits, exhaustiveness</li>
+        <li><strong>Two backends</strong> — interpreter + LLVM codegen</li>
+        <li><strong>Language server</strong> — diagnostics, completion in VS Code</li>
+        <li><strong>Package manager</strong> — <code>vpp.toml</code>, dependencies, lockfile</li>
+        <li><strong>Standard library</strong> — io, fs, json, process, and more</li>
+        <li><strong>Distribution</strong> — CI, Windows installer, Marketplace extension</li>
+      </ul>
+      <a href="https://github.com/shauryaR790/V-" class="btn btn-primary" target="_blank" rel="noopener">Browse the repository →</a>
+    </section>
+
+    <section>
+      <h2>Creator</h2>
+      <p><strong>Shaurya</strong> — designer and implementer of v++. Built the language from v0.1 (interpreter) through v0.5 (installer, Marketplace, full docs) as a real shipping project, not a weekend parser tutorial.</p>
+      <p>GitHub: <a href="https://github.com/shauryaR790">@shauryaR790</a></p>
+    </section>
+
+    <section>
+      <h2>Design principles</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Readable first</h3>
+          <p>Syntax should feel like Python — minimal punctuation, obvious flow. Types when they help, not when they hurt.</p>
+        </div>
+        <div class="card">
+          <h3>Correct by default</h3>
+          <p>Immutable bindings, exhaustive match, static types. Catch mistakes at compile time, not in production.</p>
+        </div>
+        <div class="card">
+          <h3>Honest about stage</h3>
+          <p>v0.5 is pre-1.0. The spec can still change. We'd rather ship real software and improve it than pretend it's finished.</p>
+        </div>
+        <div class="card">
+          <h3>Fully open</h3>
+          <p>MIT license. No telemetry. No walled garden. Fork it, learn from it, build on it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Compare</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th></th><th>Python</th><th>v++</th></tr></thead>
+          <tbody>
+            <tr><td>Typing</td><td>Dynamic</td><td>Static + inference</td></tr>
+            <tr><td>Run mode</td><td>Interpreter</td><td>Interpreter + native .exe</td></tr>
+            <tr><td>Syntax</td><td>Readable</td><td>Readable (similar feel)</td></tr>
+            <tr><td>Ecosystem</td><td>Massive, 30+ years</td><td>New — growing</td></tr>
+            <tr><td>Source</td><td>Open (CPython)</td><td>Open (Rust compiler, MIT)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Legal</h2>
+      <p>
+        <a href="https://github.com/shauryaR790/V-/blob/main/docs/PRIVACY.md">Privacy policy</a> ·
+        <a href="https://github.com/shauryaR790/V-/blob/main/SECURITY.md">Security</a> ·
+        <a href="https://github.com/shauryaR790/V-/blob/main/CODE_OF_CONDUCT.md">Code of conduct</a> ·
+        <a href="https://github.com/shauryaR790/V-/blob/main/LICENSE">MIT License</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <ul class="footer-links">
+        <li><a href="learn.html">Learn</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="architecture.html">Architecture</a></li>
+      </ul>
+      <p class="footer-copy">MIT License · v++ by Shaurya · 2026</p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

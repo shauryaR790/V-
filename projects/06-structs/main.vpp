@@ -1,0 +1,23 @@
+struct Point {
+    x: int
+    y: int
+}
+
+struct Rectangle {
+    width: int
+    height: int
+}
+
+fn area(rect: Rectangle) -> int {
+    return rect.width * rect.height
+}
+
+fn main() -> int {
+    let p = Point { x: 3, y: 4 }
+    print(p.x)
+    print(p.y)
+
+    let box = Rectangle { width: 10, height: 5 }
+    print(area(box))
+    return 0
+}

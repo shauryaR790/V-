@@ -9,8 +9,8 @@
 ## v0.5 (current)
 
 - [x] Documentation hub and install guides
+- [x] Website (landing, learn, 20 projects, downloads, history)
 - [ ] SignPath code signing
-- [ ] Website (landing + docs mirror)
 - [ ] REPL (`vpp repl`)
 - [ ] Expanded stdlib (maps, time)
 - [ ] Linux/macOS release polish

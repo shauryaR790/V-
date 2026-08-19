@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn v++ — Curriculum</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="index.html" class="logo">v<span>++</span></a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="learn.html">Learn</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="download.html">Download</a></li>
+        <li><a href="extension.html">VS Code</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="architecture.html">How it works</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page container">
+    <h1 class="page-title">Learn v++</h1>
+    <p class="page-lead">A structured path from zero to building real programs. Each lesson links to docs, examples, and a hands-on project.</p>
+
+    <section>
+      <h2>Before you start</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Install the compiler</h3>
+            <p>Download <code>vpp-0.5.0-setup.exe</code> from <a href="download.html">Download</a>. Open a new terminal and run <code>vpp doctor</code>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Install VS Code extension</h3>
+            <p>Follow the <a href="extension.html">VS Code setup guide</a> — search <strong>v++ Language</strong> (publisher: vpp-lang).</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Run your first file</h3>
+            <pre><code>vpp run examples\hello.vpp</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Curriculum</h2>
+      <ul class="lesson-list">
+        <li class="lesson-item"><span class="lesson-num">01</span><a href="https://github.com/shauryaR790/V-/blob/main/docs/getting-started/hello-world.md">Hello, v++</a><span class="badge badge-beginner">Beginner</span></li>
+        <li class="lesson-item"><span class="lesson-num">02</span><a href="https://github.com/shauryaR790/V-/blob/main/docs/language/types-and-inference.md">Types &amp; variables</a><span class="badge badge-beginner">Beginner</span></li>
+        <li class="lesson-item"><span class="lesson-num">03</span><a href="https://github.com/shauryaR790/V-/blob/main/docs/language/functions.md">Functions</a><span class="badge badge-beginner">Beginner</span></li>
+        <li class="lesson-item"><span class="lesson-num">04</span><a href="https://github.com/shauryaR790/V-/blob/main/docs/language/control-flow.md">Control flow &amp; loops</a><span class="badge badge-beginner">Beginner</span></li>
+        <li class="lesson-item"><span class="lesson-num">05</span><a href="https://github.com/shauryaR790/V-/blob/main/docs/language/structs-and-enums.md">Structs &amp; enums</a><span class="badge badge-intermediate">Intermediate</span></li>
+        <li class="lesson-item"><span class="lesson-num">06</span><a href="https://github.com/shauryaR790/V-/blob/main/docs/language/option-result-match.md">Option, Result &amp; match</a><span class="badge badge-intermediate">Intermediate</span></li>
+        <li class="lesson-item"><span class="lesson-num">07</span><a href="https://github.com/shauryaR790/V-/blob/main/docs/language/mut-and-immutability.md">Mutability</a><span class="badge badge-intermediate">Intermediate</span></li>
+        <li class="lesson-item"><span class="lesson-num">08</span><a href="https://github.com/shauryaR790/V-/blob/main/docs/language/generics.md">Generics</a><span class="badge badge-advanced">Advanced</span></li>
+        <li class="lesson-item"><span class="lesson-num">09</span><a href="https://github.com/shauryaR790/V-/blob/main/docs/language/traits.md">Traits &amp; impls</a><span class="badge badge-advanced">Advanced</span></li>
+        <li class="lesson-item"><span class="lesson-num">10</span><a href="https://github.com/shauryaR790/V-/blob/main/docs/language/modules.md">Modules &amp; imports</a><span class="badge badge-intermediate">Intermediate</span></li>
+        <li class="lesson-item"><span class="lesson-num">11</span><a href="https://github.com/shauryaR790/V-/blob/main/docs/guides/package-manager.md">Package manager</a><span class="badge badge-advanced">Advanced</span></li>
+        <li class="lesson-item"><span class="lesson-num">12</span><a href="https://github.com/shauryaR790/V-/blob/main/docs/guides/native-compilation.md">Native compilation</a><span class="badge badge-advanced">Advanced</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Built-in lessons (runnable)</h2>
+      <p>These ship in the repo under <code>examples/</code>:</p>
+      <ul class="lesson-list">
+        <li class="lesson-item"><span class="lesson-num">→</span><a href="https://github.com/shauryaR790/V-/blob/main/examples/lesson01_basics.vpp">lesson01_basics.vpp</a></li>
+        <li class="lesson-item"><span class="lesson-num">→</span><a href="https://github.com/shauryaR790/V-/blob/main/examples/lesson02_functions.vpp">lesson02_functions.vpp</a></li>
+        <li class="lesson-item"><span class="lesson-num">→</span><a href="https://github.com/shauryaR790/V-/blob/main/examples/lesson03_loops.vpp">lesson03_loops.vpp</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Practice with projects</h2>
+      <p>After lessons 1–4, work through the <a href="projects.html">20 example projects</a> — simple to complex, all open source.</p>
+      <a href="projects.html" class="btn btn-primary">View all 20 projects</a>
+    </section>
+
+    <section>
+      <h2>Full documentation</h2>
+      <p>The complete reference lives on GitHub: language, stdlib, CLI, troubleshooting.</p>
+      <a href="https://github.com/shauryaR790/V-/blob/main/docs/README.md" class="btn btn-secondary" target="_blank" rel="noopener">Documentation hub →</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <ul class="footer-links">
+        <li><a href="https://github.com/shauryaR790/V-">GitHub</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="download.html">Download</a></li>
+      </ul>
+      <p class="footer-copy">MIT License · v++ by Shaurya</p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

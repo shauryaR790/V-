@@ -6,6 +6,7 @@ Welcome to the v++ documentation. Start with [Install](getting-started/install.m
 
 | Guide | Description |
 |-------|-------------|
+| [Website](https://shauryaR790.github.io/V-/) | Official site — learn, projects, downloads |
 | [Install](getting-started/install.md) | Windows installer, VS Code extension, PATH |
 | [Hello, v++](getting-started/hello-world.md) | First program in 5 minutes |
 | [VS Code setup](getting-started/vscode-setup.md) | Run, debug, LSP settings |

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v++ — Write simply. Compile natively.</title>
+  <meta name="description" content="v++ is an open-source programming language with Python-style readability, static typing, and native performance. Download, learn, build.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="index.html" class="logo">v<span>++</span></a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="learn.html">Learn</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="download.html">Download</a></li>
+        <li><a href="extension.html">VS Code</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="architecture.html">How it works</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="hero-badge">Open source · v0.5.0</span>
+        <h1>Write it simply.<br><em>Compile it natively.</em></h1>
+        <p class="hero-tagline">A programming language built from scratch — Python-style readability, static types, native .exe output. Fully open on GitHub.</p>
+        <div class="hero-actions">
+          <a href="download.html" class="btn btn-primary">Download v0.5.0</a>
+          <a href="learn.html" class="btn btn-secondary">Start learning</a>
+          <a href="https://github.com/shauryaR790/V-" class="btn btn-secondary" target="_blank" rel="noopener">View source</a>
+        </div>
+      </div>
+      <div class="hero-code">
+        <div class="hero-code-header"><span></span><span></span><span></span></div>
+        <pre><code>import std.io
+
+fn greet(name: string) -> string {
+    return "Hello, " + name + "!"
+}
+
+fn main() -> int {
+    print(greet("world"))
+    return 0
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="stats">
+      <div class="stat"><div class="stat-num">20</div><div class="stat-label">Example projects</div></div>
+      <div class="stat"><div class="stat-num">30+</div><div class="stat-label">Documentation guides</div></div>
+      <div class="stat"><div class="stat-num">7</div><div class="stat-label">Release versions</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Open source MIT</div></div>
+    </div>
+
+    <section>
+      <h2>Everything you need</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">📘</div>
+          <h3>Step-by-step learning</h3>
+          <p>From hello world to generics, traits, and stdlib — a structured path with runnable examples.</p>
+          <a href="learn.html" class="card-link">Start the curriculum →</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">🛠</div>
+          <h3>20 open-source projects</h3>
+          <p>Simple to complex .vpp projects you can run, read, and fork. Every line on GitHub.</p>
+          <a href="projects.html" class="card-link">Browse projects →</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">⬇</div>
+          <h3>One-click install</h3>
+          <p>Windows installer, portable zip, VS Code extension on the Marketplace.</p>
+          <a href="download.html" class="card-link">Get v++ →</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚙</div>
+          <h3>See how it's built</h3>
+          <p>Rust compiler, LLVM backend, LSP, package manager — the full architecture, documented.</p>
+          <a href="architecture.html" class="card-link">Read the architecture →</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why v++ exists</h2>
+      <p><strong>Most languages force a tradeoff:</strong> easy to write (Python) or fast to run (C/Rust). v++ is an experiment in having both — readable syntax you can learn in an afternoon, with a compiler that emits native binaries when you're ready.</p>
+      <p>Built by <a href="about.html">Shaurya</a> as a real, shippable language — not a parser demo. Interpreter for learning. LLVM for production. Everything open.</p>
+      <a href="about.html" class="btn btn-secondary">The story &amp; ideology →</a>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <ul class="footer-links">
+        <li><a href="https://github.com/shauryaR790/V-">GitHub</a></li>
+        <li><a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">Marketplace</a></li>
+        <li><a href="https://github.com/shauryaR790/V-/blob/main/docs/README.md">Docs</a></li>
+        <li><a href="https://github.com/shauryaR790/V-/issues">Issues</a></li>
+      </ul>
+      <p class="footer-copy">MIT License · v++ by Shaurya · 2026</p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

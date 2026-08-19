@@ -1,0 +1,31 @@
+struct Circle {
+    radius: int
+}
+
+struct Square {
+    side: int
+}
+
+trait Area {
+    fn area(self) -> int
+}
+
+impl Area for Circle {
+    fn area(self) -> int {
+        return self.radius * self.radius * 3
+    }
+}
+
+impl Area for Square {
+    fn area(self) -> int {
+        return self.side * self.side
+    }
+}
+
+fn main() -> int {
+    let c = Circle { radius: 5 }
+    let s = Square { side: 4 }
+    print(c.area())
+    print(s.area())
+    return 0
+}

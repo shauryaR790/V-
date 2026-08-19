@@ -1,0 +1,47 @@
+enum Day {
+    Mon
+    Tue
+    Wed
+    Thu
+    Fri
+    Sat
+    Sun
+}
+
+struct CalendarDay {
+    day: Day
+}
+
+fn is_weekend(entry: CalendarDay) -> bool {
+    match entry.day {
+        Sat => {
+            return true
+        }
+        Sun => {
+            return true
+        }
+        Mon => {
+            return false
+        }
+        Tue => {
+            return false
+        }
+        Wed => {
+            return false
+        }
+        Thu => {
+            return false
+        }
+        Fri => {
+            return false
+        }
+    }
+}
+
+fn main() -> int {
+    let weekend = CalendarDay { day: Sat }
+    let weekday = CalendarDay { day: Wed }
+    print(is_weekend(weekend))
+    print(is_weekend(weekday))
+    return 0
+}

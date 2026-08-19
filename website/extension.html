@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VS Code Extension — v++</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="index.html" class="logo">v<span>++</span></a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="learn.html">Learn</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="download.html">Download</a></li>
+        <li><a href="extension.html">VS Code</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="architecture.html">How it works</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page container">
+    <h1 class="page-title">VS Code Extension</h1>
+    <p class="page-lead">Official IDE support — syntax highlighting, run with F5, diagnostics, IntelliSense, and project tests. Extension ID: <code>vpp-lang.vplusplus</code></p>
+
+    <section>
+      <h2>Install step by step</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Install the v++ compiler first</h3>
+            <p>The extension does <strong>not</strong> bundle the compiler. Download and run <code>vpp-0.5.0-setup.exe</code> from <a href="download.html">Download</a>.</p>
+            <pre><code>vpp doctor</code></pre>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Open VS Code Extensions</h3>
+            <p>Press <code>Ctrl+Shift+X</code> (Windows) or <code>Cmd+Shift+X</code> (macOS).</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Search and install</h3>
+            <p>Search <strong>v++ Language</strong>. Verify the publisher is <strong>vpp-lang</strong> — other "V++" extensions are unrelated.</p>
+            <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus" class="btn btn-primary" target="_blank" rel="noopener">Open on Marketplace</a>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Reload VS Code</h3>
+            <p>After install, reload the window. Open any <code>.vpp</code> file — bottom-right should show language mode <strong>v++</strong>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h3>Run your first program</h3>
+            <p>Open a folder with <code>.vpp</code> files. Press <strong>F5</strong> or <strong>Ctrl+Shift+R</strong> to run the active file.</p>
+            <pre><code>vpp run examples\hello.vpp</code></pre>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-content">
+            <h3>Enable IntelliSense (optional)</h3>
+            <p>Release builds include <code>vppls</code> (language server). In Settings, search <code>vpp</code>:</p>
+            <ul style="margin-left: 1.25rem; color: var(--text-muted);">
+              <li><code>vpp.compilerPath</code> — path to <code>vpp.exe</code> if not on PATH</li>
+              <li><code>vpp.languageServerPath</code> — path to <code>vppls</code></li>
+              <li><code>vpp.enableLanguageServer</code> — red squiggles, completion, go-to-definition</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Commands</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Command</th><th>Shortcut</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>v++: Run File</td><td>F5, Ctrl+Shift+R</td><td>Run active file via <code>vpp run</code></td></tr>
+            <tr><td>v++: Check File</td><td>Command Palette</td><td>Type-check without running</td></tr>
+            <tr><td>v++: Run Tests</td><td>Command Palette</td><td>Run <code>vpp test</code> in workspace</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Extension version history</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Version</th><th>Changes</th></tr></thead>
+          <tbody>
+            <tr><td><strong>0.5.0</strong></td><td>Marketplace README refresh, docs links, v0.5 alignment</td></tr>
+            <tr><td><strong>0.4.x</strong></td><td>Initial Marketplace publish, LSP wiring, run/debug commands</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Extension source: <a href="https://github.com/shauryaR790/V-/tree/main/editor/vscode-vpp">editor/vscode-vpp/</a> (open source, MIT)</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <ul class="footer-links">
+        <li><a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">Marketplace</a></li>
+        <li><a href="learn.html">Learn</a></li>
+      </ul>
+      <p class="footer-copy">MIT License · v++ by Shaurya</p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

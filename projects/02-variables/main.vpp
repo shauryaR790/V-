@@ -1,0 +1,11 @@
+fn main() -> int {
+    let x = 10
+    let y = 3
+    print(x + y)
+    print(x - y)
+    print(x * y)
+
+    let name = "v++"
+    print("Hello, " + name + "!")
+    return 0
+}

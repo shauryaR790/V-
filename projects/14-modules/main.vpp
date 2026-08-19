@@ -1,0 +1,9 @@
+import "math.vpp"
+
+fn main() -> int {
+    let sum = add(10, 5)
+    let product = mul(sum, 2)
+    print(sum)
+    print(product)
+    return 0
+}

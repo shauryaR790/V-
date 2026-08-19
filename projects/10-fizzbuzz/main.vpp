@@ -1,0 +1,26 @@
+fn fizzbuzz(n: int) -> string {
+    if n % 15 == 0 {
+        return "FizzBuzz"
+    }
+    if n % 3 == 0 {
+        return "Fizz"
+    }
+    if n % 5 == 0 {
+        return "Buzz"
+    }
+    return "num"
+}
+
+fn main() -> int {
+    let mut i = 1
+    while i <= 20 {
+        let label = fizzbuzz(i)
+        if label == "num" {
+            print(i)
+        } else {
+            print(label)
+        }
+        i = i + 1
+    }
+    return 0
+}

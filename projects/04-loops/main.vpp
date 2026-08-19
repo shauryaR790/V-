@@ -1,0 +1,17 @@
+fn main() -> int {
+    let mut i = 0
+    while i < 5 {
+        print(i)
+        i = i + 1
+    }
+
+    for n in 0..3 {
+        print(n)
+    }
+
+    let items = [10, 20, 30]
+    for val in items {
+        print(val)
+    }
+    return 0
+}

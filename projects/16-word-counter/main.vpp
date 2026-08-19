@@ -1,0 +1,25 @@
+fn total_chars(words: array[string]) -> int {
+    let mut total = 0
+    for w in words {
+        total = total + len(w)
+    }
+    return total
+}
+
+fn longest_word(words: array[string]) -> string {
+    let mut best = words[0]
+    for w in words {
+        if len(w) > len(best) {
+            best = w
+        }
+    }
+    return best
+}
+
+fn main() -> int {
+    let words = ["v++", "is", "a", "compiled", "language"]
+    print(len(words))
+    print(total_chars(words))
+    print(longest_word(words))
+    return 0
+}

@@ -1,0 +1,44 @@
+enum Op {
+    Add
+    Sub
+    Mul
+    Div
+}
+
+struct CalcOp {
+    op: Op
+}
+
+fn apply(calc: CalcOp, a: int, b: int) -> Result<int, string> {
+    match calc.op {
+        Add => {
+            return Ok(a + b)
+        }
+        Sub => {
+            return Ok(a - b)
+        }
+        Mul => {
+            return Ok(a * b)
+        }
+        Div => {
+            if b == 0 {
+                return Err("divide by zero")
+            }
+            return Ok(a / b)
+        }
+    }
+}
+
+fn main() -> int {
+    let calc = CalcOp { op: Mul }
+    let r = apply(calc, 6, 7)
+    match r {
+        Ok(n) => {
+            print(n)
+        }
+        Err(e) => {
+            print(e)
+        }
+    }
+    return 0
+}
