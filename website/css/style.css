@@ -472,9 +472,6 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .docs-article .glossary dt { font-weight: 700; margin-top: 0.75rem; }
 .docs-article .glossary dd { margin: 0.25rem 0 0.5rem 1rem; color: var(--gray-700); font-size: 0.9rem; }
 
-.docs-article .ref-line { font-size: 0.75rem; color: var(--gray-500); margin: 0.15rem 0; }
-
-.toc-label {
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;

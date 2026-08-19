@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate dense documentation HTML pages for the v++ website."""
+"""Generate documentation HTML pages for the v++ website."""
 
 from __future__ import annotations
 
@@ -311,99 +311,6 @@ def build_toc(headings: list[tuple[str, str, str]]) -> str:
     return "\n".join(parts)
 
 
-def pad_content(html_body: str, target_lines: int = 1200) -> str:
-    """Ensure page has substantial reference material."""
-    current = html_body.count("\n")
-    if current >= target_lines:
-        return html_body
-
-    pad_sections = []
-
-    pad_sections.append("""
-<h2 id="reference-appendix">Reference appendix</h2>
-<p>This appendix consolidates cross-cutting language rules, compiler behavior, and toolchain notes for v++ v0.5.0.
-It is maintained alongside the open-source repository at <a href="https://github.com/shauryaR790/V-">github.com/shauryaR790/V-</a>.</p>
-""")
-
-    topics = [
-        ("Lexical structure", "v++ source files use the `.vpp` extension. Identifiers match `[A-Za-z_][A-Za-z0-9_]*`. "
-         "Keywords include `fn`, `let`, `mut`, `if`, `else`, `while`, `for`, `match`, `return`, `struct`, `enum`, "
-         "`trait`, `impl`, `import`, `pub`, `test`, `break`, `continue`, `true`, `false`, `Some`, `None`, `Ok`, `Err`."),
-        ("Numeric literals", "Integer literals are signed 64-bit at runtime. Float literals use IEEE-64 semantics in native code."),
-        ("String literals", "Double-quoted UTF-8 strings are heap-allocated with ARC in native builds; the interpreter uses reference-counted Rust strings."),
-        ("Array literals", "Homogeneous arrays `[1, 2, 3]` require uniform element types. Empty array inference follows contextual expectations at call sites."),
-        ("Function entry", "`fn main() -> int` is invoked by both `vpp run` and native executables when present."),
-        ("Error codes", "The CLI returns non-zero on compile errors, runtime failures, or failed tests. Diagnostics use miette-style spans when available."),
-        ("Interpreter parity", "`stress.vpp` and `tests/parity/` compare interpreter vs native stdout for supported programs."),
-        ("LLVM toolchain", "Native builds require LLVM 22 + clang. Windows installer bundles clang under `llvm/bin`."),
-        ("Package manifest", "`vpp.toml` names the project, version, entry file, and dependency table. `vpp.lock` pins resolved versions."),
-        ("Registry resolution", "Local registry index at `registry/index.toml` resolves semver constraints for sample packages."),
-        ("LSP protocol", "`vppls` implements diagnostics, completion, and go-to-definition for VS Code via vscode-languageclient."),
-        ("VS Code extension", "Marketplace id `vpp-lang.vplusplus`. Commands: Run File (F5), Check File, Run Tests."),
-        ("Security policy", "Report vulnerabilities privately per SECURITY.md. Releases are MIT licensed."),
-        ("Roadmap v1.0", "Frozen spec, debugger, Test Explorer, hosted registry, and curriculum are planned post-v0.5."),
-    ]
-
-    for i, (title, body) in enumerate(topics):
-        pad_sections.append(f'<h3 id="appendix-{i}">{html.escape(title)}</h3><p>{html.escape(body)}</p>')
-
-    # Repeat detailed CLI reference
-    pad_sections.append("<h2 id=\"cli-complete\">Complete CLI reference</h2>")
-    commands = [
-        ("vpp run", "Execute a .vpp file with the tree-walking interpreter."),
-        ("vpp build", "Compile to native executable via LLVM (requires codegen feature)."),
-        ("vpp check", "Type-check without running."),
-        ("vpp test", "Discover and run `test` blocks in the project."),
-        ("vpp fmt", "Format .vpp sources."),
-        ("vpp doctor", "Report toolchain, PATH, and project health."),
-        ("vpp new", "Scaffold a new project with vpp.toml."),
-        ("vpp init", "Initialize manifest in existing folder."),
-        ("vpp add", "Add dependency to vpp.toml."),
-        ("vpp remove", "Remove dependency."),
-        ("vpp update", "Refresh lockfile resolutions."),
-    ]
-    pad_sections.append("<ul>")
-    for cmd, desc in commands:
-        pad_sections.append(f"<li><code>{cmd}</code> — {html.escape(desc)}</li>")
-    pad_sections.append("</ul>")
-
-    # Stdlib index repeated with paragraphs
-    pad_sections.append("<h2 id=\"stdlib-index\">Standard library index</h2>")
-    modules = [
-        ("std.io", "Printing helpers and IO-oriented utilities layered on builtins."),
-        ("std.math", "Arithmetic helpers and numeric utilities."),
-        ("std.string", "String helpers: repeat, length, emptiness checks."),
-        ("std.collections", "Array helpers: sum, index_of, contains."),
-        ("std.fs", "File read, write, exists — backed by native runtime on supported targets."),
-        ("std.json", "parse and stringify for JSON documents."),
-        ("std.process", "Run shell commands and capture exit codes."),
-        ("std.assert", "Assertion helpers for tests."),
-    ]
-    for mod, desc in modules:
-        pad_sections.append(f"<h3 id=\"stdlib-{mod.replace('.', '-')}\">{mod}</h3><p>{html.escape(desc)}</p>")
-
-    padded = html_body + "\n".join(pad_sections)
-
-    # Line-fill with glossary entries if still short
-    glossary = []
-    terms = [
-        "ARC", "AST", "ABI", "CLI", "IR", "LLVM", "LSP", "MIT", "REPL", "semver",
-        "monomorphization", "exhaustiveness", "static dispatch", "type inference",
-        "product type", "sum type", "entry point", "parity test", "codegen",
-        "interpreter", "manifest", "lockfile", "registry", "SmartScreen", "SignPath",
-    ]
-    glossary.append('<h2 id="glossary">Glossary</h2><dl class="glossary">')
-    for term in terms:
-        glossary.append(f"<dt>{term}</dt><dd>See primary sections above for how {term} applies to v++ v0.5.</dd>")
-    glossary.append("</dl>")
-    padded += "\n".join(glossary)
-
-    while padded.count("\n") < target_lines:
-        padded += f"\n<!-- reference line {padded.count(chr(10))} -->\n<p class=\"ref-line\">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>\n"
-
-    return padded
-
-
 def write_doc_page(
     filename: str,
     active: str,
@@ -415,7 +322,7 @@ def write_doc_page(
 ) -> None:
     raw = collect_md(md_paths)
     body = md_to_html(raw)
-    body = f'<div id="top"></div>\n' + pad_content(body)
+    body = f'<div id="top"></div>\n' + body
     headings = headings_from_html(body)
     toc = build_toc(headings)
     page = shell(active, title, body, build_sidebar(sidebar, sidebar_active), toc, desc)
@@ -511,10 +418,10 @@ def main() -> None:
     write_doc_page("courses.html", "courses.html", "Courses", courses_paths, sidebar, "courses.html",
                    "Twenty v++ projects from beginner to advanced.")
 
-    # Download page — custom dense content
+    # Download page
     download_md = collect_md([DOCS / "getting-started" / "install.md"]) + "\n\n" + collect_md([ROOT / "CHANGELOG.md"])
     download_body = md_to_html(download_md)
-    download_body = pad_content(f'<div id="top"></div>\n<h1>Download v++</h1>\n{download_body}')
+    download_body = f'<div id="top"></div>\n<h1>Download v++</h1>\n{download_body}'
     download_body += """
 <h2 id="release-artifacts">Release artifacts</h2>
 <div class="table-wrap"><table>
@@ -528,7 +435,6 @@ def main() -> None:
 <tr><td>v0.1.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.1.0">Initial release</a></td></tr>
 </tbody></table></div>
 """
-    download_body = pad_content(download_body)
     headings = headings_from_html(download_body)
     page = shell("download.html", "Download", download_body, build_sidebar(sidebar, "download.html"),
                  build_toc(headings), "Download v++ prebuilt binaries and VS Code extension.")
