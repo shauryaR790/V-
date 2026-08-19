@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — v++</title>
-  <meta name="description" content="About v++ — design, architecture, memory model, and roadmap.">
+  <title>About — V++</title>
+  <meta name="description" content="About V++ — design, architecture, memory model, and roadmap.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
 <body class="page-docs">
   <header class="site-header">
     <div class="header-inner">
-      <a href="/V-/index.html" class="brand"><img src="/V-/assets/logo-header.png" alt="v++" class="brand-logo"></a>
+      <a href="/V-/index.html" class="brand"><img src="/V-/assets/logo-header.png" alt="V++" class="brand-logo"></a>
       <nav class="top-nav"><a href="/V-/learn.html" class="nav-link">Learn</a>
 <a href="/V-/about.html" class="nav-link active">About</a>
 <a href="/V-/download.html" class="nav-link">Download</a>
@@ -60,7 +60,7 @@
 <li><a href="/V-/docs.html#troubleshooting">Troubleshooting</a></li>
 </ul>
 <p class="sidebar-group">Project</p><ul>
-<li><a href="/V-/about.html">About v++</a></li>
+<li><a href="/V-/about.html">About V++</a></li>
 <li><a href="/V-/about.html#architecture">Architecture</a></li>
 <li><a href="/V-/about.html#memory-model">Memory model</a></li>
 <li><a href="/V-/blog.html">Release notes</a></li>
@@ -69,14 +69,14 @@
 </ul></aside>
     <main class="docs-main">
       <article class="docs-article"><div id="top"></div>
-<h1 id="v">v++</h1>
-<p><strong>v++</strong> is a compiled programming language — Python-style readability, static typing, native performance.</p>
+<h1 id="v">V++</h1>
+<p><strong>V++</strong> is a compiled programming language — Python-style readability, static typing, native performance.</p>
 <p>&gt; Write it simply. Compile it natively. Grow into control when you need it.</p>
 <p><strong>Author:</strong> <a href="https://github.com/shauryaR790">Shaurya</a> · <strong>License:</strong> MIT · <strong>Version:</strong> 0.5.0</p>
 <hr>
 <h2 id="get-started-in-2-minutes">Get started in 2 minutes</h2>
 <p>1. <strong>Download</strong> <a href="https://github.com/shauryaR790/V-/releases/latest"><code>vpp-0.5.0-setup.exe</code></a> (Windows installer)</p>
-<p>2. <strong>Install</strong> <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">v++ Language</a> in VS Code (publisher: <strong>vpp-lang</strong>)</p>
+<p>2. <strong>Install</strong> <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">V++ Language</a> in VS Code (publisher: <strong>vpp-lang</strong>)</p>
 <p>3. <strong>Run:</strong></p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>Shell</span></div>
@@ -177,12 +177,12 @@ cargo test --all-targets</code></pre>
 <p><strong>v0.5</strong> — website, REPL, SignPath signing, expanded stdlib  </p>
 <p><strong>v1.0</strong> — stable spec, debugger, test explorer</p>
 <p>Details: <a href="docs/project/roadmap.md">docs/project/roadmap.md</a></p>
-<h1 id="v-compiler-architecture-v0-2">v++ Compiler Architecture (v0.2)</h1>
+<h1 id="v-compiler-architecture-v0-2">V++ Compiler Architecture (v0.2)</h1>
 <h2 id="overview">Overview</h2>
-<p>v++ is a statically typed language with a single front-end and two backends:</p>
+<p>V++ is a statically typed language with a single front-end and two backends:</p>
 <ul>
 <li><strong>Interpreter</strong> — tree-walking evaluation for development and teaching</li>
-<li><strong>Native compiler</strong> — lowers to v++ IR, then LLVM, links the C runtime</li>
+<li><strong>Native compiler</strong> — lowers to V++ IR, then LLVM, links the C runtime</li>
 </ul>
 <p>Both backends consume the same <strong>typed AST</strong> produced by the type checker.</p>
 <div class="code-block-wrap">
@@ -221,7 +221,7 @@ cargo test --all-targets</code></pre>
 <p>Hand-written lexer with significant newlines. Recursive-descent parser with Pratt precedence for expressions.</p>
 <h3 id="type-checker">Type checker</h3>
 <p>Two-pass: register types and functions, then check bodies. Uses <code>src/builtins</code> for builtin signatures.</p>
-<h3 id="v-ir">v++ IR</h3>
+<h3 id="v-ir">V++ IR</h3>
 <p>Thin intermediate representation between typed AST and LLVM. Makes memory operations, control flow, and calling conventions explicit. See <code>src/ir/mod.rs</code>.</p>
 <h3 id="llvm-backend">LLVM backend</h3>
 <p>Inkwell-based. Emits LLVM IR, invokes <code>clang</code> to produce object files, links runtime. Feature-gated: <code>--features codegen</code>.</p>
@@ -237,7 +237,7 @@ cargo test --all-targets</code></pre>
 <li><strong>v0.3</strong> — module redesign, package manager (not in v0.2)</li>
 <li><strong>v0.4</strong> — generics, traits, <code>mut</code>, compile-time match exhaustiveness</li>
 </ul>
-<h1 id="v-memory-model-v0-2-bootstrap">v++ Memory Model (v0.2 bootstrap)</h1>
+<h1 id="v-memory-model-v0-2-bootstrap">V++ Memory Model (v0.2 bootstrap)</h1>
 <h2 id="goals">Goals</h2>
 <ul>
 <li>Predictable behavior for beginners</li>
@@ -340,8 +340,8 @@ cargo test --all-targets</code></pre>
 <li>Optional <code>unsafe</code> blocks</li>
 <li>No hidden GC</li>
 </ul>
-<h1 id="v-language-specification-v0-4">v++ Language Specification (v0.4)</h1>
-<p>This document describes v++ as implemented in v0.4. If code and spec disagree, parity tests and native execution are authoritative.</p>
+<h1 id="v-language-specification-v0-4">V++ Language Specification (v0.4)</h1>
+<p>This document describes V++ as implemented in v0.4. If code and spec disagree, parity tests and native execution are authoritative.</p>
 <h2 id="types">Types</h2>
 <div class="table-wrap"><table>
 <tr>
@@ -549,12 +549,12 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 <li>[ ] Curriculum + interactive tutorial</li>
 </ul>
 <p>Track progress in <a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a>.</p>
-<h1 id="privacy-policy-v">Privacy Policy — v++</h1>
+<h1 id="privacy-policy-v">Privacy Policy — V++</h1>
 <p><strong>Last updated:</strong> August 2026</p>
-<p>v++ (the compiler, language server, and VS Code extension) is open-source software distributed under the MIT License.</p>
+<p>V++ (the compiler, language server, and VS Code extension) is open-source software distributed under the MIT License.</p>
 <h2 id="data-collection">Data collection</h2>
-<p>The v++ compiler and language server <strong>do not collect, transmit, or store personal data</strong>. All compilation and analysis runs locally on your machine.</p>
-<p>The VS Code extension communicates only with the local <code>vppls</code> language server process on your computer. It does not send source code or usage data to any remote server operated by the v++ project.</p>
+<p>The V++ compiler and language server <strong>do not collect, transmit, or store personal data</strong>. All compilation and analysis runs locally on your machine.</p>
+<p>The VS Code extension communicates only with the local <code>vppls</code> language server process on your computer. It does not send source code or usage data to any remote server operated by the V++ project.</p>
 <h2 id="third-party-services">Third-party services</h2>
 <ul>
 <li><strong>GitHub Releases</strong> — if you download binaries from GitHub, GitHub’s own privacy policy applies to that download.</li>
@@ -566,25 +566,25 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>
       <ul>
-<li class=""><a href="#v">v++</a></li>
+<li class=""><a href="#v">V++</a></li>
 <li class="toc-h2"><a href="#get-started-in-2-minutes">Get started in 2 minutes</a></li>
 <li class="toc-h2"><a href="#documentation">Documentation</a></li>
 <li class="toc-h2"><a href="#features">Features</a></li>
 <li class="toc-h2"><a href="#links">Links</a></li>
 <li class="toc-h2"><a href="#for-developers">For developers</a></li>
 <li class="toc-h2"><a href="#roadmap">Roadmap</a></li>
-<li class=""><a href="#v-compiler-architecture-v0-2">v++ Compiler Architecture (v0.2)</a></li>
+<li class=""><a href="#v-compiler-architecture-v0-2">V++ Compiler Architecture (v0.2)</a></li>
 <li class="toc-h2"><a href="#overview">Overview</a></li>
 <li class="toc-h2"><a href="#components">Components</a></li>
 <li class="toc-h3"><a href="#lexer-parser">Lexer / Parser</a></li>
 <li class="toc-h3"><a href="#type-checker">Type checker</a></li>
-<li class="toc-h3"><a href="#v-ir">v++ IR</a></li>
+<li class="toc-h3"><a href="#v-ir">V++ IR</a></li>
 <li class="toc-h3"><a href="#llvm-backend">LLVM backend</a></li>
 <li class="toc-h3"><a href="#runtime">Runtime</a></li>
 <li class="toc-h3"><a href="#builtins">Builtins</a></li>
 <li class="toc-h2"><a href="#feature-parity-v0-2-target">Feature parity (v0.2 target)</a></li>
 <li class="toc-h2"><a href="#version-notes">Version notes</a></li>
-<li class=""><a href="#v-memory-model-v0-2-bootstrap">v++ Memory Model (v0.2 bootstrap)</a></li>
+<li class=""><a href="#v-memory-model-v0-2-bootstrap">V++ Memory Model (v0.2 bootstrap)</a></li>
 <li class="toc-h2"><a href="#goals">Goals</a></li>
 <li class="toc-h2"><a href="#representation">Representation</a></li>
 <li class="toc-h3"><a href="#stack-by-value-in-llvm">Stack (by value in LLVM)</a></li>
@@ -594,7 +594,7 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 <li class="toc-h2"><a href="#arc-rules-v0-2-bootstrap">ARC rules (v0.2 bootstrap)</a></li>
 <li class="toc-h2"><a href="#interpreter-mapping">Interpreter mapping</a></li>
 <li class="toc-h2"><a href="#future-v1-0">Future (v1.0)</a></li>
-<li class=""><a href="#v-language-specification-v0-4">v++ Language Specification (v0.4)</a></li>
+<li class=""><a href="#v-language-specification-v0-4">V++ Language Specification (v0.4)</a></li>
 <li class="toc-h2"><a href="#types">Types</a></li>
 <li class="toc-h2"><a href="#variables">Variables</a></li>
 <li class="toc-h2"><a href="#functions">Functions</a></li>
@@ -610,7 +610,7 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 <li class="toc-h2"><a href="#shipped-v0-4-4">Shipped (v0.4.4)</a></li>
 <li class="toc-h2"><a href="#v0-5-current">v0.5 (current)</a></li>
 <li class="toc-h2"><a href="#v1-0-stable">v1.0 (stable)</a></li>
-<li class=""><a href="#privacy-policy-v">Privacy Policy — v++</a></li>
+<li class=""><a href="#privacy-policy-v">Privacy Policy — V++</a></li>
 <li class="toc-h2"><a href="#data-collection">Data collection</a></li>
 <li class="toc-h2"><a href="#third-party-services">Third-party services</a></li>
 <li class="toc-h2"><a href="#contact">Contact</a></li>

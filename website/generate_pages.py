@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate documentation HTML pages for the v++ website."""
+"""Generate documentation HTML pages for the V++ website."""
 
 from __future__ import annotations
 
@@ -22,6 +22,8 @@ NAV = [
 ]
 
 ASSET_PREFIX = "/V-/"
+
+BRAND = "V++"
 
 GITHUB_SVG = (
     '<svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">'
@@ -68,7 +70,7 @@ def md_to_html(text: str) -> str:
         if label in ("powershell", "shell", "bash", "sh"):
             display = "Shell"
         elif label in ("vpp", "v++"):
-            display = "v++"
+            display = BRAND
         elif label == "toml":
             display = "TOML"
         else:
@@ -187,12 +189,16 @@ def md_to_html(text: str) -> str:
     return "\n".join(out)
 
 
+def brand_text(s: str) -> str:
+    return re.sub(r"v\+\+", BRAND, s)
+
+
 def inline_md(s: str) -> str:
     s = html.escape(s)
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
     s = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", s)
     s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', s)
-    return s
+    return brand_text(s)
 
 
 def slug(text: str) -> str:
@@ -324,7 +330,7 @@ def shell(active: str, title: str, body: str, sidebar_html: str, toc_html: str, 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{html.escape(title)} — v++</title>
+  <title>{html.escape(title)} — {BRAND}</title>
   {meta}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -337,7 +343,7 @@ def shell(active: str, title: str, body: str, sidebar_html: str, toc_html: str, 
 <body class="page-docs">
   <header class="site-header">
     <div class="header-inner">
-      <a href="{ASSET_PREFIX}index.html" class="brand"><img src="{ASSET_PREFIX}assets/logo-header.png" alt="v++" class="brand-logo"></a>
+      <a href="{ASSET_PREFIX}index.html" class="brand"><img src="{ASSET_PREFIX}assets/logo-header.png" alt="{BRAND}" class="brand-logo"></a>
       <nav class="top-nav">{nav_items}</nav>
       <div class="header-actions">
         <a href="https://github.com/shauryaR790/V-" class="icon-btn" aria-label="GitHub" target="_blank" rel="noopener">
@@ -412,7 +418,8 @@ def build_toc(headings: list[tuple[str, str, str]]) -> str:
             cls = "toc-h2"
         else:
             cls = ""
-        parts.append(f'<li class="{cls}"><a href="#{hid}">{html.escape(title)}</a></li>')
+        title_clean = html.unescape(title)
+        parts.append(f'<li class="{cls}"><a href="#{hid}">{title_clean}</a></li>')
     parts.append("</ul>")
     return "\n".join(parts)
 
@@ -469,7 +476,7 @@ def all_doc_links() -> dict[str, list[tuple[str, str]]]:
         ("docs.html#troubleshooting", "Troubleshooting"),
     ]
     project = [
-        ("about.html", "About v++"),
+        ("about.html", f"About {BRAND}"),
         ("about.html#architecture", "Architecture"),
         ("about.html#memory-model", "Memory model"),
         ("blog.html", "Release notes"),
@@ -497,26 +504,26 @@ def main() -> None:
         DOCS / "getting-started" / "vscode-setup.md",
     ]
     write_doc_page("learn.html", "learn.html", "Learn", learn_paths, sidebar, "learn.html#introduction",
-                   "Learn v++ — installation, syntax, and your first programs.")
+                   f"Learn {BRAND} — installation, syntax, and your first programs.")
 
     docs_paths = all_reference_sources()
     write_doc_page("docs.html", "docs.html", "Documentation", docs_paths, sidebar, "docs.html",
-                   "Complete v++ language and toolchain documentation.", use_sources=True)
+                   f"Complete {BRAND} language and toolchain documentation.", use_sources=True)
 
     about_paths = [ROOT / "README.md", ROOT / "ARCHITECTURE.md", ROOT / "MEMORY_MODEL.md",
                    ROOT / "SPEC.md", DOCS / "project" / "roadmap.md", DOCS / "PRIVACY.md"]
     write_doc_page("about.html", "about.html", "About", about_paths, sidebar, "about.html",
-                   "About v++ — design, architecture, memory model, and roadmap.")
+                   f"About {BRAND} — design, architecture, memory model, and roadmap.")
 
     blog_paths = [ROOT / "CHANGELOG.md", DOCS / "project" / "roadmap.md"]
     write_doc_page("blog.html", "blog.html", "Blog", blog_paths, sidebar, "blog.html",
-                   "v++ release notes and development blog.")
+                   f"{BRAND} release notes and development blog.")
 
     contrib_paths = [ROOT / "CONTRIBUTING.md", DOCS / "contributing" / "building-from-source.md",
                      DOCS / "contributing" / "running-tests.md", ROOT / "SECURITY.md",
                      ROOT / "CODE_OF_CONDUCT.md"]
     write_doc_page("contribute.html", "contribute.html", "Contribute", contrib_paths, sidebar, "contribute.html",
-                   "Contribute to the v++ compiler, docs, and ecosystem.")
+                   f"Contribute to the {BRAND} compiler, docs, and ecosystem.")
 
     courses_paths = [ROOT / "projects" / "README.md"]
     for i in range(1, 21):
@@ -526,12 +533,12 @@ def main() -> None:
             if (p / "main.vpp").exists():
                 courses_paths.append(p / "main.vpp")
     write_doc_page("courses.html", "courses.html", "Courses", courses_paths, sidebar, "courses.html",
-                   "Twenty v++ projects from beginner to advanced.", use_sources=True)
+                   f"Twenty {BRAND} projects from beginner to advanced.", use_sources=True)
 
     # Download page
     download_md = collect_md([DOCS / "getting-started" / "install.md"]) + "\n\n" + collect_md([ROOT / "CHANGELOG.md"])
     download_body = md_to_html(download_md)
-    download_body = f'<div id="top"></div>\n<h1>Download v++</h1>\n{download_body}'
+    download_body = f'<div id="top"></div>\n<h1>Download {BRAND}</h1>\n{download_body}'
     download_body += """
 <h2 id="release-artifacts">Release artifacts</h2>
 <div class="table-wrap"><table>
@@ -547,7 +554,7 @@ def main() -> None:
 """
     headings = headings_from_html(download_body)
     page = shell("download.html", "Download", download_body, build_sidebar(sidebar, "download.html"),
-                 build_toc(headings), "Download v++ prebuilt binaries and VS Code extension.")
+                 build_toc(headings), f"Download {BRAND} prebuilt binaries and VS Code extension.")
     (WEBSITE / "download.html").write_text(page, encoding="utf-8")
     print(f"Wrote download.html: {page.count(chr(10))} lines")
 

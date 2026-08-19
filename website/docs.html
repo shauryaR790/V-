@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Documentation — v++</title>
-  <meta name="description" content="Complete v++ language and toolchain documentation.">
+  <title>Documentation — V++</title>
+  <meta name="description" content="Complete V++ language and toolchain documentation.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
 <body class="page-docs">
   <header class="site-header">
     <div class="header-inner">
-      <a href="/V-/index.html" class="brand"><img src="/V-/assets/logo-header.png" alt="v++" class="brand-logo"></a>
+      <a href="/V-/index.html" class="brand"><img src="/V-/assets/logo-header.png" alt="V++" class="brand-logo"></a>
       <nav class="top-nav"><a href="/V-/learn.html" class="nav-link">Learn</a>
 <a href="/V-/about.html" class="nav-link">About</a>
 <a href="/V-/download.html" class="nav-link">Download</a>
@@ -60,7 +60,7 @@
 <li><a href="/V-/docs.html#troubleshooting">Troubleshooting</a></li>
 </ul>
 <p class="sidebar-group">Project</p><ul>
-<li><a href="/V-/about.html">About v++</a></li>
+<li><a href="/V-/about.html">About V++</a></li>
 <li><a href="/V-/about.html#architecture">Architecture</a></li>
 <li><a href="/V-/about.html#memory-model">Memory model</a></li>
 <li><a href="/V-/blog.html">Release notes</a></li>
@@ -135,7 +135,7 @@ cargo test --features codegen parity
 .\stress.ps1</code></pre>
 </div>
 <p>CI runs on every push to <code>main</code> — see <a href="https://github.com/shauryaR790/V-/actions">GitHub Actions</a>.</p>
-<h1 id="your-first-v-project">Your first v++ project</h1>
+<h1 id="your-first-v-project">Your first V++ project</h1>
 <h2 id="scaffold">Scaffold</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>Shell</span></div>
@@ -172,7 +172,7 @@ vpp update</code></pre>
 <h1 id="first-program">First program</h1>
 <p>Create a file named <code>hello.vpp</code>:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
     print(&quot;v++ program started&quot;)
     return 0
@@ -197,7 +197,7 @@ vpp update</code></pre>
 <pre class="language-bash"><code class="language-bash">vpp build hello.vpp -o hello.exe
 .\hello.exe</code></pre>
 </div>
-<p>Requires LLVM and clang on your PATH. Produces a standalone <code>.exe</code> with no v++ runtime dependency.</p>
+<p>Requires LLVM and clang on your PATH. Produces a standalone <code>.exe</code> with no V++ runtime dependency.</p>
 <h2 id="commands-summary">Commands summary</h2>
 <div class="table-wrap"><table>
 <tr>
@@ -218,7 +218,7 @@ vpp update</code></pre>
 </tr>
 </tbody></table></div>
 <p>Next: <a href="first-project.md">Your first project</a>.</p>
-<h1 id="install-v">Install v++</h1>
+<h1 id="install-v">Install V++</h1>
 <h2 id="windows-recommended">Windows (recommended)</h2>
 <p>1. Download <strong><code>vpp-0.5.0-setup.exe</code></strong> from <a href="https://github.com/shauryaR790/V-/releases/latest">GitHub Releases</a>.</p>
 <p>2. Run the installer. If Windows SmartScreen appears, choose <strong>More info → Run anyway</strong>.</p>
@@ -236,7 +236,7 @@ vpp doctor</code></pre>
 </div>
 <p>Restart the terminal.</p>
 <h2 id="vs-code-extension">VS Code extension</h2>
-<p>1. Extensions → search <strong>v++ Language</strong></p>
+<p>1. Extensions → search <strong>V++ Language</strong></p>
 <p>2. Publisher must be <strong>vpp-lang</strong></p>
 <p>3. <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">Marketplace link</a></p>
 <p>See <a href="vscode-setup.md">VS Code setup</a>.</p>
@@ -263,20 +263,20 @@ vpp doctor</code></pre>
 <td>Rust + LLVM 22</td>
 </tr>
 </tbody></table></div>
-<h1 id="introduction-to-v">Introduction to v++</h1>
-<p>v++ is a statically typed programming language with readable syntax, a fast interpreter for development, and native compilation to standalone executables via LLVM.</p>
+<h1 id="introduction-to-v">Introduction to V++</h1>
+<p>V++ is a statically typed programming language with readable syntax, a fast interpreter for development, and native compilation to standalone executables via LLVM.</p>
 <p><strong>Write it simply. Compile it natively. Grow into control when you need it.</strong></p>
-<h2 id="what-v-is">What v++ is</h2>
-<p>v++ targets developers who want Python-style readability without giving up compile-time safety or native performance. You start with <code>vpp run</code> during learning and prototyping, then ship the same source with <code>vpp build</code> when you need a <code>.exe</code> with no runtime dependency.</p>
+<h2 id="what-v-is">What V++ is</h2>
+<p>V++ targets developers who want Python-style readability without giving up compile-time safety or native performance. You start with <code>vpp run</code> during learning and prototyping, then ship the same source with <code>vpp build</code> when you need a <code>.exe</code> with no runtime dependency.</p>
 <p>The toolchain includes a type checker, formatter, package manager, test runner, VS Code language server, and twenty guided projects from beginner to advanced.</p>
-<h2 id="how-v-compares">How v++ compares</h2>
+<h2 id="how-v-compares">How V++ compares</h2>
 <div class="table-wrap"><table>
 <tr>
 <td></td>
 <td>Python</td>
 <td>Rust</td>
 <td>C/C++</td>
-<td>v++</td>
+<td>V++</td>
 </tr>
 <tr>
 <td>Syntax</td>
@@ -321,10 +321,10 @@ vpp doctor</code></pre>
 <td>Early (v0.5)</td>
 </tr>
 </tbody></table></div>
-<p><strong>vs Python:</strong> v++ catches type errors before run, produces native binaries, and keeps similar control-flow and function syntax. You trade PyPI&#x27;s scale for a smaller, focused stdlib and a compiler that fits in one repo.</p>
-<p><strong>vs Rust:</strong> v++ avoids ownership/borrowing complexity upfront. Memory is ARC-managed in native builds; you get structs, enums, <code>match</code>, generics, and traits without the full Rust learning cliff.</p>
-<p><strong>vs C/C++:</strong> v++ removes manual memory management and header boilerplate. You still get native code and predictable performance for the supported subset.</p>
-<h2 id="why-use-v-now">Why use v++ now</h2>
+<p><strong>vs Python:</strong> V++ catches type errors before run, produces native binaries, and keeps similar control-flow and function syntax. You trade PyPI&#x27;s scale for a smaller, focused stdlib and a compiler that fits in one repo.</p>
+<p><strong>vs Rust:</strong> V++ avoids ownership/borrowing complexity upfront. Memory is ARC-managed in native builds; you get structs, enums, <code>match</code>, generics, and traits without the full Rust learning cliff.</p>
+<p><strong>vs C/C++:</strong> V++ removes manual memory management and header boilerplate. You still get native code and predictable performance for the supported subset.</p>
+<h2 id="why-use-v-now">Why use V++ now</h2>
 <ul>
 <li><strong>One language, two modes</strong> — interpret while learning, compile when shipping.</li>
 <li><strong>Errors before run</strong> — static types and exhaustiveness checking on <code>match</code>.</li>
@@ -332,7 +332,7 @@ vpp doctor</code></pre>
 <li><strong>Open source</strong> — MIT licensed, compiler and docs in one repository.</li>
 <li><strong>Honest scope</strong> — v0.5 is early; the language is usable for learning, CLI tools, and small native programs.</li>
 </ul>
-<h2 id="how-to-learn-v">How to learn v++</h2>
+<h2 id="how-to-learn-v">How to learn V++</h2>
 <p>1. <a href="install.md">Install</a> the Windows installer or build from source.</p>
 <p>2. Write your <a href="hello-world.md">first program</a> — types, <code>fn main</code>, run/check/build.</p>
 <p>3. Scaffold a <a href="first-project.md">project</a> with <code>vpp new</code> and run tests.</p>
@@ -367,7 +367,7 @@ vpp doctor</code></pre>
 <td>Primary CI and installers are Windows; other platforms are best-effort.</td>
 </tr>
 </tbody></table></div>
-<h2 id="when-v-is-not-the-right-choice">When v++ is not the right choice</h2>
+<h2 id="when-v-is-not-the-right-choice">When V++ is not the right choice</h2>
 <ul>
 <li>You need a mature package ecosystem (use Python, Node, or Rust).</li>
 <li>You need mobile, WebAssembly, or embedded targets today (not primary focus).</li>
@@ -381,18 +381,18 @@ vpp doctor</code></pre>
 <li><a href="../README.md">Full documentation</a></li>
 </ul>
 <h1 id="getting-started">Getting started</h1>
-<p>1. <a href="introduction.md">Introduction</a> — what v++ is, comparisons, learning path</p>
+<p>1. <a href="introduction.md">Introduction</a> — what V++ is, comparisons, learning path</p>
 <p>2. <a href="install.md">Install</a></p>
 <p>3. <a href="hello-world.md">First program</a></p>
 <p>4. <a href="first-project.md">Your first project</a></p>
 <p>5. <a href="vscode-setup.md">VS Code setup</a></p>
-<h1 id="vs-code-setup-for-v">VS Code setup for v++</h1>
+<h1 id="vs-code-setup-for-v">VS Code setup for V++</h1>
 <h2 id="install">Install</h2>
 <p>1. Install the compiler (<a href="install.md">install guide</a>).</p>
-<p>2. Install extension <strong>v++ Language</strong> (publisher: <strong>vpp-lang</strong>).</p>
+<p>2. Install extension <strong>V++ Language</strong> (publisher: <strong>vpp-lang</strong>).</p>
 <h2 id="run-code">Run code</h2>
 <p>1. Open a folder with <code>.vpp</code> files.</p>
-<p>2. Open a file — bottom-right should say <strong>v++</strong>.</p>
+<p>2. Open a file — bottom-right should say <strong>V++</strong>.</p>
 <p>3. Press <strong>F5</strong> or <strong>Ctrl+Shift+R</strong> to run the active file.</p>
 <h2 id="language-server-intellisense">Language server (IntelliSense)</h2>
 <p>Build <code>vppls</code> once (or use a release that includes it):</p>
@@ -426,15 +426,15 @@ vpp doctor</code></pre>
 <td>Shortcut</td>
 </tr>
 <tr>
-<td>v++: Run File</td>
+<td>V++: Run File</td>
 <td>F5, Ctrl+Shift+R</td>
 </tr>
 <tr>
-<td>v++: Check File</td>
+<td>V++: Check File</td>
 <td>Command Palette</td>
 </tr>
 <tr>
-<td>v++: Run Tests</td>
+<td>V++: Run Tests</td>
 <td>Command Palette</td>
 </tr>
 </tbody></table></div>
@@ -508,7 +508,7 @@ vpp doctor</code></pre>
 <h2 id="protocol">Protocol</h2>
 <p>Standard LSP over stdio. Started automatically by the VS Code extension when a <code>.vpp</code> file is open.</p>
 <h1 id="native-compilation">Native compilation</h1>
-<p><code>vpp build</code> lowers code to LLVM IR, compiles with clang, and links the v++ C runtime.</p>
+<p><code>vpp build</code> lowers code to LLVM IR, compiles with clang, and links the V++ C runtime.</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>Shell</span></div>
 <pre class="language-bash"><code class="language-bash">vpp build examples/hello.vpp -o hello.exe
@@ -590,7 +590,7 @@ vpp remove hello-lib</code></pre>
 <h1 id="testing">Testing</h1>
 <h2 id="inline-test-blocks">Inline test blocks</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">test &quot;addition works&quot; {
     assert_eq(add(2, 3), 5)
 }</code></pre>
@@ -602,7 +602,7 @@ vpp remove hello-lib</code></pre>
 <pre class="language-bash"><code class="language-bash">vpp test</code></pre>
 </div>
 <h2 id="vs-code">VS Code</h2>
-<p>Command Palette → <strong>v++: Run Tests</strong></p>
+<p>Command Palette → <strong>V++: Run Tests</strong></p>
 <h2 id="ci">CI</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>Shell</span></div>
@@ -626,13 +626,13 @@ cargo test --features codegen parity</code></pre>
 </ul>
 <h2 id="no-syntax-highlighting">No syntax highlighting</h2>
 <ul>
-<li>Install extension <strong>v++ Language</strong> (vpp-lang)</li>
-<li>Reload window; confirm language mode is <strong>v++</strong></li>
+<li>Install extension <strong>V++ Language</strong> (vpp-lang)</li>
+<li>Reload window; confirm language mode is <strong>V++</strong></li>
 </ul>
 <h2 id="lsp-not-working">LSP not working</h2>
 <ul>
 <li>Build <code>vppls</code>: <code>cargo build --features lsp --bin vppls</code></li>
-<li>Check Output panel → v++ Language Server</li>
+<li>Check Output panel → V++ Language Server</li>
 </ul>
 <h2 id="native-vs-interpreter-mismatch">Native vs interpreter mismatch</h2>
 <p>Run parity check:</p>
@@ -644,7 +644,7 @@ cargo test --features codegen parity</code></pre>
 <h1 id="control-flow">Control flow</h1>
 <h2 id="if-else">if / else</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">if x &gt; 0 {
     print(&quot;positive&quot;)
 } else {
@@ -653,7 +653,7 @@ cargo test --features codegen parity</code></pre>
 </div>
 <h2 id="while">while</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">let mut i = 0
 while i &lt; 3 {
     print(i)
@@ -662,21 +662,21 @@ while i &lt; 3 {
 </div>
 <h2 id="for-range">for (range)</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">for i in 0..3 {
     print(i)
 }</code></pre>
 </div>
 <h2 id="for-array">for (array)</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">for name in [&quot;Alex&quot;, &quot;Sam&quot;] {
     print(name)
 }</code></pre>
 </div>
 <h2 id="match">match</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">match status {
     Active =&gt; print(&quot;on&quot;),
     Idle =&gt; print(&quot;off&quot;),
@@ -688,7 +688,7 @@ while i &lt; 3 {
 <p>Supported inside <code>while</code> and <code>for</code> loops.</p>
 <h1 id="functions">Functions</h1>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn greet(name: string) -&gt; int {
     print(name)
     return 0
@@ -696,7 +696,7 @@ while i &lt; 3 {
 </div>
 <h2 id="main">Main</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
     print(&quot;starting&quot;)
     return 0
@@ -704,7 +704,7 @@ while i &lt; 3 {
 </div>
 <h2 id="generic-functions-v0-4">Generic functions (v0.4+)</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn id[T](x: T) -&gt; T {
     return x
 }
@@ -714,9 +714,9 @@ print(id[int](42))</code></pre>
 <p>Type arguments are required at call sites (monomorphization).</p>
 <p>See <a href="generics.md">generics.md</a>.</p>
 <h1 id="generics-v0-4">Generics (v0.4+)</h1>
-<p>v++ uses <strong>monomorphization</strong> — generic functions are specialized at each call site.</p>
+<p>V++ uses <strong>monomorphization</strong> — generic functions are specialized at each call site.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn first[T](items: array[T]) -&gt; Option[T] {
     if len(items) == 0 {
         return None
@@ -726,14 +726,14 @@ print(id[int](42))</code></pre>
 </div>
 <p>Call with explicit type args:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">let word = first[string]([&quot;a&quot;, &quot;b&quot;])</code></pre>
 </div>
 <p>Example: <a href="../../examples/generics.vpp"><code>examples/generics.vpp</code></a>.</p>
 <h1 id="modules">Modules</h1>
 <h2 id="standard-library-imports">Standard library imports</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.io
 import std.math
 
@@ -746,7 +746,7 @@ fn main() -&gt; int {
 <h2 id="public-exports">Public exports</h2>
 <p>In a module file, mark items with <code>pub</code>:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn helper() -&gt; int {
     return 1
 }</code></pre>
@@ -763,13 +763,13 @@ fn main() -&gt; int {
 <h1 id="mut-and-immutability-v0-4">mut and immutability (v0.4+)</h1>
 <p>Bindings are <strong>immutable by default</strong>.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">let x = 1
 // x = 2   // error: cannot reassign immutable binding</code></pre>
 </div>
 <p>Use <code>mut</code> when you need to reassign:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">let mut count = 0
 count = count + 1</code></pre>
 </div>
@@ -777,13 +777,13 @@ count = count + 1</code></pre>
 <h1 id="option-result-and-match">Option, Result, and match</h1>
 <h2 id="option">Option</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">let some = Some(42)
 let none: Option[int] = None</code></pre>
 </div>
 <h2 id="result">Result</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn divide(a: int, b: int) -&gt; Result[int, string] {
     if b == 0 {
         return Err(&quot;division by zero&quot;)
@@ -794,7 +794,7 @@ let none: Option[int] = None</code></pre>
 <h2 id="exhaustive-match">Exhaustive match</h2>
 <p>The compiler rejects non-exhaustive matches on enums, <code>Option</code>, and <code>Result</code>:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">match opt {
     Some(x) =&gt; print(x),
     None =&gt; print(&quot;empty&quot;),
@@ -802,8 +802,8 @@ let none: Option[int] = None</code></pre>
 </div>
 <p>Missing <code>None</code> → <strong>E0107</strong>.</p>
 <p>Use <code>_</code> for a catch-all when appropriate.</p>
-<h1 id="v-language-overview">v++ language overview</h1>
-<p>v++ combines readable syntax with static typing and optional native compilation.</p>
+<h1 id="v-language-overview">V++ language overview</h1>
+<p>V++ combines readable syntax with static typing and optional native compilation.</p>
 <h2 id="design-goals">Design goals</h2>
 <ul>
 <li><strong>Readable</strong> — minimal punctuation, familiar control flow</li>
@@ -858,7 +858,7 @@ let none: Option[int] = None</code></pre>
 <h1 id="structs-and-enums">Structs and enums</h1>
 <h2 id="struct">Struct</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">struct User {
     name: string,
     age: int,
@@ -869,7 +869,7 @@ print(u.name)</code></pre>
 </div>
 <h2 id="enum">Enum</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">enum Status {
     Active,
     Idle,
@@ -883,7 +883,7 @@ match s {
 </div>
 <h2 id="enum-with-payloads">Enum with payloads</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">enum Message {
     Text(string),
     Count(int),
@@ -893,7 +893,7 @@ match s {
 <h1 id="traits-and-impls-v0-4">Traits and impls (v0.4+)</h1>
 <p>Static dispatch — no virtual tables at runtime.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">trait Display {
     fn to_text(self) -&gt; string
 }
@@ -950,39 +950,39 @@ print(u.to_text())</code></pre>
 </tbody></table></div>
 <h2 id="local-inference">Local inference</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">let x = 10        // int
 let name = &quot;v++&quot;  // string
 let active = true // bool</code></pre>
 </div>
 <h2 id="explicit-annotations">Explicit annotations</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">let count: int = 0
 let items: array[string] = [&quot;a&quot;, &quot;b&quot;]</code></pre>
 </div>
 <h2 id="function-signatures">Function signatures</h2>
 <p>Parameters and return types are <strong>always explicit</strong>:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn add(a: int, b: int) -&gt; int {
     return a + b
 }</code></pre>
 </div>
 <h2 id="entry-point">Entry point</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
     return 0
 }</code></pre>
 </div>
 <p><code>vpp run</code> calls <code>main()</code> when defined.</p>
-<h1 id="privacy-policy-v">Privacy Policy — v++</h1>
+<h1 id="privacy-policy-v">Privacy Policy — V++</h1>
 <p><strong>Last updated:</strong> August 2026</p>
-<p>v++ (the compiler, language server, and VS Code extension) is open-source software distributed under the MIT License.</p>
+<p>V++ (the compiler, language server, and VS Code extension) is open-source software distributed under the MIT License.</p>
 <h2 id="data-collection">Data collection</h2>
-<p>The v++ compiler and language server <strong>do not collect, transmit, or store personal data</strong>. All compilation and analysis runs locally on your machine.</p>
-<p>The VS Code extension communicates only with the local <code>vppls</code> language server process on your computer. It does not send source code or usage data to any remote server operated by the v++ project.</p>
+<p>The V++ compiler and language server <strong>do not collect, transmit, or store personal data</strong>. All compilation and analysis runs locally on your machine.</p>
+<p>The VS Code extension communicates only with the local <code>vppls</code> language server process on your computer. It does not send source code or usage data to any remote server operated by the V++ project.</p>
 <h2 id="third-party-services">Third-party services</h2>
 <ul>
 <li><strong>GitHub Releases</strong> — if you download binaries from GitHub, GitHub’s own privacy policy applies to that download.</li>
@@ -991,14 +991,14 @@ let items: array[string] = [&quot;a&quot;, &quot;b&quot;]</code></pre>
 <h2 id="contact">Contact</h2>
 <p>Issues and questions: https://github.com/shauryaR790/V-/issues</p>
 <h1 id="faq">FAQ</h1>
-<h2 id="what-is-v">What is v++?</h2>
+<h2 id="what-is-v">What is V++?</h2>
 <p>A statically typed language with readable syntax, an interpreter for development, and native compilation to <code>.exe</code> via LLVM. Open source (MIT), currently at <strong>v0.5</strong>.</p>
-<h2 id="how-is-v-different-from-python">How is v++ different from Python?</h2>
+<h2 id="how-is-v-different-from-python">How is V++ different from Python?</h2>
 <div class="table-wrap"><table>
 <tr>
 <td></td>
 <td>Python</td>
-<td>v++</td>
+<td>V++</td>
 </tr>
 <tr>
 <td>Typing</td>
@@ -1026,13 +1026,13 @@ let items: array[string] = [&quot;a&quot;, &quot;b&quot;]</code></pre>
 <td>Learning, CLI tools, typed native programs</td>
 </tr>
 </tbody></table></div>
-<p>Python is better when you need libraries and speed of prototyping across domains. v++ is better when you want types and a native binary without switching languages later.</p>
-<h2 id="how-is-v-different-from-rust">How is v++ different from Rust?</h2>
-<p>Rust enforces ownership and borrowing at compile time for maximum safety and performance. v++ uses ARC for heap values in native mode and skips the borrow checker — easier to learn, less control over allocation patterns.</p>
-<p>Choose Rust for systems programming at scale. Choose v++ to learn typed languages or ship small native tools with Python-like syntax.</p>
-<h2 id="how-is-v-different-from-go-or-typescript">How is v++ different from Go or TypeScript?</h2>
-<p>Go is statically typed with a large ecosystem and goroutines. TypeScript adds types to JavaScript but still runs on Node/V8. v++ is a standalone language with its own interpreter and LLVM backend — not a host-VM language.</p>
-<h2 id="how-do-i-learn-v">How do I learn v++?</h2>
+<p>Python is better when you need libraries and speed of prototyping across domains. V++ is better when you want types and a native binary without switching languages later.</p>
+<h2 id="how-is-v-different-from-rust">How is V++ different from Rust?</h2>
+<p>Rust enforces ownership and borrowing at compile time for maximum safety and performance. V++ uses ARC for heap values in native mode and skips the borrow checker — easier to learn, less control over allocation patterns.</p>
+<p>Choose Rust for systems programming at scale. Choose V++ to learn typed languages or ship small native tools with Python-like syntax.</p>
+<h2 id="how-is-v-different-from-go-or-typescript">How is V++ different from Go or TypeScript?</h2>
+<p>Go is statically typed with a large ecosystem and goroutines. TypeScript adds types to JavaScript but still runs on Node/V8. V++ is a standalone language with its own interpreter and LLVM backend — not a host-VM language.</p>
+<h2 id="how-do-i-learn-v">How do I learn V++?</h2>
 <p>1. Read <a href="../getting-started/introduction.md">Introduction</a>.</p>
 <p>2. <a href="../getting-started/install.md">Install</a> and write the <a href="../getting-started/hello-world.md">first program</a>.</p>
 <p>3. Complete the <a href="../../projects/README.md">20 projects</a>.</p>
@@ -1045,20 +1045,20 @@ let items: array[string] = [&quot;a&quot;, &quot;b&quot;]</code></pre>
 <li><strong>Young ecosystem</strong> — fewer third-party packages than Python or Rust.</li>
 <li><strong>Pre-1.0</strong> — syntax and stdlib may change; pin releases for serious work.</li>
 </ul>
-<h2 id="why-would-i-choose-v">Why would I choose v++?</h2>
+<h2 id="why-would-i-choose-v">Why would I choose V++?</h2>
 <ul>
 <li>Readable syntax with real static typing.</li>
 <li>Same source for interpret (<code>vpp run</code>) and native ship (<code>vpp build</code>).</li>
 <li>Integrated toolchain: fmt, test, packages, LSP, VS Code extension.</li>
 <li>Full compiler source available to read and contribute to.</li>
 </ul>
-<h2 id="is-v-ready-for-production">Is v++ ready for production?</h2>
+<h2 id="is-v-ready-for-production">Is V++ ready for production?</h2>
 <p><strong>v0.5</strong> — suitable for learning, personal tools, and experimentation. Not yet a replacement for Python or Rust in large production systems. See <a href="roadmap.md">roadmap</a>.</p>
 <h2 id="where-do-i-download">Where do I download?</h2>
 <p><a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a> — <code>vpp-0.5.0-setup.exe</code> for Windows.</p>
 <h2 id="which-vs-code-extension-is-official">Which VS Code extension is official?</h2>
-<p><strong>v++ Language</strong> — publisher <code>vpp-lang</code> (<code>vpp-lang.vplusplus</code>).</p>
-<h2 id="does-v-collect-data">Does v++ collect data?</h2>
+<p><strong>V++ Language</strong> — publisher <code>vpp-lang</code> (<code>vpp-lang.vplusplus</code>).</p>
+<h2 id="does-v-collect-data">Does V++ collect data?</h2>
 <p>No. See <a href="../PRIVACY.md">PRIVACY.md</a>.</p>
 <h2 id="how-do-i-report-bugs">How do I report bugs?</h2>
 <p><a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a></p>
@@ -1089,7 +1089,7 @@ let items: array[string] = [&quot;a&quot;, &quot;b&quot;]</code></pre>
 <li>[ ] Curriculum + interactive tutorial</li>
 </ul>
 <p>Track progress in <a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a>.</p>
-<h1 id="v-documentation">v++ documentation</h1>
+<h1 id="v-documentation">V++ documentation</h1>
 <p>Start with <a href="getting-started/introduction.md">Introduction</a>, then <a href="getting-started/install.md">Install</a> and <a href="getting-started/hello-world.md">First program</a>.</p>
 <h2 id="sections">Sections</h2>
 <div class="table-wrap"><table>
@@ -1126,14 +1126,14 @@ let items: array[string] = [&quot;a&quot;, &quot;b&quot;]</code></pre>
 <h1 id="std-collections">std.collections</h1>
 <p>Collection helpers. See <a href="../../std/collections.vpp"><code>std/collections.vpp</code></a>.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.collections</code></pre>
 </div>
 <p>Arrays are first-class: <code>[1, 2, 3]</code>, <code>len(arr)</code>, <code>for x in arr</code>.</p>
 <h1 id="std-fs">std.fs</h1>
 <p>File system access (native codegen supported).</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.fs
 
 let text = fs.read_file(&quot;data.txt&quot;)
@@ -1143,7 +1143,7 @@ let exists = fs.file_exists(&quot;data.txt&quot;)</code></pre>
 <p>Use <code>vpp run</code> (interpreter) or <code>vpp build</code> depending on deployment needs.</p>
 <h1 id="std-io">std.io</h1>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.io
 
 fn main() -&gt; int {
@@ -1155,7 +1155,7 @@ fn main() -&gt; int {
 <h1 id="std-json">std.json</h1>
 <p>JSON parse and stringify (native codegen supported).</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.json
 
 let obj = json.parse(&quot;{\&quot;name\&quot;:\&quot;v++\&quot;}&quot;)
@@ -1164,7 +1164,7 @@ let s = json.stringify(obj)</code></pre>
 <p>For production JSON workloads, validate outputs against your schema in tests.</p>
 <h1 id="std-math">std.math</h1>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.math
 
 print(math.abs(-5))
@@ -1175,7 +1175,7 @@ print(math.pow(2, 10))</code></pre>
 <h1 id="std-process">std.process</h1>
 <p>Run external processes (native codegen supported).</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.process
 
 let code = process.run(&quot;echo hello&quot;)</code></pre>
@@ -1221,18 +1221,18 @@ let code = process.run(&quot;echo hello&quot;)</code></pre>
 <h1 id="std-string">std.string</h1>
 <p>String operations via the stdlib module. See <a href="../../std/string.vpp"><code>std/string.vpp</code></a> for current exports.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.string</code></pre>
 </div>
 <p>Built-in <code>string</code> type supports concatenation with <code>+</code> in the language.</p>
-<h1 id="v">v++</h1>
-<p><strong>v++</strong> is a compiled programming language — Python-style readability, static typing, native performance.</p>
+<h1 id="v">V++</h1>
+<p><strong>V++</strong> is a compiled programming language — Python-style readability, static typing, native performance.</p>
 <p>&gt; Write it simply. Compile it natively. Grow into control when you need it.</p>
 <p><strong>Author:</strong> <a href="https://github.com/shauryaR790">Shaurya</a> · <strong>License:</strong> MIT · <strong>Version:</strong> 0.5.0</p>
 <hr>
 <h2 id="get-started-in-2-minutes">Get started in 2 minutes</h2>
 <p>1. <strong>Download</strong> <a href="https://github.com/shauryaR790/V-/releases/latest"><code>vpp-0.5.0-setup.exe</code></a> (Windows installer)</p>
-<p>2. <strong>Install</strong> <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">v++ Language</a> in VS Code (publisher: <strong>vpp-lang</strong>)</p>
+<p>2. <strong>Install</strong> <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">V++ Language</a> in VS Code (publisher: <strong>vpp-lang</strong>)</p>
 <p>3. <strong>Run:</strong></p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>Shell</span></div>
@@ -1333,8 +1333,8 @@ cargo test --all-targets</code></pre>
 <p><strong>v0.5</strong> — website, REPL, SignPath signing, expanded stdlib  </p>
 <p><strong>v1.0</strong> — stable spec, debugger, test explorer</p>
 <p>Details: <a href="docs/project/roadmap.md">docs/project/roadmap.md</a></p>
-<h1 id="v-language-specification-v0-4">v++ Language Specification (v0.4)</h1>
-<p>This document describes v++ as implemented in v0.4. If code and spec disagree, parity tests and native execution are authoritative.</p>
+<h1 id="v-language-specification-v0-4">V++ Language Specification (v0.4)</h1>
+<p>This document describes V++ as implemented in v0.4. If code and spec disagree, parity tests and native execution are authoritative.</p>
 <h2 id="types">Types</h2>
 <div class="table-wrap"><table>
 <tr>
@@ -1517,12 +1517,12 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 <li>Traits use static dispatch only (no trait objects or bounds)</li>
 <li>Hosted package registry is local (<code>registry/index.toml</code>); no remote publish yet</li>
 </ul>
-<h1 id="v-compiler-architecture-v0-2">v++ Compiler Architecture (v0.2)</h1>
+<h1 id="v-compiler-architecture-v0-2">V++ Compiler Architecture (v0.2)</h1>
 <h2 id="overview">Overview</h2>
-<p>v++ is a statically typed language with a single front-end and two backends:</p>
+<p>V++ is a statically typed language with a single front-end and two backends:</p>
 <ul>
 <li><strong>Interpreter</strong> — tree-walking evaluation for development and teaching</li>
-<li><strong>Native compiler</strong> — lowers to v++ IR, then LLVM, links the C runtime</li>
+<li><strong>Native compiler</strong> — lowers to V++ IR, then LLVM, links the C runtime</li>
 </ul>
 <p>Both backends consume the same <strong>typed AST</strong> produced by the type checker.</p>
 <div class="code-block-wrap">
@@ -1561,7 +1561,7 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 <p>Hand-written lexer with significant newlines. Recursive-descent parser with Pratt precedence for expressions.</p>
 <h3 id="type-checker">Type checker</h3>
 <p>Two-pass: register types and functions, then check bodies. Uses <code>src/builtins</code> for builtin signatures.</p>
-<h3 id="v-ir">v++ IR</h3>
+<h3 id="v-ir">V++ IR</h3>
 <p>Thin intermediate representation between typed AST and LLVM. Makes memory operations, control flow, and calling conventions explicit. See <code>src/ir/mod.rs</code>.</p>
 <h3 id="llvm-backend">LLVM backend</h3>
 <p>Inkwell-based. Emits LLVM IR, invokes <code>clang</code> to produce object files, links runtime. Feature-gated: <code>--features codegen</code>.</p>
@@ -1577,7 +1577,7 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 <li><strong>v0.3</strong> — module redesign, package manager (not in v0.2)</li>
 <li><strong>v0.4</strong> — generics, traits, <code>mut</code>, compile-time match exhaustiveness</li>
 </ul>
-<h1 id="v-memory-model-v0-2-bootstrap">v++ Memory Model (v0.2 bootstrap)</h1>
+<h1 id="v-memory-model-v0-2-bootstrap">V++ Memory Model (v0.2 bootstrap)</h1>
 <h2 id="goals">Goals</h2>
 <ul>
 <li>Predictable behavior for beginners</li>
@@ -1681,7 +1681,7 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 <li>No hidden GC</li>
 </ul>
 <h1 id="changelog">Changelog</h1>
-<p>All notable changes to v++ are documented here.</p>
+<p>All notable changes to V++ are documented here.</p>
 <h2 id="0-5-0-2026-08-18">[0.5.0] — 2026-08-18</h2>
 <h3 id="added">Added</h3>
 <ul>
@@ -1773,7 +1773,7 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 <h2 id="0-2-0-2026-08-18">[0.2.0] — 2026-08-18</h2>
 <h3 id="added">Added</h3>
 <ul>
-<li>v++ IR (<code>src/ir/</code>) between typed AST and LLVM</li>
+<li>V++ IR (<code>src/ir/</code>) between typed AST and LLVM</li>
 <li>Shared builtin registry (<code>src/builtins/</code>)</li>
 <li><code>ARCHITECTURE.md</code>, <code>MEMORY_MODEL.md</code>, <code>SPEC.md</code></li>
 <li>Native string ABI using <code>VppString*</code> end-to-end</li>
@@ -1798,7 +1798,7 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 </ul>
 <h3 id="changed">Changed</h3>
 <ul>
-<li>LLVM backend lowers from v++ IR, not directly from typed AST</li>
+<li>LLVM backend lowers from V++ IR, not directly from typed AST</li>
 <li>Inkwell dependency pinned for reproducible builds</li>
 <li>Runtime uses portable <code>strdup</code> wrapper</li>
 <li>Struct/enum/match codegen in <code>src/codegen/struct_enum.rs</code></li>
@@ -1811,8 +1811,8 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 </ul>
 <h2 id="0-1-0-2026-08">[0.1.0] — 2026-08</h2>
 <p>Initial release: interpreter-complete language, partial LLVM backend, CLI, extension, stdlib, CI.</p>
-<h1 id="contributing-to-v">Contributing to v++</h1>
-<p>Thanks for helping improve v++!</p>
+<h1 id="contributing-to-v">Contributing to V++</h1>
+<p>Thanks for helping improve V++!</p>
 <h2 id="quick-links">Quick links</h2>
 <ul>
 <li><a href="docs/README.md">Documentation hub</a></li>
@@ -1897,13 +1897,13 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 </ul>
 <p>We aim to respond within 7 days.</p>
 <h2 id="scope">Scope</h2>
-<p>Reports about the v++ compiler, language server, VS Code extension, and official release binaries are in scope.</p>
+<p>Reports about the V++ compiler, language server, VS Code extension, and official release binaries are in scope.</p>
 <p>General language design feedback belongs in <a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a>.</p>
 <h2 id="safe-harbor">Safe harbor</h2>
 <p>We appreciate responsible disclosure and will credit reporters in release notes when fixes ship (unless you prefer anonymity).</p>
 <h1 id="contributor-covenant-code-of-conduct">Contributor Covenant Code of Conduct</h1>
 <h2 id="our-pledge">Our pledge</h2>
-<p>We pledge to make participation in the v++ project a harassment-free experience for everyone.</p>
+<p>We pledge to make participation in the V++ project a harassment-free experience for everyone.</p>
 <h2 id="our-standards">Our standards</h2>
 <p><strong>Positive:</strong> respectful feedback, welcoming newcomers, focusing on what is best for the community.</p>
 <p><strong>Unacceptable:</strong> harassment, trolling, personal attacks, publishing others&#x27; private information.</p>
@@ -1913,7 +1913,7 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 <p>Adapted from the <a href="https://www.contributor-covenant.org/">Contributor Covenant</a>, version 2.1.</p>
 <h3 id="std-assert-vpp"><code>std/assert.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Re-exports assert helpers (implemented as compiler builtins).
 // Import this module to use assert / assert_eq in tests.
 
@@ -1927,7 +1927,7 @@ fn assert_true(condition: bool) -&gt; int {
 </div>
 <h3 id="std-collections-vpp"><code>std/collections.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn make_int_array(values: array[int]) -&gt; array[int] {
     return values
 }
@@ -1958,7 +1958,7 @@ pub fn sum(arr: array[int]) -&gt; int {
 </div>
 <h3 id="std-fs-vpp"><code>std/fs.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// File I/O via compiler/runtime builtins (read_file, write_file, file_exists).
 
 pub fn read(path: string) -&gt; string {
@@ -1977,7 +1977,7 @@ pub fn exists(path: string) -&gt; bool {
 </div>
 <h3 id="std-io-vpp"><code>std/io.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn greet(name: string) -&gt; int {
     print(&quot;Hello, &quot; + name + &quot;!&quot;)
     return 0
@@ -1996,7 +1996,7 @@ pub fn print_int(n: int) -&gt; int {
 </div>
 <h3 id="std-json-vpp"><code>std/json.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Minimal JSON helpers via runtime builtins.
 
 pub fn parse(raw: string) -&gt; string {
@@ -2010,7 +2010,7 @@ pub fn stringify(raw: string) -&gt; string {
 </div>
 <h3 id="std-math-vpp"><code>std/math.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn add(a: int, b: int) -&gt; int {
     return a + b
 }
@@ -2059,7 +2059,7 @@ pub fn clamp(n: int, lo: int, hi: int) -&gt; int {
 </div>
 <h3 id="std-process-vpp"><code>std/process.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Process helpers via runtime builtins.
 
 pub fn run(cmd: string) -&gt; int {
@@ -2073,7 +2073,7 @@ pub fn exit_code(cmd: string) -&gt; int {
 </div>
 <h3 id="std-string-vpp"><code>std/string.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn upper(s: string) -&gt; string {
     return s
 }
@@ -2099,7 +2099,7 @@ pub fn is_empty(s: string) -&gt; bool {
 </div>
 <h3 id="examples-arrays-vpp"><code>examples/arrays.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">let users = [&quot;Alex&quot;, &quot;Sam&quot;, &quot;John&quot;]
 
 for user in users {
@@ -2123,7 +2123,7 @@ for i in 0..3 {
 </div>
 <h3 id="examples-arrays-fn-vpp"><code>examples/arrays_fn.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn sum_nums(nums: array[int]) -&gt; int {
     let mut total = 0
     for n in nums {
@@ -2146,7 +2146,7 @@ print(first(words))
 </div>
 <h3 id="examples-fib-vpp"><code>examples/fib.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn fib(n: int) -&gt; int {
     if n &lt;= 1 {
         return n
@@ -2160,7 +2160,7 @@ print(result)
 </div>
 <h3 id="examples-generics-vpp"><code>examples/generics.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn id[T](x: T) -&gt; T {
     return x
 }
@@ -2181,7 +2181,7 @@ fn main() -&gt; int {
 </div>
 <h3 id="examples-hello-vpp"><code>examples/hello.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.fs
 import std.json
 import std.process
@@ -2268,7 +2268,7 @@ fn main() -&gt; int {
 </div>
 <h3 id="examples-lesson01-basics-vpp"><code>examples/lesson01_basics.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Lesson 1: Variables, math, and printing
 
 let x = 10
@@ -2284,7 +2284,7 @@ print(&quot;Hello, &quot; + name + &quot;!&quot;)
 </div>
 <h3 id="examples-lesson02-functions-vpp"><code>examples/lesson02_functions.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Lesson 2: Functions and conditionals
 
 import &quot;std/math.vpp&quot;
@@ -2311,7 +2311,7 @@ main()
 </div>
 <h3 id="examples-lesson03-loops-vpp"><code>examples/lesson03_loops.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Lesson 3: Loops, arrays, and break/continue
 
 let mut total = 0
@@ -2334,7 +2334,7 @@ for item in nums {
 </div>
 <h3 id="examples-match-test-vpp"><code>examples/match_test.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn ok_val() -&gt; Result&lt;int, string&gt; {
     return Ok(42)
 }
@@ -2352,7 +2352,7 @@ match r {
 </div>
 <h3 id="examples-math-vpp"><code>examples/math.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn add(a: int, b: int) -&gt; int {
     return a + b
 }
@@ -2364,7 +2364,7 @@ pub fn mul(a: int, b: int) -&gt; int {
 </div>
 <h3 id="examples-modules-main-vpp"><code>examples/modules_main.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import &quot;math.vpp&quot;
 
 let x = add(2, 3)
@@ -2374,7 +2374,7 @@ print(y)
 </div>
 <h3 id="examples-option-result-vpp"><code>examples/option_result.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn divide(a: int, b: int) -&gt; Result&lt;int, string&gt; {
     if b == 0 {
         return Err(&quot;division by zero&quot;)
@@ -2412,7 +2412,7 @@ match m {
 </div>
 <h3 id="examples-scope-shadow-vpp"><code>examples/scope_shadow.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Scope shadowing: inner block must not leak bindings.
 let x = 10
 if true {
@@ -2424,7 +2424,7 @@ print(x)
 </div>
 <h3 id="examples-std-builtins-vpp"><code>examples/std_builtins.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.fs
 import std.json
 
@@ -2442,7 +2442,7 @@ fn main() -&gt; int {
 </div>
 <h3 id="examples-structs-vpp"><code>examples/structs.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">struct Person {
     name: string
     age: int
@@ -2461,7 +2461,7 @@ print(greet(alex))
 </div>
 <h3 id="examples-traits-vpp"><code>examples/traits.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">enum Status {
     Active
     Inactive
@@ -2494,7 +2494,7 @@ fn main() -&gt; int {
 }
 </code></pre>
 </div>
-<h1 id="v-example-projects">v++ Example Projects</h1>
+<h1 id="v-example-projects">V++ Example Projects</h1>
 <p>Twenty open-source projects — simple to complex. All runnable with <code>vpp run</code>.</p>
 <div class="table-wrap"><table>
 <tr>
@@ -2626,14 +2626,14 @@ fn main() -&gt; int {
 </tbody></table></div>
 <p>Browse on the website: <a href="https://shauryaR790.github.io/V-/projects.html">vpp-lang projects</a></p>
 <h1 id="01-hello-world">01 — Hello World</h1>
-<p>Your first v++ program.</p>
+<p>Your first V++ program.</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>Shell</span></div>
 <pre class="language-bash"><code class="language-bash">vpp run projects/01-hello-world/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn main</code>, <code>print</code>, return code</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
     print(&quot;Hello, v++!&quot;)
     return 0
@@ -2648,7 +2648,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>let</code>, type inference, <code>+</code> on int and string</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
     let x = 10
     let y = 3
@@ -2670,7 +2670,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>fn</code>, <code>return</code>, function signatures</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn add(a: int, b: int) -&gt; int {
     return a + b
 }
@@ -2694,7 +2694,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>while</code>, <code>for</code>, <code>0..n</code>, <code>let mut</code></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
     let mut i = 0
     while i &lt; 5 {
@@ -2722,7 +2722,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> arrays, indexing, <code>import std.collections</code></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn sum(nums: array[int]) -&gt; int {
     let mut total = 0
     for n in nums {
@@ -2757,7 +2757,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>struct</code>, field access, passing structs to functions</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">struct Point {
     x: int
     y: int
@@ -2791,7 +2791,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>enum</code>, variants, <code>match</code></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">enum TrafficLight {
     Red
     Yellow
@@ -2833,7 +2833,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>Option</code>, <code>Result</code>, <code>Some</code>/<code>None</code>, <code>Ok</code>/<code>Err</code></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {
     if b == 0 {
         return Err(&quot;division by zero&quot;)
@@ -2885,7 +2885,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> exhaustive match, enum patterns</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">enum Day {
     Mon
     Tue
@@ -2943,7 +2943,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>%</code>, <code>while</code>, functions</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn fizzbuzz(n: int) -&gt; string {
     if n % 15 == 0 {
         return &quot;FizzBuzz&quot;
@@ -2980,7 +2980,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> recursion, base case</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn fib(n: int) -&gt; int {
     if n &lt;= 1 {
         return n
@@ -3005,7 +3005,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>fn name[T]</code>, explicit type args <code>id<a href="42">int</a></code></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn id[T](x: T) -&gt; T {
     return x
 }
@@ -3032,7 +3032,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> traits, impl blocks, <code>self.area()</code></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">struct Circle {
     radius: int
 }
@@ -3075,7 +3075,7 @@ vpp run main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> local imports, <code>pub</code> exports</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import &quot;math.vpp&quot;
 
 fn main() -&gt; int {
@@ -3095,7 +3095,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> enum + match, <code>Result</code></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">enum Op {
     Add
     Sub
@@ -3150,7 +3150,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>array[string]</code>, <code>len</code>, loops</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn total_chars(words: array[string]) -&gt; int {
     let mut total = 0
     for w in words {
@@ -3186,7 +3186,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> conditionals, arrays of guesses, game logic</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn hint(guess: int, secret: int) -&gt; string {
     if guess &lt; secret {
         return &quot;too low&quot;
@@ -3226,7 +3226,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> struct, bool, conditional printing</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">struct Todo {
     title: string
     done: bool
@@ -3267,7 +3267,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>fs.write</code>, <code>fs.read</code>, <code>fs.exists</code></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.fs
 
 fn main() -&gt; int {
@@ -3291,7 +3291,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>std.json</code>, struct config, <code>vpp.toml</code> project layout</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.json
 
 struct AppConfig {
@@ -3332,7 +3332,7 @@ entry = &quot;main.vpp&quot;
 </div>
 <h3 id="stress-vpp"><code>stress.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.fs
 import std.json
 import std.process
@@ -3417,13 +3417,13 @@ fn main() -&gt; int {
 }
 </code></pre>
 </div>
-<h1 id="v-language-extension-for-visual-studio-code">v++ Language extension for Visual Studio Code</h1>
-<p>Official language support for <strong><a href="https://github.com/shauryaR790/V-">v++</a></strong> — a compiled language with Python-style simplicity and native performance. Edit <code>.vpp</code> files with syntax highlighting, integrated run, static diagnostics, language-server IntelliSense, and project test discovery.</p>
+<h1 id="v-language-extension-for-visual-studio-code">V++ Language extension for Visual Studio Code</h1>
+<p>Official language support for <strong><a href="https://github.com/shauryaR790/V-">V++</a></strong> — a compiled language with Python-style simplicity and native performance. Edit <code>.vpp</code> files with syntax highlighting, integrated run, static diagnostics, language-server IntelliSense, and project test discovery.</p>
 <p>&gt; <strong>Install the compiler separately</strong> — this extension does not bundle <code>vpp</code>. See <a href="#quick-start">Quick start</a>.</p>
 <hr>
 <h2 id="quick-start">Quick start</h2>
-<p><strong>Step 1.</strong> Install the v++ compiler from <a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a> (<code>vpp-*-setup.exe</code> recommended).</p>
-<p><strong>Step 2.</strong> Install <strong>v++ Language</strong> from the Marketplace (publisher: <strong>vpp-lang</strong>).</p>
+<p><strong>Step 1.</strong> Install the V++ compiler from <a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a> (<code>vpp-*-setup.exe</code> recommended).</p>
+<p><strong>Step 2.</strong> Install <strong>V++ Language</strong> from the Marketplace (publisher: <strong>vpp-lang</strong>).</p>
 <p><strong>Step 3.</strong> Open a folder with <code>.vpp</code> files, open a file, press <strong>F5</strong> to run.</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>Shell</span></div>
@@ -3447,7 +3447,7 @@ fn main() -&gt; int {
 </tr>
 <tr>
 <td><strong>Type-check</strong></td>
-<td><strong>v++: Check File</strong> — errors without executing</td>
+<td><strong>V++: Check File</strong> — errors without executing</td>
 </tr>
 <tr>
 <td><strong>Language server</strong></td>
@@ -3455,7 +3455,7 @@ fn main() -&gt; int {
 </tr>
 <tr>
 <td><strong>Project tests</strong></td>
-<td><strong>v++: Run Tests</strong> runs <code>vpp test</code> in the workspace</td>
+<td><strong>V++: Run Tests</strong> runs <code>vpp test</code> in the workspace</td>
 </tr>
 <tr>
 <td><strong>File icons</strong></td>
@@ -3475,19 +3475,19 @@ fn main() -&gt; int {
 <td>Description</td>
 </tr>
 <tr>
-<td><strong>v++: Run File</strong></td>
+<td><strong>V++: Run File</strong></td>
 <td>Run the active <code>.vpp</code> file (<code>F5</code>, <code>Ctrl+Shift+R</code>)</td>
 </tr>
 <tr>
-<td><strong>v++: Check File</strong></td>
+<td><strong>V++: Check File</strong></td>
 <td>Type-check without running</td>
 </tr>
 <tr>
-<td><strong>v++: Run Tests</strong></td>
+<td><strong>V++: Run Tests</strong></td>
 <td>Run test blocks in the project</td>
 </tr>
 </tbody></table></div>
-<p>Type <code>v++</code> in the Command Palette to see all commands.</p>
+<p>Type <code>V++</code> in the Command Palette to see all commands.</p>
 <hr>
 <h2 id="extension-settings">Extension settings</h2>
 <div class="table-wrap"><table>
@@ -3504,7 +3504,7 @@ fn main() -&gt; int {
 <tr>
 <td><code>vpp.languageServerPath</code></td>
 <td><code>vppls</code></td>
-<td>Path to the v++ language server</td>
+<td>Path to the V++ language server</td>
 </tr>
 <tr>
 <td><code>vpp.enableLanguageServer</code></td>
@@ -3538,13 +3538,13 @@ fn main() -&gt; int {
 </tbody></table></div>
 <hr>
 <h2 id="set-up-your-environment">Set up your environment</h2>
-<p>1. Install v++ (<a href="https://github.com/shauryaR790/V-/blob/main/docs/getting-started/install.md">install guide</a>)</p>
+<p>1. Install V++ (<a href="https://github.com/shauryaR790/V-/blob/main/docs/getting-started/install.md">install guide</a>)</p>
 <p>2. Reload VS Code after installing this extension</p>
-<p>3. Open any <code>.vpp</code> file — language mode should show <strong>v++</strong></p>
+<p>3. Open any <code>.vpp</code> file — language mode should show <strong>V++</strong></p>
 <p>4. Optional: set <code>vpp.compilerPath</code> if <code>vpp</code> is not on PATH</p>
 <hr>
 <h2 id="which-extension-is-official">Which extension is official?</h2>
-<p>Search <strong>v++ Language</strong> published by <strong>vpp-lang</strong> (<code>vpp-lang.vplusplus</code>).</p>
+<p>Search <strong>V++ Language</strong> published by <strong>vpp-lang</strong> (<code>vpp-lang.vplusplus</code>).</p>
 <p>Other Marketplace extensions named &quot;V++&quot; are unrelated — verify publisher <strong>vpp-lang</strong>.</p>
 <hr>
 <h2 id="documentation-support">Documentation &amp; support</h2>
@@ -3599,7 +3599,7 @@ path = &quot;fixtures/hello-lib&quot;
 </div>
 <h3 id="registry-fixtures-hello-lib-src-lib-vpp"><code>registry/fixtures/hello-lib/src/lib.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn greet(name: string) -&gt; string {
     return &quot;hello, &quot; + name
 }
@@ -3615,7 +3615,7 @@ entry = &quot;src/lib.vpp&quot;
 </div>
 <h3 id="staging-std-assert-vpp"><code>staging/std/assert.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Re-exports assert helpers (implemented as compiler builtins).
 // Import this module to use assert / assert_eq in tests.
 
@@ -3629,7 +3629,7 @@ fn assert_true(condition: bool) -&gt; int {
 </div>
 <h3 id="staging-std-collections-vpp"><code>staging/std/collections.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn make_int_array(values: array[int]) -&gt; array[int] {
     return values
 }
@@ -3660,7 +3660,7 @@ pub fn sum(arr: array[int]) -&gt; int {
 </div>
 <h3 id="staging-std-fs-vpp"><code>staging/std/fs.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// File I/O via compiler/runtime builtins (read_file, write_file, file_exists).
 
 pub fn read(path: string) -&gt; string {
@@ -3679,7 +3679,7 @@ pub fn exists(path: string) -&gt; bool {
 </div>
 <h3 id="staging-std-io-vpp"><code>staging/std/io.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn greet(name: string) -&gt; int {
     print(&quot;Hello, &quot; + name + &quot;!&quot;)
     return 0
@@ -3698,7 +3698,7 @@ pub fn print_int(n: int) -&gt; int {
 </div>
 <h3 id="staging-std-json-vpp"><code>staging/std/json.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Minimal JSON helpers via runtime builtins.
 
 pub fn parse(raw: string) -&gt; string {
@@ -3712,7 +3712,7 @@ pub fn stringify(raw: string) -&gt; string {
 </div>
 <h3 id="staging-std-math-vpp"><code>staging/std/math.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn add(a: int, b: int) -&gt; int {
     return a + b
 }
@@ -3761,7 +3761,7 @@ pub fn clamp(n: int, lo: int, hi: int) -&gt; int {
 </div>
 <h3 id="staging-std-process-vpp"><code>staging/std/process.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Process helpers via runtime builtins.
 
 pub fn run(cmd: string) -&gt; int {
@@ -3775,7 +3775,7 @@ pub fn exit_code(cmd: string) -&gt; int {
 </div>
 <h3 id="staging-std-string-vpp"><code>staging/std/string.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn upper(s: string) -&gt; string {
     return s
 }
@@ -3801,7 +3801,7 @@ pub fn is_empty(s: string) -&gt; bool {
 </div>
 <h3 id="staging-examples-hello-vpp"><code>staging/examples/hello.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.fs
 import std.json
 import std.process
@@ -3888,7 +3888,7 @@ fn main() -&gt; int {
 </div>
 <h3 id="tests-fixtures-module-bad-vpp"><code>tests/fixtures/module_bad.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.math
 
 fn main() -&gt; int {
@@ -3898,7 +3898,7 @@ fn main() -&gt; int {
 </div>
 <h3 id="tests-fixtures-module-math-vpp"><code>tests/fixtures/module_math.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.math
 
 fn main() -&gt; int {
@@ -3909,7 +3909,7 @@ fn main() -&gt; int {
 </div>
 <h3 id="tests-fixtures-smoke-vpp"><code>tests/fixtures/smoke.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import &quot;std/math.vpp&quot;
 
 test &quot;addition&quot; {
@@ -5253,7 +5253,7 @@ fn main() {
 <li class="toc-h2"><a href="#install-locally">Install locally</a></li>
 <li class=""><a href="#contributing-docs">Contributing docs</a></li>
 <li class=""><a href="#running-tests">Running tests</a></li>
-<li class=""><a href="#your-first-v-project">Your first v++ project</a></li>
+<li class=""><a href="#your-first-v-project">Your first V++ project</a></li>
 <li class="toc-h2"><a href="#scaffold">Scaffold</a></li>
 <li class="toc-h2"><a href="#run">Run</a></li>
 <li class="toc-h2"><a href="#test">Test</a></li>
@@ -5263,22 +5263,22 @@ fn main() {
 <li class="toc-h2"><a href="#type-check-only">Type-check only</a></li>
 <li class="toc-h2"><a href="#compile-to-native">Compile to native</a></li>
 <li class="toc-h2"><a href="#commands-summary">Commands summary</a></li>
-<li class=""><a href="#install-v">Install v++</a></li>
+<li class=""><a href="#install-v">Install V++</a></li>
 <li class="toc-h2"><a href="#windows-recommended">Windows (recommended)</a></li>
 <li class="toc-h2"><a href="#vs-code-extension">VS Code extension</a></li>
 <li class="toc-h2"><a href="#portable-zip-advanced">Portable zip (advanced)</a></li>
 <li class="toc-h2"><a href="#build-from-source">Build from source</a></li>
 <li class="toc-h2"><a href="#requirements">Requirements</a></li>
-<li class=""><a href="#introduction-to-v">Introduction to v++</a></li>
-<li class="toc-h2"><a href="#what-v-is">What v++ is</a></li>
-<li class="toc-h2"><a href="#how-v-compares">How v++ compares</a></li>
-<li class="toc-h2"><a href="#why-use-v-now">Why use v++ now</a></li>
-<li class="toc-h2"><a href="#how-to-learn-v">How to learn v++</a></li>
+<li class=""><a href="#introduction-to-v">Introduction to V++</a></li>
+<li class="toc-h2"><a href="#what-v-is">What V++ is</a></li>
+<li class="toc-h2"><a href="#how-v-compares">How V++ compares</a></li>
+<li class="toc-h2"><a href="#why-use-v-now">Why use V++ now</a></li>
+<li class="toc-h2"><a href="#how-to-learn-v">How to learn V++</a></li>
 <li class="toc-h2"><a href="#common-difficulties">Common difficulties</a></li>
-<li class="toc-h2"><a href="#when-v-is-not-the-right-choice">When v++ is not the right choice</a></li>
+<li class="toc-h2"><a href="#when-v-is-not-the-right-choice">When V++ is not the right choice</a></li>
 <li class="toc-h2"><a href="#next-steps">Next steps</a></li>
 <li class=""><a href="#getting-started">Getting started</a></li>
-<li class=""><a href="#vs-code-setup-for-v">VS Code setup for v++</a></li>
+<li class=""><a href="#vs-code-setup-for-v">VS Code setup for V++</a></li>
 <li class="toc-h2"><a href="#install">Install</a></li>
 <li class="toc-h2"><a href="#run-code">Run code</a></li>
 <li class="toc-h2"><a href="#language-server-intellisense">Language server (IntelliSense)</a></li>
@@ -5332,7 +5332,7 @@ fn main() {
 <li class="toc-h2"><a href="#option">Option</a></li>
 <li class="toc-h2"><a href="#result">Result</a></li>
 <li class="toc-h2"><a href="#exhaustive-match">Exhaustive match</a></li>
-<li class=""><a href="#v-language-overview">v++ language overview</a></li>
+<li class=""><a href="#v-language-overview">V++ language overview</a></li>
 <li class="toc-h2"><a href="#design-goals">Design goals</a></li>
 <li class="toc-h2"><a href="#quick-syntax-map">Quick syntax map</a></li>
 <li class=""><a href="#structs-and-enums">Structs and enums</a></li>
@@ -5346,22 +5346,22 @@ fn main() {
 <li class="toc-h2"><a href="#explicit-annotations">Explicit annotations</a></li>
 <li class="toc-h2"><a href="#function-signatures">Function signatures</a></li>
 <li class="toc-h2"><a href="#entry-point">Entry point</a></li>
-<li class=""><a href="#privacy-policy-v">Privacy Policy — v++</a></li>
+<li class=""><a href="#privacy-policy-v">Privacy Policy — V++</a></li>
 <li class="toc-h2"><a href="#data-collection">Data collection</a></li>
 <li class="toc-h2"><a href="#third-party-services">Third-party services</a></li>
 <li class="toc-h2"><a href="#contact">Contact</a></li>
 <li class=""><a href="#faq">FAQ</a></li>
-<li class="toc-h2"><a href="#what-is-v">What is v++?</a></li>
-<li class="toc-h2"><a href="#how-is-v-different-from-python">How is v++ different from Python?</a></li>
-<li class="toc-h2"><a href="#how-is-v-different-from-rust">How is v++ different from Rust?</a></li>
-<li class="toc-h2"><a href="#how-is-v-different-from-go-or-typescript">How is v++ different from Go or TypeScript?</a></li>
-<li class="toc-h2"><a href="#how-do-i-learn-v">How do I learn v++?</a></li>
+<li class="toc-h2"><a href="#what-is-v">What is V++?</a></li>
+<li class="toc-h2"><a href="#how-is-v-different-from-python">How is V++ different from Python?</a></li>
+<li class="toc-h2"><a href="#how-is-v-different-from-rust">How is V++ different from Rust?</a></li>
+<li class="toc-h2"><a href="#how-is-v-different-from-go-or-typescript">How is V++ different from Go or TypeScript?</a></li>
+<li class="toc-h2"><a href="#how-do-i-learn-v">How do I learn V++?</a></li>
 <li class="toc-h2"><a href="#what-are-the-main-difficulties">What are the main difficulties?</a></li>
-<li class="toc-h2"><a href="#why-would-i-choose-v">Why would I choose v++?</a></li>
-<li class="toc-h2"><a href="#is-v-ready-for-production">Is v++ ready for production?</a></li>
+<li class="toc-h2"><a href="#why-would-i-choose-v">Why would I choose V++?</a></li>
+<li class="toc-h2"><a href="#is-v-ready-for-production">Is V++ ready for production?</a></li>
 <li class="toc-h2"><a href="#where-do-i-download">Where do I download?</a></li>
 <li class="toc-h2"><a href="#which-vs-code-extension-is-official">Which VS Code extension is official?</a></li>
-<li class="toc-h2"><a href="#does-v-collect-data">Does v++ collect data?</a></li>
+<li class="toc-h2"><a href="#does-v-collect-data">Does V++ collect data?</a></li>
 <li class="toc-h2"><a href="#how-do-i-report-bugs">How do I report bugs?</a></li>
 <li class="toc-h2"><a href="#can-i-contribute">Can I contribute?</a></li>
 <li class=""><a href="#roadmap">Roadmap</a></li>

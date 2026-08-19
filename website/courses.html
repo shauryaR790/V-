@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Courses — v++</title>
-  <meta name="description" content="Twenty v++ projects from beginner to advanced.">
+  <title>Courses — V++</title>
+  <meta name="description" content="Twenty V++ projects from beginner to advanced.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
 <body class="page-docs">
   <header class="site-header">
     <div class="header-inner">
-      <a href="/V-/index.html" class="brand"><img src="/V-/assets/logo-header.png" alt="v++" class="brand-logo"></a>
+      <a href="/V-/index.html" class="brand"><img src="/V-/assets/logo-header.png" alt="V++" class="brand-logo"></a>
       <nav class="top-nav"><a href="/V-/learn.html" class="nav-link">Learn</a>
 <a href="/V-/about.html" class="nav-link">About</a>
 <a href="/V-/download.html" class="nav-link">Download</a>
@@ -60,7 +60,7 @@
 <li><a href="/V-/docs.html#troubleshooting">Troubleshooting</a></li>
 </ul>
 <p class="sidebar-group">Project</p><ul>
-<li><a href="/V-/about.html">About v++</a></li>
+<li><a href="/V-/about.html">About V++</a></li>
 <li><a href="/V-/about.html#architecture">Architecture</a></li>
 <li><a href="/V-/about.html#memory-model">Memory model</a></li>
 <li><a href="/V-/blog.html">Release notes</a></li>
@@ -69,7 +69,7 @@
 </ul></aside>
     <main class="docs-main">
       <article class="docs-article"><div id="top"></div>
-<h1 id="v-example-projects">v++ Example Projects</h1>
+<h1 id="v-example-projects">V++ Example Projects</h1>
 <p>Twenty open-source projects — simple to complex. All runnable with <code>vpp run</code>.</p>
 <div class="table-wrap"><table>
 <tr>
@@ -201,14 +201,14 @@
 </tbody></table></div>
 <p>Browse on the website: <a href="https://shauryaR790.github.io/V-/projects.html">vpp-lang projects</a></p>
 <h1 id="01-hello-world">01 — Hello World</h1>
-<p>Your first v++ program.</p>
+<p>Your first V++ program.</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>Shell</span></div>
 <pre class="language-bash"><code class="language-bash">vpp run projects/01-hello-world/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn main</code>, <code>print</code>, return code</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
     print(&quot;Hello, v++!&quot;)
     return 0
@@ -223,7 +223,7 @@
 </div>
 <p><strong>Concepts:</strong> <code>let</code>, type inference, <code>+</code> on int and string</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
     let x = 10
     let y = 3
@@ -245,7 +245,7 @@
 </div>
 <p><strong>Concepts:</strong> <code>fn</code>, <code>return</code>, function signatures</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn add(a: int, b: int) -&gt; int {
     return a + b
 }
@@ -269,7 +269,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>while</code>, <code>for</code>, <code>0..n</code>, <code>let mut</code></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
     let mut i = 0
     while i &lt; 5 {
@@ -297,7 +297,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> arrays, indexing, <code>import std.collections</code></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn sum(nums: array[int]) -&gt; int {
     let mut total = 0
     for n in nums {
@@ -332,7 +332,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>struct</code>, field access, passing structs to functions</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">struct Point {
     x: int
     y: int
@@ -366,7 +366,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>enum</code>, variants, <code>match</code></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">enum TrafficLight {
     Red
     Yellow
@@ -408,7 +408,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>Option</code>, <code>Result</code>, <code>Some</code>/<code>None</code>, <code>Ok</code>/<code>Err</code></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {
     if b == 0 {
         return Err(&quot;division by zero&quot;)
@@ -460,7 +460,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> exhaustive match, enum patterns</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">enum Day {
     Mon
     Tue
@@ -518,7 +518,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>%</code>, <code>while</code>, functions</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn fizzbuzz(n: int) -&gt; string {
     if n % 15 == 0 {
         return &quot;FizzBuzz&quot;
@@ -555,7 +555,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> recursion, base case</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn fib(n: int) -&gt; int {
     if n &lt;= 1 {
         return n
@@ -580,7 +580,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>fn name[T]</code>, explicit type args <code>id<a href="42">int</a></code></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn id[T](x: T) -&gt; T {
     return x
 }
@@ -607,7 +607,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> traits, impl blocks, <code>self.area()</code></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">struct Circle {
     radius: int
 }
@@ -650,7 +650,7 @@ vpp run main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> local imports, <code>pub</code> exports</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import &quot;math.vpp&quot;
 
 fn main() -&gt; int {
@@ -670,7 +670,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> enum + match, <code>Result</code></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">enum Op {
     Add
     Sub
@@ -725,7 +725,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>array[string]</code>, <code>len</code>, loops</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn total_chars(words: array[string]) -&gt; int {
     let mut total = 0
     for w in words {
@@ -761,7 +761,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> conditionals, arrays of guesses, game logic</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn hint(guess: int, secret: int) -&gt; string {
     if guess &lt; secret {
         return &quot;too low&quot;
@@ -801,7 +801,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> struct, bool, conditional printing</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">struct Todo {
     title: string
     done: bool
@@ -842,7 +842,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>fs.write</code>, <code>fs.read</code>, <code>fs.exists</code></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.fs
 
 fn main() -&gt; int {
@@ -866,7 +866,7 @@ fn main() -&gt; int {
 </div>
 <p><strong>Concepts:</strong> <code>std.json</code>, struct config, <code>vpp.toml</code> project layout</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
+<div class="code-block-header"><span>V++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.json
 
 struct AppConfig {
@@ -899,15 +899,15 @@ fn main() -&gt; int {
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>
       <ul>
-<li class=""><a href="#v-example-projects">v++ Example Projects</a></li>
+<li class=""><a href="#v-example-projects">V++ Example Projects</a></li>
 <li class=""><a href="#01-hello-world">01 — Hello World</a></li>
-<li class=""><a href="#02-variables-math">02 — Variables &amp;amp; Math</a></li>
+<li class=""><a href="#02-variables-math">02 — Variables & Math</a></li>
 <li class=""><a href="#03-functions">03 — Functions</a></li>
 <li class=""><a href="#04-loops">04 — Loops</a></li>
 <li class=""><a href="#05-arrays">05 — Arrays</a></li>
 <li class=""><a href="#06-structs">06 — Structs</a></li>
 <li class=""><a href="#07-enums">07 — Enums</a></li>
-<li class=""><a href="#08-option-result">08 — Option &amp;amp; Result</a></li>
+<li class=""><a href="#08-option-result">08 — Option & Result</a></li>
 <li class=""><a href="#09-pattern-matching">09 — Pattern Matching</a></li>
 <li class=""><a href="#10-fizzbuzz">10 — FizzBuzz</a></li>
 <li class=""><a href="#11-fibonacci">11 — Fibonacci</a></li>

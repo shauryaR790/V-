@@ -1,4 +1,4 @@
-/* v++ website — black + yellow grid, Node.js-inspired layout */
+/* V++ website — black + yellow grid, Node.js-inspired layout */
 
 :root {
   --white: #ffffff;
@@ -313,16 +313,17 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .btn:hover { text-decoration: none; }
 
 .btn-primary {
-  background: rgba(0, 0, 0, 0.85);
-  color: var(--text);
-  border-color: var(--yellow);
-  box-shadow: 0 0 0 1px rgba(245, 196, 0, 0.2), 0 0 28px rgba(245, 196, 0, 0.12);
+  background: var(--yellow);
+  color: var(--black);
+  border-color: var(--yellow-dark);
+  box-shadow: none;
 }
 
 .btn-primary:hover {
-  color: var(--yellow);
-  border-color: var(--yellow);
-  box-shadow: 0 0 0 1px rgba(245, 196, 0, 0.35), 0 0 36px rgba(245, 196, 0, 0.18);
+  background: var(--yellow-dark);
+  color: var(--black);
+  border-color: var(--yellow-dark);
+  box-shadow: none;
 }
 
 .btn-outline {
