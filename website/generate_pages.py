@@ -220,7 +220,10 @@ def source_to_md(path: Path) -> str:
         fence = "rust"
     else:
         return f"\n\n<!-- {rel} -->\n\n{text}"
-    return f"\n\n## Source: `{rel}`\n\n```{fence}\n{text}\n```\n"
+    if "projects/" in rel and path.name == "main.vpp":
+        return f"\n\n```{fence}\n{text}\n```\n"
+    heading = f"### `{rel}`"
+    return f"\n\n{heading}\n\n```{fence}\n{text}\n```\n"
 
 
 def collect_sources(paths: list[Path]) -> str:
@@ -302,9 +305,9 @@ def all_reference_sources() -> list[Path]:
     return dedupe_paths(paths)
 
 
-def headings_from_html(content: str) -> list[tuple[str, str]]:
+def headings_from_html(content: str) -> list[tuple[str, str, str]]:
     toc = []
-    for m in re.finditer(r'<h([234]) id="([^"]+)">([^<]+)</h\1>', content):
+    for m in re.finditer(r'<h([1234]) id="([^"]+)">([^<]+)</h\1>', content):
         level, hid, title = m.group(1), m.group(2), m.group(3)
         toc.append((level, hid, title))
     return toc
@@ -356,8 +359,10 @@ def shell(active: str, title: str, body: str, sidebar_html: str, toc_html: str, 
   </div>
   <footer class="site-footer compact">
     <div class="footer-inner">
-      <span class="footer-badge">v0.5.0</span>
-      <span class="footer-badge yellow">Latest</span>
+      <div class="footer-badges">
+        <span class="footer-badge">v0.5.0</span>
+        <span class="footer-badge yellow">Latest</span>
+      </div>
       <div class="footer-links">
         <a href="https://github.com/shauryaR790/V-">GitHub</a>
         <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">VS Code</a>
@@ -398,9 +403,16 @@ def build_toc(headings: list[tuple[str, str, str]]) -> str:
     if not headings:
         return "<ul><li><a href=\"#top\">Top</a></li></ul>"
     parts = ["<ul>"]
-    for level, hid, title in headings[:80]:
-        indent = " toc-h3" if level == "3" else " toc-h4" if level == "4" else ""
-        parts.append(f'<li class="{indent.strip()}"><a href="#{hid}">{html.escape(title)}</a></li>')
+    for level, hid, title in headings[:120]:
+        if level == "4":
+            cls = "toc-h4"
+        elif level == "3":
+            cls = "toc-h3"
+        elif level == "2":
+            cls = "toc-h2"
+        else:
+            cls = ""
+        parts.append(f'<li class="{cls}"><a href="#{hid}">{html.escape(title)}</a></li>')
     parts.append("</ul>")
     return "\n".join(parts)
 
@@ -514,7 +526,7 @@ def main() -> None:
             if (p / "main.vpp").exists():
                 courses_paths.append(p / "main.vpp")
     write_doc_page("courses.html", "courses.html", "Courses", courses_paths, sidebar, "courses.html",
-                   "Twenty v++ projects from beginner to advanced.")
+                   "Twenty v++ projects from beginner to advanced.", use_sources=True)
 
     # Download page
     download_md = collect_md([DOCS / "getting-started" / "install.md"]) + "\n\n" + collect_md([ROOT / "CHANGELOG.md"])

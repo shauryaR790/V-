@@ -566,55 +566,63 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>
       <ul>
-<li class=""><a href="#get-started-in-2-minutes">Get started in 2 minutes</a></li>
-<li class=""><a href="#documentation">Documentation</a></li>
-<li class=""><a href="#features">Features</a></li>
-<li class=""><a href="#links">Links</a></li>
-<li class=""><a href="#for-developers">For developers</a></li>
-<li class=""><a href="#roadmap">Roadmap</a></li>
-<li class=""><a href="#overview">Overview</a></li>
-<li class=""><a href="#components">Components</a></li>
+<li class=""><a href="#v">v++</a></li>
+<li class="toc-h2"><a href="#get-started-in-2-minutes">Get started in 2 minutes</a></li>
+<li class="toc-h2"><a href="#documentation">Documentation</a></li>
+<li class="toc-h2"><a href="#features">Features</a></li>
+<li class="toc-h2"><a href="#links">Links</a></li>
+<li class="toc-h2"><a href="#for-developers">For developers</a></li>
+<li class="toc-h2"><a href="#roadmap">Roadmap</a></li>
+<li class=""><a href="#v-compiler-architecture-v0-2">v++ Compiler Architecture (v0.2)</a></li>
+<li class="toc-h2"><a href="#overview">Overview</a></li>
+<li class="toc-h2"><a href="#components">Components</a></li>
 <li class="toc-h3"><a href="#lexer-parser">Lexer / Parser</a></li>
 <li class="toc-h3"><a href="#type-checker">Type checker</a></li>
 <li class="toc-h3"><a href="#v-ir">v++ IR</a></li>
 <li class="toc-h3"><a href="#llvm-backend">LLVM backend</a></li>
 <li class="toc-h3"><a href="#runtime">Runtime</a></li>
 <li class="toc-h3"><a href="#builtins">Builtins</a></li>
-<li class=""><a href="#feature-parity-v0-2-target">Feature parity (v0.2 target)</a></li>
-<li class=""><a href="#version-notes">Version notes</a></li>
-<li class=""><a href="#goals">Goals</a></li>
-<li class=""><a href="#representation">Representation</a></li>
+<li class="toc-h2"><a href="#feature-parity-v0-2-target">Feature parity (v0.2 target)</a></li>
+<li class="toc-h2"><a href="#version-notes">Version notes</a></li>
+<li class=""><a href="#v-memory-model-v0-2-bootstrap">v++ Memory Model (v0.2 bootstrap)</a></li>
+<li class="toc-h2"><a href="#goals">Goals</a></li>
+<li class="toc-h2"><a href="#representation">Representation</a></li>
 <li class="toc-h3"><a href="#stack-by-value-in-llvm">Stack (by value in LLVM)</a></li>
 <li class="toc-h3"><a href="#heap-arc">Heap (ARC)</a></li>
-<li class=""><a href="#string-abi-v0-2">String ABI (v0.2)</a></li>
-<li class=""><a href="#array-abi-v0-2">Array ABI (v0.2)</a></li>
-<li class=""><a href="#arc-rules-v0-2-bootstrap">ARC rules (v0.2 bootstrap)</a></li>
-<li class=""><a href="#interpreter-mapping">Interpreter mapping</a></li>
-<li class=""><a href="#future-v1-0">Future (v1.0)</a></li>
-<li class=""><a href="#types">Types</a></li>
-<li class=""><a href="#variables">Variables</a></li>
-<li class=""><a href="#functions">Functions</a></li>
-<li class=""><a href="#traits">Traits</a></li>
-<li class=""><a href="#control-flow">Control flow</a></li>
-<li class=""><a href="#builtins">Builtins</a></li>
-<li class=""><a href="#modules-v0-3">Modules (v0.3)</a></li>
-<li class=""><a href="#projects-and-packages">Projects and packages</a></li>
-<li class=""><a href="#standard-library">Standard library</a></li>
-<li class=""><a href="#execution">Execution</a></li>
-<li class=""><a href="#known-limitations-v0-4">Known limitations (v0.4)</a></li>
-<li class=""><a href="#shipped-v0-4-4">Shipped (v0.4.4)</a></li>
-<li class=""><a href="#v0-5-current">v0.5 (current)</a></li>
-<li class=""><a href="#v1-0-stable">v1.0 (stable)</a></li>
-<li class=""><a href="#data-collection">Data collection</a></li>
-<li class=""><a href="#third-party-services">Third-party services</a></li>
-<li class=""><a href="#contact">Contact</a></li>
+<li class="toc-h2"><a href="#string-abi-v0-2">String ABI (v0.2)</a></li>
+<li class="toc-h2"><a href="#array-abi-v0-2">Array ABI (v0.2)</a></li>
+<li class="toc-h2"><a href="#arc-rules-v0-2-bootstrap">ARC rules (v0.2 bootstrap)</a></li>
+<li class="toc-h2"><a href="#interpreter-mapping">Interpreter mapping</a></li>
+<li class="toc-h2"><a href="#future-v1-0">Future (v1.0)</a></li>
+<li class=""><a href="#v-language-specification-v0-4">v++ Language Specification (v0.4)</a></li>
+<li class="toc-h2"><a href="#types">Types</a></li>
+<li class="toc-h2"><a href="#variables">Variables</a></li>
+<li class="toc-h2"><a href="#functions">Functions</a></li>
+<li class="toc-h2"><a href="#traits">Traits</a></li>
+<li class="toc-h2"><a href="#control-flow">Control flow</a></li>
+<li class="toc-h2"><a href="#builtins">Builtins</a></li>
+<li class="toc-h2"><a href="#modules-v0-3">Modules (v0.3)</a></li>
+<li class="toc-h2"><a href="#projects-and-packages">Projects and packages</a></li>
+<li class="toc-h2"><a href="#standard-library">Standard library</a></li>
+<li class="toc-h2"><a href="#execution">Execution</a></li>
+<li class="toc-h2"><a href="#known-limitations-v0-4">Known limitations (v0.4)</a></li>
+<li class=""><a href="#roadmap">Roadmap</a></li>
+<li class="toc-h2"><a href="#shipped-v0-4-4">Shipped (v0.4.4)</a></li>
+<li class="toc-h2"><a href="#v0-5-current">v0.5 (current)</a></li>
+<li class="toc-h2"><a href="#v1-0-stable">v1.0 (stable)</a></li>
+<li class=""><a href="#privacy-policy-v">Privacy Policy — v++</a></li>
+<li class="toc-h2"><a href="#data-collection">Data collection</a></li>
+<li class="toc-h2"><a href="#third-party-services">Third-party services</a></li>
+<li class="toc-h2"><a href="#contact">Contact</a></li>
 </ul>
     </aside>
   </div>
   <footer class="site-footer compact">
     <div class="footer-inner">
-      <span class="footer-badge">v0.5.0</span>
-      <span class="footer-badge yellow">Latest</span>
+      <div class="footer-badges">
+        <span class="footer-badge">v0.5.0</span>
+        <span class="footer-badge yellow">Latest</span>
+      </div>
       <div class="footer-links">
         <a href="https://github.com/shauryaR790/V-">GitHub</a>
         <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">VS Code</a>

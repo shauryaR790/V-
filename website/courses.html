@@ -207,10 +207,14 @@
 <pre class="language-bash"><code class="language-bash">vpp run projects/01-hello-world/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn main</code>, <code>print</code>, return code</p>
-<p>fn main() -&gt; int {</p>
-<p>    print(&quot;Hello, v++!&quot;)</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
+    print(&quot;Hello, v++!&quot;)
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="02-variables-math">02 — Variables &amp; Math</h1>
 <p>Variables, arithmetic, and string concatenation.</p>
 <div class="code-block-wrap">
@@ -218,16 +222,21 @@
 <pre class="language-bash"><code class="language-bash">vpp run projects/02-variables/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>let</code>, type inference, <code>+</code> on int and string</p>
-<p>fn main() -&gt; int {</p>
-<p>    let x = 10</p>
-<p>    let y = 3</p>
-<p>    print(x + y)</p>
-<p>    print(x - y)</p>
-<p>    print(x * y)</p>
-<p>    let name = &quot;v++&quot;</p>
-<p>    print(&quot;Hello, &quot; + name + &quot;!&quot;)</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
+    let x = 10
+    let y = 3
+    print(x + y)
+    print(x - y)
+    print(x * y)
+
+    let name = &quot;v++&quot;
+    print(&quot;Hello, &quot; + name + &quot;!&quot;)
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="03-functions">03 — Functions</h1>
 <p>Define functions with typed parameters and return values.</p>
 <div class="code-block-wrap">
@@ -235,17 +244,23 @@
 <pre class="language-bash"><code class="language-bash">vpp run projects/03-functions/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn</code>, <code>return</code>, function signatures</p>
-<p>fn add(a: int, b: int) -&gt; int {</p>
-<p>    return a + b</p>
-<p>}</p>
-<p>fn greet(name: string) -&gt; string {</p>
-<p>    return &quot;Hello, &quot; + name</p>
-<p>}</p>
-<p>fn main() -&gt; int {</p>
-<p>    print(add(10, 20))</p>
-<p>    print(greet(&quot;Shaurya&quot;))</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn add(a: int, b: int) -&gt; int {
+    return a + b
+}
+
+fn greet(name: string) -&gt; string {
+    return &quot;Hello, &quot; + name
+}
+
+fn main() -&gt; int {
+    print(add(10, 20))
+    print(greet(&quot;Shaurya&quot;))
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="04-loops">04 — Loops</h1>
 <p><code>while</code>, range loops, and <code>for</code> over arrays. Uses <code>let mut</code> for counters.</p>
 <div class="code-block-wrap">
@@ -253,21 +268,27 @@
 <pre class="language-bash"><code class="language-bash">vpp run projects/04-loops/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>while</code>, <code>for</code>, <code>0..n</code>, <code>let mut</code></p>
-<p>fn main() -&gt; int {</p>
-<p>    let mut i = 0</p>
-<p>    while i &lt; 5 {</p>
-<p>        print(i)</p>
-<p>        i = i + 1</p>
-<p>    }</p>
-<p>    for n in 0..3 {</p>
-<p>        print(n)</p>
-<p>    }</p>
-<p>    let items = [10, 20, 30]</p>
-<p>    for val in items {</p>
-<p>        print(val)</p>
-<p>    }</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
+    let mut i = 0
+    while i &lt; 5 {
+        print(i)
+        i = i + 1
+    }
+
+    for n in 0..3 {
+        print(n)
+    }
+
+    let items = [10, 20, 30]
+    for val in items {
+        print(val)
+    }
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="05-arrays">05 — Arrays</h1>
 <p>Work with <code>array[int]</code>, iteration, and <code>std.collections.sum</code>.</p>
 <div class="code-block-wrap">
@@ -275,28 +296,34 @@
 <pre class="language-bash"><code class="language-bash">vpp run projects/05-arrays/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> arrays, indexing, <code>import std.collections</code></p>
-<p>fn sum(nums: array[int]) -&gt; int {</p>
-<p>    let mut total = 0</p>
-<p>    for n in nums {</p>
-<p>        total = total + n</p>
-<p>    }</p>
-<p>    return total</p>
-<p>}</p>
-<p>fn max_of(nums: array[int]) -&gt; int {</p>
-<p>    let mut best = nums[0]</p>
-<p>    for n in nums {</p>
-<p>        if n &gt; best {</p>
-<p>            best = n</p>
-<p>        }</p>
-<p>    }</p>
-<p>    return best</p>
-<p>}</p>
-<p>fn main() -&gt; int {</p>
-<p>    let nums = [3, 7, 2, 9, 4]</p>
-<p>    print(sum(nums))</p>
-<p>    print(max_of(nums))</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn sum(nums: array[int]) -&gt; int {
+    let mut total = 0
+    for n in nums {
+        total = total + n
+    }
+    return total
+}
+
+fn max_of(nums: array[int]) -&gt; int {
+    let mut best = nums[0]
+    for n in nums {
+        if n &gt; best {
+            best = n
+        }
+    }
+    return best
+}
+
+fn main() -&gt; int {
+    let nums = [3, 7, 2, 9, 4]
+    print(sum(nums))
+    print(max_of(nums))
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="06-structs">06 — Structs</h1>
 <p>Custom product types with named fields.</p>
 <div class="code-block-wrap">
@@ -304,25 +331,33 @@
 <pre class="language-bash"><code class="language-bash">vpp run projects/06-structs/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>struct</code>, field access, passing structs to functions</p>
-<p>struct Point {</p>
-<p>    x: int</p>
-<p>    y: int</p>
-<p>}</p>
-<p>struct Rectangle {</p>
-<p>    width: int</p>
-<p>    height: int</p>
-<p>}</p>
-<p>fn area(rect: Rectangle) -&gt; int {</p>
-<p>    return rect.width * rect.height</p>
-<p>}</p>
-<p>fn main() -&gt; int {</p>
-<p>    let p = Point { x: 3, y: 4 }</p>
-<p>    print(p.x)</p>
-<p>    print(p.y)</p>
-<p>    let box = Rectangle { width: 10, height: 5 }</p>
-<p>    print(area(box))</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">struct Point {
+    x: int
+    y: int
+}
+
+struct Rectangle {
+    width: int
+    height: int
+}
+
+fn area(rect: Rectangle) -&gt; int {
+    return rect.width * rect.height
+}
+
+fn main() -&gt; int {
+    let p = Point { x: 3, y: 4 }
+    print(p.x)
+    print(p.y)
+
+    let box = Rectangle { width: 10, height: 5 }
+    print(area(box))
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="07-enums">07 — Enums</h1>
 <p>Sum types with named variants and pattern matching.</p>
 <div class="code-block-wrap">
@@ -330,34 +365,41 @@
 <pre class="language-bash"><code class="language-bash">vpp run projects/07-enums/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>enum</code>, variants, <code>match</code></p>
-<p>enum TrafficLight {</p>
-<p>    Red</p>
-<p>    Yellow</p>
-<p>    Green</p>
-<p>}</p>
-<p>struct Signal {</p>
-<p>    light: TrafficLight</p>
-<p>}</p>
-<p>fn action(signal: Signal) -&gt; string {</p>
-<p>    match signal.light {</p>
-<p>        Red =&gt; {</p>
-<p>            return &quot;stop&quot;</p>
-<p>        }</p>
-<p>        Yellow =&gt; {</p>
-<p>            return &quot;slow&quot;</p>
-<p>        }</p>
-<p>        Green =&gt; {</p>
-<p>            return &quot;go&quot;</p>
-<p>        }</p>
-<p>    }</p>
-<p>}</p>
-<p>fn main() -&gt; int {</p>
-<p>    let stop = Signal { light: Red }</p>
-<p>    let go = Signal { light: Green }</p>
-<p>    print(action(stop))</p>
-<p>    print(action(go))</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">enum TrafficLight {
+    Red
+    Yellow
+    Green
+}
+
+struct Signal {
+    light: TrafficLight
+}
+
+fn action(signal: Signal) -&gt; string {
+    match signal.light {
+        Red =&gt; {
+            return &quot;stop&quot;
+        }
+        Yellow =&gt; {
+            return &quot;slow&quot;
+        }
+        Green =&gt; {
+            return &quot;go&quot;
+        }
+    }
+}
+
+fn main() -&gt; int {
+    let stop = Signal { light: Red }
+    let go = Signal { light: Green }
+    print(action(stop))
+    print(action(go))
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="08-option-result">08 — Option &amp; Result</h1>
 <p>Safe error handling without exceptions.</p>
 <div class="code-block-wrap">
@@ -365,44 +407,51 @@
 <pre class="language-bash"><code class="language-bash">vpp run projects/08-option-result/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>Option</code>, <code>Result</code>, <code>Some</code>/<code>None</code>, <code>Ok</code>/<code>Err</code></p>
-<p>fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {</p>
-<p>    if b == 0 {</p>
-<p>        return Err(&quot;division by zero&quot;)</p>
-<p>    }</p>
-<p>    return Ok(a / b)</p>
-<p>}</p>
-<p>fn find_first(nums: array[int], target: int) -&gt; Option&lt;int&gt; {</p>
-<p>    let mut i = 0</p>
-<p>    while i &lt; len(nums) {</p>
-<p>        if nums[i] == target {</p>
-<p>            return Some(nums[i])</p>
-<p>        }</p>
-<p>        i = i + 1</p>
-<p>    }</p>
-<p>    return None</p>
-<p>}</p>
-<p>fn main() -&gt; int {</p>
-<p>    let r = safe_div(10, 2)</p>
-<p>    match r {</p>
-<p>        Ok(n) =&gt; {</p>
-<p>            print(n)</p>
-<p>        }</p>
-<p>        Err(e) =&gt; {</p>
-<p>            print(e)</p>
-<p>        }</p>
-<p>    }</p>
-<p>    let nums = [1, 5, 9]</p>
-<p>    let found = find_first(nums, 5)</p>
-<p>    match found {</p>
-<p>        Some(n) =&gt; {</p>
-<p>            print(n)</p>
-<p>        }</p>
-<p>        None =&gt; {</p>
-<p>            print(&quot;not found&quot;)</p>
-<p>        }</p>
-<p>    }</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {
+    if b == 0 {
+        return Err(&quot;division by zero&quot;)
+    }
+    return Ok(a / b)
+}
+
+fn find_first(nums: array[int], target: int) -&gt; Option&lt;int&gt; {
+    let mut i = 0
+    while i &lt; len(nums) {
+        if nums[i] == target {
+            return Some(nums[i])
+        }
+        i = i + 1
+    }
+    return None
+}
+
+fn main() -&gt; int {
+    let r = safe_div(10, 2)
+    match r {
+        Ok(n) =&gt; {
+            print(n)
+        }
+        Err(e) =&gt; {
+            print(e)
+        }
+    }
+
+    let nums = [1, 5, 9]
+    let found = find_first(nums, 5)
+    match found {
+        Some(n) =&gt; {
+            print(n)
+        }
+        None =&gt; {
+            print(&quot;not found&quot;)
+        }
+    }
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="09-pattern-matching">09 — Pattern Matching</h1>
 <p>Exhaustive <code>match</code> on enums — compiler checks all variants are covered.</p>
 <div class="code-block-wrap">
@@ -410,50 +459,57 @@
 <pre class="language-bash"><code class="language-bash">vpp run projects/09-match/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> exhaustive match, enum patterns</p>
-<p>enum Day {</p>
-<p>    Mon</p>
-<p>    Tue</p>
-<p>    Wed</p>
-<p>    Thu</p>
-<p>    Fri</p>
-<p>    Sat</p>
-<p>    Sun</p>
-<p>}</p>
-<p>struct CalendarDay {</p>
-<p>    day: Day</p>
-<p>}</p>
-<p>fn is_weekend(entry: CalendarDay) -&gt; bool {</p>
-<p>    match entry.day {</p>
-<p>        Sat =&gt; {</p>
-<p>            return true</p>
-<p>        }</p>
-<p>        Sun =&gt; {</p>
-<p>            return true</p>
-<p>        }</p>
-<p>        Mon =&gt; {</p>
-<p>            return false</p>
-<p>        }</p>
-<p>        Tue =&gt; {</p>
-<p>            return false</p>
-<p>        }</p>
-<p>        Wed =&gt; {</p>
-<p>            return false</p>
-<p>        }</p>
-<p>        Thu =&gt; {</p>
-<p>            return false</p>
-<p>        }</p>
-<p>        Fri =&gt; {</p>
-<p>            return false</p>
-<p>        }</p>
-<p>    }</p>
-<p>}</p>
-<p>fn main() -&gt; int {</p>
-<p>    let weekend = CalendarDay { day: Sat }</p>
-<p>    let weekday = CalendarDay { day: Wed }</p>
-<p>    print(is_weekend(weekend))</p>
-<p>    print(is_weekend(weekday))</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">enum Day {
+    Mon
+    Tue
+    Wed
+    Thu
+    Fri
+    Sat
+    Sun
+}
+
+struct CalendarDay {
+    day: Day
+}
+
+fn is_weekend(entry: CalendarDay) -&gt; bool {
+    match entry.day {
+        Sat =&gt; {
+            return true
+        }
+        Sun =&gt; {
+            return true
+        }
+        Mon =&gt; {
+            return false
+        }
+        Tue =&gt; {
+            return false
+        }
+        Wed =&gt; {
+            return false
+        }
+        Thu =&gt; {
+            return false
+        }
+        Fri =&gt; {
+            return false
+        }
+    }
+}
+
+fn main() -&gt; int {
+    let weekend = CalendarDay { day: Sat }
+    let weekday = CalendarDay { day: Wed }
+    print(is_weekend(weekend))
+    print(is_weekend(weekday))
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="10-fizzbuzz">10 — FizzBuzz</h1>
 <p>Classic loop exercise — divisibility and conditionals.</p>
 <div class="code-block-wrap">
@@ -461,31 +517,36 @@
 <pre class="language-bash"><code class="language-bash">vpp run projects/10-fizzbuzz/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>%</code>, <code>while</code>, functions</p>
-<p>fn fizzbuzz(n: int) -&gt; string {</p>
-<p>    if n % 15 == 0 {</p>
-<p>        return &quot;FizzBuzz&quot;</p>
-<p>    }</p>
-<p>    if n % 3 == 0 {</p>
-<p>        return &quot;Fizz&quot;</p>
-<p>    }</p>
-<p>    if n % 5 == 0 {</p>
-<p>        return &quot;Buzz&quot;</p>
-<p>    }</p>
-<p>    return &quot;num&quot;</p>
-<p>}</p>
-<p>fn main() -&gt; int {</p>
-<p>    let mut i = 1</p>
-<p>    while i &lt;= 20 {</p>
-<p>        let label = fizzbuzz(i)</p>
-<p>        if label == &quot;num&quot; {</p>
-<p>            print(i)</p>
-<p>        } else {</p>
-<p>            print(label)</p>
-<p>        }</p>
-<p>        i = i + 1</p>
-<p>    }</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn fizzbuzz(n: int) -&gt; string {
+    if n % 15 == 0 {
+        return &quot;FizzBuzz&quot;
+    }
+    if n % 3 == 0 {
+        return &quot;Fizz&quot;
+    }
+    if n % 5 == 0 {
+        return &quot;Buzz&quot;
+    }
+    return &quot;num&quot;
+}
+
+fn main() -&gt; int {
+    let mut i = 1
+    while i &lt;= 20 {
+        let label = fizzbuzz(i)
+        if label == &quot;num&quot; {
+            print(i)
+        } else {
+            print(label)
+        }
+        i = i + 1
+    }
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="11-fibonacci">11 — Fibonacci</h1>
 <p>Recursive functions — classic algorithm interview question.</p>
 <div class="code-block-wrap">
@@ -493,19 +554,24 @@
 <pre class="language-bash"><code class="language-bash">vpp run projects/11-fibonacci/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> recursion, base case</p>
-<p>fn fib(n: int) -&gt; int {</p>
-<p>    if n &lt;= 1 {</p>
-<p>        return n</p>
-<p>    }</p>
-<p>    return fib(n - 1) + fib(n - 2)</p>
-<p>}</p>
-<p>fn main() -&gt; int {</p>
-<p>    print(fib(0))</p>
-<p>    print(fib(1))</p>
-<p>    print(fib(10))</p>
-<p>    print(fib(15))</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn fib(n: int) -&gt; int {
+    if n &lt;= 1 {
+        return n
+    }
+    return fib(n - 1) + fib(n - 2)
+}
+
+fn main() -&gt; int {
+    print(fib(0))
+    print(fib(1))
+    print(fib(10))
+    print(fib(15))
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="12-generics">12 — Generics</h1>
 <p>Type-parameterized functions with monomorphization.</p>
 <div class="code-block-wrap">
@@ -513,19 +579,26 @@
 <pre class="language-bash"><code class="language-bash">vpp run projects/12-generics/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn name[T]</code>, explicit type args <code>id<a href="42">int</a></code></p>
-<p>fn id<a href="x: T">T</a> -&gt; T {</p>
-<p>    return x</p>
-<p>}</p>
-<p>fn first<a href="items: array[T]">T</a> -&gt; T {</p>
-<p>    return items[0]</p>
-<p>}</p>
-<p>fn main() -&gt; int {</p>
-<p>    print(id<a href="42">int</a>)</p>
-<p>    print(id<a href="&quot;v++&quot;">string</a>)</p>
-<p>    let words = [&quot;alpha&quot;, &quot;beta&quot;, &quot;gamma&quot;]</p>
-<p>    print(first<a href="words">string</a>)</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn id[T](x: T) -&gt; T {
+    return x
+}
+
+fn first[T](items: array[T]) -&gt; T {
+    return items[0]
+}
+
+fn main() -&gt; int {
+    print(id[int](42))
+    print(id[string](&quot;v++&quot;))
+
+    let words = [&quot;alpha&quot;, &quot;beta&quot;, &quot;gamma&quot;]
+    print(first[string](words))
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="13-traits">13 — Traits</h1>
 <p>Interfaces with static dispatch — <code>trait</code>, <code>impl</code>, method calls.</p>
 <div class="code-block-wrap">
@@ -533,32 +606,41 @@
 <pre class="language-bash"><code class="language-bash">vpp run projects/13-traits/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> traits, impl blocks, <code>self.area()</code></p>
-<p>struct Circle {</p>
-<p>    radius: int</p>
-<p>}</p>
-<p>struct Square {</p>
-<p>    side: int</p>
-<p>}</p>
-<p>trait Area {</p>
-<p>    fn area(self) -&gt; int</p>
-<p>}</p>
-<p>impl Area for Circle {</p>
-<p>    fn area(self) -&gt; int {</p>
-<p>        return self.radius * self.radius * 3</p>
-<p>    }</p>
-<p>}</p>
-<p>impl Area for Square {</p>
-<p>    fn area(self) -&gt; int {</p>
-<p>        return self.side * self.side</p>
-<p>    }</p>
-<p>}</p>
-<p>fn main() -&gt; int {</p>
-<p>    let c = Circle { radius: 5 }</p>
-<p>    let s = Square { side: 4 }</p>
-<p>    print(c.area())</p>
-<p>    print(s.area())</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">struct Circle {
+    radius: int
+}
+
+struct Square {
+    side: int
+}
+
+trait Area {
+    fn area(self) -&gt; int
+}
+
+impl Area for Circle {
+    fn area(self) -&gt; int {
+        return self.radius * self.radius * 3
+    }
+}
+
+impl Area for Square {
+    fn area(self) -&gt; int {
+        return self.side * self.side
+    }
+}
+
+fn main() -&gt; int {
+    let c = Circle { radius: 5 }
+    let s = Square { side: 4 }
+    print(c.area())
+    print(s.area())
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="14-modules">14 — Modules</h1>
 <p>Split code across files with <code>import</code> and <code>pub fn</code>.</p>
 <div class="code-block-wrap">
@@ -567,14 +649,19 @@
 vpp run main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> local imports, <code>pub</code> exports</p>
-<p>import &quot;math.vpp&quot;</p>
-<p>fn main() -&gt; int {</p>
-<p>    let sum = add(10, 5)</p>
-<p>    let product = mul(sum, 2)</p>
-<p>    print(sum)</p>
-<p>    print(product)</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">import &quot;math.vpp&quot;
+
+fn main() -&gt; int {
+    let sum = add(10, 5)
+    let product = mul(sum, 2)
+    print(sum)
+    print(product)
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="15-calculator">15 — Calculator</h1>
 <p>Enum-driven operations with <code>Result</code> for errors.</p>
 <div class="code-block-wrap">
@@ -582,47 +669,54 @@ vpp run main.vpp</code></pre>
 <pre class="language-bash"><code class="language-bash">vpp run projects/15-calculator/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> enum + match, <code>Result</code></p>
-<p>enum Op {</p>
-<p>    Add</p>
-<p>    Sub</p>
-<p>    Mul</p>
-<p>    Div</p>
-<p>}</p>
-<p>struct CalcOp {</p>
-<p>    op: Op</p>
-<p>}</p>
-<p>fn apply(calc: CalcOp, a: int, b: int) -&gt; Result&lt;int, string&gt; {</p>
-<p>    match calc.op {</p>
-<p>        Add =&gt; {</p>
-<p>            return Ok(a + b)</p>
-<p>        }</p>
-<p>        Sub =&gt; {</p>
-<p>            return Ok(a - b)</p>
-<p>        }</p>
-<p>        Mul =&gt; {</p>
-<p>            return Ok(a * b)</p>
-<p>        }</p>
-<p>        Div =&gt; {</p>
-<p>            if b == 0 {</p>
-<p>                return Err(&quot;divide by zero&quot;)</p>
-<p>            }</p>
-<p>            return Ok(a / b)</p>
-<p>        }</p>
-<p>    }</p>
-<p>}</p>
-<p>fn main() -&gt; int {</p>
-<p>    let calc = CalcOp { op: Mul }</p>
-<p>    let r = apply(calc, 6, 7)</p>
-<p>    match r {</p>
-<p>        Ok(n) =&gt; {</p>
-<p>            print(n)</p>
-<p>        }</p>
-<p>        Err(e) =&gt; {</p>
-<p>            print(e)</p>
-<p>        }</p>
-<p>    }</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">enum Op {
+    Add
+    Sub
+    Mul
+    Div
+}
+
+struct CalcOp {
+    op: Op
+}
+
+fn apply(calc: CalcOp, a: int, b: int) -&gt; Result&lt;int, string&gt; {
+    match calc.op {
+        Add =&gt; {
+            return Ok(a + b)
+        }
+        Sub =&gt; {
+            return Ok(a - b)
+        }
+        Mul =&gt; {
+            return Ok(a * b)
+        }
+        Div =&gt; {
+            if b == 0 {
+                return Err(&quot;divide by zero&quot;)
+            }
+            return Ok(a / b)
+        }
+    }
+}
+
+fn main() -&gt; int {
+    let calc = CalcOp { op: Mul }
+    let r = apply(calc, 6, 7)
+    match r {
+        Ok(n) =&gt; {
+            print(n)
+        }
+        Err(e) =&gt; {
+            print(e)
+        }
+    }
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="16-word-counter">16 — Word Counter</h1>
 <p>Analyze an array of words — count, total characters, longest word.</p>
 <div class="code-block-wrap">
@@ -630,29 +724,35 @@ vpp run main.vpp</code></pre>
 <pre class="language-bash"><code class="language-bash">vpp run projects/16-word-counter/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>array[string]</code>, <code>len</code>, loops</p>
-<p>fn total_chars(words: array[string]) -&gt; int {</p>
-<p>    let mut total = 0</p>
-<p>    for w in words {</p>
-<p>        total = total + len(w)</p>
-<p>    }</p>
-<p>    return total</p>
-<p>}</p>
-<p>fn longest_word(words: array[string]) -&gt; string {</p>
-<p>    let mut best = words[0]</p>
-<p>    for w in words {</p>
-<p>        if len(w) &gt; len(best) {</p>
-<p>            best = w</p>
-<p>        }</p>
-<p>    }</p>
-<p>    return best</p>
-<p>}</p>
-<p>fn main() -&gt; int {</p>
-<p>    let words = [&quot;v++&quot;, &quot;is&quot;, &quot;a&quot;, &quot;compiled&quot;, &quot;language&quot;]</p>
-<p>    print(len(words))</p>
-<p>    print(total_chars(words))</p>
-<p>    print(longest_word(words))</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn total_chars(words: array[string]) -&gt; int {
+    let mut total = 0
+    for w in words {
+        total = total + len(w)
+    }
+    return total
+}
+
+fn longest_word(words: array[string]) -&gt; string {
+    let mut best = words[0]
+    for w in words {
+        if len(w) &gt; len(best) {
+            best = w
+        }
+    }
+    return best
+}
+
+fn main() -&gt; int {
+    let words = [&quot;v++&quot;, &quot;is&quot;, &quot;a&quot;, &quot;compiled&quot;, &quot;language&quot;]
+    print(len(words))
+    print(total_chars(words))
+    print(longest_word(words))
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="17-guessing-game">17 — Guessing Game</h1>
 <p>Binary-search style hints — too low, too high, correct.</p>
 <div class="code-block-wrap">
@@ -660,32 +760,39 @@ vpp run main.vpp</code></pre>
 <pre class="language-bash"><code class="language-bash">vpp run projects/17-guessing-game/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> conditionals, arrays of guesses, game logic</p>
-<p>fn hint(guess: int, secret: int) -&gt; string {</p>
-<p>    if guess &lt; secret {</p>
-<p>        return &quot;too low&quot;</p>
-<p>    }</p>
-<p>    if guess &gt; secret {</p>
-<p>        return &quot;too high&quot;</p>
-<p>    }</p>
-<p>    return &quot;correct&quot;</p>
-<p>}</p>
-<p>fn play_round(secret: int, guess: int) -&gt; bool {</p>
-<p>    let message = hint(guess, secret)</p>
-<p>    print(message)</p>
-<p>    return message == &quot;correct&quot;</p>
-<p>}</p>
-<p>fn main() -&gt; int {</p>
-<p>    let secret = 42</p>
-<p>    let guesses = [10, 30, 50, 42]</p>
-<p>    for g in guesses {</p>
-<p>        print(g)</p>
-<p>        if play_round(secret, g) {</p>
-<p>            print(&quot;you win&quot;)</p>
-<p>            return 0</p>
-<p>        }</p>
-<p>    }</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn hint(guess: int, secret: int) -&gt; string {
+    if guess &lt; secret {
+        return &quot;too low&quot;
+    }
+    if guess &gt; secret {
+        return &quot;too high&quot;
+    }
+    return &quot;correct&quot;
+}
+
+fn play_round(secret: int, guess: int) -&gt; bool {
+    let message = hint(guess, secret)
+    print(message)
+    return message == &quot;correct&quot;
+}
+
+fn main() -&gt; int {
+    let secret = 42
+    let guesses = [10, 30, 50, 42]
+
+    for g in guesses {
+        print(g)
+        if play_round(secret, g) {
+            print(&quot;you win&quot;)
+            return 0
+        }
+    }
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="18-todo-list">18 — Todo List</h1>
 <p>Track tasks with structs and bool flags.</p>
 <div class="code-block-wrap">
@@ -693,32 +800,40 @@ vpp run main.vpp</code></pre>
 <pre class="language-bash"><code class="language-bash">vpp run projects/18-todo-list/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> struct, bool, conditional printing</p>
-<p>struct Todo {</p>
-<p>    title: string</p>
-<p>    done: bool</p>
-<p>}</p>
-<p>fn print_todo(t: Todo) -&gt; int {</p>
-<p>    if t.done {</p>
-<p>        print(&quot;[x] &quot; + t.title)</p>
-<p>    } else {</p>
-<p>        print(&quot;[ ] &quot; + t.title)</p>
-<p>    }</p>
-<p>    return 0</p>
-<p>}</p>
-<p>fn main() -&gt; int {</p>
-<p>    let t1 = Todo { title: &quot;learn v++&quot;, done: true }</p>
-<p>    let t2 = Todo { title: &quot;build a project&quot;, done: false }</p>
-<p>    let t3 = Todo { title: &quot;ship v1.0&quot;, done: false }</p>
-<p>    print_todo(t1)</p>
-<p>    print_todo(t2)</p>
-<p>    print_todo(t3)</p>
-<p>    let mut done_count = 0</p>
-<p>    if t1.done { done_count = done_count + 1 }</p>
-<p>    if t2.done { done_count = done_count + 1 }</p>
-<p>    if t3.done { done_count = done_count + 1 }</p>
-<p>    print(done_count)</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">struct Todo {
+    title: string
+    done: bool
+}
+
+fn print_todo(t: Todo) -&gt; int {
+    if t.done {
+        print(&quot;[x] &quot; + t.title)
+    } else {
+        print(&quot;[ ] &quot; + t.title)
+    }
+    return 0
+}
+
+fn main() -&gt; int {
+    let t1 = Todo { title: &quot;learn v++&quot;, done: true }
+    let t2 = Todo { title: &quot;build a project&quot;, done: false }
+    let t3 = Todo { title: &quot;ship v1.0&quot;, done: false }
+
+    print_todo(t1)
+    print_todo(t2)
+    print_todo(t3)
+
+    let mut done_count = 0
+    if t1.done { done_count = done_count + 1 }
+    if t2.done { done_count = done_count + 1 }
+    if t3.done { done_count = done_count + 1 }
+    print(done_count)
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="19-file-notes">19 — File Notes</h1>
 <p>Read and write files with <code>std.fs</code>.</p>
 <div class="code-block-wrap">
@@ -726,16 +841,23 @@ vpp run main.vpp</code></pre>
 <pre class="language-bash"><code class="language-bash">vpp run projects/19-file-notes/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fs.write</code>, <code>fs.read</code>, <code>fs.exists</code></p>
-<p>import std.fs</p>
-<p>fn main() -&gt; int {</p>
-<p>    let path = &quot;note.txt&quot;</p>
-<p>    let body = &quot;v++ file notes\nBuilt by Shaurya\nOpen source on GitHub&quot;</p>
-<p>    fs.write(path, body)</p>
-<p>    print(fs.exists(path))</p>
-<p>    let content = fs.read(path)</p>
-<p>    print(content)</p>
-<p>    return 0</p>
-<p>}</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">import std.fs
+
+fn main() -&gt; int {
+    let path = &quot;note.txt&quot;
+    let body = &quot;v++ file notes\nBuilt by Shaurya\nOpen source on GitHub&quot;
+
+    fs.write(path, body)
+    print(fs.exists(path))
+
+    let content = fs.read(path)
+    print(content)
+    return 0
+}
+</code></pre>
+</div>
 <h1 id="20-json-config">20 — JSON Config</h1>
 <p>Parse JSON with <code>std.json</code> and model app configuration with structs.</p>
 <div class="code-block-wrap">
@@ -743,38 +865,70 @@ vpp run main.vpp</code></pre>
 <pre class="language-bash"><code class="language-bash">vpp run projects/20-json-config/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>std.json</code>, struct config, <code>vpp.toml</code> project layout</p>
-<p>import std.json</p>
-<p>struct AppConfig {</p>
-<p>    name: string</p>
-<p>    version: string</p>
-<p>    debug: bool</p>
-<p>}</p>
-<p>fn parse_config(raw: string) -&gt; string {</p>
-<p>    let doc = json.parse(raw)</p>
-<p>    return json.stringify(doc)</p>
-<p>}</p>
-<p>fn main() -&gt; int {</p>
-<p>    let raw = &quot;{\&quot;name\&quot;:\&quot;v++\&quot;,\&quot;version\&quot;:\&quot;0.5.0\&quot;,\&quot;debug\&quot;:false}&quot;</p>
-<p>    print(parse_config(raw))</p>
-<p>    let cfg = AppConfig {</p>
-<p>        name: &quot;v++&quot;</p>
-<p>        version: &quot;0.5.0&quot;</p>
-<p>        debug: true</p>
-<p>    }</p>
-<p>    print(cfg.name)</p>
-<p>    print(cfg.version)</p>
-<p>    return 0</p>
-<p>}</p></article>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">import std.json
+
+struct AppConfig {
+    name: string
+    version: string
+    debug: bool
+}
+
+fn parse_config(raw: string) -&gt; string {
+    let doc = json.parse(raw)
+    return json.stringify(doc)
+}
+
+fn main() -&gt; int {
+    let raw = &quot;{\&quot;name\&quot;:\&quot;v++\&quot;,\&quot;version\&quot;:\&quot;0.5.0\&quot;,\&quot;debug\&quot;:false}&quot;
+    print(parse_config(raw))
+
+    let cfg = AppConfig {
+        name: &quot;v++&quot;
+        version: &quot;0.5.0&quot;
+        debug: true
+    }
+    print(cfg.name)
+    print(cfg.version)
+    return 0
+}
+</code></pre>
+</div></article>
     </main>
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>
-      <ul><li><a href="#top">Top</a></li></ul>
+      <ul>
+<li class=""><a href="#v-example-projects">v++ Example Projects</a></li>
+<li class=""><a href="#01-hello-world">01 — Hello World</a></li>
+<li class=""><a href="#02-variables-math">02 — Variables &amp;amp; Math</a></li>
+<li class=""><a href="#03-functions">03 — Functions</a></li>
+<li class=""><a href="#04-loops">04 — Loops</a></li>
+<li class=""><a href="#05-arrays">05 — Arrays</a></li>
+<li class=""><a href="#06-structs">06 — Structs</a></li>
+<li class=""><a href="#07-enums">07 — Enums</a></li>
+<li class=""><a href="#08-option-result">08 — Option &amp;amp; Result</a></li>
+<li class=""><a href="#09-pattern-matching">09 — Pattern Matching</a></li>
+<li class=""><a href="#10-fizzbuzz">10 — FizzBuzz</a></li>
+<li class=""><a href="#11-fibonacci">11 — Fibonacci</a></li>
+<li class=""><a href="#12-generics">12 — Generics</a></li>
+<li class=""><a href="#13-traits">13 — Traits</a></li>
+<li class=""><a href="#14-modules">14 — Modules</a></li>
+<li class=""><a href="#15-calculator">15 — Calculator</a></li>
+<li class=""><a href="#16-word-counter">16 — Word Counter</a></li>
+<li class=""><a href="#17-guessing-game">17 — Guessing Game</a></li>
+<li class=""><a href="#18-todo-list">18 — Todo List</a></li>
+<li class=""><a href="#19-file-notes">19 — File Notes</a></li>
+<li class=""><a href="#20-json-config">20 — JSON Config</a></li>
+</ul>
     </aside>
   </div>
   <footer class="site-footer compact">
     <div class="footer-inner">
-      <span class="footer-badge">v0.5.0</span>
-      <span class="footer-badge yellow">Latest</span>
+      <div class="footer-badges">
+        <span class="footer-badge">v0.5.0</span>
+        <span class="footer-badge yellow">Latest</span>
+      </div>
       <div class="footer-links">
         <a href="https://github.com/shauryaR790/V-">GitHub</a>
         <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">VS Code</a>

@@ -1911,7 +1911,7 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 <p>Report conduct concerns to <strong>shauryajiku@gmail.com</strong>. Maintainers may remove contributions or ban repeat offenders.</p>
 <h2 id="attribution">Attribution</h2>
 <p>Adapted from the <a href="https://www.contributor-covenant.org/">Contributor Covenant</a>, version 2.1.</p>
-<h2 id="source-std-assert-vpp">Source: <code>std/assert.vpp</code></h2>
+<h3 id="std-assert-vpp"><code>std/assert.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Re-exports assert helpers (implemented as compiler builtins).
@@ -1925,7 +1925,7 @@ fn assert_true(condition: bool) -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-std-collections-vpp">Source: <code>std/collections.vpp</code></h2>
+<h3 id="std-collections-vpp"><code>std/collections.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn make_int_array(values: array[int]) -&gt; array[int] {
@@ -1956,7 +1956,7 @@ pub fn sum(arr: array[int]) -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-std-fs-vpp">Source: <code>std/fs.vpp</code></h2>
+<h3 id="std-fs-vpp"><code>std/fs.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// File I/O via compiler/runtime builtins (read_file, write_file, file_exists).
@@ -1975,7 +1975,7 @@ pub fn exists(path: string) -&gt; bool {
 }
 </code></pre>
 </div>
-<h2 id="source-std-io-vpp">Source: <code>std/io.vpp</code></h2>
+<h3 id="std-io-vpp"><code>std/io.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn greet(name: string) -&gt; int {
@@ -1994,7 +1994,7 @@ pub fn print_int(n: int) -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-std-json-vpp">Source: <code>std/json.vpp</code></h2>
+<h3 id="std-json-vpp"><code>std/json.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Minimal JSON helpers via runtime builtins.
@@ -2008,7 +2008,7 @@ pub fn stringify(raw: string) -&gt; string {
 }
 </code></pre>
 </div>
-<h2 id="source-std-math-vpp">Source: <code>std/math.vpp</code></h2>
+<h3 id="std-math-vpp"><code>std/math.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn add(a: int, b: int) -&gt; int {
@@ -2057,7 +2057,7 @@ pub fn clamp(n: int, lo: int, hi: int) -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-std-process-vpp">Source: <code>std/process.vpp</code></h2>
+<h3 id="std-process-vpp"><code>std/process.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Process helpers via runtime builtins.
@@ -2071,7 +2071,7 @@ pub fn exit_code(cmd: string) -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-std-string-vpp">Source: <code>std/string.vpp</code></h2>
+<h3 id="std-string-vpp"><code>std/string.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn upper(s: string) -&gt; string {
@@ -2097,7 +2097,7 @@ pub fn is_empty(s: string) -&gt; bool {
 }
 </code></pre>
 </div>
-<h2 id="source-examples-arrays-vpp">Source: <code>examples/arrays.vpp</code></h2>
+<h3 id="examples-arrays-vpp"><code>examples/arrays.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">let users = [&quot;Alex&quot;, &quot;Sam&quot;, &quot;John&quot;]
@@ -2121,7 +2121,7 @@ for i in 0..3 {
 }
 </code></pre>
 </div>
-<h2 id="source-examples-arrays-fn-vpp">Source: <code>examples/arrays_fn.vpp</code></h2>
+<h3 id="examples-arrays-fn-vpp"><code>examples/arrays_fn.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn sum_nums(nums: array[int]) -&gt; int {
@@ -2144,7 +2144,7 @@ let words = [&quot;alpha&quot;, &quot;beta&quot;, &quot;gamma&quot;]
 print(first(words))
 </code></pre>
 </div>
-<h2 id="source-examples-fib-vpp">Source: <code>examples/fib.vpp</code></h2>
+<h3 id="examples-fib-vpp"><code>examples/fib.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn fib(n: int) -&gt; int {
@@ -2158,7 +2158,7 @@ let result = fib(10)
 print(result)
 </code></pre>
 </div>
-<h2 id="source-examples-generics-vpp">Source: <code>examples/generics.vpp</code></h2>
+<h3 id="examples-generics-vpp"><code>examples/generics.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn id[T](x: T) -&gt; T {
@@ -2179,7 +2179,7 @@ fn main() -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-examples-hello-vpp">Source: <code>examples/hello.vpp</code></h2>
+<h3 id="examples-hello-vpp"><code>examples/hello.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.fs
@@ -2266,7 +2266,7 @@ fn main() -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-examples-lesson01-basics-vpp">Source: <code>examples/lesson01_basics.vpp</code></h2>
+<h3 id="examples-lesson01-basics-vpp"><code>examples/lesson01_basics.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Lesson 1: Variables, math, and printing
@@ -2282,7 +2282,7 @@ let name = &quot;student&quot;
 print(&quot;Hello, &quot; + name + &quot;!&quot;)
 </code></pre>
 </div>
-<h2 id="source-examples-lesson02-functions-vpp">Source: <code>examples/lesson02_functions.vpp</code></h2>
+<h3 id="examples-lesson02-functions-vpp"><code>examples/lesson02_functions.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Lesson 2: Functions and conditionals
@@ -2309,7 +2309,7 @@ fn main() -&gt; int {
 main()
 </code></pre>
 </div>
-<h2 id="source-examples-lesson03-loops-vpp">Source: <code>examples/lesson03_loops.vpp</code></h2>
+<h3 id="examples-lesson03-loops-vpp"><code>examples/lesson03_loops.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Lesson 3: Loops, arrays, and break/continue
@@ -2332,7 +2332,7 @@ for item in nums {
 }
 </code></pre>
 </div>
-<h2 id="source-examples-match-test-vpp">Source: <code>examples/match_test.vpp</code></h2>
+<h3 id="examples-match-test-vpp"><code>examples/match_test.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn ok_val() -&gt; Result&lt;int, string&gt; {
@@ -2350,7 +2350,7 @@ match r {
 }
 </code></pre>
 </div>
-<h2 id="source-examples-math-vpp">Source: <code>examples/math.vpp</code></h2>
+<h3 id="examples-math-vpp"><code>examples/math.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn add(a: int, b: int) -&gt; int {
@@ -2362,7 +2362,7 @@ pub fn mul(a: int, b: int) -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-examples-modules-main-vpp">Source: <code>examples/modules_main.vpp</code></h2>
+<h3 id="examples-modules-main-vpp"><code>examples/modules_main.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import &quot;math.vpp&quot;
@@ -2372,7 +2372,7 @@ let y = mul(x, 4)
 print(y)
 </code></pre>
 </div>
-<h2 id="source-examples-option-result-vpp">Source: <code>examples/option_result.vpp</code></h2>
+<h3 id="examples-option-result-vpp"><code>examples/option_result.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn divide(a: int, b: int) -&gt; Result&lt;int, string&gt; {
@@ -2410,7 +2410,7 @@ match m {
 }
 </code></pre>
 </div>
-<h2 id="source-examples-scope-shadow-vpp">Source: <code>examples/scope_shadow.vpp</code></h2>
+<h3 id="examples-scope-shadow-vpp"><code>examples/scope_shadow.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Scope shadowing: inner block must not leak bindings.
@@ -2422,7 +2422,7 @@ if true {
 print(x)
 </code></pre>
 </div>
-<h2 id="source-examples-std-builtins-vpp">Source: <code>examples/std_builtins.vpp</code></h2>
+<h3 id="examples-std-builtins-vpp"><code>examples/std_builtins.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.fs
@@ -2440,7 +2440,7 @@ fn main() -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-examples-structs-vpp">Source: <code>examples/structs.vpp</code></h2>
+<h3 id="examples-structs-vpp"><code>examples/structs.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">struct Person {
@@ -2459,7 +2459,7 @@ fn greet(p: Person) -&gt; string {
 print(greet(alex))
 </code></pre>
 </div>
-<h2 id="source-examples-traits-vpp">Source: <code>examples/traits.vpp</code></h2>
+<h3 id="examples-traits-vpp"><code>examples/traits.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">enum Status {
@@ -2632,7 +2632,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/01-hello-world/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn main</code>, <code>print</code>, return code</p>
-<h2 id="source-projects-01-hello-world-main-vpp">Source: <code>projects/01-hello-world/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
@@ -2648,7 +2647,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/02-variables/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>let</code>, type inference, <code>+</code> on int and string</p>
-<h2 id="source-projects-02-variables-main-vpp">Source: <code>projects/02-variables/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
@@ -2671,7 +2669,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/03-functions/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn</code>, <code>return</code>, function signatures</p>
-<h2 id="source-projects-03-functions-main-vpp">Source: <code>projects/03-functions/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn add(a: int, b: int) -&gt; int {
@@ -2696,7 +2693,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/04-loops/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>while</code>, <code>for</code>, <code>0..n</code>, <code>let mut</code></p>
-<h2 id="source-projects-04-loops-main-vpp">Source: <code>projects/04-loops/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
@@ -2725,7 +2721,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/05-arrays/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> arrays, indexing, <code>import std.collections</code></p>
-<h2 id="source-projects-05-arrays-main-vpp">Source: <code>projects/05-arrays/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn sum(nums: array[int]) -&gt; int {
@@ -2761,7 +2756,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/06-structs/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>struct</code>, field access, passing structs to functions</p>
-<h2 id="source-projects-06-structs-main-vpp">Source: <code>projects/06-structs/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">struct Point {
@@ -2796,7 +2790,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/07-enums/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>enum</code>, variants, <code>match</code></p>
-<h2 id="source-projects-07-enums-main-vpp">Source: <code>projects/07-enums/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">enum TrafficLight {
@@ -2839,7 +2832,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/08-option-result/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>Option</code>, <code>Result</code>, <code>Some</code>/<code>None</code>, <code>Ok</code>/<code>Err</code></p>
-<h2 id="source-projects-08-option-result-main-vpp">Source: <code>projects/08-option-result/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {
@@ -2892,7 +2884,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/09-match/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> exhaustive match, enum patterns</p>
-<h2 id="source-projects-09-match-main-vpp">Source: <code>projects/09-match/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">enum Day {
@@ -2951,7 +2942,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/10-fizzbuzz/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>%</code>, <code>while</code>, functions</p>
-<h2 id="source-projects-10-fizzbuzz-main-vpp">Source: <code>projects/10-fizzbuzz/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn fizzbuzz(n: int) -&gt; string {
@@ -2989,7 +2979,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/11-fibonacci/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> recursion, base case</p>
-<h2 id="source-projects-11-fibonacci-main-vpp">Source: <code>projects/11-fibonacci/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn fib(n: int) -&gt; int {
@@ -3015,7 +3004,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/12-generics/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn name[T]</code>, explicit type args <code>id<a href="42">int</a></code></p>
-<h2 id="source-projects-12-generics-main-vpp">Source: <code>projects/12-generics/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn id[T](x: T) -&gt; T {
@@ -3043,7 +3031,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/13-traits/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> traits, impl blocks, <code>self.area()</code></p>
-<h2 id="source-projects-13-traits-main-vpp">Source: <code>projects/13-traits/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">struct Circle {
@@ -3087,7 +3074,6 @@ fn main() -&gt; int {
 vpp run main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> local imports, <code>pub</code> exports</p>
-<h2 id="source-projects-14-modules-main-vpp">Source: <code>projects/14-modules/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import &quot;math.vpp&quot;
@@ -3108,7 +3094,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/15-calculator/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> enum + match, <code>Result</code></p>
-<h2 id="source-projects-15-calculator-main-vpp">Source: <code>projects/15-calculator/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">enum Op {
@@ -3164,7 +3149,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/16-word-counter/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>array[string]</code>, <code>len</code>, loops</p>
-<h2 id="source-projects-16-word-counter-main-vpp">Source: <code>projects/16-word-counter/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn total_chars(words: array[string]) -&gt; int {
@@ -3201,7 +3185,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/17-guessing-game/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> conditionals, arrays of guesses, game logic</p>
-<h2 id="source-projects-17-guessing-game-main-vpp">Source: <code>projects/17-guessing-game/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn hint(guess: int, secret: int) -&gt; string {
@@ -3242,7 +3225,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/18-todo-list/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> struct, bool, conditional printing</p>
-<h2 id="source-projects-18-todo-list-main-vpp">Source: <code>projects/18-todo-list/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">struct Todo {
@@ -3284,7 +3266,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/19-file-notes/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fs.write</code>, <code>fs.read</code>, <code>fs.exists</code></p>
-<h2 id="source-projects-19-file-notes-main-vpp">Source: <code>projects/19-file-notes/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.fs
@@ -3309,7 +3290,6 @@ fn main() -&gt; int {
 <pre class="language-bash"><code class="language-bash">vpp run projects/20-json-config/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>std.json</code>, struct config, <code>vpp.toml</code> project layout</p>
-<h2 id="source-projects-20-json-config-main-vpp">Source: <code>projects/20-json-config/main.vpp</code></h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.json
@@ -3340,7 +3320,7 @@ fn main() -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-projects-20-json-config-vpp-toml">Source: <code>projects/20-json-config/vpp.toml</code></h2>
+<h3 id="projects-20-json-config-vpp-toml"><code>projects/20-json-config/vpp.toml</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>TOML</span></div>
 <pre class="language-toml"><code class="language-toml">name = &quot;json-config-demo&quot;
@@ -3350,7 +3330,7 @@ entry = &quot;main.vpp&quot;
 [dependencies]
 </code></pre>
 </div>
-<h2 id="source-stress-vpp">Source: <code>stress.vpp</code></h2>
+<h3 id="stress-vpp"><code>stress.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.fs
@@ -3605,7 +3585,7 @@ fn main() -&gt; int {
 <li>Run, check, and test commands</li>
 <li>Yellow v file icons</li>
 </ul>
-<h2 id="source-registry-index-toml">Source: <code>registry/index.toml</code></h2>
+<h3 id="registry-index-toml"><code>registry/index.toml</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>TOML</span></div>
 <pre class="language-toml"><code class="language-toml"># v++ central package registry (v0.3)
@@ -3617,7 +3597,7 @@ version = &quot;0.1.0&quot;
 path = &quot;fixtures/hello-lib&quot;
 </code></pre>
 </div>
-<h2 id="source-registry-fixtures-hello-lib-src-lib-vpp">Source: <code>registry/fixtures/hello-lib/src/lib.vpp</code></h2>
+<h3 id="registry-fixtures-hello-lib-src-lib-vpp"><code>registry/fixtures/hello-lib/src/lib.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn greet(name: string) -&gt; string {
@@ -3625,7 +3605,7 @@ path = &quot;fixtures/hello-lib&quot;
 }
 </code></pre>
 </div>
-<h2 id="source-registry-fixtures-hello-lib-vpp-toml">Source: <code>registry/fixtures/hello-lib/vpp.toml</code></h2>
+<h3 id="registry-fixtures-hello-lib-vpp-toml"><code>registry/fixtures/hello-lib/vpp.toml</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>TOML</span></div>
 <pre class="language-toml"><code class="language-toml">name = &quot;hello-lib&quot;
@@ -3633,7 +3613,7 @@ version = &quot;0.1.0&quot;
 entry = &quot;src/lib.vpp&quot;
 </code></pre>
 </div>
-<h2 id="source-staging-std-assert-vpp">Source: <code>staging/std/assert.vpp</code></h2>
+<h3 id="staging-std-assert-vpp"><code>staging/std/assert.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Re-exports assert helpers (implemented as compiler builtins).
@@ -3647,7 +3627,7 @@ fn assert_true(condition: bool) -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-staging-std-collections-vpp">Source: <code>staging/std/collections.vpp</code></h2>
+<h3 id="staging-std-collections-vpp"><code>staging/std/collections.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn make_int_array(values: array[int]) -&gt; array[int] {
@@ -3678,7 +3658,7 @@ pub fn sum(arr: array[int]) -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-staging-std-fs-vpp">Source: <code>staging/std/fs.vpp</code></h2>
+<h3 id="staging-std-fs-vpp"><code>staging/std/fs.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// File I/O via compiler/runtime builtins (read_file, write_file, file_exists).
@@ -3697,7 +3677,7 @@ pub fn exists(path: string) -&gt; bool {
 }
 </code></pre>
 </div>
-<h2 id="source-staging-std-io-vpp">Source: <code>staging/std/io.vpp</code></h2>
+<h3 id="staging-std-io-vpp"><code>staging/std/io.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn greet(name: string) -&gt; int {
@@ -3716,7 +3696,7 @@ pub fn print_int(n: int) -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-staging-std-json-vpp">Source: <code>staging/std/json.vpp</code></h2>
+<h3 id="staging-std-json-vpp"><code>staging/std/json.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Minimal JSON helpers via runtime builtins.
@@ -3730,7 +3710,7 @@ pub fn stringify(raw: string) -&gt; string {
 }
 </code></pre>
 </div>
-<h2 id="source-staging-std-math-vpp">Source: <code>staging/std/math.vpp</code></h2>
+<h3 id="staging-std-math-vpp"><code>staging/std/math.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn add(a: int, b: int) -&gt; int {
@@ -3779,7 +3759,7 @@ pub fn clamp(n: int, lo: int, hi: int) -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-staging-std-process-vpp">Source: <code>staging/std/process.vpp</code></h2>
+<h3 id="staging-std-process-vpp"><code>staging/std/process.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">// Process helpers via runtime builtins.
@@ -3793,7 +3773,7 @@ pub fn exit_code(cmd: string) -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-staging-std-string-vpp">Source: <code>staging/std/string.vpp</code></h2>
+<h3 id="staging-std-string-vpp"><code>staging/std/string.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub fn upper(s: string) -&gt; string {
@@ -3819,7 +3799,7 @@ pub fn is_empty(s: string) -&gt; bool {
 }
 </code></pre>
 </div>
-<h2 id="source-staging-examples-hello-vpp">Source: <code>staging/examples/hello.vpp</code></h2>
+<h3 id="staging-examples-hello-vpp"><code>staging/examples/hello.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.fs
@@ -3906,7 +3886,7 @@ fn main() -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-tests-fixtures-module-bad-vpp">Source: <code>tests/fixtures/module_bad.vpp</code></h2>
+<h3 id="tests-fixtures-module-bad-vpp"><code>tests/fixtures/module_bad.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.math
@@ -3916,7 +3896,7 @@ fn main() -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-tests-fixtures-module-math-vpp">Source: <code>tests/fixtures/module_math.vpp</code></h2>
+<h3 id="tests-fixtures-module-math-vpp"><code>tests/fixtures/module_math.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import std.math
@@ -3927,7 +3907,7 @@ fn main() -&gt; int {
 }
 </code></pre>
 </div>
-<h2 id="source-tests-fixtures-smoke-vpp">Source: <code>tests/fixtures/smoke.vpp</code></h2>
+<h3 id="tests-fixtures-smoke-vpp"><code>tests/fixtures/smoke.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>v++</span></div>
 <pre class="language-javascript"><code class="language-javascript">import &quot;std/math.vpp&quot;
@@ -3941,7 +3921,7 @@ test &quot;power&quot; {
 }
 </code></pre>
 </div>
-<h2 id="source-tests-arrays-rs">Source: <code>tests/arrays.rs</code></h2>
+<h3 id="tests-arrays-rs"><code>tests/arrays.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
 <pre class="language-javascript"><code class="language-javascript">use std::path::PathBuf;
@@ -3974,7 +3954,7 @@ fn array_type_maps_to_heap_ir_type() {
 }
 </code></pre>
 </div>
-<h2 id="source-tests-end-to-end-rs">Source: <code>tests/end_to_end.rs</code></h2>
+<h3 id="tests-end-to-end-rs"><code>tests/end_to_end.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
 <pre class="language-javascript"><code class="language-javascript">#[cfg(feature = &quot;codegen&quot;)]
@@ -4041,7 +4021,7 @@ mod native {
 }
 </code></pre>
 </div>
-<h2 id="source-tests-lexer-rs">Source: <code>tests/lexer.rs</code></h2>
+<h3 id="tests-lexer-rs"><code>tests/lexer.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
 <pre class="language-javascript"><code class="language-javascript">use vpp::lexer::Lexer;
@@ -4067,7 +4047,7 @@ fn lexes_operators() {
 }
 </code></pre>
 </div>
-<h2 id="source-tests-modules-rs">Source: <code>tests/modules.rs</code></h2>
+<h3 id="tests-modules-rs"><code>tests/modules.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
 <pre class="language-javascript"><code class="language-javascript">//! Module system integration tests.
@@ -4103,7 +4083,7 @@ fn rejects_unqualified_module_function() {
 }
 </code></pre>
 </div>
-<h2 id="source-tests-parity-rs">Source: <code>tests/parity.rs</code></h2>
+<h3 id="tests-parity-rs"><code>tests/parity.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
 <pre class="language-javascript"><code class="language-javascript">//! Interpreter vs native output parity tests.
@@ -4239,7 +4219,7 @@ fn traits_parity() {
 }
 </code></pre>
 </div>
-<h2 id="source-tests-parser-rs">Source: <code>tests/parser.rs</code></h2>
+<h3 id="tests-parser-rs"><code>tests/parser.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
 <pre class="language-javascript"><code class="language-javascript">use vpp::parse;
@@ -4275,7 +4255,7 @@ fn parses_array_literal() {
 }
 </code></pre>
 </div>
-<h2 id="source-tests-pkg-rs">Source: <code>tests/pkg.rs</code></h2>
+<h3 id="tests-pkg-rs"><code>tests/pkg.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
 <pre class="language-javascript"><code class="language-javascript">//! Package manager tests.
@@ -4354,7 +4334,7 @@ fn registry_version_dependency() {
 }
 </code></pre>
 </div>
-<h2 id="source-tests-stdlib-rs">Source: <code>tests/stdlib.rs</code></h2>
+<h3 id="tests-stdlib-rs"><code>tests/stdlib.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
 <pre class="language-javascript"><code class="language-javascript">//! Stdlib fs/json/process parity and registry tests.
@@ -4481,7 +4461,7 @@ fn registry_resolves_hello_lib() {
 }
 </code></pre>
 </div>
-<h2 id="source-tests-test-runner-rs">Source: <code>tests/test_runner.rs</code></h2>
+<h3 id="tests-test-runner-rs"><code>tests/test_runner.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
 <pre class="language-javascript"><code class="language-javascript">use std::path::PathBuf;
@@ -4517,7 +4497,7 @@ fn init_scaffold_typechecks() {
 }
 </code></pre>
 </div>
-<h2 id="source-tests-typecheck-rs">Source: <code>tests/typecheck.rs</code></h2>
+<h3 id="tests-typecheck-rs"><code>tests/typecheck.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
 <pre class="language-javascript"><code class="language-javascript">use vpp::check;
@@ -4615,7 +4595,7 @@ fn accepts_trait_impl() {
 }
 </code></pre>
 </div>
-<h2 id="source-cargo-toml">Source: <code>Cargo.toml</code></h2>
+<h3 id="cargo-toml"><code>Cargo.toml</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>TOML</span></div>
 <pre class="language-toml"><code class="language-toml">[package]
@@ -4682,7 +4662,7 @@ cc = &quot;1&quot;
 insta = { version = &quot;1&quot;, features = [&quot;glob&quot;] }
 </code></pre>
 </div>
-<h2 id="source-build-rs">Source: <code>build.rs</code></h2>
+<h3 id="build-rs"><code>build.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
 <pre class="language-javascript"><code class="language-javascript">fn main() {
@@ -4735,7 +4715,7 @@ insta = { version = &quot;1&quot;, features = [&quot;glob&quot;] }
 }
 </code></pre>
 </div>
-<h2 id="source-src-lib-rs">Source: <code>src/lib.rs</code></h2>
+<h3 id="src-lib-rs"><code>src/lib.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
 <pre class="language-javascript"><code class="language-javascript">pub mod ast;
@@ -4782,7 +4762,7 @@ pub use doctor::run_doctor;
 pub use error::{VppError, VppResult};
 </code></pre>
 </div>
-<h2 id="source-src-driver-rs">Source: <code>src/driver.rs</code></h2>
+<h3 id="src-driver-rs"><code>src/driver.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
 <pre class="language-javascript"><code class="language-javascript">use std::path::{Path, PathBuf};
@@ -5003,7 +4983,7 @@ pub fn check_with_index(source: &amp;str, source_path: &amp;Path) -&gt; VppResul
 pub use crate::project::init_project;
 </code></pre>
 </div>
-<h2 id="source-src-error-rs">Source: <code>src/error.rs</code></h2>
+<h3 id="src-error-rs"><code>src/error.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
 <pre class="language-javascript"><code class="language-javascript">use miette::{Diagnostic, SourceSpan};
@@ -5246,7 +5226,7 @@ pub fn type_mismatch(
 }
 </code></pre>
 </div>
-<h2 id="source-src-bin-vppls-rs">Source: <code>src/bin/vppls.rs</code></h2>
+<h3 id="src-bin-vppls-rs"><code>src/bin/vppls.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
 <pre class="language-javascript"><code class="language-javascript">#[cfg(feature = &quot;lsp&quot;)]
@@ -5266,93 +5246,135 @@ fn main() {
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>
       <ul>
-<li class=""><a href="#requirements">Requirements</a></li>
-<li class=""><a href="#build">Build</a></li>
-<li class=""><a href="#features">Features</a></li>
-<li class=""><a href="#install-locally">Install locally</a></li>
-<li class=""><a href="#scaffold">Scaffold</a></li>
-<li class=""><a href="#run">Run</a></li>
-<li class=""><a href="#test">Test</a></li>
-<li class=""><a href="#add-a-dependency">Add a dependency</a></li>
-<li class=""><a href="#run-interpreter">Run (interpreter)</a></li>
-<li class=""><a href="#type-check-only">Type-check only</a></li>
-<li class=""><a href="#compile-to-native">Compile to native</a></li>
-<li class=""><a href="#commands-summary">Commands summary</a></li>
-<li class=""><a href="#windows-recommended">Windows (recommended)</a></li>
-<li class=""><a href="#vs-code-extension">VS Code extension</a></li>
-<li class=""><a href="#portable-zip-advanced">Portable zip (advanced)</a></li>
-<li class=""><a href="#build-from-source">Build from source</a></li>
-<li class=""><a href="#requirements">Requirements</a></li>
-<li class=""><a href="#what-v-is">What v++ is</a></li>
-<li class=""><a href="#how-v-compares">How v++ compares</a></li>
-<li class=""><a href="#why-use-v-now">Why use v++ now</a></li>
-<li class=""><a href="#how-to-learn-v">How to learn v++</a></li>
-<li class=""><a href="#common-difficulties">Common difficulties</a></li>
-<li class=""><a href="#when-v-is-not-the-right-choice">When v++ is not the right choice</a></li>
-<li class=""><a href="#next-steps">Next steps</a></li>
-<li class=""><a href="#install">Install</a></li>
-<li class=""><a href="#run-code">Run code</a></li>
-<li class=""><a href="#language-server-intellisense">Language server (IntelliSense)</a></li>
-<li class=""><a href="#commands">Commands</a></li>
-<li class=""><a href="#global-flags">Global flags</a></li>
-<li class=""><a href="#environment">Environment</a></li>
-<li class=""><a href="#examples">Examples</a></li>
-<li class=""><a href="#build">Build</a></li>
-<li class=""><a href="#vs-code">VS Code</a></li>
-<li class=""><a href="#protocol">Protocol</a></li>
-<li class=""><a href="#requirements">Requirements</a></li>
-<li class=""><a href="#interpreter-vs-native">Interpreter vs native</a></li>
-<li class=""><a href="#memory-model">Memory model</a></li>
-<li class=""><a href="#vpp-toml">vpp.toml</a></li>
-<li class=""><a href="#commands">Commands</a></li>
-<li class=""><a href="#lockfile">Lockfile</a></li>
-<li class=""><a href="#registry">Registry</a></li>
-<li class=""><a href="#inline-test-blocks">Inline test blocks</a></li>
-<li class=""><a href="#project-tests">Project tests</a></li>
-<li class=""><a href="#vs-code">VS Code</a></li>
-<li class=""><a href="#ci">CI</a></li>
-<li class=""><a href="#smartscreen-security-warning">SmartScreen / security warning</a></li>
-<li class=""><a href="#no-syntax-highlighting">No syntax highlighting</a></li>
-<li class=""><a href="#lsp-not-working">LSP not working</a></li>
-<li class=""><a href="#native-vs-interpreter-mismatch">Native vs interpreter mismatch</a></li>
-<li class=""><a href="#if-else">if / else</a></li>
-<li class=""><a href="#while">while</a></li>
-<li class=""><a href="#for-range">for (range)</a></li>
-<li class=""><a href="#for-array">for (array)</a></li>
-<li class=""><a href="#match">match</a></li>
-<li class=""><a href="#break-continue">break / continue</a></li>
-<li class=""><a href="#main">Main</a></li>
-<li class=""><a href="#generic-functions-v0-4">Generic functions (v0.4+)</a></li>
-<li class=""><a href="#standard-library-imports">Standard library imports</a></li>
-<li class=""><a href="#public-exports">Public exports</a></li>
-<li class=""><a href="#project-layout">Project layout</a></li>
-<li class=""><a href="#option">Option</a></li>
-<li class=""><a href="#result">Result</a></li>
-<li class=""><a href="#exhaustive-match">Exhaustive match</a></li>
-<li class=""><a href="#design-goals">Design goals</a></li>
-<li class=""><a href="#quick-syntax-map">Quick syntax map</a></li>
-<li class=""><a href="#struct">Struct</a></li>
-<li class=""><a href="#enum">Enum</a></li>
-<li class=""><a href="#enum-with-payloads">Enum with payloads</a></li>
-<li class=""><a href="#built-in-types">Built-in types</a></li>
-<li class=""><a href="#local-inference">Local inference</a></li>
-<li class=""><a href="#explicit-annotations">Explicit annotations</a></li>
-<li class=""><a href="#function-signatures">Function signatures</a></li>
-<li class=""><a href="#entry-point">Entry point</a></li>
-<li class=""><a href="#data-collection">Data collection</a></li>
-<li class=""><a href="#third-party-services">Third-party services</a></li>
-<li class=""><a href="#contact">Contact</a></li>
-<li class=""><a href="#what-is-v">What is v++?</a></li>
-<li class=""><a href="#how-is-v-different-from-python">How is v++ different from Python?</a></li>
-<li class=""><a href="#how-is-v-different-from-rust">How is v++ different from Rust?</a></li>
-<li class=""><a href="#how-is-v-different-from-go-or-typescript">How is v++ different from Go or TypeScript?</a></li>
+<li class=""><a href="#building-from-source">Building from source</a></li>
+<li class="toc-h2"><a href="#requirements">Requirements</a></li>
+<li class="toc-h2"><a href="#build">Build</a></li>
+<li class="toc-h2"><a href="#features">Features</a></li>
+<li class="toc-h2"><a href="#install-locally">Install locally</a></li>
+<li class=""><a href="#contributing-docs">Contributing docs</a></li>
+<li class=""><a href="#running-tests">Running tests</a></li>
+<li class=""><a href="#your-first-v-project">Your first v++ project</a></li>
+<li class="toc-h2"><a href="#scaffold">Scaffold</a></li>
+<li class="toc-h2"><a href="#run">Run</a></li>
+<li class="toc-h2"><a href="#test">Test</a></li>
+<li class="toc-h2"><a href="#add-a-dependency">Add a dependency</a></li>
+<li class=""><a href="#first-program">First program</a></li>
+<li class="toc-h2"><a href="#run-interpreter">Run (interpreter)</a></li>
+<li class="toc-h2"><a href="#type-check-only">Type-check only</a></li>
+<li class="toc-h2"><a href="#compile-to-native">Compile to native</a></li>
+<li class="toc-h2"><a href="#commands-summary">Commands summary</a></li>
+<li class=""><a href="#install-v">Install v++</a></li>
+<li class="toc-h2"><a href="#windows-recommended">Windows (recommended)</a></li>
+<li class="toc-h2"><a href="#vs-code-extension">VS Code extension</a></li>
+<li class="toc-h2"><a href="#portable-zip-advanced">Portable zip (advanced)</a></li>
+<li class="toc-h2"><a href="#build-from-source">Build from source</a></li>
+<li class="toc-h2"><a href="#requirements">Requirements</a></li>
+<li class=""><a href="#introduction-to-v">Introduction to v++</a></li>
+<li class="toc-h2"><a href="#what-v-is">What v++ is</a></li>
+<li class="toc-h2"><a href="#how-v-compares">How v++ compares</a></li>
+<li class="toc-h2"><a href="#why-use-v-now">Why use v++ now</a></li>
+<li class="toc-h2"><a href="#how-to-learn-v">How to learn v++</a></li>
+<li class="toc-h2"><a href="#common-difficulties">Common difficulties</a></li>
+<li class="toc-h2"><a href="#when-v-is-not-the-right-choice">When v++ is not the right choice</a></li>
+<li class="toc-h2"><a href="#next-steps">Next steps</a></li>
+<li class=""><a href="#getting-started">Getting started</a></li>
+<li class=""><a href="#vs-code-setup-for-v">VS Code setup for v++</a></li>
+<li class="toc-h2"><a href="#install">Install</a></li>
+<li class="toc-h2"><a href="#run-code">Run code</a></li>
+<li class="toc-h2"><a href="#language-server-intellisense">Language server (IntelliSense)</a></li>
+<li class="toc-h2"><a href="#commands">Commands</a></li>
+<li class=""><a href="#cli-reference">CLI reference</a></li>
+<li class="toc-h2"><a href="#global-flags">Global flags</a></li>
+<li class="toc-h2"><a href="#environment">Environment</a></li>
+<li class="toc-h2"><a href="#examples">Examples</a></li>
+<li class=""><a href="#formatting">Formatting</a></li>
+<li class=""><a href="#language-server-vppls">Language server (vppls)</a></li>
+<li class="toc-h2"><a href="#build">Build</a></li>
+<li class="toc-h2"><a href="#vs-code">VS Code</a></li>
+<li class="toc-h2"><a href="#protocol">Protocol</a></li>
+<li class=""><a href="#native-compilation">Native compilation</a></li>
+<li class="toc-h2"><a href="#requirements">Requirements</a></li>
+<li class="toc-h2"><a href="#interpreter-vs-native">Interpreter vs native</a></li>
+<li class="toc-h2"><a href="#memory-model">Memory model</a></li>
+<li class=""><a href="#package-manager">Package manager</a></li>
+<li class="toc-h2"><a href="#vpp-toml">vpp.toml</a></li>
+<li class="toc-h2"><a href="#commands">Commands</a></li>
+<li class="toc-h2"><a href="#lockfile">Lockfile</a></li>
+<li class="toc-h2"><a href="#registry">Registry</a></li>
+<li class=""><a href="#guides">Guides</a></li>
+<li class=""><a href="#testing">Testing</a></li>
+<li class="toc-h2"><a href="#inline-test-blocks">Inline test blocks</a></li>
+<li class="toc-h2"><a href="#project-tests">Project tests</a></li>
+<li class="toc-h2"><a href="#vs-code">VS Code</a></li>
+<li class="toc-h2"><a href="#ci">CI</a></li>
+<li class=""><a href="#troubleshooting">Troubleshooting</a></li>
+<li class="toc-h2"><a href="#smartscreen-security-warning">SmartScreen / security warning</a></li>
+<li class="toc-h2"><a href="#no-syntax-highlighting">No syntax highlighting</a></li>
+<li class="toc-h2"><a href="#lsp-not-working">LSP not working</a></li>
+<li class="toc-h2"><a href="#native-vs-interpreter-mismatch">Native vs interpreter mismatch</a></li>
+<li class=""><a href="#control-flow">Control flow</a></li>
+<li class="toc-h2"><a href="#if-else">if / else</a></li>
+<li class="toc-h2"><a href="#while">while</a></li>
+<li class="toc-h2"><a href="#for-range">for (range)</a></li>
+<li class="toc-h2"><a href="#for-array">for (array)</a></li>
+<li class="toc-h2"><a href="#match">match</a></li>
+<li class="toc-h2"><a href="#break-continue">break / continue</a></li>
+<li class=""><a href="#functions">Functions</a></li>
+<li class="toc-h2"><a href="#main">Main</a></li>
+<li class="toc-h2"><a href="#generic-functions-v0-4">Generic functions (v0.4+)</a></li>
+<li class=""><a href="#generics-v0-4">Generics (v0.4+)</a></li>
+<li class=""><a href="#modules">Modules</a></li>
+<li class="toc-h2"><a href="#standard-library-imports">Standard library imports</a></li>
+<li class="toc-h2"><a href="#public-exports">Public exports</a></li>
+<li class="toc-h2"><a href="#project-layout">Project layout</a></li>
+<li class=""><a href="#mut-and-immutability-v0-4">mut and immutability (v0.4+)</a></li>
+<li class=""><a href="#option-result-and-match">Option, Result, and match</a></li>
+<li class="toc-h2"><a href="#option">Option</a></li>
+<li class="toc-h2"><a href="#result">Result</a></li>
+<li class="toc-h2"><a href="#exhaustive-match">Exhaustive match</a></li>
+<li class=""><a href="#v-language-overview">v++ language overview</a></li>
+<li class="toc-h2"><a href="#design-goals">Design goals</a></li>
+<li class="toc-h2"><a href="#quick-syntax-map">Quick syntax map</a></li>
+<li class=""><a href="#structs-and-enums">Structs and enums</a></li>
+<li class="toc-h2"><a href="#struct">Struct</a></li>
+<li class="toc-h2"><a href="#enum">Enum</a></li>
+<li class="toc-h2"><a href="#enum-with-payloads">Enum with payloads</a></li>
+<li class=""><a href="#traits-and-impls-v0-4">Traits and impls (v0.4+)</a></li>
+<li class=""><a href="#types-and-inference">Types and inference</a></li>
+<li class="toc-h2"><a href="#built-in-types">Built-in types</a></li>
+<li class="toc-h2"><a href="#local-inference">Local inference</a></li>
+<li class="toc-h2"><a href="#explicit-annotations">Explicit annotations</a></li>
+<li class="toc-h2"><a href="#function-signatures">Function signatures</a></li>
+<li class="toc-h2"><a href="#entry-point">Entry point</a></li>
+<li class=""><a href="#privacy-policy-v">Privacy Policy — v++</a></li>
+<li class="toc-h2"><a href="#data-collection">Data collection</a></li>
+<li class="toc-h2"><a href="#third-party-services">Third-party services</a></li>
+<li class="toc-h2"><a href="#contact">Contact</a></li>
+<li class=""><a href="#faq">FAQ</a></li>
+<li class="toc-h2"><a href="#what-is-v">What is v++?</a></li>
+<li class="toc-h2"><a href="#how-is-v-different-from-python">How is v++ different from Python?</a></li>
+<li class="toc-h2"><a href="#how-is-v-different-from-rust">How is v++ different from Rust?</a></li>
+<li class="toc-h2"><a href="#how-is-v-different-from-go-or-typescript">How is v++ different from Go or TypeScript?</a></li>
+<li class="toc-h2"><a href="#how-do-i-learn-v">How do I learn v++?</a></li>
+<li class="toc-h2"><a href="#what-are-the-main-difficulties">What are the main difficulties?</a></li>
+<li class="toc-h2"><a href="#why-would-i-choose-v">Why would I choose v++?</a></li>
+<li class="toc-h2"><a href="#is-v-ready-for-production">Is v++ ready for production?</a></li>
+<li class="toc-h2"><a href="#where-do-i-download">Where do I download?</a></li>
+<li class="toc-h2"><a href="#which-vs-code-extension-is-official">Which VS Code extension is official?</a></li>
+<li class="toc-h2"><a href="#does-v-collect-data">Does v++ collect data?</a></li>
+<li class="toc-h2"><a href="#how-do-i-report-bugs">How do I report bugs?</a></li>
+<li class="toc-h2"><a href="#can-i-contribute">Can I contribute?</a></li>
+<li class=""><a href="#roadmap">Roadmap</a></li>
+<li class="toc-h2"><a href="#shipped-v0-4-4">Shipped (v0.4.4)</a></li>
 </ul>
     </aside>
   </div>
   <footer class="site-footer compact">
     <div class="footer-inner">
-      <span class="footer-badge">v0.5.0</span>
-      <span class="footer-badge yellow">Latest</span>
+      <div class="footer-badges">
+        <span class="footer-badge">v0.5.0</span>
+        <span class="footer-badge yellow">Latest</span>
+      </div>
       <div class="footer-links">
         <a href="https://github.com/shauryaR790/V-">GitHub</a>
         <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">VS Code</a>
