@@ -70,13 +70,16 @@ body.page-home {
 }
 
 a { color: var(--text); text-decoration: underline; text-decoration-color: var(--border-accent); text-underline-offset: 3px; }
-a:hover { color: var(--text); }
 
-.page-docs a:hover { background: transparent; text-decoration-color: var(--yellow); }
+.docs-article a:hover {
+  background: transparent;
+  text-decoration-color: var(--yellow);
+}
 
-.page-home a:hover,
-.page-docs .docs-sidebar a:hover,
-.page-docs .docs-toc a:hover { background: transparent; }
+.docs-sidebar a:hover,
+.docs-toc a:hover {
+  background: transparent;
+}
 
 code, pre { font-family: var(--mono); font-size: 0.875em; }
 
