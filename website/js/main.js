@@ -92,6 +92,42 @@ hello-lib = "0.1.0"`,
   },
 };
 
+function countCodeLines(text) {
+  if (!text) return 0;
+  const parts = text.split("\n");
+  if (parts.length > 1 && parts[parts.length - 1] === "") parts.pop();
+  return parts.length;
+}
+
+function syncLineNumbers(pre) {
+  if (!pre) return;
+
+  const code = pre.querySelector("code");
+  if (!code) return;
+
+  pre.querySelector(".line-numbers-rows")?.remove();
+
+  let gutter = pre.querySelector(".code-ln-gutter");
+  if (!gutter) {
+    gutter = document.createElement("div");
+    gutter.className = "code-ln-gutter";
+    gutter.setAttribute("aria-hidden", "true");
+    pre.insertBefore(gutter, code);
+  }
+
+  pre.classList.add("has-line-numbers");
+
+  const lineCount = countCodeLines(code.textContent);
+  gutter.innerHTML = "";
+
+  for (let i = 1; i <= lineCount; i += 1) {
+    const line = document.createElement("span");
+    line.className = "code-ln";
+    line.textContent = String(i);
+    gutter.appendChild(line);
+  }
+}
+
 function initSidebarHighlight() {
   const sidebar = document.querySelector(".docs-sidebar");
   if (!sidebar) return;
@@ -132,6 +168,7 @@ function highlightAllCode() {
   if (typeof Prism === "undefined") return;
   document.querySelectorAll("pre code[class*='language-']").forEach((el) => {
     Prism.highlightElement(el);
+    syncLineNumbers(el.closest("pre"));
   });
 }
 
@@ -141,8 +178,8 @@ function mountHomeCode(key) {
   const langLabel = document.getElementById("code-lang");
   if (!pre) return;
 
-  pre.className = `line-numbers language-${sample.lang}`;
-  pre.textContent = "";
+  pre.className = `language-${sample.lang}`;
+  pre.innerHTML = "";
   const code = document.createElement("code");
   code.className = `language-${sample.lang}`;
   code.textContent = sample.code;
@@ -153,6 +190,7 @@ function mountHomeCode(key) {
   if (typeof Prism !== "undefined") {
     Prism.highlightElement(code);
   }
+  syncLineNumbers(pre);
 
   return sample.code;
 }
