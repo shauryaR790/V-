@@ -5,6 +5,14 @@ on:
     branches: [main]
     paths:
       - "website/**"
+      - "docs/**"
+      - "projects/**"
+      - "SPEC.md"
+      - "ARCHITECTURE.md"
+      - "MEMORY_MODEL.md"
+      - "CHANGELOG.md"
+      - "CONTRIBUTING.md"
+      - "README.md"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -25,8 +33,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build site pages
-        run: python website/build_site.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Generate documentation pages
+        run: python website/generate_pages.py
       - uses: actions/upload-pages-artifact@v3
         with:
           path: website

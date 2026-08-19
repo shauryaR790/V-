@@ -4,304 +4,100 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Download — v++</title>
-  <link rel="icon" href="assets/logo.png">
+  <meta name="description" content="Download v++ prebuilt binaries and VS Code extension.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/logo.png">
 </head>
-<body class="doc-page">
-  <div class="grid-bg"></div>
+<body class="page-docs">
   <header class="site-header">
-    <nav class="nav-inner">
-      <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="v++" class="logo-img"><span class="logo-text">v++</span></a>
-      <button class="nav-toggle" aria-label="Menu">☰</button>
-      <ul class="nav-links">
-        <li><a href="learn.html">Learn</a></li><li><a href="about.html">About</a></li><li><a href="download.html" class="active">Download</a></li><li><a href="blog.html">Blog</a></li><li><a href="docs.html">Docs</a></li><li><a href="contribute.html">Contribute</a></li><li><a href="courses.html">Courses</a></li>
-      </ul>
-      <div class="nav-actions">
-        <a href="https://github.com/shauryaR790/V-" class="nav-github" target="_blank" rel="noopener" aria-label="GitHub">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+    <div class="header-inner">
+      <a href="index.html" class="brand"><img src="assets/logo.png" alt="v++" class="brand-logo"><span class="brand-text">v++</span></a>
+      <nav class="top-nav"><a href="learn.html" class="nav-link">Learn</a>
+<a href="about.html" class="nav-link">About</a>
+<a href="download.html" class="nav-link active">Download</a>
+<a href="blog.html" class="nav-link">Blog</a>
+<a href="docs.html" class="nav-link">Docs</a>
+<a href="contribute.html" class="nav-link">Contribute</a>
+<a href="courses.html" class="nav-link">Courses</a></nav>
+      <div class="header-actions">
+        <a href="https://github.com/shauryaR790/V-" class="icon-btn" aria-label="GitHub" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-1.005-.525-1.815-1.785-1.815-3.015 0-1.635 1.17-3.075 3.015-3.075 1.425 0 2.19 1.095 2.19 1.095.63-1.095 1.725-1.395 2.715-1.395 3.285 0 4.605 2.175 4.605 4.275 0 2.295-1.425 4.305-3.54 4.305-.705 0-1.365-.36-1.59-.795 0 0-.345 1.305-1.425 1.605-.51.135-1.245.24-1.875.24-1.425 0-2.715-.615-3.615-1.605C4.425 18.24 4.2 15.24 4.2 15.24c0-1.59.585-2.895 1.545-3.915C4.365 10.785 3.75 9.045 3.75 6.75c0-.885.315-1.755.855-2.445C3.75 3.75 4.95 1.65 6.75 1.65c1.005 0 1.905.375 2.55.885.645-.03 1.335-.105 2.04-.405.69-.285 1.425-.675 2.175-1.08.75-.405 1.5-.675 2.175-.825.675-.15 1.305-.225 1.875-.225 1.8 0 3 2.1 2.145 3.655.54.69.855 1.56.855 2.445 0 2.295-.615 4.035-1.545 4.575.96 1.02 1.545 2.325 1.545 3.915 0 2.85-1.635 5.475-4.725 5.925-.375.075-.75.105-1.125.105-.96 0-1.89-.195-2.745-.555z"/></svg>
         </a>
       </div>
-    </nav>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+    </div>
   </header>
-
-  <div class="doc-layout">
-    
-    <aside class="doc-sidebar">
-      <div class="sidebar-group">
-        <h5>v++ Download</h5>
-        <ul>
-          <li><a href="learn.html">Getting started</a></li>
-          <li><a href="docs.html">Reference</a></li>
-          <li><a href="download.html">Install</a></li>
-          <li><a href="courses.html">Courses</a></li>
-          <li><a href="https://github.com/shauryaR790/V-" target="_blank" rel="noopener">GitHub</a></li>
-        </ul>
-      </div>
-      
-    </aside>
-    <main class="doc-main">
-      <article class="doc-article prose">
-        
-<h2 id="download-v">Download v++</h2>
-
-<h3 id="v0-5-0-latest">v0.5.0 (latest)</h3>
-
-<p><strong>Windows (recommended):</strong> <a href="https://github.com/shauryaR790/V-/releases/download/v0.5.0/vpp-0.5.0-setup.exe">vpp-0.5.0-setup.exe</a></p>
-
-<p><strong>Portable:</strong> <a href="https://github.com/shauryaR790/V-/releases/download/v0.5.0/vpp-v0.5.0-windows-x64.zip">vpp-v0.5.0-windows-x64.zip</a></p>
-
-<p><strong>VS Code extension:</strong> <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">vpp-lang.vplusplus</a></p>
-
-<h3 id="install-steps-windows">Install steps (Windows)</h3>
-
-<p>1. Download and run the installer.</p>
-<p>2. Open a new terminal: <code>vpp doctor</code></p>
-<p>3. Run: <code>vpp run examples/hello.vpp</code></p>
-<p>4. Install VS Code extension (publisher: vpp-lang).</p>
-
-<h3 id="all-releases">All releases</h3>
-
-<div class="table-wrap"><table>
-<tr><th>Version</th><th>Link</th></tr>
-<tr><td>v0.5.0</td><td>https://github.com/shauryaR790/V-/releases/tag/v0.5.0</td></tr>
-<tr><td>v0.4.4</td><td>https://github.com/shauryaR790/V-/releases/tag/v0.4.4</td></tr>
-<tr><td>v0.4.0</td><td>https://github.com/shauryaR790/V-/releases/tag/v0.4.0</td></tr>
-<tr><td>v0.3.1</td><td>https://github.com/shauryaR790/V-/releases/tag/v0.3.1</td></tr>
-<tr><td>v0.3.0</td><td>https://github.com/shauryaR790/V-/releases/tag/v0.3.0</td></tr>
-<tr><td>v0.2.0</td><td>https://github.com/shauryaR790/V-/releases/tag/v0.2.0</td></tr>
-<tr><td>v0.1.0</td><td>https://github.com/shauryaR790/V-/releases/tag/v0.1.0</td></tr>
-</table></div>
-
-<h3 id="build-from-source">Build from source</h3>
-
-<pre><code class="language-bash">
-git clone https://github.com/shauryaR790/V-.git
-cd V-
-cargo build --release --features codegen,lsp
-</code></pre>
-
-<p>Requires Rust stable and LLVM 22 for native compilation.</p>
-
-<h3 id="verify-downloads">Verify downloads</h3>
-
-<p>SHA256 checksums ship alongside release artifacts (<code>*.sha256</code> files on GitHub Releases).</p>
-
-<h3 id="platform-support">Platform support</h3>
-
-<div class="table-wrap"><table>
-<tr><th>Platform</th><th>Artifact</th><th>Status</th></tr>
-<tr><td>Windows x64</td><td>.exe installer, .zip</td><td>Primary</td></tr>
-<tr><td>Linux x64</td><td>.tar.gz</td><td>CI build</td></tr>
-<tr><td>macOS arm64</td><td>.tar.gz</td><td>CI build</td></tr>
-</table></div>
-
-
-<p>&lt;!-- contributing\building-from-source.md --&gt;</p>
-
-
-<h2 id="contributing-building-from-source">contributing — building-from-source</h2>
-
-
-<h2 id="building-from-source">Building from source</h2>
-
-<h3 id="requirements">Requirements</h3>
-
-<ul>
-<li>Rust (stable) — <a href="https://rustup.rs">rustup.rs</a></li>
-<li>LLVM 22 + clang (for <code>codegen</code> feature)</li>
-<li>Git (for git dependencies in tests)</li>
+  <div class="docs-layout">
+    <aside class="docs-sidebar"><p class="sidebar-group">Getting started</p><ul>
+<li><a href="learn.html">Introduction to v++</a></li>
+<li><a href="learn.html#getting-started">Quick start</a></li>
+<li><a href="learn.html#hello-world">Hello, v++</a></li>
+<li><a href="learn.html#first-project">First project</a></li>
+<li><a href="courses.html">Courses &amp; projects</a></li>
 </ul>
-
-<h3 id="build">Build</h3>
-
-<pre><code class="language-powershell">
-git clone https://github.com/shauryaR790/V-.git
-cd V-
-cargo build --release --features codegen,lsp
-</code></pre>
-
-<p>Windows:</p>
-
-<pre><code class="language-powershell">
-$env:LLVM_SYS_221_PREFIX = &quot;C:\Program Files\LLVM&quot;
-</code></pre>
-
-<p>Binaries: <code>target/release/vpp.exe</code>, <code>target/release/vppls.exe</code>.</p>
-
-<h3 id="features">Features</h3>
-
-<div class="table-wrap"><table>
-<tr><th>Feature</th><th>Enables</th></tr>
-<tr><td>*(default)*</td><td>Interpreter, checker, fmt, CLI</td></tr>
-<tr><td><code>codegen</code></td><td>Native <code>vpp build</code>, LLVM</td></tr>
-<tr><td><code>lsp</code></td><td><code>vppls</code> language server</td></tr>
-</table></div>
-
-<h3 id="install-locally">Install locally</h3>
-
-<pre><code class="language-powershell">
-cargo install --path . --features codegen,lsp
-</code></pre>
-
-
-
-<p>&lt;!-- contributing\running-tests.md --&gt;</p>
-
-
-<h2 id="contributing-running-tests">contributing — running-tests</h2>
-
-
-<h2 id="running-tests">Running tests</h2>
-
-<pre><code class="language-powershell">
-# Interpreter + parser + typecheck (no LLVM)
-cargo test --all-targets
-
-# Native codegen (local LLVM required)
-cargo test --features codegen -- --test-threads=1
-
-# Parity: interpreter vs native stdout
-cargo test --features codegen parity
-
-# Stress script (Windows)
-.\stress.ps1
-</code></pre>
-
-<p>CI runs on every push to <code>main</code> — see <a href="https://github.com/shauryaR790/V-/actions">GitHub Actions</a>.</p>
-
-
-
-<p>&lt;!-- getting-started\first-project.md --&gt;</p>
-
-
-<h2 id="getting-started-first-project">getting-started — first-project</h2>
-
-
-<h2 id="your-first-v-project">Your first v++ project</h2>
-
-<h3 id="scaffold">Scaffold</h3>
-
-<pre><code class="language-powershell">
-vpp new myapp --path myapp
-cd myapp
-</code></pre>
-
-<p>Creates:</p>
-
-<pre><code>
-myapp/
-  vpp.toml
-  src/main.vpp
-  tests/smoke.vpp
-</code></pre>
-
-<h3 id="run">Run</h3>
-
-<pre><code class="language-powershell">
-vpp run
-</code></pre>
-
-<p>Runs the entry in <code>vpp.toml</code> (default <code>src/main.vpp</code>).</p>
-
-<h3 id="test">Test</h3>
-
-<pre><code class="language-powershell">
-vpp test
-</code></pre>
-
-<p>Runs <code>test</code> blocks in <code>tests/</code> and inline tests.</p>
-
-<h3 id="add-a-dependency">Add a dependency</h3>
-
-<pre><code class="language-powershell">
-vpp add hello-lib --version 0.1.0
-vpp update
-</code></pre>
-
-<p>See <a href="../guides/package-manager.md">Package manager</a>.</p>
-
-
-
-<p>&lt;!-- getting-started\hello-world.md --&gt;</p>
-
-
-<h2 id="getting-started-hello-world">getting-started — hello-world</h2>
-
-
-<h2 id="hello-v">Hello, v++</h2>
-
-<p>Create <code>hello.vpp</code>:</p>
-
-<pre><code class="language-vpp">
-fn main() -&gt; int {
-    print(&quot;Hello from v++!&quot;)
-    return 0
-}
-</code></pre>
-
-<p>Run it:</p>
-
-<pre><code class="language-powershell">
-vpp run hello.vpp
-</code></pre>
-
-<p>Type-check without running:</p>
-
-<pre><code class="language-powershell">
-vpp check hello.vpp
-</code></pre>
-
-<p>Compile to a native executable:</p>
-
-<pre><code class="language-powershell">
-vpp build hello.vpp -o hello.exe
-.\hello.exe
-</code></pre>
-
-<h3 id="what-you-just-used">What you just used</h3>
-
-<ul>
-<li><strong><code>vpp run</code></strong> — interpreter (fast iteration, no compile step)</li>
-<li><strong><code>vpp check</code></strong> — type checker only</li>
-<li><strong><code>vpp build</code></strong> — LLVM + clang → <code>.exe</code></li>
+<p class="sidebar-group">Language</p><ul>
+<li><a href="docs.html#types">Types &amp; inference</a></li>
+<li><a href="docs.html#functions">Functions</a></li>
+<li><a href="docs.html#control-flow">Control flow</a></li>
+<li><a href="docs.html#structs-and-enums">Structs &amp; enums</a></li>
+<li><a href="docs.html#option-result-match">Option &amp; Result</a></li>
+<li><a href="docs.html#generics">Generics</a></li>
+<li><a href="docs.html#traits">Traits</a></li>
+<li><a href="docs.html#mut-and-immutability">Mutability</a></li>
+<li><a href="docs.html#modules">Modules</a></li>
 </ul>
+<p class="sidebar-group">Guides</p><ul>
+<li><a href="docs.html#cli-reference">CLI reference</a></li>
+<li><a href="docs.html#package-manager">Package manager</a></li>
+<li><a href="docs.html#testing">Testing</a></li>
+<li><a href="docs.html#native-compilation">Native compilation</a></li>
+<li><a href="docs.html#language-server">Language server</a></li>
+<li><a href="docs.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+<p class="sidebar-group">Project</p><ul>
+<li><a href="about.html">About v++</a></li>
+<li><a href="about.html#architecture">Architecture</a></li>
+<li><a href="about.html#memory-model">Memory model</a></li>
+<li><a href="blog.html">Release notes</a></li>
+<li><a href="download.html" class="active">Download</a></li>
+<li><a href="contribute.html">Contribute</a></li>
+</ul></aside>
+    <main class="docs-main">
+      <article class="docs-article"><div id="top"></div>
+<h1>Download v++</h1>
 
-<p>Next: <a href="first-project.md">Your first project</a>.</p>
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/getting-started/install.md --&gt;</p>
 
 
+<h1 id="install-v">Install v++</h1>
 
-<p>&lt;!-- getting-started\install.md --&gt;</p>
-
-
-<h2 id="getting-started-install">getting-started — install</h2>
-
-
-<h2 id="install-v">Install v++</h2>
-
-<h3 id="windows-recommended">Windows (recommended)</h3>
+<h2 id="windows-recommended">Windows (recommended)</h2>
 
 <p>1. Download <strong><code>vpp-0.5.0-setup.exe</code></strong> from <a href="https://github.com/shauryaR790/V-/releases/latest">GitHub Releases</a>.</p>
 <p>2. Run the installer. If Windows SmartScreen appears, choose <strong>More info → Run anyway</strong>.</p>
 <p>3. Open a <strong>new</strong> terminal:</p>
 
-<pre><code class="language-powershell">
+<pre class="code-block"><code class="lang-powershell">
 vpp run examples\hello.vpp
 vpp doctor
 </code></pre>
 
 <p>If <code>vpp</code> is not found, add the install folder to PATH:</p>
 
-<pre><code class="language-powershell">
+<pre class="code-block"><code class="lang-powershell">
 $dir = &quot;$env:LOCALAPPDATA\Programs\vpp&quot;
 [Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path + &quot;;$dir;$dir\llvm\bin&quot;, &quot;User&quot;)
 </code></pre>
 
 <p>Restart the terminal.</p>
 
-<h3 id="vs-code-extension">VS Code extension</h3>
+<h2 id="vs-code-extension">VS Code extension</h2>
 
 <p>1. Extensions → search <strong>v++ Language</strong></p>
 <p>2. Publisher must be <strong>vpp-lang</strong></p>
@@ -309,1096 +105,1253 @@ $dir = &quot;$env:LOCALAPPDATA\Programs\vpp&quot;
 
 <p>See <a href="vscode-setup.md">VS Code setup</a>.</p>
 
-<h3 id="portable-zip-advanced">Portable zip (advanced)</h3>
+<h2 id="portable-zip-advanced">Portable zip (advanced)</h2>
 
 <p>Download <code>vpp-v0.5.0-windows-x64.zip</code>, extract, run <code>GO.bat</code> or add the folder to PATH manually.</p>
 
-<h3 id="build-from-source">Build from source</h3>
+<h2 id="build-from-source">Build from source</h2>
 
 <p>See <a href="../contributing/building-from-source.md">Building from source</a>.</p>
 
-<h3 id="requirements">Requirements</h3>
+<h2 id="requirements">Requirements</h2>
 
 <div class="table-wrap"><table>
-<tr><th>Task</th><th>Needs</th></tr>
-<tr><td><code>vpp run</code>, <code>check</code>, <code>test</code></td><td>Installer only</td></tr>
-<tr><td><code>vpp build</code> (native <code>.exe</code>)</td><td>Bundled <code>clang</code> in installer, or LLVM 22</td></tr>
-<tr><td>Hack on compiler</td><td>Rust + LLVM 22</td></tr>
-</table></div>
+<tr>
+<td>Task</td>
+<td>Needs</td>
+</tr>
+<tr>
+<td><code>vpp run</code>, <code>check</code>, <code>test</code></td>
+<td>Installer only</td>
+</tr>
+<tr>
+<td><code>vpp build</code> (native <code>.exe</code>)</td>
+<td>Bundled <code>clang</code> in installer, or LLVM 22</td>
+</tr>
+<tr>
+<td>Hack on compiler</td>
+<td>Rust + LLVM 22</td>
+</tr>
+</tbody></table></div>
 
 
 
-<p>&lt;!-- getting-started\vscode-setup.md --&gt;</p>
+
+<p>---</p>
+
+<p>&lt;!-- source: CHANGELOG.md --&gt;</p>
 
 
-<h2 id="getting-started-vscode-setup">getting-started — vscode-setup</h2>
+<h1 id="changelog">Changelog</h1>
 
+<p>All notable changes to v++ are documented here.</p>
 
-<h2 id="vs-code-setup-for-v">VS Code setup for v++</h2>
+<h2 id="0-5-0-2026-08-18">[0.5.0] — 2026-08-18</h2>
 
-<h3 id="install">Install</h3>
+<h3 id="added">Added</h3>
 
-<p>1. Install the compiler (<a href="install.md">install guide</a>).</p>
-<p>2. Install extension <strong>v++ Language</strong> (publisher: <strong>vpp-lang</strong>).</p>
+<ul>
+<li><strong>Website</strong> — official site at <code>website/</code> (learn, 20 projects, downloads, history, architecture, about)</li>
+<li><strong>20 example projects</strong> — <code>projects/01-hello-world</code> through <code>projects/20-json-config</code></li>
+<li><strong>GitHub Pages</strong> — deploy workflow for the website</li>
+<li><strong>Documentation hub</strong> — 30+ guides (<code>docs/getting-started</code>, <code>language</code>, <code>guides</code>, <code>stdlib</code>, <code>project</code>)</li>
+<li><strong>GitHub paperwork</strong> — <code>CONTRIBUTING.md</code>, <code>SECURITY.md</code>, <code>CODE_OF_CONDUCT.md</code></li>
+<li><strong>VS Code extension v0.5.0</strong> — Python-style Marketplace README and CHANGELOG</li>
+<li><strong>Windows installer PATH</strong> — adds <code>vpp</code> and bundled <code>clang</code> to user PATH on install</li>
+</ul>
 
-<h3 id="run-code">Run code</h3>
+<h3 id="changed">Changed</h3>
 
-<p>1. Open a folder with <code>.vpp</code> files.</p>
-<p>2. Open a file — bottom-right should say <strong>v++</strong>.</p>
-<p>3. Press <strong>F5</strong> or <strong>Ctrl+Shift+R</strong> to run the active file.</p>
+<ul>
+<li>Compiler, installer, and release bundle version aligned to <strong>0.5.0</strong></li>
+</ul>
 
-<h3 id="language-server-intellisense">Language server (IntelliSense)</h3>
+<h2 id="0-4-4-2026-08-18-windows-installer">[0.4.4] — 2026-08-18 (Windows installer)</h2>
 
-<p>Build <code>vppls</code> once (or use a release that includes it):</p>
+<h3 id="added">Added</h3>
 
-<pre><code class="language-powershell">
-cargo build --release --features lsp --bin vppls
-</code></pre>
+<ul>
+<li><strong>GitHub Release bundles</strong> — Windows zip with <code>GO.bat</code> one-click launcher; Linux/macOS tarballs with <code>run.sh</code></li>
+<li><strong>VS Code Marketplace</strong> — extension published as <code>vpp-lang.vplusplus</code></li>
+<li><strong>Docs</strong> — <code>docs/RELEASE.md</code>, <code>docs/MARKETPLACE.md</code>, simplified <code>docs/INSTALL.md</code></li>
+</ul>
 
-<p>Settings (<code>File → Preferences → Settings</code>, search <code>vpp</code>):</p>
+<h3 id="fixed">Fixed</h3>
 
+<ul>
+<li>LSP build (<code>jsonrpc_core</code>, <code>CompletionItemKind::SNIPPET</code>)</li>
+<li><code>setup.ps1</code> PowerShell encoding + builds with <code>codegen,lsp</code> by default</li>
+<li>VSIX packaging includes language-client dependencies</li>
+</ul>
+
+<h2 id="0-4-0-2026-08-18-language-core-phase-b">[0.4.0] — 2026-08-18 (Language Core / Phase B)</h2>
+
+<h3 id="added">Added</h3>
+
+<ul>
+<li><strong><code>mut</code> keyword</strong> — <code>let mut x = 1</code> required for reassignment; bindings are immutable by default</li>
+<li><strong>Generics</strong> — monomorphized functions: <code>fn id<a href="x: T">T</a> -&gt; T</code>, calls like <code>id<a href="42">int</a></code> and <code>first<a href="words">string</a></code></li>
+<li><strong>Traits and impls</strong> — <code>trait Display { fn to_text(self) -&gt; string }</code>, <code>impl Display for User { ... }</code>, method calls <code>user.to_text()</code></li>
+<li><strong>Compile-time match exhaustiveness</strong> — enums, <code>Option</code>, and <code>Result</code> must be covered or use <code>_</code> (error E0107)</li>
+<li><strong>Examples</strong> — <a href="examples/generics.vpp"><code>examples/generics.vpp</code></a>, <a href="examples/traits.vpp"><code>examples/traits.vpp</code></a></li>
+<li><strong>Tests</strong> — mut/immutability, exhaustiveness, generics, and traits typecheck + parity coverage</li>
+</ul>
+
+<h3 id="changed">Changed</h3>
+
+<ul>
+<li>All examples and stdlib sources updated to use <code>let mut</code> where variables are reassigned</li>
+<li><a href="SPEC.md"><code>SPEC.md</code></a> updated for v0.4 language features</li>
+</ul>
+
+<h2 id="0-3-0-2026-08-18-usable-language-ecosystem">[0.3.0] — 2026-08-18 (Usable Language / Ecosystem)</h2>
+
+<h3 id="added">Added</h3>
+
+<ul>
+<li><strong>Module system</strong>: <code>import std.io</code> canonical paths, <code>pub</code> exports, namespaced calls (<code>math.add</code>), legacy <code>import &quot;file.vpp&quot;</code>, circular import detection, duplicate import errors</li>
+<li><strong>Package manager</strong>: TOML <code>vpp.toml</code> with <code>[dependencies]</code>, <code>vpp.lock</code>, <code>vpp new</code>/<code>add</code>/<code>remove</code>/<code>update</code>, local path + git deps, semver checks</li>
+<li><strong>Central registry</strong>: <code>registry/index.toml</code> with semver resolution (<code>hello-lib = &quot;0.1.0&quot;</code>)</li>
+<li><strong>Standard library</strong>: <code>std.io</code>, <code>std.math</code>, <code>std.string</code>, <code>std.collections</code>, <code>std.fs</code>, <code>std.json</code>, <code>std.process</code></li>
+<li><strong>Native fs/json/process</strong>: runtime C helpers + LLVM codegen for <code>read_file</code>, <code>write_file</code>, <code>file_exists</code>, <code>json_parse</code>, <code>json_stringify</code>, <code>process_run</code></li>
+<li><strong>CLI</strong>: <code>vpp doctor</code> for toolchain/project health</li>
+<li><strong>LSP</strong>: diagnostic spans from miette; extension wires <code>vppls</code> via vscode-languageclient</li>
+<li><strong>Distribution</strong>: GitHub Actions release workflow (linux/windows/macos) on version tags</li>
+<li><strong>Syntax highlighting</strong>: struct, enum, match, import, pub, test, break, continue, builtins</li>
+<li><strong>Tests</strong>: <code>tests/modules.rs</code>, <code>tests/pkg.rs</code>, <code>tests/stdlib.rs</code>, <code>examples/std_builtins.vpp</code> parity; all v0.2 parity preserved</li>
+</ul>
+
+<h3 id="changed">Changed</h3>
+
+<ul>
+<li><code>vpp init</code> scaffolds <code>import std.io</code> and <code>import std.math</code></li>
+<li>LSP <code>check_with_index</code> uses in-memory buffer when file is unsaved</li>
+<li>Interpreter invokes <code>fn main()</code> when present (matches native entry point)</li>
+<li>Native codegen: correct scope cleanup on <code>return</code>, <code>if</code>/<code>match</code> arms, and heap release paths</li>
+</ul>
+
+<h3 id="fixed">Fixed</h3>
+
+<ul>
+<li>Native <code>file_exists</code> bool codegen (i32 → i1 compare)</li>
+<li>LLVM invalid IR when <code>return</code> preceded function epilogue cleanup</li>
+<li>Function parameters lost after <code>return</code> inside <code>if</code> branches during codegen</li>
+<li>Empty stdout under piped test runs (<code>fflush</code> in runtime prints; staged link output)</li>
+</ul>
+
+<h2 id="0-3-1-2026-08-18-phase-a-polish">[0.3.1] — 2026-08-18 (Phase A polish)</h2>
+
+<h3 id="fixed">Fixed</h3>
+
+<ul>
+<li>User-defined enum types resolved correctly in function params, struct fields, and match patterns</li>
+<li>Bare enum variant literals in struct fields (e.g. <code>status: Active</code>)</li>
+<li>Native entry point: LLVM <code>main</code> calls <code>vpp_user_main</code> instead of symbol collision</li>
+<li>Path lookup for <code>vpp run hello.vpp</code> searches <code>examples/</code>, <code>src/</code>, <code>tests/</code></li>
+</ul>
+
+<h3 id="added">Added</h3>
+
+<ul>
+<li><a href="stress.vpp"><code>stress.vpp</code></a> and <a href="stress.ps1"><code>stress.ps1</code></a> — one-command interpreter/native parity test</li>
+<li><code>.gitignore</code> entries for <code>.vpp/</code>, test output artifacts</li>
+</ul>
+
+<h3 id="changed">Changed</h3>
+
+<ul>
+<li><a href="SPEC.md"><code>SPEC.md</code></a> and <a href="README.md"><code>README.md</code></a> updated for v0.3</li>
+</ul>
+
+<h2 id="0-2-0-2026-08-18">[0.2.0] — 2026-08-18</h2>
+
+<h3 id="added">Added</h3>
+
+<ul>
+<li>v++ IR (<code>src/ir/</code>) between typed AST and LLVM</li>
+<li>Shared builtin registry (<code>src/builtins/</code>)</li>
+<li><code>ARCHITECTURE.md</code>, <code>MEMORY_MODEL.md</code>, <code>SPEC.md</code></li>
+<li>Native string ABI using <code>VppString*</code> end-to-end</li>
+<li>**Native array ABI using <code>VppArray*</code> end-to-end**</li>
+<li>Scoped locals in native codegen (correct shadowing)</li>
+<li>Float equality/compare via LLVM float instructions</li>
+<li><strong>Native structs</strong> — literals, field access, fn params/returns</li>
+<li><strong>Native enums / Option / Result</strong> — tagged struct representation</li>
+<li><strong>Native match</strong> — statement and expression forms</li>
+<li><strong>Native break/continue</strong> — loop stack for while/for loops</li>
+<li>Differential parity tests (<code>tests/parity/</code>) — hello, lesson01, scope_shadow, arrays, arrays_fn, <strong>structs, option_result, match_test, lesson03_loops</strong></li>
+<li><code>tests/arrays.rs</code> — IR lowering tests for arrays</li>
+<li><code>examples/arrays_fn.vpp</code> — arrays as function params/returns</li>
+<li>Native <code>vpp_array_index_ptr</code> bounds checking</li>
+<li>CI job for native codegen (where LLVM available)</li>
+</ul>
+
+<h3 id="fixed">Fixed</h3>
+
+<ul>
+<li>Native crash on <code>print(&quot;...&quot;)</code> (i8* vs VppString* mismatch)</li>
+<li>Broken block scope in native codegen</li>
+<li>Integer compare used for float equality</li>
+</ul>
+
+<h3 id="changed">Changed</h3>
+
+<ul>
+<li>LLVM backend lowers from v++ IR, not directly from typed AST</li>
+<li>Inkwell dependency pinned for reproducible builds</li>
+<li>Runtime uses portable <code>strdup</code> wrapper</li>
+<li>Struct/enum/match codegen in <code>src/codegen/struct_enum.rs</code></li>
+</ul>
+
+<h3 id="known-limitations-v0-2">Known limitations (v0.2)</h3>
+
+<ul>
+<li>Module imports: interpreter only until native parity tests pass</li>
+<li>Full ARC at all scope exits not yet complete for heap values inside structs/enums</li>
+<li>Match exhaustiveness is runtime-checked only (non-exhaustive match calls <code>vpp_assert_fail</code>)</li>
+</ul>
+
+<h2 id="0-1-0-2026-08">[0.1.0] — 2026-08</h2>
+
+<p>Initial release: interpreter-complete language, partial LLVM backend, CLI, extension, stdlib, CI.</p>
+<h2 id="reference-appendix">Reference appendix</h2>
+<p>This appendix consolidates cross-cutting language rules, compiler behavior, and toolchain notes for v++ v0.5.0.
+It is maintained alongside the open-source repository at <a href="https://github.com/shauryaR790/V-">github.com/shauryaR790/V-</a>.</p>
+
+<h3 id="appendix-0">Lexical structure</h3><p>v++ source files use the `.vpp` extension. Identifiers match `[A-Za-z_][A-Za-z0-9_]*`. Keywords include `fn`, `let`, `mut`, `if`, `else`, `while`, `for`, `match`, `return`, `struct`, `enum`, `trait`, `impl`, `import`, `pub`, `test`, `break`, `continue`, `true`, `false`, `Some`, `None`, `Ok`, `Err`.</p>
+<h3 id="appendix-1">Numeric literals</h3><p>Integer literals are signed 64-bit at runtime. Float literals use IEEE-64 semantics in native code.</p>
+<h3 id="appendix-2">String literals</h3><p>Double-quoted UTF-8 strings are heap-allocated with ARC in native builds; the interpreter uses reference-counted Rust strings.</p>
+<h3 id="appendix-3">Array literals</h3><p>Homogeneous arrays `[1, 2, 3]` require uniform element types. Empty array inference follows contextual expectations at call sites.</p>
+<h3 id="appendix-4">Function entry</h3><p>`fn main() -&gt; int` is invoked by both `vpp run` and native executables when present.</p>
+<h3 id="appendix-5">Error codes</h3><p>The CLI returns non-zero on compile errors, runtime failures, or failed tests. Diagnostics use miette-style spans when available.</p>
+<h3 id="appendix-6">Interpreter parity</h3><p>`stress.vpp` and `tests/parity/` compare interpreter vs native stdout for supported programs.</p>
+<h3 id="appendix-7">LLVM toolchain</h3><p>Native builds require LLVM 22 + clang. Windows installer bundles clang under `llvm/bin`.</p>
+<h3 id="appendix-8">Package manifest</h3><p>`vpp.toml` names the project, version, entry file, and dependency table. `vpp.lock` pins resolved versions.</p>
+<h3 id="appendix-9">Registry resolution</h3><p>Local registry index at `registry/index.toml` resolves semver constraints for sample packages.</p>
+<h3 id="appendix-10">LSP protocol</h3><p>`vppls` implements diagnostics, completion, and go-to-definition for VS Code via vscode-languageclient.</p>
+<h3 id="appendix-11">VS Code extension</h3><p>Marketplace id `vpp-lang.vplusplus`. Commands: Run File (F5), Check File, Run Tests.</p>
+<h3 id="appendix-12">Security policy</h3><p>Report vulnerabilities privately per SECURITY.md. Releases are MIT licensed.</p>
+<h3 id="appendix-13">Roadmap v1.0</h3><p>Frozen spec, debugger, Test Explorer, hosted registry, and curriculum are planned post-v0.5.</p>
+<h2 id="cli-complete">Complete CLI reference</h2>
+<ul>
+<li><code>vpp run</code> — Execute a .vpp file with the tree-walking interpreter.</li>
+<li><code>vpp build</code> — Compile to native executable via LLVM (requires codegen feature).</li>
+<li><code>vpp check</code> — Type-check without running.</li>
+<li><code>vpp test</code> — Discover and run `test` blocks in the project.</li>
+<li><code>vpp fmt</code> — Format .vpp sources.</li>
+<li><code>vpp doctor</code> — Report toolchain, PATH, and project health.</li>
+<li><code>vpp new</code> — Scaffold a new project with vpp.toml.</li>
+<li><code>vpp init</code> — Initialize manifest in existing folder.</li>
+<li><code>vpp add</code> — Add dependency to vpp.toml.</li>
+<li><code>vpp remove</code> — Remove dependency.</li>
+<li><code>vpp update</code> — Refresh lockfile resolutions.</li>
+</ul>
+<h2 id="stdlib-index">Standard library index</h2>
+<h3 id="stdlib-std-io">std.io</h3><p>Printing helpers and IO-oriented utilities layered on builtins.</p>
+<h3 id="stdlib-std-math">std.math</h3><p>Arithmetic helpers and numeric utilities.</p>
+<h3 id="stdlib-std-string">std.string</h3><p>String helpers: repeat, length, emptiness checks.</p>
+<h3 id="stdlib-std-collections">std.collections</h3><p>Array helpers: sum, index_of, contains.</p>
+<h3 id="stdlib-std-fs">std.fs</h3><p>File read, write, exists — backed by native runtime on supported targets.</p>
+<h3 id="stdlib-std-json">std.json</h3><p>parse and stringify for JSON documents.</p>
+<h3 id="stdlib-std-process">std.process</h3><p>Run shell commands and capture exit codes.</p>
+<h3 id="stdlib-std-assert">std.assert</h3><p>Assertion helpers for tests.</p><h2 id="glossary">Glossary</h2><dl class="glossary">
+<dt>ARC</dt><dd>See primary sections above for how ARC applies to v++ v0.5.</dd>
+<dt>AST</dt><dd>See primary sections above for how AST applies to v++ v0.5.</dd>
+<dt>ABI</dt><dd>See primary sections above for how ABI applies to v++ v0.5.</dd>
+<dt>CLI</dt><dd>See primary sections above for how CLI applies to v++ v0.5.</dd>
+<dt>IR</dt><dd>See primary sections above for how IR applies to v++ v0.5.</dd>
+<dt>LLVM</dt><dd>See primary sections above for how LLVM applies to v++ v0.5.</dd>
+<dt>LSP</dt><dd>See primary sections above for how LSP applies to v++ v0.5.</dd>
+<dt>MIT</dt><dd>See primary sections above for how MIT applies to v++ v0.5.</dd>
+<dt>REPL</dt><dd>See primary sections above for how REPL applies to v++ v0.5.</dd>
+<dt>semver</dt><dd>See primary sections above for how semver applies to v++ v0.5.</dd>
+<dt>monomorphization</dt><dd>See primary sections above for how monomorphization applies to v++ v0.5.</dd>
+<dt>exhaustiveness</dt><dd>See primary sections above for how exhaustiveness applies to v++ v0.5.</dd>
+<dt>static dispatch</dt><dd>See primary sections above for how static dispatch applies to v++ v0.5.</dd>
+<dt>type inference</dt><dd>See primary sections above for how type inference applies to v++ v0.5.</dd>
+<dt>product type</dt><dd>See primary sections above for how product type applies to v++ v0.5.</dd>
+<dt>sum type</dt><dd>See primary sections above for how sum type applies to v++ v0.5.</dd>
+<dt>entry point</dt><dd>See primary sections above for how entry point applies to v++ v0.5.</dd>
+<dt>parity test</dt><dd>See primary sections above for how parity test applies to v++ v0.5.</dd>
+<dt>codegen</dt><dd>See primary sections above for how codegen applies to v++ v0.5.</dd>
+<dt>interpreter</dt><dd>See primary sections above for how interpreter applies to v++ v0.5.</dd>
+<dt>manifest</dt><dd>See primary sections above for how manifest applies to v++ v0.5.</dd>
+<dt>lockfile</dt><dd>See primary sections above for how lockfile applies to v++ v0.5.</dd>
+<dt>registry</dt><dd>See primary sections above for how registry applies to v++ v0.5.</dd>
+<dt>SmartScreen</dt><dd>See primary sections above for how SmartScreen applies to v++ v0.5.</dd>
+<dt>SignPath</dt><dd>See primary sections above for how SignPath applies to v++ v0.5.</dd>
+</dl>
+<!-- reference line 314 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 317 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 320 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 323 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 326 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 329 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 332 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 335 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 338 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 341 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 344 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 347 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 350 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 353 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 356 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 359 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 362 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 365 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 368 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 371 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 374 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 377 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 380 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 383 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 386 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 389 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 392 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 395 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 398 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 401 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 404 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 407 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 410 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 413 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 416 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 419 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 422 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 425 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 428 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 431 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 434 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 437 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 440 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 443 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 446 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 449 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 452 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 455 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 458 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 461 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 464 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 467 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 470 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 473 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 476 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 479 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 482 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 485 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 488 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 491 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 494 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 497 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 500 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 503 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 506 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 509 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 512 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 515 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 518 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 521 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 524 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 527 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 530 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 533 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 536 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 539 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 542 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 545 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 548 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 551 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 554 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 557 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 560 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 563 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 566 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 569 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 572 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 575 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 578 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 581 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 584 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 587 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 590 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 593 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 596 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 599 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 602 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 605 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 608 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 611 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 614 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 617 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 620 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 623 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 626 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 629 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 632 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 635 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 638 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 641 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 644 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 647 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 650 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 653 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 656 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 659 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 662 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 665 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 668 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 671 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 674 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 677 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 680 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 683 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 686 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 689 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 692 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 695 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 698 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 701 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 704 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 707 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 710 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 713 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 716 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 719 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 722 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 725 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 728 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 731 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 734 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 737 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 740 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 743 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 746 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 749 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 752 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 755 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 758 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 761 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 764 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 767 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 770 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 773 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 776 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 779 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 782 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 785 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 788 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 791 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 794 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 797 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 800 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 803 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 806 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 809 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 812 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 815 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 818 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 821 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 824 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 827 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 830 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 833 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 836 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 839 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 842 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 845 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 848 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 851 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 854 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 857 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 860 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 863 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 866 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 869 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 872 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 875 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 878 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 881 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 884 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 887 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 890 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 893 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 896 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 899 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 902 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 905 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 908 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 911 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 914 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 917 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 920 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 923 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 926 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 929 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 932 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 935 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 938 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 941 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 944 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 947 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 950 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 953 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 956 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 959 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 962 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 965 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 968 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 971 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 974 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 977 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 980 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 983 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 986 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 989 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 992 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 995 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 998 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1001 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1004 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1007 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1010 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1013 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1016 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1019 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1022 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1025 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1028 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1031 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1034 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1037 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1040 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1043 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1046 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1049 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1052 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1055 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1058 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1061 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1064 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1067 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1070 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1073 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1076 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1079 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1082 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1085 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1088 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1091 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1094 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1097 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1100 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1103 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1106 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1109 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1112 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1115 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1118 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1121 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1124 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1127 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1130 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1133 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1136 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1139 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1142 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1145 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1148 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1151 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1154 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1157 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1160 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1163 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1166 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1169 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1172 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1175 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1178 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1181 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1184 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1187 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1190 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1193 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1196 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1199 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<h2 id="release-artifacts">Release artifacts</h2>
 <div class="table-wrap"><table>
-<tr><th>Setting</th><th>Purpose</th></tr>
-<tr><td><code>vpp.compilerPath</code></td><td>Path to <code>vpp.exe</code></td></tr>
-<tr><td><code>vpp.languageServerPath</code></td><td>Path to <code>vppls</code></td></tr>
-<tr><td><code>vpp.enableLanguageServer</code></td><td>Red squiggles, completion, go-to-definition</td></tr>
-</table></div>
-
-<h3 id="commands">Commands</h3>
-
-<div class="table-wrap"><table>
-<tr><th>Command</th><th>Shortcut</th></tr>
-<tr><td>v++: Run File</td><td>F5, Ctrl+Shift+R</td></tr>
-<tr><td>v++: Check File</td><td>Command Palette</td></tr>
-<tr><td>v++: Run Tests</td><td>Command Palette</td></tr>
-</table></div>
-
-<p>See also: <a href="../guides/language-server.md">Language server</a>, <a href="../guides/troubleshooting.md">Troubleshooting</a>.</p>
-
-
-
-<p>&lt;!-- guides\cli-reference.md --&gt;</p>
-
-
-<h2 id="guides-cli-reference">guides — cli-reference</h2>
-
-
-<h2 id="cli-reference">CLI reference</h2>
-
-<pre><code>
-vpp run [file.vpp]     Run via interpreter (calls main if present)
-vpp build [file] -o X  Compile native executable
-vpp check [file]       Type-check only
-vpp compile [file]     Emit LLVM IR (.ll)
-vpp fmt [file]         Format source in place
-vpp test               Run test blocks in project
-vpp init [name]        Create new project scaffold
-vpp new NAME --path P  Create project at path
-vpp add NAME ...       Add dependency to vpp.toml
-vpp remove NAME        Remove dependency
-vpp update             Resolve / refresh lockfile
-vpp doctor             Toolchain diagnostics
-vpp lsp                Start language server (stdio)
-</code></pre>
-
-<h3 id="global-flags">Global flags</h3>
-
-<p>Run <code>vpp --help</code> for current options.</p>
-
-<h3 id="environment">Environment</h3>
-
-<div class="table-wrap"><table>
-<tr><th>Variable</th><th>Purpose</th></tr>
-<tr><td><code>LLVM_SYS_221_PREFIX</code></td><td>LLVM install path for <code>vpp build</code> (dev builds)</td></tr>
-<tr><td><code>VPP_HOME</code></td><td>Optional install root (release bundles)</td></tr>
-</table></div>
-
-<h3 id="examples">Examples</h3>
-
-<pre><code class="language-powershell">
-vpp run examples/hello.vpp
-vpp check examples/lesson02_functions.vpp
-vpp build examples/hello.vpp -o hello.exe
-vpp test
-vpp doctor
-</code></pre>
-
-
-
-<p>&lt;!-- guides\formatting.md --&gt;</p>
-
-
-<h2 id="guides-formatting">guides — formatting</h2>
-
-
-<h2 id="formatting">Formatting</h2>
-
-<pre><code class="language-powershell">
-vpp fmt path/to/file.vpp
-</code></pre>
-
-<p>Re-indents blocks and normalizes spacing. Does not change semantics.</p>
-
-<p>Format before committing. IDE format-on-save can call <code>vpp fmt</code> via tasks (manual setup today).</p>
-
-
-
-<p>&lt;!-- guides\language-server.md --&gt;</p>
-
-
-<h2 id="guides-language-server">guides — language-server</h2>
-
-
-<h2 id="language-server-vppls">Language server (vppls)</h2>
-
-<p><code>vppls</code> provides:</p>
-
-<ul>
-<li><strong>Diagnostics</strong> — red squiggles from the type checker</li>
-<li><strong>Completion</strong> — keyword and context suggestions</li>
-<li><strong>Go to definition</strong> — jump to symbols (best-effort)</li>
-</ul>
-
-<h3 id="build">Build</h3>
-
-<pre><code class="language-powershell">
-cargo build --release --features lsp --bin vppls
-</code></pre>
-
-<p>Release bundles include <code>vppls.exe</code>.</p>
-
-<h3 id="vs-code">VS Code</h3>
-
-<p>Extension setting <code>vpp.languageServerPath</code> defaults to <code>vppls</code> on PATH.</p>
-
-<p>Disable with <code>vpp.enableLanguageServer: false</code>.</p>
-
-<h3 id="protocol">Protocol</h3>
-
-<p>Standard LSP over stdio. Started automatically by the VS Code extension when a <code>.vpp</code> file is open.</p>
-
-
-
-<p>&lt;!-- guides\native-compilation.md --&gt;</p>
-
-
-<h2 id="guides-native-compilation">guides — native-compilation</h2>
-
-
-<h2 id="native-compilation">Native compilation</h2>
-
-<p><code>vpp build</code> lowers code to LLVM IR, compiles with clang, and links the v++ C runtime.</p>
-
-<pre><code class="language-powershell">
-vpp build examples/hello.vpp -o hello.exe
-.\hello.exe
-</code></pre>
-
-<h3 id="requirements">Requirements</h3>
-
-<ul>
-<li><strong>Release installer</strong> — includes portable <code>clang</code> under <code>llvm\bin</code></li>
-<li><strong>From source</strong> — LLVM 22 + <code>LLVM_SYS_221_PREFIX</code></li>
-</ul>
-
-<pre><code class="language-powershell">
-$env:LLVM_SYS_221_PREFIX = &quot;C:\Program Files\LLVM&quot;
-cargo build --release --features codegen
-</code></pre>
-
-<h3 id="interpreter-vs-native">Interpreter vs native</h3>
-
-<div class="table-wrap"><table>
-<tr><th></th><th><code>vpp run</code></th><th><code>vpp build</code></th></tr>
-<tr><td>Speed to iterate</td><td>Fast</td><td>Slower</td></tr>
-<tr><td>Output</td><td>Runs in VM</td><td>Standalone <code>.exe</code></td></tr>
-<tr><td>LLVM needed</td><td>No</td><td>Yes</td></tr>
-</table></div>
-
-<p>Parity tests ensure interpreter and native produce the same stdout for key examples.</p>
-
-<h3 id="memory-model">Memory model</h3>
-
-<p>Strings and arrays use ARC in native code. See <a href="../../MEMORY_MODEL.md">MEMORY_MODEL.md</a>.</p>
-
-
-
-<p>&lt;!-- guides\package-manager.md --&gt;</p>
-
-
-<h2 id="guides-package-manager">guides — package-manager</h2>
-
-
-<h2 id="package-manager">Package manager</h2>
-
-<h3 id="vpp-toml">vpp.toml</h3>
-
-<pre><code class="language-toml">
-name = &quot;myapp&quot;
-version = &quot;0.1.0&quot;
-entry = &quot;src/main.vpp&quot;
-
-[dependencies]
-hello-lib = &quot;0.1.0&quot;
-helper = { path = &quot;../helper&quot; }
-remote = { git = &quot;https://github.com/example/lib&quot;, tag = &quot;v1.0.0&quot; }
-</code></pre>
-
-<h3 id="commands">Commands</h3>
-
-<pre><code class="language-powershell">
-vpp new myapp --path myapp
-vpp add hello-lib --version 0.1.0
-vpp add helper --path ../helper
-vpp add lib --git https://github.com/example/lib --tag v1.0.0
-vpp update
-vpp remove hello-lib
-</code></pre>
-
-<h3 id="lockfile">Lockfile</h3>
-
-<p><code>vpp.lock</code> pins resolved versions. Commit it for reproducible builds.</p>
-
-<h3 id="registry">Registry</h3>
-
-<p>Built-in index: <a href="../../registry/index.toml"><code>registry/index.toml</code></a>.</p>
-
-
-
-<p>&lt;!-- guides\testing.md --&gt;</p>
-
-
-<h2 id="guides-testing">guides — testing</h2>
-
-
-<h2 id="testing">Testing</h2>
-
-<h3 id="inline-test-blocks">Inline test blocks</h3>
-
-<pre><code class="language-vpp">
-test &quot;addition works&quot; {
-    assert_eq(add(2, 3), 5)
-}
-</code></pre>
-
-<h3 id="project-tests">Project tests</h3>
-
-<p>Place files under <code>tests/</code> or use inline blocks, then:</p>
-
-<pre><code class="language-powershell">
-vpp test
-</code></pre>
-
-<h3 id="vs-code">VS Code</h3>
-
-<p>Command Palette → <strong>v++: Run Tests</strong></p>
-
-<h3 id="ci">CI</h3>
-
-<pre><code class="language-powershell">
-cargo test --all-targets
-cargo test --features codegen parity
-</code></pre>
-
-<p>See <a href="../contributing/running-tests.md">Running tests</a>.</p>
-
-
-
-<p>&lt;!-- guides\troubleshooting.md --&gt;</p>
-
-
-<h2 id="guides-troubleshooting">guides — troubleshooting</h2>
-
-
-<h2 id="troubleshooting">Troubleshooting</h2>
-
-<h3 id="vpp-not-recognized"><code>vpp</code> not recognized</h3>
-
-<ul>
-<li>Reopen terminal after install</li>
-<li>Add install dir to PATH (see <a href="../getting-started/install.md">install guide</a>)</li>
-<li>Or set <code>vpp.compilerPath</code> in VS Code</li>
-</ul>
-
-<h3 id="smartscreen-security-warning">SmartScreen / security warning</h3>
-
-<p>Open-source installers may trigger a one-time Windows SmartScreen prompt. Choose <strong>More info → Run anyway</strong>, or verify the download from <a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a>.</p>
-
-<h3 id="vpp-build-fails-clang-not-found"><code>vpp build</code> fails — clang not found</h3>
-
-<ul>
-<li>Use release installer (bundled clang), or</li>
-<li><code>winget install LLVM.LLVM</code> and set <code>LLVM_SYS_221_PREFIX</code></li>
-</ul>
-
-<h3 id="no-syntax-highlighting">No syntax highlighting</h3>
-
-<ul>
-<li>Install extension <strong>v++ Language</strong> (vpp-lang)</li>
-<li>Reload window; confirm language mode is <strong>v++</strong></li>
-</ul>
-
-<h3 id="lsp-not-working">LSP not working</h3>
-
-<ul>
-<li>Build <code>vppls</code>: <code>cargo build --features lsp --bin vppls</code></li>
-<li>Check Output panel → v++ Language Server</li>
-</ul>
-
-<h3 id="native-vs-interpreter-mismatch">Native vs interpreter mismatch</h3>
-
-<p>Run parity check:</p>
-
-<pre><code class="language-powershell">
-.\stress.ps1
-</code></pre>
-
-<p>File issues: <a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a>.</p>
-
-
-
-<p>&lt;!-- language\control-flow.md --&gt;</p>
-
-
-<h2 id="language-control-flow">language — control-flow</h2>
-
-
-<h2 id="control-flow">Control flow</h2>
-
-<h3 id="if-else">if / else</h3>
-
-<pre><code class="language-vpp">
-if x &gt; 0 {
-    print(&quot;positive&quot;)
-} else {
-    print(&quot;non-positive&quot;)
-}
-</code></pre>
-
-<h3 id="while">while</h3>
-
-<pre><code class="language-vpp">
-let mut i = 0
-while i &lt; 3 {
-    print(i)
-    i = i + 1
-}
-</code></pre>
-
-<h3 id="for-range">for (range)</h3>
-
-<pre><code class="language-vpp">
-for i in 0..3 {
-    print(i)
-}
-</code></pre>
-
-<h3 id="for-array">for (array)</h3>
-
-<pre><code class="language-vpp">
-for name in [&quot;Alex&quot;, &quot;Sam&quot;] {
-    print(name)
-}
-</code></pre>
-
-<h3 id="match">match</h3>
-
-<pre><code class="language-vpp">
-match status {
-    Active =&gt; print(&quot;on&quot;),
-    Idle =&gt; print(&quot;off&quot;),
-}
-</code></pre>
-
-<p>Enums, <code>Option</code>, and <code>Result</code> matches must be <strong>exhaustive</strong> or use <code>_</code> (compile error E0107).</p>
-
-<p>See <a href="option-result-match.md">option-result-match.md</a>.</p>
-
-<h3 id="break-continue">break / continue</h3>
-
-<p>Supported inside <code>while</code> and <code>for</code> loops.</p>
-
-
-
-<p>&lt;!-- language\functions.md --&gt;</p>
-
-
-<h2 id="language-functions">language — functions</h2>
-
-
-<h2 id="functions">Functions</h2>
-
-<pre><code class="language-vpp">
-fn greet(name: string) -&gt; int {
-    print(name)
-    return 0
-}
-</code></pre>
-
-<h3 id="main">Main</h3>
-
-<pre><code class="language-vpp">
-fn main() -&gt; int {
-    print(&quot;starting&quot;)
-    return 0
-}
-</code></pre>
-
-<h3 id="generic-functions-v0-4">Generic functions (v0.4+)</h3>
-
-<pre><code class="language-vpp">
-fn id[T](x: T) -&gt; T {
-    return x
-}
-
-print(id[int](42))
-</code></pre>
-
-<p>Type arguments are required at call sites (monomorphization).</p>
-
-<p>See <a href="generics.md">generics.md</a>.</p>
-
-
-
-<p>&lt;!-- language\generics.md --&gt;</p>
-
-
-<h2 id="language-generics">language — generics</h2>
-
-
-<h2 id="generics-v0-4">Generics (v0.4+)</h2>
-
-<p>v++ uses <strong>monomorphization</strong> — generic functions are specialized at each call site.</p>
-
-<pre><code class="language-vpp">
-fn first[T](items: array[T]) -&gt; Option[T] {
-    if len(items) == 0 {
-        return None
-    }
-    return Some(items[0])
-}
-</code></pre>
-
-<p>Call with explicit type args:</p>
-
-<pre><code class="language-vpp">
-let word = first[string]([&quot;a&quot;, &quot;b&quot;])
-</code></pre>
-
-<p>Example: <a href="../../examples/generics.vpp"><code>examples/generics.vpp</code></a>.</p>
-
-
-
-<p>&lt;!-- language\modules.md --&gt;</p>
-
-
-<h2 id="language-modules">language — modules</h2>
-
-
-<h2 id="modules">Modules</h2>
-
-<h3 id="standard-library-imports">Standard library imports</h3>
-
-<pre><code class="language-vpp">
-import std.io
-import std.math
-
-fn main() -&gt; int {
-    io.print(&quot;hello&quot;)
-    print(math.abs(-5))
-    return 0
-}
-</code></pre>
-
-<h3 id="public-exports">Public exports</h3>
-
-<p>In a module file, mark items with <code>pub</code>:</p>
-
-<pre><code class="language-vpp">
-pub fn helper() -&gt; int {
-    return 1
-}
-</code></pre>
-
-<h3 id="project-layout">Project layout</h3>
-
-<pre><code>
-myapp/
-  vpp.toml
-  src/main.vpp
-  src/util.vpp
-</code></pre>
-
-<p>See <a href="../guides/package-manager.md">Package manager</a> for <code>vpp.toml</code> and dependencies.</p>
-
-
-
-<p>&lt;!-- language\mut-and-immutability.md --&gt;</p>
-
-
-<h2 id="language-mut-and-immutability">language — mut-and-immutability</h2>
-
-
-<h2 id="mut-and-immutability-v0-4">mut and immutability (v0.4+)</h2>
-
-<p>Bindings are <strong>immutable by default</strong>.</p>
-
-<pre><code class="language-vpp">
-let x = 1
-// x = 2   // error: cannot reassign immutable binding
-</code></pre>
-
-<p>Use <code>mut</code> when you need to reassign:</p>
-
-<pre><code class="language-vpp">
-let mut count = 0
-count = count + 1
-</code></pre>
-
-<p>Loop counters and accumulators typically need <code>mut</code>.</p>
-
-
-
-<p>&lt;!-- language\option-result-match.md --&gt;</p>
-
-
-<h2 id="language-option-result-match">language — option-result-match</h2>
-
-
-<h2 id="option-result-and-match">Option, Result, and match</h2>
-
-<h3 id="option">Option</h3>
-
-<pre><code class="language-vpp">
-let some = Some(42)
-let none: Option[int] = None
-</code></pre>
-
-<h3 id="result">Result</h3>
-
-<pre><code class="language-vpp">
-fn divide(a: int, b: int) -&gt; Result[int, string] {
-    if b == 0 {
-        return Err(&quot;division by zero&quot;)
-    }
-    return Ok(a / b)
-}
-</code></pre>
-
-<h3 id="exhaustive-match">Exhaustive match</h3>
-
-<p>The compiler rejects non-exhaustive matches on enums, <code>Option</code>, and <code>Result</code>:</p>
-
-<pre><code class="language-vpp">
-match opt {
-    Some(x) =&gt; print(x),
-    None =&gt; print(&quot;empty&quot;),
-}
-</code></pre>
-
-<p>Missing <code>None</code> → <strong>E0107</strong>.</p>
-
-<p>Use <code>_</code> for a catch-all when appropriate.</p>
-
-
-
-<p>&lt;!-- language\structs-and-enums.md --&gt;</p>
-
-
-<h2 id="language-structs-and-enums">language — structs-and-enums</h2>
-
-
-<h2 id="structs-and-enums">Structs and enums</h2>
-
-<h3 id="struct">Struct</h3>
-
-<pre><code class="language-vpp">
-struct User {
-    name: string,
-    age: int,
-}
-
-let u = User { name: &quot;Alex&quot;, age: 30 }
-print(u.name)
-</code></pre>
-
-<h3 id="enum">Enum</h3>
-
-<pre><code class="language-vpp">
-enum Status {
-    Active,
-    Idle,
-}
-
-let s = Active
-match s {
-    Active =&gt; print(&quot;on&quot;),
-    Idle =&gt; print(&quot;off&quot;),
-}
-</code></pre>
-
-<h3 id="enum-with-payloads">Enum with payloads</h3>
-
-<pre><code class="language-vpp">
-enum Message {
-    Text(string),
-    Count(int),
-}
-</code></pre>
-
-<p>All variants must be handled in <code>match</code> or use <code>_</code>.</p>
-
-
-
-<p>&lt;!-- language\traits.md --&gt;</p>
-
-
-<h2 id="language-traits">language — traits</h2>
-
-
-<h2 id="traits-and-impls-v0-4">Traits and impls (v0.4+)</h2>
-
-<p>Static dispatch — no virtual tables at runtime.</p>
-
-<pre><code class="language-vpp">
-trait Display {
-    fn to_text(self) -&gt; string
-}
-
-struct User {
-    name: string,
-}
-
-impl Display for User {
-    fn to_text(self) -&gt; string {
-        return self.name
-    }
-}
-
-let u = User { name: &quot;Alex&quot; }
-print(u.to_text())
-</code></pre>
-
-<p>Example: <a href="../../examples/traits.vpp"><code>examples/traits.vpp</code></a>.</p>
-
-
-
-<p>&lt;!-- language\types-and-inference.md --&gt;</p>
-
-
-<h2 id="language-types-and-inference">language — types-and-inference</h2>
-
-
-<h2 id="types-and-inference">Types and inference</h2>
-
-<h3 id="built-in-types">Built-in types</h3>
-
-<div class="table-wrap"><table>
-<tr><th>Type</th><th>Example</th></tr>
-<tr><td><code>int</code></td><td><code>42</code></td></tr>
-<tr><td><code>float</code></td><td><code>3.14</code></td></tr>
-<tr><td><code>bool</code></td><td><code>true</code></td></tr>
-<tr><td><code>string</code></td><td><code>&quot;hello&quot;</code></td></tr>
-<tr><td><code>array[T]</code></td><td><code>[1, 2, 3]</code></td></tr>
-<tr><td><code>Option[T]</code></td><td><code>Some(1)</code>, <code>None</code></td></tr>
-<tr><td><code>Result[T, E]</code></td><td><code>Ok(1)</code>, <code>Err(&quot;msg&quot;)</code></td></tr>
-</table></div>
-
-<h3 id="local-inference">Local inference</h3>
-
-<pre><code class="language-vpp">
-let x = 10        // int
-let name = &quot;v++&quot;  // string
-let active = true // bool
-</code></pre>
-
-<h3 id="explicit-annotations">Explicit annotations</h3>
-
-<pre><code class="language-vpp">
-let count: int = 0
-let items: array[string] = [&quot;a&quot;, &quot;b&quot;]
-</code></pre>
-
-<h3 id="function-signatures">Function signatures</h3>
-
-<p>Parameters and return types are <strong>always explicit</strong>:</p>
-
-<pre><code class="language-vpp">
-fn add(a: int, b: int) -&gt; int {
-    return a + b
-}
-</code></pre>
-
-<h3 id="entry-point">Entry point</h3>
-
-<pre><code class="language-vpp">
-fn main() -&gt; int {
-    return 0
-}
-</code></pre>
-
-<p><code>vpp run</code> calls <code>main()</code> when defined.</p>
-
-
-
-<p>&lt;!-- PRIVACY.md --&gt;</p>
-
-
-<h2 id="privacy">PRIVACY</h2>
-
-
-<h2 id="privacy-policy-v">Privacy Policy — v++</h2>
-
-<p><strong>Last updated:</strong> August 2026</p>
-
-<p>v++ (the compiler, language server, and VS Code extension) is open-source software distributed under the MIT License.</p>
-
-<h3 id="data-collection">Data collection</h3>
-
-<p>The v++ compiler and language server <strong>do not collect, transmit, or store personal data</strong>. All compilation and analysis runs locally on your machine.</p>
-
-<p>The VS Code extension communicates only with the local <code>vppls</code> language server process on your computer. It does not send source code or usage data to any remote server operated by the v++ project.</p>
-
-<h3 id="third-party-services">Third-party services</h3>
-
-<ul>
-<li><strong>GitHub Releases</strong> — if you download binaries from GitHub, GitHub’s own privacy policy applies to that download.</li>
-<li><strong>VS Code Marketplace</strong> — if you install the extension from the Marketplace, Microsoft’s privacy policy applies to that installation flow.</li>
-</ul>
-
-<h3 id="contact">Contact</h3>
-
-<p>Issues and questions: https://github.com/shauryaR790/V-/issues</p>
-
-
-
-<p>&lt;!-- project\faq.md --&gt;</p>
-
-
-<h2 id="project-faq">project — faq</h2>
-
-
-<h2 id="faq">FAQ</h2>
-
-<h3 id="what-is-v">What is v++?</h3>
-
-<p>A compiled language with Python-like syntax, static typing, and native codegen via LLVM.</p>
-
-<h3 id="is-v-ready-for-production">Is v++ ready for production?</h3>
-
-<p>It&#x27;s <strong>v0.5</strong> — early but real. Expect language changes until v1.0.</p>
-
-<h3 id="how-is-v-different-from-python">How is v++ different from Python?</h3>
-
-<div class="table-wrap"><table>
-<tr><th></th><th>Python</th><th>v++</th></tr>
-<tr><td>Typing</td><td>Dynamic (optional hints)</td><td>Static + inference</td></tr>
-<tr><td>Run</td><td>Interpreter default</td><td>Interpreter + native <code>.exe</code></td></tr>
-<tr><td>Ecosystem</td><td>Huge</td><td>Small, growing</td></tr>
-<tr><td>Age</td><td>30+ years</td><td>New</td></tr>
-</table></div>
-
-<h3 id="where-do-i-download">Where do I download?</h3>
-
-<p><a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a> — <code>vpp-*-setup.exe</code></p>
-
-<h3 id="which-vs-code-extension-is-official">Which VS Code extension is official?</h3>
-
-<p><strong>v++ Language</strong> by publisher <strong>vpp-lang</strong> (<code>vpp-lang.vplusplus</code>).</p>
-
-<h3 id="does-v-collect-data">Does v++ collect data?</h3>
-
-<p>No. See <a href="../PRIVACY.md">PRIVACY.md</a>.</p>
-
-<h3 id="how-do-i-report-bugs">How do I report bugs?</h3>
-
-<p><a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a></p>
-
-<h3 id="can-i-contribute">Can I contribute?</h3>
-
-<p>Yes — <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
-
-
-
-<p>&lt;!-- project\roadmap.md --&gt;</p>
-
-
-<h2 id="project-roadmap">project — roadmap</h2>
-
-
-<h2 id="roadmap">Roadmap</h2>
-
-<h3 id="shipped-v0-4-4">Shipped (v0.4.4)</h3>
-
-<ul>
-<li>Language: mut, generics, traits, exhaustive match</li>
-<li>Toolchain: vpp, vppls, package manager, stdlib</li>
-<li>Distribution: Windows installer, VS Code extension, CI/CD</li>
-</ul>
-
-<h3 id="v0-5-current">v0.5 (current)</h3>
-
-<ul>
-<li>[x] Documentation hub and install guides</li>
-<li>[x] Website (landing, learn, 20 projects, downloads, history)</li>
-<li>[ ] SignPath code signing</li>
-<li>[ ] REPL (<code>vpp repl</code>)</li>
-<li>[ ] Expanded stdlib (maps, time)</li>
-<li>[ ] Linux/macOS release polish</li>
-</ul>
-
-<h3 id="v1-0-stable">v1.0 (stable)</h3>
-
-<ul>
-<li>[ ] Frozen language spec — no breaking changes without major version</li>
-<li>[ ] Debugger extension (breakpoints)</li>
-<li>[ ] Test Explorer UI in VS Code</li>
-<li>[ ] Hosted package registry</li>
-<li>[ ] Curriculum + interactive tutorial</li>
-</ul>
-
-<p>Track progress in <a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a>.</p>
-
-
-
-<p>&lt;!-- stdlib\collections.md --&gt;</p>
-
-
-<h2 id="stdlib-collections">stdlib — collections</h2>
-
-
-<h2 id="std-collections">std.collections</h2>
-
-<p>Collection helpers. See <a href="../../std/collections.vpp"><code>std/collections.vpp</code></a>.</p>
-
-<pre><code class="language-vpp">
-import std.collections
-</code></pre>
-
-<p>Arrays are first-class: <code>[1, 2, 3]</code>, <code>len(arr)</code>, <code>for x in arr</code>.</p>
-
-
-
-<p>&lt;!-- stdlib\fs.md --&gt;</p>
-
-
-<h2 id="stdlib-fs">stdlib — fs</h2>
-
-
-<h2 id="std-fs">std.fs</h2>
-
-<p>File system access (native codegen supported).</p>
-
-<pre><code class="language-vpp">
-import std.fs
-
-let text = fs.read_file(&quot;data.txt&quot;)
-fs.write_file(&quot;out.txt&quot;, &quot;hello&quot;)
-let exists = fs.file_exists(&quot;data.txt&quot;)
-</code></pre>
-
-<p>Use <code>vpp run</code> (interpreter) or <code>vpp build</code> depending on deployment needs.</p>
-
-
-
-<p>&lt;!-- stdlib\io.md --&gt;</p>
-
-
-<h2 id="stdlib-io">stdlib — io</h2>
-
-
-<h2 id="std-io">std.io</h2>
-
-<pre><code class="language-vpp">
-import std.io
-
-fn main() -&gt; int {
-    io.print(&quot;Hello&quot;)
-    return 0
-}
-</code></pre>
-
-<p>Top-level <code>print()</code> is also available without import in many examples.</p>
-
-
-
-<p>&lt;!-- stdlib\json.md --&gt;</p>
-
-
-<h2 id="stdlib-json">stdlib — json</h2>
-
-
-<h2 id="std-json">std.json</h2>
-
-<p>JSON parse and stringify (native codegen supported).</p>
-
-<pre><code class="language-vpp">
-import std.json
-
-let obj = json.parse(&quot;{\&quot;name\&quot;:\&quot;v++\&quot;}&quot;)
-let s = json.stringify(obj)
-</code></pre>
-
-<p>For production JSON workloads, validate outputs against your schema in tests.</p>
-
-
-
-<p>&lt;!-- stdlib\math.md --&gt;</p>
-
-
-<h2 id="stdlib-math">stdlib — math</h2>
-
-
-<h2 id="std-math">std.math</h2>
-
-<pre><code class="language-vpp">
-import std.math
-
-print(math.abs(-5))
-print(math.min(3, 7))
-print(math.max(3, 7))
-print(math.pow(2, 10))
-</code></pre>
-
-
-
-<p>&lt;!-- stdlib\process.md --&gt;</p>
-
-
-<h2 id="stdlib-process">stdlib — process</h2>
-
-
-<h2 id="std-process">std.process</h2>
-
-<p>Run external processes (native codegen supported).</p>
-
-<pre><code class="language-vpp">
-import std.process
-
-let code = process.run(&quot;echo hello&quot;)
-</code></pre>
-
-<p>Use with care — sandbox and validate commands in user-facing apps.</p>
-
-
-
-<p>&lt;!-- stdlib\string.md --&gt;</p>
-
-
-<h2 id="stdlib-string">stdlib — string</h2>
-
-
-<h2 id="std-string">std.string</h2>
-
-<p>String operations via the stdlib module. See <a href="../../std/string.vpp"><code>std/string.vpp</code></a> for current exports.</p>
-
-<pre><code class="language-vpp">
-import std.string
-</code></pre>
-
-<p>Built-in <code>string</code> type supports concatenation with <code>+</code> in the language.</p>
-      </article>
-      <aside class="doc-aside">
-        <p class="meta-line">1219 lines · v0.5.0</p>
-        <nav class="doc-toc"><h4>On this page</h4><ul>
-<li><a href="#download-v">Download v++</a></li>
-<li><a href="#v0-5-0-latest">v0.5.0 (latest)</a></li>
-<li><a href="#install-steps-windows">Install steps (Windows)</a></li>
-<li><a href="#all-releases">All releases</a></li>
-<li><a href="#build-from-source">Build from source</a></li>
-<li><a href="#verify-downloads">Verify downloads</a></li>
-<li><a href="#platform-support">Platform support</a></li>
-<li><a href="#contributing-building-from-source">contributing — building-from-source</a></li>
-<li><a href="#building-from-source">Building from source</a></li>
-<li><a href="#requirements">Requirements</a></li>
-<li><a href="#build">Build</a></li>
-<li><a href="#features">Features</a></li>
-<li><a href="#install-locally">Install locally</a></li>
-<li><a href="#contributing-running-tests">contributing — running-tests</a></li>
-<li><a href="#running-tests">Running tests</a></li>
-<li><a href="#getting-started-first-project">getting-started — first-project</a></li>
-<li><a href="#your-first-v-project">Your first v++ project</a></li>
-<li><a href="#scaffold">Scaffold</a></li>
-<li><a href="#run">Run</a></li>
-<li><a href="#test">Test</a></li>
-<li><a href="#add-a-dependency">Add a dependency</a></li>
-<li><a href="#getting-started-hello-world">getting-started — hello-world</a></li>
-<li><a href="#hello-v">Hello, v++</a></li>
-<li><a href="#what-you-just-used">What you just used</a></li>
-<li><a href="#getting-started-install">getting-started — install</a></li>
-<li><a href="#install-v">Install v++</a></li>
-<li><a href="#windows-recommended">Windows (recommended)</a></li>
-<li><a href="#vs-code-extension">VS Code extension</a></li>
-<li><a href="#portable-zip-advanced">Portable zip (advanced)</a></li>
-<li><a href="#build-from-source">Build from source</a></li>
-<li><a href="#requirements">Requirements</a></li>
-<li><a href="#getting-started-vscode-setup">getting-started — vscode-setup</a></li>
-<li><a href="#vs-code-setup-for-v">VS Code setup for v++</a></li>
-<li><a href="#install">Install</a></li>
-<li><a href="#run-code">Run code</a></li>
-<li><a href="#language-server-intellisense">Language server (IntelliSense)</a></li>
-<li><a href="#commands">Commands</a></li>
-<li><a href="#guides-cli-reference">guides — cli-reference</a></li>
-<li><a href="#cli-reference">CLI reference</a></li>
-<li><a href="#global-flags">Global flags</a></li>
-<li><a href="#environment">Environment</a></li>
-<li><a href="#examples">Examples</a></li>
-<li><a href="#guides-formatting">guides — formatting</a></li>
-<li><a href="#formatting">Formatting</a></li>
-<li><a href="#guides-language-server">guides — language-server</a></li>
-<li><a href="#language-server-vppls">Language server (vppls)</a></li>
-<li><a href="#build">Build</a></li>
-<li><a href="#vs-code">VS Code</a></li>
-<li><a href="#protocol">Protocol</a></li>
-<li><a href="#guides-native-compilation">guides — native-compilation</a></li>
-<li><a href="#native-compilation">Native compilation</a></li>
-<li><a href="#requirements">Requirements</a></li>
-<li><a href="#interpreter-vs-native">Interpreter vs native</a></li>
-<li><a href="#memory-model">Memory model</a></li>
-<li><a href="#guides-package-manager">guides — package-manager</a></li>
-<li><a href="#package-manager">Package manager</a></li>
-<li><a href="#vpp-toml">vpp.toml</a></li>
-<li><a href="#commands">Commands</a></li>
-<li><a href="#lockfile">Lockfile</a></li>
-<li><a href="#registry">Registry</a></li>
-<li><a href="#guides-testing">guides — testing</a></li>
-<li><a href="#testing">Testing</a></li>
-<li><a href="#inline-test-blocks">Inline test blocks</a></li>
-<li><a href="#project-tests">Project tests</a></li>
-<li><a href="#vs-code">VS Code</a></li>
-<li><a href="#ci">CI</a></li>
-<li><a href="#guides-troubleshooting">guides — troubleshooting</a></li>
-<li><a href="#troubleshooting">Troubleshooting</a></li>
-<li><a href="#smartscreen-security-warning">SmartScreen / security warning</a></li>
-<li><a href="#no-syntax-highlighting">No syntax highlighting</a></li>
-<li><a href="#lsp-not-working">LSP not working</a></li>
-<li><a href="#native-vs-interpreter-mismatch">Native vs interpreter mismatch</a></li>
-<li><a href="#language-control-flow">language — control-flow</a></li>
-<li><a href="#control-flow">Control flow</a></li>
-<li><a href="#if-else">if / else</a></li>
-<li><a href="#while">while</a></li>
-<li><a href="#for-range">for (range)</a></li>
-<li><a href="#for-array">for (array)</a></li>
-<li><a href="#match">match</a></li>
-<li><a href="#break-continue">break / continue</a></li>
-</ul></nav>
-        <p class="edit-link"><a href="https://github.com/shauryaR790/V-/edit/main/website/download.html" target="_blank" rel="noopener">Edit this page</a></p>
-      </aside>
+<thead><tr><th>Version</th><th>Windows installer</th><th>Portable zip</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>v0.5.0</td><td><a href="https://github.com/shauryaR790/V-/releases/download/v0.5.0/vpp-0.5.0-setup.exe">vpp-0.5.0-setup.exe</a></td><td><a href="https://github.com/shauryaR790/V-/releases/download/v0.5.0/vpp-v0.5.0-windows-x64.zip">zip</a></td><td>Latest — docs hub, PATH fix</td></tr>
+<tr><td>v0.4.4</td><td><a href="https://github.com/shauryaR790/V-/releases/tag/v0.4.4">Release page</a></td><td>zip</td><td>Marketplace extension</td></tr>
+<tr><td>v0.4.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.4.0">Generics, traits, mut</a></td></tr>
+<tr><td>v0.3.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.3.0">Modules, package manager, stdlib</a></td></tr>
+<tr><td>v0.2.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.2.0">Native IR + LLVM</a></td></tr>
+<tr><td>v0.1.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.1.0">Initial release</a></td></tr>
+</tbody></table></div>
+</article>
     </main>
+    <aside class="docs-toc">
+      <p class="toc-label">On this page</p>
+      <ul>
+<li class=""><a href="#windows-recommended">Windows (recommended)</a></li>
+<li class=""><a href="#vs-code-extension">VS Code extension</a></li>
+<li class=""><a href="#portable-zip-advanced">Portable zip (advanced)</a></li>
+<li class=""><a href="#build-from-source">Build from source</a></li>
+<li class=""><a href="#requirements">Requirements</a></li>
+<li class=""><a href="#0-5-0-2026-08-18">[0.5.0] — 2026-08-18</a></li>
+<li class="toc-h3"><a href="#added">Added</a></li>
+<li class="toc-h3"><a href="#changed">Changed</a></li>
+<li class=""><a href="#0-4-4-2026-08-18-windows-installer">[0.4.4] — 2026-08-18 (Windows installer)</a></li>
+<li class="toc-h3"><a href="#added">Added</a></li>
+<li class="toc-h3"><a href="#fixed">Fixed</a></li>
+<li class=""><a href="#0-4-0-2026-08-18-language-core-phase-b">[0.4.0] — 2026-08-18 (Language Core / Phase B)</a></li>
+<li class="toc-h3"><a href="#added">Added</a></li>
+<li class="toc-h3"><a href="#changed">Changed</a></li>
+<li class=""><a href="#0-3-0-2026-08-18-usable-language-ecosystem">[0.3.0] — 2026-08-18 (Usable Language / Ecosystem)</a></li>
+<li class="toc-h3"><a href="#added">Added</a></li>
+<li class="toc-h3"><a href="#changed">Changed</a></li>
+<li class="toc-h3"><a href="#fixed">Fixed</a></li>
+<li class=""><a href="#0-3-1-2026-08-18-phase-a-polish">[0.3.1] — 2026-08-18 (Phase A polish)</a></li>
+<li class="toc-h3"><a href="#fixed">Fixed</a></li>
+<li class="toc-h3"><a href="#added">Added</a></li>
+<li class="toc-h3"><a href="#changed">Changed</a></li>
+<li class=""><a href="#0-2-0-2026-08-18">[0.2.0] — 2026-08-18</a></li>
+<li class="toc-h3"><a href="#added">Added</a></li>
+<li class="toc-h3"><a href="#fixed">Fixed</a></li>
+<li class="toc-h3"><a href="#changed">Changed</a></li>
+<li class="toc-h3"><a href="#known-limitations-v0-2">Known limitations (v0.2)</a></li>
+<li class=""><a href="#0-1-0-2026-08">[0.1.0] — 2026-08</a></li>
+<li class=""><a href="#reference-appendix">Reference appendix</a></li>
+<li class="toc-h3"><a href="#appendix-0">Lexical structure</a></li>
+<li class="toc-h3"><a href="#appendix-1">Numeric literals</a></li>
+<li class="toc-h3"><a href="#appendix-2">String literals</a></li>
+<li class="toc-h3"><a href="#appendix-3">Array literals</a></li>
+<li class="toc-h3"><a href="#appendix-4">Function entry</a></li>
+<li class="toc-h3"><a href="#appendix-5">Error codes</a></li>
+<li class="toc-h3"><a href="#appendix-6">Interpreter parity</a></li>
+<li class="toc-h3"><a href="#appendix-7">LLVM toolchain</a></li>
+<li class="toc-h3"><a href="#appendix-8">Package manifest</a></li>
+<li class="toc-h3"><a href="#appendix-9">Registry resolution</a></li>
+<li class="toc-h3"><a href="#appendix-10">LSP protocol</a></li>
+<li class="toc-h3"><a href="#appendix-11">VS Code extension</a></li>
+<li class="toc-h3"><a href="#appendix-12">Security policy</a></li>
+<li class="toc-h3"><a href="#appendix-13">Roadmap v1.0</a></li>
+<li class=""><a href="#cli-complete">Complete CLI reference</a></li>
+<li class=""><a href="#stdlib-index">Standard library index</a></li>
+<li class="toc-h3"><a href="#stdlib-std-io">std.io</a></li>
+<li class="toc-h3"><a href="#stdlib-std-math">std.math</a></li>
+<li class="toc-h3"><a href="#stdlib-std-string">std.string</a></li>
+<li class="toc-h3"><a href="#stdlib-std-collections">std.collections</a></li>
+<li class="toc-h3"><a href="#stdlib-std-fs">std.fs</a></li>
+<li class="toc-h3"><a href="#stdlib-std-json">std.json</a></li>
+<li class="toc-h3"><a href="#stdlib-std-process">std.process</a></li>
+<li class="toc-h3"><a href="#stdlib-std-assert">std.assert</a></li>
+<li class=""><a href="#glossary">Glossary</a></li>
+<li class=""><a href="#release-artifacts">Release artifacts</a></li>
+</ul>
+    </aside>
   </div>
-
-  <footer class="site-footer">
+  <footer class="site-footer compact">
     <div class="footer-inner">
-      <div class="footer-badges">
-        <span class="badge-lts">v0.5.0 Latest</span>
-        <span class="badge-rel">MIT License</span>
+      <span class="footer-badge">v0.5.0</span>
+      <span class="footer-badge yellow">Latest</span>
+      <div class="footer-links">
+        <a href="https://github.com/shauryaR790/V-">GitHub</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">VS Code</a>
+        <a href="https://github.com/shauryaR790/V-/blob/main/docs/PRIVACY.md">Privacy</a>
       </div>
-      <ul class="footer-links">
-        <li><a href="https://github.com/shauryaR790/V-">GitHub</a></li>
-        <li><a href="https://github.com/shauryaR790/V-/blob/main/docs/PRIVACY.md">Privacy</a></li>
-        <li><a href="https://github.com/shauryaR790/V-/issues">Issues</a></li>
-      </ul>
-      <p class="footer-copy">© 2026 v++ · Created by Shaurya</p>
     </div>
   </footer>
   <script src="js/main.js"></script>

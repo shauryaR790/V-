@@ -3,80 +3,1830 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Docs — v++</title>
-  <link rel="icon" href="assets/logo.png">
+  <title>Documentation — v++</title>
+  <meta name="description" content="Complete v++ language and toolchain documentation.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/logo.png">
 </head>
-<body class="doc-page">
-  <div class="grid-bg"></div>
+<body class="page-docs">
   <header class="site-header">
-    <nav class="nav-inner">
-      <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="v++" class="logo-img"><span class="logo-text">v++</span></a>
-      <button class="nav-toggle" aria-label="Menu">☰</button>
-      <ul class="nav-links">
-        <li><a href="learn.html">Learn</a></li><li><a href="about.html">About</a></li><li><a href="download.html">Download</a></li><li><a href="blog.html">Blog</a></li><li><a href="docs.html" class="active">Docs</a></li><li><a href="contribute.html">Contribute</a></li><li><a href="courses.html">Courses</a></li>
-      </ul>
-      <div class="nav-actions">
-        <a href="https://github.com/shauryaR790/V-" class="nav-github" target="_blank" rel="noopener" aria-label="GitHub">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+    <div class="header-inner">
+      <a href="index.html" class="brand"><img src="assets/logo.png" alt="v++" class="brand-logo"><span class="brand-text">v++</span></a>
+      <nav class="top-nav"><a href="learn.html" class="nav-link">Learn</a>
+<a href="about.html" class="nav-link">About</a>
+<a href="download.html" class="nav-link">Download</a>
+<a href="blog.html" class="nav-link">Blog</a>
+<a href="docs.html" class="nav-link active">Docs</a>
+<a href="contribute.html" class="nav-link">Contribute</a>
+<a href="courses.html" class="nav-link">Courses</a></nav>
+      <div class="header-actions">
+        <a href="https://github.com/shauryaR790/V-" class="icon-btn" aria-label="GitHub" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-1.005-.525-1.815-1.785-1.815-3.015 0-1.635 1.17-3.075 3.015-3.075 1.425 0 2.19 1.095 2.19 1.095.63-1.095 1.725-1.395 2.715-1.395 3.285 0 4.605 2.175 4.605 4.275 0 2.295-1.425 4.305-3.54 4.305-.705 0-1.365-.36-1.59-.795 0 0-.345 1.305-1.425 1.605-.51.135-1.245.24-1.875.24-1.425 0-2.715-.615-3.615-1.605C4.425 18.24 4.2 15.24 4.2 15.24c0-1.59.585-2.895 1.545-3.915C4.365 10.785 3.75 9.045 3.75 6.75c0-.885.315-1.755.855-2.445C3.75 3.75 4.95 1.65 6.75 1.65c1.005 0 1.905.375 2.55.885.645-.03 1.335-.105 2.04-.405.69-.285 1.425-.675 2.175-1.08.75-.405 1.5-.675 2.175-.825.675-.15 1.305-.225 1.875-.225 1.8 0 3 2.1 2.145 3.655.54.69.855 1.56.855 2.445 0 2.295-.615 4.035-1.545 4.575.96 1.02 1.545 2.325 1.545 3.915 0 2.85-1.635 5.475-4.725 5.925-.375.075-.75.105-1.125.105-.96 0-1.89-.195-2.745-.555z"/></svg>
         </a>
       </div>
-    </nav>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+    </div>
   </header>
+  <div class="docs-layout">
+    <aside class="docs-sidebar"><p class="sidebar-group">Getting started</p><ul>
+<li><a href="learn.html">Introduction to v++</a></li>
+<li><a href="learn.html#getting-started">Quick start</a></li>
+<li><a href="learn.html#hello-world">Hello, v++</a></li>
+<li><a href="learn.html#first-project">First project</a></li>
+<li><a href="courses.html">Courses &amp; projects</a></li>
+</ul>
+<p class="sidebar-group">Language</p><ul>
+<li><a href="docs.html#types">Types &amp; inference</a></li>
+<li><a href="docs.html#functions">Functions</a></li>
+<li><a href="docs.html#control-flow">Control flow</a></li>
+<li><a href="docs.html#structs-and-enums">Structs &amp; enums</a></li>
+<li><a href="docs.html#option-result-match">Option &amp; Result</a></li>
+<li><a href="docs.html#generics">Generics</a></li>
+<li><a href="docs.html#traits">Traits</a></li>
+<li><a href="docs.html#mut-and-immutability">Mutability</a></li>
+<li><a href="docs.html#modules">Modules</a></li>
+</ul>
+<p class="sidebar-group">Guides</p><ul>
+<li><a href="docs.html#cli-reference">CLI reference</a></li>
+<li><a href="docs.html#package-manager">Package manager</a></li>
+<li><a href="docs.html#testing">Testing</a></li>
+<li><a href="docs.html#native-compilation">Native compilation</a></li>
+<li><a href="docs.html#language-server">Language server</a></li>
+<li><a href="docs.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+<p class="sidebar-group">Project</p><ul>
+<li><a href="about.html">About v++</a></li>
+<li><a href="about.html#architecture">Architecture</a></li>
+<li><a href="about.html#memory-model">Memory model</a></li>
+<li><a href="blog.html">Release notes</a></li>
+<li><a href="download.html">Download</a></li>
+<li><a href="contribute.html">Contribute</a></li>
+</ul></aside>
+    <main class="docs-main">
+      <article class="docs-article"><div id="top"></div>
 
-  <div class="doc-layout">
-    
-    <aside class="doc-sidebar">
-      <div class="sidebar-group">
-        <h5>v++ Docs</h5>
-        <ul>
-          <li><a href="learn.html">Getting started</a></li>
-          <li><a href="docs.html">Reference</a></li>
-          <li><a href="download.html">Install</a></li>
-          <li><a href="courses.html">Courses</a></li>
-          <li><a href="https://github.com/shauryaR790/V-" target="_blank" rel="noopener">GitHub</a></li>
-        </ul>
-      </div>
-      
-    </aside>
-    <main class="doc-main">
-      <article class="doc-article prose">
-        <h2 id="v-documentation-reference-manual">v++ Documentation — reference manual</h2>
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/PRIVACY.md --&gt;</p>
 
 
-<h2 id="v-language-specification-v0-4">v++ Language Specification (v0.4)</h2>
+<h1 id="privacy-policy-v">Privacy Policy — v++</h1>
+
+<p><strong>Last updated:</strong> August 2026</p>
+
+<p>v++ (the compiler, language server, and VS Code extension) is open-source software distributed under the MIT License.</p>
+
+<h2 id="data-collection">Data collection</h2>
+
+<p>The v++ compiler and language server <strong>do not collect, transmit, or store personal data</strong>. All compilation and analysis runs locally on your machine.</p>
+
+<p>The VS Code extension communicates only with the local <code>vppls</code> language server process on your computer. It does not send source code or usage data to any remote server operated by the v++ project.</p>
+
+<h2 id="third-party-services">Third-party services</h2>
+
+<ul>
+<li><strong>GitHub Releases</strong> — if you download binaries from GitHub, GitHub’s own privacy policy applies to that download.</li>
+<li><strong>VS Code Marketplace</strong> — if you install the extension from the Marketplace, Microsoft’s privacy policy applies to that installation flow.</li>
+</ul>
+
+<h2 id="contact">Contact</h2>
+
+<p>Issues and questions: https://github.com/shauryaR790/V-/issues</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/README.md --&gt;</p>
+
+
+<h1 id="v-documentation">v++ Documentation</h1>
+
+<p>Welcome to the v++ documentation. Start with <a href="getting-started/install.md">Install</a> or <a href="getting-started/hello-world.md">Hello, v++</a>.</p>
+
+<h2 id="getting-started">Getting started</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Guide</td>
+<td>Description</td>
+</tr>
+<tr>
+<td><a href="https://shauryaR790.github.io/V-/">Website</a></td>
+<td>Official site — learn, projects, downloads</td>
+</tr>
+<tr>
+<td><a href="getting-started/install.md">Install</a></td>
+<td>Windows installer, VS Code extension, PATH</td>
+</tr>
+<tr>
+<td><a href="getting-started/hello-world.md">Hello, v++</a></td>
+<td>First program in 5 minutes</td>
+</tr>
+<tr>
+<td><a href="getting-started/vscode-setup.md">VS Code setup</a></td>
+<td>Run, debug, LSP settings</td>
+</tr>
+<tr>
+<td><a href="getting-started/first-project.md">Your first project</a></td>
+<td><code>vpp new</code>, layout, tests</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="language-reference">Language reference</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Guide</td>
+<td>Description</td>
+</tr>
+<tr>
+<td><a href="language/README.md">Overview</a></td>
+<td>Syntax and index</td>
+</tr>
+<tr>
+<td><a href="language/types-and-inference.md">Types &amp; inference</a></td>
+<td><code>int</code>, <code>string</code>, <code>let</code>, signatures</td>
+</tr>
+<tr>
+<td><a href="language/functions.md">Functions</a></td>
+<td><code>fn</code>, <code>return</code>, <code>main</code></td>
+</tr>
+<tr>
+<td><a href="language/control-flow.md">Control flow</a></td>
+<td><code>if</code>, <code>while</code>, <code>for</code>, <code>match</code></td>
+</tr>
+<tr>
+<td><a href="language/structs-and-enums.md">Structs &amp; enums</a></td>
+<td>Custom types</td>
+</tr>
+<tr>
+<td><a href="language/option-result-match.md">Option, Result, match</a></td>
+<td>Safe patterns + exhaustiveness</td>
+</tr>
+<tr>
+<td><a href="language/generics.md">Generics</a></td>
+<td><code>fn id<a href="x: T">T</a></code></td>
+</tr>
+<tr>
+<td><a href="language/traits.md">Traits &amp; impls</a></td>
+<td>Interfaces with static dispatch</td>
+</tr>
+<tr>
+<td><a href="language/mut-and-immutability.md"><code>mut</code> &amp; immutability</a></td>
+<td>Reassignment rules</td>
+</tr>
+<tr>
+<td><a href="language/modules.md">Modules</a></td>
+<td><code>import</code>, <code>pub</code>, <code>std.*</code></td>
+</tr>
+</tbody></table></div>
+
+<h2 id="guides">Guides</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Guide</td>
+<td>Description</td>
+</tr>
+<tr>
+<td><a href="guides/cli-reference.md">CLI reference</a></td>
+<td>Every <code>vpp</code> command</td>
+</tr>
+<tr>
+<td><a href="guides/package-manager.md">Package manager</a></td>
+<td><code>vpp.toml</code>, deps, lockfile</td>
+</tr>
+<tr>
+<td><a href="guides/testing.md">Testing</a></td>
+<td><code>test</code> blocks, <code>vpp test</code></td>
+</tr>
+<tr>
+<td><a href="guides/native-compilation.md">Native compilation</a></td>
+<td><code>vpp build</code>, LLVM, <code>.exe</code></td>
+</tr>
+<tr>
+<td><a href="guides/formatting.md">Formatting</a></td>
+<td><code>vpp fmt</code></td>
+</tr>
+<tr>
+<td><a href="guides/language-server.md">Language server</a></td>
+<td><code>vppls</code>, diagnostics, completion</td>
+</tr>
+<tr>
+<td><a href="guides/troubleshooting.md">Troubleshooting</a></td>
+<td>Common errors and fixes</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="standard-library">Standard library</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Module</td>
+<td>Guide</td>
+</tr>
+<tr>
+<td>Overview</td>
+<td><a href="stdlib/README.md">stdlib/README.md</a></td>
+</tr>
+<tr>
+<td><code>std.io</code></td>
+<td><a href="stdlib/io.md">stdlib/io.md</a></td>
+</tr>
+<tr>
+<td><code>std.math</code></td>
+<td><a href="stdlib/math.md">stdlib/math.md</a></td>
+</tr>
+<tr>
+<td><code>std.string</code></td>
+<td><a href="stdlib/string.md">stdlib/string.md</a></td>
+</tr>
+<tr>
+<td><code>std.collections</code></td>
+<td><a href="stdlib/collections.md">stdlib/collections.md</a></td>
+</tr>
+<tr>
+<td><code>std.fs</code></td>
+<td><a href="stdlib/fs.md">stdlib/fs.md</a></td>
+</tr>
+<tr>
+<td><code>std.json</code></td>
+<td><a href="stdlib/json.md">stdlib/json.md</a></td>
+</tr>
+<tr>
+<td><code>std.process</code></td>
+<td><a href="stdlib/process.md">stdlib/process.md</a></td>
+</tr>
+</tbody></table></div>
+
+<h2 id="project">Project</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Doc</td>
+<td>Description</td>
+</tr>
+<tr>
+<td><a href="project/roadmap.md">Roadmap</a></td>
+<td>Planned features</td>
+</tr>
+<tr>
+<td><a href="project/faq.md">FAQ</a></td>
+<td>Common questions</td>
+</tr>
+<tr>
+<td><a href="../SPEC.md">SPEC</a></td>
+<td>Language specification</td>
+</tr>
+<tr>
+<td><a href="../CHANGELOG.md">CHANGELOG</a></td>
+<td>Version history</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="contributing">Contributing</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Doc</td>
+<td>Description</td>
+</tr>
+<tr>
+<td><a href="../CONTRIBUTING.md">Contributing</a></td>
+<td>How to help</td>
+</tr>
+<tr>
+<td><a href="contributing/building-from-source.md">Build from source</a></td>
+<td><code>cargo build</code>, features</td>
+</tr>
+<tr>
+<td><a href="contributing/running-tests.md">Run tests</a></td>
+<td>CI parity, local tests</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="legal">Legal</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Doc</td>
+<td>Description</td>
+</tr>
+<tr>
+<td><a href="PRIVACY.md">Privacy</a></td>
+<td>Data collection policy</td>
+</tr>
+<tr>
+<td><a href="../SECURITY.md">Security</a></td>
+<td>Vulnerability reporting</td>
+</tr>
+<tr>
+<td><a href="../CODE_OF_CONDUCT.md">Code of Conduct</a></td>
+<td>Community standards</td>
+</tr>
+</tbody></table></div>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/contributing/building-from-source.md --&gt;</p>
+
+
+<h1 id="building-from-source">Building from source</h1>
+
+<h2 id="requirements">Requirements</h2>
+
+<ul>
+<li>Rust (stable) — <a href="https://rustup.rs">rustup.rs</a></li>
+<li>LLVM 22 + clang (for <code>codegen</code> feature)</li>
+<li>Git (for git dependencies in tests)</li>
+</ul>
+
+<h2 id="build">Build</h2>
+
+<pre class="code-block"><code class="lang-powershell">
+git clone https://github.com/shauryaR790/V-.git
+cd V-
+cargo build --release --features codegen,lsp
+</code></pre>
+
+<p>Windows:</p>
+
+<pre class="code-block"><code class="lang-powershell">
+$env:LLVM_SYS_221_PREFIX = &quot;C:\Program Files\LLVM&quot;
+</code></pre>
+
+<p>Binaries: <code>target/release/vpp.exe</code>, <code>target/release/vppls.exe</code>.</p>
+
+<h2 id="features">Features</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Feature</td>
+<td>Enables</td>
+</tr>
+<tr>
+<td>*(default)*</td>
+<td>Interpreter, checker, fmt, CLI</td>
+</tr>
+<tr>
+<td><code>codegen</code></td>
+<td>Native <code>vpp build</code>, LLVM</td>
+</tr>
+<tr>
+<td><code>lsp</code></td>
+<td><code>vppls</code> language server</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="install-locally">Install locally</h2>
+
+<pre class="code-block"><code class="lang-powershell">
+cargo install --path . --features codegen,lsp
+</code></pre>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/contributing/README.md --&gt;</p>
+
+
+<h1 id="contributing-docs">Contributing docs</h1>
+
+<ul>
+<li><a href="building-from-source.md">Building from source</a></li>
+<li><a href="running-tests.md">Running tests</a></li>
+<li><a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a></li>
+</ul>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/contributing/running-tests.md --&gt;</p>
+
+
+<h1 id="running-tests">Running tests</h1>
+
+<pre class="code-block"><code class="lang-powershell">
+# Interpreter + parser + typecheck (no LLVM)
+cargo test --all-targets
+
+# Native codegen (local LLVM required)
+cargo test --features codegen -- --test-threads=1
+
+# Parity: interpreter vs native stdout
+cargo test --features codegen parity
+
+# Stress script (Windows)
+.\stress.ps1
+</code></pre>
+
+<p>CI runs on every push to <code>main</code> — see <a href="https://github.com/shauryaR790/V-/actions">GitHub Actions</a>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/getting-started/first-project.md --&gt;</p>
+
+
+<h1 id="your-first-v-project">Your first v++ project</h1>
+
+<h2 id="scaffold">Scaffold</h2>
+
+<pre class="code-block"><code class="lang-powershell">
+vpp new myapp --path myapp
+cd myapp
+</code></pre>
+
+<p>Creates:</p>
+
+<pre class="code-block"><code class="lang-">
+myapp/
+  vpp.toml
+  src/main.vpp
+  tests/smoke.vpp
+</code></pre>
+
+<h2 id="run">Run</h2>
+
+<pre class="code-block"><code class="lang-powershell">
+vpp run
+</code></pre>
+
+<p>Runs the entry in <code>vpp.toml</code> (default <code>src/main.vpp</code>).</p>
+
+<h2 id="test">Test</h2>
+
+<pre class="code-block"><code class="lang-powershell">
+vpp test
+</code></pre>
+
+<p>Runs <code>test</code> blocks in <code>tests/</code> and inline tests.</p>
+
+<h2 id="add-a-dependency">Add a dependency</h2>
+
+<pre class="code-block"><code class="lang-powershell">
+vpp add hello-lib --version 0.1.0
+vpp update
+</code></pre>
+
+<p>See <a href="../guides/package-manager.md">Package manager</a>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/getting-started/hello-world.md --&gt;</p>
+
+
+<h1 id="hello-v">Hello, v++</h1>
+
+<p>Create <code>hello.vpp</code>:</p>
+
+<pre class="code-block"><code class="lang-vpp">
+fn main() -&gt; int {
+    print(&quot;Hello from v++!&quot;)
+    return 0
+}
+</code></pre>
+
+<p>Run it:</p>
+
+<pre class="code-block"><code class="lang-powershell">
+vpp run hello.vpp
+</code></pre>
+
+<p>Type-check without running:</p>
+
+<pre class="code-block"><code class="lang-powershell">
+vpp check hello.vpp
+</code></pre>
+
+<p>Compile to a native executable:</p>
+
+<pre class="code-block"><code class="lang-powershell">
+vpp build hello.vpp -o hello.exe
+.\hello.exe
+</code></pre>
+
+<h2 id="what-you-just-used">What you just used</h2>
+
+<ul>
+<li><strong><code>vpp run</code></strong> — interpreter (fast iteration, no compile step)</li>
+<li><strong><code>vpp check</code></strong> — type checker only</li>
+<li><strong><code>vpp build</code></strong> — LLVM + clang → <code>.exe</code></li>
+</ul>
+
+<p>Next: <a href="first-project.md">Your first project</a>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/getting-started/install.md --&gt;</p>
+
+
+<h1 id="install-v">Install v++</h1>
+
+<h2 id="windows-recommended">Windows (recommended)</h2>
+
+<p>1. Download <strong><code>vpp-0.5.0-setup.exe</code></strong> from <a href="https://github.com/shauryaR790/V-/releases/latest">GitHub Releases</a>.</p>
+<p>2. Run the installer. If Windows SmartScreen appears, choose <strong>More info → Run anyway</strong>.</p>
+<p>3. Open a <strong>new</strong> terminal:</p>
+
+<pre class="code-block"><code class="lang-powershell">
+vpp run examples\hello.vpp
+vpp doctor
+</code></pre>
+
+<p>If <code>vpp</code> is not found, add the install folder to PATH:</p>
+
+<pre class="code-block"><code class="lang-powershell">
+$dir = &quot;$env:LOCALAPPDATA\Programs\vpp&quot;
+[Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path + &quot;;$dir;$dir\llvm\bin&quot;, &quot;User&quot;)
+</code></pre>
+
+<p>Restart the terminal.</p>
+
+<h2 id="vs-code-extension">VS Code extension</h2>
+
+<p>1. Extensions → search <strong>v++ Language</strong></p>
+<p>2. Publisher must be <strong>vpp-lang</strong></p>
+<p>3. <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">Marketplace link</a></p>
+
+<p>See <a href="vscode-setup.md">VS Code setup</a>.</p>
+
+<h2 id="portable-zip-advanced">Portable zip (advanced)</h2>
+
+<p>Download <code>vpp-v0.5.0-windows-x64.zip</code>, extract, run <code>GO.bat</code> or add the folder to PATH manually.</p>
+
+<h2 id="build-from-source">Build from source</h2>
+
+<p>See <a href="../contributing/building-from-source.md">Building from source</a>.</p>
+
+<h2 id="requirements">Requirements</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Task</td>
+<td>Needs</td>
+</tr>
+<tr>
+<td><code>vpp run</code>, <code>check</code>, <code>test</code></td>
+<td>Installer only</td>
+</tr>
+<tr>
+<td><code>vpp build</code> (native <code>.exe</code>)</td>
+<td>Bundled <code>clang</code> in installer, or LLVM 22</td>
+</tr>
+<tr>
+<td>Hack on compiler</td>
+<td>Rust + LLVM 22</td>
+</tr>
+</tbody></table></div>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/getting-started/README.md --&gt;</p>
+
+
+<h1 id="getting-started">Getting started</h1>
+
+<p>1. <a href="install.md">Install</a></p>
+<p>2. <a href="hello-world.md">Hello, v++</a></p>
+<p>3. <a href="vscode-setup.md">VS Code setup</a></p>
+<p>4. <a href="first-project.md">Your first project</a></p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/getting-started/vscode-setup.md --&gt;</p>
+
+
+<h1 id="vs-code-setup-for-v">VS Code setup for v++</h1>
+
+<h2 id="install">Install</h2>
+
+<p>1. Install the compiler (<a href="install.md">install guide</a>).</p>
+<p>2. Install extension <strong>v++ Language</strong> (publisher: <strong>vpp-lang</strong>).</p>
+
+<h2 id="run-code">Run code</h2>
+
+<p>1. Open a folder with <code>.vpp</code> files.</p>
+<p>2. Open a file — bottom-right should say <strong>v++</strong>.</p>
+<p>3. Press <strong>F5</strong> or <strong>Ctrl+Shift+R</strong> to run the active file.</p>
+
+<h2 id="language-server-intellisense">Language server (IntelliSense)</h2>
+
+<p>Build <code>vppls</code> once (or use a release that includes it):</p>
+
+<pre class="code-block"><code class="lang-powershell">
+cargo build --release --features lsp --bin vppls
+</code></pre>
+
+<p>Settings (<code>File → Preferences → Settings</code>, search <code>vpp</code>):</p>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Setting</td>
+<td>Purpose</td>
+</tr>
+<tr>
+<td><code>vpp.compilerPath</code></td>
+<td>Path to <code>vpp.exe</code></td>
+</tr>
+<tr>
+<td><code>vpp.languageServerPath</code></td>
+<td>Path to <code>vppls</code></td>
+</tr>
+<tr>
+<td><code>vpp.enableLanguageServer</code></td>
+<td>Red squiggles, completion, go-to-definition</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="commands">Commands</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Command</td>
+<td>Shortcut</td>
+</tr>
+<tr>
+<td>v++: Run File</td>
+<td>F5, Ctrl+Shift+R</td>
+</tr>
+<tr>
+<td>v++: Check File</td>
+<td>Command Palette</td>
+</tr>
+<tr>
+<td>v++: Run Tests</td>
+<td>Command Palette</td>
+</tr>
+</tbody></table></div>
+
+<p>See also: <a href="../guides/language-server.md">Language server</a>, <a href="../guides/troubleshooting.md">Troubleshooting</a>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/guides/cli-reference.md --&gt;</p>
+
+
+<h1 id="cli-reference">CLI reference</h1>
+
+<pre class="code-block"><code class="lang-">
+vpp run [file.vpp]     Run via interpreter (calls main if present)
+vpp build [file] -o X  Compile native executable
+vpp check [file]       Type-check only
+vpp compile [file]     Emit LLVM IR (.ll)
+vpp fmt [file]         Format source in place
+vpp test               Run test blocks in project
+vpp init [name]        Create new project scaffold
+vpp new NAME --path P  Create project at path
+vpp add NAME ...       Add dependency to vpp.toml
+vpp remove NAME        Remove dependency
+vpp update             Resolve / refresh lockfile
+vpp doctor             Toolchain diagnostics
+vpp lsp                Start language server (stdio)
+</code></pre>
+
+<h2 id="global-flags">Global flags</h2>
+
+<p>Run <code>vpp --help</code> for current options.</p>
+
+<h2 id="environment">Environment</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Variable</td>
+<td>Purpose</td>
+</tr>
+<tr>
+<td><code>LLVM_SYS_221_PREFIX</code></td>
+<td>LLVM install path for <code>vpp build</code> (dev builds)</td>
+</tr>
+<tr>
+<td><code>VPP_HOME</code></td>
+<td>Optional install root (release bundles)</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="examples">Examples</h2>
+
+<pre class="code-block"><code class="lang-powershell">
+vpp run examples/hello.vpp
+vpp check examples/lesson02_functions.vpp
+vpp build examples/hello.vpp -o hello.exe
+vpp test
+vpp doctor
+</code></pre>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/guides/formatting.md --&gt;</p>
+
+
+<h1 id="formatting">Formatting</h1>
+
+<pre class="code-block"><code class="lang-powershell">
+vpp fmt path/to/file.vpp
+</code></pre>
+
+<p>Re-indents blocks and normalizes spacing. Does not change semantics.</p>
+
+<p>Format before committing. IDE format-on-save can call <code>vpp fmt</code> via tasks (manual setup today).</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/guides/language-server.md --&gt;</p>
+
+
+<h1 id="language-server-vppls">Language server (vppls)</h1>
+
+<p><code>vppls</code> provides:</p>
+
+<ul>
+<li><strong>Diagnostics</strong> — red squiggles from the type checker</li>
+<li><strong>Completion</strong> — keyword and context suggestions</li>
+<li><strong>Go to definition</strong> — jump to symbols (best-effort)</li>
+</ul>
+
+<h2 id="build">Build</h2>
+
+<pre class="code-block"><code class="lang-powershell">
+cargo build --release --features lsp --bin vppls
+</code></pre>
+
+<p>Release bundles include <code>vppls.exe</code>.</p>
+
+<h2 id="vs-code">VS Code</h2>
+
+<p>Extension setting <code>vpp.languageServerPath</code> defaults to <code>vppls</code> on PATH.</p>
+
+<p>Disable with <code>vpp.enableLanguageServer: false</code>.</p>
+
+<h2 id="protocol">Protocol</h2>
+
+<p>Standard LSP over stdio. Started automatically by the VS Code extension when a <code>.vpp</code> file is open.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/guides/native-compilation.md --&gt;</p>
+
+
+<h1 id="native-compilation">Native compilation</h1>
+
+<p><code>vpp build</code> lowers code to LLVM IR, compiles with clang, and links the v++ C runtime.</p>
+
+<pre class="code-block"><code class="lang-powershell">
+vpp build examples/hello.vpp -o hello.exe
+.\hello.exe
+</code></pre>
+
+<h2 id="requirements">Requirements</h2>
+
+<ul>
+<li><strong>Release installer</strong> — includes portable <code>clang</code> under <code>llvm\bin</code></li>
+<li><strong>From source</strong> — LLVM 22 + <code>LLVM_SYS_221_PREFIX</code></li>
+</ul>
+
+<pre class="code-block"><code class="lang-powershell">
+$env:LLVM_SYS_221_PREFIX = &quot;C:\Program Files\LLVM&quot;
+cargo build --release --features codegen
+</code></pre>
+
+<h2 id="interpreter-vs-native">Interpreter vs native</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td></td>
+<td><code>vpp run</code></td>
+<td><code>vpp build</code></td>
+</tr>
+<tr>
+<td>Speed to iterate</td>
+<td>Fast</td>
+<td>Slower</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>Runs in VM</td>
+<td>Standalone <code>.exe</code></td>
+</tr>
+<tr>
+<td>LLVM needed</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody></table></div>
+
+<p>Parity tests ensure interpreter and native produce the same stdout for key examples.</p>
+
+<h2 id="memory-model">Memory model</h2>
+
+<p>Strings and arrays use ARC in native code. See <a href="../../MEMORY_MODEL.md">MEMORY_MODEL.md</a>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/guides/package-manager.md --&gt;</p>
+
+
+<h1 id="package-manager">Package manager</h1>
+
+<h2 id="vpp-toml">vpp.toml</h2>
+
+<pre class="code-block"><code class="lang-toml">
+name = &quot;myapp&quot;
+version = &quot;0.1.0&quot;
+entry = &quot;src/main.vpp&quot;
+
+[dependencies]
+hello-lib = &quot;0.1.0&quot;
+helper = { path = &quot;../helper&quot; }
+remote = { git = &quot;https://github.com/example/lib&quot;, tag = &quot;v1.0.0&quot; }
+</code></pre>
+
+<h2 id="commands">Commands</h2>
+
+<pre class="code-block"><code class="lang-powershell">
+vpp new myapp --path myapp
+vpp add hello-lib --version 0.1.0
+vpp add helper --path ../helper
+vpp add lib --git https://github.com/example/lib --tag v1.0.0
+vpp update
+vpp remove hello-lib
+</code></pre>
+
+<h2 id="lockfile">Lockfile</h2>
+
+<p><code>vpp.lock</code> pins resolved versions. Commit it for reproducible builds.</p>
+
+<h2 id="registry">Registry</h2>
+
+<p>Built-in index: <a href="../../registry/index.toml"><code>registry/index.toml</code></a>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/guides/README.md --&gt;</p>
+
+
+<h1 id="guides">Guides</h1>
+
+<ul>
+<li><a href="cli-reference.md">CLI reference</a></li>
+<li><a href="package-manager.md">Package manager</a></li>
+<li><a href="testing.md">Testing</a></li>
+<li><a href="native-compilation.md">Native compilation</a></li>
+<li><a href="formatting.md">Formatting</a></li>
+<li><a href="language-server.md">Language server</a></li>
+<li><a href="troubleshooting.md">Troubleshooting</a></li>
+</ul>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/guides/testing.md --&gt;</p>
+
+
+<h1 id="testing">Testing</h1>
+
+<h2 id="inline-test-blocks">Inline test blocks</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+test &quot;addition works&quot; {
+    assert_eq(add(2, 3), 5)
+}
+</code></pre>
+
+<h2 id="project-tests">Project tests</h2>
+
+<p>Place files under <code>tests/</code> or use inline blocks, then:</p>
+
+<pre class="code-block"><code class="lang-powershell">
+vpp test
+</code></pre>
+
+<h2 id="vs-code">VS Code</h2>
+
+<p>Command Palette → <strong>v++: Run Tests</strong></p>
+
+<h2 id="ci">CI</h2>
+
+<pre class="code-block"><code class="lang-powershell">
+cargo test --all-targets
+cargo test --features codegen parity
+</code></pre>
+
+<p>See <a href="../contributing/running-tests.md">Running tests</a>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/guides/troubleshooting.md --&gt;</p>
+
+
+<h1 id="troubleshooting">Troubleshooting</h1>
+
+<h2 id="vpp-not-recognized"><code>vpp</code> not recognized</h2>
+
+<ul>
+<li>Reopen terminal after install</li>
+<li>Add install dir to PATH (see <a href="../getting-started/install.md">install guide</a>)</li>
+<li>Or set <code>vpp.compilerPath</code> in VS Code</li>
+</ul>
+
+<h2 id="smartscreen-security-warning">SmartScreen / security warning</h2>
+
+<p>Open-source installers may trigger a one-time Windows SmartScreen prompt. Choose <strong>More info → Run anyway</strong>, or verify the download from <a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a>.</p>
+
+<h2 id="vpp-build-fails-clang-not-found"><code>vpp build</code> fails — clang not found</h2>
+
+<ul>
+<li>Use release installer (bundled clang), or</li>
+<li><code>winget install LLVM.LLVM</code> and set <code>LLVM_SYS_221_PREFIX</code></li>
+</ul>
+
+<h2 id="no-syntax-highlighting">No syntax highlighting</h2>
+
+<ul>
+<li>Install extension <strong>v++ Language</strong> (vpp-lang)</li>
+<li>Reload window; confirm language mode is <strong>v++</strong></li>
+</ul>
+
+<h2 id="lsp-not-working">LSP not working</h2>
+
+<ul>
+<li>Build <code>vppls</code>: <code>cargo build --features lsp --bin vppls</code></li>
+<li>Check Output panel → v++ Language Server</li>
+</ul>
+
+<h2 id="native-vs-interpreter-mismatch">Native vs interpreter mismatch</h2>
+
+<p>Run parity check:</p>
+
+<pre class="code-block"><code class="lang-powershell">
+.\stress.ps1
+</code></pre>
+
+<p>File issues: <a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/language/control-flow.md --&gt;</p>
+
+
+<h1 id="control-flow">Control flow</h1>
+
+<h2 id="if-else">if / else</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+if x &gt; 0 {
+    print(&quot;positive&quot;)
+} else {
+    print(&quot;non-positive&quot;)
+}
+</code></pre>
+
+<h2 id="while">while</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+let mut i = 0
+while i &lt; 3 {
+    print(i)
+    i = i + 1
+}
+</code></pre>
+
+<h2 id="for-range">for (range)</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+for i in 0..3 {
+    print(i)
+}
+</code></pre>
+
+<h2 id="for-array">for (array)</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+for name in [&quot;Alex&quot;, &quot;Sam&quot;] {
+    print(name)
+}
+</code></pre>
+
+<h2 id="match">match</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+match status {
+    Active =&gt; print(&quot;on&quot;),
+    Idle =&gt; print(&quot;off&quot;),
+}
+</code></pre>
+
+<p>Enums, <code>Option</code>, and <code>Result</code> matches must be <strong>exhaustive</strong> or use <code>_</code> (compile error E0107).</p>
+
+<p>See <a href="option-result-match.md">option-result-match.md</a>.</p>
+
+<h2 id="break-continue">break / continue</h2>
+
+<p>Supported inside <code>while</code> and <code>for</code> loops.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/language/functions.md --&gt;</p>
+
+
+<h1 id="functions">Functions</h1>
+
+<pre class="code-block"><code class="lang-vpp">
+fn greet(name: string) -&gt; int {
+    print(name)
+    return 0
+}
+</code></pre>
+
+<h2 id="main">Main</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+fn main() -&gt; int {
+    print(&quot;starting&quot;)
+    return 0
+}
+</code></pre>
+
+<h2 id="generic-functions-v0-4">Generic functions (v0.4+)</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+fn id[T](x: T) -&gt; T {
+    return x
+}
+
+print(id[int](42))
+</code></pre>
+
+<p>Type arguments are required at call sites (monomorphization).</p>
+
+<p>See <a href="generics.md">generics.md</a>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/language/generics.md --&gt;</p>
+
+
+<h1 id="generics-v0-4">Generics (v0.4+)</h1>
+
+<p>v++ uses <strong>monomorphization</strong> — generic functions are specialized at each call site.</p>
+
+<pre class="code-block"><code class="lang-vpp">
+fn first[T](items: array[T]) -&gt; Option[T] {
+    if len(items) == 0 {
+        return None
+    }
+    return Some(items[0])
+}
+</code></pre>
+
+<p>Call with explicit type args:</p>
+
+<pre class="code-block"><code class="lang-vpp">
+let word = first[string]([&quot;a&quot;, &quot;b&quot;])
+</code></pre>
+
+<p>Example: <a href="../../examples/generics.vpp"><code>examples/generics.vpp</code></a>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/language/modules.md --&gt;</p>
+
+
+<h1 id="modules">Modules</h1>
+
+<h2 id="standard-library-imports">Standard library imports</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+import std.io
+import std.math
+
+fn main() -&gt; int {
+    io.print(&quot;hello&quot;)
+    print(math.abs(-5))
+    return 0
+}
+</code></pre>
+
+<h2 id="public-exports">Public exports</h2>
+
+<p>In a module file, mark items with <code>pub</code>:</p>
+
+<pre class="code-block"><code class="lang-vpp">
+pub fn helper() -&gt; int {
+    return 1
+}
+</code></pre>
+
+<h2 id="project-layout">Project layout</h2>
+
+<pre class="code-block"><code class="lang-">
+myapp/
+  vpp.toml
+  src/main.vpp
+  src/util.vpp
+</code></pre>
+
+<p>See <a href="../guides/package-manager.md">Package manager</a> for <code>vpp.toml</code> and dependencies.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/language/mut-and-immutability.md --&gt;</p>
+
+
+<h1 id="mut-and-immutability-v0-4">mut and immutability (v0.4+)</h1>
+
+<p>Bindings are <strong>immutable by default</strong>.</p>
+
+<pre class="code-block"><code class="lang-vpp">
+let x = 1
+// x = 2   // error: cannot reassign immutable binding
+</code></pre>
+
+<p>Use <code>mut</code> when you need to reassign:</p>
+
+<pre class="code-block"><code class="lang-vpp">
+let mut count = 0
+count = count + 1
+</code></pre>
+
+<p>Loop counters and accumulators typically need <code>mut</code>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/language/option-result-match.md --&gt;</p>
+
+
+<h1 id="option-result-and-match">Option, Result, and match</h1>
+
+<h2 id="option">Option</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+let some = Some(42)
+let none: Option[int] = None
+</code></pre>
+
+<h2 id="result">Result</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+fn divide(a: int, b: int) -&gt; Result[int, string] {
+    if b == 0 {
+        return Err(&quot;division by zero&quot;)
+    }
+    return Ok(a / b)
+}
+</code></pre>
+
+<h2 id="exhaustive-match">Exhaustive match</h2>
+
+<p>The compiler rejects non-exhaustive matches on enums, <code>Option</code>, and <code>Result</code>:</p>
+
+<pre class="code-block"><code class="lang-vpp">
+match opt {
+    Some(x) =&gt; print(x),
+    None =&gt; print(&quot;empty&quot;),
+}
+</code></pre>
+
+<p>Missing <code>None</code> → <strong>E0107</strong>.</p>
+
+<p>Use <code>_</code> for a catch-all when appropriate.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/language/README.md --&gt;</p>
+
+
+<h1 id="v-language-overview">v++ language overview</h1>
+
+<p>v++ combines readable syntax with static typing and optional native compilation.</p>
+
+<h2 id="design-goals">Design goals</h2>
+
+<ul>
+<li><strong>Readable</strong> — minimal punctuation, familiar control flow</li>
+<li><strong>Typed</strong> — catch errors before run; infer locals, explicit function signatures</li>
+<li><strong>Fast iteration</strong> — <code>vpp run</code> interpreter for development</li>
+<li><strong>Native when needed</strong> — <code>vpp build</code> produces standalone <code>.exe</code> files</li>
+</ul>
+
+<h2 id="quick-syntax-map">Quick syntax map</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Topic</td>
+<td>Doc</td>
+</tr>
+<tr>
+<td>Types &amp; <code>let</code></td>
+<td><a href="types-and-inference.md">types-and-inference.md</a></td>
+</tr>
+<tr>
+<td>Functions</td>
+<td><a href="functions.md">functions.md</a></td>
+</tr>
+<tr>
+<td><code>if</code> / loops / <code>match</code></td>
+<td><a href="control-flow.md">control-flow.md</a></td>
+</tr>
+<tr>
+<td>Structs &amp; enums</td>
+<td><a href="structs-and-enums.md">structs-and-enums.md</a></td>
+</tr>
+<tr>
+<td>Option / Result</td>
+<td><a href="option-result-match.md">option-result-match.md</a></td>
+</tr>
+<tr>
+<td>Generics</td>
+<td><a href="generics.md">generics.md</a></td>
+</tr>
+<tr>
+<td>Traits</td>
+<td><a href="traits.md">traits.md</a></td>
+</tr>
+<tr>
+<td><code>mut</code></td>
+<td><a href="mut-and-immutability.md">mut-and-immutability.md</a></td>
+</tr>
+<tr>
+<td>Modules</td>
+<td><a href="modules.md">modules.md</a></td>
+</tr>
+</tbody></table></div>
+
+<p>Formal spec: <a href="../../SPEC.md">SPEC.md</a>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/language/structs-and-enums.md --&gt;</p>
+
+
+<h1 id="structs-and-enums">Structs and enums</h1>
+
+<h2 id="struct">Struct</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+struct User {
+    name: string,
+    age: int,
+}
+
+let u = User { name: &quot;Alex&quot;, age: 30 }
+print(u.name)
+</code></pre>
+
+<h2 id="enum">Enum</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+enum Status {
+    Active,
+    Idle,
+}
+
+let s = Active
+match s {
+    Active =&gt; print(&quot;on&quot;),
+    Idle =&gt; print(&quot;off&quot;),
+}
+</code></pre>
+
+<h2 id="enum-with-payloads">Enum with payloads</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+enum Message {
+    Text(string),
+    Count(int),
+}
+</code></pre>
+
+<p>All variants must be handled in <code>match</code> or use <code>_</code>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/language/traits.md --&gt;</p>
+
+
+<h1 id="traits-and-impls-v0-4">Traits and impls (v0.4+)</h1>
+
+<p>Static dispatch — no virtual tables at runtime.</p>
+
+<pre class="code-block"><code class="lang-vpp">
+trait Display {
+    fn to_text(self) -&gt; string
+}
+
+struct User {
+    name: string,
+}
+
+impl Display for User {
+    fn to_text(self) -&gt; string {
+        return self.name
+    }
+}
+
+let u = User { name: &quot;Alex&quot; }
+print(u.to_text())
+</code></pre>
+
+<p>Example: <a href="../../examples/traits.vpp"><code>examples/traits.vpp</code></a>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/language/types-and-inference.md --&gt;</p>
+
+
+<h1 id="types-and-inference">Types and inference</h1>
+
+<h2 id="built-in-types">Built-in types</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Type</td>
+<td>Example</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td><code>42</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td><code>3.14</code></td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>string</code></td>
+<td><code>&quot;hello&quot;</code></td>
+</tr>
+<tr>
+<td><code>array[T]</code></td>
+<td><code>[1, 2, 3]</code></td>
+</tr>
+<tr>
+<td><code>Option[T]</code></td>
+<td><code>Some(1)</code>, <code>None</code></td>
+</tr>
+<tr>
+<td><code>Result[T, E]</code></td>
+<td><code>Ok(1)</code>, <code>Err(&quot;msg&quot;)</code></td>
+</tr>
+</tbody></table></div>
+
+<h2 id="local-inference">Local inference</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+let x = 10        // int
+let name = &quot;v++&quot;  // string
+let active = true // bool
+</code></pre>
+
+<h2 id="explicit-annotations">Explicit annotations</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+let count: int = 0
+let items: array[string] = [&quot;a&quot;, &quot;b&quot;]
+</code></pre>
+
+<h2 id="function-signatures">Function signatures</h2>
+
+<p>Parameters and return types are <strong>always explicit</strong>:</p>
+
+<pre class="code-block"><code class="lang-vpp">
+fn add(a: int, b: int) -&gt; int {
+    return a + b
+}
+</code></pre>
+
+<h2 id="entry-point">Entry point</h2>
+
+<pre class="code-block"><code class="lang-vpp">
+fn main() -&gt; int {
+    return 0
+}
+</code></pre>
+
+<p><code>vpp run</code> calls <code>main()</code> when defined.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/project/faq.md --&gt;</p>
+
+
+<h1 id="faq">FAQ</h1>
+
+<h2 id="what-is-v">What is v++?</h2>
+
+<p>A compiled language with Python-like syntax, static typing, and native codegen via LLVM.</p>
+
+<h2 id="is-v-ready-for-production">Is v++ ready for production?</h2>
+
+<p>It&#x27;s <strong>v0.5</strong> — early but real. Expect language changes until v1.0.</p>
+
+<h2 id="how-is-v-different-from-python">How is v++ different from Python?</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td></td>
+<td>Python</td>
+<td>v++</td>
+</tr>
+<tr>
+<td>Typing</td>
+<td>Dynamic (optional hints)</td>
+<td>Static + inference</td>
+</tr>
+<tr>
+<td>Run</td>
+<td>Interpreter default</td>
+<td>Interpreter + native <code>.exe</code></td>
+</tr>
+<tr>
+<td>Ecosystem</td>
+<td>Huge</td>
+<td>Small, growing</td>
+</tr>
+<tr>
+<td>Age</td>
+<td>30+ years</td>
+<td>New</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="where-do-i-download">Where do I download?</h2>
+
+<p><a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a> — <code>vpp-*-setup.exe</code></p>
+
+<h2 id="which-vs-code-extension-is-official">Which VS Code extension is official?</h2>
+
+<p><strong>v++ Language</strong> by publisher <strong>vpp-lang</strong> (<code>vpp-lang.vplusplus</code>).</p>
+
+<h2 id="does-v-collect-data">Does v++ collect data?</h2>
+
+<p>No. See <a href="../PRIVACY.md">PRIVACY.md</a>.</p>
+
+<h2 id="how-do-i-report-bugs">How do I report bugs?</h2>
+
+<p><a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a></p>
+
+<h2 id="can-i-contribute">Can I contribute?</h2>
+
+<p>Yes — <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/project/roadmap.md --&gt;</p>
+
+
+<h1 id="roadmap">Roadmap</h1>
+
+<h2 id="shipped-v0-4-4">Shipped (v0.4.4)</h2>
+
+<ul>
+<li>Language: mut, generics, traits, exhaustive match</li>
+<li>Toolchain: vpp, vppls, package manager, stdlib</li>
+<li>Distribution: Windows installer, VS Code extension, CI/CD</li>
+</ul>
+
+<h2 id="v0-5-current">v0.5 (current)</h2>
+
+<ul>
+<li>[x] Documentation hub and install guides</li>
+<li>[x] Website (landing, learn, 20 projects, downloads, history)</li>
+<li>[ ] SignPath code signing</li>
+<li>[ ] REPL (<code>vpp repl</code>)</li>
+<li>[ ] Expanded stdlib (maps, time)</li>
+<li>[ ] Linux/macOS release polish</li>
+</ul>
+
+<h2 id="v1-0-stable">v1.0 (stable)</h2>
+
+<ul>
+<li>[ ] Frozen language spec — no breaking changes without major version</li>
+<li>[ ] Debugger extension (breakpoints)</li>
+<li>[ ] Test Explorer UI in VS Code</li>
+<li>[ ] Hosted package registry</li>
+<li>[ ] Curriculum + interactive tutorial</li>
+</ul>
+
+<p>Track progress in <a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/stdlib/collections.md --&gt;</p>
+
+
+<h1 id="std-collections">std.collections</h1>
+
+<p>Collection helpers. See <a href="../../std/collections.vpp"><code>std/collections.vpp</code></a>.</p>
+
+<pre class="code-block"><code class="lang-vpp">
+import std.collections
+</code></pre>
+
+<p>Arrays are first-class: <code>[1, 2, 3]</code>, <code>len(arr)</code>, <code>for x in arr</code>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/stdlib/fs.md --&gt;</p>
+
+
+<h1 id="std-fs">std.fs</h1>
+
+<p>File system access (native codegen supported).</p>
+
+<pre class="code-block"><code class="lang-vpp">
+import std.fs
+
+let text = fs.read_file(&quot;data.txt&quot;)
+fs.write_file(&quot;out.txt&quot;, &quot;hello&quot;)
+let exists = fs.file_exists(&quot;data.txt&quot;)
+</code></pre>
+
+<p>Use <code>vpp run</code> (interpreter) or <code>vpp build</code> depending on deployment needs.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/stdlib/io.md --&gt;</p>
+
+
+<h1 id="std-io">std.io</h1>
+
+<pre class="code-block"><code class="lang-vpp">
+import std.io
+
+fn main() -&gt; int {
+    io.print(&quot;Hello&quot;)
+    return 0
+}
+</code></pre>
+
+<p>Top-level <code>print()</code> is also available without import in many examples.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/stdlib/json.md --&gt;</p>
+
+
+<h1 id="std-json">std.json</h1>
+
+<p>JSON parse and stringify (native codegen supported).</p>
+
+<pre class="code-block"><code class="lang-vpp">
+import std.json
+
+let obj = json.parse(&quot;{\&quot;name\&quot;:\&quot;v++\&quot;}&quot;)
+let s = json.stringify(obj)
+</code></pre>
+
+<p>For production JSON workloads, validate outputs against your schema in tests.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/stdlib/math.md --&gt;</p>
+
+
+<h1 id="std-math">std.math</h1>
+
+<pre class="code-block"><code class="lang-vpp">
+import std.math
+
+print(math.abs(-5))
+print(math.min(3, 7))
+print(math.max(3, 7))
+print(math.pow(2, 10))
+</code></pre>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/stdlib/process.md --&gt;</p>
+
+
+<h1 id="std-process">std.process</h1>
+
+<p>Run external processes (native codegen supported).</p>
+
+<pre class="code-block"><code class="lang-vpp">
+import std.process
+
+let code = process.run(&quot;echo hello&quot;)
+</code></pre>
+
+<p>Use with care — sandbox and validate commands in user-facing apps.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/stdlib/README.md --&gt;</p>
+
+
+<h1 id="standard-library">Standard library</h1>
+
+<p>Import with <code>import std.&lt;module&gt;</code>.</p>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Module</td>
+<td>Guide</td>
+</tr>
+<tr>
+<td><code>std.io</code></td>
+<td><a href="io.md">io.md</a> — print, input basics</td>
+</tr>
+<tr>
+<td><code>std.math</code></td>
+<td><a href="math.md">math.md</a> — abs, min, max, pow</td>
+</tr>
+<tr>
+<td><code>std.string</code></td>
+<td><a href="string.md">string.md</a> — len, concat helpers</td>
+</tr>
+<tr>
+<td><code>std.collections</code></td>
+<td><a href="collections.md">collections.md</a> — list helpers</td>
+</tr>
+<tr>
+<td><code>std.fs</code></td>
+<td><a href="fs.md">fs.md</a> — read/write files</td>
+</tr>
+<tr>
+<td><code>std.json</code></td>
+<td><a href="json.md">json.md</a> — parse, stringify</td>
+</tr>
+<tr>
+<td><code>std.process</code></td>
+<td><a href="process.md">process.md</a> — run subprocess</td>
+</tr>
+</tbody></table></div>
+
+<p>Source lives in <a href="../../std/"><code>std/</code></a>.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: docs/stdlib/string.md --&gt;</p>
+
+
+<h1 id="std-string">std.string</h1>
+
+<p>String operations via the stdlib module. See <a href="../../std/string.vpp"><code>std/string.vpp</code></a> for current exports.</p>
+
+<pre class="code-block"><code class="lang-vpp">
+import std.string
+</code></pre>
+
+<p>Built-in <code>string</code> type supports concatenation with <code>+</code> in the language.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: SPEC.md --&gt;</p>
+
+
+<h1 id="v-language-specification-v0-4">v++ Language Specification (v0.4)</h1>
 
 <p>This document describes v++ as implemented in v0.4. If code and spec disagree, parity tests and native execution are authoritative.</p>
 
-<h3 id="types">Types</h3>
+<h2 id="types">Types</h2>
 
 <div class="table-wrap"><table>
-<tr><th>Type</th><th>Syntax</th><th>Notes</th></tr>
-<tr><td>int</td><td><code>int</code></td><td>64-bit signed</td></tr>
-<tr><td>float</td><td><code>float</code></td><td>64-bit IEEE</td></tr>
-<tr><td>bool</td><td><code>bool</code></td><td><code>true</code> / <code>false</code></td></tr>
-<tr><td>string</td><td><code>string</code></td><td>UTF-8 heap string (ARC native)</td></tr>
-<tr><td>array</td><td><code>array[T]</code></td><td>Homogeneous array</td></tr>
-<tr><td>struct</td><td><code>Name</code></td><td>User-defined product type</td></tr>
-<tr><td>enum</td><td><code>Name</code></td><td>User-defined sum type</td></tr>
-<tr><td>Option</td><td><code>Option[T]</code></td><td><code>Some(x)</code> / <code>None</code></td></tr>
-<tr><td>Result</td><td><code>Result[T, E]</code></td><td><code>Ok(x)</code> / <code>Err(e)</code></td></tr>
-</table></div>
+<tr>
+<td>Type</td>
+<td>Syntax</td>
+<td>Notes</td>
+</tr>
+<tr>
+<td>int</td>
+<td><code>int</code></td>
+<td>64-bit signed</td>
+</tr>
+<tr>
+<td>float</td>
+<td><code>float</code></td>
+<td>64-bit IEEE</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><code>bool</code></td>
+<td><code>true</code> / <code>false</code></td>
+</tr>
+<tr>
+<td>string</td>
+<td><code>string</code></td>
+<td>UTF-8 heap string (ARC native)</td>
+</tr>
+<tr>
+<td>array</td>
+<td><code>array[T]</code></td>
+<td>Homogeneous array</td>
+</tr>
+<tr>
+<td>struct</td>
+<td><code>Name</code></td>
+<td>User-defined product type</td>
+</tr>
+<tr>
+<td>enum</td>
+<td><code>Name</code></td>
+<td>User-defined sum type</td>
+</tr>
+<tr>
+<td>Option</td>
+<td><code>Option[T]</code></td>
+<td><code>Some(x)</code> / <code>None</code></td>
+</tr>
+<tr>
+<td>Result</td>
+<td><code>Result[T, E]</code></td>
+<td><code>Ok(x)</code> / <code>Err(e)</code></td>
+</tr>
+</tbody></table></div>
 
-<h3 id="variables">Variables</h3>
+<h2 id="variables">Variables</h2>
 
-<pre><code>
+<pre class="code-block"><code class="lang-">
 let x = 10              // immutable int
 let mut total = 0       // mutable; required for reassignment
 total = total + 1
 </code></pre>
 
-<h3 id="functions">Functions</h3>
+<h2 id="functions">Functions</h2>
 
-<pre><code>
+<pre class="code-block"><code class="lang-">
 fn add(a: int, b: int) -&gt; int {
     return a + b
 }
@@ -95,9 +1845,9 @@ fn main() -&gt; int {
 
 <p>When present, <code>fn main() -&gt; int</code> is the program entry point (interpreter and native both invoke it).</p>
 
-<h3 id="traits">Traits</h3>
+<h2 id="traits">Traits</h2>
 
-<pre><code>
+<pre class="code-block"><code class="lang-">
 trait Display {
     fn to_text(self) -&gt; string
 }
@@ -112,13 +1862,13 @@ impl Display for User {
 print(user.to_text())
 </code></pre>
 
-<h3 id="control-flow">Control flow</h3>
+<h2 id="control-flow">Control flow</h2>
 
 <p><code>if</code> / <code>else</code>, <code>while</code>, <code>for i in start..end</code> (half-open), <code>for item in arr</code>, <code>break</code>, <code>continue</code>, <code>match</code>.</p>
 
 <p>Match arms use blocks:</p>
 
-<pre><code>
+<pre class="code-block"><code class="lang-">
 match status {
     Active =&gt; {
         print(&quot;active&quot;)
@@ -131,22 +1881,54 @@ match status {
 
 <p>User enum variants in expressions use bare names when the expected type is known (e.g. struct field <code>status: Active</code>).</p>
 
-<h3 id="builtins">Builtins</h3>
+<h2 id="builtins">Builtins</h2>
 
 <div class="table-wrap"><table>
-<tr><th>Name</th><th>Signature</th><th>Behavior</th></tr>
-<tr><td>print</td><td>printable values</td><td>Print line per argument</td></tr>
-<tr><td>len</td><td>array or string → int</td><td>Length</td></tr>
-<tr><td>assert</td><td>bool → void</td><td>Fail if false</td></tr>
-<tr><td>assert_eq</td><td>T, T → void</td><td>Fail if not equal</td></tr>
-<tr><td>read_file / write_file / file_exists</td><td>fs</td><td>File I/O (also via <code>std.fs</code>)</td></tr>
-<tr><td>json_parse / json_stringify</td><td>json</td><td>JSON helpers (also via <code>std.json</code>)</td></tr>
-<tr><td>process_run</td><td>process</td><td>Run shell command (also via <code>std.process</code>)</td></tr>
-</table></div>
+<tr>
+<td>Name</td>
+<td>Signature</td>
+<td>Behavior</td>
+</tr>
+<tr>
+<td>print</td>
+<td>printable values</td>
+<td>Print line per argument</td>
+</tr>
+<tr>
+<td>len</td>
+<td>array or string → int</td>
+<td>Length</td>
+</tr>
+<tr>
+<td>assert</td>
+<td>bool → void</td>
+<td>Fail if false</td>
+</tr>
+<tr>
+<td>assert_eq</td>
+<td>T, T → void</td>
+<td>Fail if not equal</td>
+</tr>
+<tr>
+<td>read_file / write_file / file_exists</td>
+<td>fs</td>
+<td>File I/O (also via <code>std.fs</code>)</td>
+</tr>
+<tr>
+<td>json_parse / json_stringify</td>
+<td>json</td>
+<td>JSON helpers (also via <code>std.json</code>)</td>
+</tr>
+<tr>
+<td>process_run</td>
+<td>process</td>
+<td>Run shell command (also via <code>std.process</code>)</td>
+</tr>
+</tbody></table></div>
 
-<h3 id="modules-v0-3">Modules (v0.3)</h3>
+<h2 id="modules-v0-3">Modules (v0.3)</h2>
 
-<pre><code>
+<pre class="code-block"><code class="lang-">
 import std.io
 import std.fs
 import &quot;legacy/path.vpp&quot;   // still supported
@@ -159,15 +1941,15 @@ import &quot;legacy/path.vpp&quot;   // still supported
 <li>Circular imports and duplicate imports are errors</li>
 </ul>
 
-<h3 id="projects-and-packages">Projects and packages</h3>
+<h2 id="projects-and-packages">Projects and packages</h2>
 
 <p><code>vpp.toml</code> manifest, <code>vpp.lock</code>, dependencies via path, git, or registry semver (<code>hello-lib = &quot;0.1.0&quot;</code>).</p>
 
-<h3 id="standard-library">Standard library</h3>
+<h2 id="standard-library">Standard library</h2>
 
 <p><code>std/io</code>, <code>std/math</code>, <code>std/string</code>, <code>std/collections</code>, <code>std/fs</code>, <code>std/json</code>, <code>std/process</code>.</p>
 
-<h3 id="execution">Execution</h3>
+<h2 id="execution">Execution</h2>
 
 <ul>
 <li><code>vpp run file.vpp</code> — interpreter (calls <code>fn main()</code> when defined)</li>
@@ -177,7 +1959,7 @@ import &quot;legacy/path.vpp&quot;   // still supported
 
 <p>Interpreter and native must produce identical stdout for supported programs.</p>
 
-<h3 id="known-limitations-v0-4">Known limitations (v0.4)</h3>
+<h2 id="known-limitations-v0-4">Known limitations (v0.4)</h2>
 
 <ul>
 <li>Generics use monomorphization with explicit type arguments at call sites (no inference yet)</li>
@@ -187,10 +1969,14 @@ import &quot;legacy/path.vpp&quot;   // still supported
 
 
 
+<p>---</p>
 
-<h2 id="v-compiler-architecture-v0-2">v++ Compiler Architecture (v0.2)</h2>
+<p>&lt;!-- source: ARCHITECTURE.md --&gt;</p>
 
-<h3 id="overview">Overview</h3>
+
+<h1 id="v-compiler-architecture-v0-2">v++ Compiler Architecture (v0.2)</h1>
+
+<h2 id="overview">Overview</h2>
 
 <p>v++ is a statically typed language with a single front-end and two backends:</p>
 
@@ -201,7 +1987,7 @@ import &quot;legacy/path.vpp&quot;   // still supported
 
 <p>Both backends consume the same <strong>typed AST</strong> produced by the type checker.</p>
 
-<pre><code>
+<pre class="code-block"><code class="lang-">
 .vpp source
     │
     ▼
@@ -232,37 +2018,37 @@ import &quot;legacy/path.vpp&quot;   // still supported
     └──────── same semantics ─┴──► native executable
 </code></pre>
 
-<h3 id="components">Components</h3>
+<h2 id="components">Components</h2>
 
-<h4 id="lexer-parser">Lexer / Parser</h4>
+<h3 id="lexer-parser">Lexer / Parser</h3>
 
 <p>Hand-written lexer with significant newlines. Recursive-descent parser with Pratt precedence for expressions.</p>
 
-<h4 id="type-checker">Type checker</h4>
+<h3 id="type-checker">Type checker</h3>
 
 <p>Two-pass: register types and functions, then check bodies. Uses <code>src/builtins</code> for builtin signatures.</p>
 
-<h4 id="v-ir">v++ IR</h4>
+<h3 id="v-ir">v++ IR</h3>
 
 <p>Thin intermediate representation between typed AST and LLVM. Makes memory operations, control flow, and calling conventions explicit. See <code>src/ir/mod.rs</code>.</p>
 
-<h4 id="llvm-backend">LLVM backend</h4>
+<h3 id="llvm-backend">LLVM backend</h3>
 
 <p>Inkwell-based. Emits LLVM IR, invokes <code>clang</code> to produce object files, links runtime. Feature-gated: <code>--features codegen</code>.</p>
 
-<h4 id="runtime">Runtime</h4>
+<h3 id="runtime">Runtime</h3>
 
 <p>C ABI documented in <code>MEMORY_MODEL.md</code>. Heap strings and arrays use ARC reference counting.</p>
 
-<h4 id="builtins">Builtins</h4>
+<h3 id="builtins">Builtins</h3>
 
 <p>Single registry in <code>src/builtins/mod.rs</code> consumed by type checker, interpreter, and codegen.</p>
 
-<h3 id="feature-parity-v0-2-target">Feature parity (v0.2 target)</h3>
+<h2 id="feature-parity-v0-2-target">Feature parity (v0.2 target)</h2>
 
 <p>See <code>CHANGELOG.md</code> and <code>tests/parity/</code> for the live matrix. Native codegen must match interpreter output for all supported features.</p>
 
-<h3 id="version-notes">Version notes</h3>
+<h2 id="version-notes">Version notes</h2>
 
 <ul>
 <li><strong>v0.2</strong> — native foundation, IR, ABI, parity tests</li>
@@ -272,10 +2058,14 @@ import &quot;legacy/path.vpp&quot;   // still supported
 
 
 
+<p>---</p>
 
-<h2 id="v-memory-model-v0-2-bootstrap">v++ Memory Model (v0.2 bootstrap)</h2>
+<p>&lt;!-- source: MEMORY_MODEL.md --&gt;</p>
 
-<h3 id="goals">Goals</h3>
+
+<h1 id="v-memory-model-v0-2-bootstrap">v++ Memory Model (v0.2 bootstrap)</h1>
+
+<h2 id="goals">Goals</h2>
 
 <ul>
 <li>Predictable behavior for beginners</li>
@@ -286,27 +2076,59 @@ import &quot;legacy/path.vpp&quot;   // still supported
 
 <p>v0.2 does <strong>not</strong> implement a borrow checker or garbage collector.</p>
 
-<h3 id="representation">Representation</h3>
+<h2 id="representation">Representation</h2>
 
-<h4 id="stack-by-value-in-llvm">Stack (by value in LLVM)</h4>
-
-<div class="table-wrap"><table>
-<tr><th>Type</th><th>Native representation</th><th>Notes</th></tr>
-<tr><td><code>int</code></td><td><code>i64</code></td><td>Signed 64-bit</td></tr>
-<tr><td><code>float</code></td><td><code>double</code></td><td>IEEE 64-bit</td></tr>
-<tr><td><code>bool</code></td><td><code>i1</code> / zero-extended</td><td></td></tr>
-<tr><td>fixed-size struct</td><td>LLVM struct</td><td>Field layout computed by codegen</td></tr>
-</table></div>
-
-<h4 id="heap-arc">Heap (ARC)</h4>
+<h3 id="stack-by-value-in-llvm">Stack (by value in LLVM)</h3>
 
 <div class="table-wrap"><table>
-<tr><th>Type</th><th>C type</th><th>Header</th></tr>
-<tr><td><code>string</code></td><td><code>VppString*</code></td><td><code>{ char* data; int64_t ref_count; }</code></td></tr>
-<tr><td><code>array[T]</code></td><td><code>VppArray*</code></td><td><code>{ void* data; int64_t len; int64_t elem_size; int64_t ref_count; }</code></td></tr>
-</table></div>
+<tr>
+<td>Type</td>
+<td>Native representation</td>
+<td>Notes</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td><code>i64</code></td>
+<td>Signed 64-bit</td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td><code>double</code></td>
+<td>IEEE 64-bit</td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td><code>i1</code> / zero-extended</td>
+<td></td>
+</tr>
+<tr>
+<td>fixed-size struct</td>
+<td>LLVM struct</td>
+<td>Field layout computed by codegen</td>
+</tr>
+</tbody></table></div>
 
-<h3 id="string-abi-v0-2">String ABI (v0.2)</h3>
+<h3 id="heap-arc">Heap (ARC)</h3>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Type</td>
+<td>C type</td>
+<td>Header</td>
+</tr>
+<tr>
+<td><code>string</code></td>
+<td><code>VppString*</code></td>
+<td><code>{ char* data; int64_t ref_count; }</code></td>
+</tr>
+<tr>
+<td><code>array[T]</code></td>
+<td><code>VppArray*</code></td>
+<td><code>{ void* data; int64_t len; int64_t elem_size; int64_t ref_count; }</code></td>
+</tr>
+</tbody></table></div>
+
+<h2 id="string-abi-v0-2">String ABI (v0.2)</h2>
 
 <p>1. String <strong>literals</strong> — compiler emits a nul-terminated <code>i8*</code> constant, calls <code>vpp_string_new(cstr)</code> → <code>VppString*</code></p>
 <p>2. String <strong>locals</strong> — stored as <code>VppString*</code> (pointer to heap object)</p>
@@ -316,7 +2138,7 @@ import &quot;legacy/path.vpp&quot;   // still supported
 
 <p>Never pass raw <code>i8*</code> to <code>vpp_print_str</code>.</p>
 
-<h3 id="array-abi-v0-2">Array ABI (v0.2)</h3>
+<h2 id="array-abi-v0-2">Array ABI (v0.2)</h2>
 
 <p>1. <strong>Literals</strong> — <code>vpp_make_array(len, elem_size)</code> then fill element slots via typed GEP</p>
 <p>2. <strong>Value type</strong> — <code>VppArray*</code> everywhere (locals, parameters, returns)</p>
@@ -326,7 +2148,7 @@ import &quot;legacy/path.vpp&quot;   // still supported
 <p>6. <strong>Ownership</strong> — <code>vpp_array_retain</code> on pass to functions; <code>vpp_array_release</code> at scope exit</p>
 <p>7. <strong>String elements</strong> — <code>vpp_string_retain</code> when stored into array literal</p>
 
-<h3 id="arc-rules-v0-2-bootstrap">ARC rules (v0.2 bootstrap)</h3>
+<h2 id="arc-rules-v0-2-bootstrap">ARC rules (v0.2 bootstrap)</h2>
 
 <ul>
 <li><code>vpp_string_new</code> / <code>vpp_make_array</code> — ref_count = 1</li>
@@ -338,17 +2160,26 @@ import &quot;legacy/path.vpp&quot;   // still supported
 
 <p>Full ARC at scope boundaries is implemented incrementally. Leaks are acceptable in v0.2 for top-level-only programs; crashes are not.</p>
 
-<h3 id="interpreter-mapping">Interpreter mapping</h3>
+<h2 id="interpreter-mapping">Interpreter mapping</h2>
 
 <div class="table-wrap"><table>
-<tr><th>Native</th><th>Interpreter</th></tr>
-<tr><td><code>VppString*</code></td><td><code>Rc&lt;String&gt;</code></td></tr>
-<tr><td><code>VppArray*</code></td><td><code>Rc&lt;Vec&lt;Value&gt;&gt;</code></td></tr>
-</table></div>
+<tr>
+<td>Native</td>
+<td>Interpreter</td>
+</tr>
+<tr>
+<td><code>VppString*</code></td>
+<td><code>Rc&lt;String&gt;</code></td>
+</tr>
+<tr>
+<td><code>VppArray*</code></td>
+<td><code>Rc&lt;Vec&lt;Value&gt;&gt;</code></td>
+</tr>
+</tbody></table></div>
 
 <p>Semantics must match observable behavior (print output, len, indexing).</p>
 
-<h3 id="future-v1-0">Future (v1.0)</h3>
+<h2 id="future-v1-0">Future (v1.0)</h2>
 
 <ul>
 <li>Move semantics at assignment for heap types</li>
@@ -359,1433 +2190,498 @@ import &quot;legacy/path.vpp&quot;   // still supported
 
 
 
+<p>---</p>
 
-<h2 id="std-collections">std.collections</h2>
+<p>&lt;!-- source: CHANGELOG.md --&gt;</p>
 
-<p>Collection helpers. See <a href="../../std/collections.vpp"><code>std/collections.vpp</code></a>.</p>
 
-<pre><code class="language-vpp">
-import std.collections
-</code></pre>
+<h1 id="changelog">Changelog</h1>
 
-<p>Arrays are first-class: <code>[1, 2, 3]</code>, <code>len(arr)</code>, <code>for x in arr</code>.</p>
+<p>All notable changes to v++ are documented here.</p>
 
+<h2 id="0-5-0-2026-08-18">[0.5.0] — 2026-08-18</h2>
 
-
-
-<h2 id="std-fs">std.fs</h2>
-
-<p>File system access (native codegen supported).</p>
-
-<pre><code class="language-vpp">
-import std.fs
-
-let text = fs.read_file(&quot;data.txt&quot;)
-fs.write_file(&quot;out.txt&quot;, &quot;hello&quot;)
-let exists = fs.file_exists(&quot;data.txt&quot;)
-</code></pre>
-
-<p>Use <code>vpp run</code> (interpreter) or <code>vpp build</code> depending on deployment needs.</p>
-
-
-
-
-<h2 id="std-io">std.io</h2>
-
-<pre><code class="language-vpp">
-import std.io
-
-fn main() -&gt; int {
-    io.print(&quot;Hello&quot;)
-    return 0
-}
-</code></pre>
-
-<p>Top-level <code>print()</code> is also available without import in many examples.</p>
-
-
-
-
-<h2 id="std-json">std.json</h2>
-
-<p>JSON parse and stringify (native codegen supported).</p>
-
-<pre><code class="language-vpp">
-import std.json
-
-let obj = json.parse(&quot;{\&quot;name\&quot;:\&quot;v++\&quot;}&quot;)
-let s = json.stringify(obj)
-</code></pre>
-
-<p>For production JSON workloads, validate outputs against your schema in tests.</p>
-
-
-
-
-<h2 id="std-math">std.math</h2>
-
-<pre><code class="language-vpp">
-import std.math
-
-print(math.abs(-5))
-print(math.min(3, 7))
-print(math.max(3, 7))
-print(math.pow(2, 10))
-</code></pre>
-
-
-
-
-<h2 id="std-process">std.process</h2>
-
-<p>Run external processes (native codegen supported).</p>
-
-<pre><code class="language-vpp">
-import std.process
-
-let code = process.run(&quot;echo hello&quot;)
-</code></pre>
-
-<p>Use with care — sandbox and validate commands in user-facing apps.</p>
-
-
-
-
-<h2 id="standard-library">Standard library</h2>
-
-<p>Import with <code>import std.&lt;module&gt;</code>.</p>
-
-<div class="table-wrap"><table>
-<tr><th>Module</th><th>Guide</th></tr>
-<tr><td><code>std.io</code></td><td><a href="io.md">io.md</a> — print, input basics</td></tr>
-<tr><td><code>std.math</code></td><td><a href="math.md">math.md</a> — abs, min, max, pow</td></tr>
-<tr><td><code>std.string</code></td><td><a href="string.md">string.md</a> — len, concat helpers</td></tr>
-<tr><td><code>std.collections</code></td><td><a href="collections.md">collections.md</a> — list helpers</td></tr>
-<tr><td><code>std.fs</code></td><td><a href="fs.md">fs.md</a> — read/write files</td></tr>
-<tr><td><code>std.json</code></td><td><a href="json.md">json.md</a> — parse, stringify</td></tr>
-<tr><td><code>std.process</code></td><td><a href="process.md">process.md</a> — run subprocess</td></tr>
-</table></div>
-
-<p>Source lives in <a href="../../std/"><code>std/</code></a>.</p>
-
-
-
-
-<h2 id="std-string">std.string</h2>
-
-<p>String operations via the stdlib module. See <a href="../../std/string.vpp"><code>std/string.vpp</code></a> for current exports.</p>
-
-<pre><code class="language-vpp">
-import std.string
-</code></pre>
-
-<p>Built-in <code>string</code> type supports concatenation with <code>+</code> in the language.</p>
-
-
-
-
-
-
-<p>&lt;!-- contributing\building-from-source.md --&gt;</p>
-
-
-<h2 id="contributing-building-from-source">contributing — building-from-source</h2>
-
-
-<h2 id="building-from-source">Building from source</h2>
-
-<h3 id="requirements">Requirements</h3>
+<h3 id="added">Added</h3>
 
 <ul>
-<li>Rust (stable) — <a href="https://rustup.rs">rustup.rs</a></li>
-<li>LLVM 22 + clang (for <code>codegen</code> feature)</li>
-<li>Git (for git dependencies in tests)</li>
+<li><strong>Website</strong> — official site at <code>website/</code> (learn, 20 projects, downloads, history, architecture, about)</li>
+<li><strong>20 example projects</strong> — <code>projects/01-hello-world</code> through <code>projects/20-json-config</code></li>
+<li><strong>GitHub Pages</strong> — deploy workflow for the website</li>
+<li><strong>Documentation hub</strong> — 30+ guides (<code>docs/getting-started</code>, <code>language</code>, <code>guides</code>, <code>stdlib</code>, <code>project</code>)</li>
+<li><strong>GitHub paperwork</strong> — <code>CONTRIBUTING.md</code>, <code>SECURITY.md</code>, <code>CODE_OF_CONDUCT.md</code></li>
+<li><strong>VS Code extension v0.5.0</strong> — Python-style Marketplace README and CHANGELOG</li>
+<li><strong>Windows installer PATH</strong> — adds <code>vpp</code> and bundled <code>clang</code> to user PATH on install</li>
 </ul>
 
-<h3 id="build">Build</h3>
+<h3 id="changed">Changed</h3>
 
-<pre><code class="language-powershell">
+<ul>
+<li>Compiler, installer, and release bundle version aligned to <strong>0.5.0</strong></li>
+</ul>
+
+<h2 id="0-4-4-2026-08-18-windows-installer">[0.4.4] — 2026-08-18 (Windows installer)</h2>
+
+<h3 id="added">Added</h3>
+
+<ul>
+<li><strong>GitHub Release bundles</strong> — Windows zip with <code>GO.bat</code> one-click launcher; Linux/macOS tarballs with <code>run.sh</code></li>
+<li><strong>VS Code Marketplace</strong> — extension published as <code>vpp-lang.vplusplus</code></li>
+<li><strong>Docs</strong> — <code>docs/RELEASE.md</code>, <code>docs/MARKETPLACE.md</code>, simplified <code>docs/INSTALL.md</code></li>
+</ul>
+
+<h3 id="fixed">Fixed</h3>
+
+<ul>
+<li>LSP build (<code>jsonrpc_core</code>, <code>CompletionItemKind::SNIPPET</code>)</li>
+<li><code>setup.ps1</code> PowerShell encoding + builds with <code>codegen,lsp</code> by default</li>
+<li>VSIX packaging includes language-client dependencies</li>
+</ul>
+
+<h2 id="0-4-0-2026-08-18-language-core-phase-b">[0.4.0] — 2026-08-18 (Language Core / Phase B)</h2>
+
+<h3 id="added">Added</h3>
+
+<ul>
+<li><strong><code>mut</code> keyword</strong> — <code>let mut x = 1</code> required for reassignment; bindings are immutable by default</li>
+<li><strong>Generics</strong> — monomorphized functions: <code>fn id<a href="x: T">T</a> -&gt; T</code>, calls like <code>id<a href="42">int</a></code> and <code>first<a href="words">string</a></code></li>
+<li><strong>Traits and impls</strong> — <code>trait Display { fn to_text(self) -&gt; string }</code>, <code>impl Display for User { ... }</code>, method calls <code>user.to_text()</code></li>
+<li><strong>Compile-time match exhaustiveness</strong> — enums, <code>Option</code>, and <code>Result</code> must be covered or use <code>_</code> (error E0107)</li>
+<li><strong>Examples</strong> — <a href="examples/generics.vpp"><code>examples/generics.vpp</code></a>, <a href="examples/traits.vpp"><code>examples/traits.vpp</code></a></li>
+<li><strong>Tests</strong> — mut/immutability, exhaustiveness, generics, and traits typecheck + parity coverage</li>
+</ul>
+
+<h3 id="changed">Changed</h3>
+
+<ul>
+<li>All examples and stdlib sources updated to use <code>let mut</code> where variables are reassigned</li>
+<li><a href="SPEC.md"><code>SPEC.md</code></a> updated for v0.4 language features</li>
+</ul>
+
+<h2 id="0-3-0-2026-08-18-usable-language-ecosystem">[0.3.0] — 2026-08-18 (Usable Language / Ecosystem)</h2>
+
+<h3 id="added">Added</h3>
+
+<ul>
+<li><strong>Module system</strong>: <code>import std.io</code> canonical paths, <code>pub</code> exports, namespaced calls (<code>math.add</code>), legacy <code>import &quot;file.vpp&quot;</code>, circular import detection, duplicate import errors</li>
+<li><strong>Package manager</strong>: TOML <code>vpp.toml</code> with <code>[dependencies]</code>, <code>vpp.lock</code>, <code>vpp new</code>/<code>add</code>/<code>remove</code>/<code>update</code>, local path + git deps, semver checks</li>
+<li><strong>Central registry</strong>: <code>registry/index.toml</code> with semver resolution (<code>hello-lib = &quot;0.1.0&quot;</code>)</li>
+<li><strong>Standard library</strong>: <code>std.io</code>, <code>std.math</code>, <code>std.string</code>, <code>std.collections</code>, <code>std.fs</code>, <code>std.json</code>, <code>std.process</code></li>
+<li><strong>Native fs/json/process</strong>: runtime C helpers + LLVM codegen for <code>read_file</code>, <code>write_file</code>, <code>file_exists</code>, <code>json_parse</code>, <code>json_stringify</code>, <code>process_run</code></li>
+<li><strong>CLI</strong>: <code>vpp doctor</code> for toolchain/project health</li>
+<li><strong>LSP</strong>: diagnostic spans from miette; extension wires <code>vppls</code> via vscode-languageclient</li>
+<li><strong>Distribution</strong>: GitHub Actions release workflow (linux/windows/macos) on version tags</li>
+<li><strong>Syntax highlighting</strong>: struct, enum, match, import, pub, test, break, continue, builtins</li>
+<li><strong>Tests</strong>: <code>tests/modules.rs</code>, <code>tests/pkg.rs</code>, <code>tests/stdlib.rs</code>, <code>examples/std_builtins.vpp</code> parity; all v0.2 parity preserved</li>
+</ul>
+
+<h3 id="changed">Changed</h3>
+
+<ul>
+<li><code>vpp init</code> scaffolds <code>import std.io</code> and <code>import std.math</code></li>
+<li>LSP <code>check_with_index</code> uses in-memory buffer when file is unsaved</li>
+<li>Interpreter invokes <code>fn main()</code> when present (matches native entry point)</li>
+<li>Native codegen: correct scope cleanup on <code>return</code>, <code>if</code>/<code>match</code> arms, and heap release paths</li>
+</ul>
+
+<h3 id="fixed">Fixed</h3>
+
+<ul>
+<li>Native <code>file_exists</code> bool codegen (i32 → i1 compare)</li>
+<li>LLVM invalid IR when <code>return</code> preceded function epilogue cleanup</li>
+<li>Function parameters lost after <code>return</code> inside <code>if</code> branches during codegen</li>
+<li>Empty stdout under piped test runs (<code>fflush</code> in runtime prints; staged link output)</li>
+</ul>
+
+<h2 id="0-3-1-2026-08-18-phase-a-polish">[0.3.1] — 2026-08-18 (Phase A polish)</h2>
+
+<h3 id="fixed">Fixed</h3>
+
+<ul>
+<li>User-defined enum types resolved correctly in function params, struct fields, and match patterns</li>
+<li>Bare enum variant literals in struct fields (e.g. <code>status: Active</code>)</li>
+<li>Native entry point: LLVM <code>main</code> calls <code>vpp_user_main</code> instead of symbol collision</li>
+<li>Path lookup for <code>vpp run hello.vpp</code> searches <code>examples/</code>, <code>src/</code>, <code>tests/</code></li>
+</ul>
+
+<h3 id="added">Added</h3>
+
+<ul>
+<li><a href="stress.vpp"><code>stress.vpp</code></a> and <a href="stress.ps1"><code>stress.ps1</code></a> — one-command interpreter/native parity test</li>
+<li><code>.gitignore</code> entries for <code>.vpp/</code>, test output artifacts</li>
+</ul>
+
+<h3 id="changed">Changed</h3>
+
+<ul>
+<li><a href="SPEC.md"><code>SPEC.md</code></a> and <a href="README.md"><code>README.md</code></a> updated for v0.3</li>
+</ul>
+
+<h2 id="0-2-0-2026-08-18">[0.2.0] — 2026-08-18</h2>
+
+<h3 id="added">Added</h3>
+
+<ul>
+<li>v++ IR (<code>src/ir/</code>) between typed AST and LLVM</li>
+<li>Shared builtin registry (<code>src/builtins/</code>)</li>
+<li><code>ARCHITECTURE.md</code>, <code>MEMORY_MODEL.md</code>, <code>SPEC.md</code></li>
+<li>Native string ABI using <code>VppString*</code> end-to-end</li>
+<li>**Native array ABI using <code>VppArray*</code> end-to-end**</li>
+<li>Scoped locals in native codegen (correct shadowing)</li>
+<li>Float equality/compare via LLVM float instructions</li>
+<li><strong>Native structs</strong> — literals, field access, fn params/returns</li>
+<li><strong>Native enums / Option / Result</strong> — tagged struct representation</li>
+<li><strong>Native match</strong> — statement and expression forms</li>
+<li><strong>Native break/continue</strong> — loop stack for while/for loops</li>
+<li>Differential parity tests (<code>tests/parity/</code>) — hello, lesson01, scope_shadow, arrays, arrays_fn, <strong>structs, option_result, match_test, lesson03_loops</strong></li>
+<li><code>tests/arrays.rs</code> — IR lowering tests for arrays</li>
+<li><code>examples/arrays_fn.vpp</code> — arrays as function params/returns</li>
+<li>Native <code>vpp_array_index_ptr</code> bounds checking</li>
+<li>CI job for native codegen (where LLVM available)</li>
+</ul>
+
+<h3 id="fixed">Fixed</h3>
+
+<ul>
+<li>Native crash on <code>print(&quot;...&quot;)</code> (i8* vs VppString* mismatch)</li>
+<li>Broken block scope in native codegen</li>
+<li>Integer compare used for float equality</li>
+</ul>
+
+<h3 id="changed">Changed</h3>
+
+<ul>
+<li>LLVM backend lowers from v++ IR, not directly from typed AST</li>
+<li>Inkwell dependency pinned for reproducible builds</li>
+<li>Runtime uses portable <code>strdup</code> wrapper</li>
+<li>Struct/enum/match codegen in <code>src/codegen/struct_enum.rs</code></li>
+</ul>
+
+<h3 id="known-limitations-v0-2">Known limitations (v0.2)</h3>
+
+<ul>
+<li>Module imports: interpreter only until native parity tests pass</li>
+<li>Full ARC at all scope exits not yet complete for heap values inside structs/enums</li>
+<li>Match exhaustiveness is runtime-checked only (non-exhaustive match calls <code>vpp_assert_fail</code>)</li>
+</ul>
+
+<h2 id="0-1-0-2026-08">[0.1.0] — 2026-08</h2>
+
+<p>Initial release: interpreter-complete language, partial LLVM backend, CLI, extension, stdlib, CI.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: CONTRIBUTING.md --&gt;</p>
+
+
+<h1 id="contributing-to-v">Contributing to v++</h1>
+
+<p>Thanks for helping improve v++!</p>
+
+<h2 id="quick-links">Quick links</h2>
+
+<ul>
+<li><a href="docs/README.md">Documentation hub</a></li>
+<li><a href="docs/contributing/building-from-source.md">Build from source</a></li>
+<li><a href="docs/contributing/running-tests.md">Run tests</a></li>
+<li><a href="https://github.com/shauryaR790/V-/issues/new">Report a bug</a></li>
+</ul>
+
+<h2 id="how-to-contribute">How to contribute</h2>
+
+<p>1. <strong>Issues first</strong> — open an issue for bugs or feature ideas before large PRs</p>
+<p>2. <strong>Fork &amp; branch</strong> — work on a feature branch off <code>main</code></p>
+<p>3. <strong>Test</strong> — <code>cargo test --all-targets</code>; if touching codegen, <code>cargo test --features codegen</code></p>
+<p>4. <strong>Format</strong> — <code>cargo fmt</code>, <code>vpp fmt</code> on any <code>.vpp</code> examples you change</p>
+<p>5. <strong>PR</strong> — describe what changed and why; link the issue</p>
+
+<h2 id="code-areas">Code areas</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Area</td>
+<td>Path</td>
+</tr>
+<tr>
+<td>Lexer / parser</td>
+<td><code>src/lexer</code>, <code>src/parser</code></td>
+</tr>
+<tr>
+<td>Type checker</td>
+<td><code>src/types</code></td>
+</tr>
+<tr>
+<td>Interpreter</td>
+<td><code>src/interp</code></td>
+</tr>
+<tr>
+<td>Codegen</td>
+<td><code>src/codegen</code></td>
+</tr>
+<tr>
+<td>LSP</td>
+<td><code>src/lsp</code>, <code>src/bin/vppls.rs</code></td>
+</tr>
+<tr>
+<td>VS Code extension</td>
+<td><code>editor/vscode-vpp/</code></td>
+</tr>
+<tr>
+<td>Docs</td>
+<td><code>docs/</code></td>
+</tr>
+</tbody></table></div>
+
+<h2 id="commit-messages">Commit messages</h2>
+
+<p>Use clear summaries: <code>Fix …</code>, <code>Add …</code>, <code>Docs: …</code> — same style as existing history.</p>
+
+<h2 id="releases-maintainers">Releases (maintainers)</h2>
+
+<p>1. Bump versions in <code>Cargo.toml</code> and <code>editor/vscode-vpp/package.json</code></p>
+<p>2. Update <code>CHANGELOG.md</code> and commit</p>
+<p>3. Tag and push: <code>git tag v0.x.y &amp;&amp; git push origin main &amp;&amp; git push origin v0.x.y</code></p>
+<p>4. Confirm the <a href="https://github.com/shauryaR790/V-/actions">Release workflow</a> succeeds and assets appear on <a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a></p>
+
+<h2 id="license">License</h2>
+
+<p>By contributing, you agree your work is licensed under the project MIT license.</p>
+
+
+
+<p>---</p>
+
+<p>&lt;!-- source: README.md --&gt;</p>
+
+
+<h1 id="v">v++</h1>
+
+<p><strong>v++</strong> is a compiled programming language — Python-style readability, static typing, native performance.</p>
+
+<p>&gt; Write it simply. Compile it natively. Grow into control when you need it.</p>
+
+<p><strong>Author:</strong> <a href="https://github.com/shauryaR790">Shaurya</a> · <strong>License:</strong> MIT · <strong>Version:</strong> 0.5.0</p>
+
+<p>---</p>
+
+<h2 id="get-started-in-2-minutes">Get started in 2 minutes</h2>
+
+<p>1. <strong>Download</strong> <a href="https://github.com/shauryaR790/V-/releases/latest"><code>vpp-0.5.0-setup.exe</code></a> (Windows installer)</p>
+<p>2. <strong>Install</strong> <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">v++ Language</a> in VS Code (publisher: <strong>vpp-lang</strong>)</p>
+<p>3. <strong>Run:</strong></p>
+
+<pre class="code-block"><code class="lang-powershell">
+vpp run examples\hello.vpp
+</code></pre>
+
+<p>Full guide: <strong><a href="docs/getting-started/hello-world.md">docs/getting-started/hello-world.md</a></strong></p>
+
+<p>---</p>
+
+<h2 id="documentation">Documentation</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td><strong><a href="docs/README.md">Documentation hub</a></strong></td>
+<td>Index of all guides</td>
+</tr>
+<tr>
+<td><strong><a href="https://shauryaR790.github.io/V-/">Website</a></strong></td>
+<td>Learn, projects, downloads, history</td>
+</tr>
+<tr>
+<td><a href="docs/getting-started/install.md">Install</a></td>
+<td>Installer, PATH, extension</td>
+</tr>
+<tr>
+<td><a href="docs/language/README.md">Language reference</a></td>
+<td>Types, control flow, generics, traits</td>
+</tr>
+<tr>
+<td><a href="docs/guides/cli-reference.md">CLI reference</a></td>
+<td>Every <code>vpp</code> command</td>
+</tr>
+<tr>
+<td><a href="docs/stdlib/README.md">Standard library</a></td>
+<td>std.io, fs, json, …</td>
+</tr>
+<tr>
+<td><a href="docs/project/faq.md">FAQ</a></td>
+<td>Common questions</td>
+</tr>
+<tr>
+<td><a href="SPEC.md">SPEC.md</a></td>
+<td>Formal language spec</td>
+</tr>
+</tbody></table></div>
+
+<p>---</p>
+
+<h2 id="features">Features</h2>
+
+<ul>
+<li>Local <strong>type inference</strong> + explicit function signatures</li>
+<li><strong>Structs</strong>, <strong>enums</strong>, <strong>Option/Result</strong>, exhaustive <strong>match</strong></li>
+<li><strong>Generics</strong>, <strong>traits</strong>, <strong><code>mut</code></strong> (v0.4)</li>
+<li><strong>Modules</strong> + <strong>package manager</strong> (<code>vpp.toml</code>)</li>
+<li><strong>Interpreter</strong> (<code>vpp run</code>) and <strong>native build</strong> (<code>vpp build</code>)</li>
+<li><strong>LSP</strong> — diagnostics, completion, go-to-definition</li>
+<li><strong>VS Code extension</strong> on the Marketplace</li>
+</ul>
+
+<p>---</p>
+
+<h2 id="links">Links</h2>
+
+<div class="table-wrap"><table>
+<tr>
+<td>Resource</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>Releases</td>
+<td>https://github.com/shauryaR790/V-/releases</td>
+</tr>
+<tr>
+<td>VS Code extension</td>
+<td>https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus</td>
+</tr>
+<tr>
+<td>Issues</td>
+<td>https://github.com/shauryaR790/V-/issues</td>
+</tr>
+<tr>
+<td>Contributing</td>
+<td><a href="CONTRIBUTING.md">CONTRIBUTING.md</a></td>
+</tr>
+<tr>
+<td>Security</td>
+<td><a href="SECURITY.md">SECURITY.md</a></td>
+</tr>
+<tr>
+<td>Privacy</td>
+<td><a href="docs/PRIVACY.md">docs/PRIVACY.md</a></td>
+</tr>
+</tbody></table></div>
+
+<p>---</p>
+
+<h2 id="for-developers">For developers</h2>
+
+<pre class="code-block"><code class="lang-powershell">
 git clone https://github.com/shauryaR790/V-.git
 cd V-
 cargo build --release --features codegen,lsp
-</code></pre>
-
-<p>Windows:</p>
-
-<pre><code class="language-powershell">
-$env:LLVM_SYS_221_PREFIX = &quot;C:\Program Files\LLVM&quot;
-</code></pre>
-
-<p>Binaries: <code>target/release/vpp.exe</code>, <code>target/release/vppls.exe</code>.</p>
-
-<h3 id="features">Features</h3>
-
-<div class="table-wrap"><table>
-<tr><th>Feature</th><th>Enables</th></tr>
-<tr><td>*(default)*</td><td>Interpreter, checker, fmt, CLI</td></tr>
-<tr><td><code>codegen</code></td><td>Native <code>vpp build</code>, LLVM</td></tr>
-<tr><td><code>lsp</code></td><td><code>vppls</code> language server</td></tr>
-</table></div>
-
-<h3 id="install-locally">Install locally</h3>
-
-<pre><code class="language-powershell">
-cargo install --path . --features codegen,lsp
-</code></pre>
-
-
-
-<p>&lt;!-- contributing\running-tests.md --&gt;</p>
-
-
-<h2 id="contributing-running-tests">contributing — running-tests</h2>
-
-
-<h2 id="running-tests">Running tests</h2>
-
-<pre><code class="language-powershell">
-# Interpreter + parser + typecheck (no LLVM)
 cargo test --all-targets
-
-# Native codegen (local LLVM required)
-cargo test --features codegen -- --test-threads=1
-
-# Parity: interpreter vs native stdout
-cargo test --features codegen parity
-
-# Stress script (Windows)
-.\stress.ps1
 </code></pre>
 
-<p>CI runs on every push to <code>main</code> — see <a href="https://github.com/shauryaR790/V-/actions">GitHub Actions</a>.</p>
+<p>See <a href="docs/contributing/building-from-source.md">Building from source</a>.</p>
 
-
-
-<p>&lt;!-- getting-started\first-project.md --&gt;</p>
-
-
-<h2 id="getting-started-first-project">getting-started — first-project</h2>
-
-
-<h2 id="your-first-v-project">Your first v++ project</h2>
-
-<h3 id="scaffold">Scaffold</h3>
-
-<pre><code class="language-powershell">
-vpp new myapp --path myapp
-cd myapp
-</code></pre>
-
-<p>Creates:</p>
-
-<pre><code>
-myapp/
-  vpp.toml
-  src/main.vpp
-  tests/smoke.vpp
-</code></pre>
-
-<h3 id="run">Run</h3>
-
-<pre><code class="language-powershell">
-vpp run
-</code></pre>
-
-<p>Runs the entry in <code>vpp.toml</code> (default <code>src/main.vpp</code>).</p>
-
-<h3 id="test">Test</h3>
-
-<pre><code class="language-powershell">
-vpp test
-</code></pre>
-
-<p>Runs <code>test</code> blocks in <code>tests/</code> and inline tests.</p>
-
-<h3 id="add-a-dependency">Add a dependency</h3>
-
-<pre><code class="language-powershell">
-vpp add hello-lib --version 0.1.0
-vpp update
-</code></pre>
-
-<p>See <a href="../guides/package-manager.md">Package manager</a>.</p>
-
-
-
-<p>&lt;!-- getting-started\hello-world.md --&gt;</p>
-
-
-<h2 id="getting-started-hello-world">getting-started — hello-world</h2>
-
-
-<h2 id="hello-v">Hello, v++</h2>
-
-<p>Create <code>hello.vpp</code>:</p>
-
-<pre><code class="language-vpp">
-fn main() -&gt; int {
-    print(&quot;Hello from v++!&quot;)
-    return 0
-}
-</code></pre>
-
-<p>Run it:</p>
-
-<pre><code class="language-powershell">
-vpp run hello.vpp
-</code></pre>
-
-<p>Type-check without running:</p>
-
-<pre><code class="language-powershell">
-vpp check hello.vpp
-</code></pre>
-
-<p>Compile to a native executable:</p>
-
-<pre><code class="language-powershell">
-vpp build hello.vpp -o hello.exe
-.\hello.exe
-</code></pre>
-
-<h3 id="what-you-just-used">What you just used</h3>
-
-<ul>
-<li><strong><code>vpp run</code></strong> — interpreter (fast iteration, no compile step)</li>
-<li><strong><code>vpp check</code></strong> — type checker only</li>
-<li><strong><code>vpp build</code></strong> — LLVM + clang → <code>.exe</code></li>
-</ul>
-
-<p>Next: <a href="first-project.md">Your first project</a>.</p>
-
-
-
-<p>&lt;!-- getting-started\install.md --&gt;</p>
-
-
-<h2 id="getting-started-install">getting-started — install</h2>
-
-
-<h2 id="install-v">Install v++</h2>
-
-<h3 id="windows-recommended">Windows (recommended)</h3>
-
-<p>1. Download <strong><code>vpp-0.5.0-setup.exe</code></strong> from <a href="https://github.com/shauryaR790/V-/releases/latest">GitHub Releases</a>.</p>
-<p>2. Run the installer. If Windows SmartScreen appears, choose <strong>More info → Run anyway</strong>.</p>
-<p>3. Open a <strong>new</strong> terminal:</p>
-
-<pre><code class="language-powershell">
-vpp run examples\hello.vpp
-vpp doctor
-</code></pre>
-
-<p>If <code>vpp</code> is not found, add the install folder to PATH:</p>
-
-<pre><code class="language-powershell">
-$dir = &quot;$env:LOCALAPPDATA\Programs\vpp&quot;
-[Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path + &quot;;$dir;$dir\llvm\bin&quot;, &quot;User&quot;)
-</code></pre>
-
-<p>Restart the terminal.</p>
-
-<h3 id="vs-code-extension">VS Code extension</h3>
-
-<p>1. Extensions → search <strong>v++ Language</strong></p>
-<p>2. Publisher must be <strong>vpp-lang</strong></p>
-<p>3. <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">Marketplace link</a></p>
-
-<p>See <a href="vscode-setup.md">VS Code setup</a>.</p>
-
-<h3 id="portable-zip-advanced">Portable zip (advanced)</h3>
-
-<p>Download <code>vpp-v0.5.0-windows-x64.zip</code>, extract, run <code>GO.bat</code> or add the folder to PATH manually.</p>
-
-<h3 id="build-from-source">Build from source</h3>
-
-<p>See <a href="../contributing/building-from-source.md">Building from source</a>.</p>
-
-<h3 id="requirements">Requirements</h3>
-
-<div class="table-wrap"><table>
-<tr><th>Task</th><th>Needs</th></tr>
-<tr><td><code>vpp run</code>, <code>check</code>, <code>test</code></td><td>Installer only</td></tr>
-<tr><td><code>vpp build</code> (native <code>.exe</code>)</td><td>Bundled <code>clang</code> in installer, or LLVM 22</td></tr>
-<tr><td>Hack on compiler</td><td>Rust + LLVM 22</td></tr>
-</table></div>
-
-
-
-<p>&lt;!-- getting-started\vscode-setup.md --&gt;</p>
-
-
-<h2 id="getting-started-vscode-setup">getting-started — vscode-setup</h2>
-
-
-<h2 id="vs-code-setup-for-v">VS Code setup for v++</h2>
-
-<h3 id="install">Install</h3>
-
-<p>1. Install the compiler (<a href="install.md">install guide</a>).</p>
-<p>2. Install extension <strong>v++ Language</strong> (publisher: <strong>vpp-lang</strong>).</p>
-
-<h3 id="run-code">Run code</h3>
-
-<p>1. Open a folder with <code>.vpp</code> files.</p>
-<p>2. Open a file — bottom-right should say <strong>v++</strong>.</p>
-<p>3. Press <strong>F5</strong> or <strong>Ctrl+Shift+R</strong> to run the active file.</p>
-
-<h3 id="language-server-intellisense">Language server (IntelliSense)</h3>
-
-<p>Build <code>vppls</code> once (or use a release that includes it):</p>
-
-<pre><code class="language-powershell">
-cargo build --release --features lsp --bin vppls
-</code></pre>
-
-<p>Settings (<code>File → Preferences → Settings</code>, search <code>vpp</code>):</p>
-
-<div class="table-wrap"><table>
-<tr><th>Setting</th><th>Purpose</th></tr>
-<tr><td><code>vpp.compilerPath</code></td><td>Path to <code>vpp.exe</code></td></tr>
-<tr><td><code>vpp.languageServerPath</code></td><td>Path to <code>vppls</code></td></tr>
-<tr><td><code>vpp.enableLanguageServer</code></td><td>Red squiggles, completion, go-to-definition</td></tr>
-</table></div>
-
-<h3 id="commands">Commands</h3>
-
-<div class="table-wrap"><table>
-<tr><th>Command</th><th>Shortcut</th></tr>
-<tr><td>v++: Run File</td><td>F5, Ctrl+Shift+R</td></tr>
-<tr><td>v++: Check File</td><td>Command Palette</td></tr>
-<tr><td>v++: Run Tests</td><td>Command Palette</td></tr>
-</table></div>
-
-<p>See also: <a href="../guides/language-server.md">Language server</a>, <a href="../guides/troubleshooting.md">Troubleshooting</a>.</p>
-
-
-
-<p>&lt;!-- guides\cli-reference.md --&gt;</p>
-
-
-<h2 id="guides-cli-reference">guides — cli-reference</h2>
-
-
-<h2 id="cli-reference">CLI reference</h2>
-
-<pre><code>
-vpp run [file.vpp]     Run via interpreter (calls main if present)
-vpp build [file] -o X  Compile native executable
-vpp check [file]       Type-check only
-vpp compile [file]     Emit LLVM IR (.ll)
-vpp fmt [file]         Format source in place
-vpp test               Run test blocks in project
-vpp init [name]        Create new project scaffold
-vpp new NAME --path P  Create project at path
-vpp add NAME ...       Add dependency to vpp.toml
-vpp remove NAME        Remove dependency
-vpp update             Resolve / refresh lockfile
-vpp doctor             Toolchain diagnostics
-vpp lsp                Start language server (stdio)
-</code></pre>
-
-<h3 id="global-flags">Global flags</h3>
-
-<p>Run <code>vpp --help</code> for current options.</p>
-
-<h3 id="environment">Environment</h3>
-
-<div class="table-wrap"><table>
-<tr><th>Variable</th><th>Purpose</th></tr>
-<tr><td><code>LLVM_SYS_221_PREFIX</code></td><td>LLVM install path for <code>vpp build</code> (dev builds)</td></tr>
-<tr><td><code>VPP_HOME</code></td><td>Optional install root (release bundles)</td></tr>
-</table></div>
-
-<h3 id="examples">Examples</h3>
-
-<pre><code class="language-powershell">
-vpp run examples/hello.vpp
-vpp check examples/lesson02_functions.vpp
-vpp build examples/hello.vpp -o hello.exe
-vpp test
-vpp doctor
-</code></pre>
-
-
-
-<p>&lt;!-- guides\formatting.md --&gt;</p>
-
-
-<h2 id="guides-formatting">guides — formatting</h2>
-
-
-<h2 id="formatting">Formatting</h2>
-
-<pre><code class="language-powershell">
-vpp fmt path/to/file.vpp
-</code></pre>
-
-<p>Re-indents blocks and normalizes spacing. Does not change semantics.</p>
-
-<p>Format before committing. IDE format-on-save can call <code>vpp fmt</code> via tasks (manual setup today).</p>
-
-
-
-<p>&lt;!-- guides\language-server.md --&gt;</p>
-
-
-<h2 id="guides-language-server">guides — language-server</h2>
-
-
-<h2 id="language-server-vppls">Language server (vppls)</h2>
-
-<p><code>vppls</code> provides:</p>
-
-<ul>
-<li><strong>Diagnostics</strong> — red squiggles from the type checker</li>
-<li><strong>Completion</strong> — keyword and context suggestions</li>
-<li><strong>Go to definition</strong> — jump to symbols (best-effort)</li>
-</ul>
-
-<h3 id="build">Build</h3>
-
-<pre><code class="language-powershell">
-cargo build --release --features lsp --bin vppls
-</code></pre>
-
-<p>Release bundles include <code>vppls.exe</code>.</p>
-
-<h3 id="vs-code">VS Code</h3>
-
-<p>Extension setting <code>vpp.languageServerPath</code> defaults to <code>vppls</code> on PATH.</p>
-
-<p>Disable with <code>vpp.enableLanguageServer: false</code>.</p>
-
-<h3 id="protocol">Protocol</h3>
-
-<p>Standard LSP over stdio. Started automatically by the VS Code extension when a <code>.vpp</code> file is open.</p>
-
-
-
-<p>&lt;!-- guides\native-compilation.md --&gt;</p>
-
-
-<h2 id="guides-native-compilation">guides — native-compilation</h2>
-
-
-<h2 id="native-compilation">Native compilation</h2>
-
-<p><code>vpp build</code> lowers code to LLVM IR, compiles with clang, and links the v++ C runtime.</p>
-
-<pre><code class="language-powershell">
-vpp build examples/hello.vpp -o hello.exe
-.\hello.exe
-</code></pre>
-
-<h3 id="requirements">Requirements</h3>
-
-<ul>
-<li><strong>Release installer</strong> — includes portable <code>clang</code> under <code>llvm\bin</code></li>
-<li><strong>From source</strong> — LLVM 22 + <code>LLVM_SYS_221_PREFIX</code></li>
-</ul>
-
-<pre><code class="language-powershell">
-$env:LLVM_SYS_221_PREFIX = &quot;C:\Program Files\LLVM&quot;
-cargo build --release --features codegen
-</code></pre>
-
-<h3 id="interpreter-vs-native">Interpreter vs native</h3>
-
-<div class="table-wrap"><table>
-<tr><th></th><th><code>vpp run</code></th><th><code>vpp build</code></th></tr>
-<tr><td>Speed to iterate</td><td>Fast</td><td>Slower</td></tr>
-<tr><td>Output</td><td>Runs in VM</td><td>Standalone <code>.exe</code></td></tr>
-<tr><td>LLVM needed</td><td>No</td><td>Yes</td></tr>
-</table></div>
-
-<p>Parity tests ensure interpreter and native produce the same stdout for key examples.</p>
-
-<h3 id="memory-model">Memory model</h3>
-
-<p>Strings and arrays use ARC in native code. See <a href="../../MEMORY_MODEL.md">MEMORY_MODEL.md</a>.</p>
-
-
-
-<p>&lt;!-- guides\package-manager.md --&gt;</p>
-
-
-<h2 id="guides-package-manager">guides — package-manager</h2>
-
-
-<h2 id="package-manager">Package manager</h2>
-
-<h3 id="vpp-toml">vpp.toml</h3>
-
-<pre><code class="language-toml">
-name = &quot;myapp&quot;
-version = &quot;0.1.0&quot;
-entry = &quot;src/main.vpp&quot;
-
-[dependencies]
-hello-lib = &quot;0.1.0&quot;
-helper = { path = &quot;../helper&quot; }
-remote = { git = &quot;https://github.com/example/lib&quot;, tag = &quot;v1.0.0&quot; }
-</code></pre>
-
-<h3 id="commands">Commands</h3>
-
-<pre><code class="language-powershell">
-vpp new myapp --path myapp
-vpp add hello-lib --version 0.1.0
-vpp add helper --path ../helper
-vpp add lib --git https://github.com/example/lib --tag v1.0.0
-vpp update
-vpp remove hello-lib
-</code></pre>
-
-<h3 id="lockfile">Lockfile</h3>
-
-<p><code>vpp.lock</code> pins resolved versions. Commit it for reproducible builds.</p>
-
-<h3 id="registry">Registry</h3>
-
-<p>Built-in index: <a href="../../registry/index.toml"><code>registry/index.toml</code></a>.</p>
-
-
-
-<p>&lt;!-- guides\testing.md --&gt;</p>
-
-
-<h2 id="guides-testing">guides — testing</h2>
-
-
-<h2 id="testing">Testing</h2>
-
-<h3 id="inline-test-blocks">Inline test blocks</h3>
-
-<pre><code class="language-vpp">
-test &quot;addition works&quot; {
-    assert_eq(add(2, 3), 5)
-}
-</code></pre>
-
-<h3 id="project-tests">Project tests</h3>
-
-<p>Place files under <code>tests/</code> or use inline blocks, then:</p>
-
-<pre><code class="language-powershell">
-vpp test
-</code></pre>
-
-<h3 id="vs-code">VS Code</h3>
-
-<p>Command Palette → <strong>v++: Run Tests</strong></p>
-
-<h3 id="ci">CI</h3>
-
-<pre><code class="language-powershell">
-cargo test --all-targets
-cargo test --features codegen parity
-</code></pre>
-
-<p>See <a href="../contributing/running-tests.md">Running tests</a>.</p>
-
-
-
-<p>&lt;!-- guides\troubleshooting.md --&gt;</p>
-
-
-<h2 id="guides-troubleshooting">guides — troubleshooting</h2>
-
-
-<h2 id="troubleshooting">Troubleshooting</h2>
-
-<h3 id="vpp-not-recognized"><code>vpp</code> not recognized</h3>
-
-<ul>
-<li>Reopen terminal after install</li>
-<li>Add install dir to PATH (see <a href="../getting-started/install.md">install guide</a>)</li>
-<li>Or set <code>vpp.compilerPath</code> in VS Code</li>
-</ul>
-
-<h3 id="smartscreen-security-warning">SmartScreen / security warning</h3>
-
-<p>Open-source installers may trigger a one-time Windows SmartScreen prompt. Choose <strong>More info → Run anyway</strong>, or verify the download from <a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a>.</p>
-
-<h3 id="vpp-build-fails-clang-not-found"><code>vpp build</code> fails — clang not found</h3>
-
-<ul>
-<li>Use release installer (bundled clang), or</li>
-<li><code>winget install LLVM.LLVM</code> and set <code>LLVM_SYS_221_PREFIX</code></li>
-</ul>
-
-<h3 id="no-syntax-highlighting">No syntax highlighting</h3>
-
-<ul>
-<li>Install extension <strong>v++ Language</strong> (vpp-lang)</li>
-<li>Reload window; confirm language mode is <strong>v++</strong></li>
-</ul>
-
-<h3 id="lsp-not-working">LSP not working</h3>
-
-<ul>
-<li>Build <code>vppls</code>: <code>cargo build --features lsp --bin vppls</code></li>
-<li>Check Output panel → v++ Language Server</li>
-</ul>
-
-<h3 id="native-vs-interpreter-mismatch">Native vs interpreter mismatch</h3>
-
-<p>Run parity check:</p>
-
-<pre><code class="language-powershell">
-.\stress.ps1
-</code></pre>
-
-<p>File issues: <a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a>.</p>
-
-
-
-<p>&lt;!-- language\control-flow.md --&gt;</p>
-
-
-<h2 id="language-control-flow">language — control-flow</h2>
-
-
-<h2 id="control-flow">Control flow</h2>
-
-<h3 id="if-else">if / else</h3>
-
-<pre><code class="language-vpp">
-if x &gt; 0 {
-    print(&quot;positive&quot;)
-} else {
-    print(&quot;non-positive&quot;)
-}
-</code></pre>
-
-<h3 id="while">while</h3>
-
-<pre><code class="language-vpp">
-let mut i = 0
-while i &lt; 3 {
-    print(i)
-    i = i + 1
-}
-</code></pre>
-
-<h3 id="for-range">for (range)</h3>
-
-<pre><code class="language-vpp">
-for i in 0..3 {
-    print(i)
-}
-</code></pre>
-
-<h3 id="for-array">for (array)</h3>
-
-<pre><code class="language-vpp">
-for name in [&quot;Alex&quot;, &quot;Sam&quot;] {
-    print(name)
-}
-</code></pre>
-
-<h3 id="match">match</h3>
-
-<pre><code class="language-vpp">
-match status {
-    Active =&gt; print(&quot;on&quot;),
-    Idle =&gt; print(&quot;off&quot;),
-}
-</code></pre>
-
-<p>Enums, <code>Option</code>, and <code>Result</code> matches must be <strong>exhaustive</strong> or use <code>_</code> (compile error E0107).</p>
-
-<p>See <a href="option-result-match.md">option-result-match.md</a>.</p>
-
-<h3 id="break-continue">break / continue</h3>
-
-<p>Supported inside <code>while</code> and <code>for</code> loops.</p>
-
-
-
-<p>&lt;!-- language\functions.md --&gt;</p>
-
-
-<h2 id="language-functions">language — functions</h2>
-
-
-<h2 id="functions">Functions</h2>
-
-<pre><code class="language-vpp">
-fn greet(name: string) -&gt; int {
-    print(name)
-    return 0
-}
-</code></pre>
-
-<h3 id="main">Main</h3>
-
-<pre><code class="language-vpp">
-fn main() -&gt; int {
-    print(&quot;starting&quot;)
-    return 0
-}
-</code></pre>
-
-<h3 id="generic-functions-v0-4">Generic functions (v0.4+)</h3>
-
-<pre><code class="language-vpp">
-fn id[T](x: T) -&gt; T {
-    return x
-}
-
-print(id[int](42))
-</code></pre>
-
-<p>Type arguments are required at call sites (monomorphization).</p>
-
-<p>See <a href="generics.md">generics.md</a>.</p>
-
-
-
-<p>&lt;!-- language\generics.md --&gt;</p>
-
-
-<h2 id="language-generics">language — generics</h2>
-
-
-<h2 id="generics-v0-4">Generics (v0.4+)</h2>
-
-<p>v++ uses <strong>monomorphization</strong> — generic functions are specialized at each call site.</p>
-
-<pre><code class="language-vpp">
-fn first[T](items: array[T]) -&gt; Option[T] {
-    if len(items) == 0 {
-        return None
-    }
-    return Some(items[0])
-}
-</code></pre>
-
-<p>Call with explicit type args:</p>
-
-<pre><code class="language-vpp">
-let word = first[string]([&quot;a&quot;, &quot;b&quot;])
-</code></pre>
-
-<p>Example: <a href="../../examples/generics.vpp"><code>examples/generics.vpp</code></a>.</p>
-
-
-
-<p>&lt;!-- language\modules.md --&gt;</p>
-
-
-<h2 id="language-modules">language — modules</h2>
-
-
-<h2 id="modules">Modules</h2>
-
-<h3 id="standard-library-imports">Standard library imports</h3>
-
-<pre><code class="language-vpp">
-import std.io
-import std.math
-
-fn main() -&gt; int {
-    io.print(&quot;hello&quot;)
-    print(math.abs(-5))
-    return 0
-}
-</code></pre>
-
-<h3 id="public-exports">Public exports</h3>
-
-<p>In a module file, mark items with <code>pub</code>:</p>
-
-<pre><code class="language-vpp">
-pub fn helper() -&gt; int {
-    return 1
-}
-</code></pre>
-
-<h3 id="project-layout">Project layout</h3>
-
-<pre><code>
-myapp/
-  vpp.toml
-  src/main.vpp
-  src/util.vpp
-</code></pre>
-
-<p>See <a href="../guides/package-manager.md">Package manager</a> for <code>vpp.toml</code> and dependencies.</p>
-
-
-
-<p>&lt;!-- language\mut-and-immutability.md --&gt;</p>
-
-
-<h2 id="language-mut-and-immutability">language — mut-and-immutability</h2>
-
-
-<h2 id="mut-and-immutability-v0-4">mut and immutability (v0.4+)</h2>
-
-<p>Bindings are <strong>immutable by default</strong>.</p>
-
-<pre><code class="language-vpp">
-let x = 1
-// x = 2   // error: cannot reassign immutable binding
-</code></pre>
-
-<p>Use <code>mut</code> when you need to reassign:</p>
-
-<pre><code class="language-vpp">
-let mut count = 0
-count = count + 1
-</code></pre>
-
-<p>Loop counters and accumulators typically need <code>mut</code>.</p>
-
-
-
-<p>&lt;!-- language\option-result-match.md --&gt;</p>
-
-
-<h2 id="language-option-result-match">language — option-result-match</h2>
-
-
-<h2 id="option-result-and-match">Option, Result, and match</h2>
-
-<h3 id="option">Option</h3>
-
-<pre><code class="language-vpp">
-let some = Some(42)
-let none: Option[int] = None
-</code></pre>
-
-<h3 id="result">Result</h3>
-
-<pre><code class="language-vpp">
-fn divide(a: int, b: int) -&gt; Result[int, string] {
-    if b == 0 {
-        return Err(&quot;division by zero&quot;)
-    }
-    return Ok(a / b)
-}
-</code></pre>
-
-<h3 id="exhaustive-match">Exhaustive match</h3>
-
-<p>The compiler rejects non-exhaustive matches on enums, <code>Option</code>, and <code>Result</code>:</p>
-
-<pre><code class="language-vpp">
-match opt {
-    Some(x) =&gt; print(x),
-    None =&gt; print(&quot;empty&quot;),
-}
-</code></pre>
-
-<p>Missing <code>None</code> → <strong>E0107</strong>.</p>
-
-<p>Use <code>_</code> for a catch-all when appropriate.</p>
-
-
-
-<p>&lt;!-- language\structs-and-enums.md --&gt;</p>
-
-
-<h2 id="language-structs-and-enums">language — structs-and-enums</h2>
-
-
-<h2 id="structs-and-enums">Structs and enums</h2>
-
-<h3 id="struct">Struct</h3>
-
-<pre><code class="language-vpp">
-struct User {
-    name: string,
-    age: int,
-}
-
-let u = User { name: &quot;Alex&quot;, age: 30 }
-print(u.name)
-</code></pre>
-
-<h3 id="enum">Enum</h3>
-
-<pre><code class="language-vpp">
-enum Status {
-    Active,
-    Idle,
-}
-
-let s = Active
-match s {
-    Active =&gt; print(&quot;on&quot;),
-    Idle =&gt; print(&quot;off&quot;),
-}
-</code></pre>
-
-<h3 id="enum-with-payloads">Enum with payloads</h3>
-
-<pre><code class="language-vpp">
-enum Message {
-    Text(string),
-    Count(int),
-}
-</code></pre>
-
-<p>All variants must be handled in <code>match</code> or use <code>_</code>.</p>
-
-
-
-<p>&lt;!-- language\traits.md --&gt;</p>
-
-
-<h2 id="language-traits">language — traits</h2>
-
-
-<h2 id="traits-and-impls-v0-4">Traits and impls (v0.4+)</h2>
-
-<p>Static dispatch — no virtual tables at runtime.</p>
-
-<pre><code class="language-vpp">
-trait Display {
-    fn to_text(self) -&gt; string
-}
-
-struct User {
-    name: string,
-}
-
-impl Display for User {
-    fn to_text(self) -&gt; string {
-        return self.name
-    }
-}
-
-let u = User { name: &quot;Alex&quot; }
-print(u.to_text())
-</code></pre>
-
-<p>Example: <a href="../../examples/traits.vpp"><code>examples/traits.vpp</code></a>.</p>
-
-
-
-<p>&lt;!-- language\types-and-inference.md --&gt;</p>
-
-
-<h2 id="language-types-and-inference">language — types-and-inference</h2>
-
-
-<h2 id="types-and-inference">Types and inference</h2>
-
-<h3 id="built-in-types">Built-in types</h3>
-
-<div class="table-wrap"><table>
-<tr><th>Type</th><th>Example</th></tr>
-<tr><td><code>int</code></td><td><code>42</code></td></tr>
-<tr><td><code>float</code></td><td><code>3.14</code></td></tr>
-<tr><td><code>bool</code></td><td><code>true</code></td></tr>
-<tr><td><code>string</code></td><td><code>&quot;hello&quot;</code></td></tr>
-<tr><td><code>array[T]</code></td><td><code>[1, 2, 3]</code></td></tr>
-<tr><td><code>Option[T]</code></td><td><code>Some(1)</code>, <code>None</code></td></tr>
-<tr><td><code>Result[T, E]</code></td><td><code>Ok(1)</code>, <code>Err(&quot;msg&quot;)</code></td></tr>
-</table></div>
-
-<h3 id="local-inference">Local inference</h3>
-
-<pre><code class="language-vpp">
-let x = 10        // int
-let name = &quot;v++&quot;  // string
-let active = true // bool
-</code></pre>
-
-<h3 id="explicit-annotations">Explicit annotations</h3>
-
-<pre><code class="language-vpp">
-let count: int = 0
-let items: array[string] = [&quot;a&quot;, &quot;b&quot;]
-</code></pre>
-
-<h3 id="function-signatures">Function signatures</h3>
-
-<p>Parameters and return types are <strong>always explicit</strong>:</p>
-
-<pre><code class="language-vpp">
-fn add(a: int, b: int) -&gt; int {
-    return a + b
-}
-</code></pre>
-
-<h3 id="entry-point">Entry point</h3>
-
-<pre><code class="language-vpp">
-fn main() -&gt; int {
-    return 0
-}
-</code></pre>
-
-<p><code>vpp run</code> calls <code>main()</code> when defined.</p>
-
-
-
-<p>&lt;!-- PRIVACY.md --&gt;</p>
-
-
-<h2 id="privacy">PRIVACY</h2>
-
-
-<h2 id="privacy-policy-v">Privacy Policy — v++</h2>
-
-<p><strong>Last updated:</strong> August 2026</p>
-
-<p>v++ (the compiler, language server, and VS Code extension) is open-source software distributed under the MIT License.</p>
-
-<h3 id="data-collection">Data collection</h3>
-
-<p>The v++ compiler and language server <strong>do not collect, transmit, or store personal data</strong>. All compilation and analysis runs locally on your machine.</p>
-
-<p>The VS Code extension communicates only with the local <code>vppls</code> language server process on your computer. It does not send source code or usage data to any remote server operated by the v++ project.</p>
-
-<h3 id="third-party-services">Third-party services</h3>
-
-<ul>
-<li><strong>GitHub Releases</strong> — if you download binaries from GitHub, GitHub’s own privacy policy applies to that download.</li>
-<li><strong>VS Code Marketplace</strong> — if you install the extension from the Marketplace, Microsoft’s privacy policy applies to that installation flow.</li>
-</ul>
-
-<h3 id="contact">Contact</h3>
-
-<p>Issues and questions: https://github.com/shauryaR790/V-/issues</p>
-
-
-
-<p>&lt;!-- project\faq.md --&gt;</p>
-
-
-<h2 id="project-faq">project — faq</h2>
-
-
-<h2 id="faq">FAQ</h2>
-
-<h3 id="what-is-v">What is v++?</h3>
-
-<p>A compiled language with Python-like syntax, static typing, and native codegen via LLVM.</p>
-
-<h3 id="is-v-ready-for-production">Is v++ ready for production?</h3>
-
-<p>It&#x27;s <strong>v0.5</strong> — early but real. Expect language changes until v1.0.</p>
-
-<h3 id="how-is-v-different-from-python">How is v++ different from Python?</h3>
-
-<div class="table-wrap"><table>
-<tr><th></th><th>Python</th><th>v++</th></tr>
-<tr><td>Typing</td><td>Dynamic (optional hints)</td><td>Static + inference</td></tr>
-<tr><td>Run</td><td>Interpreter default</td><td>Interpreter + native <code>.exe</code></td></tr>
-<tr><td>Ecosystem</td><td>Huge</td><td>Small, growing</td></tr>
-<tr><td>Age</td><td>30+ years</td><td>New</td></tr>
-</table></div>
-
-<h3 id="where-do-i-download">Where do I download?</h3>
-
-<p><a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a> — <code>vpp-*-setup.exe</code></p>
-
-<h3 id="which-vs-code-extension-is-official">Which VS Code extension is official?</h3>
-
-<p><strong>v++ Language</strong> by publisher <strong>vpp-lang</strong> (<code>vpp-lang.vplusplus</code>).</p>
-
-<h3 id="does-v-collect-data">Does v++ collect data?</h3>
-
-<p>No. See <a href="../PRIVACY.md">PRIVACY.md</a>.</p>
-
-<h3 id="how-do-i-report-bugs">How do I report bugs?</h3>
-
-<p><a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a></p>
-
-<h3 id="can-i-contribute">Can I contribute?</h3>
-
-<p>Yes — <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
-
-
-
-<p>&lt;!-- project\roadmap.md --&gt;</p>
-
-
-<h2 id="project-roadmap">project — roadmap</h2>
-
+<p>---</p>
 
 <h2 id="roadmap">Roadmap</h2>
 
-<h3 id="shipped-v0-4-4">Shipped (v0.4.4)</h3>
+<p><strong>v0.5</strong> — website, REPL, SignPath signing, expanded stdlib  </p>
+<p><strong>v1.0</strong> — stable spec, debugger, test explorer</p>
 
-<ul>
-<li>Language: mut, generics, traits, exhaustive match</li>
-<li>Toolchain: vpp, vppls, package manager, stdlib</li>
-<li>Distribution: Windows installer, VS Code extension, CI/CD</li>
-</ul>
-
-<h3 id="v0-5-current">v0.5 (current)</h3>
-
-<ul>
-<li>[x] Documentation hub and install guides</li>
-<li>[x] Website (landing, learn, 20 projects, downloads, history)</li>
-<li>[ ] SignPath code signing</li>
-<li>[ ] REPL (<code>vpp repl</code>)</li>
-<li>[ ] Expanded stdlib (maps, time)</li>
-<li>[ ] Linux/macOS release polish</li>
-</ul>
-
-<h3 id="v1-0-stable">v1.0 (stable)</h3>
-
-<ul>
-<li>[ ] Frozen language spec — no breaking changes without major version</li>
-<li>[ ] Debugger extension (breakpoints)</li>
-<li>[ ] Test Explorer UI in VS Code</li>
-<li>[ ] Hosted package registry</li>
-<li>[ ] Curriculum + interactive tutorial</li>
-</ul>
-
-<p>Track progress in <a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a>.</p>
-
-
-
-<p>&lt;!-- stdlib\collections.md --&gt;</p>
-
-
-<h2 id="stdlib-collections">stdlib — collections</h2>
-
-
-<h2 id="std-collections">std.collections</h2>
-
-<p>Collection helpers. See <a href="../../std/collections.vpp"><code>std/collections.vpp</code></a>.</p>
-
-<pre><code class="language-vpp">
-import std.collections
-</code></pre>
-
-<p>Arrays are first-class: <code>[1, 2, 3]</code>, <code>len(arr)</code>, <code>for x in arr</code>.</p>
-
-
-
-<p>&lt;!-- stdlib\fs.md --&gt;</p>
-
-
-<h2 id="stdlib-fs">stdlib — fs</h2>
-
-
-<h2 id="std-fs">std.fs</h2>
-
-<p>File system access (native codegen supported).</p>
-
-<pre><code class="language-vpp">
-import std.fs
-
-let text = fs.read_file(&quot;data.txt&quot;)
-fs.write_file(&quot;out.txt&quot;, &quot;hello&quot;)
-let exists = fs.file_exists(&quot;data.txt&quot;)
-</code></pre>
-
-<p>Use <code>vpp run</code> (interpreter) or <code>vpp build</code> depending on deployment needs.</p>
-
-
-
-<p>&lt;!-- stdlib\io.md --&gt;</p>
-
-
-<h2 id="stdlib-io">stdlib — io</h2>
-
-
-<h2 id="std-io">std.io</h2>
-
-<pre><code class="language-vpp">
-import std.io
-
-fn main() -&gt; int {
-    io.print(&quot;Hello&quot;)
-    return 0
-}
-</code></pre>
-
-<p>Top-level <code>print()</code> is also available without import in many examples.</p>
-
-
-
-<p>&lt;!-- stdlib\json.md --&gt;</p>
-
-
-<h2 id="stdlib-json">stdlib — json</h2>
-
-
-<h2 id="std-json">std.json</h2>
-
-<p>JSON parse and stringify (native codegen supported).</p>
-
-<pre><code class="language-vpp">
-import std.json
-
-let obj = json.parse(&quot;{\&quot;name\&quot;:\&quot;v++\&quot;}&quot;)
-let s = json.stringify(obj)
-</code></pre>
-
-<p>For production JSON workloads, validate outputs against your schema in tests.</p>
-
-
-
-<p>&lt;!-- stdlib\math.md --&gt;</p>
-
-
-<h2 id="stdlib-math">stdlib — math</h2>
-
-
-<h2 id="std-math">std.math</h2>
-
-<pre><code class="language-vpp">
-import std.math
-
-print(math.abs(-5))
-print(math.min(3, 7))
-print(math.max(3, 7))
-print(math.pow(2, 10))
-</code></pre>
-
-
-
-<p>&lt;!-- stdlib\process.md --&gt;</p>
-
-
-<h2 id="stdlib-process">stdlib — process</h2>
-
-
-<h2 id="std-process">std.process</h2>
-
-<p>Run external processes (native codegen supported).</p>
-
-<pre><code class="language-vpp">
-import std.process
-
-let code = process.run(&quot;echo hello&quot;)
-</code></pre>
-
-<p>Use with care — sandbox and validate commands in user-facing apps.</p>
-
-
-
-<p>&lt;!-- stdlib\string.md --&gt;</p>
-
-
-<h2 id="stdlib-string">stdlib — string</h2>
-
-
-<h2 id="std-string">std.string</h2>
-
-<p>String operations via the stdlib module. See <a href="../../std/string.vpp"><code>std/string.vpp</code></a> for current exports.</p>
-
-<pre><code class="language-vpp">
-import std.string
-</code></pre>
-
-<p>Built-in <code>string</code> type supports concatenation with <code>+</code> in the language.</p>
-      </article>
-      <aside class="doc-aside">
-        <p class="meta-line">1586 lines · v0.5.0</p>
-        <nav class="doc-toc"><h4>On this page</h4><ul>
-<li><a href="#v-documentation-reference-manual">v++ Documentation — reference manual</a></li>
-<li><a href="#v-language-specification-v0-4">v++ Language Specification (v0.4)</a></li>
-<li><a href="#types">Types</a></li>
-<li><a href="#variables">Variables</a></li>
-<li><a href="#functions">Functions</a></li>
-<li><a href="#traits">Traits</a></li>
-<li><a href="#control-flow">Control flow</a></li>
-<li><a href="#builtins">Builtins</a></li>
-<li><a href="#modules-v0-3">Modules (v0.3)</a></li>
-<li><a href="#projects-and-packages">Projects and packages</a></li>
-<li><a href="#standard-library">Standard library</a></li>
-<li><a href="#execution">Execution</a></li>
-<li><a href="#known-limitations-v0-4">Known limitations (v0.4)</a></li>
-<li><a href="#v-compiler-architecture-v0-2">v++ Compiler Architecture (v0.2)</a></li>
-<li><a href="#overview">Overview</a></li>
-<li><a href="#components">Components</a></li>
-<li><a href="#lexer-parser">Lexer / Parser</a></li>
-<li><a href="#type-checker">Type checker</a></li>
-<li><a href="#v-ir">v++ IR</a></li>
-<li><a href="#llvm-backend">LLVM backend</a></li>
-<li><a href="#runtime">Runtime</a></li>
-<li><a href="#builtins">Builtins</a></li>
-<li><a href="#feature-parity-v0-2-target">Feature parity (v0.2 target)</a></li>
-<li><a href="#version-notes">Version notes</a></li>
-<li><a href="#v-memory-model-v0-2-bootstrap">v++ Memory Model (v0.2 bootstrap)</a></li>
-<li><a href="#goals">Goals</a></li>
-<li><a href="#representation">Representation</a></li>
-<li><a href="#stack-by-value-in-llvm">Stack (by value in LLVM)</a></li>
-<li><a href="#heap-arc">Heap (ARC)</a></li>
-<li><a href="#string-abi-v0-2">String ABI (v0.2)</a></li>
-<li><a href="#array-abi-v0-2">Array ABI (v0.2)</a></li>
-<li><a href="#arc-rules-v0-2-bootstrap">ARC rules (v0.2 bootstrap)</a></li>
-<li><a href="#interpreter-mapping">Interpreter mapping</a></li>
-<li><a href="#future-v1-0">Future (v1.0)</a></li>
-<li><a href="#std-collections">std.collections</a></li>
-<li><a href="#std-fs">std.fs</a></li>
-<li><a href="#std-io">std.io</a></li>
-<li><a href="#std-json">std.json</a></li>
-<li><a href="#std-math">std.math</a></li>
-<li><a href="#std-process">std.process</a></li>
-<li><a href="#standard-library">Standard library</a></li>
-<li><a href="#std-string">std.string</a></li>
-<li><a href="#contributing-building-from-source">contributing — building-from-source</a></li>
-<li><a href="#building-from-source">Building from source</a></li>
-<li><a href="#requirements">Requirements</a></li>
-<li><a href="#build">Build</a></li>
-<li><a href="#features">Features</a></li>
-<li><a href="#install-locally">Install locally</a></li>
-<li><a href="#contributing-running-tests">contributing — running-tests</a></li>
-<li><a href="#running-tests">Running tests</a></li>
-<li><a href="#getting-started-first-project">getting-started — first-project</a></li>
-<li><a href="#your-first-v-project">Your first v++ project</a></li>
-<li><a href="#scaffold">Scaffold</a></li>
-<li><a href="#run">Run</a></li>
-<li><a href="#test">Test</a></li>
-<li><a href="#add-a-dependency">Add a dependency</a></li>
-<li><a href="#getting-started-hello-world">getting-started — hello-world</a></li>
-<li><a href="#hello-v">Hello, v++</a></li>
-<li><a href="#what-you-just-used">What you just used</a></li>
-<li><a href="#getting-started-install">getting-started — install</a></li>
-<li><a href="#install-v">Install v++</a></li>
-<li><a href="#windows-recommended">Windows (recommended)</a></li>
-<li><a href="#vs-code-extension">VS Code extension</a></li>
-<li><a href="#portable-zip-advanced">Portable zip (advanced)</a></li>
-<li><a href="#build-from-source">Build from source</a></li>
-<li><a href="#requirements">Requirements</a></li>
-<li><a href="#getting-started-vscode-setup">getting-started — vscode-setup</a></li>
-<li><a href="#vs-code-setup-for-v">VS Code setup for v++</a></li>
-<li><a href="#install">Install</a></li>
-<li><a href="#run-code">Run code</a></li>
-<li><a href="#language-server-intellisense">Language server (IntelliSense)</a></li>
-<li><a href="#commands">Commands</a></li>
-<li><a href="#guides-cli-reference">guides — cli-reference</a></li>
-<li><a href="#cli-reference">CLI reference</a></li>
-<li><a href="#global-flags">Global flags</a></li>
-<li><a href="#environment">Environment</a></li>
-<li><a href="#examples">Examples</a></li>
-<li><a href="#guides-formatting">guides — formatting</a></li>
-<li><a href="#formatting">Formatting</a></li>
-<li><a href="#guides-language-server">guides — language-server</a></li>
-</ul></nav>
-        <p class="edit-link"><a href="https://github.com/shauryaR790/V-/edit/main/website/docs.html" target="_blank" rel="noopener">Edit this page</a></p>
-      </aside>
+<p>Details: <a href="docs/project/roadmap.md">docs/project/roadmap.md</a></p></article>
     </main>
+    <aside class="docs-toc">
+      <p class="toc-label">On this page</p>
+      <ul>
+<li class=""><a href="#data-collection">Data collection</a></li>
+<li class=""><a href="#third-party-services">Third-party services</a></li>
+<li class=""><a href="#contact">Contact</a></li>
+<li class=""><a href="#getting-started">Getting started</a></li>
+<li class=""><a href="#language-reference">Language reference</a></li>
+<li class=""><a href="#guides">Guides</a></li>
+<li class=""><a href="#standard-library">Standard library</a></li>
+<li class=""><a href="#project">Project</a></li>
+<li class=""><a href="#contributing">Contributing</a></li>
+<li class=""><a href="#legal">Legal</a></li>
+<li class=""><a href="#requirements">Requirements</a></li>
+<li class=""><a href="#build">Build</a></li>
+<li class=""><a href="#features">Features</a></li>
+<li class=""><a href="#install-locally">Install locally</a></li>
+<li class=""><a href="#scaffold">Scaffold</a></li>
+<li class=""><a href="#run">Run</a></li>
+<li class=""><a href="#test">Test</a></li>
+<li class=""><a href="#add-a-dependency">Add a dependency</a></li>
+<li class=""><a href="#what-you-just-used">What you just used</a></li>
+<li class=""><a href="#windows-recommended">Windows (recommended)</a></li>
+<li class=""><a href="#vs-code-extension">VS Code extension</a></li>
+<li class=""><a href="#portable-zip-advanced">Portable zip (advanced)</a></li>
+<li class=""><a href="#build-from-source">Build from source</a></li>
+<li class=""><a href="#requirements">Requirements</a></li>
+<li class=""><a href="#install">Install</a></li>
+<li class=""><a href="#run-code">Run code</a></li>
+<li class=""><a href="#language-server-intellisense">Language server (IntelliSense)</a></li>
+<li class=""><a href="#commands">Commands</a></li>
+<li class=""><a href="#global-flags">Global flags</a></li>
+<li class=""><a href="#environment">Environment</a></li>
+<li class=""><a href="#examples">Examples</a></li>
+<li class=""><a href="#build">Build</a></li>
+<li class=""><a href="#vs-code">VS Code</a></li>
+<li class=""><a href="#protocol">Protocol</a></li>
+<li class=""><a href="#requirements">Requirements</a></li>
+<li class=""><a href="#interpreter-vs-native">Interpreter vs native</a></li>
+<li class=""><a href="#memory-model">Memory model</a></li>
+<li class=""><a href="#vpp-toml">vpp.toml</a></li>
+<li class=""><a href="#commands">Commands</a></li>
+<li class=""><a href="#lockfile">Lockfile</a></li>
+<li class=""><a href="#registry">Registry</a></li>
+<li class=""><a href="#inline-test-blocks">Inline test blocks</a></li>
+<li class=""><a href="#project-tests">Project tests</a></li>
+<li class=""><a href="#vs-code">VS Code</a></li>
+<li class=""><a href="#ci">CI</a></li>
+<li class=""><a href="#smartscreen-security-warning">SmartScreen / security warning</a></li>
+<li class=""><a href="#no-syntax-highlighting">No syntax highlighting</a></li>
+<li class=""><a href="#lsp-not-working">LSP not working</a></li>
+<li class=""><a href="#native-vs-interpreter-mismatch">Native vs interpreter mismatch</a></li>
+<li class=""><a href="#if-else">if / else</a></li>
+<li class=""><a href="#while">while</a></li>
+<li class=""><a href="#for-range">for (range)</a></li>
+<li class=""><a href="#for-array">for (array)</a></li>
+<li class=""><a href="#match">match</a></li>
+<li class=""><a href="#break-continue">break / continue</a></li>
+<li class=""><a href="#main">Main</a></li>
+<li class=""><a href="#generic-functions-v0-4">Generic functions (v0.4+)</a></li>
+<li class=""><a href="#standard-library-imports">Standard library imports</a></li>
+<li class=""><a href="#public-exports">Public exports</a></li>
+<li class=""><a href="#project-layout">Project layout</a></li>
+<li class=""><a href="#option">Option</a></li>
+<li class=""><a href="#result">Result</a></li>
+<li class=""><a href="#exhaustive-match">Exhaustive match</a></li>
+<li class=""><a href="#design-goals">Design goals</a></li>
+<li class=""><a href="#quick-syntax-map">Quick syntax map</a></li>
+<li class=""><a href="#struct">Struct</a></li>
+<li class=""><a href="#enum">Enum</a></li>
+<li class=""><a href="#enum-with-payloads">Enum with payloads</a></li>
+<li class=""><a href="#built-in-types">Built-in types</a></li>
+<li class=""><a href="#local-inference">Local inference</a></li>
+<li class=""><a href="#explicit-annotations">Explicit annotations</a></li>
+<li class=""><a href="#function-signatures">Function signatures</a></li>
+<li class=""><a href="#entry-point">Entry point</a></li>
+<li class=""><a href="#what-is-v">What is v++?</a></li>
+<li class=""><a href="#is-v-ready-for-production">Is v++ ready for production?</a></li>
+<li class=""><a href="#how-is-v-different-from-python">How is v++ different from Python?</a></li>
+<li class=""><a href="#where-do-i-download">Where do I download?</a></li>
+<li class=""><a href="#which-vs-code-extension-is-official">Which VS Code extension is official?</a></li>
+<li class=""><a href="#does-v-collect-data">Does v++ collect data?</a></li>
+<li class=""><a href="#how-do-i-report-bugs">How do I report bugs?</a></li>
+</ul>
+    </aside>
   </div>
-
-  <footer class="site-footer">
+  <footer class="site-footer compact">
     <div class="footer-inner">
-      <div class="footer-badges">
-        <span class="badge-lts">v0.5.0 Latest</span>
-        <span class="badge-rel">MIT License</span>
+      <span class="footer-badge">v0.5.0</span>
+      <span class="footer-badge yellow">Latest</span>
+      <div class="footer-links">
+        <a href="https://github.com/shauryaR790/V-">GitHub</a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">VS Code</a>
+        <a href="https://github.com/shauryaR790/V-/blob/main/docs/PRIVACY.md">Privacy</a>
       </div>
-      <ul class="footer-links">
-        <li><a href="https://github.com/shauryaR790/V-">GitHub</a></li>
-        <li><a href="https://github.com/shauryaR790/V-/blob/main/docs/PRIVACY.md">Privacy</a></li>
-        <li><a href="https://github.com/shauryaR790/V-/issues">Issues</a></li>
-      </ul>
-      <p class="footer-copy">© 2026 v++ · Created by Shaurya</p>
     </div>
   </footer>
   <script src="js/main.js"></script>
