@@ -18,7 +18,8 @@
   --sidebar-w: 260px;
   --toc-w: 300px;
   --radius: 8px;
-  --grid-yellow: rgba(245, 196, 0, 0.55);
+  --grid-yellow: #f5c400;
+  --grid-yellow-soft: rgba(245, 196, 0, 0.75);
   --code-bg: #0d1117;
 }
 
@@ -29,13 +30,41 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font);
   background-color: var(--white);
-  background-image:
-    linear-gradient(var(--grid-yellow) 2px, transparent 2px),
-    linear-gradient(90deg, var(--grid-yellow) 2px, transparent 2px);
-  background-size: 48px 48px;
   color: var(--black);
   line-height: 1.65;
   font-size: 16px;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Bold blurred grid behind everything */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20px;
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--white);
+  background-image:
+    linear-gradient(var(--grid-yellow-soft) 4px, transparent 4px),
+    linear-gradient(90deg, var(--grid-yellow-soft) 4px, transparent 4px);
+  background-size: 56px 56px;
+  filter: blur(2.5px);
+  opacity: 0.95;
+}
+
+/* Extra depth — soft yellow glow on grid intersections */
+body::after {
+  content: "";
+  position: fixed;
+  inset: -20px;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at center, rgba(245, 196, 0, 0.35) 2px, transparent 2px);
+  background-size: 56px 56px;
+  filter: blur(4px);
+  opacity: 0.7;
 }
 
 a { color: var(--black); text-decoration: underline; text-decoration-color: var(--yellow); text-underline-offset: 3px; }
@@ -55,8 +84,10 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   position: sticky;
   top: 0;
   z-index: 200;
-  background: var(--white);
-  border-bottom: 2px solid var(--yellow);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 3px solid var(--yellow);
   height: var(--header-h);
 }
 
@@ -168,6 +199,12 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   margin: 0 auto;
   width: 100%;
   padding: 0 1.25rem;
+}
+
+.page-home .home-main {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .home-hero {
@@ -372,8 +409,10 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   height: calc(100vh - var(--header-h));
   overflow-y: auto;
   padding: 1.25rem 0.75rem 2rem 1.25rem;
-  border-right: 1px solid var(--gray-300);
-  background: rgba(255,255,255,0.92);
+  border-right: 2px solid var(--yellow);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .sidebar-group {
@@ -412,7 +451,9 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .docs-main {
   padding: 2rem 2.5rem 4rem;
   min-width: 0;
-  background: rgba(255,255,255,0.85);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .docs-article h1 {
@@ -555,8 +596,10 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   overflow-y: auto;
   overflow-x: hidden;
   padding: 1.5rem 1.25rem 3rem;
-  border-left: 2px solid var(--yellow);
-  background: rgba(255, 255, 255, 0.95);
+  border-left: 3px solid var(--yellow);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   width: var(--toc-w);
 }
 
