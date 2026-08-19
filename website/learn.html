@@ -34,9 +34,9 @@
   </header>
   <div class="docs-layout">
     <aside class="docs-sidebar"><p class="sidebar-group">Getting started</p><ul>
-<li><a href="/V-/learn.html">Introduction to v++</a></li>
-<li><a href="/V-/learn.html#getting-started">Quick start</a></li>
-<li><a href="/V-/learn.html#hello-world">Hello, v++</a></li>
+<li><a href="/V-/learn.html#introduction">Introduction</a></li>
+<li><a href="/V-/learn.html#install">Install</a></li>
+<li><a href="/V-/learn.html#first-program">First program</a></li>
 <li><a href="/V-/learn.html#first-project">First project</a></li>
 <li><a href="/V-/courses.html">Courses &amp; projects</a></li>
 </ul>
@@ -69,38 +69,123 @@
 </ul></aside>
     <main class="docs-main">
       <article class="docs-article"><div id="top"></div>
-<h1 id="hello-v">Hello, v++</h1>
-<p>Create <code>hello.vpp</code>:</p>
-<div class="code-block-wrap">
-<div class="code-block-header"><span>v++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
-    print(&quot;Hello from v++!&quot;)
-    return 0
-}</code></pre>
-</div>
-<p>Run it:</p>
-<div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run hello.vpp</code></pre>
-</div>
-<p>Type-check without running:</p>
-<div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp check hello.vpp</code></pre>
-</div>
-<p>Compile to a native executable:</p>
-<div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp build hello.vpp -o hello.exe
-.\hello.exe</code></pre>
-</div>
-<h2 id="what-you-just-used">What you just used</h2>
+<h1 id="introduction-to-v">Introduction to v++</h1>
+<p>v++ is a statically typed programming language with readable syntax, a fast interpreter for development, and native compilation to standalone executables via LLVM.</p>
+<p><strong>Write it simply. Compile it natively. Grow into control when you need it.</strong></p>
+<h2 id="what-v-is">What v++ is</h2>
+<p>v++ targets developers who want Python-style readability without giving up compile-time safety or native performance. You start with <code>vpp run</code> during learning and prototyping, then ship the same source with <code>vpp build</code> when you need a <code>.exe</code> with no runtime dependency.</p>
+<p>The toolchain includes a type checker, formatter, package manager, test runner, VS Code language server, and twenty guided projects from beginner to advanced.</p>
+<h2 id="how-v-compares">How v++ compares</h2>
+<div class="table-wrap"><table>
+<tr>
+<td></td>
+<td>Python</td>
+<td>Rust</td>
+<td>C/C++</td>
+<td>v++</td>
+</tr>
+<tr>
+<td>Syntax</td>
+<td>Very readable</td>
+<td>Steeper</td>
+<td>Verbose</td>
+<td>Readable, minimal</td>
+</tr>
+<tr>
+<td>Typing</td>
+<td>Dynamic (optional hints)</td>
+<td>Static, strict</td>
+<td>Static</td>
+<td>Static + inference</td>
+</tr>
+<tr>
+<td>First run</td>
+<td>Interpreter</td>
+<td>Compile</td>
+<td>Compile</td>
+<td>Interpreter (<code>vpp run</code>)</td>
+</tr>
+<tr>
+<td>Native output</td>
+<td>No (without extra tools)</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes (<code>vpp build</code>)</td>
+</tr>
+<tr>
+<td>Learning curve</td>
+<td>Low</td>
+<td>High</td>
+<td>Medium–high</td>
+<td>Low → medium</td>
+</tr>
+<tr>
+<td>Ecosystem</td>
+<td>Massive</td>
+<td>Large</td>
+<td>Huge</td>
+<td>Early (v0.5)</td>
+</tr>
+</tbody></table></div>
+<p><strong>vs Python:</strong> v++ catches type errors before run, produces native binaries, and keeps similar control-flow and function syntax. You trade PyPI&#x27;s scale for a smaller, focused stdlib and a compiler that fits in one repo.</p>
+<p><strong>vs Rust:</strong> v++ avoids ownership/borrowing complexity upfront. Memory is ARC-managed in native builds; you get structs, enums, <code>match</code>, generics, and traits without the full Rust learning cliff.</p>
+<p><strong>vs C/C++:</strong> v++ removes manual memory management and header boilerplate. You still get native code and predictable performance for the supported subset.</p>
+<h2 id="why-use-v-now">Why use v++ now</h2>
 <ul>
-<li><strong><code>vpp run</code></strong> — interpreter (fast iteration, no compile step)</li>
-<li><strong><code>vpp check</code></strong> — type checker only</li>
-<li><strong><code>vpp build</code></strong> — LLVM + clang → <code>.exe</code></li>
+<li><strong>One language, two modes</strong> — interpret while learning, compile when shipping.</li>
+<li><strong>Errors before run</strong> — static types and exhaustiveness checking on <code>match</code>.</li>
+<li><strong>Real toolchain</strong> — CLI, LSP, VS Code extension, packages, tests, not a toy parser.</li>
+<li><strong>Open source</strong> — MIT licensed, compiler and docs in one repository.</li>
+<li><strong>Honest scope</strong> — v0.5 is early; the language is usable for learning, CLI tools, and small native programs.</li>
 </ul>
-<p>Next: <a href="first-project.md">Your first project</a>.</p>
+<h2 id="how-to-learn-v">How to learn v++</h2>
+<p>1. <a href="install.md">Install</a> the Windows installer or build from source.</p>
+<p>2. Write your <a href="hello-world.md">first program</a> — types, <code>fn main</code>, run/check/build.</p>
+<p>3. Scaffold a <a href="first-project.md">project</a> with <code>vpp new</code> and run tests.</p>
+<p>4. Work through the <a href="../../projects/README.md">20 projects</a> in order — each builds on the last.</p>
+<p>5. Read the <a href="../language/README.md">language overview</a> and <a href="../project/faq.md">FAQ</a>.</p>
+<p>6. Use <a href="../../docs.html">Documentation</a> as reference while coding.</p>
+<p>Expect <strong>1–2 weeks</strong> to feel comfortable with syntax and types if you know Python or JavaScript. Expect <strong>another few weeks</strong> for structs, enums, generics, traits, and native builds.</p>
+<h2 id="common-difficulties">Common difficulties</h2>
+<div class="table-wrap"><table>
+<tr>
+<td>Challenge</td>
+<td>What helps</td>
+</tr>
+<tr>
+<td><strong>Types feel strict</strong></td>
+<td>Start with <code>vpp check</code> and read error messages; locals are inferred.</td>
+</tr>
+<tr>
+<td><strong>Native build fails</strong></td>
+<td>Install LLVM 22 + clang; run <code>vpp doctor</code>.</td>
+</tr>
+<tr>
+<td><strong>Small ecosystem</strong></td>
+<td>Stdlib covers io, fs, json, process; contribute or vendor code.</td>
+</tr>
+<tr>
+<td><strong>Language still evolving</strong></td>
+<td>Pin a release; watch <a href="../../CHANGELOG.md">CHANGELOG</a> before upgrading.</td>
+</tr>
+<tr>
+<td><strong>Windows-first</strong></td>
+<td>Primary CI and installers are Windows; other platforms are best-effort.</td>
+</tr>
+</tbody></table></div>
+<h2 id="when-v-is-not-the-right-choice">When v++ is not the right choice</h2>
+<ul>
+<li>You need a mature package ecosystem (use Python, Node, or Rust).</li>
+<li>You need mobile, WebAssembly, or embedded targets today (not primary focus).</li>
+<li>You need guaranteed production stability before v1.0 (we&#x27;re at v0.5).</li>
+</ul>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li><a href="install.md">Install</a></li>
+<li><a href="hello-world.md">First program</a></li>
+<li><a href="../language/README.md">Language overview</a></li>
+<li><a href="../README.md">Full documentation</a></li>
+</ul>
 <h1 id="install-v">Install v++</h1>
 <h2 id="windows-recommended">Windows (recommended)</h2>
 <p>1. Download <strong><code>vpp-0.5.0-setup.exe</code></strong> from <a href="https://github.com/shauryaR790/V-/releases/latest">GitHub Releases</a>.</p>
@@ -146,6 +231,182 @@ vpp doctor</code></pre>
 <td>Rust + LLVM 22</td>
 </tr>
 </tbody></table></div>
+<h1 id="v-language-overview">v++ language overview</h1>
+<p>v++ combines readable syntax with static typing and optional native compilation.</p>
+<h2 id="design-goals">Design goals</h2>
+<ul>
+<li><strong>Readable</strong> — minimal punctuation, familiar control flow</li>
+<li><strong>Typed</strong> — catch errors before run; infer locals, explicit function signatures</li>
+<li><strong>Fast iteration</strong> — <code>vpp run</code> interpreter for development</li>
+<li><strong>Native when needed</strong> — <code>vpp build</code> produces standalone <code>.exe</code> files</li>
+</ul>
+<h2 id="quick-syntax-map">Quick syntax map</h2>
+<div class="table-wrap"><table>
+<tr>
+<td>Topic</td>
+<td>Doc</td>
+</tr>
+<tr>
+<td>Types &amp; <code>let</code></td>
+<td><a href="types-and-inference.md">types-and-inference.md</a></td>
+</tr>
+<tr>
+<td>Functions</td>
+<td><a href="functions.md">functions.md</a></td>
+</tr>
+<tr>
+<td><code>if</code> / loops / <code>match</code></td>
+<td><a href="control-flow.md">control-flow.md</a></td>
+</tr>
+<tr>
+<td>Structs &amp; enums</td>
+<td><a href="structs-and-enums.md">structs-and-enums.md</a></td>
+</tr>
+<tr>
+<td>Option / Result</td>
+<td><a href="option-result-match.md">option-result-match.md</a></td>
+</tr>
+<tr>
+<td>Generics</td>
+<td><a href="generics.md">generics.md</a></td>
+</tr>
+<tr>
+<td>Traits</td>
+<td><a href="traits.md">traits.md</a></td>
+</tr>
+<tr>
+<td><code>mut</code></td>
+<td><a href="mut-and-immutability.md">mut-and-immutability.md</a></td>
+</tr>
+<tr>
+<td>Modules</td>
+<td><a href="modules.md">modules.md</a></td>
+</tr>
+</tbody></table></div>
+<p>Formal spec: <a href="../../SPEC.md">SPEC.md</a>.</p>
+<h1 id="faq">FAQ</h1>
+<h2 id="what-is-v">What is v++?</h2>
+<p>A statically typed language with readable syntax, an interpreter for development, and native compilation to <code>.exe</code> via LLVM. Open source (MIT), currently at <strong>v0.5</strong>.</p>
+<h2 id="how-is-v-different-from-python">How is v++ different from Python?</h2>
+<div class="table-wrap"><table>
+<tr>
+<td></td>
+<td>Python</td>
+<td>v++</td>
+</tr>
+<tr>
+<td>Typing</td>
+<td>Dynamic (optional hints)</td>
+<td>Static + inference</td>
+</tr>
+<tr>
+<td>Run</td>
+<td>Interpreter default</td>
+<td>Interpreter + native <code>.exe</code></td>
+</tr>
+<tr>
+<td>Errors</td>
+<td>Mostly at runtime</td>
+<td>Types and exhaustiveness at compile time</td>
+</tr>
+<tr>
+<td>Ecosystem</td>
+<td>Huge (PyPI)</td>
+<td>Small stdlib + growing registry</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Scripts, ML, web backends</td>
+<td>Learning, CLI tools, typed native programs</td>
+</tr>
+</tbody></table></div>
+<p>Python is better when you need libraries and speed of prototyping across domains. v++ is better when you want types and a native binary without switching languages later.</p>
+<h2 id="how-is-v-different-from-rust">How is v++ different from Rust?</h2>
+<p>Rust enforces ownership and borrowing at compile time for maximum safety and performance. v++ uses ARC for heap values in native mode and skips the borrow checker — easier to learn, less control over allocation patterns.</p>
+<p>Choose Rust for systems programming at scale. Choose v++ to learn typed languages or ship small native tools with Python-like syntax.</p>
+<h2 id="how-is-v-different-from-go-or-typescript">How is v++ different from Go or TypeScript?</h2>
+<p>Go is statically typed with a large ecosystem and goroutines. TypeScript adds types to JavaScript but still runs on Node/V8. v++ is a standalone language with its own interpreter and LLVM backend — not a host-VM language.</p>
+<h2 id="how-do-i-learn-v">How do I learn v++?</h2>
+<p>1. Read <a href="../getting-started/introduction.md">Introduction</a>.</p>
+<p>2. <a href="../getting-started/install.md">Install</a> and write the <a href="../getting-started/hello-world.md">first program</a>.</p>
+<p>3. Complete the <a href="../../projects/README.md">20 projects</a>.</p>
+<p>4. Reference <a href="../language/README.md">language docs</a> and <a href="../guides/README.md">guides</a>.</p>
+<p>If you know Python or JavaScript, expect a few days for syntax; a few weeks for types, structs, and native builds.</p>
+<h2 id="what-are-the-main-difficulties">What are the main difficulties?</h2>
+<ul>
+<li><strong>Strict types</strong> — function signatures and match exhaustiveness are enforced.</li>
+<li><strong>Native builds</strong> — require LLVM 22 + clang; Windows is the primary supported platform.</li>
+<li><strong>Young ecosystem</strong> — fewer third-party packages than Python or Rust.</li>
+<li><strong>Pre-1.0</strong> — syntax and stdlib may change; pin releases for serious work.</li>
+</ul>
+<h2 id="why-would-i-choose-v">Why would I choose v++?</h2>
+<ul>
+<li>Readable syntax with real static typing.</li>
+<li>Same source for interpret (<code>vpp run</code>) and native ship (<code>vpp build</code>).</li>
+<li>Integrated toolchain: fmt, test, packages, LSP, VS Code extension.</li>
+<li>Full compiler source available to read and contribute to.</li>
+</ul>
+<h2 id="is-v-ready-for-production">Is v++ ready for production?</h2>
+<p><strong>v0.5</strong> — suitable for learning, personal tools, and experimentation. Not yet a replacement for Python or Rust in large production systems. See <a href="roadmap.md">roadmap</a>.</p>
+<h2 id="where-do-i-download">Where do I download?</h2>
+<p><a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a> — <code>vpp-0.5.0-setup.exe</code> for Windows.</p>
+<h2 id="which-vs-code-extension-is-official">Which VS Code extension is official?</h2>
+<p><strong>v++ Language</strong> — publisher <code>vpp-lang</code> (<code>vpp-lang.vplusplus</code>).</p>
+<h2 id="does-v-collect-data">Does v++ collect data?</h2>
+<p>No. See <a href="../PRIVACY.md">PRIVACY.md</a>.</p>
+<h2 id="how-do-i-report-bugs">How do I report bugs?</h2>
+<p><a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a></p>
+<h2 id="can-i-contribute">Can I contribute?</h2>
+<p>Yes — <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+<h1 id="first-program">First program</h1>
+<p>Create a file named <code>hello.vpp</code>:</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
+    print(&quot;v++ program started&quot;)
+    return 0
+}</code></pre>
+</div>
+<p>Every executable entry point is <code>fn main() -&gt; int</code>. The return value is the process exit code (<code>0</code> = success).</p>
+<h2 id="run-interpreter">Run (interpreter)</h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run hello.vpp</code></pre>
+</div>
+<p>Uses the built-in interpreter — no compile step. Best for learning and quick iteration.</p>
+<h2 id="type-check-only">Type-check only</h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp check hello.vpp</code></pre>
+</div>
+<p>Reports type errors without running. Use this in CI or before committing.</p>
+<h2 id="compile-to-native">Compile to native</h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp build hello.vpp -o hello.exe
+.\hello.exe</code></pre>
+</div>
+<p>Requires LLVM and clang on your PATH. Produces a standalone <code>.exe</code> with no v++ runtime dependency.</p>
+<h2 id="commands-summary">Commands summary</h2>
+<div class="table-wrap"><table>
+<tr>
+<td>Command</td>
+<td>Purpose</td>
+</tr>
+<tr>
+<td><code>vpp run</code></td>
+<td>Execute via interpreter</td>
+</tr>
+<tr>
+<td><code>vpp check</code></td>
+<td>Static analysis only</td>
+</tr>
+<tr>
+<td><code>vpp build</code></td>
+<td>Native executable via LLVM</td>
+</tr>
+</tbody></table></div>
+<p>Next: <a href="first-project.md">Your first project</a>.</p>
 <h1 id="your-first-v-project">Your first v++ project</h1>
 <h2 id="scaffold">Scaffold</h2>
 <div class="code-block-wrap">
@@ -232,113 +493,42 @@ vpp update</code></pre>
 <td>Command Palette</td>
 </tr>
 </tbody></table></div>
-<p>See also: <a href="../guides/language-server.md">Language server</a>, <a href="../guides/troubleshooting.md">Troubleshooting</a>.</p>
-<h1 id="v-language-overview">v++ language overview</h1>
-<p>v++ combines readable syntax with static typing and optional native compilation.</p>
-<h2 id="design-goals">Design goals</h2>
-<ul>
-<li><strong>Readable</strong> — minimal punctuation, familiar control flow</li>
-<li><strong>Typed</strong> — catch errors before run; infer locals, explicit function signatures</li>
-<li><strong>Fast iteration</strong> — <code>vpp run</code> interpreter for development</li>
-<li><strong>Native when needed</strong> — <code>vpp build</code> produces standalone <code>.exe</code> files</li>
-</ul>
-<h2 id="quick-syntax-map">Quick syntax map</h2>
-<div class="table-wrap"><table>
-<tr>
-<td>Topic</td>
-<td>Doc</td>
-</tr>
-<tr>
-<td>Types &amp; <code>let</code></td>
-<td><a href="types-and-inference.md">types-and-inference.md</a></td>
-</tr>
-<tr>
-<td>Functions</td>
-<td><a href="functions.md">functions.md</a></td>
-</tr>
-<tr>
-<td><code>if</code> / loops / <code>match</code></td>
-<td><a href="control-flow.md">control-flow.md</a></td>
-</tr>
-<tr>
-<td>Structs &amp; enums</td>
-<td><a href="structs-and-enums.md">structs-and-enums.md</a></td>
-</tr>
-<tr>
-<td>Option / Result</td>
-<td><a href="option-result-match.md">option-result-match.md</a></td>
-</tr>
-<tr>
-<td>Generics</td>
-<td><a href="generics.md">generics.md</a></td>
-</tr>
-<tr>
-<td>Traits</td>
-<td><a href="traits.md">traits.md</a></td>
-</tr>
-<tr>
-<td><code>mut</code></td>
-<td><a href="mut-and-immutability.md">mut-and-immutability.md</a></td>
-</tr>
-<tr>
-<td>Modules</td>
-<td><a href="modules.md">modules.md</a></td>
-</tr>
-</tbody></table></div>
-<p>Formal spec: <a href="../../SPEC.md">SPEC.md</a>.</p>
-<h1 id="faq">FAQ</h1>
-<h2 id="what-is-v">What is v++?</h2>
-<p>A compiled language with Python-like syntax, static typing, and native codegen via LLVM.</p>
-<h2 id="is-v-ready-for-production">Is v++ ready for production?</h2>
-<p>It&#x27;s <strong>v0.5</strong> — early but real. Expect language changes until v1.0.</p>
-<h2 id="how-is-v-different-from-python">How is v++ different from Python?</h2>
-<div class="table-wrap"><table>
-<tr>
-<td></td>
-<td>Python</td>
-<td>v++</td>
-</tr>
-<tr>
-<td>Typing</td>
-<td>Dynamic (optional hints)</td>
-<td>Static + inference</td>
-</tr>
-<tr>
-<td>Run</td>
-<td>Interpreter default</td>
-<td>Interpreter + native <code>.exe</code></td>
-</tr>
-<tr>
-<td>Ecosystem</td>
-<td>Huge</td>
-<td>Small, growing</td>
-</tr>
-<tr>
-<td>Age</td>
-<td>30+ years</td>
-<td>New</td>
-</tr>
-</tbody></table></div>
-<h2 id="where-do-i-download">Where do I download?</h2>
-<p><a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a> — <code>vpp-*-setup.exe</code></p>
-<h2 id="which-vs-code-extension-is-official">Which VS Code extension is official?</h2>
-<p><strong>v++ Language</strong> by publisher <strong>vpp-lang</strong> (<code>vpp-lang.vplusplus</code>).</p>
-<h2 id="does-v-collect-data">Does v++ collect data?</h2>
-<p>No. See <a href="../PRIVACY.md">PRIVACY.md</a>.</p>
-<h2 id="how-do-i-report-bugs">How do I report bugs?</h2>
-<p><a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a></p>
-<h2 id="can-i-contribute">Can I contribute?</h2>
-<p>Yes — <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a>.</p></article>
+<p>See also: <a href="../guides/language-server.md">Language server</a>, <a href="../guides/troubleshooting.md">Troubleshooting</a>.</p></article>
     </main>
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>
       <ul>
-<li class=""><a href="#what-you-just-used">What you just used</a></li>
+<li class=""><a href="#what-v-is">What v++ is</a></li>
+<li class=""><a href="#how-v-compares">How v++ compares</a></li>
+<li class=""><a href="#why-use-v-now">Why use v++ now</a></li>
+<li class=""><a href="#how-to-learn-v">How to learn v++</a></li>
+<li class=""><a href="#common-difficulties">Common difficulties</a></li>
+<li class=""><a href="#when-v-is-not-the-right-choice">When v++ is not the right choice</a></li>
+<li class=""><a href="#next-steps">Next steps</a></li>
 <li class=""><a href="#windows-recommended">Windows (recommended)</a></li>
 <li class=""><a href="#vs-code-extension">VS Code extension</a></li>
 <li class=""><a href="#portable-zip-advanced">Portable zip (advanced)</a></li>
 <li class=""><a href="#build-from-source">Build from source</a></li>
 <li class=""><a href="#requirements">Requirements</a></li>
+<li class=""><a href="#design-goals">Design goals</a></li>
+<li class=""><a href="#quick-syntax-map">Quick syntax map</a></li>
+<li class=""><a href="#what-is-v">What is v++?</a></li>
+<li class=""><a href="#how-is-v-different-from-python">How is v++ different from Python?</a></li>
+<li class=""><a href="#how-is-v-different-from-rust">How is v++ different from Rust?</a></li>
+<li class=""><a href="#how-is-v-different-from-go-or-typescript">How is v++ different from Go or TypeScript?</a></li>
+<li class=""><a href="#how-do-i-learn-v">How do I learn v++?</a></li>
+<li class=""><a href="#what-are-the-main-difficulties">What are the main difficulties?</a></li>
+<li class=""><a href="#why-would-i-choose-v">Why would I choose v++?</a></li>
+<li class=""><a href="#is-v-ready-for-production">Is v++ ready for production?</a></li>
+<li class=""><a href="#where-do-i-download">Where do I download?</a></li>
+<li class=""><a href="#which-vs-code-extension-is-official">Which VS Code extension is official?</a></li>
+<li class=""><a href="#does-v-collect-data">Does v++ collect data?</a></li>
+<li class=""><a href="#how-do-i-report-bugs">How do I report bugs?</a></li>
+<li class=""><a href="#can-i-contribute">Can I contribute?</a></li>
+<li class=""><a href="#run-interpreter">Run (interpreter)</a></li>
+<li class=""><a href="#type-check-only">Type-check only</a></li>
+<li class=""><a href="#compile-to-native">Compile to native</a></li>
+<li class=""><a href="#commands-summary">Commands summary</a></li>
 <li class=""><a href="#scaffold">Scaffold</a></li>
 <li class=""><a href="#run">Run</a></li>
 <li class=""><a href="#test">Test</a></li>
@@ -347,16 +537,6 @@ vpp update</code></pre>
 <li class=""><a href="#run-code">Run code</a></li>
 <li class=""><a href="#language-server-intellisense">Language server (IntelliSense)</a></li>
 <li class=""><a href="#commands">Commands</a></li>
-<li class=""><a href="#design-goals">Design goals</a></li>
-<li class=""><a href="#quick-syntax-map">Quick syntax map</a></li>
-<li class=""><a href="#what-is-v">What is v++?</a></li>
-<li class=""><a href="#is-v-ready-for-production">Is v++ ready for production?</a></li>
-<li class=""><a href="#how-is-v-different-from-python">How is v++ different from Python?</a></li>
-<li class=""><a href="#where-do-i-download">Where do I download?</a></li>
-<li class=""><a href="#which-vs-code-extension-is-official">Which VS Code extension is official?</a></li>
-<li class=""><a href="#does-v-collect-data">Does v++ collect data?</a></li>
-<li class=""><a href="#how-do-i-report-bugs">How do I report bugs?</a></li>
-<li class=""><a href="#can-i-contribute">Can I contribute?</a></li>
 </ul>
     </aside>
   </div>

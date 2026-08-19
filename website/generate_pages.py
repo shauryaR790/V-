@@ -431,9 +431,9 @@ def write_doc_page(
 
 def all_doc_links() -> dict[str, list[tuple[str, str]]]:
     getting = [
-        ("learn.html", "Introduction to v++"),
-        ("learn.html#getting-started", "Quick start"),
-        ("learn.html#hello-world", "Hello, v++"),
+        ("learn.html#introduction", "Introduction"),
+        ("learn.html#install", "Install"),
+        ("learn.html#first-program", "First program"),
         ("learn.html#first-project", "First project"),
         ("courses.html", "Courses & projects"),
     ]
@@ -476,14 +476,15 @@ def main() -> None:
     sidebar = all_doc_links()
 
     learn_paths = [
-        DOCS / "getting-started" / "hello-world.md",
+        DOCS / "getting-started" / "introduction.md",
         DOCS / "getting-started" / "install.md",
-        DOCS / "getting-started" / "first-project.md",
-        DOCS / "getting-started" / "vscode-setup.md",
         DOCS / "language" / "README.md",
         DOCS / "project" / "faq.md",
+        DOCS / "getting-started" / "hello-world.md",
+        DOCS / "getting-started" / "first-project.md",
+        DOCS / "getting-started" / "vscode-setup.md",
     ]
-    write_doc_page("learn.html", "learn.html", "Learn", learn_paths, sidebar, "learn.html",
+    write_doc_page("learn.html", "learn.html", "Learn", learn_paths, sidebar, "learn.html#introduction",
                    "Learn v++ — installation, syntax, and your first programs.")
 
     docs_paths = all_reference_sources()

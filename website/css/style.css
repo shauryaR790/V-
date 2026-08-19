@@ -152,6 +152,8 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .nav-link:hover { color: var(--text); background: var(--yellow-light); }
 
+a:hover { color: var(--text); }
+
 .nav-link.active {
   background: var(--yellow);
   color: var(--black);
@@ -410,8 +412,9 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--gray-500);
-  margin: 1.25rem 0 0.4rem 0.5rem;
+  color: var(--text);
+  opacity: 0.55;
+  margin: 1rem 0 0.35rem 0.5rem;
 }
 
 .sidebar-group:first-child { margin-top: 0; }
@@ -420,10 +423,10 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .docs-sidebar li a {
   display: block;
-  padding: 0.4rem 0.65rem;
+  padding: 0.35rem 0.65rem;
   font-size: 0.8125rem;
   text-decoration: none;
-  color: var(--text-muted);
+  color: var(--text);
   border-radius: 6px;
   border-left: 2px solid transparent;
   transition: color 0.15s, background 0.15s, border-color 0.15s;
@@ -444,7 +447,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .docs-main {
-  padding: 2.5rem 3rem 5rem;
+  padding: 2rem 2.5rem 3.5rem;
   min-width: 0;
   background: var(--bg);
   border-right: 1px solid var(--border-muted);
@@ -455,43 +458,37 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .docs-article h1 {
-  font-size: 2rem;
+  font-size: 1.85rem;
   font-weight: 700;
   letter-spacing: -0.03em;
-  margin-bottom: 1.25rem;
-  padding-bottom: 0;
-  border-bottom: none;
+  margin-bottom: 0.65rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--yellow);
   color: var(--text);
 }
 
 .docs-article h1::after {
-  content: "";
-  display: block;
-  width: 2.5rem;
-  height: 2px;
-  background: var(--yellow);
-  margin-top: 0.75rem;
-  border-radius: 1px;
+  display: none;
 }
 
 .docs-article h2 {
-  font-size: 1.35rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  margin: 2.75rem 0 0.75rem;
+  margin: 1.5rem 0 0.4rem;
   padding-top: 0;
   border-top: none;
   color: var(--text);
   letter-spacing: -0.02em;
 }
 
-.docs-article h3 { font-size: 1.05rem; font-weight: 600; margin: 1.75rem 0 0.5rem; color: var(--text); }
-.docs-article h4 { font-size: 0.95rem; font-weight: 600; margin: 1.25rem 0 0.35rem; color: var(--text-muted); }
+.docs-article h3 { font-size: 1rem; font-weight: 600; margin: 1.1rem 0 0.35rem; color: var(--text); }
+.docs-article h4 { font-size: 0.9rem; font-weight: 600; margin: 0.85rem 0 0.25rem; color: var(--text-muted); }
 
-.docs-article p { margin-bottom: 1rem; color: var(--text-muted); max-width: 72ch; line-height: 1.7; }
+.docs-article p { margin-bottom: 0.55rem; color: var(--text-muted); max-width: 72ch; line-height: 1.55; }
 
 .docs-article blockquote {
-  margin: 1.25rem 0;
-  padding: 0.75rem 1rem;
+  margin: 0.75rem 0 0.85rem;
+  padding: 0.55rem 0.85rem;
   border-left: 2px solid var(--border-accent);
   background: rgba(255, 255, 255, 0.03);
   border-radius: 0 6px 6px 0;
@@ -499,8 +496,8 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   font-style: italic;
 }
 
-.docs-article ul, .docs-article ol { margin: 0 0 1rem 1.25rem; color: var(--text-muted); }
-.docs-article li { margin-bottom: 0.35rem; }
+.docs-article ul, .docs-article ol { margin: 0 0 0.65rem 1.15rem; color: var(--text-muted); }
+.docs-article li { margin-bottom: 0.2rem; line-height: 1.5; }
 
 .docs-toc {
   position: sticky;
@@ -521,7 +518,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .docs-article hr {
   border: none;
   border-top: 1px solid var(--border-muted);
-  margin: 2.5rem 0;
+  margin: 1.25rem 0;
 }
 
 .docs-article .table-wrap {
@@ -564,18 +561,19 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--gray-500);
-  margin-bottom: 1rem;
+  color: var(--text);
+  opacity: 0.55;
+  margin-bottom: 0.75rem;
   white-space: nowrap;
 }
 
 .docs-toc a {
   display: block;
   font-size: 0.78rem;
-  padding: 0.3rem 0;
-  color: var(--text-muted);
+  padding: 0.2rem 0;
+  color: var(--text);
   text-decoration: none;
-  line-height: 1.4;
+  line-height: 1.35;
   word-wrap: break-word;
   overflow-wrap: break-word;
   border-left: 2px solid transparent;

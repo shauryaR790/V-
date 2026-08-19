@@ -8,7 +8,7 @@ const CODE_SAMPLES = {
 import std.io
 
 fn greet(name: string) -> string {
-    return "Hello, " + name + "!"
+    return "Welcome, " + name
 }
 
 fn add(a: int, b: int) -> int {
@@ -28,7 +28,7 @@ fn sum_range(start: int, end: int) -> int {
 }
 
 fn main() -> int {
-    print(greet("world"))
+    print(greet("developer"))
     print(add(10, 20))
     print(multiply(3, 7))
     print(sum_range(0, 5))
