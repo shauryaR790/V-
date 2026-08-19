@@ -503,9 +503,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   font-weight: 700;
   letter-spacing: -0.03em;
   margin-bottom: 0.65rem;
-  padding-bottom: 0.65rem;
-  border-bottom: 1px solid var(--yellow);
-  color: var(--text);
+  color: var(--yellow);
 }
 
 .docs-article h1::after {
@@ -518,12 +516,12 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   margin: 1.5rem 0 0.4rem;
   padding-top: 0;
   border-top: none;
-  color: var(--text);
+  color: var(--yellow);
   letter-spacing: -0.02em;
 }
 
-.docs-article h3 { font-size: 1rem; font-weight: 600; margin: 1.1rem 0 0.35rem; color: var(--text); }
-.docs-article h4 { font-size: 0.9rem; font-weight: 600; margin: 0.85rem 0 0.25rem; color: var(--text-muted); }
+.docs-article h3 { font-size: 1rem; font-weight: 600; margin: 1.1rem 0 0.35rem; color: var(--yellow); }
+.docs-article h4 { font-size: 0.9rem; font-weight: 600; margin: 0.85rem 0 0.25rem; color: var(--yellow); }
 
 .docs-article p { margin-bottom: 0.55rem; color: var(--text-muted); max-width: 72ch; line-height: 1.55; }
 
