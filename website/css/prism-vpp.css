@@ -1,0 +1,116 @@
+/* v++ code blocks — atomDark / Node.js quality (Prism) */
+
+.code-block-wrap,
+.code-panel {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1.25rem 0 1.75rem;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
+
+.code-block-header,
+.code-panel .code-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 0.5rem;
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
+  min-height: 42px;
+}
+
+.code-block-header span,
+.code-panel .code-tab {
+  font-family: var(--font, "IBM Plex Sans", sans-serif);
+  font-size: 0.75rem;
+  color: #8b949e;
+  padding: 0.65rem 0.85rem;
+}
+
+.code-panel .code-tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  color: #8b949e;
+}
+
+.code-panel .code-tab:hover { color: #e6edf3; }
+
+.code-panel .code-tab.active {
+  color: #e6edf3;
+  border-bottom-color: #f5c400;
+  font-weight: 600;
+}
+
+.code-block-wrap pre,
+.code-panel pre {
+  margin: 0 !important;
+  padding: 1rem 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+  max-height: none !important;
+  min-height: 0 !important;
+}
+
+.code-block-wrap pre code,
+.code-panel pre code {
+  font-family: var(--mono, "IBM Plex Mono", monospace) !important;
+  font-size: 0.8125rem !important;
+  line-height: 1.65 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  text-shadow: none !important;
+}
+
+.code-block-footer,
+.code-panel .code-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: #161b22;
+  border-top: 1px solid #30363d;
+  font-size: 0.75rem;
+  color: #8b949e;
+}
+
+/* Prism line numbers — Node style */
+pre.line-numbers {
+  position: relative;
+  padding-left: 3.5rem !important;
+}
+
+pre.line-numbers > code {
+  white-space: pre;
+}
+
+.line-numbers .line-numbers-rows {
+  border-right: 1px solid #30363d;
+  padding-right: 0.75rem;
+}
+
+.line-numbers-rows > span:before {
+  color: #6e7681 !important;
+  font-size: 0.75rem;
+}
+
+/* Prism tomorrow / atom-like token colors on #0d1117 */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #e6edf3;
+}
+
+.token.comment, .token.prolog, .token.doctype, .token.cdata { color: #8b949e; font-style: italic; }
+.token.punctuation { color: #e6edf3; }
+.token.property, .token.tag, .token.constant, .token.symbol { color: #79c0ff; }
+.token.boolean, .token.number { color: #ffa657; }
+.token.selector, .token.attr-name, .token.string, .token.char, .token.builtin { color: #a5d6ff; }
+.token.operator, .token.entity, .token.url, .token.variable { color: #e6edf3; }
+.token.atrule, .token.attr-value, .token.function, .token.class-name { color: #d2a8ff; }
+.token.keyword { color: #ff7b72; }
+.token.regex, .token.important { color: #ffa657; }

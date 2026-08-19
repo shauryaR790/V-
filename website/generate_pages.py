@@ -62,12 +62,18 @@ def md_to_html(text: str) -> str:
             display = "TOML"
         else:
             display = label if label else "text"
-        out.append('<div class="code-window">')
-        out.append('<pre class="code-block"><table class="code-table"><tbody>')
-        for n, cline in enumerate(code_lines, 1):
-            out.append(f'<tr><td class="ln">{n}</td><td class="lc">{html.escape(cline)}</td></tr>')
-        out.append("</tbody></table></pre>")
-        out.append(f'<div class="code-footer-bar"><span>{html.escape(display)}</span></div>')
+        plang = {
+            "powershell": "bash", "shell": "bash", "sh": "bash",
+            "vpp": "javascript", "v++": "javascript",
+            "toml": "toml", "bash": "bash",
+        }.get(label, label or "text")
+        code_text = html.escape("\n".join(code_lines))
+        out.append('<div class="code-block-wrap">')
+        out.append(f'<div class="code-block-header"><span>{html.escape(display)}</span></div>')
+        out.append(
+            f'<pre class="line-numbers language-{plang}">'
+            f'<code class="language-{plang}">{code_text}</code></pre>'
+        )
         out.append("</div>")
         in_code = False
         code_lines = []
@@ -216,6 +222,8 @@ def shell(active: str, title: str, body: str, sidebar_html: str, toc_html: str, 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{ASSET_PREFIX}css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+  <link rel="stylesheet" href="{ASSET_PREFIX}css/prism-vpp.css">
   <link rel="icon" href="{ASSET_PREFIX}assets/favicon.png">
   <link rel="apple-touch-icon" href="{ASSET_PREFIX}assets/logo-header.png">
 </head>
@@ -253,6 +261,12 @@ def shell(active: str, title: str, body: str, sidebar_html: str, toc_html: str, 
       </div>
     </div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-clike.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-toml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
   <script src="{ASSET_PREFIX}js/main.js"></script>
 </body>
 </html>"""
@@ -272,8 +286,7 @@ def build_sidebar(groups: dict[str, list[tuple[str, str]]], active_href: str) ->
     for group, links in groups.items():
         parts.append(f'<p class="sidebar-group">{html.escape(group)}</p><ul>')
         for href, label in links:
-            cls = ' class="active"' if href == active_href else ""
-            parts.append(f'<li><a href="{doc_href(href)}"{cls}>{html.escape(label)}</a></li>')
+            parts.append(f'<li><a href="{doc_href(href)}">{html.escape(label)}</a></li>')
         parts.append("</ul>")
     return "\n".join(parts)
 

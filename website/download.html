@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/V-/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+  <link rel="stylesheet" href="/V-/css/prism-vpp.css">
   <link rel="icon" href="/V-/assets/favicon.png">
   <link rel="apple-touch-icon" href="/V-/assets/logo-header.png">
 </head>
@@ -63,7 +65,7 @@
 <li><a href="/V-/about.html#architecture">Architecture</a></li>
 <li><a href="/V-/about.html#memory-model">Memory model</a></li>
 <li><a href="/V-/blog.html">Release notes</a></li>
-<li><a href="/V-/download.html" class="active">Download</a></li>
+<li><a href="/V-/download.html">Download</a></li>
 <li><a href="/V-/contribute.html">Contribute</a></li>
 </ul></aside>
     <main class="docs-main">
@@ -74,20 +76,16 @@
 <p>1. Download <strong><code>vpp-0.5.0-setup.exe</code></strong> from <a href="https://github.com/shauryaR790/V-/releases/latest">GitHub Releases</a>.</p>
 <p>2. Run the installer. If Windows SmartScreen appears, choose <strong>More info → Run anyway</strong>.</p>
 <p>3. Open a <strong>new</strong> terminal:</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run examples\hello.vpp</td></tr>
-<tr><td class="ln">2</td><td class="lc">vpp doctor</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run examples\hello.vpp
+vpp doctor</code></pre>
 </div>
 <p>If <code>vpp</code> is not found, add the install folder to PATH:</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">$dir = &quot;$env:LOCALAPPDATA\Programs\vpp&quot;</td></tr>
-<tr><td class="ln">2</td><td class="lc">[Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path + &quot;;$dir;$dir\llvm\bin&quot;, &quot;User&quot;)</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">$dir = &quot;$env:LOCALAPPDATA\Programs\vpp&quot;
+[Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path + &quot;;$dir;$dir\llvm\bin&quot;, &quot;User&quot;)</code></pre>
 </div>
 <p>Restart the terminal.</p>
 <h2 id="vs-code-extension">VS Code extension</h2>
@@ -316,958 +314,961 @@ It is maintained alongside the open-source repository at <a href="https://github
 <dt>SmartScreen</dt><dd>See primary sections above for how SmartScreen applies to v++ v0.5.</dd>
 <dt>SignPath</dt><dd>See primary sections above for how SignPath applies to v++ v0.5.</dd>
 </dl>
-<!-- reference line 248 -->
+<!-- reference line 244 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 251 -->
+<!-- reference line 247 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 254 -->
+<!-- reference line 250 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 257 -->
+<!-- reference line 253 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 260 -->
+<!-- reference line 256 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 263 -->
+<!-- reference line 259 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 266 -->
+<!-- reference line 262 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 269 -->
+<!-- reference line 265 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 272 -->
+<!-- reference line 268 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 275 -->
+<!-- reference line 271 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 278 -->
+<!-- reference line 274 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 281 -->
+<!-- reference line 277 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 284 -->
+<!-- reference line 280 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 287 -->
+<!-- reference line 283 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 290 -->
+<!-- reference line 286 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 293 -->
+<!-- reference line 289 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 296 -->
+<!-- reference line 292 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 299 -->
+<!-- reference line 295 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 302 -->
+<!-- reference line 298 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 305 -->
+<!-- reference line 301 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 308 -->
+<!-- reference line 304 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 311 -->
+<!-- reference line 307 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 314 -->
+<!-- reference line 310 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 317 -->
+<!-- reference line 313 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 320 -->
+<!-- reference line 316 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 323 -->
+<!-- reference line 319 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 326 -->
+<!-- reference line 322 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 329 -->
+<!-- reference line 325 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 332 -->
+<!-- reference line 328 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 335 -->
+<!-- reference line 331 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 338 -->
+<!-- reference line 334 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 341 -->
+<!-- reference line 337 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 344 -->
+<!-- reference line 340 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 347 -->
+<!-- reference line 343 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 350 -->
+<!-- reference line 346 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 353 -->
+<!-- reference line 349 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 356 -->
+<!-- reference line 352 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 359 -->
+<!-- reference line 355 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 362 -->
+<!-- reference line 358 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 365 -->
+<!-- reference line 361 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 368 -->
+<!-- reference line 364 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 371 -->
+<!-- reference line 367 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 374 -->
+<!-- reference line 370 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 377 -->
+<!-- reference line 373 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 380 -->
+<!-- reference line 376 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 383 -->
+<!-- reference line 379 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 386 -->
+<!-- reference line 382 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 389 -->
+<!-- reference line 385 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 392 -->
+<!-- reference line 388 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 395 -->
+<!-- reference line 391 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 398 -->
+<!-- reference line 394 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 401 -->
+<!-- reference line 397 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 404 -->
+<!-- reference line 400 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 407 -->
+<!-- reference line 403 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 410 -->
+<!-- reference line 406 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 413 -->
+<!-- reference line 409 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 416 -->
+<!-- reference line 412 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 419 -->
+<!-- reference line 415 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 422 -->
+<!-- reference line 418 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 425 -->
+<!-- reference line 421 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 428 -->
+<!-- reference line 424 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 431 -->
+<!-- reference line 427 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 434 -->
+<!-- reference line 430 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 437 -->
+<!-- reference line 433 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 440 -->
+<!-- reference line 436 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 443 -->
+<!-- reference line 439 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 446 -->
+<!-- reference line 442 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 449 -->
+<!-- reference line 445 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 452 -->
+<!-- reference line 448 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 455 -->
+<!-- reference line 451 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 458 -->
+<!-- reference line 454 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 461 -->
+<!-- reference line 457 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 464 -->
+<!-- reference line 460 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 467 -->
+<!-- reference line 463 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 470 -->
+<!-- reference line 466 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 473 -->
+<!-- reference line 469 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 476 -->
+<!-- reference line 472 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 479 -->
+<!-- reference line 475 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 482 -->
+<!-- reference line 478 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 485 -->
+<!-- reference line 481 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 488 -->
+<!-- reference line 484 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 491 -->
+<!-- reference line 487 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 494 -->
+<!-- reference line 490 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 497 -->
+<!-- reference line 493 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 500 -->
+<!-- reference line 496 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 503 -->
+<!-- reference line 499 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 506 -->
+<!-- reference line 502 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 509 -->
+<!-- reference line 505 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 512 -->
+<!-- reference line 508 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 515 -->
+<!-- reference line 511 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 518 -->
+<!-- reference line 514 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 521 -->
+<!-- reference line 517 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 524 -->
+<!-- reference line 520 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 527 -->
+<!-- reference line 523 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 530 -->
+<!-- reference line 526 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 533 -->
+<!-- reference line 529 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 536 -->
+<!-- reference line 532 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 539 -->
+<!-- reference line 535 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 542 -->
+<!-- reference line 538 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 545 -->
+<!-- reference line 541 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 548 -->
+<!-- reference line 544 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 551 -->
+<!-- reference line 547 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 554 -->
+<!-- reference line 550 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 557 -->
+<!-- reference line 553 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 560 -->
+<!-- reference line 556 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 563 -->
+<!-- reference line 559 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 566 -->
+<!-- reference line 562 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 569 -->
+<!-- reference line 565 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 572 -->
+<!-- reference line 568 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 575 -->
+<!-- reference line 571 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 578 -->
+<!-- reference line 574 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 581 -->
+<!-- reference line 577 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 584 -->
+<!-- reference line 580 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 587 -->
+<!-- reference line 583 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 590 -->
+<!-- reference line 586 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 593 -->
+<!-- reference line 589 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 596 -->
+<!-- reference line 592 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 599 -->
+<!-- reference line 595 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 602 -->
+<!-- reference line 598 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 605 -->
+<!-- reference line 601 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 608 -->
+<!-- reference line 604 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 611 -->
+<!-- reference line 607 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 614 -->
+<!-- reference line 610 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 617 -->
+<!-- reference line 613 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 620 -->
+<!-- reference line 616 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 623 -->
+<!-- reference line 619 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 626 -->
+<!-- reference line 622 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 629 -->
+<!-- reference line 625 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 632 -->
+<!-- reference line 628 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 635 -->
+<!-- reference line 631 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 638 -->
+<!-- reference line 634 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 641 -->
+<!-- reference line 637 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 644 -->
+<!-- reference line 640 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 647 -->
+<!-- reference line 643 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 650 -->
+<!-- reference line 646 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 653 -->
+<!-- reference line 649 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 656 -->
+<!-- reference line 652 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 659 -->
+<!-- reference line 655 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 662 -->
+<!-- reference line 658 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 665 -->
+<!-- reference line 661 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 668 -->
+<!-- reference line 664 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 671 -->
+<!-- reference line 667 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 674 -->
+<!-- reference line 670 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 677 -->
+<!-- reference line 673 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 680 -->
+<!-- reference line 676 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 683 -->
+<!-- reference line 679 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 686 -->
+<!-- reference line 682 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 689 -->
+<!-- reference line 685 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 692 -->
+<!-- reference line 688 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 695 -->
+<!-- reference line 691 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 698 -->
+<!-- reference line 694 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 701 -->
+<!-- reference line 697 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 704 -->
+<!-- reference line 700 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 707 -->
+<!-- reference line 703 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 710 -->
+<!-- reference line 706 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 713 -->
+<!-- reference line 709 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 716 -->
+<!-- reference line 712 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 719 -->
+<!-- reference line 715 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 722 -->
+<!-- reference line 718 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 725 -->
+<!-- reference line 721 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 728 -->
+<!-- reference line 724 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 731 -->
+<!-- reference line 727 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 734 -->
+<!-- reference line 730 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 737 -->
+<!-- reference line 733 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 740 -->
+<!-- reference line 736 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 743 -->
+<!-- reference line 739 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 746 -->
+<!-- reference line 742 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 749 -->
+<!-- reference line 745 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 752 -->
+<!-- reference line 748 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 755 -->
+<!-- reference line 751 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 758 -->
+<!-- reference line 754 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 761 -->
+<!-- reference line 757 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 764 -->
+<!-- reference line 760 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 767 -->
+<!-- reference line 763 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 770 -->
+<!-- reference line 766 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 773 -->
+<!-- reference line 769 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 776 -->
+<!-- reference line 772 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 779 -->
+<!-- reference line 775 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 782 -->
+<!-- reference line 778 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 785 -->
+<!-- reference line 781 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 788 -->
+<!-- reference line 784 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 791 -->
+<!-- reference line 787 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 794 -->
+<!-- reference line 790 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 797 -->
+<!-- reference line 793 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 800 -->
+<!-- reference line 796 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 803 -->
+<!-- reference line 799 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 806 -->
+<!-- reference line 802 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 809 -->
+<!-- reference line 805 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 812 -->
+<!-- reference line 808 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 815 -->
+<!-- reference line 811 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 818 -->
+<!-- reference line 814 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 821 -->
+<!-- reference line 817 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 824 -->
+<!-- reference line 820 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 827 -->
+<!-- reference line 823 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 830 -->
+<!-- reference line 826 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 833 -->
+<!-- reference line 829 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 836 -->
+<!-- reference line 832 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 839 -->
+<!-- reference line 835 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 842 -->
+<!-- reference line 838 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 845 -->
+<!-- reference line 841 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 848 -->
+<!-- reference line 844 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 851 -->
+<!-- reference line 847 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 854 -->
+<!-- reference line 850 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 857 -->
+<!-- reference line 853 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 860 -->
+<!-- reference line 856 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 863 -->
+<!-- reference line 859 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 866 -->
+<!-- reference line 862 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 869 -->
+<!-- reference line 865 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 872 -->
+<!-- reference line 868 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 875 -->
+<!-- reference line 871 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 878 -->
+<!-- reference line 874 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 881 -->
+<!-- reference line 877 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 884 -->
+<!-- reference line 880 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 887 -->
+<!-- reference line 883 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 890 -->
+<!-- reference line 886 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 893 -->
+<!-- reference line 889 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 896 -->
+<!-- reference line 892 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 899 -->
+<!-- reference line 895 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 902 -->
+<!-- reference line 898 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 905 -->
+<!-- reference line 901 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 908 -->
+<!-- reference line 904 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 911 -->
+<!-- reference line 907 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 914 -->
+<!-- reference line 910 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 917 -->
+<!-- reference line 913 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 920 -->
+<!-- reference line 916 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 923 -->
+<!-- reference line 919 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 926 -->
+<!-- reference line 922 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 929 -->
+<!-- reference line 925 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 932 -->
+<!-- reference line 928 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 935 -->
+<!-- reference line 931 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 938 -->
+<!-- reference line 934 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 941 -->
+<!-- reference line 937 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 944 -->
+<!-- reference line 940 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 947 -->
+<!-- reference line 943 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 950 -->
+<!-- reference line 946 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 953 -->
+<!-- reference line 949 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 956 -->
+<!-- reference line 952 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 959 -->
+<!-- reference line 955 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 962 -->
+<!-- reference line 958 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 965 -->
+<!-- reference line 961 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 968 -->
+<!-- reference line 964 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 971 -->
+<!-- reference line 967 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 974 -->
+<!-- reference line 970 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 977 -->
+<!-- reference line 973 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 980 -->
+<!-- reference line 976 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 983 -->
+<!-- reference line 979 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 986 -->
+<!-- reference line 982 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 989 -->
+<!-- reference line 985 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 992 -->
+<!-- reference line 988 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 995 -->
+<!-- reference line 991 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 998 -->
+<!-- reference line 994 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1001 -->
+<!-- reference line 997 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1004 -->
+<!-- reference line 1000 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1007 -->
+<!-- reference line 1003 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1010 -->
+<!-- reference line 1006 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1013 -->
+<!-- reference line 1009 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1016 -->
+<!-- reference line 1012 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1019 -->
+<!-- reference line 1015 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1022 -->
+<!-- reference line 1018 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1025 -->
+<!-- reference line 1021 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1028 -->
+<!-- reference line 1024 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1031 -->
+<!-- reference line 1027 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1034 -->
+<!-- reference line 1030 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1037 -->
+<!-- reference line 1033 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1040 -->
+<!-- reference line 1036 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1043 -->
+<!-- reference line 1039 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1046 -->
+<!-- reference line 1042 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1049 -->
+<!-- reference line 1045 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1052 -->
+<!-- reference line 1048 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1055 -->
+<!-- reference line 1051 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1058 -->
+<!-- reference line 1054 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1061 -->
+<!-- reference line 1057 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1064 -->
+<!-- reference line 1060 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1067 -->
+<!-- reference line 1063 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1070 -->
+<!-- reference line 1066 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1073 -->
+<!-- reference line 1069 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1076 -->
+<!-- reference line 1072 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1079 -->
+<!-- reference line 1075 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1082 -->
+<!-- reference line 1078 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1085 -->
+<!-- reference line 1081 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1088 -->
+<!-- reference line 1084 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1091 -->
+<!-- reference line 1087 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1094 -->
+<!-- reference line 1090 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1097 -->
+<!-- reference line 1093 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1100 -->
+<!-- reference line 1096 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1103 -->
+<!-- reference line 1099 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1106 -->
+<!-- reference line 1102 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1109 -->
+<!-- reference line 1105 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1112 -->
+<!-- reference line 1108 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1115 -->
+<!-- reference line 1111 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1118 -->
+<!-- reference line 1114 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1121 -->
+<!-- reference line 1117 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1124 -->
+<!-- reference line 1120 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1127 -->
+<!-- reference line 1123 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1130 -->
+<!-- reference line 1126 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1133 -->
+<!-- reference line 1129 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1136 -->
+<!-- reference line 1132 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1139 -->
+<!-- reference line 1135 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1142 -->
+<!-- reference line 1138 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1145 -->
+<!-- reference line 1141 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1148 -->
+<!-- reference line 1144 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1151 -->
+<!-- reference line 1147 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1154 -->
+<!-- reference line 1150 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1157 -->
+<!-- reference line 1153 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1160 -->
+<!-- reference line 1156 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1163 -->
+<!-- reference line 1159 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1166 -->
+<!-- reference line 1162 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1169 -->
+<!-- reference line 1165 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1172 -->
+<!-- reference line 1168 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1175 -->
+<!-- reference line 1171 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1178 -->
+<!-- reference line 1174 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1181 -->
+<!-- reference line 1177 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1184 -->
+<!-- reference line 1180 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1187 -->
+<!-- reference line 1183 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1190 -->
+<!-- reference line 1186 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1193 -->
+<!-- reference line 1189 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1196 -->
+<!-- reference line 1192 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1199 -->
+<!-- reference line 1195 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1198 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
 <h2 id="release-artifacts">Release artifacts</h2>
@@ -1355,6 +1356,12 @@ It is maintained alongside the open-source repository at <a href="https://github
       </div>
     </div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-clike.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-toml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
   <script src="/V-/js/main.js"></script>
 </body>
 </html>

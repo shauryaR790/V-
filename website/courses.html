@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/V-/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+  <link rel="stylesheet" href="/V-/css/prism-vpp.css">
   <link rel="icon" href="/V-/assets/favicon.png">
   <link rel="apple-touch-icon" href="/V-/assets/logo-header.png">
 </head>
@@ -37,7 +39,7 @@
 <li><a href="/V-/learn.html#getting-started">Quick start</a></li>
 <li><a href="/V-/learn.html#hello-world">Hello, v++</a></li>
 <li><a href="/V-/learn.html#first-project">First project</a></li>
-<li><a href="/V-/courses.html" class="active">Courses &amp; projects</a></li>
+<li><a href="/V-/courses.html">Courses &amp; projects</a></li>
 </ul>
 <p class="sidebar-group">Language</p><ul>
 <li><a href="/V-/docs.html#types">Types &amp; inference</a></li>
@@ -201,11 +203,9 @@
 <p>Browse on the website: <a href="https://shauryaR790.github.io/V-/projects.html">vpp-lang projects</a></p>
 <h1 id="01-hello-world">01 — Hello World</h1>
 <p>Your first v++ program.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/01-hello-world/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/01-hello-world/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn main</code>, <code>print</code>, return code</p>
 <p>fn main() -&gt; int {</p>
@@ -214,11 +214,9 @@
 <p>}</p>
 <h1 id="02-variables-math">02 — Variables &amp; Math</h1>
 <p>Variables, arithmetic, and string concatenation.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/02-variables/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/02-variables/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>let</code>, type inference, <code>+</code> on int and string</p>
 <p>fn main() -&gt; int {</p>
@@ -233,11 +231,9 @@
 <p>}</p>
 <h1 id="03-functions">03 — Functions</h1>
 <p>Define functions with typed parameters and return values.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/03-functions/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/03-functions/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn</code>, <code>return</code>, function signatures</p>
 <p>fn add(a: int, b: int) -&gt; int {</p>
@@ -253,11 +249,9 @@
 <p>}</p>
 <h1 id="04-loops">04 — Loops</h1>
 <p><code>while</code>, range loops, and <code>for</code> over arrays. Uses <code>let mut</code> for counters.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/04-loops/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/04-loops/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>while</code>, <code>for</code>, <code>0..n</code>, <code>let mut</code></p>
 <p>fn main() -&gt; int {</p>
@@ -277,11 +271,9 @@
 <p>}</p>
 <h1 id="05-arrays">05 — Arrays</h1>
 <p>Work with <code>array[int]</code>, iteration, and <code>std.collections.sum</code>.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/05-arrays/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/05-arrays/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> arrays, indexing, <code>import std.collections</code></p>
 <p>fn sum(nums: array[int]) -&gt; int {</p>
@@ -308,11 +300,9 @@
 <p>}</p>
 <h1 id="06-structs">06 — Structs</h1>
 <p>Custom product types with named fields.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/06-structs/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/06-structs/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>struct</code>, field access, passing structs to functions</p>
 <p>struct Point {</p>
@@ -336,11 +326,9 @@
 <p>}</p>
 <h1 id="07-enums">07 — Enums</h1>
 <p>Sum types with named variants and pattern matching.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/07-enums/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/07-enums/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>enum</code>, variants, <code>match</code></p>
 <p>enum TrafficLight {</p>
@@ -373,11 +361,9 @@
 <p>}</p>
 <h1 id="08-option-result">08 — Option &amp; Result</h1>
 <p>Safe error handling without exceptions.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/08-option-result/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/08-option-result/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>Option</code>, <code>Result</code>, <code>Some</code>/<code>None</code>, <code>Ok</code>/<code>Err</code></p>
 <p>fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {</p>
@@ -420,11 +406,9 @@
 <p>}</p>
 <h1 id="09-pattern-matching">09 — Pattern Matching</h1>
 <p>Exhaustive <code>match</code> on enums — compiler checks all variants are covered.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/09-match/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/09-match/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> exhaustive match, enum patterns</p>
 <p>enum Day {</p>
@@ -473,11 +457,9 @@
 <p>}</p>
 <h1 id="10-fizzbuzz">10 — FizzBuzz</h1>
 <p>Classic loop exercise — divisibility and conditionals.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/10-fizzbuzz/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/10-fizzbuzz/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>%</code>, <code>while</code>, functions</p>
 <p>fn fizzbuzz(n: int) -&gt; string {</p>
@@ -507,11 +489,9 @@
 <p>}</p>
 <h1 id="11-fibonacci">11 — Fibonacci</h1>
 <p>Recursive functions — classic algorithm interview question.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/11-fibonacci/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/11-fibonacci/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> recursion, base case</p>
 <p>fn fib(n: int) -&gt; int {</p>
@@ -529,11 +509,9 @@
 <p>}</p>
 <h1 id="12-generics">12 — Generics</h1>
 <p>Type-parameterized functions with monomorphization.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/12-generics/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/12-generics/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn name[T]</code>, explicit type args <code>id<a href="42">int</a></code></p>
 <p>fn id<a href="x: T">T</a> -&gt; T {</p>
@@ -551,11 +529,9 @@
 <p>}</p>
 <h1 id="13-traits">13 — Traits</h1>
 <p>Interfaces with static dispatch — <code>trait</code>, <code>impl</code>, method calls.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/13-traits/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/13-traits/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> traits, impl blocks, <code>self.area()</code></p>
 <p>struct Circle {</p>
@@ -586,12 +562,10 @@
 <p>}</p>
 <h1 id="14-modules">14 — Modules</h1>
 <p>Split code across files with <code>import</code> and <code>pub fn</code>.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">cd projects/14-modules</td></tr>
-<tr><td class="ln">2</td><td class="lc">vpp run main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">cd projects/14-modules
+vpp run main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> local imports, <code>pub</code> exports</p>
 <p>import &quot;math.vpp&quot;</p>
@@ -604,11 +578,9 @@
 <p>}</p>
 <h1 id="15-calculator">15 — Calculator</h1>
 <p>Enum-driven operations with <code>Result</code> for errors.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/15-calculator/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/15-calculator/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> enum + match, <code>Result</code></p>
 <p>enum Op {</p>
@@ -654,11 +626,9 @@
 <p>}</p>
 <h1 id="16-word-counter">16 — Word Counter</h1>
 <p>Analyze an array of words — count, total characters, longest word.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/16-word-counter/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/16-word-counter/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>array[string]</code>, <code>len</code>, loops</p>
 <p>fn total_chars(words: array[string]) -&gt; int {</p>
@@ -686,11 +656,9 @@
 <p>}</p>
 <h1 id="17-guessing-game">17 — Guessing Game</h1>
 <p>Binary-search style hints — too low, too high, correct.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/17-guessing-game/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/17-guessing-game/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> conditionals, arrays of guesses, game logic</p>
 <p>fn hint(guess: int, secret: int) -&gt; string {</p>
@@ -721,11 +689,9 @@
 <p>}</p>
 <h1 id="18-todo-list">18 — Todo List</h1>
 <p>Track tasks with structs and bool flags.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/18-todo-list/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/18-todo-list/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> struct, bool, conditional printing</p>
 <p>struct Todo {</p>
@@ -756,11 +722,9 @@
 <p>}</p>
 <h1 id="19-file-notes">19 — File Notes</h1>
 <p>Read and write files with <code>std.fs</code>.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/19-file-notes/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/19-file-notes/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fs.write</code>, <code>fs.read</code>, <code>fs.exists</code></p>
 <p>import std.fs</p>
@@ -775,11 +739,9 @@
 <p>}</p>
 <h1 id="20-json-config">20 — JSON Config</h1>
 <p>Parse JSON with <code>std.json</code> and model app configuration with structs.</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run projects/20-json-config/main.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run projects/20-json-config/main.vpp</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>std.json</code>, struct config, <code>vpp.toml</code> project layout</p>
 <p>import std.json</p>
@@ -871,403 +833,442 @@ It is maintained alongside the open-source repository at <a href="https://github
 <dt>SmartScreen</dt><dd>See primary sections above for how SmartScreen applies to v++ v0.5.</dd>
 <dt>SignPath</dt><dd>See primary sections above for how SignPath applies to v++ v0.5.</dd>
 </dl>
-<!-- reference line 802 -->
+<!-- reference line 762 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 805 -->
+<!-- reference line 765 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 808 -->
+<!-- reference line 768 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 811 -->
+<!-- reference line 771 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 814 -->
+<!-- reference line 774 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 817 -->
+<!-- reference line 777 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 820 -->
+<!-- reference line 780 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 823 -->
+<!-- reference line 783 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 826 -->
+<!-- reference line 786 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 829 -->
+<!-- reference line 789 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 832 -->
+<!-- reference line 792 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 835 -->
+<!-- reference line 795 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 838 -->
+<!-- reference line 798 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 841 -->
+<!-- reference line 801 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 844 -->
+<!-- reference line 804 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 847 -->
+<!-- reference line 807 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 850 -->
+<!-- reference line 810 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 853 -->
+<!-- reference line 813 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 856 -->
+<!-- reference line 816 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 859 -->
+<!-- reference line 819 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 862 -->
+<!-- reference line 822 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 865 -->
+<!-- reference line 825 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 868 -->
+<!-- reference line 828 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 871 -->
+<!-- reference line 831 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 874 -->
+<!-- reference line 834 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 877 -->
+<!-- reference line 837 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 880 -->
+<!-- reference line 840 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 883 -->
+<!-- reference line 843 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 886 -->
+<!-- reference line 846 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 889 -->
+<!-- reference line 849 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 892 -->
+<!-- reference line 852 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 895 -->
+<!-- reference line 855 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 898 -->
+<!-- reference line 858 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 901 -->
+<!-- reference line 861 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 904 -->
+<!-- reference line 864 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 907 -->
+<!-- reference line 867 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 910 -->
+<!-- reference line 870 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 913 -->
+<!-- reference line 873 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 916 -->
+<!-- reference line 876 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 919 -->
+<!-- reference line 879 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 922 -->
+<!-- reference line 882 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 925 -->
+<!-- reference line 885 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 928 -->
+<!-- reference line 888 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 931 -->
+<!-- reference line 891 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 934 -->
+<!-- reference line 894 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 937 -->
+<!-- reference line 897 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 940 -->
+<!-- reference line 900 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 943 -->
+<!-- reference line 903 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 946 -->
+<!-- reference line 906 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 949 -->
+<!-- reference line 909 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 952 -->
+<!-- reference line 912 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 955 -->
+<!-- reference line 915 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 958 -->
+<!-- reference line 918 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 961 -->
+<!-- reference line 921 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 964 -->
+<!-- reference line 924 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 967 -->
+<!-- reference line 927 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 970 -->
+<!-- reference line 930 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 973 -->
+<!-- reference line 933 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 976 -->
+<!-- reference line 936 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 979 -->
+<!-- reference line 939 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 982 -->
+<!-- reference line 942 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 985 -->
+<!-- reference line 945 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 988 -->
+<!-- reference line 948 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 991 -->
+<!-- reference line 951 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 994 -->
+<!-- reference line 954 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 997 -->
+<!-- reference line 957 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1000 -->
+<!-- reference line 960 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1003 -->
+<!-- reference line 963 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1006 -->
+<!-- reference line 966 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1009 -->
+<!-- reference line 969 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1012 -->
+<!-- reference line 972 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1015 -->
+<!-- reference line 975 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1018 -->
+<!-- reference line 978 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1021 -->
+<!-- reference line 981 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1024 -->
+<!-- reference line 984 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1027 -->
+<!-- reference line 987 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1030 -->
+<!-- reference line 990 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1033 -->
+<!-- reference line 993 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1036 -->
+<!-- reference line 996 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1039 -->
+<!-- reference line 999 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1042 -->
+<!-- reference line 1002 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1045 -->
+<!-- reference line 1005 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1048 -->
+<!-- reference line 1008 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1051 -->
+<!-- reference line 1011 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1054 -->
+<!-- reference line 1014 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1057 -->
+<!-- reference line 1017 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1060 -->
+<!-- reference line 1020 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1063 -->
+<!-- reference line 1023 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1066 -->
+<!-- reference line 1026 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1069 -->
+<!-- reference line 1029 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1072 -->
+<!-- reference line 1032 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1075 -->
+<!-- reference line 1035 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1078 -->
+<!-- reference line 1038 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1081 -->
+<!-- reference line 1041 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1084 -->
+<!-- reference line 1044 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1087 -->
+<!-- reference line 1047 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1090 -->
+<!-- reference line 1050 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1093 -->
+<!-- reference line 1053 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1096 -->
+<!-- reference line 1056 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1099 -->
+<!-- reference line 1059 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1102 -->
+<!-- reference line 1062 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1105 -->
+<!-- reference line 1065 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1108 -->
+<!-- reference line 1068 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1111 -->
+<!-- reference line 1071 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1114 -->
+<!-- reference line 1074 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1117 -->
+<!-- reference line 1077 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1120 -->
+<!-- reference line 1080 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1123 -->
+<!-- reference line 1083 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1126 -->
+<!-- reference line 1086 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1129 -->
+<!-- reference line 1089 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1132 -->
+<!-- reference line 1092 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1135 -->
+<!-- reference line 1095 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1138 -->
+<!-- reference line 1098 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1141 -->
+<!-- reference line 1101 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1144 -->
+<!-- reference line 1104 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1147 -->
+<!-- reference line 1107 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1150 -->
+<!-- reference line 1110 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1153 -->
+<!-- reference line 1113 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1156 -->
+<!-- reference line 1116 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1159 -->
+<!-- reference line 1119 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1162 -->
+<!-- reference line 1122 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1165 -->
+<!-- reference line 1125 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1168 -->
+<!-- reference line 1128 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1171 -->
+<!-- reference line 1131 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1174 -->
+<!-- reference line 1134 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1177 -->
+<!-- reference line 1137 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1180 -->
+<!-- reference line 1140 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1183 -->
+<!-- reference line 1143 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1186 -->
+<!-- reference line 1146 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1189 -->
+<!-- reference line 1149 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1192 -->
+<!-- reference line 1152 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1195 -->
+<!-- reference line 1155 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
-<!-- reference line 1198 -->
+<!-- reference line 1158 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1161 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1164 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1167 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1170 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1173 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1176 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1179 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1182 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1185 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1188 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1191 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1194 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 1197 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 </article>
     </main>
@@ -1314,6 +1315,12 @@ It is maintained alongside the open-source repository at <a href="https://github
       </div>
     </div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-clike.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-toml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
   <script src="/V-/js/main.js"></script>
 </body>
 </html>

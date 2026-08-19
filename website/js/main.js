@@ -1,5 +1,8 @@
 const CODE_SAMPLES = {
-  hello: `// hello.vpp — run: vpp run hello.vpp
+  hello: {
+    lang: "javascript",
+    label: "hello.vpp",
+    code: `// hello.vpp — run: vpp run hello.vpp
 import std.io
 
 fn greet(name: string) -> string {
@@ -19,15 +22,13 @@ fn main() -> int {
         total = total + i
     }
     print(total)
-
-    let words = ["v++", "native", "fast"]
-    for w in words {
-        print(w)
-    }
     return 0
 }`,
-
-  native: `struct User {
+  },
+  native: {
+    lang: "javascript",
+    label: "user.vpp",
+    code: `struct User {
     name: string
     age: int
     active: bool
@@ -49,26 +50,25 @@ fn main() -> int {
         active: true
     }
     print(describe(user))
-    print(user.age)
     return 0
 }`,
-
-  build: `# Compile to native .exe (requires LLVM/clang)
+  },
+  build: {
+    lang: "bash",
+    label: "terminal",
+    code: `# Compile to native .exe (requires LLVM/clang)
 vpp build app.vpp -o app.exe
-
-# Run the executable
 ./app.exe
 
 # Or interpret without building
 vpp run app.vpp
-
-# Type-check only
 vpp check app.vpp
-
-# Format source
 vpp fmt app.vpp`,
-
-  test: `fn add(a: int, b: int) -> int {
+  },
+  test: {
+    lang: "javascript",
+    label: "tests.vpp",
+    code: `fn add(a: int, b: int) -> int {
     return a + b
 }
 
@@ -78,44 +78,83 @@ test "addition works" {
 
 test "zero identity" {
     assert_eq(add(0, 0), 0)
-}
-
-test "negative nums" {
-    assert_eq(add(-1, 1), 0)
 }`,
-
-  project: `# vpp.toml — project manifest
-name = "my-app"
+  },
+  project: {
+    lang: "toml",
+    label: "vpp.toml",
+    code: `name = "my-app"
 version = "0.1.0"
 entry = "src/main.vpp"
 
 [dependencies]
-hello-lib = "0.1.0"
-
-# Commands:
-#   vpp new my-app
-#   vpp add hello-lib
-#   vpp test
-#   vpp run src/main.vpp`,
+hello-lib = "0.1.0"`,
+  },
 };
 
-function highlightLine(line) {
-  return line
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/(#.*)$/, '<span class="cm">$1</span>')
-    .replace(/\b(fn|let|mut|return|import|struct|enum|match|if|for|test|assert_eq|true|false)\b/g, '<span class="kw">$1</span>')
-    .replace(/"([^"]*)"/g, '<span class="str">"$1"</span>');
+function initSidebarHighlight() {
+  const sidebar = document.querySelector(".docs-sidebar");
+  if (!sidebar) return;
+
+  sidebar.querySelectorAll("a").forEach((a) => a.classList.remove("sidebar-current"));
+
+  const page = location.pathname.split("/").pop() || "index.html";
+  const hash = location.hash;
+  const links = [...sidebar.querySelectorAll("a")];
+
+  let current = null;
+  if (hash) {
+    current = links.find((a) => {
+      try {
+        const u = new URL(a.href);
+        return u.pathname.split("/").pop() === page && u.hash === hash;
+      } catch {
+        return false;
+      }
+    });
+  }
+  if (!current) {
+    current = links.find((a) => {
+      try {
+        const u = new URL(a.href);
+        return u.pathname.split("/").pop() === page && !u.hash;
+      } catch {
+        return false;
+      }
+    });
+  }
+  if (current) current.classList.add("sidebar-current");
 }
 
-function renderCode(code) {
-  return code
-    .split("\n")
-    .map((line, i) =>
-      `<div class="code-line"><span class="ln">${i + 1}</span><span class="lc">${highlightLine(line) || " "}</span></div>`
-    )
-    .join("");
+window.addEventListener("hashchange", initSidebarHighlight);
+
+function highlightAllCode() {
+  if (typeof Prism === "undefined") return;
+  document.querySelectorAll("pre code[class*='language-']").forEach((el) => {
+    Prism.highlightElement(el);
+  });
+}
+
+function mountHomeCode(key) {
+  const sample = CODE_SAMPLES[key] || CODE_SAMPLES.hello;
+  const pre = document.getElementById("code-display");
+  const langLabel = document.getElementById("code-lang");
+  if (!pre) return;
+
+  pre.className = `line-numbers language-${sample.lang}`;
+  pre.textContent = "";
+  const code = document.createElement("code");
+  code.className = `language-${sample.lang}`;
+  code.textContent = sample.code;
+  pre.appendChild(code);
+
+  if (langLabel) langLabel.textContent = sample.label;
+
+  if (typeof Prism !== "undefined") {
+    Prism.highlightElement(code);
+  }
+
+  return sample.code;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -125,33 +164,24 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle.addEventListener("click", () => nav.classList.toggle("open"));
   }
 
+  initSidebarHighlight();
+  highlightAllCode();
+
   const tabs = document.querySelectorAll(".code-tab");
-  const pre = document.querySelector("#code-display");
-  const langLabel = document.querySelector("#code-lang");
   const copyBtn = document.querySelector(".copy-btn");
+  let activeCode = CODE_SAMPLES.hello.code;
 
-  let activeCode = CODE_SAMPLES.hello;
-
-  function show(key) {
-    activeCode = CODE_SAMPLES[key] || CODE_SAMPLES.hello;
-    if (pre) {
-      pre.innerHTML = `<div class="code-lines">${renderCode(activeCode)}</div>`;
-    }
-    if (langLabel) {
-      langLabel.textContent =
-        key === "project" ? "TOML" : key === "build" ? "Shell" : key === "test" ? "v++" : "v++";
-    }
+  if (document.getElementById("code-display")) {
+    activeCode = mountHomeCode("hello") || activeCode;
   }
 
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       tabs.forEach((t) => t.classList.remove("active"));
       tab.classList.add("active");
-      show(tab.dataset.sample);
+      activeCode = mountHomeCode(tab.dataset.sample) || activeCode;
     });
   });
-
-  if (pre) show("hello");
 
   if (copyBtn) {
     copyBtn.addEventListener("click", () => {
@@ -163,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const path = location.pathname.split("/").pop() || "index.html";
-  document.querySelectorAll(".nav-link").forEach((a) => {
+  document.querySelectorAll(".top-nav .nav-link").forEach((a) => {
     const href = a.getAttribute("href") || "";
     if (href.endsWith(path) || (path === "" && href.endsWith("index.html"))) {
       a.classList.add("active");

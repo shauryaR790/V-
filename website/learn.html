@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/V-/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+  <link rel="stylesheet" href="/V-/css/prism-vpp.css">
   <link rel="icon" href="/V-/assets/favicon.png">
   <link rel="apple-touch-icon" href="/V-/assets/logo-header.png">
 </head>
@@ -33,7 +35,7 @@
   </header>
   <div class="docs-layout">
     <aside class="docs-sidebar"><p class="sidebar-group">Getting started</p><ul>
-<li><a href="/V-/learn.html" class="active">Introduction to v++</a></li>
+<li><a href="/V-/learn.html">Introduction to v++</a></li>
 <li><a href="/V-/learn.html#getting-started">Quick start</a></li>
 <li><a href="/V-/learn.html#hello-world">Hello, v++</a></li>
 <li><a href="/V-/learn.html#first-project">First project</a></li>
@@ -70,36 +72,28 @@
       <article class="docs-article"><div id="top"></div>
 <h1 id="hello-v">Hello, v++</h1>
 <p>Create <code>hello.vpp</code>:</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">fn main() -&gt; int {</td></tr>
-<tr><td class="ln">2</td><td class="lc">    print(&quot;Hello from v++!&quot;)</td></tr>
-<tr><td class="ln">3</td><td class="lc">    return 0</td></tr>
-<tr><td class="ln">4</td><td class="lc">}</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>v++</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="line-numbers language-javascript"><code class="language-javascript">fn main() -&gt; int {
+    print(&quot;Hello from v++!&quot;)
+    return 0
+}</code></pre>
 </div>
 <p>Run it:</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run hello.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run hello.vpp</code></pre>
 </div>
 <p>Type-check without running:</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp check hello.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp check hello.vpp</code></pre>
 </div>
 <p>Compile to a native executable:</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp build hello.vpp -o hello.exe</td></tr>
-<tr><td class="ln">2</td><td class="lc">.\hello.exe</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp build hello.vpp -o hello.exe
+.\hello.exe</code></pre>
 </div>
 <h2 id="what-you-just-used">What you just used</h2>
 <ul>
@@ -113,20 +107,16 @@
 <p>1. Download <strong><code>vpp-0.5.0-setup.exe</code></strong> from <a href="https://github.com/shauryaR790/V-/releases/latest">GitHub Releases</a>.</p>
 <p>2. Run the installer. If Windows SmartScreen appears, choose <strong>More info → Run anyway</strong>.</p>
 <p>3. Open a <strong>new</strong> terminal:</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run examples\hello.vpp</td></tr>
-<tr><td class="ln">2</td><td class="lc">vpp doctor</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run examples\hello.vpp
+vpp doctor</code></pre>
 </div>
 <p>If <code>vpp</code> is not found, add the install folder to PATH:</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">$dir = &quot;$env:LOCALAPPDATA\Programs\vpp&quot;</td></tr>
-<tr><td class="ln">2</td><td class="lc">[Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path + &quot;;$dir;$dir\llvm\bin&quot;, &quot;User&quot;)</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">$dir = &quot;$env:LOCALAPPDATA\Programs\vpp&quot;
+[Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path + &quot;;$dir;$dir\llvm\bin&quot;, &quot;User&quot;)</code></pre>
 </div>
 <p>Restart the terminal.</p>
 <h2 id="vs-code-extension">VS Code extension</h2>
@@ -159,46 +149,36 @@
 </tbody></table></div>
 <h1 id="your-first-v-project">Your first v++ project</h1>
 <h2 id="scaffold">Scaffold</h2>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp new myapp --path myapp</td></tr>
-<tr><td class="ln">2</td><td class="lc">cd myapp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp new myapp --path myapp
+cd myapp</code></pre>
 </div>
 <p>Creates:</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">myapp/</td></tr>
-<tr><td class="ln">2</td><td class="lc">  vpp.toml</td></tr>
-<tr><td class="ln">3</td><td class="lc">  src/main.vpp</td></tr>
-<tr><td class="ln">4</td><td class="lc">  tests/smoke.vpp</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>text</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>text</span></div>
+<pre class="line-numbers language-text"><code class="language-text">myapp/
+  vpp.toml
+  src/main.vpp
+  tests/smoke.vpp</code></pre>
 </div>
 <h2 id="run">Run</h2>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp run</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp run</code></pre>
 </div>
 <p>Runs the entry in <code>vpp.toml</code> (default <code>src/main.vpp</code>).</p>
 <h2 id="test">Test</h2>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp test</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp test</code></pre>
 </div>
 <p>Runs <code>test</code> blocks in <code>tests/</code> and inline tests.</p>
 <h2 id="add-a-dependency">Add a dependency</h2>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">vpp add hello-lib --version 0.1.0</td></tr>
-<tr><td class="ln">2</td><td class="lc">vpp update</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">vpp add hello-lib --version 0.1.0
+vpp update</code></pre>
 </div>
 <p>See <a href="../guides/package-manager.md">Package manager</a>.</p>
 <h1 id="vs-code-setup-for-v">VS Code setup for v++</h1>
@@ -211,11 +191,9 @@
 <p>3. Press <strong>F5</strong> or <strong>Ctrl+Shift+R</strong> to run the active file.</p>
 <h2 id="language-server-intellisense">Language server (IntelliSense)</h2>
 <p>Build <code>vppls</code> once (or use a release that includes it):</p>
-<div class="code-window">
-<pre class="code-block"><table class="code-table"><tbody>
-<tr><td class="ln">1</td><td class="lc">cargo build --release --features lsp --bin vppls</td></tr>
-</tbody></table></pre>
-<div class="code-footer-bar"><span>Shell</span></div>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="line-numbers language-bash"><code class="language-bash">cargo build --release --features lsp --bin vppls</code></pre>
 </div>
 <p>Settings (<code>File → Preferences → Settings</code>, search <code>vpp</code>):</p>
 <div class="table-wrap"><table>
@@ -419,6 +397,30 @@ It is maintained alongside the open-source repository at <a href="https://github
 <dt>SmartScreen</dt><dd>See primary sections above for how SmartScreen applies to v++ v0.5.</dd>
 <dt>SignPath</dt><dd>See primary sections above for how SignPath applies to v++ v0.5.</dd>
 </dl>
+<!-- reference line 326 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 329 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 332 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 335 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 338 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 341 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 344 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
+<!-- reference line 347 -->
+<p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
+
 <!-- reference line 350 -->
 <p class="ref-line">v++ documentation reference material — version 0.5.0 — open source — Shaurya — MIT License.</p>
 
@@ -1339,6 +1341,12 @@ It is maintained alongside the open-source repository at <a href="https://github
       </div>
     </div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-clike.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-toml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
   <script src="/V-/js/main.js"></script>
 </body>
 </html>
