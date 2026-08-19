@@ -216,12 +216,13 @@ def shell(active: str, title: str, body: str, sidebar_html: str, toc_html: str, 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{ASSET_PREFIX}css/style.css">
-  <link rel="icon" href="{ASSET_PREFIX}assets/logo.png">
+  <link rel="icon" href="{ASSET_PREFIX}assets/favicon.png">
+  <link rel="apple-touch-icon" href="{ASSET_PREFIX}assets/logo-header.png">
 </head>
 <body class="page-docs">
   <header class="site-header">
     <div class="header-inner">
-      <a href="{ASSET_PREFIX}index.html" class="brand"><img src="{ASSET_PREFIX}assets/logo.png" alt="v++" class="brand-logo" height="36"><span class="brand-text">v++</span></a>
+      <a href="{ASSET_PREFIX}index.html" class="brand"><img src="{ASSET_PREFIX}assets/logo-header.png" alt="v++" class="brand-logo"></a>
       <nav class="top-nav">{nav_items}</nav>
       <div class="header-actions">
         <a href="https://github.com/shauryaR790/V-" class="icon-btn" aria-label="GitHub" target="_blank" rel="noopener">
@@ -266,12 +267,12 @@ def doc_href(href: str) -> str:
     return f"{ASSET_PREFIX}{href}"
 
 
-def build_sidebar(groups: dict[str, list[tuple[str, str]]], active: str) -> str:
+def build_sidebar(groups: dict[str, list[tuple[str, str]]], active_href: str) -> str:
     parts = []
     for group, links in groups.items():
         parts.append(f'<p class="sidebar-group">{html.escape(group)}</p><ul>')
         for href, label in links:
-            cls = ' class="active"' if href == active or href.split("#")[0] == active else ""
+            cls = ' class="active"' if href == active_href else ""
             parts.append(f'<li><a href="{doc_href(href)}"{cls}>{html.escape(label)}</a></li>')
         parts.append("</ul>")
     return "\n".join(parts)
