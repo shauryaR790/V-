@@ -95,6 +95,13 @@ pre.has-line-numbers .code-ln-gutter {
   border-right: 1px solid #30363d;
   user-select: none;
   pointer-events: none;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+pre.home-code-pre.has-line-numbers .code-ln-gutter {
+  min-height: calc(30 * 1.65em);
 }
 
 pre.has-line-numbers .code-ln {

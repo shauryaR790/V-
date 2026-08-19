@@ -1,3 +1,5 @@
+const CODE_LINE_COUNT = 30;
+
 const CODE_SAMPLES = {
   hello: {
     lang: "javascript",
@@ -13,22 +15,32 @@ fn add(a: int, b: int) -> int {
     return a + b
 }
 
+fn multiply(a: int, b: int) -> int {
+    return a * b
+}
+
+fn sum_range(start: int, end: int) -> int {
+    let mut total = 0
+    for i in start..end {
+        total = total + i
+    }
+    return total
+}
+
 fn main() -> int {
     print(greet("world"))
     print(add(10, 20))
-
-    let mut total = 0
-    for i in 0..5 {
-        total = total + i
-    }
-    print(total)
+    print(multiply(3, 7))
+    print(sum_range(0, 5))
     return 0
 }`,
   },
   native: {
     lang: "javascript",
     label: "user.vpp",
-    code: `struct User {
+    code: `import std.io
+
+struct User {
     name: string
     age: int
     active: bool
@@ -36,11 +48,16 @@ fn main() -> int {
 
 enum Role {
     Dev
+    Designer
     User
 }
 
 fn describe(user: User) -> string {
-    return user.name
+    return user.name + " (" + user.age + ")"
+}
+
+fn is_adult(user: User) -> bool {
+    return user.age >= 18
 }
 
 fn main() -> int {
@@ -50,6 +67,7 @@ fn main() -> int {
         active: true
     }
     print(describe(user))
+    print(is_adult(user))
     return 0
 }`,
   },
@@ -60,10 +78,25 @@ fn main() -> int {
 vpp build app.vpp -o app.exe
 ./app.exe
 
-# Or interpret without building
+# Interpret without building
 vpp run app.vpp
 vpp check app.vpp
-vpp fmt app.vpp`,
+vpp fmt app.vpp
+
+# Project workflow
+vpp new myapp --path myapp
+cd myapp
+vpp run
+vpp test
+vpp build src/main.vpp -o bin/app.exe
+
+# Doctor + toolchain
+vpp doctor
+vpp --version
+
+# Release build with LLVM path (Windows)
+$env:LLVM_SYS_221_PREFIX = "C:\\Program Files\\LLVM"
+vpp build app.vpp -o app.exe`,
   },
   test: {
     lang: "javascript",
@@ -72,12 +105,30 @@ vpp fmt app.vpp`,
     return a + b
 }
 
+fn subtract(a: int, b: int) -> int {
+    return a - b
+}
+
+fn clamp(value: int, min: int, max: int) -> int {
+    if value < min { return min }
+    if value > max { return max }
+    return value
+}
+
 test "addition works" {
     assert_eq(add(2, 3), 5)
 }
 
-test "zero identity" {
-    assert_eq(add(0, 0), 0)
+test "subtraction works" {
+    assert_eq(subtract(10, 4), 6)
+}
+
+test "clamp lower bound" {
+    assert_eq(clamp(-5, 0, 10), 0)
+}
+
+test "clamp upper bound" {
+    assert_eq(clamp(99, 0, 10), 10)
 }`,
   },
   project: {
@@ -86,11 +137,37 @@ test "zero identity" {
     code: `name = "my-app"
 version = "0.1.0"
 entry = "src/main.vpp"
+authors = ["Shaurya"]
 
 [dependencies]
-hello-lib = "0.1.0"`,
+hello-lib = "0.1.0"
+json-utils = "0.2.1"
+
+[dev-dependencies]
+test-helpers = "0.1.0"
+
+[profile.release]
+opt = true
+debug = false
+
+[profile.dev]
+opt = false
+debug = true
+
+# Run: vpp run
+# Test: vpp test
+# Build: vpp build src/main.vpp -o my-app.exe`,
   },
 };
+
+function padToLineCount(code, target) {
+  const lines = code.split("\n");
+  if (lines.length > 1 && lines[lines.length - 1] === "") lines.pop();
+  while (lines.length < target) {
+    lines.push("");
+  }
+  return lines.slice(0, target).join("\n");
+}
 
 function countCodeLines(text) {
   if (!text) return 0;
@@ -99,7 +176,7 @@ function countCodeLines(text) {
   return parts.length;
 }
 
-function syncLineNumbers(pre) {
+function syncLineNumbers(pre, lineCount) {
   if (!pre) return;
 
   const code = pre.querySelector("code");
@@ -116,10 +193,9 @@ function syncLineNumbers(pre) {
   }
 
   pre.classList.add("has-line-numbers");
+  pre.dataset.lineCount = String(lineCount);
 
-  const lineCount = countCodeLines(code.textContent);
   gutter.innerHTML = "";
-
   for (let i = 1; i <= lineCount; i += 1) {
     const line = document.createElement("span");
     line.className = "code-ln";
@@ -168,7 +244,8 @@ function highlightAllCode() {
   if (typeof Prism === "undefined") return;
   document.querySelectorAll("pre code[class*='language-']").forEach((el) => {
     Prism.highlightElement(el);
-    syncLineNumbers(el.closest("pre"));
+    const pre = el.closest("pre");
+    syncLineNumbers(pre, countCodeLines(el.textContent));
   });
 }
 
@@ -178,11 +255,13 @@ function mountHomeCode(key) {
   const langLabel = document.getElementById("code-lang");
   if (!pre) return;
 
-  pre.className = `language-${sample.lang}`;
+  const padded = padToLineCount(sample.code, CODE_LINE_COUNT);
+
+  pre.className = `language-${sample.lang} home-code-pre`;
   pre.innerHTML = "";
   const code = document.createElement("code");
   code.className = `language-${sample.lang}`;
-  code.textContent = sample.code;
+  code.textContent = padded;
   pre.appendChild(code);
 
   if (langLabel) langLabel.textContent = sample.label;
@@ -190,9 +269,9 @@ function mountHomeCode(key) {
   if (typeof Prism !== "undefined") {
     Prism.highlightElement(code);
   }
-  syncLineNumbers(pre);
+  syncLineNumbers(pre, CODE_LINE_COUNT);
 
-  return sample.code;
+  return padded;
 }
 
 document.addEventListener("DOMContentLoaded", () => {

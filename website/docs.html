@@ -69,230 +69,6 @@
 </ul></aside>
     <main class="docs-main">
       <article class="docs-article"><div id="top"></div>
-<h1 id="privacy-policy-v">Privacy Policy — v++</h1>
-<p><strong>Last updated:</strong> August 2026</p>
-<p>v++ (the compiler, language server, and VS Code extension) is open-source software distributed under the MIT License.</p>
-<h2 id="data-collection">Data collection</h2>
-<p>The v++ compiler and language server <strong>do not collect, transmit, or store personal data</strong>. All compilation and analysis runs locally on your machine.</p>
-<p>The VS Code extension communicates only with the local <code>vppls</code> language server process on your computer. It does not send source code or usage data to any remote server operated by the v++ project.</p>
-<h2 id="third-party-services">Third-party services</h2>
-<ul>
-<li><strong>GitHub Releases</strong> — if you download binaries from GitHub, GitHub’s own privacy policy applies to that download.</li>
-<li><strong>VS Code Marketplace</strong> — if you install the extension from the Marketplace, Microsoft’s privacy policy applies to that installation flow.</li>
-</ul>
-<h2 id="contact">Contact</h2>
-<p>Issues and questions: https://github.com/shauryaR790/V-/issues</p>
-<h1 id="v-documentation">v++ Documentation</h1>
-<p>Welcome to the v++ documentation. Start with <a href="getting-started/install.md">Install</a> or <a href="getting-started/hello-world.md">Hello, v++</a>.</p>
-<h2 id="getting-started">Getting started</h2>
-<div class="table-wrap"><table>
-<tr>
-<td>Guide</td>
-<td>Description</td>
-</tr>
-<tr>
-<td><a href="https://shauryaR790.github.io/V-/">Website</a></td>
-<td>Official site — learn, projects, downloads</td>
-</tr>
-<tr>
-<td><a href="getting-started/install.md">Install</a></td>
-<td>Windows installer, VS Code extension, PATH</td>
-</tr>
-<tr>
-<td><a href="getting-started/hello-world.md">Hello, v++</a></td>
-<td>First program in 5 minutes</td>
-</tr>
-<tr>
-<td><a href="getting-started/vscode-setup.md">VS Code setup</a></td>
-<td>Run, debug, LSP settings</td>
-</tr>
-<tr>
-<td><a href="getting-started/first-project.md">Your first project</a></td>
-<td><code>vpp new</code>, layout, tests</td>
-</tr>
-</tbody></table></div>
-<h2 id="language-reference">Language reference</h2>
-<div class="table-wrap"><table>
-<tr>
-<td>Guide</td>
-<td>Description</td>
-</tr>
-<tr>
-<td><a href="language/README.md">Overview</a></td>
-<td>Syntax and index</td>
-</tr>
-<tr>
-<td><a href="language/types-and-inference.md">Types &amp; inference</a></td>
-<td><code>int</code>, <code>string</code>, <code>let</code>, signatures</td>
-</tr>
-<tr>
-<td><a href="language/functions.md">Functions</a></td>
-<td><code>fn</code>, <code>return</code>, <code>main</code></td>
-</tr>
-<tr>
-<td><a href="language/control-flow.md">Control flow</a></td>
-<td><code>if</code>, <code>while</code>, <code>for</code>, <code>match</code></td>
-</tr>
-<tr>
-<td><a href="language/structs-and-enums.md">Structs &amp; enums</a></td>
-<td>Custom types</td>
-</tr>
-<tr>
-<td><a href="language/option-result-match.md">Option, Result, match</a></td>
-<td>Safe patterns + exhaustiveness</td>
-</tr>
-<tr>
-<td><a href="language/generics.md">Generics</a></td>
-<td><code>fn id<a href="x: T">T</a></code></td>
-</tr>
-<tr>
-<td><a href="language/traits.md">Traits &amp; impls</a></td>
-<td>Interfaces with static dispatch</td>
-</tr>
-<tr>
-<td><a href="language/mut-and-immutability.md"><code>mut</code> &amp; immutability</a></td>
-<td>Reassignment rules</td>
-</tr>
-<tr>
-<td><a href="language/modules.md">Modules</a></td>
-<td><code>import</code>, <code>pub</code>, <code>std.*</code></td>
-</tr>
-</tbody></table></div>
-<h2 id="guides">Guides</h2>
-<div class="table-wrap"><table>
-<tr>
-<td>Guide</td>
-<td>Description</td>
-</tr>
-<tr>
-<td><a href="guides/cli-reference.md">CLI reference</a></td>
-<td>Every <code>vpp</code> command</td>
-</tr>
-<tr>
-<td><a href="guides/package-manager.md">Package manager</a></td>
-<td><code>vpp.toml</code>, deps, lockfile</td>
-</tr>
-<tr>
-<td><a href="guides/testing.md">Testing</a></td>
-<td><code>test</code> blocks, <code>vpp test</code></td>
-</tr>
-<tr>
-<td><a href="guides/native-compilation.md">Native compilation</a></td>
-<td><code>vpp build</code>, LLVM, <code>.exe</code></td>
-</tr>
-<tr>
-<td><a href="guides/formatting.md">Formatting</a></td>
-<td><code>vpp fmt</code></td>
-</tr>
-<tr>
-<td><a href="guides/language-server.md">Language server</a></td>
-<td><code>vppls</code>, diagnostics, completion</td>
-</tr>
-<tr>
-<td><a href="guides/troubleshooting.md">Troubleshooting</a></td>
-<td>Common errors and fixes</td>
-</tr>
-</tbody></table></div>
-<h2 id="standard-library">Standard library</h2>
-<div class="table-wrap"><table>
-<tr>
-<td>Module</td>
-<td>Guide</td>
-</tr>
-<tr>
-<td>Overview</td>
-<td><a href="stdlib/README.md">stdlib/README.md</a></td>
-</tr>
-<tr>
-<td><code>std.io</code></td>
-<td><a href="stdlib/io.md">stdlib/io.md</a></td>
-</tr>
-<tr>
-<td><code>std.math</code></td>
-<td><a href="stdlib/math.md">stdlib/math.md</a></td>
-</tr>
-<tr>
-<td><code>std.string</code></td>
-<td><a href="stdlib/string.md">stdlib/string.md</a></td>
-</tr>
-<tr>
-<td><code>std.collections</code></td>
-<td><a href="stdlib/collections.md">stdlib/collections.md</a></td>
-</tr>
-<tr>
-<td><code>std.fs</code></td>
-<td><a href="stdlib/fs.md">stdlib/fs.md</a></td>
-</tr>
-<tr>
-<td><code>std.json</code></td>
-<td><a href="stdlib/json.md">stdlib/json.md</a></td>
-</tr>
-<tr>
-<td><code>std.process</code></td>
-<td><a href="stdlib/process.md">stdlib/process.md</a></td>
-</tr>
-</tbody></table></div>
-<h2 id="project">Project</h2>
-<div class="table-wrap"><table>
-<tr>
-<td>Doc</td>
-<td>Description</td>
-</tr>
-<tr>
-<td><a href="project/roadmap.md">Roadmap</a></td>
-<td>Planned features</td>
-</tr>
-<tr>
-<td><a href="project/faq.md">FAQ</a></td>
-<td>Common questions</td>
-</tr>
-<tr>
-<td><a href="../SPEC.md">SPEC</a></td>
-<td>Language specification</td>
-</tr>
-<tr>
-<td><a href="../CHANGELOG.md">CHANGELOG</a></td>
-<td>Version history</td>
-</tr>
-</tbody></table></div>
-<h2 id="contributing">Contributing</h2>
-<div class="table-wrap"><table>
-<tr>
-<td>Doc</td>
-<td>Description</td>
-</tr>
-<tr>
-<td><a href="../CONTRIBUTING.md">Contributing</a></td>
-<td>How to help</td>
-</tr>
-<tr>
-<td><a href="contributing/building-from-source.md">Build from source</a></td>
-<td><code>cargo build</code>, features</td>
-</tr>
-<tr>
-<td><a href="contributing/running-tests.md">Run tests</a></td>
-<td>CI parity, local tests</td>
-</tr>
-</tbody></table></div>
-<h2 id="legal">Legal</h2>
-<div class="table-wrap"><table>
-<tr>
-<td>Doc</td>
-<td>Description</td>
-</tr>
-<tr>
-<td><a href="PRIVACY.md">Privacy</a></td>
-<td>Data collection policy</td>
-</tr>
-<tr>
-<td><a href="../SECURITY.md">Security</a></td>
-<td>Vulnerability reporting</td>
-</tr>
-<tr>
-<td><a href="../CODE_OF_CONDUCT.md">Code of Conduct</a></td>
-<td>Community standards</td>
-</tr>
-</tbody></table></div>
 <h1 id="building-from-source">Building from source</h1>
 <h2 id="requirements">Requirements</h2>
 <ul>
@@ -1066,6 +842,19 @@ let items: array[string] = [&quot;a&quot;, &quot;b&quot;]</code></pre>
 }</code></pre>
 </div>
 <p><code>vpp run</code> calls <code>main()</code> when defined.</p>
+<h1 id="privacy-policy-v">Privacy Policy — v++</h1>
+<p><strong>Last updated:</strong> August 2026</p>
+<p>v++ (the compiler, language server, and VS Code extension) is open-source software distributed under the MIT License.</p>
+<h2 id="data-collection">Data collection</h2>
+<p>The v++ compiler and language server <strong>do not collect, transmit, or store personal data</strong>. All compilation and analysis runs locally on your machine.</p>
+<p>The VS Code extension communicates only with the local <code>vppls</code> language server process on your computer. It does not send source code or usage data to any remote server operated by the v++ project.</p>
+<h2 id="third-party-services">Third-party services</h2>
+<ul>
+<li><strong>GitHub Releases</strong> — if you download binaries from GitHub, GitHub’s own privacy policy applies to that download.</li>
+<li><strong>VS Code Marketplace</strong> — if you install the extension from the Marketplace, Microsoft’s privacy policy applies to that installation flow.</li>
+</ul>
+<h2 id="contact">Contact</h2>
+<p>Issues and questions: https://github.com/shauryaR790/V-/issues</p>
 <h1 id="faq">FAQ</h1>
 <h2 id="what-is-v">What is v++?</h2>
 <p>A compiled language with Python-like syntax, static typing, and native codegen via LLVM.</p>
@@ -1134,6 +923,217 @@ let items: array[string] = [&quot;a&quot;, &quot;b&quot;]</code></pre>
 <li>[ ] Curriculum + interactive tutorial</li>
 </ul>
 <p>Track progress in <a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a>.</p>
+<h1 id="v-documentation">v++ Documentation</h1>
+<p>Welcome to the v++ documentation. Start with <a href="getting-started/install.md">Install</a> or <a href="getting-started/hello-world.md">Hello, v++</a>.</p>
+<h2 id="getting-started">Getting started</h2>
+<div class="table-wrap"><table>
+<tr>
+<td>Guide</td>
+<td>Description</td>
+</tr>
+<tr>
+<td><a href="https://shauryaR790.github.io/V-/">Website</a></td>
+<td>Official site — learn, projects, downloads</td>
+</tr>
+<tr>
+<td><a href="getting-started/install.md">Install</a></td>
+<td>Windows installer, VS Code extension, PATH</td>
+</tr>
+<tr>
+<td><a href="getting-started/hello-world.md">Hello, v++</a></td>
+<td>First program in 5 minutes</td>
+</tr>
+<tr>
+<td><a href="getting-started/vscode-setup.md">VS Code setup</a></td>
+<td>Run, debug, LSP settings</td>
+</tr>
+<tr>
+<td><a href="getting-started/first-project.md">Your first project</a></td>
+<td><code>vpp new</code>, layout, tests</td>
+</tr>
+</tbody></table></div>
+<h2 id="language-reference">Language reference</h2>
+<div class="table-wrap"><table>
+<tr>
+<td>Guide</td>
+<td>Description</td>
+</tr>
+<tr>
+<td><a href="language/README.md">Overview</a></td>
+<td>Syntax and index</td>
+</tr>
+<tr>
+<td><a href="language/types-and-inference.md">Types &amp; inference</a></td>
+<td><code>int</code>, <code>string</code>, <code>let</code>, signatures</td>
+</tr>
+<tr>
+<td><a href="language/functions.md">Functions</a></td>
+<td><code>fn</code>, <code>return</code>, <code>main</code></td>
+</tr>
+<tr>
+<td><a href="language/control-flow.md">Control flow</a></td>
+<td><code>if</code>, <code>while</code>, <code>for</code>, <code>match</code></td>
+</tr>
+<tr>
+<td><a href="language/structs-and-enums.md">Structs &amp; enums</a></td>
+<td>Custom types</td>
+</tr>
+<tr>
+<td><a href="language/option-result-match.md">Option, Result, match</a></td>
+<td>Safe patterns + exhaustiveness</td>
+</tr>
+<tr>
+<td><a href="language/generics.md">Generics</a></td>
+<td><code>fn id<a href="x: T">T</a></code></td>
+</tr>
+<tr>
+<td><a href="language/traits.md">Traits &amp; impls</a></td>
+<td>Interfaces with static dispatch</td>
+</tr>
+<tr>
+<td><a href="language/mut-and-immutability.md"><code>mut</code> &amp; immutability</a></td>
+<td>Reassignment rules</td>
+</tr>
+<tr>
+<td><a href="language/modules.md">Modules</a></td>
+<td><code>import</code>, <code>pub</code>, <code>std.*</code></td>
+</tr>
+</tbody></table></div>
+<h2 id="guides">Guides</h2>
+<div class="table-wrap"><table>
+<tr>
+<td>Guide</td>
+<td>Description</td>
+</tr>
+<tr>
+<td><a href="guides/cli-reference.md">CLI reference</a></td>
+<td>Every <code>vpp</code> command</td>
+</tr>
+<tr>
+<td><a href="guides/package-manager.md">Package manager</a></td>
+<td><code>vpp.toml</code>, deps, lockfile</td>
+</tr>
+<tr>
+<td><a href="guides/testing.md">Testing</a></td>
+<td><code>test</code> blocks, <code>vpp test</code></td>
+</tr>
+<tr>
+<td><a href="guides/native-compilation.md">Native compilation</a></td>
+<td><code>vpp build</code>, LLVM, <code>.exe</code></td>
+</tr>
+<tr>
+<td><a href="guides/formatting.md">Formatting</a></td>
+<td><code>vpp fmt</code></td>
+</tr>
+<tr>
+<td><a href="guides/language-server.md">Language server</a></td>
+<td><code>vppls</code>, diagnostics, completion</td>
+</tr>
+<tr>
+<td><a href="guides/troubleshooting.md">Troubleshooting</a></td>
+<td>Common errors and fixes</td>
+</tr>
+</tbody></table></div>
+<h2 id="standard-library">Standard library</h2>
+<div class="table-wrap"><table>
+<tr>
+<td>Module</td>
+<td>Guide</td>
+</tr>
+<tr>
+<td>Overview</td>
+<td><a href="stdlib/README.md">stdlib/README.md</a></td>
+</tr>
+<tr>
+<td><code>std.io</code></td>
+<td><a href="stdlib/io.md">stdlib/io.md</a></td>
+</tr>
+<tr>
+<td><code>std.math</code></td>
+<td><a href="stdlib/math.md">stdlib/math.md</a></td>
+</tr>
+<tr>
+<td><code>std.string</code></td>
+<td><a href="stdlib/string.md">stdlib/string.md</a></td>
+</tr>
+<tr>
+<td><code>std.collections</code></td>
+<td><a href="stdlib/collections.md">stdlib/collections.md</a></td>
+</tr>
+<tr>
+<td><code>std.fs</code></td>
+<td><a href="stdlib/fs.md">stdlib/fs.md</a></td>
+</tr>
+<tr>
+<td><code>std.json</code></td>
+<td><a href="stdlib/json.md">stdlib/json.md</a></td>
+</tr>
+<tr>
+<td><code>std.process</code></td>
+<td><a href="stdlib/process.md">stdlib/process.md</a></td>
+</tr>
+</tbody></table></div>
+<h2 id="project">Project</h2>
+<div class="table-wrap"><table>
+<tr>
+<td>Doc</td>
+<td>Description</td>
+</tr>
+<tr>
+<td><a href="project/roadmap.md">Roadmap</a></td>
+<td>Planned features</td>
+</tr>
+<tr>
+<td><a href="project/faq.md">FAQ</a></td>
+<td>Common questions</td>
+</tr>
+<tr>
+<td><a href="../SPEC.md">SPEC</a></td>
+<td>Language specification</td>
+</tr>
+<tr>
+<td><a href="../CHANGELOG.md">CHANGELOG</a></td>
+<td>Version history</td>
+</tr>
+</tbody></table></div>
+<h2 id="contributing">Contributing</h2>
+<div class="table-wrap"><table>
+<tr>
+<td>Doc</td>
+<td>Description</td>
+</tr>
+<tr>
+<td><a href="../CONTRIBUTING.md">Contributing</a></td>
+<td>How to help</td>
+</tr>
+<tr>
+<td><a href="contributing/building-from-source.md">Build from source</a></td>
+<td><code>cargo build</code>, features</td>
+</tr>
+<tr>
+<td><a href="contributing/running-tests.md">Run tests</a></td>
+<td>CI parity, local tests</td>
+</tr>
+</tbody></table></div>
+<h2 id="legal">Legal</h2>
+<div class="table-wrap"><table>
+<tr>
+<td>Doc</td>
+<td>Description</td>
+</tr>
+<tr>
+<td><a href="PRIVACY.md">Privacy</a></td>
+<td>Data collection policy</td>
+</tr>
+<tr>
+<td><a href="../SECURITY.md">Security</a></td>
+<td>Vulnerability reporting</td>
+</tr>
+<tr>
+<td><a href="../CODE_OF_CONDUCT.md">Code of Conduct</a></td>
+<td>Community standards</td>
+</tr>
+</tbody></table></div>
 <h1 id="std-collections">std.collections</h1>
 <p>Collection helpers. See <a href="../../std/collections.vpp"><code>std/collections.vpp</code></a>.</p>
 <div class="code-block-wrap">
@@ -1236,6 +1236,114 @@ let code = process.run(&quot;echo hello&quot;)</code></pre>
 <pre class="language-javascript"><code class="language-javascript">import std.string</code></pre>
 </div>
 <p>Built-in <code>string</code> type supports concatenation with <code>+</code> in the language.</p>
+<h1 id="v">v++</h1>
+<p><strong>v++</strong> is a compiled programming language — Python-style readability, static typing, native performance.</p>
+<p>&gt; Write it simply. Compile it natively. Grow into control when you need it.</p>
+<p><strong>Author:</strong> <a href="https://github.com/shauryaR790">Shaurya</a> · <strong>License:</strong> MIT · <strong>Version:</strong> 0.5.0</p>
+<hr>
+<h2 id="get-started-in-2-minutes">Get started in 2 minutes</h2>
+<p>1. <strong>Download</strong> <a href="https://github.com/shauryaR790/V-/releases/latest"><code>vpp-0.5.0-setup.exe</code></a> (Windows installer)</p>
+<p>2. <strong>Install</strong> <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">v++ Language</a> in VS Code (publisher: <strong>vpp-lang</strong>)</p>
+<p>3. <strong>Run:</strong></p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run examples\hello.vpp</code></pre>
+</div>
+<p>Full guide: <strong><a href="docs/getting-started/hello-world.md">docs/getting-started/hello-world.md</a></strong></p>
+<hr>
+<h2 id="documentation">Documentation</h2>
+<div class="table-wrap"><table>
+<tr>
+<td><strong><a href="docs/README.md">Documentation hub</a></strong></td>
+<td>Index of all guides</td>
+</tr>
+<tr>
+<td><strong><a href="https://shauryaR790.github.io/V-/">Website</a></strong></td>
+<td>Learn, projects, downloads, history</td>
+</tr>
+<tr>
+<td><a href="docs/getting-started/install.md">Install</a></td>
+<td>Installer, PATH, extension</td>
+</tr>
+<tr>
+<td><a href="docs/language/README.md">Language reference</a></td>
+<td>Types, control flow, generics, traits</td>
+</tr>
+<tr>
+<td><a href="docs/guides/cli-reference.md">CLI reference</a></td>
+<td>Every <code>vpp</code> command</td>
+</tr>
+<tr>
+<td><a href="docs/stdlib/README.md">Standard library</a></td>
+<td>std.io, fs, json, …</td>
+</tr>
+<tr>
+<td><a href="docs/project/faq.md">FAQ</a></td>
+<td>Common questions</td>
+</tr>
+<tr>
+<td><a href="SPEC.md">SPEC.md</a></td>
+<td>Formal language spec</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2 id="features">Features</h2>
+<ul>
+<li>Local <strong>type inference</strong> + explicit function signatures</li>
+<li><strong>Structs</strong>, <strong>enums</strong>, <strong>Option/Result</strong>, exhaustive <strong>match</strong></li>
+<li><strong>Generics</strong>, <strong>traits</strong>, <strong><code>mut</code></strong> (v0.4)</li>
+<li><strong>Modules</strong> + <strong>package manager</strong> (<code>vpp.toml</code>)</li>
+<li><strong>Interpreter</strong> (<code>vpp run</code>) and <strong>native build</strong> (<code>vpp build</code>)</li>
+<li><strong>LSP</strong> — diagnostics, completion, go-to-definition</li>
+<li><strong>VS Code extension</strong> on the Marketplace</li>
+</ul>
+<hr>
+<h2 id="links">Links</h2>
+<div class="table-wrap"><table>
+<tr>
+<td>Resource</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>Releases</td>
+<td>https://github.com/shauryaR790/V-/releases</td>
+</tr>
+<tr>
+<td>VS Code extension</td>
+<td>https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus</td>
+</tr>
+<tr>
+<td>Issues</td>
+<td>https://github.com/shauryaR790/V-/issues</td>
+</tr>
+<tr>
+<td>Contributing</td>
+<td><a href="CONTRIBUTING.md">CONTRIBUTING.md</a></td>
+</tr>
+<tr>
+<td>Security</td>
+<td><a href="SECURITY.md">SECURITY.md</a></td>
+</tr>
+<tr>
+<td>Privacy</td>
+<td><a href="docs/PRIVACY.md">docs/PRIVACY.md</a></td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2 id="for-developers">For developers</h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">git clone https://github.com/shauryaR790/V-.git
+cd V-
+cargo build --release --features codegen,lsp
+cargo test --all-targets</code></pre>
+</div>
+<p>See <a href="docs/contributing/building-from-source.md">Building from source</a>.</p>
+<hr>
+<h2 id="roadmap">Roadmap</h2>
+<p><strong>v0.5</strong> — website, REPL, SignPath signing, expanded stdlib  </p>
+<p><strong>v1.0</strong> — stable spec, debugger, test explorer</p>
+<p>Details: <a href="docs/project/roadmap.md">docs/project/roadmap.md</a></p>
 <h1 id="v-language-specification-v0-4">v++ Language Specification (v0.4)</h1>
 <p>This document describes v++ as implemented in v0.4. If code and spec disagree, parity tests and native execution are authoritative.</p>
 <h2 id="types">Types</h2>
@@ -1773,128 +1881,3402 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 <p>4. Confirm the <a href="https://github.com/shauryaR790/V-/actions">Release workflow</a> succeeds and assets appear on <a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a></p>
 <h2 id="license">License</h2>
 <p>By contributing, you agree your work is licensed under the project MIT license.</p>
-<h1 id="v">v++</h1>
-<p><strong>v++</strong> is a compiled programming language — Python-style readability, static typing, native performance.</p>
-<p>&gt; Write it simply. Compile it natively. Grow into control when you need it.</p>
-<p><strong>Author:</strong> <a href="https://github.com/shauryaR790">Shaurya</a> · <strong>License:</strong> MIT · <strong>Version:</strong> 0.5.0</p>
+<h1 id="security-policy">Security Policy</h1>
+<h2 id="supported-versions">Supported versions</h2>
+<div class="table-wrap"><table>
+<tr>
+<td>Version</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>0.5.x</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>&lt; 0.5</td>
+<td>No</td>
+</tr>
+</tbody></table></div>
+<h2 id="reporting-a-vulnerability">Reporting a vulnerability</h2>
+<p><strong>Do not</strong> open public GitHub issues for security vulnerabilities.</p>
+<p>Email <strong>shauryajiku@gmail.com</strong> with:</p>
+<ul>
+<li>Description of the issue</li>
+<li>Steps to reproduce</li>
+<li>Impact assessment</li>
+<li>Affected version (e.g. v0.5.0)</li>
+</ul>
+<p>We aim to respond within 7 days.</p>
+<h2 id="scope">Scope</h2>
+<p>Reports about the v++ compiler, language server, VS Code extension, and official release binaries are in scope.</p>
+<p>General language design feedback belongs in <a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a>.</p>
+<h2 id="safe-harbor">Safe harbor</h2>
+<p>We appreciate responsible disclosure and will credit reporters in release notes when fixes ship (unless you prefer anonymity).</p>
+<h1 id="contributor-covenant-code-of-conduct">Contributor Covenant Code of Conduct</h1>
+<h2 id="our-pledge">Our pledge</h2>
+<p>We pledge to make participation in the v++ project a harassment-free experience for everyone.</p>
+<h2 id="our-standards">Our standards</h2>
+<p><strong>Positive:</strong> respectful feedback, welcoming newcomers, focusing on what is best for the community.</p>
+<p><strong>Unacceptable:</strong> harassment, trolling, personal attacks, publishing others&#x27; private information.</p>
+<h2 id="enforcement">Enforcement</h2>
+<p>Report conduct concerns to <strong>shauryajiku@gmail.com</strong>. Maintainers may remove contributions or ban repeat offenders.</p>
+<h2 id="attribution">Attribution</h2>
+<p>Adapted from the <a href="https://www.contributor-covenant.org/">Contributor Covenant</a>, version 2.1.</p>
+<h2 id="source-std-assert-vpp">Source: <code>std/assert.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">// Re-exports assert helpers (implemented as compiler builtins).
+// Import this module to use assert / assert_eq in tests.
+
+fn assert_true(condition: bool) -&gt; int {
+    if condition {
+        return 0
+    }
+    return 1
+}
+</code></pre>
+</div>
+<h2 id="source-std-collections-vpp">Source: <code>std/collections.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">pub fn make_int_array(values: array[int]) -&gt; array[int] {
+    return values
+}
+
+pub fn index_of(arr: array[int], target: int) -&gt; int {
+    let mut i = 0
+    while i &lt; len(arr) {
+        if arr[i] == target {
+            return i
+        }
+        i = i + 1
+    }
+    return -1
+}
+
+pub fn contains(arr: array[int], target: int) -&gt; bool {
+    return index_of(arr, target) &gt;= 0
+}
+
+pub fn sum(arr: array[int]) -&gt; int {
+    let mut total = 0
+    for n in arr {
+        total = total + n
+    }
+    return total
+}
+</code></pre>
+</div>
+<h2 id="source-std-fs-vpp">Source: <code>std/fs.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">// File I/O via compiler/runtime builtins (read_file, write_file, file_exists).
+
+pub fn read(path: string) -&gt; string {
+    return read_file(path)
+}
+
+pub fn write(path: string, contents: string) -&gt; int {
+    write_file(path, contents)
+    return 0
+}
+
+pub fn exists(path: string) -&gt; bool {
+    return file_exists(path)
+}
+</code></pre>
+</div>
+<h2 id="source-std-io-vpp">Source: <code>std/io.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">pub fn greet(name: string) -&gt; int {
+    print(&quot;Hello, &quot; + name + &quot;!&quot;)
+    return 0
+}
+
+pub fn println(msg: string) -&gt; int {
+    print(msg)
+    return 0
+}
+
+pub fn print_int(n: int) -&gt; int {
+    print(n)
+    return 0
+}
+</code></pre>
+</div>
+<h2 id="source-std-json-vpp">Source: <code>std/json.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">// Minimal JSON helpers via runtime builtins.
+
+pub fn parse(raw: string) -&gt; string {
+    return json_parse(raw)
+}
+
+pub fn stringify(raw: string) -&gt; string {
+    return json_stringify(raw)
+}
+</code></pre>
+</div>
+<h2 id="source-std-math-vpp">Source: <code>std/math.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">pub fn add(a: int, b: int) -&gt; int {
+    return a + b
+}
+
+pub fn abs(n: int) -&gt; int {
+    if n &lt; 0 {
+        return 0 - n
+    }
+    return n
+}
+
+pub fn max(a: int, b: int) -&gt; int {
+    if a &gt; b {
+        return a
+    }
+    return b
+}
+
+pub fn min(a: int, b: int) -&gt; int {
+    if a &lt; b {
+        return a
+    }
+    return b
+}
+
+pub fn pow(base: int, exp: int) -&gt; int {
+    let mut result = 1
+    let mut i = 0
+    while i &lt; exp {
+        result = result * base
+        i = i + 1
+    }
+    return result
+}
+
+pub fn clamp(n: int, lo: int, hi: int) -&gt; int {
+    if n &lt; lo {
+        return lo
+    }
+    if n &gt; hi {
+        return hi
+    }
+    return n
+}
+</code></pre>
+</div>
+<h2 id="source-std-process-vpp">Source: <code>std/process.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">// Process helpers via runtime builtins.
+
+pub fn run(cmd: string) -&gt; int {
+    return process_run(cmd)
+}
+
+pub fn exit_code(cmd: string) -&gt; int {
+    return process_run(cmd)
+}
+</code></pre>
+</div>
+<h2 id="source-std-string-vpp">Source: <code>std/string.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">pub fn upper(s: string) -&gt; string {
+    return s
+}
+
+pub fn repeat(s: string, n: int) -&gt; string {
+    let mut out = &quot;&quot;
+    let mut i = 0
+    while i &lt; n {
+        out = out + s
+        i = i + 1
+    }
+    return out
+}
+
+pub fn len_str(s: string) -&gt; int {
+    return len(s)
+}
+
+pub fn is_empty(s: string) -&gt; bool {
+    return len(s) == 0
+}
+</code></pre>
+</div>
+<h2 id="source-examples-arrays-vpp">Source: <code>examples/arrays.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">let users = [&quot;Alex&quot;, &quot;Sam&quot;, &quot;John&quot;]
+
+for user in users {
+    print(user)
+}
+
+let nums = [1, 2, 3, 4, 5]
+print(nums[0])
+print(len(nums))
+
+let mut sum = 0
+for n in nums {
+    sum = sum + n
+}
+print(sum)
+
+for i in 0..3 {
+    print(i)
+}
+</code></pre>
+</div>
+<h2 id="source-examples-arrays-fn-vpp">Source: <code>examples/arrays_fn.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn sum_nums(nums: array[int]) -&gt; int {
+    let mut total = 0
+    for n in nums {
+        total = total + n
+    }
+    return total
+}
+
+fn first(items: array[string]) -&gt; string {
+    return items[0]
+}
+
+let nums = [1, 2, 3, 4]
+print(sum_nums(nums))
+print(sum_nums([10, 20]))
+
+let words = [&quot;alpha&quot;, &quot;beta&quot;, &quot;gamma&quot;]
+print(first(words))
+</code></pre>
+</div>
+<h2 id="source-examples-fib-vpp">Source: <code>examples/fib.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn fib(n: int) -&gt; int {
+    if n &lt;= 1 {
+        return n
+    }
+    return fib(n - 1) + fib(n - 2)
+}
+
+let result = fib(10)
+print(result)
+</code></pre>
+</div>
+<h2 id="source-examples-generics-vpp">Source: <code>examples/generics.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn id[T](x: T) -&gt; T {
+    return x
+}
+
+fn first[T](items: array[T]) -&gt; T {
+    return items[0]
+}
+
+fn main() -&gt; int {
+    let n = id[int](42)
+    print(n)
+
+    let words = [&quot;alpha&quot;, &quot;beta&quot;]
+    print(first[string](words))
+    return 0
+}
+</code></pre>
+</div>
+<h2 id="source-examples-hello-vpp">Source: <code>examples/hello.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">import std.fs
+import std.json
+import std.process
+
+enum Status {
+    Active
+    Inactive
+}
+
+struct User {
+    name: string
+    age: int
+    status: Status
+}
+
+fn add(a: int, b: int) -&gt; int {
+    return a + b
+}
+
+fn describe(status: Status) -&gt; string {
+    match status {
+        Active =&gt; {
+            return &quot;active&quot;
+        }
+        Inactive =&gt; {
+            return &quot;inactive&quot;
+        }
+    }
+}
+
+fn ok_val() -&gt; Result&lt;int, string&gt; {
+    return Ok(42)
+}
+
+fn main() -&gt; int {
+    print(&quot;=== v++ hello ===&quot;)
+
+    print(add(10, 20))
+
+    let numbers = [1, 2, 3, 4, 5]
+    for n in numbers {
+        print(n)
+    }
+
+    let mut total = 0
+    for i in 0..5 {
+        total = total + numbers[i]
+    }
+    print(total)
+
+    let user = User {
+        name: &quot;Shaurya&quot;
+        age: 18
+        status: Active
+    }
+    print(user.name)
+    print(user.age)
+    print(describe(user.status))
+
+    let r = ok_val()
+    match r {
+        Ok(n) =&gt; {
+            print(n)
+        }
+        Err(e) =&gt; {
+            print(e)
+        }
+    }
+
+    let j = json.parse(&quot;{\&quot;language\&quot;:\&quot;v++\&quot;,\&quot;version\&quot;:\&quot;0.3\&quot;}&quot;)
+    print(json.stringify(j))
+
+    fs.write(&quot;vpp_test.txt&quot;, &quot;v++ filesystem test&quot;)
+    print(fs.exists(&quot;vpp_test.txt&quot;))
+    print(fs.read(&quot;vpp_test.txt&quot;))
+
+    let code = process.run(&quot;echo vpp process test&quot;)
+    print(code)
+
+    print(&quot;=== done ===&quot;)
+    return 0
+}
+</code></pre>
+</div>
+<h2 id="source-examples-lesson01-basics-vpp">Source: <code>examples/lesson01_basics.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">// Lesson 1: Variables, math, and printing
+
+let x = 10
+let y = 3
+print(x + y)
+print(x - y)
+print(x * y)
+print(x / y)
+
+let name = &quot;student&quot;
+print(&quot;Hello, &quot; + name + &quot;!&quot;)
+</code></pre>
+</div>
+<h2 id="source-examples-lesson02-functions-vpp">Source: <code>examples/lesson02_functions.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">// Lesson 2: Functions and conditionals
+
+import &quot;std/math.vpp&quot;
+
+fn grade(score: int) -&gt; string {
+    if score &gt;= 90 {
+        return &quot;A&quot;
+    }
+    if score &gt;= 80 {
+        return &quot;B&quot;
+    }
+    return &quot;C&quot;
+}
+
+fn main() -&gt; int {
+    print(grade(92))
+    print(grade(85))
+    print(add(10, max(3, 7)))
+    return 0
+}
+
+main()
+</code></pre>
+</div>
+<h2 id="source-examples-lesson03-loops-vpp">Source: <code>examples/lesson03_loops.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">// Lesson 3: Loops, arrays, and break/continue
+
+let mut total = 0
+for n in 1..6 {
+    if n == 3 {
+        continue
+    }
+    if n == 5 {
+        break
+    }
+    total = total + n
+}
+print(total)
+
+let nums = [1, 2, 3, 4]
+for item in nums {
+    print(item)
+}
+</code></pre>
+</div>
+<h2 id="source-examples-match-test-vpp">Source: <code>examples/match_test.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn ok_val() -&gt; Result&lt;int, string&gt; {
+    return Ok(42)
+}
+
+let r = ok_val()
+match r {
+    Ok(n) =&gt; {
+        print(n)
+    }
+    Err(e) =&gt; {
+        print(e)
+    }
+}
+</code></pre>
+</div>
+<h2 id="source-examples-math-vpp">Source: <code>examples/math.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">pub fn add(a: int, b: int) -&gt; int {
+    return a + b
+}
+
+pub fn mul(a: int, b: int) -&gt; int {
+    return a * b
+}
+</code></pre>
+</div>
+<h2 id="source-examples-modules-main-vpp">Source: <code>examples/modules_main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">import &quot;math.vpp&quot;
+
+let x = add(2, 3)
+let y = mul(x, 4)
+print(y)
+</code></pre>
+</div>
+<h2 id="source-examples-option-result-vpp">Source: <code>examples/option_result.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn divide(a: int, b: int) -&gt; Result&lt;int, string&gt; {
+    if b == 0 {
+        return Err(&quot;division by zero&quot;)
+    }
+    return Ok(a / b)
+}
+
+fn maybe_double(n: int) -&gt; Option&lt;int&gt; {
+    if n &lt; 0 {
+        return None
+    }
+    return Some(n * 2)
+}
+
+let r = divide(10, 2)
+match r {
+    Ok(n) =&gt; {
+        print(n)
+    }
+    Err(e) =&gt; {
+        print(e)
+    }
+}
+
+let m = maybe_double(7)
+match m {
+    Some(v) =&gt; {
+        print(v)
+    }
+    None =&gt; {
+        print(&quot;none&quot;)
+    }
+}
+</code></pre>
+</div>
+<h2 id="source-examples-scope-shadow-vpp">Source: <code>examples/scope_shadow.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">// Scope shadowing: inner block must not leak bindings.
+let x = 10
+if true {
+    let x = 20
+    print(x)
+}
+print(x)
+</code></pre>
+</div>
+<h2 id="source-examples-std-builtins-vpp">Source: <code>examples/std_builtins.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">import std.fs
+import std.json
+
+fn main() -&gt; int {
+    fs.write(&quot;vpp_std_fs_test.txt&quot;, &quot;parity&quot;)
+    print(fs.read(&quot;vpp_std_fs_test.txt&quot;))
+    if fs.exists(&quot;vpp_std_fs_test.txt&quot;) {
+        print(&quot;yes&quot;)
+    }
+    let j = json.parse(&quot;{\&quot;ok\&quot;:true}&quot;)
+    print(json.stringify(j))
+    return 0
+}
+</code></pre>
+</div>
+<h2 id="source-examples-structs-vpp">Source: <code>examples/structs.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">struct Person {
+    name: string
+    age: int
+}
+
+let alex = Person { name: &quot;Alex&quot;, age: 20 }
+print(alex.name)
+print(alex.age)
+
+fn greet(p: Person) -&gt; string {
+    return p.name
+}
+
+print(greet(alex))
+</code></pre>
+</div>
+<h2 id="source-examples-traits-vpp">Source: <code>examples/traits.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">enum Status {
+    Active
+    Inactive
+}
+
+struct User {
+    name: string
+    age: int
+    status: Status
+}
+
+trait Display {
+    fn to_text(self) -&gt; string
+}
+
+impl Display for User {
+    fn to_text(self) -&gt; string {
+        return self.name
+    }
+}
+
+fn main() -&gt; int {
+    let user = User {
+        name: &quot;Shaurya&quot;
+        age: 18
+        status: Active
+    }
+    print(user.to_text())
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="v-example-projects">v++ Example Projects</h1>
+<p>Twenty open-source projects — simple to complex. All runnable with <code>vpp run</code>.</p>
+<div class="table-wrap"><table>
+<tr>
+<td>#</td>
+<td>Project</td>
+<td>Level</td>
+<td>Run</td>
+</tr>
+<tr>
+<td>01</td>
+<td><a href="01-hello-world/">hello-world</a></td>
+<td>Beginner</td>
+<td><code>vpp run projects/01-hello-world/main.vpp</code></td>
+</tr>
+<tr>
+<td>02</td>
+<td><a href="02-variables/">variables</a></td>
+<td>Beginner</td>
+<td><code>vpp run projects/02-variables/main.vpp</code></td>
+</tr>
+<tr>
+<td>03</td>
+<td><a href="03-functions/">functions</a></td>
+<td>Beginner</td>
+<td><code>vpp run projects/03-functions/main.vpp</code></td>
+</tr>
+<tr>
+<td>04</td>
+<td><a href="04-loops/">loops</a></td>
+<td>Beginner</td>
+<td><code>vpp run projects/04-loops/main.vpp</code></td>
+</tr>
+<tr>
+<td>05</td>
+<td><a href="05-arrays/">arrays</a></td>
+<td>Beginner</td>
+<td><code>vpp run projects/05-arrays/main.vpp</code></td>
+</tr>
+<tr>
+<td>06</td>
+<td><a href="06-structs/">structs</a></td>
+<td>Intermediate</td>
+<td><code>vpp run projects/06-structs/main.vpp</code></td>
+</tr>
+<tr>
+<td>07</td>
+<td><a href="07-enums/">enums</a></td>
+<td>Intermediate</td>
+<td><code>vpp run projects/07-enums/main.vpp</code></td>
+</tr>
+<tr>
+<td>08</td>
+<td><a href="08-option-result/">option-result</a></td>
+<td>Intermediate</td>
+<td><code>vpp run projects/08-option-result/main.vpp</code></td>
+</tr>
+<tr>
+<td>09</td>
+<td><a href="09-match/">match</a></td>
+<td>Intermediate</td>
+<td><code>vpp run projects/09-match/main.vpp</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="10-fizzbuzz/">fizzbuzz</a></td>
+<td>Beginner</td>
+<td><code>vpp run projects/10-fizzbuzz/main.vpp</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="11-fibonacci/">fibonacci</a></td>
+<td>Intermediate</td>
+<td><code>vpp run projects/11-fibonacci/main.vpp</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="12-generics/">generics</a></td>
+<td>Advanced</td>
+<td><code>vpp run projects/12-generics/main.vpp</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><a href="13-traits/">traits</a></td>
+<td>Advanced</td>
+<td><code>vpp run projects/13-traits/main.vpp</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td><a href="14-modules/">modules</a></td>
+<td>Intermediate</td>
+<td><code>cd projects/14-modules &amp;&amp; vpp run main.vpp</code></td>
+</tr>
+<tr>
+<td>15</td>
+<td><a href="15-calculator/">calculator</a></td>
+<td>Intermediate</td>
+<td><code>vpp run projects/15-calculator/main.vpp</code></td>
+</tr>
+<tr>
+<td>16</td>
+<td><a href="16-word-counter/">word-counter</a></td>
+<td>Intermediate</td>
+<td><code>vpp run projects/16-word-counter/main.vpp</code></td>
+</tr>
+<tr>
+<td>17</td>
+<td><a href="17-guessing-game/">guessing-game</a></td>
+<td>Intermediate</td>
+<td><code>vpp run projects/17-guessing-game/main.vpp</code></td>
+</tr>
+<tr>
+<td>18</td>
+<td><a href="18-todo-list/">todo-list</a></td>
+<td>Advanced</td>
+<td><code>vpp run projects/18-todo-list/main.vpp</code></td>
+</tr>
+<tr>
+<td>19</td>
+<td><a href="19-file-notes/">file-notes</a></td>
+<td>Advanced</td>
+<td><code>vpp run projects/19-file-notes/main.vpp</code></td>
+</tr>
+<tr>
+<td>20</td>
+<td><a href="20-json-config/">json-config</a></td>
+<td>Advanced</td>
+<td><code>vpp run projects/20-json-config/main.vpp</code></td>
+</tr>
+</tbody></table></div>
+<p>Browse on the website: <a href="https://shauryaR790.github.io/V-/projects.html">vpp-lang projects</a></p>
+<h1 id="01-hello-world">01 — Hello World</h1>
+<p>Your first v++ program.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/01-hello-world/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> <code>fn main</code>, <code>print</code>, return code</p>
+<h2 id="source-projects-01-hello-world-main-vpp">Source: <code>projects/01-hello-world/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
+    print(&quot;Hello, v++!&quot;)
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="02-variables-math">02 — Variables &amp; Math</h1>
+<p>Variables, arithmetic, and string concatenation.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/02-variables/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> <code>let</code>, type inference, <code>+</code> on int and string</p>
+<h2 id="source-projects-02-variables-main-vpp">Source: <code>projects/02-variables/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
+    let x = 10
+    let y = 3
+    print(x + y)
+    print(x - y)
+    print(x * y)
+
+    let name = &quot;v++&quot;
+    print(&quot;Hello, &quot; + name + &quot;!&quot;)
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="03-functions">03 — Functions</h1>
+<p>Define functions with typed parameters and return values.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/03-functions/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> <code>fn</code>, <code>return</code>, function signatures</p>
+<h2 id="source-projects-03-functions-main-vpp">Source: <code>projects/03-functions/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn add(a: int, b: int) -&gt; int {
+    return a + b
+}
+
+fn greet(name: string) -&gt; string {
+    return &quot;Hello, &quot; + name
+}
+
+fn main() -&gt; int {
+    print(add(10, 20))
+    print(greet(&quot;Shaurya&quot;))
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="04-loops">04 — Loops</h1>
+<p><code>while</code>, range loops, and <code>for</code> over arrays. Uses <code>let mut</code> for counters.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/04-loops/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> <code>while</code>, <code>for</code>, <code>0..n</code>, <code>let mut</code></p>
+<h2 id="source-projects-04-loops-main-vpp">Source: <code>projects/04-loops/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
+    let mut i = 0
+    while i &lt; 5 {
+        print(i)
+        i = i + 1
+    }
+
+    for n in 0..3 {
+        print(n)
+    }
+
+    let items = [10, 20, 30]
+    for val in items {
+        print(val)
+    }
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="05-arrays">05 — Arrays</h1>
+<p>Work with <code>array[int]</code>, iteration, and <code>std.collections.sum</code>.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/05-arrays/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> arrays, indexing, <code>import std.collections</code></p>
+<h2 id="source-projects-05-arrays-main-vpp">Source: <code>projects/05-arrays/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn sum(nums: array[int]) -&gt; int {
+    let mut total = 0
+    for n in nums {
+        total = total + n
+    }
+    return total
+}
+
+fn max_of(nums: array[int]) -&gt; int {
+    let mut best = nums[0]
+    for n in nums {
+        if n &gt; best {
+            best = n
+        }
+    }
+    return best
+}
+
+fn main() -&gt; int {
+    let nums = [3, 7, 2, 9, 4]
+    print(sum(nums))
+    print(max_of(nums))
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="06-structs">06 — Structs</h1>
+<p>Custom product types with named fields.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/06-structs/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> <code>struct</code>, field access, passing structs to functions</p>
+<h2 id="source-projects-06-structs-main-vpp">Source: <code>projects/06-structs/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">struct Point {
+    x: int
+    y: int
+}
+
+struct Rectangle {
+    width: int
+    height: int
+}
+
+fn area(rect: Rectangle) -&gt; int {
+    return rect.width * rect.height
+}
+
+fn main() -&gt; int {
+    let p = Point { x: 3, y: 4 }
+    print(p.x)
+    print(p.y)
+
+    let box = Rectangle { width: 10, height: 5 }
+    print(area(box))
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="07-enums">07 — Enums</h1>
+<p>Sum types with named variants and pattern matching.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/07-enums/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> <code>enum</code>, variants, <code>match</code></p>
+<h2 id="source-projects-07-enums-main-vpp">Source: <code>projects/07-enums/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">enum TrafficLight {
+    Red
+    Yellow
+    Green
+}
+
+struct Signal {
+    light: TrafficLight
+}
+
+fn action(signal: Signal) -&gt; string {
+    match signal.light {
+        Red =&gt; {
+            return &quot;stop&quot;
+        }
+        Yellow =&gt; {
+            return &quot;slow&quot;
+        }
+        Green =&gt; {
+            return &quot;go&quot;
+        }
+    }
+}
+
+fn main() -&gt; int {
+    let stop = Signal { light: Red }
+    let go = Signal { light: Green }
+    print(action(stop))
+    print(action(go))
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="08-option-result">08 — Option &amp; Result</h1>
+<p>Safe error handling without exceptions.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/08-option-result/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> <code>Option</code>, <code>Result</code>, <code>Some</code>/<code>None</code>, <code>Ok</code>/<code>Err</code></p>
+<h2 id="source-projects-08-option-result-main-vpp">Source: <code>projects/08-option-result/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {
+    if b == 0 {
+        return Err(&quot;division by zero&quot;)
+    }
+    return Ok(a / b)
+}
+
+fn find_first(nums: array[int], target: int) -&gt; Option&lt;int&gt; {
+    let mut i = 0
+    while i &lt; len(nums) {
+        if nums[i] == target {
+            return Some(nums[i])
+        }
+        i = i + 1
+    }
+    return None
+}
+
+fn main() -&gt; int {
+    let r = safe_div(10, 2)
+    match r {
+        Ok(n) =&gt; {
+            print(n)
+        }
+        Err(e) =&gt; {
+            print(e)
+        }
+    }
+
+    let nums = [1, 5, 9]
+    let found = find_first(nums, 5)
+    match found {
+        Some(n) =&gt; {
+            print(n)
+        }
+        None =&gt; {
+            print(&quot;not found&quot;)
+        }
+    }
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="09-pattern-matching">09 — Pattern Matching</h1>
+<p>Exhaustive <code>match</code> on enums — compiler checks all variants are covered.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/09-match/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> exhaustive match, enum patterns</p>
+<h2 id="source-projects-09-match-main-vpp">Source: <code>projects/09-match/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">enum Day {
+    Mon
+    Tue
+    Wed
+    Thu
+    Fri
+    Sat
+    Sun
+}
+
+struct CalendarDay {
+    day: Day
+}
+
+fn is_weekend(entry: CalendarDay) -&gt; bool {
+    match entry.day {
+        Sat =&gt; {
+            return true
+        }
+        Sun =&gt; {
+            return true
+        }
+        Mon =&gt; {
+            return false
+        }
+        Tue =&gt; {
+            return false
+        }
+        Wed =&gt; {
+            return false
+        }
+        Thu =&gt; {
+            return false
+        }
+        Fri =&gt; {
+            return false
+        }
+    }
+}
+
+fn main() -&gt; int {
+    let weekend = CalendarDay { day: Sat }
+    let weekday = CalendarDay { day: Wed }
+    print(is_weekend(weekend))
+    print(is_weekend(weekday))
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="10-fizzbuzz">10 — FizzBuzz</h1>
+<p>Classic loop exercise — divisibility and conditionals.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/10-fizzbuzz/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> <code>%</code>, <code>while</code>, functions</p>
+<h2 id="source-projects-10-fizzbuzz-main-vpp">Source: <code>projects/10-fizzbuzz/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn fizzbuzz(n: int) -&gt; string {
+    if n % 15 == 0 {
+        return &quot;FizzBuzz&quot;
+    }
+    if n % 3 == 0 {
+        return &quot;Fizz&quot;
+    }
+    if n % 5 == 0 {
+        return &quot;Buzz&quot;
+    }
+    return &quot;num&quot;
+}
+
+fn main() -&gt; int {
+    let mut i = 1
+    while i &lt;= 20 {
+        let label = fizzbuzz(i)
+        if label == &quot;num&quot; {
+            print(i)
+        } else {
+            print(label)
+        }
+        i = i + 1
+    }
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="11-fibonacci">11 — Fibonacci</h1>
+<p>Recursive functions — classic algorithm interview question.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/11-fibonacci/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> recursion, base case</p>
+<h2 id="source-projects-11-fibonacci-main-vpp">Source: <code>projects/11-fibonacci/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn fib(n: int) -&gt; int {
+    if n &lt;= 1 {
+        return n
+    }
+    return fib(n - 1) + fib(n - 2)
+}
+
+fn main() -&gt; int {
+    print(fib(0))
+    print(fib(1))
+    print(fib(10))
+    print(fib(15))
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="12-generics">12 — Generics</h1>
+<p>Type-parameterized functions with monomorphization.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/12-generics/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> <code>fn name[T]</code>, explicit type args <code>id<a href="42">int</a></code></p>
+<h2 id="source-projects-12-generics-main-vpp">Source: <code>projects/12-generics/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn id[T](x: T) -&gt; T {
+    return x
+}
+
+fn first[T](items: array[T]) -&gt; T {
+    return items[0]
+}
+
+fn main() -&gt; int {
+    print(id[int](42))
+    print(id[string](&quot;v++&quot;))
+
+    let words = [&quot;alpha&quot;, &quot;beta&quot;, &quot;gamma&quot;]
+    print(first[string](words))
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="13-traits">13 — Traits</h1>
+<p>Interfaces with static dispatch — <code>trait</code>, <code>impl</code>, method calls.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/13-traits/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> traits, impl blocks, <code>self.area()</code></p>
+<h2 id="source-projects-13-traits-main-vpp">Source: <code>projects/13-traits/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">struct Circle {
+    radius: int
+}
+
+struct Square {
+    side: int
+}
+
+trait Area {
+    fn area(self) -&gt; int
+}
+
+impl Area for Circle {
+    fn area(self) -&gt; int {
+        return self.radius * self.radius * 3
+    }
+}
+
+impl Area for Square {
+    fn area(self) -&gt; int {
+        return self.side * self.side
+    }
+}
+
+fn main() -&gt; int {
+    let c = Circle { radius: 5 }
+    let s = Square { side: 4 }
+    print(c.area())
+    print(s.area())
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="14-modules">14 — Modules</h1>
+<p>Split code across files with <code>import</code> and <code>pub fn</code>.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">cd projects/14-modules
+vpp run main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> local imports, <code>pub</code> exports</p>
+<h2 id="source-projects-14-modules-main-vpp">Source: <code>projects/14-modules/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">import &quot;math.vpp&quot;
+
+fn main() -&gt; int {
+    let sum = add(10, 5)
+    let product = mul(sum, 2)
+    print(sum)
+    print(product)
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="15-calculator">15 — Calculator</h1>
+<p>Enum-driven operations with <code>Result</code> for errors.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/15-calculator/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> enum + match, <code>Result</code></p>
+<h2 id="source-projects-15-calculator-main-vpp">Source: <code>projects/15-calculator/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">enum Op {
+    Add
+    Sub
+    Mul
+    Div
+}
+
+struct CalcOp {
+    op: Op
+}
+
+fn apply(calc: CalcOp, a: int, b: int) -&gt; Result&lt;int, string&gt; {
+    match calc.op {
+        Add =&gt; {
+            return Ok(a + b)
+        }
+        Sub =&gt; {
+            return Ok(a - b)
+        }
+        Mul =&gt; {
+            return Ok(a * b)
+        }
+        Div =&gt; {
+            if b == 0 {
+                return Err(&quot;divide by zero&quot;)
+            }
+            return Ok(a / b)
+        }
+    }
+}
+
+fn main() -&gt; int {
+    let calc = CalcOp { op: Mul }
+    let r = apply(calc, 6, 7)
+    match r {
+        Ok(n) =&gt; {
+            print(n)
+        }
+        Err(e) =&gt; {
+            print(e)
+        }
+    }
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="16-word-counter">16 — Word Counter</h1>
+<p>Analyze an array of words — count, total characters, longest word.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/16-word-counter/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> <code>array[string]</code>, <code>len</code>, loops</p>
+<h2 id="source-projects-16-word-counter-main-vpp">Source: <code>projects/16-word-counter/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn total_chars(words: array[string]) -&gt; int {
+    let mut total = 0
+    for w in words {
+        total = total + len(w)
+    }
+    return total
+}
+
+fn longest_word(words: array[string]) -&gt; string {
+    let mut best = words[0]
+    for w in words {
+        if len(w) &gt; len(best) {
+            best = w
+        }
+    }
+    return best
+}
+
+fn main() -&gt; int {
+    let words = [&quot;v++&quot;, &quot;is&quot;, &quot;a&quot;, &quot;compiled&quot;, &quot;language&quot;]
+    print(len(words))
+    print(total_chars(words))
+    print(longest_word(words))
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="17-guessing-game">17 — Guessing Game</h1>
+<p>Binary-search style hints — too low, too high, correct.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/17-guessing-game/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> conditionals, arrays of guesses, game logic</p>
+<h2 id="source-projects-17-guessing-game-main-vpp">Source: <code>projects/17-guessing-game/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn hint(guess: int, secret: int) -&gt; string {
+    if guess &lt; secret {
+        return &quot;too low&quot;
+    }
+    if guess &gt; secret {
+        return &quot;too high&quot;
+    }
+    return &quot;correct&quot;
+}
+
+fn play_round(secret: int, guess: int) -&gt; bool {
+    let message = hint(guess, secret)
+    print(message)
+    return message == &quot;correct&quot;
+}
+
+fn main() -&gt; int {
+    let secret = 42
+    let guesses = [10, 30, 50, 42]
+
+    for g in guesses {
+        print(g)
+        if play_round(secret, g) {
+            print(&quot;you win&quot;)
+            return 0
+        }
+    }
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="18-todo-list">18 — Todo List</h1>
+<p>Track tasks with structs and bool flags.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/18-todo-list/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> struct, bool, conditional printing</p>
+<h2 id="source-projects-18-todo-list-main-vpp">Source: <code>projects/18-todo-list/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">struct Todo {
+    title: string
+    done: bool
+}
+
+fn print_todo(t: Todo) -&gt; int {
+    if t.done {
+        print(&quot;[x] &quot; + t.title)
+    } else {
+        print(&quot;[ ] &quot; + t.title)
+    }
+    return 0
+}
+
+fn main() -&gt; int {
+    let t1 = Todo { title: &quot;learn v++&quot;, done: true }
+    let t2 = Todo { title: &quot;build a project&quot;, done: false }
+    let t3 = Todo { title: &quot;ship v1.0&quot;, done: false }
+
+    print_todo(t1)
+    print_todo(t2)
+    print_todo(t3)
+
+    let mut done_count = 0
+    if t1.done { done_count = done_count + 1 }
+    if t2.done { done_count = done_count + 1 }
+    if t3.done { done_count = done_count + 1 }
+    print(done_count)
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="19-file-notes">19 — File Notes</h1>
+<p>Read and write files with <code>std.fs</code>.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/19-file-notes/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> <code>fs.write</code>, <code>fs.read</code>, <code>fs.exists</code></p>
+<h2 id="source-projects-19-file-notes-main-vpp">Source: <code>projects/19-file-notes/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">import std.fs
+
+fn main() -&gt; int {
+    let path = &quot;note.txt&quot;
+    let body = &quot;v++ file notes\nBuilt by Shaurya\nOpen source on GitHub&quot;
+
+    fs.write(path, body)
+    print(fs.exists(path))
+
+    let content = fs.read(path)
+    print(content)
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="20-json-config">20 — JSON Config</h1>
+<p>Parse JSON with <code>std.json</code> and model app configuration with structs.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/20-json-config/main.vpp</code></pre>
+</div>
+<p><strong>Concepts:</strong> <code>std.json</code>, struct config, <code>vpp.toml</code> project layout</p>
+<h2 id="source-projects-20-json-config-main-vpp">Source: <code>projects/20-json-config/main.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">import std.json
+
+struct AppConfig {
+    name: string
+    version: string
+    debug: bool
+}
+
+fn parse_config(raw: string) -&gt; string {
+    let doc = json.parse(raw)
+    return json.stringify(doc)
+}
+
+fn main() -&gt; int {
+    let raw = &quot;{\&quot;name\&quot;:\&quot;v++\&quot;,\&quot;version\&quot;:\&quot;0.5.0\&quot;,\&quot;debug\&quot;:false}&quot;
+    print(parse_config(raw))
+
+    let cfg = AppConfig {
+        name: &quot;v++&quot;
+        version: &quot;0.5.0&quot;
+        debug: true
+    }
+    print(cfg.name)
+    print(cfg.version)
+    return 0
+}
+</code></pre>
+</div>
+<h2 id="source-projects-20-json-config-vpp-toml">Source: <code>projects/20-json-config/vpp.toml</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>TOML</span></div>
+<pre class="language-toml"><code class="language-toml">name = &quot;json-config-demo&quot;
+version = &quot;0.1.0&quot;
+entry = &quot;main.vpp&quot;
+
+[dependencies]
+</code></pre>
+</div>
+<h2 id="source-stress-vpp">Source: <code>stress.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">import std.fs
+import std.json
+import std.process
+
+enum Status {
+    Active
+    Inactive
+}
+
+struct User {
+    name: string
+    age: int
+    status: Status
+}
+
+fn add(a: int, b: int) -&gt; int {
+    return a + b
+}
+
+fn describe(status: Status) -&gt; string {
+    match status {
+        Active =&gt; {
+            return &quot;active&quot;
+        }
+        Inactive =&gt; {
+            return &quot;inactive&quot;
+        }
+    }
+}
+
+fn ok_val() -&gt; Result&lt;int, string&gt; {
+    return Ok(42)
+}
+
+fn main() -&gt; int {
+    print(&quot;=== v++ hello ===&quot;)
+
+    print(add(10, 20))
+
+    let numbers = [1, 2, 3, 4, 5]
+    for n in numbers {
+        print(n)
+    }
+
+    let mut total = 0
+    for i in 0..5 {
+        total = total + numbers[i]
+    }
+    print(total)
+
+    let user = User {
+        name: &quot;Shaurya&quot;
+        age: 18
+        status: Active
+    }
+    print(user.name)
+    print(user.age)
+    print(describe(user.status))
+
+    let r = ok_val()
+    match r {
+        Ok(n) =&gt; {
+            print(n)
+        }
+        Err(e) =&gt; {
+            print(e)
+        }
+    }
+
+    let j = json.parse(&quot;{\&quot;language\&quot;:\&quot;v++\&quot;,\&quot;version\&quot;:\&quot;0.3\&quot;}&quot;)
+    print(json.stringify(j))
+
+    fs.write(&quot;vpp_test.txt&quot;, &quot;v++ filesystem test&quot;)
+    print(fs.exists(&quot;vpp_test.txt&quot;))
+    print(fs.read(&quot;vpp_test.txt&quot;))
+
+    let code = process.run(&quot;echo vpp process test&quot;)
+    print(code)
+
+    print(&quot;=== done ===&quot;)
+    return 0
+}
+</code></pre>
+</div>
+<h1 id="v-language-extension-for-visual-studio-code">v++ Language extension for Visual Studio Code</h1>
+<p>Official language support for <strong><a href="https://github.com/shauryaR790/V-">v++</a></strong> — a compiled language with Python-style simplicity and native performance. Edit <code>.vpp</code> files with syntax highlighting, integrated run, static diagnostics, language-server IntelliSense, and project test discovery.</p>
+<p>&gt; <strong>Install the compiler separately</strong> — this extension does not bundle <code>vpp</code>. See <a href="#quick-start">Quick start</a>.</p>
 <hr>
-<h2 id="get-started-in-2-minutes">Get started in 2 minutes</h2>
-<p>1. <strong>Download</strong> <a href="https://github.com/shauryaR790/V-/releases/latest"><code>vpp-0.5.0-setup.exe</code></a> (Windows installer)</p>
-<p>2. <strong>Install</strong> <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">v++ Language</a> in VS Code (publisher: <strong>vpp-lang</strong>)</p>
-<p>3. <strong>Run:</strong></p>
+<h2 id="quick-start">Quick start</h2>
+<p><strong>Step 1.</strong> Install the v++ compiler from <a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a> (<code>vpp-*-setup.exe</code> recommended).</p>
+<p><strong>Step 2.</strong> Install <strong>v++ Language</strong> from the Marketplace (publisher: <strong>vpp-lang</strong>).</p>
+<p><strong>Step 3.</strong> Open a folder with <code>.vpp</code> files, open a file, press <strong>F5</strong> to run.</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>Shell</span></div>
 <pre class="language-bash"><code class="language-bash">vpp run examples\hello.vpp</code></pre>
 </div>
-<p>Full guide: <strong><a href="docs/getting-started/hello-world.md">docs/getting-started/hello-world.md</a></strong></p>
+<p>Full docs: <a href="https://github.com/shauryaR790/V-/tree/main/docs">github.com/shauryaR790/V-/tree/main/docs</a></p>
 <hr>
-<h2 id="documentation">Documentation</h2>
+<h2 id="feature-details">Feature details</h2>
 <div class="table-wrap"><table>
 <tr>
-<td><strong><a href="docs/README.md">Documentation hub</a></strong></td>
-<td>Index of all guides</td>
+<td>Feature</td>
+<td>Description</td>
 </tr>
 <tr>
-<td><strong><a href="https://shauryaR790.github.io/V-/">Website</a></strong></td>
-<td>Learn, projects, downloads, history</td>
+<td><strong>Syntax highlighting</strong></td>
+<td>Keywords, types, strings, comments, <code>mut</code>, generics, traits</td>
 </tr>
 <tr>
-<td><a href="docs/getting-started/install.md">Install</a></td>
-<td>Installer, PATH, extension</td>
+<td><strong>Run</strong></td>
+<td><strong>F5</strong> / <strong>Ctrl+Shift+R</strong> runs the active file via <code>vpp run</code></td>
 </tr>
 <tr>
-<td><a href="docs/language/README.md">Language reference</a></td>
-<td>Types, control flow, generics, traits</td>
+<td><strong>Type-check</strong></td>
+<td><strong>v++: Check File</strong> — errors without executing</td>
 </tr>
 <tr>
-<td><a href="docs/guides/cli-reference.md">CLI reference</a></td>
-<td>Every <code>vpp</code> command</td>
+<td><strong>Language server</strong></td>
+<td>Diagnostics, completion, go-to-definition via <code>vppls</code></td>
 </tr>
 <tr>
-<td><a href="docs/stdlib/README.md">Standard library</a></td>
-<td>std.io, fs, json, …</td>
+<td><strong>Project tests</strong></td>
+<td><strong>v++: Run Tests</strong> runs <code>vpp test</code> in the workspace</td>
 </tr>
 <tr>
-<td><a href="docs/project/faq.md">FAQ</a></td>
-<td>Common questions</td>
+<td><strong>File icons</strong></td>
+<td>Yellow <strong>v</strong> icon for <code>.vpp</code> files</td>
 </tr>
 <tr>
-<td><a href="SPEC.md">SPEC.md</a></td>
-<td>Formal language spec</td>
+<td><strong>Toolbar</strong></td>
+<td>Run button in the editor title bar</td>
 </tr>
 </tbody></table></div>
 <hr>
-<h2 id="features">Features</h2>
+<h2 id="useful-commands">Useful commands</h2>
+<p>Open the Command Palette (<code>Ctrl+Shift+P</code> / <code>Cmd+Shift+P</code>):</p>
+<div class="table-wrap"><table>
+<tr>
+<td>Command</td>
+<td>Description</td>
+</tr>
+<tr>
+<td><strong>v++: Run File</strong></td>
+<td>Run the active <code>.vpp</code> file (<code>F5</code>, <code>Ctrl+Shift+R</code>)</td>
+</tr>
+<tr>
+<td><strong>v++: Check File</strong></td>
+<td>Type-check without running</td>
+</tr>
+<tr>
+<td><strong>v++: Run Tests</strong></td>
+<td>Run test blocks in the project</td>
+</tr>
+</tbody></table></div>
+<p>Type <code>v++</code> in the Command Palette to see all commands.</p>
+<hr>
+<h2 id="extension-settings">Extension settings</h2>
+<div class="table-wrap"><table>
+<tr>
+<td>Setting</td>
+<td>Default</td>
+<td>Description</td>
+</tr>
+<tr>
+<td><code>vpp.compilerPath</code></td>
+<td>*(auto)*</td>
+<td>Path to <code>vpp</code> / <code>vpp.exe</code>. Auto-detects workspace scripts.</td>
+</tr>
+<tr>
+<td><code>vpp.languageServerPath</code></td>
+<td><code>vppls</code></td>
+<td>Path to the v++ language server</td>
+</tr>
+<tr>
+<td><code>vpp.enableLanguageServer</code></td>
+<td><code>true</code></td>
+<td>Diagnostics, completion, go-to-definition</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2 id="requirements">Requirements</h2>
+<div class="table-wrap"><table>
+<tr>
+<td>Component</td>
+<td>Required for</td>
+<td>Notes</td>
+</tr>
+<tr>
+<td><strong>vpp</strong></td>
+<td>Run, check, build</td>
+<td><a href="https://github.com/shauryaR790/V-/releases">Releases</a> or build from source</td>
+</tr>
+<tr>
+<td><strong>vppls</strong></td>
+<td>IntelliSense</td>
+<td>Included in release bundle or <code>cargo build --features lsp --bin vppls</code></td>
+</tr>
+<tr>
+<td><strong>LLVM/clang</strong></td>
+<td><code>vpp build</code> only</td>
+<td>Bundled in Windows installer under <code>llvm\</code></td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2 id="set-up-your-environment">Set up your environment</h2>
+<p>1. Install v++ (<a href="https://github.com/shauryaR790/V-/blob/main/docs/getting-started/install.md">install guide</a>)</p>
+<p>2. Reload VS Code after installing this extension</p>
+<p>3. Open any <code>.vpp</code> file — language mode should show <strong>v++</strong></p>
+<p>4. Optional: set <code>vpp.compilerPath</code> if <code>vpp</code> is not on PATH</p>
+<hr>
+<h2 id="which-extension-is-official">Which extension is official?</h2>
+<p>Search <strong>v++ Language</strong> published by <strong>vpp-lang</strong> (<code>vpp-lang.vplusplus</code>).</p>
+<p>Other Marketplace extensions named &quot;V++&quot; are unrelated — verify publisher <strong>vpp-lang</strong>.</p>
+<hr>
+<h2 id="documentation-support">Documentation &amp; support</h2>
 <ul>
-<li>Local <strong>type inference</strong> + explicit function signatures</li>
-<li><strong>Structs</strong>, <strong>enums</strong>, <strong>Option/Result</strong>, exhaustive <strong>match</strong></li>
-<li><strong>Generics</strong>, <strong>traits</strong>, <strong><code>mut</code></strong> (v0.4)</li>
-<li><strong>Modules</strong> + <strong>package manager</strong> (<code>vpp.toml</code>)</li>
-<li><strong>Interpreter</strong> (<code>vpp run</code>) and <strong>native build</strong> (<code>vpp build</code>)</li>
-<li><strong>LSP</strong> — diagnostics, completion, go-to-definition</li>
-<li><strong>VS Code extension</strong> on the Marketplace</li>
+<li><a href="https://github.com/shauryaR790/V-/tree/main/docs">Documentation hub</a></li>
+<li><a href="https://github.com/shauryaR790/V-/blob/main/docs/getting-started/vscode-setup.md">VS Code setup guide</a></li>
+<li><a href="https://github.com/shauryaR790/V-/tree/main/docs/language">Language reference</a></li>
+<li><a href="https://github.com/shauryaR790/V-/blob/main/docs/guides/troubleshooting.md">Troubleshooting</a></li>
+<li><a href="https://github.com/shauryaR790/V-/issues">Report issues</a></li>
 </ul>
 <hr>
-<h2 id="links">Links</h2>
-<div class="table-wrap"><table>
-<tr>
-<td>Resource</td>
-<td>URL</td>
-</tr>
-<tr>
-<td>Releases</td>
-<td>https://github.com/shauryaR790/V-/releases</td>
-</tr>
-<tr>
-<td>VS Code extension</td>
-<td>https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus</td>
-</tr>
-<tr>
-<td>Issues</td>
-<td>https://github.com/shauryaR790/V-/issues</td>
-</tr>
-<tr>
-<td>Contributing</td>
-<td><a href="CONTRIBUTING.md">CONTRIBUTING.md</a></td>
-</tr>
-<tr>
-<td>Security</td>
-<td><a href="SECURITY.md">SECURITY.md</a></td>
-</tr>
-<tr>
-<td>Privacy</td>
-<td><a href="docs/PRIVACY.md">docs/PRIVACY.md</a></td>
-</tr>
-</tbody></table></div>
+<h2 id="planned-road-to-v1-0">Planned (road to v1.0)</h2>
+<ul>
+<li>Integrated <strong>debugger</strong> (breakpoints, step-through)</li>
+<li><strong>Test Explorer</strong> UI</li>
+<li>Format-on-save via <code>vpp fmt</code></li>
+<li>Environment / toolchain picker in status bar</li>
+</ul>
+<p>Track progress: <a href="https://github.com/shauryaR790/V-/blob/main/docs/project/roadmap.md">roadmap</a></p>
 <hr>
-<h2 id="for-developers">For developers</h2>
+<h2 id="license">License</h2>
+<p>MIT — see <a href="https://github.com/shauryaR790/V-/blob/main/LICENSE">LICENSE</a>.</p>
+<h1 id="change-log">Change Log</h1>
+<h2 id="0-5-0">0.5.0</h2>
+<ul>
+<li>Comprehensive documentation links in README</li>
+<li>Syntax highlighting for <code>mut</code>, <code>trait</code>, <code>impl</code></li>
+<li>Marketplace metadata aligned with docs hub</li>
+</ul>
+<h2 id="0-4-1">0.4.1</h2>
+<ul>
+<li>Marketplace publisher <code>vpp-lang</code>, extension id <code>vplusplus</code></li>
+<li>Professional README and gallery banner</li>
+</ul>
+<h2 id="0-4-0">0.4.0</h2>
+<ul>
+<li>LSP integration via <code>vppls</code></li>
+<li>Run, check, and test commands</li>
+<li>Yellow v file icons</li>
+</ul>
+<h2 id="source-registry-index-toml">Source: <code>registry/index.toml</code></h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">git clone https://github.com/shauryaR790/V-.git
-cd V-
-cargo build --release --features codegen,lsp
-cargo test --all-targets</code></pre>
+<div class="code-block-header"><span>TOML</span></div>
+<pre class="language-toml"><code class="language-toml"># v++ central package registry (v0.3)
+# Packages listed here resolve bare semver deps: helper = &quot;0.1.0&quot;
+
+[[packages]]
+name = &quot;hello-lib&quot;
+version = &quot;0.1.0&quot;
+path = &quot;fixtures/hello-lib&quot;
+</code></pre>
 </div>
-<p>See <a href="docs/contributing/building-from-source.md">Building from source</a>.</p>
-<hr>
-<h2 id="roadmap">Roadmap</h2>
-<p><strong>v0.5</strong> — website, REPL, SignPath signing, expanded stdlib  </p>
-<p><strong>v1.0</strong> — stable spec, debugger, test explorer</p>
-<p>Details: <a href="docs/project/roadmap.md">docs/project/roadmap.md</a></p></article>
+<h2 id="source-registry-fixtures-hello-lib-src-lib-vpp">Source: <code>registry/fixtures/hello-lib/src/lib.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">pub fn greet(name: string) -&gt; string {
+    return &quot;hello, &quot; + name
+}
+</code></pre>
+</div>
+<h2 id="source-registry-fixtures-hello-lib-vpp-toml">Source: <code>registry/fixtures/hello-lib/vpp.toml</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>TOML</span></div>
+<pre class="language-toml"><code class="language-toml">name = &quot;hello-lib&quot;
+version = &quot;0.1.0&quot;
+entry = &quot;src/lib.vpp&quot;
+</code></pre>
+</div>
+<h2 id="source-staging-std-assert-vpp">Source: <code>staging/std/assert.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">// Re-exports assert helpers (implemented as compiler builtins).
+// Import this module to use assert / assert_eq in tests.
+
+fn assert_true(condition: bool) -&gt; int {
+    if condition {
+        return 0
+    }
+    return 1
+}
+</code></pre>
+</div>
+<h2 id="source-staging-std-collections-vpp">Source: <code>staging/std/collections.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">pub fn make_int_array(values: array[int]) -&gt; array[int] {
+    return values
+}
+
+pub fn index_of(arr: array[int], target: int) -&gt; int {
+    let mut i = 0
+    while i &lt; len(arr) {
+        if arr[i] == target {
+            return i
+        }
+        i = i + 1
+    }
+    return -1
+}
+
+pub fn contains(arr: array[int], target: int) -&gt; bool {
+    return index_of(arr, target) &gt;= 0
+}
+
+pub fn sum(arr: array[int]) -&gt; int {
+    let mut total = 0
+    for n in arr {
+        total = total + n
+    }
+    return total
+}
+</code></pre>
+</div>
+<h2 id="source-staging-std-fs-vpp">Source: <code>staging/std/fs.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">// File I/O via compiler/runtime builtins (read_file, write_file, file_exists).
+
+pub fn read(path: string) -&gt; string {
+    return read_file(path)
+}
+
+pub fn write(path: string, contents: string) -&gt; int {
+    write_file(path, contents)
+    return 0
+}
+
+pub fn exists(path: string) -&gt; bool {
+    return file_exists(path)
+}
+</code></pre>
+</div>
+<h2 id="source-staging-std-io-vpp">Source: <code>staging/std/io.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">pub fn greet(name: string) -&gt; int {
+    print(&quot;Hello, &quot; + name + &quot;!&quot;)
+    return 0
+}
+
+pub fn println(msg: string) -&gt; int {
+    print(msg)
+    return 0
+}
+
+pub fn print_int(n: int) -&gt; int {
+    print(n)
+    return 0
+}
+</code></pre>
+</div>
+<h2 id="source-staging-std-json-vpp">Source: <code>staging/std/json.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">// Minimal JSON helpers via runtime builtins.
+
+pub fn parse(raw: string) -&gt; string {
+    return json_parse(raw)
+}
+
+pub fn stringify(raw: string) -&gt; string {
+    return json_stringify(raw)
+}
+</code></pre>
+</div>
+<h2 id="source-staging-std-math-vpp">Source: <code>staging/std/math.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">pub fn add(a: int, b: int) -&gt; int {
+    return a + b
+}
+
+pub fn abs(n: int) -&gt; int {
+    if n &lt; 0 {
+        return 0 - n
+    }
+    return n
+}
+
+pub fn max(a: int, b: int) -&gt; int {
+    if a &gt; b {
+        return a
+    }
+    return b
+}
+
+pub fn min(a: int, b: int) -&gt; int {
+    if a &lt; b {
+        return a
+    }
+    return b
+}
+
+pub fn pow(base: int, exp: int) -&gt; int {
+    let mut result = 1
+    let mut i = 0
+    while i &lt; exp {
+        result = result * base
+        i = i + 1
+    }
+    return result
+}
+
+pub fn clamp(n: int, lo: int, hi: int) -&gt; int {
+    if n &lt; lo {
+        return lo
+    }
+    if n &gt; hi {
+        return hi
+    }
+    return n
+}
+</code></pre>
+</div>
+<h2 id="source-staging-std-process-vpp">Source: <code>staging/std/process.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">// Process helpers via runtime builtins.
+
+pub fn run(cmd: string) -&gt; int {
+    return process_run(cmd)
+}
+
+pub fn exit_code(cmd: string) -&gt; int {
+    return process_run(cmd)
+}
+</code></pre>
+</div>
+<h2 id="source-staging-std-string-vpp">Source: <code>staging/std/string.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">pub fn upper(s: string) -&gt; string {
+    return s
+}
+
+pub fn repeat(s: string, n: int) -&gt; string {
+    let mut out = &quot;&quot;
+    let mut i = 0
+    while i &lt; n {
+        out = out + s
+        i = i + 1
+    }
+    return out
+}
+
+pub fn len_str(s: string) -&gt; int {
+    return len(s)
+}
+
+pub fn is_empty(s: string) -&gt; bool {
+    return len(s) == 0
+}
+</code></pre>
+</div>
+<h2 id="source-staging-examples-hello-vpp">Source: <code>staging/examples/hello.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">import std.fs
+import std.json
+import std.process
+
+enum Status {
+    Active
+    Inactive
+}
+
+struct User {
+    name: string
+    age: int
+    status: Status
+}
+
+fn add(a: int, b: int) -&gt; int {
+    return a + b
+}
+
+fn describe(status: Status) -&gt; string {
+    match status {
+        Active =&gt; {
+            return &quot;active&quot;
+        }
+        Inactive =&gt; {
+            return &quot;inactive&quot;
+        }
+    }
+}
+
+fn ok_val() -&gt; Result&lt;int, string&gt; {
+    return Ok(42)
+}
+
+fn main() -&gt; int {
+    print(&quot;=== v++ hello ===&quot;)
+
+    print(add(10, 20))
+
+    let numbers = [1, 2, 3, 4, 5]
+    for n in numbers {
+        print(n)
+    }
+
+    let mut total = 0
+    for i in 0..5 {
+        total = total + numbers[i]
+    }
+    print(total)
+
+    let user = User {
+        name: &quot;Shaurya&quot;
+        age: 18
+        status: Active
+    }
+    print(user.name)
+    print(user.age)
+    print(describe(user.status))
+
+    let r = ok_val()
+    match r {
+        Ok(n) =&gt; {
+            print(n)
+        }
+        Err(e) =&gt; {
+            print(e)
+        }
+    }
+
+    let j = json.parse(&quot;{\&quot;language\&quot;:\&quot;v++\&quot;,\&quot;version\&quot;:\&quot;0.3\&quot;}&quot;)
+    print(json.stringify(j))
+
+    fs.write(&quot;vpp_test.txt&quot;, &quot;v++ filesystem test&quot;)
+    print(fs.exists(&quot;vpp_test.txt&quot;))
+    print(fs.read(&quot;vpp_test.txt&quot;))
+
+    let code = process.run(&quot;echo vpp process test&quot;)
+    print(code)
+
+    print(&quot;=== done ===&quot;)
+    return 0
+}
+</code></pre>
+</div>
+<h2 id="source-tests-fixtures-module-bad-vpp">Source: <code>tests/fixtures/module_bad.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">import std.math
+
+fn main() -&gt; int {
+    return add(1, 2)
+}
+</code></pre>
+</div>
+<h2 id="source-tests-fixtures-module-math-vpp">Source: <code>tests/fixtures/module_math.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">import std.math
+
+fn main() -&gt; int {
+    let x = math.add(1, 2)
+    return x
+}
+</code></pre>
+</div>
+<h2 id="source-tests-fixtures-smoke-vpp">Source: <code>tests/fixtures/smoke.vpp</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>v++</span></div>
+<pre class="language-javascript"><code class="language-javascript">import &quot;std/math.vpp&quot;
+
+test &quot;addition&quot; {
+    assert_eq(add(1, 1), 2)
+}
+
+test &quot;power&quot; {
+    assert_eq(pow(3, 2), 9)
+}
+</code></pre>
+</div>
+<h2 id="source-tests-arrays-rs">Source: <code>tests/arrays.rs</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>rust</span></div>
+<pre class="language-javascript"><code class="language-javascript">use std::path::PathBuf;
+
+use vpp::check_path;
+use vpp::ir::{lower_program, IrType};
+
+fn example(name: &amp;str) -&gt; PathBuf {
+    PathBuf::from(env!(&quot;CARGO_MANIFEST_DIR&quot;))
+        .join(&quot;examples&quot;)
+        .join(name)
+}
+
+#[test]
+fn lowers_array_literal_and_index() {
+    let path = example(&quot;arrays.vpp&quot;);
+    let typed = check_path(&amp;path).unwrap();
+    let ir = lower_program(&amp;typed).unwrap();
+    assert!(!ir.top_level.is_empty());
+    let ir_debug = format!(&quot;{ir:?}&quot;);
+    assert!(ir_debug.contains(&quot;Array&quot;), &quot;expected array IR in arrays.vpp&quot;);
+}
+
+#[test]
+fn array_type_maps_to_heap_ir_type() {
+    let ty = IrType::Array(Box::new(IrType::Int));
+    assert!(ty.is_array());
+    assert!(ty.is_heap());
+    assert_eq!(ty.elem_type(), &amp;IrType::Int);
+}
+</code></pre>
+</div>
+<h2 id="source-tests-end-to-end-rs">Source: <code>tests/end_to_end.rs</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>rust</span></div>
+<pre class="language-javascript"><code class="language-javascript">#[cfg(feature = &quot;codegen&quot;)]
+mod native {
+    use std::path::PathBuf;
+    use std::process::Command;
+
+    use vpp::driver::CompileOptions;
+
+    fn example(name: &amp;str) -&gt; PathBuf {
+        PathBuf::from(env!(&quot;CARGO_MANIFEST_DIR&quot;))
+            .join(&quot;examples&quot;)
+            .join(name)
+    }
+
+    #[test]
+    fn hello_native_build_and_run() {
+        let path = example(&quot;hello.vpp&quot;);
+        let source = std::fs::read_to_string(&amp;path).unwrap();
+        let exe = std::env::temp_dir().join(format!(&quot;vpp-hello-{}.exe&quot;, std::process::id()));
+
+        vpp::compile(
+            &amp;source,
+            &amp;path,
+            CompileOptions {
+                output: Some(exe.clone()),
+                emit_ir: None,
+            },
+        )
+        .expect(&quot;hello should compile natively&quot;);
+
+        let output = Command::new(&amp;exe).output().expect(&quot;run hello.exe&quot;);
+        assert!(output.status.success(), &quot;hello.exe crashed&quot;);
+        let stdout = String::from_utf8_lossy(&amp;output.stdout);
+        assert!(stdout.contains(&quot;=== v++ hello ===&quot;));
+        assert!(stdout.contains(&quot;Shaurya&quot;));
+        assert!(stdout.contains(&quot;active&quot;));
+        let _ = std::fs::remove_file(&amp;exe);
+    }
+
+    #[test]
+    fn arrays_native_build_and_run() {
+        let path = example(&quot;arrays.vpp&quot;);
+        let source = std::fs::read_to_string(&amp;path).unwrap();
+        let exe = std::env::temp_dir().join(format!(&quot;vpp-arrays-{}.exe&quot;, std::process::id()));
+
+        vpp::compile(
+            &amp;source,
+            &amp;path,
+            CompileOptions {
+                output: Some(exe.clone()),
+                emit_ir: None,
+            },
+        )
+        .expect(&quot;arrays.vpp should compile natively&quot;);
+
+        let output = Command::new(&amp;exe).output().expect(&quot;run arrays.exe&quot;);
+        assert!(output.status.success(), &quot;arrays.exe crashed&quot;);
+        let stdout = String::from_utf8_lossy(&amp;output.stdout);
+        assert!(stdout.contains(&quot;Alex&quot;));
+        assert!(stdout.contains(&quot;15&quot;));
+        let _ = std::fs::remove_file(&amp;exe);
+    }
+}
+</code></pre>
+</div>
+<h2 id="source-tests-lexer-rs">Source: <code>tests/lexer.rs</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>rust</span></div>
+<pre class="language-javascript"><code class="language-javascript">use vpp::lexer::Lexer;
+use vpp::lexer::TokenKind;
+
+#[test]
+fn lexes_int_literal() {
+    let tokens = Lexer::new(&quot;42&quot;).tokenize().unwrap();
+    assert!(matches!(tokens[0].kind, TokenKind::IntLit(42)));
+}
+
+#[test]
+fn lexes_string_literal() {
+    let tokens = Lexer::new(&quot;\&quot;hello\&quot;&quot;).tokenize().unwrap();
+    assert!(matches!(tokens[0].kind, TokenKind::StringLit(_)));
+}
+
+#[test]
+fn lexes_operators() {
+    let tokens = Lexer::new(&quot;+ - * / == != &amp;&amp; || ..&quot;).tokenize().unwrap();
+    assert!(matches!(tokens[0].kind, TokenKind::Plus));
+    assert!(matches!(tokens[8].kind, TokenKind::DotDot));
+}
+</code></pre>
+</div>
+<h2 id="source-tests-modules-rs">Source: <code>tests/modules.rs</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>rust</span></div>
+<pre class="language-javascript"><code class="language-javascript">//! Module system integration tests.
+
+use std::path::PathBuf;
+
+use vpp::check_path;
+
+fn example(name: &amp;str) -&gt; PathBuf {
+    PathBuf::from(env!(&quot;CARGO_MANIFEST_DIR&quot;))
+        .join(&quot;examples&quot;)
+        .join(name)
+}
+
+#[test]
+fn legacy_string_import_still_works() {
+    check_path(&amp;example(&quot;modules_main.vpp&quot;)).expect(&quot;modules_main should type-check&quot;);
+}
+
+#[test]
+fn canonical_module_import_parses() {
+    let path = PathBuf::from(env!(&quot;CARGO_MANIFEST_DIR&quot;))
+        .join(&quot;tests/fixtures/module_math.vpp&quot;);
+    check_path(&amp;path).expect(&quot;module import should work&quot;);
+}
+
+#[test]
+fn rejects_unqualified_module_function() {
+    let path = PathBuf::from(env!(&quot;CARGO_MANIFEST_DIR&quot;))
+        .join(&quot;tests/fixtures/module_bad.vpp&quot;);
+    let err = check_path(&amp;path).unwrap_err();
+    assert!(err.to_string().contains(&quot;not in scope&quot;));
+}
+</code></pre>
+</div>
+<h2 id="source-tests-parity-rs">Source: <code>tests/parity.rs</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>rust</span></div>
+<pre class="language-javascript"><code class="language-javascript">//! Interpreter vs native output parity tests.
+//! Run: cargo test --features codegen parity -- --nocapture
+
+#![cfg(feature = &quot;codegen&quot;)]
+
+use std::path::{Path, PathBuf};
+use std::process::Command;
+
+use vpp::driver::CompileOptions;
+
+fn example(name: &amp;str) -&gt; PathBuf {
+    PathBuf::from(env!(&quot;CARGO_MANIFEST_DIR&quot;))
+        .join(&quot;examples&quot;)
+        .join(name)
+}
+
+fn run_interpreter(path: &amp;Path) -&gt; String {
+    let output = Command::new(env!(&quot;CARGO_BIN_EXE_vpp&quot;))
+        .arg(&quot;run&quot;)
+        .arg(path)
+        .output()
+        .expect(&quot;failed to run vpp interpreter&quot;);
+    assert!(
+        output.status.success(),
+        &quot;interpreter failed for {}: {}&quot;,
+        path.display(),
+        String::from_utf8_lossy(&amp;output.stderr)
+    );
+    String::from_utf8_lossy(&amp;output.stdout).into_owned()
+}
+
+fn run_native(path: &amp;Path, exe: &amp;Path) -&gt; String {
+    let source = std::fs::read_to_string(path).unwrap();
+    vpp::compile(
+        &amp;source,
+        path,
+        CompileOptions {
+            output: Some(exe.to_path_buf()),
+            emit_ir: None,
+        },
+    )
+    .unwrap_or_else(|e| panic!(&quot;native compile failed for {}: {e}&quot;, path.display()));
+
+    let output = Command::new(exe).output().expect(&quot;failed to run native binary&quot;);
+    assert!(
+        output.status.success(),
+        &quot;native run failed for {}: {}&quot;,
+        path.display(),
+        String::from_utf8_lossy(&amp;output.stderr)
+    );
+    String::from_utf8_lossy(&amp;output.stdout).into_owned()
+}
+
+fn normalize_output(s: String) -&gt; String {
+    s.replace(&quot;\r\n&quot;, &quot;\n&quot;)
+}
+
+fn assert_parity(name: &amp;str) {
+    let path = example(name);
+    let stem = path.file_stem().unwrap().to_string_lossy();
+    let exe = std::env::temp_dir().join(format!(&quot;vpp-parity-{stem}-{}.exe&quot;, std::process::id()));
+
+    let interp = normalize_output(run_interpreter(&amp;path));
+    let native = normalize_output(run_native(&amp;path, &amp;exe));
+    assert_eq!(
+        interp, native,
+        &quot;interpreter/native stdout mismatch for {}&quot;,
+        path.display()
+    );
+    let _ = std::fs::remove_file(&amp;exe);
+}
+
+#[test]
+fn hello_parity() {
+    assert_parity(&quot;hello.vpp&quot;);
+}
+
+#[test]
+fn scope_shadow_parity() {
+    assert_parity(&quot;scope_shadow.vpp&quot;);
+}
+
+#[test]
+fn lesson01_parity() {
+    assert_parity(&quot;lesson01_basics.vpp&quot;);
+}
+
+#[test]
+fn arrays_parity() {
+    assert_parity(&quot;arrays.vpp&quot;);
+}
+
+#[test]
+fn arrays_fn_parity() {
+    assert_parity(&quot;arrays_fn.vpp&quot;);
+}
+
+#[test]
+fn structs_parity() {
+    assert_parity(&quot;structs.vpp&quot;);
+}
+
+#[test]
+fn option_result_parity() {
+    assert_parity(&quot;option_result.vpp&quot;);
+}
+
+#[test]
+fn match_test_parity() {
+    assert_parity(&quot;match_test.vpp&quot;);
+}
+
+#[test]
+fn std_builtins_example_parity() {
+    assert_parity(&quot;std_builtins.vpp&quot;);
+}
+
+#[test]
+fn lesson03_loops_parity() {
+    assert_parity(&quot;lesson03_loops.vpp&quot;);
+}
+
+#[test]
+fn generics_parity() {
+    assert_parity(&quot;generics.vpp&quot;);
+}
+
+#[test]
+fn traits_parity() {
+    assert_parity(&quot;traits.vpp&quot;);
+}
+</code></pre>
+</div>
+<h2 id="source-tests-parser-rs">Source: <code>tests/parser.rs</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>rust</span></div>
+<pre class="language-javascript"><code class="language-javascript">use vpp::parse;
+
+#[test]
+fn parses_let_binding() {
+    let program = parse(&quot;let x = 10&quot;).unwrap();
+    assert_eq!(program.items.len(), 1);
+}
+
+#[test]
+fn parses_function_declaration() {
+    let program = parse(&quot;fn add(a: int, b: int) -&gt; int { return a + b }&quot;).unwrap();
+    assert_eq!(program.items.len(), 1);
+}
+
+#[test]
+fn parses_if_else() {
+    let program = parse(&quot;if x &gt; 0 { print(x) } else { print(0) }&quot;).unwrap();
+    assert_eq!(program.items.len(), 1);
+}
+
+#[test]
+fn parses_for_in_array() {
+    let program = parse(&quot;for user in users { print(user) }&quot;).unwrap();
+    assert_eq!(program.items.len(), 1);
+}
+
+#[test]
+fn parses_array_literal() {
+    let program = parse(&quot;let nums = [1, 2, 3]&quot;).unwrap();
+    assert_eq!(program.items.len(), 1);
+}
+</code></pre>
+</div>
+<h2 id="source-tests-pkg-rs">Source: <code>tests/pkg.rs</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>rust</span></div>
+<pre class="language-javascript"><code class="language-javascript">//! Package manager tests.
+
+use std::fs;
+
+use vpp::{parse_manifest_toml, resolve_dependencies, DependencySpec, Manifest};
+
+#[test]
+fn parses_dependencies_in_manifest() {
+    let m = parse_manifest_toml(
+        r#&quot;name = &quot;demo&quot;
+version = &quot;0.1.0&quot;
+entry = &quot;src/main.vpp&quot;
+
+[dependencies]
+helper = { path = &quot;../helper&quot; }
+&quot;#,
+    )
+    .unwrap();
+    assert!(m.dependencies.contains_key(&quot;helper&quot;));
+}
+
+#[test]
+fn resolves_local_path_dependency() {
+    let dir = std::env::temp_dir().join(format!(&quot;vpp-pkg-test-{}&quot;, std::process::id()));
+    let _ = fs::remove_dir_all(&amp;dir);
+    fs::create_dir_all(&amp;dir).unwrap();
+    fs::create_dir_all(dir.join(&quot;src&quot;)).unwrap();
+
+    let helper = dir.join(&quot;helper&quot;);
+    fs::create_dir_all(&amp;helper).unwrap();
+    fs::write(
+        helper.join(&quot;vpp.toml&quot;),
+        r#&quot;name = &quot;helper&quot;
+version = &quot;1.0.0&quot;
+entry = &quot;src/main.vpp&quot;
+&quot;#,
+    )
+    .unwrap();
+
+    let manifest = Manifest {
+        name: &quot;demo&quot;.to_string(),
+        version: &quot;0.1.0&quot;.to_string(),
+        entry: &quot;src/main.vpp&quot;.into(),
+        dependencies: [(
+            &quot;helper&quot;.to_string(),
+            DependencySpec::from_path(&quot;helper&quot;),
+        )]
+        .into(),
+    };
+
+    let lock = resolve_dependencies(&amp;dir, &amp;manifest).unwrap();
+    assert_eq!(lock.packages.len(), 1);
+    assert!(lock.packages[0].root.as_ref().unwrap().exists());
+
+    let _ = fs::remove_dir_all(&amp;dir);
+}
+
+#[test]
+fn registry_version_dependency() {
+    let root = std::path::PathBuf::from(env!(&quot;CARGO_MANIFEST_DIR&quot;));
+    let manifest = Manifest {
+        name: &quot;demo&quot;.to_string(),
+        version: &quot;0.1.0&quot;.to_string(),
+        entry: &quot;src/main.vpp&quot;.into(),
+        dependencies: [(
+            &quot;hello-lib&quot;.to_string(),
+            DependencySpec::Version(&quot;0.1.0&quot;.into()),
+        )]
+        .into(),
+    };
+    let lock = resolve_dependencies(&amp;root, &amp;manifest).unwrap();
+    assert_eq!(lock.packages[0].name, &quot;hello-lib&quot;);
+    let _ = fs::remove_dir_all(root.join(&quot;.vpp&quot;));
+}
+</code></pre>
+</div>
+<h2 id="source-tests-stdlib-rs">Source: <code>tests/stdlib.rs</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>rust</span></div>
+<pre class="language-javascript"><code class="language-javascript">//! Stdlib fs/json/process parity and registry tests.
+
+#![cfg(feature = &quot;codegen&quot;)]
+
+use std::path::{Path, PathBuf};
+use std::process::Command;
+
+use vpp::driver::CompileOptions;
+
+fn run_in_dir(dir: &amp;Path, subcommand: &amp;str, file: &amp;Path) -&gt; std::process::Output {
+    Command::new(env!(&quot;CARGO_BIN_EXE_vpp&quot;))
+        .arg(subcommand)
+        .arg(file)
+        .current_dir(dir)
+        .output()
+        .expect(&quot;failed to spawn vpp&quot;)
+}
+
+fn stdlib_parity(source: &amp;str, filename: &amp;str) {
+    let dir = std::env::temp_dir().join(format!(&quot;vpp-stdlib-{}-{}&quot;, filename, std::process::id()));
+    let _ = std::fs::remove_dir_all(&amp;dir);
+    std::fs::create_dir_all(&amp;dir).unwrap();
+    let file = dir.join(filename);
+    std::fs::write(&amp;file, source).unwrap();
+    let exe = dir.join(&quot;out.exe&quot;);
+
+    let interp = run_in_dir(&amp;dir, &quot;run&quot;, &amp;file);
+    assert!(
+        interp.status.success(),
+        &quot;interpreter failed: {}&quot;,
+        String::from_utf8_lossy(&amp;interp.stderr)
+    );
+
+    vpp::compile(
+        source,
+        &amp;file,
+        CompileOptions {
+            output: Some(exe.clone()),
+            emit_ir: None,
+        },
+    )
+    .expect(&quot;native compile failed&quot;);
+
+    let native = Command::new(&amp;exe)
+        .current_dir(&amp;dir)
+        .output()
+        .expect(&quot;failed to run native binary&quot;);
+    assert!(
+        native.status.success(),
+        &quot;native failed: {}&quot;,
+        String::from_utf8_lossy(&amp;native.stderr)
+    );
+
+    let i_out = String::from_utf8_lossy(&amp;interp.stdout).replace(&quot;\r\n&quot;, &quot;\n&quot;);
+    let n_out = String::from_utf8_lossy(&amp;native.stdout).replace(&quot;\r\n&quot;, &quot;\n&quot;);
+    assert_eq!(i_out, n_out, &quot;interpreter/native stdout mismatch&quot;);
+
+    let _ = std::fs::remove_dir_all(&amp;dir);
+}
+
+#[test]
+fn std_fs_json_parity() {
+    stdlib_parity(
+        r#&quot;import std.fs
+import std.json
+
+fn main() -&gt; int {
+    fs.write(&quot;vpp_std_fs_test.txt&quot;, &quot;parity&quot;)
+    print(fs.read(&quot;vpp_std_fs_test.txt&quot;))
+    if fs.exists(&quot;vpp_std_fs_test.txt&quot;) {
+        print(&quot;yes&quot;)
+    }
+    let j = json.parse(&quot;{\&quot;ok\&quot;:true}&quot;)
+    print(json.stringify(j))
+    return 0
+}
+&quot;#,
+        &quot;std_test.vpp&quot;,
+    );
+}
+
+#[test]
+fn std_process_parity() {
+    let cmd = if cfg!(windows) {
+        &quot;exit 0&quot;
+    } else {
+        &quot;true&quot;
+    };
+    stdlib_parity(
+        &amp;format!(
+            r#&quot;import std.process
+
+fn main() -&gt; int {{
+    let code = process.run(&quot;{cmd}&quot;)
+    print(code)
+    return 0
+}}
+&quot;#
+        ),
+        &quot;proc_test.vpp&quot;,
+    );
+}
+
+#[test]
+fn registry_resolves_hello_lib() {
+    let root = PathBuf::from(env!(&quot;CARGO_MANIFEST_DIR&quot;));
+    let dep = vpp::resolve_from_registry(&amp;root, &quot;hello-lib&quot;, &quot;0.1.0&quot;).unwrap();
+    assert!(dep.path.is_some());
+    let lock = vpp::resolve_dependencies(
+        &amp;root,
+        &amp;vpp::Manifest {
+            name: &quot;test&quot;.into(),
+            version: &quot;0.1.0&quot;.into(),
+            entry: &quot;src/main.vpp&quot;.into(),
+            dependencies: [(&quot;hello-lib&quot;.to_string(), vpp::DependencySpec::Version(&quot;0.1.0&quot;.into()))]
+                .into(),
+        },
+    )
+    .unwrap();
+    assert_eq!(lock.packages.len(), 1);
+    assert_eq!(lock.packages[0].name, &quot;hello-lib&quot;);
+}
+</code></pre>
+</div>
+<h2 id="source-tests-test-runner-rs">Source: <code>tests/test_runner.rs</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>rust</span></div>
+<pre class="language-javascript"><code class="language-javascript">use std::path::PathBuf;
+
+#[test]
+fn runs_inline_test_blocks() {
+    let path = PathBuf::from(env!(&quot;CARGO_MANIFEST_DIR&quot;))
+        .join(&quot;tests&quot;)
+        .join(&quot;fixtures&quot;)
+        .join(&quot;smoke.vpp&quot;);
+    let typed = vpp::check_path(&amp;path).expect(&quot;smoke.vpp should type-check&quot;);
+    let count = vpp::interp::run_tests(&amp;typed).expect(&quot;tests should pass&quot;);
+    assert_eq!(count, 2);
+}
+
+#[test]
+fn init_scaffold_typechecks() {
+    use std::fs;
+
+    let dir = PathBuf::from(env!(&quot;CARGO_MANIFEST_DIR&quot;))
+        .join(&quot;target&quot;)
+        .join(&quot;test-init-scaffold&quot;);
+    let _ = fs::remove_dir_all(&amp;dir);
+    fs::create_dir_all(&amp;dir).unwrap();
+
+    vpp::init_project(&amp;dir, &quot;demo&quot;).unwrap();
+    let main = dir.join(&quot;src/main.vpp&quot;);
+    vpp::check_path(&amp;main).expect(&quot;init main.vpp should type-check&quot;);
+    let tests = dir.join(&quot;tests/smoke.vpp&quot;);
+    vpp::check_path(&amp;tests).expect(&quot;init smoke tests should type-check&quot;);
+
+    let _ = fs::remove_dir_all(&amp;dir);
+}
+</code></pre>
+</div>
+<h2 id="source-tests-typecheck-rs">Source: <code>tests/typecheck.rs</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>rust</span></div>
+<pre class="language-javascript"><code class="language-javascript">use vpp::check;
+use vpp::VppError;
+
+#[test]
+fn infers_local_types() {
+    let source = &quot;let x = 10\nlet name = \&quot;Shaurya\&quot;\nlet active = true\n&quot;;
+    check(source).unwrap();
+}
+
+#[test]
+fn accepts_fib_program() {
+    let source = include_str!(&quot;../examples/fib.vpp&quot;);
+    check(source).unwrap();
+}
+
+#[test]
+fn accepts_arrays_program() {
+    let source = include_str!(&quot;../examples/arrays.vpp&quot;);
+    check(source).unwrap();
+}
+
+#[test]
+fn rejects_type_mismatch_with_error_code() {
+    let source = &quot;let age = 20\nlet name = \&quot;Alex\&quot;\nlet result = age + name\n&quot;;
+    let err = check(source).unwrap_err();
+    assert!(matches!(err, VppError::TypeMismatch { .. }));
+}
+
+#[test]
+fn rejects_undefined_variable() {
+    let err = check(&quot;print(x)\n&quot;).unwrap_err();
+    assert!(matches!(err, VppError::UndefinedVariable { .. }));
+}
+
+#[test]
+fn rejects_empty_array() {
+    let err = check(&quot;let xs = []\n&quot;).unwrap_err();
+    assert!(matches!(err, VppError::EmptyArrayNoType { .. }));
+}
+
+#[test]
+fn rejects_immutable_reassign() {
+    let err = check(&quot;let x = 1\nx = 2\n&quot;).unwrap_err();
+    assert!(matches!(err, VppError::ImmutableAssign { .. }));
+}
+
+#[test]
+fn accepts_mut_reassign() {
+    check(&quot;let mut x = 1\nx = 2\n&quot;).unwrap();
+}
+
+#[test]
+fn rejects_non_exhaustive_enum_match() {
+    let source = r#&quot;
+enum Color { Red Green Blue }
+fn main() -&gt; int {
+    let c: Color = Red
+    match c {
+        Red =&gt; { return 0 }
+    }
+}
+&quot;#;
+    let err = check(source).unwrap_err();
+    assert!(matches!(err, VppError::NonExhaustiveMatch { .. }));
+}
+
+#[test]
+fn accepts_exhaustive_enum_match() {
+    let source = r#&quot;
+enum Color { Red Green Blue }
+fn main() -&gt; int {
+    let c: Color = Red
+    match c {
+        Red =&gt; { return 0 }
+        Green =&gt; { return 1 }
+        Blue =&gt; { return 2 }
+    }
+}
+&quot;#;
+    check(source).unwrap();
+}
+
+#[test]
+fn accepts_generic_function() {
+    let source = include_str!(&quot;../examples/generics.vpp&quot;);
+    check(source).unwrap();
+}
+
+#[test]
+fn accepts_trait_impl() {
+    let source = include_str!(&quot;../examples/traits.vpp&quot;);
+    check(source).unwrap();
+}
+</code></pre>
+</div>
+<h2 id="source-cargo-toml">Source: <code>Cargo.toml</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>TOML</span></div>
+<pre class="language-toml"><code class="language-toml">[package]
+name = &quot;vpp&quot;
+version = &quot;0.5.0&quot;
+edition = &quot;2021&quot;
+description = &quot;The v++ programming language compiler&quot;
+license = &quot;MIT&quot;
+default-run = &quot;vpp&quot;
+
+[[bin]]
+name = &quot;vpp&quot;
+path = &quot;src/main.rs&quot;
+
+[lib]
+name = &quot;vpp&quot;
+path = &quot;src/lib.rs&quot;
+
+[dependencies]
+clap = { version = &quot;4&quot;, features = [&quot;derive&quot;] }
+thiserror = &quot;2&quot;
+miette = { version = &quot;7&quot;, features = [&quot;fancy&quot;] }
+toml = &quot;0.8&quot;
+semver = &quot;1&quot;
+serde = { version = &quot;1&quot;, features = [&quot;derive&quot;] }
+serde_json = &quot;1&quot;
+
+[dependencies.tower-lsp]
+version = &quot;0.20&quot;
+optional = true
+
+[dependencies.tokio]
+version = &quot;1&quot;
+features = [&quot;full&quot;]
+optional = true
+
+[[bin]]
+name = &quot;vppls&quot;
+path = &quot;src/bin/vppls.rs&quot;
+required-features = [&quot;lsp&quot;]
+
+[dependencies.inkwell]
+git = &quot;https://github.com/TheDan64/inkwell&quot;
+branch = &quot;master&quot;
+default-features = false
+features = [&quot;llvm22-1-no-llvm-linking&quot;]
+optional = true
+# Pin with: cargo update -p inkwell --precise &lt;git-rev&gt; once locked for release
+
+[dependencies.llvm-sys]
+version = &quot;221&quot;
+features = [&quot;disable-alltargets-init&quot;, &quot;no-llvm-linking&quot;]
+optional = true
+
+[features]
+default = []
+lsp = [&quot;dep:tower-lsp&quot;, &quot;dep:tokio&quot;]
+codegen = [&quot;dep:inkwell&quot;, &quot;dep:llvm-sys&quot;]
+
+[build-dependencies]
+cc = &quot;1&quot;
+
+[dev-dependencies]
+insta = { version = &quot;1&quot;, features = [&quot;glob&quot;] }
+</code></pre>
+</div>
+<h2 id="source-build-rs">Source: <code>build.rs</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>rust</span></div>
+<pre class="language-javascript"><code class="language-javascript">fn main() {
+    if !cfg!(feature = &quot;codegen&quot;) {
+        return;
+    }
+
+    let prefix = std::env::var(&quot;LLVM_SYS_221_PREFIX&quot;).unwrap_or_else(|_| {
+        if cfg!(target_os = &quot;windows&quot;) {
+            &quot;C:\\Program Files\\LLVM&quot;.to_string()
+        } else {
+            &quot;/usr/lib/llvm-22&quot;.to_string()
+        }
+    });
+
+    cc::Build::new()
+        .file(&quot;src/codegen/llvm_stubs.c&quot;)
+        .compile(&quot;vpp_llvm_stubs&quot;);
+
+    let out_dir = std::env::var(&quot;OUT_DIR&quot;).expect(&quot;OUT_DIR&quot;);
+    let stub_lib = std::path::Path::new(&amp;out_dir).join(&quot;vpp_llvm_stubs.lib&quot;);
+    println!(&quot;cargo:rustc-link-arg={}&quot;, stub_lib.display());
+    for sym in [
+        &quot;LLVM_InitializeAllTargets&quot;,
+        &quot;LLVM_InitializeAllTargetInfos&quot;,
+        &quot;LLVM_InitializeAllTargetMCs&quot;,
+        &quot;LLVM_InitializeAllAsmPrinters&quot;,
+        &quot;LLVM_InitializeAllAsmParsers&quot;,
+        &quot;LLVM_InitializeAllDisassemblers&quot;,
+        &quot;LLVM_InitializeNativeTarget&quot;,
+        &quot;LLVM_InitializeNativeAsmPrinter&quot;,
+        &quot;LLVM_InitializeNativeAsmParser&quot;,
+        &quot;LLVM_InitializeNativeDisassembler&quot;,
+    ] {
+        println!(&quot;cargo:rustc-link-arg=/INCLUDE:{sym}&quot;);
+    }
+
+    let lib_dir = std::path::Path::new(&amp;prefix).join(&quot;lib&quot;);
+    if lib_dir.exists() {
+        println!(&quot;cargo:rustc-link-search=native={}&quot;, lib_dir.display());
+        println!(&quot;cargo:rustc-link-lib=dylib=LLVM-C&quot;);
+    }
+
+    if cfg!(target_env = &quot;gnu&quot;) {
+        println!(&quot;cargo:rustc-link-lib=dylib=stdc++&quot;);
+    }
+
+    println!(&quot;cargo:rerun-if-env-changed=LLVM_SYS_221_PREFIX&quot;);
+    println!(&quot;cargo:rerun-if-changed=src/codegen/llvm_stubs.c&quot;);
+}
+</code></pre>
+</div>
+<h2 id="source-src-lib-rs">Source: <code>src/lib.rs</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>rust</span></div>
+<pre class="language-javascript"><code class="language-javascript">pub mod ast;
+pub mod builtins;
+pub mod codegen;
+pub mod doctor;
+pub mod driver;
+pub mod error;
+pub mod fmt;
+pub mod interp;
+pub mod ir;
+pub mod lexer;
+pub mod pkg;
+pub mod project;
+#[cfg(feature = &quot;lsp&quot;)]
+pub mod lsp;
+pub mod modules;
+pub mod parser;
+pub mod span;
+pub mod symbols;
+pub mod types;
+
+#[cfg(feature = &quot;codegen&quot;)]
+#[link(name = &quot;vpp_llvm_stubs&quot;, kind = &quot;static&quot;)]
+extern &quot;C&quot; {
+    fn vpp_force_llvm_stubs();
+}
+
+#[cfg(feature = &quot;codegen&quot;)]
+pub fn ensure_llvm_stubs_linked() {
+    unsafe { vpp_force_llvm_stubs() };
+}
+
+pub use driver::{
+    check, check_file, check_path, check_with_index, compile, format_source, init_project,
+    parse, project_entry, run, run_tests_in_project, emit_ir, CompileOptions,
+};
+pub use pkg::{
+    add_dependency, parse_manifest_toml, remove_dependency, resolve_and_lock, resolve_dependencies,
+    resolve_from_registry, update_dependencies, DependencySpec, Lockfile, Manifest,
+};
+pub use project::find_project_root;
+pub use doctor::run_doctor;
+pub use error::{VppError, VppResult};
+</code></pre>
+</div>
+<h2 id="source-src-driver-rs">Source: <code>src/driver.rs</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>rust</span></div>
+<pre class="language-javascript"><code class="language-javascript">use std::path::{Path, PathBuf};
+
+use crate::error::{VppError, VppResult};
+use crate::modules::{LoadContext, LoadedProgram};
+use crate::pkg::Manifest;
+use crate::project::{find_project_root, load_manifest, std_search_paths};
+use crate::types::{TypeChecker, TypedProgram};
+
+pub struct CompileOptions {
+    pub emit_ir: Option&lt;PathBuf&gt;,
+    pub output: Option&lt;PathBuf&gt;,
+}
+
+pub fn load_context_for(path: &amp;Path) -&gt; LoadContext {
+    let project_root = find_project_root(path);
+    LoadContext {
+        std_paths: std_search_paths(project_root.as_deref()),
+        is_entry: false,
+    }
+}
+
+pub fn project_entry(start: &amp;Path) -&gt; VppResult&lt;(PathBuf, Manifest)&gt; {
+    let root = find_project_root(start).ok_or_else(|| VppError::Other {
+        message: &quot;not in a v++ project (no vpp.toml found)&quot;.to_string(),
+    })?;
+    let manifest = load_manifest(&amp;root)?;
+    Ok((root.join(&amp;manifest.entry), manifest))
+}
+
+pub fn parse(source: &amp;str) -&gt; VppResult&lt;crate::ast::Program&gt; {
+    let tokens = crate::lexer::Lexer::new(source).tokenize()?;
+    crate::parser::Parser::new(source, tokens).parse_program()
+}
+
+pub fn typecheck(source: &amp;str, program: &amp;crate::ast::Program, source_file: &amp;Path) -&gt; VppResult&lt;TypedProgram&gt; {
+    TypeChecker::with_file(source, source_file.to_path_buf()).check(program)
+}
+
+pub fn typecheck_with_modules(
+    source: &amp;str,
+    program: &amp;crate::ast::Program,
+    source_file: &amp;Path,
+    modules: crate::modules::ModuleGraph,
+) -&gt; VppResult&lt;TypedProgram&gt; {
+    TypeChecker::with_modules(source, source_file.to_path_buf(), modules).check(program)
+}
+
+pub fn check(source: &amp;str) -&gt; VppResult&lt;TypedProgram&gt; {
+    check_file(source, Path::new(&quot;&lt;source&gt;&quot;))
+}
+
+pub fn check_file(source: &amp;str, source_path: &amp;Path) -&gt; VppResult&lt;TypedProgram&gt; {
+    let program = parse(source)?;
+    typecheck(source, &amp;program, source_path)
+}
+
+pub fn check_path(source_path: &amp;Path) -&gt; VppResult&lt;TypedProgram&gt; {
+    let ctx = load_context_for(source_path);
+    let loaded = crate::modules::load_with_context(source_path, ctx)?;
+    typecheck_with_modules(
+        &amp;loaded.source,
+        &amp;loaded.program,
+        &amp;loaded.entry_path,
+        loaded.modules,
+    )
+}
+
+pub fn load_program(path: &amp;Path) -&gt; VppResult&lt;LoadedProgram&gt; {
+    let ctx = load_context_for(path);
+    crate::modules::load_with_context(path, ctx)
+}
+
+#[cfg(feature = &quot;codegen&quot;)]
+pub fn emit_ir(source: &amp;str, source_path: &amp;Path, ir_path: &amp;Path) -&gt; VppResult&lt;()&gt; {
+    let typed = check_path(source_path)?;
+    crate::codegen::compile(&amp;typed, source_path, None, Some(ir_path))
+}
+
+#[cfg(not(feature = &quot;codegen&quot;))]
+pub fn emit_ir(source: &amp;str, _source_path: &amp;Path, _ir_path: &amp;Path) -&gt; VppResult&lt;()&gt; {
+    let _ = source;
+    Err(VppError::Other {
+        message: &quot;codegen is disabled; rebuild with `--features codegen` to emit LLVM IR&quot;.to_string(),
+    })
+}
+
+#[cfg(feature = &quot;codegen&quot;)]
+pub fn compile(source: &amp;str, source_path: &amp;Path, options: CompileOptions) -&gt; VppResult&lt;()&gt; {
+    let _ = source;
+    let typed = check_path(source_path)?;
+
+    if let Some(ir_path) = &amp;options.emit_ir {
+        if options.output.is_none() {
+            return crate::codegen::compile(&amp;typed, source_path, None, Some(ir_path));
+        }
+    }
+
+    let output = options.output.unwrap_or_else(|| {
+        source_path.with_extension(if cfg!(windows) { &quot;exe&quot; } else { &quot;&quot; })
+    });
+
+    crate::codegen::compile(
+        &amp;typed,
+        source_path,
+        Some(&amp;output),
+        options.emit_ir.as_deref(),
+    )?;
+
+    Ok(())
+}
+
+#[cfg(not(feature = &quot;codegen&quot;))]
+pub fn compile(source: &amp;str, source_path: &amp;Path, _options: CompileOptions) -&gt; VppResult&lt;()&gt; {
+    let _ = (source, source_path);
+    Err(VppError::Other {
+        message: &quot;native compile requires codegen; use `vpp run` (interpreter) or rebuild with `--features codegen`&quot;.to_string(),
+    })
+}
+
+pub fn run(source: &amp;str, source_path: &amp;Path) -&gt; VppResult&lt;()&gt; {
+    let typed = if source_path.exists() {
+        check_path(source_path)?
+    } else {
+        check_file(source, source_path)?
+    };
+    crate::interp::run(&amp;typed)
+}
+
+pub fn run_tests_in_project(start: &amp;Path) -&gt; VppResult&lt;()&gt; {
+    let root = find_project_root(start).ok_or_else(|| VppError::Other {
+        message: &quot;not in a v++ project (no vpp.toml found)&quot;.to_string(),
+    })?;
+
+    let mut files = Vec::new();
+    collect_vpp_files(&amp;root.join(&quot;tests&quot;), &amp;mut files)?;
+    if files.is_empty() {
+        collect_vpp_files(&amp;root.join(&quot;src&quot;), &amp;mut files)?;
+    }
+
+    if files.is_empty() {
+        return Err(VppError::Other {
+            message: &quot;no test files found in tests/&quot;.to_string(),
+        });
+    }
+
+    let mut passed = 0usize;
+    let mut failed = 0usize;
+
+    for file in files {
+        let typed = check_path(&amp;file).map_err(|e| {
+            VppError::Other {
+                message: format!(&quot;{}: {e}&quot;, file.display()),
+            }
+        })?;
+        match crate::interp::run_tests(&amp;typed) {
+            Ok(n) =&gt; {
+                passed += n;
+                println!(&quot;✓ {} ({} tests)&quot;, file.strip_prefix(&amp;root).unwrap_or(&amp;file).display(), n);
+            }
+            Err(e) =&gt; {
+                failed += 1;
+                eprintln!(&quot;✗ {}: {e}&quot;, file.display());
+            }
+        }
+    }
+
+    println!(&quot;\n{passed} passed, {failed} failed&quot;);
+    if failed &gt; 0 {
+        return Err(VppError::Other {
+            message: format!(&quot;{failed} test file(s) failed&quot;),
+        });
+    }
+    Ok(())
+}
+
+fn collect_vpp_files(dir: &amp;Path, out: &amp;mut Vec&lt;PathBuf&gt;) -&gt; VppResult&lt;()&gt; {
+    if !dir.exists() {
+        return Ok(());
+    }
+    for entry in std::fs::read_dir(dir).map_err(|e| VppError::Other {
+        message: format!(&quot;failed to read `{}`: {e}&quot;, dir.display()),
+    })? {
+        let entry = entry.map_err(|e| VppError::Other {
+            message: e.to_string(),
+        })?;
+        let path = entry.path();
+        if path.is_dir() {
+            collect_vpp_files(&amp;path, out)?;
+        } else if path.extension().and_then(|e| e.to_str()) == Some(&quot;vpp&quot;) {
+            out.push(path);
+        }
+    }
+    out.sort();
+    Ok(())
+}
+
+pub fn format_source(source: &amp;str) -&gt; VppResult&lt;String&gt; {
+    crate::fmt::format(source)
+}
+
+pub fn check_with_index(source: &amp;str, source_path: &amp;Path) -&gt; VppResult&lt;TypedProgram&gt; {
+    let ctx = load_context_for(source_path);
+    if source_path.exists() {
+        let disk = std::fs::read_to_string(source_path).unwrap_or_default();
+        if disk == source {
+            return check_path(source_path);
+        }
+        let entry = parse(source)?;
+        let (program, modules) = crate::modules::resolve_imports(source_path, entry, ctx)?;
+        typecheck_with_modules(source, &amp;program, source_path, modules)
+    } else {
+        check_file(source, source_path)
+    }
+}
+
+pub use crate::project::init_project;
+</code></pre>
+</div>
+<h2 id="source-src-error-rs">Source: <code>src/error.rs</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>rust</span></div>
+<pre class="language-javascript"><code class="language-javascript">use miette::{Diagnostic, SourceSpan};
+use thiserror::Error;
+
+use crate::span::Span;
+
+#[derive(Debug, Error, Diagnostic)]
+pub enum VppError {
+    #[error(&quot;invalid character `{ch}`&quot;)]
+    #[diagnostic(code(vpp::E0001))]
+    InvalidCharacter {
+        ch: char,
+        #[label(&quot;unexpected character&quot;)]
+        span: SourceSpan,
+    },
+
+    #[error(&quot;unterminated string literal&quot;)]
+    #[diagnostic(code(vpp::E0002))]
+    UnterminatedString {
+        #[label(&quot;string starts here&quot;)]
+        span: SourceSpan,
+    },
+
+    #[error(&quot;unexpected token `{found}`&quot;)]
+    #[diagnostic(code(vpp::E0003))]
+    UnexpectedToken {
+        found: String,
+        expected: String,
+        #[label(&quot;unexpected token&quot;)]
+        span: SourceSpan,
+        #[help(&quot;{expected}&quot;)]
+        expected_help: String,
+    },
+
+    #[error(&quot;unexpected end of file&quot;)]
+    #[diagnostic(code(vpp::E0004))]
+    UnexpectedEof {
+        expected: String,
+        #[label(&quot;expected {expected} here&quot;)]
+        span: SourceSpan,
+    },
+
+    #[error(&quot;type mismatch&quot;)]
+    #[diagnostic(code(vpp::E0100))]
+    TypeMismatch {
+        expected: String,
+        found: String,
+        #[label(&quot;expected {expected}, found {found}&quot;)]
+        span: SourceSpan,
+        #[help(&quot;{help}&quot;)]
+        help: String,
+    },
+
+    #[error(&quot;undefined variable `{name}`&quot;)]
+    #[diagnostic(code(vpp::E0200))]
+    UndefinedVariable {
+        name: String,
+        #[label(&quot;not found in this scope&quot;)]
+        span: SourceSpan,
+        #[help(&quot;did you mean to declare it with `let {name} = ...`?&quot;)]
+        help: String,
+    },
+
+    #[error(&quot;undefined function `{name}`&quot;)]
+    #[diagnostic(code(vpp::E0201))]
+    UndefinedFunction {
+        name: String,
+        #[label(&quot;function not defined&quot;)]
+        span: SourceSpan,
+    },
+
+    #[error(&quot;wrong number of arguments&quot;)]
+    #[diagnostic(code(vpp::E0101))]
+    WrongArgCount {
+        name: String,
+        expected: usize,
+        found: usize,
+        #[label(&quot;called with {found} argument(s), expected {expected}&quot;)]
+        span: SourceSpan,
+    },
+
+    #[error(&quot;cannot infer type of empty array&quot;)]
+    #[diagnostic(code(vpp::E0102))]
+    EmptyArrayNoType {
+        #[label(&quot;provide at least one element or an explicit type annotation&quot;)]
+        span: SourceSpan,
+    },
+
+    #[error(&quot;array element type mismatch&quot;)]
+    #[diagnostic(code(vpp::E0103))]
+    ArrayElementMismatch {
+        expected: String,
+        found: String,
+        #[label(&quot;expected {expected}, found {found}&quot;)]
+        span: SourceSpan,
+    },
+
+    #[error(&quot;cannot assign to `{name}`&quot;)]
+    #[diagnostic(code(vpp::E0104))]
+    ImmutableAssign {
+        name: String,
+        #[label(&quot;`{name}` is immutable; use `let mut {name}` to allow reassignment&quot;)]
+        span: SourceSpan,
+    },
+
+    #[error(&quot;non-exhaustive match; missing variant(s): {missing}&quot;)]
+    #[diagnostic(code(vpp::E0107))]
+    NonExhaustiveMatch {
+        missing: String,
+        #[label(&quot;match must cover all variants or use `_`&quot;)]
+        span: SourceSpan,
+    },
+
+    #[error(&quot;missing return value&quot;)]
+    #[diagnostic(code(vpp::E0105))]
+    MissingReturn {
+        expected: String,
+        #[label(&quot;function must return {expected}&quot;)]
+        span: SourceSpan,
+    },
+
+    #[error(&quot;for-in loop requires an array or range&quot;)]
+    #[diagnostic(code(vpp::E0106))]
+    InvalidForIter {
+        found: String,
+        #[label(&quot;expected array or range, found {found}&quot;)]
+        span: SourceSpan,
+    },
+
+    #[error(&quot;import not found: `{spec}`&quot;)]
+    #[diagnostic(code(vpp::E0400))]
+    ImportNotFound {
+        spec: String,
+        #[help(&quot;{hint}&quot;)]
+        hint: String,
+    },
+
+    #[error(&quot;circular import at `{path}`&quot;)]
+    #[diagnostic(code(vpp::E0401))]
+    ImportCycle { path: String },
+
+    #[error(&quot;duplicate import of module `{module}`&quot;)]
+    #[diagnostic(code(vpp::E0402))]
+    DuplicateImport {
+        module: String,
+        #[label(&quot;already imported&quot;)]
+        span: SourceSpan,
+    },
+
+    #[error(&quot;unknown module `{module}`&quot;)]
+    #[diagnostic(code(vpp::E0403))]
+    UnknownModule {
+        module: String,
+        #[label(&quot;no such imported module&quot;)]
+        span: SourceSpan,
+    },
+
+    #[error(&quot;module `{module}` has no export `{name}`&quot;)]
+    #[diagnostic(code(vpp::E0404))]
+    UnknownModuleMember {
+        module: String,
+        name: String,
+        #[label(&quot;not exported from `{module}`&quot;)]
+        span: SourceSpan,
+        #[help(&quot;{help}&quot;)]
+        help: String,
+    },
+
+    #[error(&quot;{message}&quot;)]
+    #[diagnostic(code(vpp::E0300))]
+    Codegen {
+        message: String,
+        #[label(&quot;codegen error&quot;)]
+        span: SourceSpan,
+    },
+
+    #[error(&quot;I/O error&quot;)]
+    Io {
+        #[source]
+        source: std::io::Error,
+    },
+
+    #[error(&quot;{message}&quot;)]
+    Other {
+        message: String,
+    },
+}
+
+pub type VppResult&lt;T&gt; = Result&lt;T, VppError&gt;;
+
+pub fn span_to_source(_source: &amp;str, span: Span) -&gt; SourceSpan {
+    let len = span.end.saturating_sub(span.start).max(1);
+    SourceSpan::new(span.start.into(), len)
+}
+
+impl VppError {
+    pub fn with_source(self, source: impl Into&lt;String&gt;) -&gt; miette::Report {
+        miette::Report::new(self).with_source_code(source.into())
+    }
+
+    pub fn source_span(&amp;self) -&gt; Option&lt;SourceSpan&gt; {
+        match self {
+            Self::InvalidCharacter { span, .. }
+            | Self::UnterminatedString { span, .. }
+            | Self::UnexpectedToken { span, .. }
+            | Self::UnexpectedEof { span, .. }
+            | Self::TypeMismatch { span, .. }
+            | Self::UndefinedVariable { span, .. }
+            | Self::UndefinedFunction { span, .. }
+            | Self::WrongArgCount { span, .. }
+            | Self::EmptyArrayNoType { span, .. }
+            | Self::ArrayElementMismatch { span, .. }
+            | Self::ImmutableAssign { span, .. }
+            | Self::NonExhaustiveMatch { span, .. }
+            | Self::MissingReturn { span, .. }
+            | Self::InvalidForIter { span, .. }
+            | Self::DuplicateImport { span, .. }
+            | Self::UnknownModule { span, .. }
+            | Self::UnknownModuleMember { span, .. }
+            | Self::Codegen { span, .. } =&gt; Some(*span),
+            _ =&gt; None,
+        }
+    }
+}
+
+pub fn type_mismatch(
+    source: &amp;str,
+    span: Span,
+    expected: &amp;str,
+    found: &amp;str,
+    help: impl Into&lt;String&gt;,
+) -&gt; VppError {
+    VppError::TypeMismatch {
+        expected: expected.to_string(),
+        found: found.to_string(),
+        span: span_to_source(source, span),
+        help: help.into(),
+    }
+}
+</code></pre>
+</div>
+<h2 id="source-src-bin-vppls-rs">Source: <code>src/bin/vppls.rs</code></h2>
+<div class="code-block-wrap">
+<div class="code-block-header"><span>rust</span></div>
+<pre class="language-javascript"><code class="language-javascript">#[cfg(feature = &quot;lsp&quot;)]
+#[tokio::main]
+async fn main() {
+    vpp::lsp::run_server().await;
+}
+
+#[cfg(not(feature = &quot;lsp&quot;))]
+fn main() {
+    eprintln!(&quot;vppls requires `--features lsp`. Build with: cargo build --features lsp --bin vppls&quot;);
+    std::process::exit(1);
+}
+</code></pre>
+</div></article>
     </main>
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>
       <ul>
-<li class=""><a href="#data-collection">Data collection</a></li>
-<li class=""><a href="#third-party-services">Third-party services</a></li>
-<li class=""><a href="#contact">Contact</a></li>
-<li class=""><a href="#getting-started">Getting started</a></li>
-<li class=""><a href="#language-reference">Language reference</a></li>
-<li class=""><a href="#guides">Guides</a></li>
-<li class=""><a href="#standard-library">Standard library</a></li>
-<li class=""><a href="#project">Project</a></li>
-<li class=""><a href="#contributing">Contributing</a></li>
-<li class=""><a href="#legal">Legal</a></li>
 <li class=""><a href="#requirements">Requirements</a></li>
 <li class=""><a href="#build">Build</a></li>
 <li class=""><a href="#features">Features</a></li>
@@ -1958,6 +5340,9 @@ cargo test --all-targets</code></pre>
 <li class=""><a href="#explicit-annotations">Explicit annotations</a></li>
 <li class=""><a href="#function-signatures">Function signatures</a></li>
 <li class=""><a href="#entry-point">Entry point</a></li>
+<li class=""><a href="#data-collection">Data collection</a></li>
+<li class=""><a href="#third-party-services">Third-party services</a></li>
+<li class=""><a href="#contact">Contact</a></li>
 <li class=""><a href="#what-is-v">What is v++?</a></li>
 <li class=""><a href="#is-v-ready-for-production">Is v++ ready for production?</a></li>
 <li class=""><a href="#how-is-v-different-from-python">How is v++ different from Python?</a></li>
@@ -1965,6 +5350,13 @@ cargo test --all-targets</code></pre>
 <li class=""><a href="#which-vs-code-extension-is-official">Which VS Code extension is official?</a></li>
 <li class=""><a href="#does-v-collect-data">Does v++ collect data?</a></li>
 <li class=""><a href="#how-do-i-report-bugs">How do I report bugs?</a></li>
+<li class=""><a href="#can-i-contribute">Can I contribute?</a></li>
+<li class=""><a href="#shipped-v0-4-4">Shipped (v0.4.4)</a></li>
+<li class=""><a href="#v0-5-current">v0.5 (current)</a></li>
+<li class=""><a href="#v1-0-stable">v1.0 (stable)</a></li>
+<li class=""><a href="#getting-started">Getting started</a></li>
+<li class=""><a href="#language-reference">Language reference</a></li>
+<li class=""><a href="#guides">Guides</a></li>
 </ul>
     </aside>
   </div>

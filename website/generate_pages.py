@@ -76,7 +76,7 @@ def md_to_html(text: str) -> str:
         plang = {
             "powershell": "bash", "shell": "bash", "sh": "bash",
             "vpp": "javascript", "v++": "javascript",
-            "toml": "toml", "bash": "bash",
+            "toml": "toml", "bash": "bash", "rust": "javascript",
         }.get(label, label or "text")
         code_text = html.escape("\n".join(code_lines))
         out.append('<div class="code-block-wrap">')
@@ -208,6 +208,100 @@ def collect_md(paths: list[Path]) -> str:
     return "\n\n".join(parts)
 
 
+def source_to_md(path: Path) -> str:
+    """Wrap source files as markdown sections for the reference page."""
+    rel = path.relative_to(ROOT).as_posix()
+    text = path.read_text(encoding="utf-8")
+    if path.suffix == ".vpp":
+        fence = "vpp"
+    elif path.suffix == ".toml":
+        fence = "toml"
+    elif path.suffix == ".rs":
+        fence = "rust"
+    else:
+        return f"\n\n<!-- {rel} -->\n\n{text}"
+    return f"\n\n## Source: `{rel}`\n\n```{fence}\n{text}\n```\n"
+
+
+def collect_sources(paths: list[Path]) -> str:
+    parts: list[str] = []
+    for p in paths:
+        if not p.exists():
+            continue
+        if p.suffix in (".vpp", ".toml", ".rs"):
+            parts.append(source_to_md(p))
+        else:
+            rel = p.relative_to(ROOT).as_posix()
+            parts.append(f"\n\n<!-- file: {rel} -->\n\n{p.read_text(encoding='utf-8')}")
+    return "\n".join(parts)
+
+
+def dedupe_paths(paths: list[Path]) -> list[Path]:
+    seen: set[Path] = set()
+    out: list[Path] = []
+    for p in paths:
+        key = p.resolve()
+        if key in seen or not p.exists():
+            continue
+        seen.add(key)
+        out.append(p)
+    return out
+
+
+def all_reference_sources() -> list[Path]:
+    """Every real doc and source file in the repo for the master reference page."""
+    paths: list[Path] = []
+    paths.extend(sorted(DOCS.rglob("*.md")))
+    for name in (
+        "README.md", "SPEC.md", "ARCHITECTURE.md", "MEMORY_MODEL.md",
+        "CHANGELOG.md", "CONTRIBUTING.md", "SECURITY.md", "CODE_OF_CONDUCT.md",
+    ):
+        paths.append(ROOT / name)
+    paths.extend(sorted((ROOT / "std").glob("*.vpp")))
+    paths.extend(sorted((ROOT / "examples").glob("*.vpp")))
+    paths.append(ROOT / "projects" / "README.md")
+    for i in range(1, 21):
+        for proj in sorted((ROOT / "projects").glob(f"{i:02d}-*")):
+            readme = proj / "README.md"
+            main_vpp = proj / "main.vpp"
+            toml = proj / "vpp.toml"
+            if readme.exists():
+                paths.append(readme)
+            if main_vpp.exists():
+                paths.append(main_vpp)
+            if toml.exists():
+                paths.append(toml)
+    for extra in (
+        ROOT / "stress.vpp",
+        ROOT / "editor" / "vscode-vpp" / "README.md",
+        ROOT / "editor" / "vscode-vpp" / "CHANGELOG.md",
+        ROOT / "registry" / "index.toml",
+        ROOT / "registry" / "fixtures" / "hello-lib" / "src" / "lib.vpp",
+        ROOT / "registry" / "fixtures" / "hello-lib" / "vpp.toml",
+    ):
+        paths.append(extra)
+    staging_std = ROOT / "staging" / "std"
+    if staging_std.exists():
+        paths.extend(sorted(staging_std.glob("*.vpp")))
+    staging_ex = ROOT / "staging" / "examples"
+    if staging_ex.exists():
+        paths.extend(sorted(staging_ex.glob("*.vpp")))
+    fixtures = ROOT / "tests" / "fixtures"
+    if fixtures.exists():
+        paths.extend(sorted(fixtures.glob("*.vpp")))
+    paths.extend(sorted((ROOT / "tests").glob("*.rs")))
+    for rel in (
+        "Cargo.toml",
+        "build.rs",
+        "src/lib.rs",
+        "src/driver.rs",
+        "src/error.rs",
+        "src/bin/vppls.rs",
+    ):
+        paths.append(ROOT / rel)
+    return dedupe_paths(paths)
+
+
 def headings_from_html(content: str) -> list[tuple[str, str]]:
     toc = []
     for m in re.finditer(r'<h([234]) id="([^"]+)">([^<]+)</h\1>', content):
@@ -319,8 +413,12 @@ def write_doc_page(
     sidebar: dict[str, list[tuple[str, str]]],
     sidebar_active: str,
     desc: str,
+    use_sources: bool = False,
 ) -> None:
-    raw = collect_md(md_paths)
+    if use_sources:
+        raw = collect_sources(md_paths)
+    else:
+        raw = collect_md(md_paths)
     body = md_to_html(raw)
     body = f'<div id="top"></div>\n' + body
     headings = headings_from_html(body)
@@ -388,10 +486,9 @@ def main() -> None:
     write_doc_page("learn.html", "learn.html", "Learn", learn_paths, sidebar, "learn.html",
                    "Learn v++ — installation, syntax, and your first programs.")
 
-    docs_paths = list(DOCS.rglob("*.md"))
-    docs_paths += EXTRA_MD
+    docs_paths = all_reference_sources()
     write_doc_page("docs.html", "docs.html", "Documentation", docs_paths, sidebar, "docs.html",
-                   "Complete v++ language and toolchain documentation.")
+                   "Complete v++ language and toolchain documentation.", use_sources=True)
 
     about_paths = [ROOT / "README.md", ROOT / "ARCHITECTURE.md", ROOT / "MEMORY_MODEL.md",
                    ROOT / "SPEC.md", DOCS / "project" / "roadmap.md", DOCS / "PRIVACY.md"]
