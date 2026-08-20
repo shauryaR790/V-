@@ -265,6 +265,22 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   align-self: stretch;
 }
 
+.page-home .code-panel {
+  background: #000000;
+  border-color: var(--border-muted);
+  box-shadow: none;
+}
+
+.page-home .code-panel .code-tabs,
+.page-home .code-panel .code-footer {
+  background: #000000;
+  border-color: var(--border-muted);
+}
+
+.page-home .code-panel pre.has-line-numbers .code-ln-gutter {
+  border-right-color: var(--border-muted);
+}
+
 .home-copy {
   text-align: left;
   align-self: center;
