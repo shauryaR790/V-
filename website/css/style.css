@@ -66,7 +66,8 @@ body.page-home {
 }
 
 .page-home .site-header,
-.page-home .home-main {
+.page-home .home-main,
+.page-home .home-bottom {
   position: relative;
   z-index: 1;
 }
@@ -410,12 +411,16 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 .code-panel .code-tabs::-webkit-scrollbar { display: none; }
 
-.home-bottom {
+.page-home .home-bottom {
   flex-shrink: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 0 1rem;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: #000000;
+  padding: 0.85rem max(1.25rem, calc((100vw - 1440px) / 2 + 1.25rem));
   border-top: none;
   font-size: 0.85rem;
 }
