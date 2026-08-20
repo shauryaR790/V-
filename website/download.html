@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Download — V++</title>
-  <meta name="description" content="Download V++ prebuilt binaries and VS Code extension.">
+  <meta name="description" content="Download V++ prebuilt binaries for Windows, Linux, and macOS.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
   <link rel="icon" href="/V-/assets/favicon.png">
   <link rel="apple-touch-icon" href="/V-/assets/logo-header.png">
 </head>
-<body class="page-docs">
+<body class="page-docs page-download">
   <header class="site-header">
     <div class="header-inner">
       <a href="/V-/index.html" class="brand"><img src="/V-/assets/logo-header.png" alt="V++" class="brand-logo"></a>
@@ -84,236 +84,85 @@
 </nav></aside>
     <main class="docs-main">
       <article class="docs-article"><div id="top"></div>
-<h1>Download V++</h1>
-<h1 id="install-v">Install V++</h1>
-<h2 id="windows-recommended">Windows (recommended)</h2>
-<p>1. Download <strong><code>vpp-0.5.0-setup.exe</code></strong> from <a href="https://github.com/shauryaR790/V-/releases/latest">GitHub Releases</a>.</p>
-<p>2. Run the installer. If Windows SmartScreen appears, choose <strong>More info → Run anyway</strong>.</p>
-<p>3. Open a <strong>new</strong> terminal:</p>
-<div class="code-block-wrap">
-<div class="code-block-header"><span class="code-block-filename">hello.vpp</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run examples\hello.vpp
-vpp check examples\hello.vpp
-vpp --version
-# Verify your install
-vpp doctor</code></pre>
-</div>
-<p>If <code>vpp</code> is not found, add the install folder to PATH:</p>
-<div class="code-block-wrap">
-<div class="code-block-header"><span class="code-block-filename">terminal</span></div>
-<pre class="language-bash"><code class="language-bash">$dir = &quot;$env:LOCALAPPDATA\Programs\vpp&quot;
-[Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path + &quot;;$dir;$dir\llvm\bin&quot;, &quot;User&quot;)
+<div class="download-hub" id="download-hub">
+  <h1>Download V++</h1>
+
+  <p class="download-picker-line">
+    Get
+    <select id="dl-version" class="dl-select" aria-label="Version"><option value="0.5.0" selected>v0.5.0 (latest)</option>
+<option value="0.4.4">v0.4.4</option>
+<option value="0.4.0">v0.4.0</option></select>
+    for
+    <select id="dl-os" class="dl-select" aria-label="Operating system">
+      <option value="windows">Windows</option>
+      <option value="linux">Linux</option>
+      <option value="macos">macOS</option>
+    </select>
+    using
+    <select id="dl-format" class="dl-select" aria-label="Package type"></select>
+  </p>
+
+  <div class="download-info" id="dl-info" role="status"></div>
+
+  <div class="code-block-wrap" id="dl-code-wrap">
+    <div class="code-block-header">
+      <span class="code-block-filename" id="dl-code-filename">terminal</span>
+    </div>
+    <pre class="language-powershell" id="dl-code-pre"><code class="language-powershell" id="dl-code"># Loading…</code></pre>
+  </div>
+  <p class="download-code-note" id="dl-code-note" hidden></p>
+
+  <div class="code-block-wrap" id="dl-path-wrap" hidden>
+    <div class="code-block-header">
+      <span class="code-block-filename">terminal</span>
+    </div>
+    <pre class="language-powershell"><code class="language-powershell">$dir = "$env:LOCALAPPDATA\Programs\vpp"
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$dir;$dir\llvm\bin", "User")
 # Restart terminal after updating PATH
 vpp --version
 vpp doctor</code></pre>
-</div>
-<p>Restart the terminal.</p>
-<h2 id="vs-code-extension">VS Code extension</h2>
-<p>1. Extensions → search <strong>V++ Language</strong></p>
-<p>2. Publisher must be <strong>vpp-lang</strong></p>
-<p>3. <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">Marketplace link</a></p>
-<p>See <a href="vscode-setup.md">VS Code setup</a>.</p>
-<h2 id="portable-zip-advanced">Portable zip (advanced)</h2>
-<p>Download <code>vpp-v0.5.0-windows-x64.zip</code>, extract, run <code>GO.bat</code> or add the folder to PATH manually.</p>
-<h2 id="build-from-source">Build from source</h2>
-<p>See <a href="../contributing/building-from-source.md">Building from source</a>.</p>
-<h2 id="requirements">Requirements</h2>
-<div class="table-wrap"><table>
-<tr>
-<td>Task</td>
-<td>Needs</td>
-</tr>
-<tr>
-<td><code>vpp run</code>, <code>check</code>, <code>test</code></td>
-<td>Installer only</td>
-</tr>
-<tr>
-<td><code>vpp build</code> (native <code>.exe</code>)</td>
-<td>Bundled <code>clang</code> in installer, or LLVM 22</td>
-</tr>
-<tr>
-<td>Hack on compiler</td>
-<td>Rust + LLVM 22</td>
-</tr>
-</tbody></table></div>
-<h1 id="changelog">Changelog</h1>
-<p>All notable changes to V++ are documented here.</p>
-<h2 id="0-5-0-2026-08-18">[0.5.0] — 2026-08-18</h2>
-<h3 id="added">Added</h3>
-<ul>
-<li><strong>Website</strong> — official site at <code>website/</code> (learn, 20 projects, downloads, history, architecture, about)</li>
-<li><strong>20 example projects</strong> — <code>projects/01-hello-world</code> through <code>projects/20-json-config</code></li>
-<li><strong>GitHub Pages</strong> — deploy workflow for the website</li>
-<li><strong>Documentation hub</strong> — 30+ guides (<code>docs/getting-started</code>, <code>language</code>, <code>guides</code>, <code>stdlib</code>, <code>project</code>)</li>
-<li><strong>GitHub paperwork</strong> — <code>CONTRIBUTING.md</code>, <code>SECURITY.md</code>, <code>CODE_OF_CONDUCT.md</code></li>
-<li><strong>VS Code extension v0.5.0</strong> — Python-style Marketplace README and CHANGELOG</li>
-<li><strong>Windows installer PATH</strong> — adds <code>vpp</code> and bundled <code>clang</code> to user PATH on install</li>
-</ul>
-<h3 id="changed">Changed</h3>
-<ul>
-<li>Compiler, installer, and release bundle version aligned to <strong>0.5.0</strong></li>
-</ul>
-<h2 id="0-4-4-2026-08-18-windows-installer">[0.4.4] — 2026-08-18 (Windows installer)</h2>
-<h3 id="added">Added</h3>
-<ul>
-<li><strong>GitHub Release bundles</strong> — Windows zip with <code>GO.bat</code> one-click launcher; Linux/macOS tarballs with <code>run.sh</code></li>
-<li><strong>VS Code Marketplace</strong> — extension published as <code>vpp-lang.vplusplus</code></li>
-<li><strong>Docs</strong> — <code>docs/RELEASE.md</code>, <code>docs/MARKETPLACE.md</code>, simplified <code>docs/INSTALL.md</code></li>
-</ul>
-<h3 id="fixed">Fixed</h3>
-<ul>
-<li>LSP build (<code>jsonrpc_core</code>, <code>CompletionItemKind::SNIPPET</code>)</li>
-<li><code>setup.ps1</code> PowerShell encoding + builds with <code>codegen,lsp</code> by default</li>
-<li>VSIX packaging includes language-client dependencies</li>
-</ul>
-<h2 id="0-4-0-2026-08-18-language-core-phase-b">[0.4.0] — 2026-08-18 (Language Core / Phase B)</h2>
-<h3 id="added">Added</h3>
-<ul>
-<li><strong><code>mut</code> keyword</strong> — <code>let mut x = 1</code> required for reassignment; bindings are immutable by default</li>
-<li><strong>Generics</strong> — monomorphized functions: <code>fn id<a href="x: T">T</a> -&gt; T</code>, calls like <code>id<a href="42">int</a></code> and <code>first<a href="words">string</a></code></li>
-<li><strong>Traits and impls</strong> — <code>trait Display { fn to_text(self) -&gt; string }</code>, <code>impl Display for User { ... }</code>, method calls <code>user.to_text()</code></li>
-<li><strong>Compile-time match exhaustiveness</strong> — enums, <code>Option</code>, and <code>Result</code> must be covered or use <code>_</code> (error E0107)</li>
-<li><strong>Examples</strong> — <a href="examples/generics.vpp"><code>examples/generics.vpp</code></a>, <a href="examples/traits.vpp"><code>examples/traits.vpp</code></a></li>
-<li><strong>Tests</strong> — mut/immutability, exhaustiveness, generics, and traits typecheck + parity coverage</li>
-</ul>
-<h3 id="changed">Changed</h3>
-<ul>
-<li>All examples and stdlib sources updated to use <code>let mut</code> where variables are reassigned</li>
-<li><a href="SPEC.md"><code>SPEC.md</code></a> updated for v0.4 language features</li>
-</ul>
-<h2 id="0-3-0-2026-08-18-usable-language-ecosystem">[0.3.0] — 2026-08-18 (Usable Language / Ecosystem)</h2>
-<h3 id="added">Added</h3>
-<ul>
-<li><strong>Module system</strong>: <code>import std.io</code> canonical paths, <code>pub</code> exports, namespaced calls (<code>math.add</code>), legacy <code>import &quot;file.vpp&quot;</code>, circular import detection, duplicate import errors</li>
-<li><strong>Package manager</strong>: TOML <code>vpp.toml</code> with <code>[dependencies]</code>, <code>vpp.lock</code>, <code>vpp new</code>/<code>add</code>/<code>remove</code>/<code>update</code>, local path + git deps, semver checks</li>
-<li><strong>Central registry</strong>: <code>registry/index.toml</code> with semver resolution (<code>hello-lib = &quot;0.1.0&quot;</code>)</li>
-<li><strong>Standard library</strong>: <code>std.io</code>, <code>std.math</code>, <code>std.string</code>, <code>std.collections</code>, <code>std.fs</code>, <code>std.json</code>, <code>std.process</code></li>
-<li><strong>Native fs/json/process</strong>: runtime C helpers + LLVM codegen for <code>read_file</code>, <code>write_file</code>, <code>file_exists</code>, <code>json_parse</code>, <code>json_stringify</code>, <code>process_run</code></li>
-<li><strong>CLI</strong>: <code>vpp doctor</code> for toolchain/project health</li>
-<li><strong>LSP</strong>: diagnostic spans from miette; extension wires <code>vppls</code> via vscode-languageclient</li>
-<li><strong>Distribution</strong>: GitHub Actions release workflow (linux/windows/macos) on version tags</li>
-<li><strong>Syntax highlighting</strong>: struct, enum, match, import, pub, test, break, continue, builtins</li>
-<li><strong>Tests</strong>: <code>tests/modules.rs</code>, <code>tests/pkg.rs</code>, <code>tests/stdlib.rs</code>, <code>examples/std_builtins.vpp</code> parity; all v0.2 parity preserved</li>
-</ul>
-<h3 id="changed">Changed</h3>
-<ul>
-<li><code>vpp init</code> scaffolds <code>import std.io</code> and <code>import std.math</code></li>
-<li>LSP <code>check_with_index</code> uses in-memory buffer when file is unsaved</li>
-<li>Interpreter invokes <code>fn main()</code> when present (matches native entry point)</li>
-<li>Native codegen: correct scope cleanup on <code>return</code>, <code>if</code>/<code>match</code> arms, and heap release paths</li>
-</ul>
-<h3 id="fixed">Fixed</h3>
-<ul>
-<li>Native <code>file_exists</code> bool codegen (i32 → i1 compare)</li>
-<li>LLVM invalid IR when <code>return</code> preceded function epilogue cleanup</li>
-<li>Function parameters lost after <code>return</code> inside <code>if</code> branches during codegen</li>
-<li>Empty stdout under piped test runs (<code>fflush</code> in runtime prints; staged link output)</li>
-</ul>
-<h2 id="0-3-1-2026-08-18-phase-a-polish">[0.3.1] — 2026-08-18 (Phase A polish)</h2>
-<h3 id="fixed">Fixed</h3>
-<ul>
-<li>User-defined enum types resolved correctly in function params, struct fields, and match patterns</li>
-<li>Bare enum variant literals in struct fields (e.g. <code>status: Active</code>)</li>
-<li>Native entry point: LLVM <code>main</code> calls <code>vpp_user_main</code> instead of symbol collision</li>
-<li>Path lookup for <code>vpp run hello.vpp</code> searches <code>examples/</code>, <code>src/</code>, <code>tests/</code></li>
-</ul>
-<h3 id="added">Added</h3>
-<ul>
-<li><a href="stress.vpp"><code>stress.vpp</code></a> and <a href="stress.ps1"><code>stress.ps1</code></a> — one-command interpreter/native parity test</li>
-<li><code>.gitignore</code> entries for <code>.vpp/</code>, test output artifacts</li>
-</ul>
-<h3 id="changed">Changed</h3>
-<ul>
-<li><a href="SPEC.md"><code>SPEC.md</code></a> and <a href="README.md"><code>README.md</code></a> updated for v0.3</li>
-</ul>
-<h2 id="0-2-0-2026-08-18">[0.2.0] — 2026-08-18</h2>
-<h3 id="added">Added</h3>
-<ul>
-<li>V++ IR (<code>src/ir/</code>) between typed AST and LLVM</li>
-<li>Shared builtin registry (<code>src/builtins/</code>)</li>
-<li><code>ARCHITECTURE.md</code>, <code>MEMORY_MODEL.md</code>, <code>SPEC.md</code></li>
-<li>Native string ABI using <code>VppString*</code> end-to-end</li>
-<li>**Native array ABI using <code>VppArray*</code> end-to-end**</li>
-<li>Scoped locals in native codegen (correct shadowing)</li>
-<li>Float equality/compare via LLVM float instructions</li>
-<li><strong>Native structs</strong> — literals, field access, fn params/returns</li>
-<li><strong>Native enums / Option / Result</strong> — tagged struct representation</li>
-<li><strong>Native match</strong> — statement and expression forms</li>
-<li><strong>Native break/continue</strong> — loop stack for while/for loops</li>
-<li>Differential parity tests (<code>tests/parity/</code>) — hello, lesson01, scope_shadow, arrays, arrays_fn, <strong>structs, option_result, match_test, lesson03_loops</strong></li>
-<li><code>tests/arrays.rs</code> — IR lowering tests for arrays</li>
-<li><code>examples/arrays_fn.vpp</code> — arrays as function params/returns</li>
-<li>Native <code>vpp_array_index_ptr</code> bounds checking</li>
-<li>CI job for native codegen (where LLVM available)</li>
-</ul>
-<h3 id="fixed">Fixed</h3>
-<ul>
-<li>Native crash on <code>print(&quot;...&quot;)</code> (i8* vs VppString* mismatch)</li>
-<li>Broken block scope in native codegen</li>
-<li>Integer compare used for float equality</li>
-</ul>
-<h3 id="changed">Changed</h3>
-<ul>
-<li>LLVM backend lowers from V++ IR, not directly from typed AST</li>
-<li>Inkwell dependency pinned for reproducible builds</li>
-<li>Runtime uses portable <code>strdup</code> wrapper</li>
-<li>Struct/enum/match codegen in <code>src/codegen/struct_enum.rs</code></li>
-</ul>
-<h3 id="known-limitations-v0-2">Known limitations (v0.2)</h3>
-<ul>
-<li>Module imports: interpreter only until native parity tests pass</li>
-<li>Full ARC at all scope exits not yet complete for heap values inside structs/enums</li>
-<li>Match exhaustiveness is runtime-checked only (non-exhaustive match calls <code>vpp_assert_fail</code>)</li>
-</ul>
-<h2 id="0-1-0-2026-08">[0.1.0] — 2026-08</h2>
-<p>Initial release: interpreter-complete language, partial LLVM backend, CLI, extension, stdlib, CI.</p>
-<h2 id="release-artifacts">Release artifacts</h2>
-<div class="table-wrap"><table>
-<thead><tr><th>Version</th><th>Windows installer</th><th>Portable zip</th><th>Notes</th></tr></thead>
-<tbody>
-<tr><td>v0.5.0</td><td><a href="https://github.com/shauryaR790/V-/releases/download/v0.5.0/vpp-0.5.0-setup.exe">vpp-0.5.0-setup.exe</a></td><td><a href="https://github.com/shauryaR790/V-/releases/download/v0.5.0/vpp-v0.5.0-windows-x64.zip">zip</a></td><td>Latest — docs hub, PATH fix</td></tr>
-<tr><td>v0.4.4</td><td><a href="https://github.com/shauryaR790/V-/releases/tag/v0.4.4">Release page</a></td><td>zip</td><td>Marketplace extension</td></tr>
-<tr><td>v0.4.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.4.0">Generics, traits, mut</a></td></tr>
-<tr><td>v0.3.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.3.0">Modules, package manager, stdlib</a></td></tr>
-<tr><td>v0.2.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.2.0">Native IR + LLVM</a></td></tr>
-<tr><td>v0.1.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.1.0">Initial release</a></td></tr>
-</tbody></table></div>
-</article>
+  </div>
+
+  <div class="download-actions">
+    <a id="dl-primary" class="btn-dl-primary" href="#" download>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+      <span id="dl-primary-label">Download</span>
+    </a>
+    <a id="dl-secondary" class="btn-dl-secondary" href="#" hidden>
+      <span id="dl-secondary-label">Alternative download</span>
+    </a>
+  </div>
+
+  <p class="download-detect" id="dl-detect"></p>
+
+  <div class="download-footlinks">
+    <p>Read the <a href="/V-/blog.html">changelog</a> for release notes.</p>
+    <p>Learn more about <a href="https://github.com/shauryaR790/V-/releases" target="_blank" rel="noopener">all releases</a> on GitHub.</p>
+    <p>Need to hack on the compiler? See <a href="/V-/contribute.html">building from source</a>.</p>
+  </div>
+
+  <h2 id="all-releases">All releases</h2>
+  <div class="table-wrap"><table>
+  <thead><tr><th>Version</th><th>Windows installer</th><th>Portable zip</th><th>Notes</th></tr></thead>
+  <tbody>
+  <tr><td>v0.5.0</td><td><a href="https://github.com/shauryaR790/V-/releases/download/v0.5.0/vpp-0.5.0-setup.exe">vpp-0.5.0-setup.exe</a></td><td><a href="https://github.com/shauryaR790/V-/releases/download/v0.5.0/vpp-v0.5.0-windows-x64.zip">zip</a></td><td><a href="https://github.com/shauryaR790/V-/releases/tag/v0.5.0">Release page</a></td></tr>
+<tr><td>v0.4.4</td><td><a href="https://github.com/shauryaR790/V-/releases/download/v0.4.4/vpp-0.4.4-setup.exe">vpp-0.4.4-setup.exe</a></td><td><a href="https://github.com/shauryaR790/V-/releases/download/v0.4.4/vpp-v0.4.4-windows-x64.zip">zip</a></td><td><a href="https://github.com/shauryaR790/V-/releases/tag/v0.4.4">Release page</a></td></tr>
+<tr><td>v0.4.0</td><td><a href="https://github.com/shauryaR790/V-/releases/download/v0.4.0/vpp-0.4.0-setup.exe">vpp-0.4.0-setup.exe</a></td><td><a href="https://github.com/shauryaR790/V-/releases/download/v0.4.0/vpp-v0.4.0-windows-x64.zip">zip</a></td><td><a href="https://github.com/shauryaR790/V-/releases/tag/v0.4.0">Release page</a></td></tr>
+  <tr><td>v0.3.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.3.0">Modules, package manager, stdlib</a></td></tr>
+  <tr><td>v0.2.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.2.0">Native IR + LLVM</a></td></tr>
+  <tr><td>v0.1.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.1.0">Initial release</a></td></tr>
+  </tbody></table></div>
+
+  <h2 id="vscode">VS Code extension</h2>
+  <p>Search <strong>v++ Language</strong> in VS Code Extensions (publisher: <strong>vpp-lang</strong>) or install from the
+  <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus" target="_blank" rel="noopener">Marketplace</a>.</p>
+</div></article>
     </main>
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>
       <nav class="toc-tree" aria-label="On this page"><ul>
-<li class=""><a href="#install-v" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Install V++</a></li>
-<li class="toc-h2"><a href="#windows-recommended" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Windows (recommended)</a></li>
-<li class="toc-h2"><a href="#vs-code-extension" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>VS Code extension</a></li>
-<li class="toc-h2"><a href="#portable-zip-advanced" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Portable zip (advanced)</a></li>
-<li class="toc-h2"><a href="#build-from-source" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Build from source</a></li>
-<li class="toc-h2"><a href="#requirements" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Requirements</a></li>
-<li class=""><a href="#changelog" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changelog</a></li>
-<li class="toc-h2"><a href="#0-5-0-2026-08-18" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>[0.5.0] — 2026-08-18</a></li>
-<li class="toc-h3"><a href="#added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
-<li class="toc-h3"><a href="#changed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changed</a></li>
-<li class="toc-h2"><a href="#0-4-4-2026-08-18-windows-installer" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>[0.4.4] — 2026-08-18 (Windows installer)</a></li>
-<li class="toc-h3"><a href="#added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
-<li class="toc-h3"><a href="#fixed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Fixed</a></li>
-<li class="toc-h2"><a href="#0-4-0-2026-08-18-language-core-phase-b" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>[0.4.0] — 2026-08-18 (Language Core / Phase B)</a></li>
-<li class="toc-h3"><a href="#added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
-<li class="toc-h3"><a href="#changed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changed</a></li>
-<li class="toc-h2"><a href="#0-3-0-2026-08-18-usable-language-ecosystem" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>[0.3.0] — 2026-08-18 (Usable Language / Ecosystem)</a></li>
-<li class="toc-h3"><a href="#added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
-<li class="toc-h3"><a href="#changed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changed</a></li>
-<li class="toc-h3"><a href="#fixed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Fixed</a></li>
-<li class="toc-h2"><a href="#0-3-1-2026-08-18-phase-a-polish" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>[0.3.1] — 2026-08-18 (Phase A polish)</a></li>
-<li class="toc-h3"><a href="#fixed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Fixed</a></li>
-<li class="toc-h3"><a href="#added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
-<li class="toc-h3"><a href="#changed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changed</a></li>
-<li class="toc-h2"><a href="#0-2-0-2026-08-18" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>[0.2.0] — 2026-08-18</a></li>
-<li class="toc-h3"><a href="#added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
-<li class="toc-h3"><a href="#fixed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Fixed</a></li>
-<li class="toc-h3"><a href="#changed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changed</a></li>
-<li class="toc-h3"><a href="#known-limitations-v0-2" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Known limitations (v0.2)</a></li>
-<li class="toc-h2"><a href="#0-1-0-2026-08" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>[0.1.0] — 2026-08</a></li>
-<li class="toc-h2"><a href="#release-artifacts" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Release artifacts</a></li>
+<li class="toc-h2"><a href="#all-releases" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>All releases</a></li>
+<li class="toc-h2"><a href="#vscode" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>VS Code extension</a></li>
 </ul></nav>
     </aside>
   </div>
@@ -325,5 +174,6 @@ vpp doctor</code></pre>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-rust.min.js"></script>
   <script src="/V-/js/prism-vpp.js"></script>
   <script src="/V-/js/main.js"></script>
+  <script src="/V-/js/download.js"></script>
 </body>
 </html>

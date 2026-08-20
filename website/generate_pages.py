@@ -626,7 +626,112 @@ def headings_from_html(content: str) -> list[tuple[str, str, str]]:
     return toc
 
 
-def shell(active: str, title: str, body: str, sidebar_html: str, toc_html: str, desc: str = "") -> str:
+LATEST_VERSION = "0.5.0"
+LATEST_TAG = "v0.5.0"
+RELEASE_VERSIONS = [
+    ("0.5.0", "v0.5.0", True),
+    ("0.4.4", "v0.4.4", False),
+    ("0.4.0", "v0.4.0", False),
+]
+
+
+def build_download_page_body() -> str:
+    version_opts = "\n".join(
+        f'<option value="{ver}"{" selected" if ver == LATEST_VERSION else ""}>'
+        f'v{ver}{" (latest)" if latest else ""}</option>'
+        for ver, _tag, latest in RELEASE_VERSIONS
+    )
+    releases_table = "\n".join(
+        f'<tr><td>{tag}</td>'
+        f'<td><a href="https://github.com/shauryaR790/V-/releases/download/{tag}/vpp-{ver}-setup.exe">'
+        f'vpp-{ver}-setup.exe</a></td>'
+        f'<td><a href="https://github.com/shauryaR790/V-/releases/download/{tag}/'
+        f'vpp-v{ver}-windows-x64.zip">zip</a></td>'
+        f'<td><a href="https://github.com/shauryaR790/V-/releases/tag/{tag}">Release page</a></td></tr>'
+        for ver, tag, _ in RELEASE_VERSIONS
+    )
+    return f"""<div id="top"></div>
+<div class="download-hub" id="download-hub">
+  <h1>Download {BRAND}</h1>
+
+  <p class="download-picker-line">
+    Get
+    <select id="dl-version" class="dl-select" aria-label="Version">{version_opts}</select>
+    for
+    <select id="dl-os" class="dl-select" aria-label="Operating system">
+      <option value="windows">Windows</option>
+      <option value="linux">Linux</option>
+      <option value="macos">macOS</option>
+    </select>
+    using
+    <select id="dl-format" class="dl-select" aria-label="Package type"></select>
+  </p>
+
+  <div class="download-info" id="dl-info" role="status"></div>
+
+  <div class="code-block-wrap" id="dl-code-wrap">
+    <div class="code-block-header">
+      <span class="code-block-filename" id="dl-code-filename">terminal</span>
+    </div>
+    <pre class="language-powershell" id="dl-code-pre"><code class="language-powershell" id="dl-code"># Loading…</code></pre>
+  </div>
+  <p class="download-code-note" id="dl-code-note" hidden></p>
+
+  <div class="code-block-wrap" id="dl-path-wrap" hidden>
+    <div class="code-block-header">
+      <span class="code-block-filename">terminal</span>
+    </div>
+    <pre class="language-powershell"><code class="language-powershell">$dir = "$env:LOCALAPPDATA\\Programs\\vpp"
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$dir;$dir\\llvm\\bin", "User")
+# Restart terminal after updating PATH
+vpp --version
+vpp doctor</code></pre>
+  </div>
+
+  <div class="download-actions">
+    <a id="dl-primary" class="btn-dl-primary" href="#" download>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+      <span id="dl-primary-label">Download</span>
+    </a>
+    <a id="dl-secondary" class="btn-dl-secondary" href="#" hidden>
+      <span id="dl-secondary-label">Alternative download</span>
+    </a>
+  </div>
+
+  <p class="download-detect" id="dl-detect"></p>
+
+  <div class="download-footlinks">
+    <p>Read the <a href="{ASSET_PREFIX}blog.html">changelog</a> for release notes.</p>
+    <p>Learn more about <a href="https://github.com/shauryaR790/V-/releases" target="_blank" rel="noopener">all releases</a> on GitHub.</p>
+    <p>Need to hack on the compiler? See <a href="{ASSET_PREFIX}contribute.html">building from source</a>.</p>
+  </div>
+
+  <h2 id="all-releases">All releases</h2>
+  <div class="table-wrap"><table>
+  <thead><tr><th>Version</th><th>Windows installer</th><th>Portable zip</th><th>Notes</th></tr></thead>
+  <tbody>
+  {releases_table}
+  <tr><td>v0.3.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.3.0">Modules, package manager, stdlib</a></td></tr>
+  <tr><td>v0.2.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.2.0">Native IR + LLVM</a></td></tr>
+  <tr><td>v0.1.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.1.0">Initial release</a></td></tr>
+  </tbody></table></div>
+
+  <h2 id="vscode">VS Code extension</h2>
+  <p>Search <strong>v++ Language</strong> in VS Code Extensions (publisher: <strong>vpp-lang</strong>) or install from the
+  <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus" target="_blank" rel="noopener">Marketplace</a>.</p>
+</div>"""
+
+
+def shell(
+    active: str,
+    title: str,
+    body: str,
+    sidebar_html: str,
+    toc_html: str,
+    desc: str = "",
+    extra_scripts: list[str] | None = None,
+    body_class: str = "page-docs",
+) -> str:
     nav_items = "\n".join(
         f'<a href="{ASSET_PREFIX}{href}" class="nav-link{" active" if href == active else ""}">{label}</a>'
         for href, label in NAV
@@ -647,7 +752,7 @@ def shell(active: str, title: str, body: str, sidebar_html: str, toc_html: str, 
   <link rel="icon" href="{ASSET_PREFIX}assets/favicon.png">
   <link rel="apple-touch-icon" href="{ASSET_PREFIX}assets/logo-header.png">
 </head>
-<body class="page-docs">
+<body class="{body_class}">
   <header class="site-header">
     <div class="header-inner">
       <a href="{ASSET_PREFIX}index.html" class="brand"><img src="{ASSET_PREFIX}assets/logo-header.png" alt="{BRAND}" class="brand-logo"></a>
@@ -678,7 +783,7 @@ def shell(active: str, title: str, body: str, sidebar_html: str, toc_html: str, 
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-rust.min.js"></script>
   <script src="{ASSET_PREFIX}js/prism-vpp.js"></script>
   <script src="{ASSET_PREFIX}js/main.js"></script>
-</body>
+{"".join(f'  <script src="{ASSET_PREFIX}js/{s}"></script>\n' for s in (extra_scripts or []))}</body>
 </html>"""
 
 
@@ -861,25 +966,18 @@ def main() -> None:
                    f"Twenty {BRAND} projects from beginner to advanced.", use_sources=True)
 
     # Download page
-    download_md = collect_md([DOCS / "getting-started" / "install.md"]) + "\n\n" + collect_md([ROOT / "CHANGELOG.md"])
-    download_body = md_to_html(download_md)
-    download_body = f'<div id="top"></div>\n<h1>Download {BRAND}</h1>\n{download_body}'
-    download_body += """
-<h2 id="release-artifacts">Release artifacts</h2>
-<div class="table-wrap"><table>
-<thead><tr><th>Version</th><th>Windows installer</th><th>Portable zip</th><th>Notes</th></tr></thead>
-<tbody>
-<tr><td>v0.5.0</td><td><a href="https://github.com/shauryaR790/V-/releases/download/v0.5.0/vpp-0.5.0-setup.exe">vpp-0.5.0-setup.exe</a></td><td><a href="https://github.com/shauryaR790/V-/releases/download/v0.5.0/vpp-v0.5.0-windows-x64.zip">zip</a></td><td>Latest — docs hub, PATH fix</td></tr>
-<tr><td>v0.4.4</td><td><a href="https://github.com/shauryaR790/V-/releases/tag/v0.4.4">Release page</a></td><td>zip</td><td>Marketplace extension</td></tr>
-<tr><td>v0.4.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.4.0">Generics, traits, mut</a></td></tr>
-<tr><td>v0.3.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.3.0">Modules, package manager, stdlib</a></td></tr>
-<tr><td>v0.2.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.2.0">Native IR + LLVM</a></td></tr>
-<tr><td>v0.1.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.1.0">Initial release</a></td></tr>
-</tbody></table></div>
-"""
+    download_body = build_download_page_body()
     headings = headings_from_html(download_body)
-    page = shell("download.html", "Download", download_body, build_sidebar(sidebar, "download.html"),
-                 build_toc(headings), f"Download {BRAND} prebuilt binaries and VS Code extension.")
+    page = shell(
+        "download.html",
+        "Download",
+        download_body,
+        build_sidebar(sidebar, "download.html"),
+        build_toc(headings),
+        f"Download {BRAND} prebuilt binaries for Windows, Linux, and macOS.",
+        extra_scripts=["download.js"],
+        body_class="page-docs page-download",
+    )
     (WEBSITE / "download.html").write_text(page, encoding="utf-8")
     print(f"Wrote download.html: {page.count(chr(10))} lines")
 

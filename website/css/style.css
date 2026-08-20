@@ -935,6 +935,172 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   color: var(--text);
 }
 
+/* Download hub (Node.js-style) */
+.page-download .docs-main {
+  display: flex;
+  justify-content: center;
+}
+
+.page-download .docs-article {
+  max-width: 52rem;
+  width: 100%;
+}
+
+.download-hub h1 {
+  margin-bottom: 1.25rem;
+}
+
+.download-picker-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.5rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin: 0 0 1.25rem;
+  color: var(--text);
+}
+
+.dl-select {
+  appearance: none;
+  padding: 0.45rem 2rem 0.45rem 0.75rem;
+  border: 1px solid var(--gray-300);
+  border-radius: 6px;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 500;
+  background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16'%3E%3Cpath fill='%23c9d1d9' d='M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z'/%3E%3C/svg%3E") no-repeat right 0.6rem center;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.dl-select:hover,
+.dl-select:focus {
+  border-color: var(--yellow);
+  outline: none;
+}
+
+.download-info {
+  background: rgba(251, 219, 90, 0.1);
+  border: 1px solid rgba(251, 219, 90, 0.35);
+  border-radius: var(--radius);
+  padding: 0.85rem 1.1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.download-info strong {
+  color: var(--yellow);
+  margin-right: 0.35rem;
+}
+
+.download-info code {
+  font-size: 0.88em;
+}
+
+.page-download .code-block-wrap {
+  margin: 1.25rem 0;
+}
+
+.download-code-note {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: -0.5rem 0 1rem;
+}
+
+.download-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.btn-dl-primary,
+.btn-dl-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.35rem;
+  border-radius: 8px;
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btn-dl-primary {
+  background: var(--yellow);
+  color: var(--black);
+  border: 2px solid var(--yellow-dark);
+}
+
+.btn-dl-primary:hover {
+  background: var(--yellow-dark);
+  color: var(--black);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.btn-dl-secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--gray-300);
+}
+
+.btn-dl-secondary:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+  text-decoration: none;
+}
+
+.download-detect {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0 0 1.5rem;
+}
+
+.dl-detect-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--yellow);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.dl-detect-link:hover {
+  color: var(--yellow-dark);
+}
+
+.download-footlinks {
+  margin: 2rem 0 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-muted);
+}
+
+.download-footlinks p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0.45rem 0;
+}
+
+.download-footlinks a {
+  color: var(--yellow);
+}
+
+.download-footlinks a:hover {
+  color: var(--yellow-dark);
+}
+
+.page-download .download-hub h2:first-of-type {
+  margin-top: 0;
+}
+
 /* Responsive */
 @media (max-width: 960px) {
   .docs-layout { grid-template-columns: var(--sidebar-w) 1fr; }
