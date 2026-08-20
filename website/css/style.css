@@ -25,6 +25,7 @@
   --toc-w: 300px;
   --layout-max: 1920px;
   --tree-bg: #0d1117;
+  --main-bg: #1B1F25;
   --tree-row-hover: rgba(255, 255, 255, 0.06);
   --tree-row-active: rgba(251, 219, 90, 0.1);
   --tree-text: #8b949e;
@@ -642,7 +643,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .docs-main {
   padding: 2.25rem 2.75rem 3.5rem 2rem;
   min-width: 0;
-  background: var(--bg);
+  background: var(--main-bg);
   border-right: 1px solid var(--border-muted);
 }
 
