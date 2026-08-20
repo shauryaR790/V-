@@ -1,4 +1,4 @@
-/** Wavy perspective grid for home hero — grid lines + pixelated side fills. */
+/** Wavy perspective grid for home hero — fill grid cells on sides, then draw lines. */
 (function () {
   const canvas = document.getElementById("home-grid-canvas");
   if (!canvas) return;
@@ -8,14 +8,12 @@
 
   const GRID = 40;
   const GRID_LINE = "rgba(251, 219, 90, 0.28)";
-  const PIXEL = 22;
   const SIDE_FILL = [
-    "rgba(251, 219, 90, 0.07)",
-    "rgba(251, 219, 90, 0.11)",
-    "rgba(251, 219, 90, 0.15)",
-    "rgba(251, 219, 90, 0.09)",
+    "rgba(251, 219, 90, 0.08)",
+    "rgba(251, 219, 90, 0.12)",
+    "rgba(251, 219, 90, 0.16)",
+    "rgba(251, 219, 90, 0.1)",
   ];
-  const PIXEL_EDGE = "rgba(251, 219, 90, 0.18)";
 
   function seededRandom(seed) {
     let s = seed >>> 0;
@@ -29,36 +27,51 @@
     return SIDE_FILL[Math.floor(rand() * SIDE_FILL.length)];
   }
 
-  /** Non-uniform pixel blocks on left/right edges only. */
-  function drawSidePixels(width, height) {
-    const zoneW = Math.min(width * 0.2, 280);
-    drawPixelZone(0, zoneW, height, 7919);
-    drawPixelZone(width - zoneW, zoneW, height, 12007);
-  }
+  /** Fill actual grid-aligned cells on left/right — same spacing as grid lines. */
+  function drawGridCellFills(width, height) {
+    const cols = Math.ceil(width / GRID) + 1;
+    const rows = Math.ceil(height / GRID) + 1;
+    const leftMaxCol = Math.ceil((width * 0.22) / GRID);
+    const rightMinCol = Math.floor((width * 0.78) / GRID);
 
-  function drawPixelZone(zoneX, zoneW, height, seed) {
-    const rand = seededRandom(seed);
-    const cols = Math.ceil(zoneW / PIXEL);
-    const rows = Math.ceil(height / PIXEL);
+    const inSideZone = (col) => col < leftMaxCol || col >= rightMinCol;
+
+    const zoneFade = (col) => {
+      if (col < leftMaxCol) {
+        return 0.45 + (col / Math.max(leftMaxCol, 1)) * 0.55;
+      }
+      if (col >= rightMinCol) {
+        const span = Math.max(cols - rightMinCol, 1);
+        return 0.45 + (1 - (col - rightMinCol) / span) * 0.55;
+      }
+      return 0;
+    };
+
+    const randLeft = seededRandom(7919);
+    const randRight = seededRandom(12007);
     const used = Array.from({ length: rows }, () => Array(cols).fill(false));
 
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
-        if (used[r][c]) continue;
-        if (rand() > 0.48) continue;
+        if (!inSideZone(c) || used[r][c]) continue;
 
-        const maxW = Math.min(rand() > 0.72 ? 4 : rand() > 0.4 ? 3 : 2, cols - c);
-        const maxH = Math.min(rand() > 0.68 ? 4 : rand() > 0.38 ? 3 : 2, rows - r);
+        const rand = c < leftMaxCol ? randLeft : randRight;
+        if (rand() > 0.5) continue;
+
+        const maxW = Math.min(rand() > 0.55 ? 3 : 2, cols - c);
+        const maxH = Math.min(rand() > 0.55 ? 3 : 2, rows - r);
         const wUnits = 1 + Math.floor(rand() * maxW);
         const hUnits = 1 + Math.floor(rand() * maxH);
 
-        let free = true;
-        for (let dr = 0; dr < hUnits && free; dr++) {
+        let ok = true;
+        for (let dr = 0; dr < hUnits && ok; dr++) {
           for (let dc = 0; dc < wUnits; dc++) {
-            if (used[r + dr][c + dc]) free = false;
+            const cc = c + dc;
+            const rr = r + dr;
+            if (!inSideZone(cc) || used[rr]?.[cc]) ok = false;
           }
         }
-        if (!free) continue;
+        if (!ok) continue;
 
         for (let dr = 0; dr < hUnits; dr++) {
           for (let dc = 0; dc < wUnits; dc++) {
@@ -66,22 +79,15 @@
           }
         }
 
-        const gap = rand() > 0.65 ? 3 : 2;
-        const x = zoneX + c * PIXEL + 1;
-        const y = r * PIXEL + 1;
-        const w = wUnits * PIXEL - gap;
-        const h = hUnits * PIXEL - gap;
-
-        const edgeDist = Math.min(c / cols, 1 - c / cols);
-        const fade = 0.55 + edgeDist * 0.45;
+        const x = c * GRID;
+        const y = r * GRID;
+        const w = wUnits * GRID;
+        const h = hUnits * GRID;
 
         ctx.save();
-        ctx.globalAlpha = fade;
+        ctx.globalAlpha = zoneFade(c);
         ctx.fillStyle = pickFill(rand);
-        ctx.fillRect(x, y, w, h);
-        ctx.strokeStyle = PIXEL_EDGE;
-        ctx.lineWidth = 1;
-        ctx.strokeRect(x + 0.5, y + 0.5, w - 1, h - 1);
+        ctx.fillRect(x + 1, y + 1, w - 2, h - 2);
         ctx.restore();
       }
     }
@@ -123,7 +129,7 @@
 
   function draw(width, height) {
     ctx.clearRect(0, 0, width, height);
-    drawSidePixels(width, height);
+    drawGridCellFills(width, height);
     drawGridLines(width, height);
   }
 
