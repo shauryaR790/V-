@@ -836,16 +836,16 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .docs-article .faq-item {
-  border: 1px solid var(--border-subtle);
+  border: 1px solid #1a1f2e;
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.02);
+  background: #010409;
   overflow: hidden;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color 0.15s ease;
 }
 
 .docs-article .faq-item[open] {
-  border-color: var(--border-accent);
-  background: rgba(251, 219, 90, 0.04);
+  border-color: var(--yellow);
+  background: #010409;
 }
 
 .docs-article .faq-item > summary {
@@ -864,21 +864,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .docs-article .faq-item > summary::after {
-  content: "";
-  position: absolute;
-  left: 1.1rem;
-  right: 1.1rem;
-  bottom: 0;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--yellow);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.18s ease;
-}
-
-.docs-article .faq-item[open] > summary::after {
-  transform: scaleX(1);
+  display: none;
 }
 
 .docs-article .faq-chevron {
@@ -890,7 +876,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .docs-article .faq-item[open] .faq-chevron {
   transform: rotate(90deg);
-  color: var(--yellow);
+  color: var(--text);
 }
 
 .docs-article .faq-question-text {
@@ -900,27 +886,30 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   line-height: 1.45;
   color: var(--text);
   letter-spacing: -0.01em;
+  transition: font-weight 0.15s ease;
 }
 
 @media (hover: hover) {
   .docs-article .faq-item > summary:hover .faq-question-text {
-    color: var(--yellow);
+    color: var(--text);
+    font-weight: 700;
   }
 
   .docs-article .faq-item > summary:hover .faq-chevron {
-    color: var(--yellow);
+    color: var(--text);
   }
 }
 
 .docs-article .faq-item[open] .faq-question-text {
-  color: var(--yellow);
+  color: var(--text);
+  font-weight: 700;
 }
 
 .docs-article .faq-answer {
   padding: 0.85rem 1.1rem 1.1rem 2.65rem;
   font-size: 1rem;
   color: var(--text);
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid #1a1f2e;
 }
 
 .docs-article .faq-answer > *:first-child {
