@@ -34,7 +34,7 @@
   --tree-row-active: rgba(251, 219, 90, 0.1);
   --tree-text: #8b949e;
   --tree-text-hover: #f0f6fc;
-  --tree-font: 0.8125rem;
+  --tree-font: calc(0.8125rem + 10px);
   --radius: 8px;
   --grid-yellow: rgba(251, 219, 90, 0.45);
   --code-bg: #010409;
@@ -507,6 +507,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   max-width: var(--layout-max);
   margin: 0 auto;
   width: 100%;
+  padding-inline: 30px;
   align-items: stretch;
   min-height: calc(100vh - var(--header-h));
 }
@@ -610,6 +611,8 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .tree-icon {
   flex-shrink: 0;
   color: var(--tree-text);
+  width: 18px;
+  height: 18px;
 }
 
 .tree-icon-folder { color: #8b949e; }
@@ -639,8 +642,8 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .tree-link .tree-icon-file {
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
 }
 
 @media (hover: hover) {
@@ -853,7 +856,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .docs-article .glossary dd { margin: 0.25rem 0 0.5rem 1rem; color: var(--text); font-size: 1.0625rem; }
 
 .toc-label {
-  font-size: 0.75rem;
+  font-size: calc(0.75rem + 10px);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
