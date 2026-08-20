@@ -36,6 +36,24 @@ GITHUB_SVG = (
     '</svg>'
 )
 
+TREE_CHEVRON = (
+    '<svg class="tree-chevron" width="12" height="12" viewBox="0 0 16 16" aria-hidden="true">'
+    '<path fill="currentColor" d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"/>'
+    '</svg>'
+)
+
+TREE_FOLDER = (
+    '<svg class="tree-icon tree-icon-folder" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">'
+    '<path fill="currentColor" d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25V6.75A1.75 1.75 0 0 0 14.25 5H8.06l-.72-1.44A1.75 1.75 0 0 0 5.68 2H1.75Z"/>'
+    '</svg>'
+)
+
+TREE_FILE = (
+    '<svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">'
+    '<path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/>'
+    '</svg>'
+)
+
 EXTRA_MD = [
     ROOT / "SPEC.md",
     ROOT / "ARCHITECTURE.md",
@@ -431,7 +449,7 @@ def shell(active: str, title: str, body: str, sidebar_html: str, toc_html: str, 
     </main>
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>
-      {toc_html}
+      <nav class="toc-tree" aria-label="On this page">{toc_html}</nav>
     </aside>
   </div>
   <footer class="site-footer compact">
@@ -469,18 +487,32 @@ def doc_href(href: str) -> str:
 
 
 def build_sidebar(groups: dict[str, list[tuple[str, str]]], active_href: str) -> str:
-    parts = []
+    parts = [
+        '<div class="tree-search-wrap">',
+        '<input type="search" class="tree-search" placeholder="Go to page" aria-label="Filter navigation">',
+        "</div>",
+        '<nav class="sidebar-tree" aria-label="Documentation">',
+    ]
     for group, links in groups.items():
-        parts.append(f'<p class="sidebar-group">{html.escape(group)}</p><ul>')
+        parts.append('<details class="tree-folder" open>')
+        parts.append(
+            f'<summary class="tree-folder-label">{TREE_CHEVRON}{TREE_FOLDER}'
+            f"{html.escape(group)}</summary>"
+        )
+        parts.append('<ul class="tree-list">')
         for href, label in links:
-            parts.append(f'<li><a href="{doc_href(href)}">{html.escape(label)}</a></li>')
-        parts.append("</ul>")
+            parts.append(
+                f'<li><a href="{doc_href(href)}" class="tree-link">'
+                f"{TREE_FILE}{html.escape(label)}</a></li>"
+            )
+        parts.append("</ul></details>")
+    parts.append("</nav>")
     return "\n".join(parts)
 
 
 def build_toc(headings: list[tuple[str, str, str]]) -> str:
     if not headings:
-        return "<ul><li><a href=\"#top\">Top</a></li></ul>"
+        return f'<ul><li><a href="#top" class="tree-link">{TREE_FILE}Top</a></li></ul>'
     parts = ["<ul>"]
     for level, hid, title in headings[:120]:
         if level == "4":
@@ -492,7 +524,9 @@ def build_toc(headings: list[tuple[str, str, str]]) -> str:
         else:
             cls = ""
         title_clean = html.unescape(title)
-        parts.append(f'<li class="{cls}"><a href="#{hid}">{title_clean}</a></li>')
+        parts.append(
+            f'<li class="{cls}"><a href="#{hid}" class="tree-link">{TREE_FILE}{title_clean}</a></li>'
+        )
     parts.append("</ul>")
     return "\n".join(parts)
 

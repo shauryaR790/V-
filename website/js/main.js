@@ -208,11 +208,11 @@ function initSidebarHighlight() {
   const sidebar = document.querySelector(".docs-sidebar");
   if (!sidebar) return;
 
-  sidebar.querySelectorAll("a").forEach((a) => a.classList.remove("sidebar-current"));
+  sidebar.querySelectorAll(".tree-link").forEach((a) => a.classList.remove("sidebar-current"));
 
   const page = location.pathname.split("/").pop() || "index.html";
   const hash = location.hash;
-  const links = [...sidebar.querySelectorAll("a")];
+  const links = [...sidebar.querySelectorAll(".tree-link")];
 
   let current = null;
   if (hash) {
@@ -236,6 +236,70 @@ function initSidebarHighlight() {
     });
   }
   if (current) current.classList.add("sidebar-current");
+}
+
+function initSidebarSearch() {
+  const input = document.querySelector(".tree-search");
+  const sidebar = document.querySelector(".sidebar-tree");
+  if (!input || !sidebar) return;
+
+  input.addEventListener("input", () => {
+    const q = input.value.trim().toLowerCase();
+    sidebar.querySelectorAll(".tree-folder").forEach((folder) => {
+      let anyVisible = false;
+      folder.querySelectorAll(".tree-list .tree-link").forEach((link) => {
+        const li = link.closest("li");
+        const match = !q || link.textContent.toLowerCase().includes(q);
+        if (li) li.hidden = !match;
+        if (match) anyVisible = true;
+      });
+      const label = folder.querySelector(".tree-folder-label");
+      const labelMatch = label && label.textContent.toLowerCase().includes(q);
+      folder.hidden = Boolean(q) && !anyVisible && !labelMatch;
+      if (q && (anyVisible || labelMatch)) folder.open = true;
+    });
+  });
+}
+
+function initTocHighlight() {
+  const toc = document.querySelector(".toc-tree");
+  if (!toc) return;
+
+  const links = [...toc.querySelectorAll(".tree-link")];
+  if (!links.length) return;
+
+  const setActive = (id) => {
+    links.forEach((a) => {
+      a.classList.toggle("toc-current", a.getAttribute("href") === `#${id}`);
+    });
+  };
+
+  const headings = links
+    .map((a) => {
+      const id = a.getAttribute("href")?.slice(1);
+      return id ? document.getElementById(id) : null;
+    })
+    .filter(Boolean);
+
+  if (headings.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible.length) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-15% 0px -65% 0px", threshold: [0, 0.1, 0.5] },
+    );
+    headings.forEach((h) => observer.observe(h));
+  }
+
+  const syncHash = () => {
+    const id = location.hash.slice(1);
+    if (id) setActive(id);
+  };
+  window.addEventListener("hashchange", syncHash);
+  syncHash();
 }
 
 window.addEventListener("hashchange", initSidebarHighlight);
@@ -282,6 +346,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   initSidebarHighlight();
+  initSidebarSearch();
+  initTocHighlight();
   highlightAllCode();
 
   const tabs = document.querySelectorAll(".code-tab");
