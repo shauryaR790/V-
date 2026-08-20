@@ -413,19 +413,32 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .page-home .home-bottom {
   flex-shrink: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: 100%;
   background: #000000;
-  padding: 0.85rem max(1.25rem, calc((100vw - 1440px) / 2 + 1.25rem));
-  border-top: none;
+  border-top: 3px solid var(--yellow);
+}
+
+.home-bottom-inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   font-size: 0.85rem;
 }
 
-.version-pills { display: flex; gap: 0.5rem; }
+.version-pills {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
 
 .version-pill {
   padding: 0.25rem 0.65rem;
@@ -439,8 +452,15 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .version-pill.yellow { background: var(--yellow); border-color: var(--yellow-dark); color: var(--black); }
 
-.home-social { display: flex; gap: 0.75rem; }
-.home-social a { text-decoration: none; font-weight: 600; font-size: 0.85rem; color: var(--text-muted); }
+.home-social {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.75rem;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.home-social a { text-decoration: none; font-weight: 600; font-size: 0.85rem; color: var(--text-muted); white-space: nowrap; }
 .home-social a:hover { color: var(--text); background: var(--yellow-light); }
 
 /* ─── Docs layout ─── */
