@@ -293,7 +293,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   letter-spacing: -0.04em;
   line-height: 1.06;
   margin-bottom: 1rem;
-  color: var(--text);
+  color: var(--yellow);
 }
 
 .home-copy .lead {
