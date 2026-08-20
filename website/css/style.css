@@ -1762,22 +1762,30 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   border-top: 1px solid var(--border-subtle);
 }
 
+.course-finish-head {
+  margin-bottom: 1.25rem;
+}
+
 .course-finish-title {
   font-family: var(--display);
-  font-size: 1.85rem;
+  font-size: 1.65rem;
   font-weight: 400;
-  margin: 0 0 1.25rem;
+  margin: 0;
+  padding-top: 0.35rem;
   color: var(--text);
+  letter-spacing: 0.01em;
 }
 
 .course-source-wrap {
   margin-bottom: 1.25rem;
+  overflow: visible;
 }
 
 .course-source-input {
   display: block;
   width: 100%;
-  min-height: 12rem;
+  min-height: 0;
+  height: auto;
   margin: 0;
   padding: 1rem 1.1rem;
   border: none;
@@ -1787,8 +1795,10 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   font-family: var(--mono);
   font-size: 0.875rem;
   line-height: 1.55;
-  resize: vertical;
+  resize: none;
+  overflow: hidden;
   tab-size: 4;
+  field-sizing: content;
 }
 
 .course-source-input:focus {
@@ -1801,20 +1811,29 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   padding: 0;
   border: none;
   background: transparent;
+  max-width: 100%;
 }
 
 .course-playground-toolbar {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   margin-bottom: 0.85rem;
+  width: auto;
+  max-width: 100%;
 }
 
 .course-playground-toolbar .btn {
+  width: auto;
+  min-width: 0;
+  max-width: none;
   flex: 0 0 auto;
   white-space: nowrap;
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
 }
 
 .course-terminal {

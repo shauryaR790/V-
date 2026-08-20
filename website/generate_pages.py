@@ -577,6 +577,11 @@ def brand_text(s: str) -> str:
     return re.sub(r"v\+\+", BRAND, s)
 
 
+def json_for_script(data: object) -> str:
+    """Embed JSON in a script tag without HTML entity breakage."""
+    return json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
+
+
 def course_inline_md(s: str) -> str:
     """Markdown subset for course lessons (preserves -> in signatures)."""
     s = html.escape(s)
@@ -1082,19 +1087,21 @@ def build_course_page_body(project: CourseProject) -> str:
             parts.append(code_block_html(section.code))
         parts.append("</div></section>")
 
-    output_json = html.escape(
-        json.dumps(
-            {
-                "output": project.output,
-                "source": project.source,
-                "run_cmd": project.run_cmd,
-            }
-        )
+    finish_num = len(project.sections) + 1
+    output_json = json_for_script(
+        {
+            "output": project.output,
+            "source": project.source,
+            "run_cmd": project.run_cmd,
+        }
     )
     escaped_source = html.escape(project.source)
     parts.append(
         f'<section class="course-finish" id="course-finish">'
+        f'<div class="course-step-head course-finish-head">'
+        f'<span class="course-step-num">{finish_num}</span>'
         f'<h2 class="course-finish-title" id="course-finish-title">Full program</h2>'
+        f"</div>"
         f'<div class="course-source-editor">'
         f'<div class="code-block-wrap course-source-wrap">'
         f'<div class="code-block-header"><span class="code-block-filename">main.vpp</span></div>'
