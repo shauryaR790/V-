@@ -1513,6 +1513,18 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   overflow: hidden;
 }
 
+.course-card-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(251, 219, 90, 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(251, 219, 90, 0.22) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 42%, #000 15%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 42%, #000 15%, transparent 70%);
+}
+
 .course-card-cover {
   position: relative;
   z-index: 2;

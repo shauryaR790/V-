@@ -1011,6 +1011,7 @@ def courses_hub_shell(
 def build_course_card(project: CourseProject) -> str:
     return f"""<a href="{ASSET_PREFIX}{project.page_name}" class="course-card" data-level="{html.escape(project.level_key)}">
   <div class="course-card-thumb" aria-hidden="true">
+    <div class="course-card-grid"></div>
     <div class="course-card-cover">
       <img src="{ASSET_PREFIX}assets/logo-white.png" alt="" class="course-card-logo">
       <span class="course-card-thumb-label">{html.escape(project.title)}</span>
