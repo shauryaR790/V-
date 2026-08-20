@@ -545,10 +545,6 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   font-weight: 700;
   letter-spacing: -0.03em;
   margin-bottom: 0.65rem;
-  color: var(--text);
-}
-
-.docs-article h1:first-of-type {
   color: var(--yellow);
 }
 
@@ -568,7 +564,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   margin: 2rem 0 0.4rem;
   padding-top: 1.25rem;
   border-top: 1px solid var(--border-muted);
-  color: var(--text);
+  color: var(--yellow);
   letter-spacing: -0.02em;
 }
 
@@ -578,8 +574,8 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   border-top: none;
 }
 
-.docs-article h3 { font-size: 1rem; font-weight: 600; margin: 1.1rem 0 0.35rem; color: var(--text); }
-.docs-article h4 { font-size: 0.9rem; font-weight: 600; margin: 0.85rem 0 0.25rem; color: var(--text); }
+.docs-article h3 { font-size: 1rem; font-weight: 600; margin: 1.1rem 0 0.35rem; color: var(--yellow); }
+.docs-article h4 { font-size: 0.9rem; font-weight: 600; margin: 0.85rem 0 0.25rem; color: var(--yellow); }
 
 .docs-article p { margin-bottom: 0.55rem; color: var(--text-muted); max-width: 72ch; line-height: 1.55; }
 
