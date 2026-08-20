@@ -175,7 +175,7 @@
     sourceInput.value = originalSource;
 
     const idleHtml =
-      '<div class="course-terminal-line course-terminal-muted">$ ready — click Test program</div>' +
+      '<div class="course-terminal-line course-terminal-muted">$ ready. Click Test program.</div>' +
       '<pre class="course-run-output"></pre>';
 
     const renderIdle = () => {

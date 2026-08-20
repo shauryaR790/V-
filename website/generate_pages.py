@@ -1114,7 +1114,7 @@ def build_course_page_body(project: CourseProject) -> str:
         f'<span class="course-terminal-title">vpp</span>'
         f"</div>"
         f'<div class="course-terminal-body">'
-        f'<div class="course-terminal-line course-terminal-muted">$ ready — click Test program</div>'
+        f'<div class="course-terminal-line course-terminal-muted">$ ready. Click Test program.</div>'
         f'<pre class="course-run-output"></pre>'
         f"</div></div></div></section>"
     )
