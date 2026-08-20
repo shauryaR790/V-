@@ -276,8 +276,33 @@ def code_filename(display: str, plang: str, lines: list[str]) -> str:
     return display.lower()
 
 
-def md_to_html(text: str) -> str:
+def slug(text: str) -> str:
+    s = re.sub(r"[^a-zA-Z0-9]+", "-", text.lower()).strip("-")
+    return s or "section"
+
+
+class SlugRegistry:
+    """Assign unique HTML id slugs across a full generated page."""
+
+    def __init__(self) -> None:
+        self._used: set[str] = set()
+
+    def unique(self, text: str) -> str:
+        base = slug(text)
+        if base not in self._used:
+            self._used.add(base)
+            return base
+        n = 2
+        while f"{base}-{n}" in self._used:
+            n += 1
+        candidate = f"{base}-{n}"
+        self._used.add(candidate)
+        return candidate
+
+
+def md_to_html(text: str, slugs: SlugRegistry | None = None) -> str:
     """Minimal markdown to HTML — enough for our docs."""
+    registry = slugs or SlugRegistry()
     lines = text.splitlines()
     out: list[str] = []
     in_code = False
@@ -285,6 +310,7 @@ def md_to_html(text: str) -> str:
     code_lang = ""
     code_lines: list[str] = []
     list_open = False
+    release_prefix = ""
 
     def close_list():
         nonlocal list_open
@@ -394,16 +420,25 @@ def md_to_html(text: str) -> str:
 
         if line.startswith("#### "):
             close_list()
-            out.append(f"<h4 id=\"{slug(line[5:])}\">{inline_md(line[5:])}</h4>")
+            out.append(f'<h4 id="{registry.unique(line[5:])}">{inline_md(line[5:])}</h4>')
         elif line.startswith("### "):
             close_list()
-            out.append(f"<h3 id=\"{slug(line[4:])}\">{inline_md(line[4:])}</h3>")
+            title = line[4:]
+            if release_prefix:
+                hid = registry.unique(f"{release_prefix}-{title}")
+            else:
+                hid = registry.unique(title)
+            out.append(f'<h3 id="{hid}">{inline_md(title)}</h3>')
         elif line.startswith("## "):
             close_list()
-            out.append(f"<h2 id=\"{slug(line[3:])}\">{inline_md(line[3:])}</h2>")
+            title = line[3:]
+            version = re.search(r"\[([\d.]+)\]", title)
+            release_prefix = slug(version.group(1)) if version else ""
+            out.append(f'<h2 id="{registry.unique(title)}">{inline_md(title)}</h2>')
         elif line.startswith("# "):
             close_list()
-            out.append(f"<h1 id=\"{slug(line[2:])}\">{inline_md(line[2:])}</h1>")
+            release_prefix = ""
+            out.append(f'<h1 id="{registry.unique(line[2:])}">{inline_md(line[2:])}</h1>')
         elif line.startswith("- ") or line.startswith("* "):
             if not list_open:
                 out.append("<ul>")
@@ -425,15 +460,16 @@ def md_to_html(text: str) -> str:
     return "\n".join(out)
 
 
-def faq_md_to_html(text: str) -> str:
+def faq_md_to_html(text: str, slugs: SlugRegistry | None = None) -> str:
     """Render FAQ markdown as a bordered Q&A card list."""
+    registry = slugs or SlugRegistry()
     lines = text.splitlines()
     out: list[str] = []
     i = 0
 
     if i < len(lines) and lines[i].startswith("# "):
         title = lines[i][2:].strip()
-        out.append(f'<h1 id="{slug(title)}">{inline_md(title)}</h1>')
+        out.append(f'<h1 id="{registry.unique(title)}">{inline_md(title)}</h1>')
         i += 1
 
     out.append('<div class="faq-list">')
@@ -445,8 +481,8 @@ def faq_md_to_html(text: str) -> str:
         if question is None:
             return
         body = "\n".join(section_lines).strip()
-        body_html = md_to_html(body) if body else ""
-        qid = slug(question)
+        body_html = md_to_html(body, registry) if body else ""
+        qid = registry.unique(question)
         out.append(
             f'<section class="faq-item" id="{qid}">'
             f'<h2 class="faq-question">{inline_md(question)}</h2>'
@@ -475,24 +511,26 @@ def render_paths(
     paths: list[Path],
     use_sources: bool = False,
     strip_h1_from: set[str] | None = None,
+    slugs: SlugRegistry | None = None,
 ) -> str:
+    registry = slugs or SlugRegistry()
     parts: list[str] = []
     strip = strip_h1_from or set()
     for p in paths:
         if not p.exists():
             continue
         if p.name == "faq.md":
-            parts.append(faq_md_to_html(p.read_text(encoding="utf-8")))
+            parts.append(faq_md_to_html(p.read_text(encoding="utf-8"), registry))
             continue
         if use_sources and p.suffix in (".vpp", ".toml", ".rs"):
-            parts.append(md_to_html(source_to_md(p)))
+            parts.append(md_to_html(source_to_md(p), registry))
             continue
         text = p.read_text(encoding="utf-8")
         if p.name in strip:
             lines = text.splitlines()
             if lines and lines[0].startswith("# "):
                 text = "\n".join(lines[1:]).lstrip("\n")
-        parts.append(md_to_html(text))
+        parts.append(md_to_html(text, registry))
     return "\n\n".join(parts)
 
 
@@ -517,11 +555,6 @@ def inline_md(s: str) -> str:
     s = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", s)
     s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", link_repl, s)
     return brand_text(s)
-
-
-def slug(text: str) -> str:
-    s = re.sub(r"[^a-zA-Z0-9]+", "-", text.lower()).strip("-")
-    return s or "section"
 
 
 def collect_md(paths: list[Path]) -> str:
@@ -878,14 +911,17 @@ def write_doc_page(
     page_h1: str | None = None,
     strip_h1_from: set[str] | None = None,
 ) -> None:
-    if use_sources:
-        body = render_paths(md_paths, use_sources=True, strip_h1_from=strip_h1_from)
-    else:
-        body = render_paths(md_paths, use_sources=False, strip_h1_from=strip_h1_from)
+    slug_registry = SlugRegistry()
+    body = render_paths(
+        md_paths,
+        use_sources=use_sources,
+        strip_h1_from=strip_h1_from,
+        slugs=slug_registry,
+    )
     if page_h1:
         body = (
             f'<div id="top"></div>\n'
-            f'<h1 id="{slug(page_h1)}">{html.escape(page_h1)}</h1>\n{body}'
+            f'<h1 id="{slug_registry.unique(page_h1)}">{html.escape(page_h1)}</h1>\n{body}'
         )
     else:
         body = f'<div id="top"></div>\n' + body

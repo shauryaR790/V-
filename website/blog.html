@@ -99,7 +99,7 @@
 <h1 id="changelog">Changelog</h1>
 <p>All notable changes to V++ are documented here.</p>
 <h2 id="0-5-0-2026-08-18">[0.5.0] — 2026-08-18</h2>
-<h3 id="added">Added</h3>
+<h3 id="0-5-0-added">Added</h3>
 <ul>
 <li><strong>Website</strong> — official site at <code>website/</code> (learn, 20 projects, downloads, history, architecture, about)</li>
 <li><strong>20 example projects</strong> — <code>projects/01-hello-world</code> through <code>projects/20-json-config</code></li>
@@ -109,25 +109,25 @@
 <li><strong>VS Code extension v0.5.0</strong> — Python-style Marketplace README and CHANGELOG</li>
 <li><strong>Windows installer PATH</strong> — adds <code>vpp</code> and bundled <code>clang</code> to user PATH on install</li>
 </ul>
-<h3 id="changed">Changed</h3>
+<h3 id="0-5-0-changed">Changed</h3>
 <ul>
 <li>Compiler, installer, and release bundle version aligned to <strong>0.5.0</strong></li>
 </ul>
 <h2 id="0-4-4-2026-08-18-windows-installer">[0.4.4] — 2026-08-18 (Windows installer)</h2>
-<h3 id="added">Added</h3>
+<h3 id="0-4-4-added">Added</h3>
 <ul>
 <li><strong>GitHub Release bundles</strong> — Windows zip with <code>GO.bat</code> one-click launcher; Linux/macOS tarballs with <code>run.sh</code></li>
 <li><strong>VS Code Marketplace</strong> — extension published as <code>vpp-lang.vplusplus</code></li>
 <li><strong>Docs</strong> — <code>docs/RELEASE.md</code>, <code>docs/MARKETPLACE.md</code>, simplified <code>docs/INSTALL.md</code></li>
 </ul>
-<h3 id="fixed">Fixed</h3>
+<h3 id="0-4-4-fixed">Fixed</h3>
 <ul>
 <li>LSP build (<code>jsonrpc_core</code>, <code>CompletionItemKind::SNIPPET</code>)</li>
 <li><code>setup.ps1</code> PowerShell encoding + builds with <code>codegen,lsp</code> by default</li>
 <li>VSIX packaging includes language-client dependencies</li>
 </ul>
 <h2 id="0-4-0-2026-08-18-language-core-phase-b">[0.4.0] — 2026-08-18 (Language Core / Phase B)</h2>
-<h3 id="added">Added</h3>
+<h3 id="0-4-0-added">Added</h3>
 <ul>
 <li><strong><code>mut</code> keyword</strong> — <code>let mut x = 1</code> required for reassignment; bindings are immutable by default</li>
 <li><strong>Generics</strong> — monomorphized functions: <code>fn id<a href="x: T">T</a> -&gt; T</code>, calls like <code>id<a href="42">int</a></code> and <code>first<a href="words">string</a></code></li>
@@ -136,13 +136,13 @@
 <li><strong>Examples</strong> — <a href="examples/generics.vpp"><code>examples/generics.vpp</code></a>, <a href="examples/traits.vpp"><code>examples/traits.vpp</code></a></li>
 <li><strong>Tests</strong> — mut/immutability, exhaustiveness, generics, and traits typecheck + parity coverage</li>
 </ul>
-<h3 id="changed">Changed</h3>
+<h3 id="0-4-0-changed">Changed</h3>
 <ul>
 <li>All examples and stdlib sources updated to use <code>let mut</code> where variables are reassigned</li>
 <li><a href="SPEC.md"><code>SPEC.md</code></a> updated for v0.4 language features</li>
 </ul>
 <h2 id="0-3-0-2026-08-18-usable-language-ecosystem">[0.3.0] — 2026-08-18 (Usable Language / Ecosystem)</h2>
-<h3 id="added">Added</h3>
+<h3 id="0-3-0-added">Added</h3>
 <ul>
 <li><strong>Module system</strong>: <code>import std.io</code> canonical paths, <code>pub</code> exports, namespaced calls (<code>math.add</code>), legacy <code>import &quot;file.vpp&quot;</code>, circular import detection, duplicate import errors</li>
 <li><strong>Package manager</strong>: TOML <code>vpp.toml</code> with <code>[dependencies]</code>, <code>vpp.lock</code>, <code>vpp new</code>/<code>add</code>/<code>remove</code>/<code>update</code>, local path + git deps, semver checks</li>
@@ -155,14 +155,14 @@
 <li><strong>Syntax highlighting</strong>: struct, enum, match, import, pub, test, break, continue, builtins</li>
 <li><strong>Tests</strong>: <code>tests/modules.rs</code>, <code>tests/pkg.rs</code>, <code>tests/stdlib.rs</code>, <code>examples/std_builtins.vpp</code> parity; all v0.2 parity preserved</li>
 </ul>
-<h3 id="changed">Changed</h3>
+<h3 id="0-3-0-changed">Changed</h3>
 <ul>
 <li><code>vpp init</code> scaffolds <code>import std.io</code> and <code>import std.math</code></li>
 <li>LSP <code>check_with_index</code> uses in-memory buffer when file is unsaved</li>
 <li>Interpreter invokes <code>fn main()</code> when present (matches native entry point)</li>
 <li>Native codegen: correct scope cleanup on <code>return</code>, <code>if</code>/<code>match</code> arms, and heap release paths</li>
 </ul>
-<h3 id="fixed">Fixed</h3>
+<h3 id="0-3-0-fixed">Fixed</h3>
 <ul>
 <li>Native <code>file_exists</code> bool codegen (i32 → i1 compare)</li>
 <li>LLVM invalid IR when <code>return</code> preceded function epilogue cleanup</li>
@@ -170,24 +170,24 @@
 <li>Empty stdout under piped test runs (<code>fflush</code> in runtime prints; staged link output)</li>
 </ul>
 <h2 id="0-3-1-2026-08-18-phase-a-polish">[0.3.1] — 2026-08-18 (Phase A polish)</h2>
-<h3 id="fixed">Fixed</h3>
+<h3 id="0-3-1-fixed">Fixed</h3>
 <ul>
 <li>User-defined enum types resolved correctly in function params, struct fields, and match patterns</li>
 <li>Bare enum variant literals in struct fields (e.g. <code>status: Active</code>)</li>
 <li>Native entry point: LLVM <code>main</code> calls <code>vpp_user_main</code> instead of symbol collision</li>
 <li>Path lookup for <code>vpp run hello.vpp</code> searches <code>examples/</code>, <code>src/</code>, <code>tests/</code></li>
 </ul>
-<h3 id="added">Added</h3>
+<h3 id="0-3-1-added">Added</h3>
 <ul>
 <li><a href="stress.vpp"><code>stress.vpp</code></a> and <a href="stress.ps1"><code>stress.ps1</code></a> — one-command interpreter/native parity test</li>
 <li><code>.gitignore</code> entries for <code>.vpp/</code>, test output artifacts</li>
 </ul>
-<h3 id="changed">Changed</h3>
+<h3 id="0-3-1-changed">Changed</h3>
 <ul>
 <li><a href="SPEC.md"><code>SPEC.md</code></a> and <a href="README.md"><code>README.md</code></a> updated for v0.3</li>
 </ul>
 <h2 id="0-2-0-2026-08-18">[0.2.0] — 2026-08-18</h2>
-<h3 id="added">Added</h3>
+<h3 id="0-2-0-added">Added</h3>
 <ul>
 <li>V++ IR (<code>src/ir/</code>) between typed AST and LLVM</li>
 <li>Shared builtin registry (<code>src/builtins/</code>)</li>
@@ -206,20 +206,20 @@
 <li>Native <code>vpp_array_index_ptr</code> bounds checking</li>
 <li>CI job for native codegen (where LLVM available)</li>
 </ul>
-<h3 id="fixed">Fixed</h3>
+<h3 id="0-2-0-fixed">Fixed</h3>
 <ul>
 <li>Native crash on <code>print(&quot;...&quot;)</code> (i8* vs VppString* mismatch)</li>
 <li>Broken block scope in native codegen</li>
 <li>Integer compare used for float equality</li>
 </ul>
-<h3 id="changed">Changed</h3>
+<h3 id="0-2-0-changed">Changed</h3>
 <ul>
 <li>LLVM backend lowers from V++ IR, not directly from typed AST</li>
 <li>Inkwell dependency pinned for reproducible builds</li>
 <li>Runtime uses portable <code>strdup</code> wrapper</li>
 <li>Struct/enum/match codegen in <code>src/codegen/struct_enum.rs</code></li>
 </ul>
-<h3 id="known-limitations-v0-2">Known limitations (v0.2)</h3>
+<h3 id="0-2-0-known-limitations-v0-2">Known limitations (v0.2)</h3>
 <ul>
 <li>Module imports: interpreter only until native parity tests pass</li>
 <li>Full ARC at all scope exits not yet complete for heap values inside structs/enums</li>
@@ -259,27 +259,27 @@
       <nav class="toc-tree" aria-label="On this page"><ul>
 <li class=""><a href="#changelog" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changelog</a></li>
 <li class="toc-h2"><a href="#0-5-0-2026-08-18" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>[0.5.0] — 2026-08-18</a></li>
-<li class="toc-h3"><a href="#added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
-<li class="toc-h3"><a href="#changed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changed</a></li>
+<li class="toc-h3"><a href="#0-5-0-added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
+<li class="toc-h3"><a href="#0-5-0-changed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changed</a></li>
 <li class="toc-h2"><a href="#0-4-4-2026-08-18-windows-installer" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>[0.4.4] — 2026-08-18 (Windows installer)</a></li>
-<li class="toc-h3"><a href="#added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
-<li class="toc-h3"><a href="#fixed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Fixed</a></li>
+<li class="toc-h3"><a href="#0-4-4-added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
+<li class="toc-h3"><a href="#0-4-4-fixed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Fixed</a></li>
 <li class="toc-h2"><a href="#0-4-0-2026-08-18-language-core-phase-b" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>[0.4.0] — 2026-08-18 (Language Core / Phase B)</a></li>
-<li class="toc-h3"><a href="#added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
-<li class="toc-h3"><a href="#changed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changed</a></li>
+<li class="toc-h3"><a href="#0-4-0-added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
+<li class="toc-h3"><a href="#0-4-0-changed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changed</a></li>
 <li class="toc-h2"><a href="#0-3-0-2026-08-18-usable-language-ecosystem" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>[0.3.0] — 2026-08-18 (Usable Language / Ecosystem)</a></li>
-<li class="toc-h3"><a href="#added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
-<li class="toc-h3"><a href="#changed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changed</a></li>
-<li class="toc-h3"><a href="#fixed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Fixed</a></li>
+<li class="toc-h3"><a href="#0-3-0-added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
+<li class="toc-h3"><a href="#0-3-0-changed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changed</a></li>
+<li class="toc-h3"><a href="#0-3-0-fixed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Fixed</a></li>
 <li class="toc-h2"><a href="#0-3-1-2026-08-18-phase-a-polish" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>[0.3.1] — 2026-08-18 (Phase A polish)</a></li>
-<li class="toc-h3"><a href="#fixed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Fixed</a></li>
-<li class="toc-h3"><a href="#added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
-<li class="toc-h3"><a href="#changed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changed</a></li>
+<li class="toc-h3"><a href="#0-3-1-fixed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Fixed</a></li>
+<li class="toc-h3"><a href="#0-3-1-added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
+<li class="toc-h3"><a href="#0-3-1-changed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changed</a></li>
 <li class="toc-h2"><a href="#0-2-0-2026-08-18" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>[0.2.0] — 2026-08-18</a></li>
-<li class="toc-h3"><a href="#added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
-<li class="toc-h3"><a href="#fixed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Fixed</a></li>
-<li class="toc-h3"><a href="#changed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changed</a></li>
-<li class="toc-h3"><a href="#known-limitations-v0-2" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Known limitations (v0.2)</a></li>
+<li class="toc-h3"><a href="#0-2-0-added" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Added</a></li>
+<li class="toc-h3"><a href="#0-2-0-fixed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Fixed</a></li>
+<li class="toc-h3"><a href="#0-2-0-changed" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Changed</a></li>
+<li class="toc-h3"><a href="#0-2-0-known-limitations-v0-2" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Known limitations (v0.2)</a></li>
 <li class="toc-h2"><a href="#0-1-0-2026-08" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>[0.1.0] — 2026-08</a></li>
 <li class=""><a href="#roadmap" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Roadmap</a></li>
 <li class="toc-h2"><a href="#shipped-v0-4-4" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Shipped (v0.4.4)</a></li>

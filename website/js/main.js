@@ -305,35 +305,40 @@ function initTocHighlight() {
   const links = [...toc.querySelectorAll(".tree-link")];
   if (!links.length) return;
 
-  const setActive = (id) => {
-    links.forEach((a) => {
-      a.classList.toggle("toc-current", a.getAttribute("href") === `#${id}`);
-    });
-  };
-
-  const headings = links
-    .map((a) => {
-      const id = a.getAttribute("href")?.slice(1);
-      return id ? document.getElementById(id) : null;
+  const article = document.querySelector(".docs-article");
+  const pairs = links
+    .map((link) => {
+      const id = link.getAttribute("href")?.slice(1);
+      if (!id) return null;
+      const heading = document.getElementById(id);
+      return heading ? { link, heading } : null;
     })
     .filter(Boolean);
 
-  if (headings.length) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible.length) setActive(visible[0].target.id);
-      },
-      { rootMargin: "-15% 0px -65% 0px", threshold: [0, 0.1, 0.5] },
-    );
-    headings.forEach((h) => observer.observe(h));
-  }
+  if (!pairs.length) return;
+
+  const setActive = (activeHeading) => {
+    pairs.forEach(({ link, heading }) => {
+      link.classList.toggle("toc-current", heading === activeHeading);
+    });
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+      if (visible.length) setActive(visible[0].target);
+    },
+    { rootMargin: "-12% 0px -68% 0px", threshold: [0, 0.25, 0.5, 1] },
+  );
+  pairs.forEach(({ heading }) => observer.observe(heading));
 
   const syncHash = () => {
     const id = location.hash.slice(1);
-    if (id) setActive(id);
+    if (!id) return;
+    const match = pairs.find(({ heading }) => heading.id === id);
+    if (match) setActive(match.heading);
   };
   window.addEventListener("hashchange", syncHash);
   syncHash();
