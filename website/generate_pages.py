@@ -1008,8 +1008,9 @@ def courses_hub_shell(
 </html>"""
 
 
-def build_course_card(project: CourseProject) -> str:
-    return f"""<a href="{ASSET_PREFIX}{project.page_name}" class="course-card" data-level="{html.escape(project.level_key)}">
+def build_course_card(project: CourseProject, card_id: str = "") -> str:
+    id_attr = f' id="{html.escape(card_id)}"' if card_id else ""
+    return f"""<a href="{ASSET_PREFIX}{project.page_name}" class="course-card"{id_attr} data-level="{html.escape(project.level_key)}">
   <div class="course-card-thumb" aria-hidden="true">
     <div class="course-card-grid"></div>
     <div class="course-card-cover">
@@ -1031,14 +1032,55 @@ def build_course_card(project: CourseProject) -> str:
 </a>"""
 
 
+def build_courses_hub_cards(projects: list[CourseProject]) -> str:
+    seen_levels: set[str] = set()
+    cards: list[str] = []
+    for project in projects:
+        anchor_id = ""
+        if project.level_key not in seen_levels:
+            anchor_id = f"courses-{project.level_key}"
+            seen_levels.add(project.level_key)
+        cards.append(build_course_card(project, anchor_id))
+    return "\n".join(cards)
+
+
+def build_courses_hub_toc(projects: list[CourseProject]) -> str:
+    parts = [
+        "<ul>",
+        f'<li><a href="#top" class="tree-link">{TREE_FILE}Top</a></li>',
+        f'<li class="toc-h2"><a href="#courses-overview" class="tree-link">{TREE_FILE}Overview</a></li>',
+        f'<li class="toc-h2"><a href="#courses-filter" class="tree-link">{TREE_FILE}Browse by level</a></li>',
+    ]
+    level_labels = [
+        ("beginner", "Beginner"),
+        ("intermediate", "Intermediate"),
+        ("advanced", "Advanced"),
+    ]
+    for level_key, label in level_labels:
+        level_projects = [p for p in projects if p.level_key == level_key]
+        if not level_projects:
+            continue
+        parts.append(
+            f'<li class="toc-h2"><a href="#courses-{level_key}" class="tree-link">'
+            f"{TREE_FILE}{html.escape(label)}</a></li>"
+        )
+        for project in level_projects:
+            parts.append(
+                f'<li class="toc-h3"><a href="{ASSET_PREFIX}{project.page_name}" class="tree-link">'
+                f"{TREE_FILE}{project.num:02d}. {html.escape(project.title)}</a></li>"
+            )
+    parts.append("</ul>")
+    return "\n".join(parts)
+
+
 def build_courses_hub_body(projects: list[CourseProject]) -> str:
-    cards = "\n".join(build_course_card(p) for p in projects)
-    return f"""<div class="courses-hub-inner">
-  <header class="courses-hub-header">
-    <h1>Courses &amp; Projects</h1>
+    cards = build_courses_hub_cards(projects)
+    return f"""<div class="courses-hub-inner" id="top">
+  <header class="courses-hub-header" id="courses-overview">
+    <h1 id="courses-title">Courses &amp; Projects</h1>
     <p>Twenty guided builds from first print to JSON configs. Open a project for step by step theory, incremental code, and a runnable playground.</p>
   </header>
-  <nav class="courses-filter" aria-label="Filter projects">
+  <nav class="courses-filter" id="courses-filter" aria-label="Filter projects">
     <button type="button" class="courses-filter-btn active" data-filter="all">Everything</button>
     <button type="button" class="courses-filter-btn" data-filter="beginner">Beginner</button>
     <button type="button" class="courses-filter-btn" data-filter="intermediate">Intermediate</button>
@@ -1149,8 +1191,7 @@ def build_course_sidebar(projects: list[CourseProject], active_page: str) -> str
 def write_course_pages(projects: list[CourseProject], sidebar: dict[str, list[tuple[str, str]]]) -> None:
     course_sidebar = build_course_sidebar(projects, "")
     hub_body = build_courses_hub_body(projects)
-    hub_headings = headings_from_html(hub_body)
-    hub_toc = build_toc(hub_headings)
+    hub_toc = build_courses_hub_toc(projects)
     hub_page = shell(
         "courses.html",
         "Courses",

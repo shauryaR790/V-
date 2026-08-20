@@ -1386,20 +1386,20 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .courses-hub-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .courses-hub-header h1 {
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-size: clamp(1.75rem, 2.8vw, 2.35rem);
   font-weight: 700;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.65rem;
   letter-spacing: -0.02em;
 }
 
 .courses-hub-header p {
   color: var(--text-muted);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 1.125rem;
+  line-height: 1.65;
   margin: 0;
 }
 
@@ -1407,8 +1407,9 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
-  margin-bottom: 1.25rem;
-  padding-bottom: 0.65rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .page-courses-hub .course-grid {
@@ -1426,19 +1427,21 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .page-courses-hub .course-card-thumb {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 11;
 }
 
 .page-courses-hub .course-card-body {
-  padding: 0.75rem 0.85rem 0.9rem;
+  padding: 0.85rem 0.9rem 0.95rem;
+  border-top: 1px solid var(--border-subtle);
 }
 
 .page-courses-hub .course-card-title {
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
+  font-weight: 500;
 }
 
 .page-courses-hub .course-card-summary {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.55;
   -webkit-line-clamp: 2;
 }
@@ -1469,7 +1472,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   position: absolute;
   left: 0.65rem;
   right: 0.65rem;
-  bottom: -0.76rem;
+  bottom: -0.48rem;
   height: 2px;
   background: var(--yellow);
   border-radius: 2px;
@@ -1490,22 +1493,28 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.15s ease;
+}
+
+.course-card[hidden] {
+  display: none !important;
 }
 
 @media (hover: hover) {
   .course-card:hover {
-    border-color: var(--border-accent);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    border-color: var(--yellow);
     text-decoration: none;
+  }
+
+  .course-card:hover .course-card-title {
+    font-weight: 700;
   }
 }
 
 .course-card-thumb {
   position: relative;
   aspect-ratio: 16 / 9;
-  background: var(--code-bg);
+  background: #010409;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1557,6 +1566,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   flex-direction: column;
   gap: 0.45rem;
   flex: 1;
+  background: #010409;
 }
 
 .course-card-tag {
@@ -1569,10 +1579,11 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .course-card-title {
   font-size: 1.125rem;
-  font-weight: 600;
+  font-weight: 500;
   margin: 0;
   line-height: 1.35;
   letter-spacing: -0.01em;
+  transition: font-weight 0.15s ease;
 }
 
 .course-card-summary {
