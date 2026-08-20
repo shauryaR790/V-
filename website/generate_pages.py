@@ -810,7 +810,7 @@ def shell(
   {meta}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Shrikhand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{ASSET_PREFIX}css/style.css">
   <link rel="stylesheet" href="{ASSET_PREFIX}css/prism-vpp.css">
   <link rel="icon" href="{ASSET_PREFIX}assets/favicon.png">
@@ -965,7 +965,7 @@ def courses_hub_shell(
   {meta}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Shrikhand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{ASSET_PREFIX}css/style.css">
   <link rel="stylesheet" href="{ASSET_PREFIX}css/prism-vpp.css">
   <link rel="icon" href="{ASSET_PREFIX}assets/favicon.png">
@@ -999,16 +999,19 @@ def build_course_card(project: CourseProject) -> str:
     tag = project.level
     return f"""<a href="{ASSET_PREFIX}{project.page_name}" class="course-card" data-level="{html.escape(project.level_key)}">
   <div class="course-card-thumb" aria-hidden="true">
+    <div class="course-card-grid"></div>
     <div class="course-card-glow"></div>
-    <img src="{ASSET_PREFIX}assets/logo-header.png" alt="" class="course-card-logo">
-    <span class="course-card-thumb-label">{html.escape(project.title)}</span>
+    <div class="course-card-cover">
+      <img src="{ASSET_PREFIX}assets/logo-header.png" alt="" class="course-card-logo">
+      <span class="course-card-thumb-label">{html.escape(project.title)}</span>
+    </div>
   </div>
   <div class="course-card-body">
     <span class="course-card-tag">{html.escape(tag)}</span>
     <h2 class="course-card-title">{html.escape(project.title)}</h2>
     <p class="course-card-summary">{html.escape(clean_prose(project.summary))}</p>
     <div class="course-card-meta">
-      <span class="course-card-avatar" aria-hidden="true">V+</span>
+      <span class="course-card-avatar" aria-hidden="true">V++</span>
       <div>
         <span class="course-card-author">{BRAND} Curriculum</span>
         <span class="course-card-date">Project {project.num:02d}</span>

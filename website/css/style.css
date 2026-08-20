@@ -19,6 +19,7 @@
   --yellow-light: rgba(251, 219, 90, 0.12);
   --yellow-muted: rgba(251, 219, 90, 0.22);
   --font: "IBM Plex Sans", system-ui, sans-serif;
+  --display: "Shrikhand", cursive;
   --mono: "IBM Plex Mono", "Consolas", monospace;
   --header-h: 72px;
   --home-vpad: 1.25rem;
@@ -1482,32 +1483,53 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.65rem;
   overflow: hidden;
+}
+
+.course-card-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(251, 219, 90, 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(251, 219, 90, 0.22) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 42%, #000 15%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 42%, #000 15%, transparent 70%);
 }
 
 .course-card-glow {
   position: absolute;
-  inset: 20% 15%;
-  background: radial-gradient(ellipse at center, rgba(251, 219, 90, 0.35), transparent 70%);
-  filter: blur(8px);
+  inset: 12% 8%;
+  z-index: 1;
+  background: radial-gradient(ellipse at center, rgba(251, 219, 90, 0.38), transparent 68%);
+  filter: blur(10px);
+}
+
+.course-card-cover {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  padding: 0 1rem;
+  text-align: center;
 }
 
 .course-card-logo {
-  width: 56px;
+  width: 96px;
   height: auto;
-  position: relative;
-  z-index: 1;
 }
 
 .course-card-thumb-label {
-  position: relative;
-  z-index: 1;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-align: center;
-  padding: 0 0.75rem;
+  font-family: var(--display);
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--text);
+  letter-spacing: 0.01em;
 }
 
 .course-card-body {
@@ -1554,14 +1576,15 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .course-card-avatar {
-  width: 2rem;
-  height: 2rem;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: 50%;
   background: var(--yellow-light);
   border: 1px solid var(--border-accent);
   color: var(--yellow);
-  font-size: 0.6875rem;
+  font-size: 0.5625rem;
   font-weight: 700;
+  letter-spacing: -0.02em;
   display: flex;
   align-items: center;
   justify-content: center;
