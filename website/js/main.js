@@ -2,7 +2,7 @@ const CODE_LINE_COUNT = 30;
 
 const CODE_SAMPLES = {
   hello: {
-    lang: "javascript",
+    lang: "vpp",
     label: "hello.vpp",
     code: `// hello.vpp — run: vpp run hello.vpp
 import std.io
@@ -36,7 +36,7 @@ fn main() -> int {
 }`,
   },
   native: {
-    lang: "javascript",
+    lang: "vpp",
     label: "user.vpp",
     code: `import std.io
 
@@ -99,7 +99,7 @@ $env:LLVM_SYS_221_PREFIX = "C:\\Program Files\\LLVM"
 vpp build app.vpp -o app.exe`,
   },
   test: {
-    lang: "javascript",
+    lang: "vpp",
     label: "tests.vpp",
     code: `fn add(a: int, b: int) -> int {
     return a + b

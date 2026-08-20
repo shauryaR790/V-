@@ -173,7 +173,7 @@ vpp update</code></pre>
 <p>Create a file named <code>hello.vpp</code>:</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     print(&quot;v++ program started&quot;)
     return 0
 }</code></pre>
@@ -591,7 +591,7 @@ vpp remove hello-lib</code></pre>
 <h2 id="inline-test-blocks">Inline test blocks</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">test &quot;addition works&quot; {
+<pre class="language-vpp"><code class="language-vpp">test &quot;addition works&quot; {
     assert_eq(add(2, 3), 5)
 }</code></pre>
 </div>
@@ -645,7 +645,7 @@ cargo test --features codegen parity</code></pre>
 <h2 id="if-else">if / else</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">if x &gt; 0 {
+<pre class="language-vpp"><code class="language-vpp">if x &gt; 0 {
     print(&quot;positive&quot;)
 } else {
     print(&quot;non-positive&quot;)
@@ -654,7 +654,7 @@ cargo test --features codegen parity</code></pre>
 <h2 id="while">while</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">let mut i = 0
+<pre class="language-vpp"><code class="language-vpp">let mut i = 0
 while i &lt; 3 {
     print(i)
     i = i + 1
@@ -663,21 +663,21 @@ while i &lt; 3 {
 <h2 id="for-range">for (range)</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">for i in 0..3 {
+<pre class="language-vpp"><code class="language-vpp">for i in 0..3 {
     print(i)
 }</code></pre>
 </div>
 <h2 id="for-array">for (array)</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">for name in [&quot;Alex&quot;, &quot;Sam&quot;] {
+<pre class="language-vpp"><code class="language-vpp">for name in [&quot;Alex&quot;, &quot;Sam&quot;] {
     print(name)
 }</code></pre>
 </div>
 <h2 id="match">match</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">match status {
+<pre class="language-vpp"><code class="language-vpp">match status {
     Active =&gt; print(&quot;on&quot;),
     Idle =&gt; print(&quot;off&quot;),
 }</code></pre>
@@ -689,7 +689,7 @@ while i &lt; 3 {
 <h1 id="functions">Functions</h1>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn greet(name: string) -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">fn greet(name: string) -&gt; int {
     print(name)
     return 0
 }</code></pre>
@@ -697,7 +697,7 @@ while i &lt; 3 {
 <h2 id="main">Main</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     print(&quot;starting&quot;)
     return 0
 }</code></pre>
@@ -705,7 +705,7 @@ while i &lt; 3 {
 <h2 id="generic-functions-v0-4">Generic functions (v0.4+)</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn id[T](x: T) -&gt; T {
+<pre class="language-vpp"><code class="language-vpp">fn id[T](x: T) -&gt; T {
     return x
 }
 
@@ -717,7 +717,7 @@ print(id[int](42))</code></pre>
 <p>V++ uses <strong>monomorphization</strong> — generic functions are specialized at each call site.</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn first[T](items: array[T]) -&gt; Option[T] {
+<pre class="language-vpp"><code class="language-vpp">fn first[T](items: array[T]) -&gt; Option[T] {
     if len(items) == 0 {
         return None
     }
@@ -727,14 +727,14 @@ print(id[int](42))</code></pre>
 <p>Call with explicit type args:</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">let word = first[string]([&quot;a&quot;, &quot;b&quot;])</code></pre>
+<pre class="language-vpp"><code class="language-vpp">let word = first[string]([&quot;a&quot;, &quot;b&quot;])</code></pre>
 </div>
 <p>Example: <a href="../../examples/generics.vpp"><code>examples/generics.vpp</code></a>.</p>
 <h1 id="modules">Modules</h1>
 <h2 id="standard-library-imports">Standard library imports</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import std.io
+<pre class="language-vpp"><code class="language-vpp">import std.io
 import std.math
 
 fn main() -&gt; int {
@@ -747,7 +747,7 @@ fn main() -&gt; int {
 <p>In a module file, mark items with <code>pub</code>:</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">pub fn helper() -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">pub fn helper() -&gt; int {
     return 1
 }</code></pre>
 </div>
@@ -764,13 +764,13 @@ fn main() -&gt; int {
 <p>Bindings are <strong>immutable by default</strong>.</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">let x = 1
+<pre class="language-vpp"><code class="language-vpp">let x = 1
 // x = 2   // error: cannot reassign immutable binding</code></pre>
 </div>
 <p>Use <code>mut</code> when you need to reassign:</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">let mut count = 0
+<pre class="language-vpp"><code class="language-vpp">let mut count = 0
 count = count + 1</code></pre>
 </div>
 <p>Loop counters and accumulators typically need <code>mut</code>.</p>
@@ -778,13 +778,13 @@ count = count + 1</code></pre>
 <h2 id="option">Option</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">let some = Some(42)
+<pre class="language-vpp"><code class="language-vpp">let some = Some(42)
 let none: Option[int] = None</code></pre>
 </div>
 <h2 id="result">Result</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn divide(a: int, b: int) -&gt; Result[int, string] {
+<pre class="language-vpp"><code class="language-vpp">fn divide(a: int, b: int) -&gt; Result[int, string] {
     if b == 0 {
         return Err(&quot;division by zero&quot;)
     }
@@ -795,7 +795,7 @@ let none: Option[int] = None</code></pre>
 <p>The compiler rejects non-exhaustive matches on enums, <code>Option</code>, and <code>Result</code>:</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">match opt {
+<pre class="language-vpp"><code class="language-vpp">match opt {
     Some(x) =&gt; print(x),
     None =&gt; print(&quot;empty&quot;),
 }</code></pre>
@@ -859,7 +859,7 @@ let none: Option[int] = None</code></pre>
 <h2 id="struct">Struct</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">struct User {
+<pre class="language-vpp"><code class="language-vpp">struct User {
     name: string,
     age: int,
 }
@@ -870,7 +870,7 @@ print(u.name)</code></pre>
 <h2 id="enum">Enum</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">enum Status {
+<pre class="language-vpp"><code class="language-vpp">enum Status {
     Active,
     Idle,
 }
@@ -884,7 +884,7 @@ match s {
 <h2 id="enum-with-payloads">Enum with payloads</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">enum Message {
+<pre class="language-vpp"><code class="language-vpp">enum Message {
     Text(string),
     Count(int),
 }</code></pre>
@@ -894,7 +894,7 @@ match s {
 <p>Static dispatch — no virtual tables at runtime.</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">trait Display {
+<pre class="language-vpp"><code class="language-vpp">trait Display {
     fn to_text(self) -&gt; string
 }
 
@@ -951,28 +951,28 @@ print(u.to_text())</code></pre>
 <h2 id="local-inference">Local inference</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">let x = 10        // int
+<pre class="language-vpp"><code class="language-vpp">let x = 10        // int
 let name = &quot;v++&quot;  // string
 let active = true // bool</code></pre>
 </div>
 <h2 id="explicit-annotations">Explicit annotations</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">let count: int = 0
+<pre class="language-vpp"><code class="language-vpp">let count: int = 0
 let items: array[string] = [&quot;a&quot;, &quot;b&quot;]</code></pre>
 </div>
 <h2 id="function-signatures">Function signatures</h2>
 <p>Parameters and return types are <strong>always explicit</strong>:</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn add(a: int, b: int) -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">fn add(a: int, b: int) -&gt; int {
     return a + b
 }</code></pre>
 </div>
 <h2 id="entry-point">Entry point</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     return 0
 }</code></pre>
 </div>
@@ -1127,14 +1127,14 @@ let items: array[string] = [&quot;a&quot;, &quot;b&quot;]</code></pre>
 <p>Collection helpers. See <a href="../../std/collections.vpp"><code>std/collections.vpp</code></a>.</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import std.collections</code></pre>
+<pre class="language-vpp"><code class="language-vpp">import std.collections</code></pre>
 </div>
 <p>Arrays are first-class: <code>[1, 2, 3]</code>, <code>len(arr)</code>, <code>for x in arr</code>.</p>
 <h1 id="std-fs">std.fs</h1>
 <p>File system access (native codegen supported).</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import std.fs
+<pre class="language-vpp"><code class="language-vpp">import std.fs
 
 let text = fs.read_file(&quot;data.txt&quot;)
 fs.write_file(&quot;out.txt&quot;, &quot;hello&quot;)
@@ -1144,7 +1144,7 @@ let exists = fs.file_exists(&quot;data.txt&quot;)</code></pre>
 <h1 id="std-io">std.io</h1>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import std.io
+<pre class="language-vpp"><code class="language-vpp">import std.io
 
 fn main() -&gt; int {
     io.print(&quot;Hello&quot;)
@@ -1156,7 +1156,7 @@ fn main() -&gt; int {
 <p>JSON parse and stringify (native codegen supported).</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import std.json
+<pre class="language-vpp"><code class="language-vpp">import std.json
 
 let obj = json.parse(&quot;{\&quot;name\&quot;:\&quot;v++\&quot;}&quot;)
 let s = json.stringify(obj)</code></pre>
@@ -1165,7 +1165,7 @@ let s = json.stringify(obj)</code></pre>
 <h1 id="std-math">std.math</h1>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import std.math
+<pre class="language-vpp"><code class="language-vpp">import std.math
 
 print(math.abs(-5))
 print(math.min(3, 7))
@@ -1176,7 +1176,7 @@ print(math.pow(2, 10))</code></pre>
 <p>Run external processes (native codegen supported).</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import std.process
+<pre class="language-vpp"><code class="language-vpp">import std.process
 
 let code = process.run(&quot;echo hello&quot;)</code></pre>
 </div>
@@ -1222,7 +1222,7 @@ let code = process.run(&quot;echo hello&quot;)</code></pre>
 <p>String operations via the stdlib module. See <a href="../../std/string.vpp"><code>std/string.vpp</code></a> for current exports.</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import std.string</code></pre>
+<pre class="language-vpp"><code class="language-vpp">import std.string</code></pre>
 </div>
 <p>Built-in <code>string</code> type supports concatenation with <code>+</code> in the language.</p>
 <h1 id="v">V++</h1>
@@ -1914,7 +1914,7 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 <h3 id="std-assert-vpp"><code>std/assert.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">// Re-exports assert helpers (implemented as compiler builtins).
+<pre class="language-vpp"><code class="language-vpp">// Re-exports assert helpers (implemented as compiler builtins).
 // Import this module to use assert / assert_eq in tests.
 
 fn assert_true(condition: bool) -&gt; int {
@@ -1928,7 +1928,7 @@ fn assert_true(condition: bool) -&gt; int {
 <h3 id="std-collections-vpp"><code>std/collections.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">pub fn make_int_array(values: array[int]) -&gt; array[int] {
+<pre class="language-vpp"><code class="language-vpp">pub fn make_int_array(values: array[int]) -&gt; array[int] {
     return values
 }
 
@@ -1959,7 +1959,7 @@ pub fn sum(arr: array[int]) -&gt; int {
 <h3 id="std-fs-vpp"><code>std/fs.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">// File I/O via compiler/runtime builtins (read_file, write_file, file_exists).
+<pre class="language-vpp"><code class="language-vpp">// File I/O via compiler/runtime builtins (read_file, write_file, file_exists).
 
 pub fn read(path: string) -&gt; string {
     return read_file(path)
@@ -1978,7 +1978,7 @@ pub fn exists(path: string) -&gt; bool {
 <h3 id="std-io-vpp"><code>std/io.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">pub fn greet(name: string) -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">pub fn greet(name: string) -&gt; int {
     print(&quot;Hello, &quot; + name + &quot;!&quot;)
     return 0
 }
@@ -1997,7 +1997,7 @@ pub fn print_int(n: int) -&gt; int {
 <h3 id="std-json-vpp"><code>std/json.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">// Minimal JSON helpers via runtime builtins.
+<pre class="language-vpp"><code class="language-vpp">// Minimal JSON helpers via runtime builtins.
 
 pub fn parse(raw: string) -&gt; string {
     return json_parse(raw)
@@ -2011,7 +2011,7 @@ pub fn stringify(raw: string) -&gt; string {
 <h3 id="std-math-vpp"><code>std/math.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">pub fn add(a: int, b: int) -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">pub fn add(a: int, b: int) -&gt; int {
     return a + b
 }
 
@@ -2060,7 +2060,7 @@ pub fn clamp(n: int, lo: int, hi: int) -&gt; int {
 <h3 id="std-process-vpp"><code>std/process.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">// Process helpers via runtime builtins.
+<pre class="language-vpp"><code class="language-vpp">// Process helpers via runtime builtins.
 
 pub fn run(cmd: string) -&gt; int {
     return process_run(cmd)
@@ -2074,7 +2074,7 @@ pub fn exit_code(cmd: string) -&gt; int {
 <h3 id="std-string-vpp"><code>std/string.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">pub fn upper(s: string) -&gt; string {
+<pre class="language-vpp"><code class="language-vpp">pub fn upper(s: string) -&gt; string {
     return s
 }
 
@@ -2100,7 +2100,7 @@ pub fn is_empty(s: string) -&gt; bool {
 <h3 id="examples-arrays-vpp"><code>examples/arrays.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">let users = [&quot;Alex&quot;, &quot;Sam&quot;, &quot;John&quot;]
+<pre class="language-vpp"><code class="language-vpp">let users = [&quot;Alex&quot;, &quot;Sam&quot;, &quot;John&quot;]
 
 for user in users {
     print(user)
@@ -2124,7 +2124,7 @@ for i in 0..3 {
 <h3 id="examples-arrays-fn-vpp"><code>examples/arrays_fn.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn sum_nums(nums: array[int]) -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">fn sum_nums(nums: array[int]) -&gt; int {
     let mut total = 0
     for n in nums {
         total = total + n
@@ -2147,7 +2147,7 @@ print(first(words))
 <h3 id="examples-fib-vpp"><code>examples/fib.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn fib(n: int) -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">fn fib(n: int) -&gt; int {
     if n &lt;= 1 {
         return n
     }
@@ -2161,7 +2161,7 @@ print(result)
 <h3 id="examples-generics-vpp"><code>examples/generics.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn id[T](x: T) -&gt; T {
+<pre class="language-vpp"><code class="language-vpp">fn id[T](x: T) -&gt; T {
     return x
 }
 
@@ -2182,7 +2182,7 @@ fn main() -&gt; int {
 <h3 id="examples-hello-vpp"><code>examples/hello.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import std.fs
+<pre class="language-vpp"><code class="language-vpp">import std.fs
 import std.json
 import std.process
 
@@ -2269,7 +2269,7 @@ fn main() -&gt; int {
 <h3 id="examples-lesson01-basics-vpp"><code>examples/lesson01_basics.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">// Lesson 1: Variables, math, and printing
+<pre class="language-vpp"><code class="language-vpp">// Lesson 1: Variables, math, and printing
 
 let x = 10
 let y = 3
@@ -2285,7 +2285,7 @@ print(&quot;Hello, &quot; + name + &quot;!&quot;)
 <h3 id="examples-lesson02-functions-vpp"><code>examples/lesson02_functions.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">// Lesson 2: Functions and conditionals
+<pre class="language-vpp"><code class="language-vpp">// Lesson 2: Functions and conditionals
 
 import &quot;std/math.vpp&quot;
 
@@ -2312,7 +2312,7 @@ main()
 <h3 id="examples-lesson03-loops-vpp"><code>examples/lesson03_loops.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">// Lesson 3: Loops, arrays, and break/continue
+<pre class="language-vpp"><code class="language-vpp">// Lesson 3: Loops, arrays, and break/continue
 
 let mut total = 0
 for n in 1..6 {
@@ -2335,7 +2335,7 @@ for item in nums {
 <h3 id="examples-match-test-vpp"><code>examples/match_test.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn ok_val() -&gt; Result&lt;int, string&gt; {
+<pre class="language-vpp"><code class="language-vpp">fn ok_val() -&gt; Result&lt;int, string&gt; {
     return Ok(42)
 }
 
@@ -2353,7 +2353,7 @@ match r {
 <h3 id="examples-math-vpp"><code>examples/math.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">pub fn add(a: int, b: int) -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">pub fn add(a: int, b: int) -&gt; int {
     return a + b
 }
 
@@ -2365,7 +2365,7 @@ pub fn mul(a: int, b: int) -&gt; int {
 <h3 id="examples-modules-main-vpp"><code>examples/modules_main.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import &quot;math.vpp&quot;
+<pre class="language-vpp"><code class="language-vpp">import &quot;math.vpp&quot;
 
 let x = add(2, 3)
 let y = mul(x, 4)
@@ -2375,7 +2375,7 @@ print(y)
 <h3 id="examples-option-result-vpp"><code>examples/option_result.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn divide(a: int, b: int) -&gt; Result&lt;int, string&gt; {
+<pre class="language-vpp"><code class="language-vpp">fn divide(a: int, b: int) -&gt; Result&lt;int, string&gt; {
     if b == 0 {
         return Err(&quot;division by zero&quot;)
     }
@@ -2413,7 +2413,7 @@ match m {
 <h3 id="examples-scope-shadow-vpp"><code>examples/scope_shadow.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">// Scope shadowing: inner block must not leak bindings.
+<pre class="language-vpp"><code class="language-vpp">// Scope shadowing: inner block must not leak bindings.
 let x = 10
 if true {
     let x = 20
@@ -2425,7 +2425,7 @@ print(x)
 <h3 id="examples-std-builtins-vpp"><code>examples/std_builtins.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import std.fs
+<pre class="language-vpp"><code class="language-vpp">import std.fs
 import std.json
 
 fn main() -&gt; int {
@@ -2443,7 +2443,7 @@ fn main() -&gt; int {
 <h3 id="examples-structs-vpp"><code>examples/structs.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">struct Person {
+<pre class="language-vpp"><code class="language-vpp">struct Person {
     name: string
     age: int
 }
@@ -2462,7 +2462,7 @@ print(greet(alex))
 <h3 id="examples-traits-vpp"><code>examples/traits.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">enum Status {
+<pre class="language-vpp"><code class="language-vpp">enum Status {
     Active
     Inactive
 }
@@ -2634,7 +2634,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> <code>fn main</code>, <code>print</code>, return code</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     print(&quot;Hello, v++!&quot;)
     return 0
 }
@@ -2649,7 +2649,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> <code>let</code>, type inference, <code>+</code> on int and string</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let x = 10
     let y = 3
     print(x + y)
@@ -2671,7 +2671,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> <code>fn</code>, <code>return</code>, function signatures</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn add(a: int, b: int) -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">fn add(a: int, b: int) -&gt; int {
     return a + b
 }
 
@@ -2695,7 +2695,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> <code>while</code>, <code>for</code>, <code>0..n</code>, <code>let mut</code></p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn main() -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let mut i = 0
     while i &lt; 5 {
         print(i)
@@ -2723,7 +2723,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> arrays, indexing, <code>import std.collections</code></p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn sum(nums: array[int]) -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">fn sum(nums: array[int]) -&gt; int {
     let mut total = 0
     for n in nums {
         total = total + n
@@ -2758,7 +2758,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> <code>struct</code>, field access, passing structs to functions</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">struct Point {
+<pre class="language-vpp"><code class="language-vpp">struct Point {
     x: int
     y: int
 }
@@ -2792,7 +2792,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> <code>enum</code>, variants, <code>match</code></p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">enum TrafficLight {
+<pre class="language-vpp"><code class="language-vpp">enum TrafficLight {
     Red
     Yellow
     Green
@@ -2834,7 +2834,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> <code>Option</code>, <code>Result</code>, <code>Some</code>/<code>None</code>, <code>Ok</code>/<code>Err</code></p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {
+<pre class="language-vpp"><code class="language-vpp">fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {
     if b == 0 {
         return Err(&quot;division by zero&quot;)
     }
@@ -2886,7 +2886,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> exhaustive match, enum patterns</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">enum Day {
+<pre class="language-vpp"><code class="language-vpp">enum Day {
     Mon
     Tue
     Wed
@@ -2944,7 +2944,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> <code>%</code>, <code>while</code>, functions</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn fizzbuzz(n: int) -&gt; string {
+<pre class="language-vpp"><code class="language-vpp">fn fizzbuzz(n: int) -&gt; string {
     if n % 15 == 0 {
         return &quot;FizzBuzz&quot;
     }
@@ -2981,7 +2981,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> recursion, base case</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn fib(n: int) -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">fn fib(n: int) -&gt; int {
     if n &lt;= 1 {
         return n
     }
@@ -3006,7 +3006,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> <code>fn name[T]</code>, explicit type args <code>id<a href="42">int</a></code></p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn id[T](x: T) -&gt; T {
+<pre class="language-vpp"><code class="language-vpp">fn id[T](x: T) -&gt; T {
     return x
 }
 
@@ -3033,7 +3033,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> traits, impl blocks, <code>self.area()</code></p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">struct Circle {
+<pre class="language-vpp"><code class="language-vpp">struct Circle {
     radius: int
 }
 
@@ -3076,7 +3076,7 @@ vpp run main.vpp</code></pre>
 <p><strong>Concepts:</strong> local imports, <code>pub</code> exports</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import &quot;math.vpp&quot;
+<pre class="language-vpp"><code class="language-vpp">import &quot;math.vpp&quot;
 
 fn main() -&gt; int {
     let sum = add(10, 5)
@@ -3096,7 +3096,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> enum + match, <code>Result</code></p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">enum Op {
+<pre class="language-vpp"><code class="language-vpp">enum Op {
     Add
     Sub
     Mul
@@ -3151,7 +3151,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> <code>array[string]</code>, <code>len</code>, loops</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn total_chars(words: array[string]) -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">fn total_chars(words: array[string]) -&gt; int {
     let mut total = 0
     for w in words {
         total = total + len(w)
@@ -3187,7 +3187,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> conditionals, arrays of guesses, game logic</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn hint(guess: int, secret: int) -&gt; string {
+<pre class="language-vpp"><code class="language-vpp">fn hint(guess: int, secret: int) -&gt; string {
     if guess &lt; secret {
         return &quot;too low&quot;
     }
@@ -3227,7 +3227,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> struct, bool, conditional printing</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">struct Todo {
+<pre class="language-vpp"><code class="language-vpp">struct Todo {
     title: string
     done: bool
 }
@@ -3268,7 +3268,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> <code>fs.write</code>, <code>fs.read</code>, <code>fs.exists</code></p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import std.fs
+<pre class="language-vpp"><code class="language-vpp">import std.fs
 
 fn main() -&gt; int {
     let path = &quot;note.txt&quot;
@@ -3292,7 +3292,7 @@ fn main() -&gt; int {
 <p><strong>Concepts:</strong> <code>std.json</code>, struct config, <code>vpp.toml</code> project layout</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import std.json
+<pre class="language-vpp"><code class="language-vpp">import std.json
 
 struct AppConfig {
     name: string
@@ -3333,7 +3333,7 @@ entry = &quot;main.vpp&quot;
 <h3 id="stress-vpp"><code>stress.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import std.fs
+<pre class="language-vpp"><code class="language-vpp">import std.fs
 import std.json
 import std.process
 
@@ -3600,7 +3600,7 @@ path = &quot;fixtures/hello-lib&quot;
 <h3 id="registry-fixtures-hello-lib-src-lib-vpp"><code>registry/fixtures/hello-lib/src/lib.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">pub fn greet(name: string) -&gt; string {
+<pre class="language-vpp"><code class="language-vpp">pub fn greet(name: string) -&gt; string {
     return &quot;hello, &quot; + name
 }
 </code></pre>
@@ -3616,7 +3616,7 @@ entry = &quot;src/lib.vpp&quot;
 <h3 id="staging-std-assert-vpp"><code>staging/std/assert.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">// Re-exports assert helpers (implemented as compiler builtins).
+<pre class="language-vpp"><code class="language-vpp">// Re-exports assert helpers (implemented as compiler builtins).
 // Import this module to use assert / assert_eq in tests.
 
 fn assert_true(condition: bool) -&gt; int {
@@ -3630,7 +3630,7 @@ fn assert_true(condition: bool) -&gt; int {
 <h3 id="staging-std-collections-vpp"><code>staging/std/collections.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">pub fn make_int_array(values: array[int]) -&gt; array[int] {
+<pre class="language-vpp"><code class="language-vpp">pub fn make_int_array(values: array[int]) -&gt; array[int] {
     return values
 }
 
@@ -3661,7 +3661,7 @@ pub fn sum(arr: array[int]) -&gt; int {
 <h3 id="staging-std-fs-vpp"><code>staging/std/fs.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">// File I/O via compiler/runtime builtins (read_file, write_file, file_exists).
+<pre class="language-vpp"><code class="language-vpp">// File I/O via compiler/runtime builtins (read_file, write_file, file_exists).
 
 pub fn read(path: string) -&gt; string {
     return read_file(path)
@@ -3680,7 +3680,7 @@ pub fn exists(path: string) -&gt; bool {
 <h3 id="staging-std-io-vpp"><code>staging/std/io.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">pub fn greet(name: string) -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">pub fn greet(name: string) -&gt; int {
     print(&quot;Hello, &quot; + name + &quot;!&quot;)
     return 0
 }
@@ -3699,7 +3699,7 @@ pub fn print_int(n: int) -&gt; int {
 <h3 id="staging-std-json-vpp"><code>staging/std/json.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">// Minimal JSON helpers via runtime builtins.
+<pre class="language-vpp"><code class="language-vpp">// Minimal JSON helpers via runtime builtins.
 
 pub fn parse(raw: string) -&gt; string {
     return json_parse(raw)
@@ -3713,7 +3713,7 @@ pub fn stringify(raw: string) -&gt; string {
 <h3 id="staging-std-math-vpp"><code>staging/std/math.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">pub fn add(a: int, b: int) -&gt; int {
+<pre class="language-vpp"><code class="language-vpp">pub fn add(a: int, b: int) -&gt; int {
     return a + b
 }
 
@@ -3762,7 +3762,7 @@ pub fn clamp(n: int, lo: int, hi: int) -&gt; int {
 <h3 id="staging-std-process-vpp"><code>staging/std/process.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">// Process helpers via runtime builtins.
+<pre class="language-vpp"><code class="language-vpp">// Process helpers via runtime builtins.
 
 pub fn run(cmd: string) -&gt; int {
     return process_run(cmd)
@@ -3776,7 +3776,7 @@ pub fn exit_code(cmd: string) -&gt; int {
 <h3 id="staging-std-string-vpp"><code>staging/std/string.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">pub fn upper(s: string) -&gt; string {
+<pre class="language-vpp"><code class="language-vpp">pub fn upper(s: string) -&gt; string {
     return s
 }
 
@@ -3802,7 +3802,7 @@ pub fn is_empty(s: string) -&gt; bool {
 <h3 id="staging-examples-hello-vpp"><code>staging/examples/hello.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import std.fs
+<pre class="language-vpp"><code class="language-vpp">import std.fs
 import std.json
 import std.process
 
@@ -3889,7 +3889,7 @@ fn main() -&gt; int {
 <h3 id="tests-fixtures-module-bad-vpp"><code>tests/fixtures/module_bad.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import std.math
+<pre class="language-vpp"><code class="language-vpp">import std.math
 
 fn main() -&gt; int {
     return add(1, 2)
@@ -3899,7 +3899,7 @@ fn main() -&gt; int {
 <h3 id="tests-fixtures-module-math-vpp"><code>tests/fixtures/module_math.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import std.math
+<pre class="language-vpp"><code class="language-vpp">import std.math
 
 fn main() -&gt; int {
     let x = math.add(1, 2)
@@ -3910,7 +3910,7 @@ fn main() -&gt; int {
 <h3 id="tests-fixtures-smoke-vpp"><code>tests/fixtures/smoke.vpp</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>V++</span></div>
-<pre class="language-javascript"><code class="language-javascript">import &quot;std/math.vpp&quot;
+<pre class="language-vpp"><code class="language-vpp">import &quot;std/math.vpp&quot;
 
 test &quot;addition&quot; {
     assert_eq(add(1, 1), 2)
@@ -3924,7 +3924,7 @@ test &quot;power&quot; {
 <h3 id="tests-arrays-rs"><code>tests/arrays.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
-<pre class="language-javascript"><code class="language-javascript">use std::path::PathBuf;
+<pre class="language-rust"><code class="language-rust">use std::path::PathBuf;
 
 use vpp::check_path;
 use vpp::ir::{lower_program, IrType};
@@ -3957,7 +3957,7 @@ fn array_type_maps_to_heap_ir_type() {
 <h3 id="tests-end-to-end-rs"><code>tests/end_to_end.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
-<pre class="language-javascript"><code class="language-javascript">#[cfg(feature = &quot;codegen&quot;)]
+<pre class="language-rust"><code class="language-rust">#[cfg(feature = &quot;codegen&quot;)]
 mod native {
     use std::path::PathBuf;
     use std::process::Command;
@@ -4024,7 +4024,7 @@ mod native {
 <h3 id="tests-lexer-rs"><code>tests/lexer.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
-<pre class="language-javascript"><code class="language-javascript">use vpp::lexer::Lexer;
+<pre class="language-rust"><code class="language-rust">use vpp::lexer::Lexer;
 use vpp::lexer::TokenKind;
 
 #[test]
@@ -4050,7 +4050,7 @@ fn lexes_operators() {
 <h3 id="tests-modules-rs"><code>tests/modules.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
-<pre class="language-javascript"><code class="language-javascript">//! Module system integration tests.
+<pre class="language-rust"><code class="language-rust">//! Module system integration tests.
 
 use std::path::PathBuf;
 
@@ -4086,7 +4086,7 @@ fn rejects_unqualified_module_function() {
 <h3 id="tests-parity-rs"><code>tests/parity.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
-<pre class="language-javascript"><code class="language-javascript">//! Interpreter vs native output parity tests.
+<pre class="language-rust"><code class="language-rust">//! Interpreter vs native output parity tests.
 //! Run: cargo test --features codegen parity -- --nocapture
 
 #![cfg(feature = &quot;codegen&quot;)]
@@ -4222,7 +4222,7 @@ fn traits_parity() {
 <h3 id="tests-parser-rs"><code>tests/parser.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
-<pre class="language-javascript"><code class="language-javascript">use vpp::parse;
+<pre class="language-rust"><code class="language-rust">use vpp::parse;
 
 #[test]
 fn parses_let_binding() {
@@ -4258,7 +4258,7 @@ fn parses_array_literal() {
 <h3 id="tests-pkg-rs"><code>tests/pkg.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
-<pre class="language-javascript"><code class="language-javascript">//! Package manager tests.
+<pre class="language-rust"><code class="language-rust">//! Package manager tests.
 
 use std::fs;
 
@@ -4337,7 +4337,7 @@ fn registry_version_dependency() {
 <h3 id="tests-stdlib-rs"><code>tests/stdlib.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
-<pre class="language-javascript"><code class="language-javascript">//! Stdlib fs/json/process parity and registry tests.
+<pre class="language-rust"><code class="language-rust">//! Stdlib fs/json/process parity and registry tests.
 
 #![cfg(feature = &quot;codegen&quot;)]
 
@@ -4464,7 +4464,7 @@ fn registry_resolves_hello_lib() {
 <h3 id="tests-test-runner-rs"><code>tests/test_runner.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
-<pre class="language-javascript"><code class="language-javascript">use std::path::PathBuf;
+<pre class="language-rust"><code class="language-rust">use std::path::PathBuf;
 
 #[test]
 fn runs_inline_test_blocks() {
@@ -4500,7 +4500,7 @@ fn init_scaffold_typechecks() {
 <h3 id="tests-typecheck-rs"><code>tests/typecheck.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
-<pre class="language-javascript"><code class="language-javascript">use vpp::check;
+<pre class="language-rust"><code class="language-rust">use vpp::check;
 use vpp::VppError;
 
 #[test]
@@ -4665,7 +4665,7 @@ insta = { version = &quot;1&quot;, features = [&quot;glob&quot;] }
 <h3 id="build-rs"><code>build.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
-<pre class="language-javascript"><code class="language-javascript">fn main() {
+<pre class="language-rust"><code class="language-rust">fn main() {
     if !cfg!(feature = &quot;codegen&quot;) {
         return;
     }
@@ -4718,7 +4718,7 @@ insta = { version = &quot;1&quot;, features = [&quot;glob&quot;] }
 <h3 id="src-lib-rs"><code>src/lib.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
-<pre class="language-javascript"><code class="language-javascript">pub mod ast;
+<pre class="language-rust"><code class="language-rust">pub mod ast;
 pub mod builtins;
 pub mod codegen;
 pub mod doctor;
@@ -4765,7 +4765,7 @@ pub use error::{VppError, VppResult};
 <h3 id="src-driver-rs"><code>src/driver.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
-<pre class="language-javascript"><code class="language-javascript">use std::path::{Path, PathBuf};
+<pre class="language-rust"><code class="language-rust">use std::path::{Path, PathBuf};
 
 use crate::error::{VppError, VppResult};
 use crate::modules::{LoadContext, LoadedProgram};
@@ -4986,7 +4986,7 @@ pub use crate::project::init_project;
 <h3 id="src-error-rs"><code>src/error.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
-<pre class="language-javascript"><code class="language-javascript">use miette::{Diagnostic, SourceSpan};
+<pre class="language-rust"><code class="language-rust">use miette::{Diagnostic, SourceSpan};
 use thiserror::Error;
 
 use crate::span::Span;
@@ -5229,7 +5229,7 @@ pub fn type_mismatch(
 <h3 id="src-bin-vppls-rs"><code>src/bin/vppls.rs</code></h3>
 <div class="code-block-wrap">
 <div class="code-block-header"><span>rust</span></div>
-<pre class="language-javascript"><code class="language-javascript">#[cfg(feature = &quot;lsp&quot;)]
+<pre class="language-rust"><code class="language-rust">#[cfg(feature = &quot;lsp&quot;)]
 #[tokio::main]
 async fn main() {
     vpp::lsp::run_server().await;
@@ -5387,6 +5387,8 @@ fn main() {
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-toml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-rust.min.js"></script>
+  <script src="/V-/js/prism-vpp.js"></script>
   <script src="/V-/js/main.js"></script>
 </body>
 </html>

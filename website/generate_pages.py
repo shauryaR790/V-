@@ -77,8 +77,8 @@ def md_to_html(text: str) -> str:
             display = label if label else "text"
         plang = {
             "powershell": "bash", "shell": "bash", "sh": "bash",
-            "vpp": "javascript", "v++": "javascript",
-            "toml": "toml", "bash": "bash", "rust": "javascript",
+            "vpp": "vpp", "v++": "vpp",
+            "toml": "toml", "bash": "bash", "rust": "rust",
         }.get(label, label or "text")
         code_text = html.escape("\n".join(code_lines))
         out.append('<div class="code-block-wrap">')
@@ -381,6 +381,8 @@ def shell(active: str, title: str, body: str, sidebar_html: str, toc_html: str, 
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-toml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-rust.min.js"></script>
+  <script src="{ASSET_PREFIX}js/prism-vpp.js"></script>
   <script src="{ASSET_PREFIX}js/main.js"></script>
 </body>
 </html>"""

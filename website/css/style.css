@@ -21,8 +21,8 @@
   --header-h: 72px;
   --nav-item-h: 44px;
   --btn-radius: 6px;
-  --sidebar-w: 260px;
-  --toc-w: 300px;
+  --sidebar-w: 300px;
+  --toc-w: 340px;
   --radius: 8px;
   --grid-yellow: rgba(251, 219, 90, 0.45);
   --code-bg: #000000;
@@ -482,7 +482,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   top: var(--header-h);
   height: calc(100vh - var(--header-h));
   overflow-y: auto;
-  padding: 1.5rem 0.75rem 2rem 1rem;
+  padding: 1.5rem 1rem 2rem 1.25rem;
   border-right: 1px solid var(--border-muted);
   background: var(--bg);
   scrollbar-width: none;
@@ -491,13 +491,13 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .docs-sidebar::-webkit-scrollbar { display: none; }
 
 .sidebar-group {
-  font-size: 0.68rem;
+  font-size: 0.82rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   color: var(--text);
-  opacity: 0.55;
-  margin: 1rem 0 0.35rem 0.5rem;
+  opacity: 0.65;
+  margin: 1.15rem 0 0.45rem 0.5rem;
 }
 
 .sidebar-group:first-child { margin-top: 0; }
@@ -506,13 +506,14 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .docs-sidebar li a {
   display: block;
-  padding: 0.35rem 0.65rem;
-  font-size: 0.8125rem;
+  padding: 0.42rem 0.75rem;
+  font-size: 0.9375rem;
   text-decoration: none;
   color: var(--text);
   border-radius: 6px;
   border-left: 2px solid transparent;
   transition: color 0.15s, background 0.15s, border-color 0.15s;
+  line-height: 1.4;
 }
 
 .docs-sidebar li a:hover { color: var(--text); }
@@ -599,7 +600,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   max-height: calc(100vh - var(--header-h));
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 1.75rem 1.25rem 3rem;
+  padding: 1.75rem 1.5rem 3rem 1.25rem;
   border-left: none;
   background: var(--bg);
   width: var(--toc-w);
@@ -650,23 +651,23 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .docs-article .glossary dd { margin: 0.25rem 0 0.5rem 1rem; color: var(--text-muted); font-size: 0.9rem; }
 
 .toc-label {
-  font-size: 0.68rem;
+  font-size: 0.82rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   color: var(--text);
-  opacity: 0.55;
-  margin-bottom: 0.75rem;
+  opacity: 0.65;
+  margin-bottom: 0.85rem;
   white-space: nowrap;
 }
 
 .docs-toc a {
   display: block;
-  font-size: 0.78rem;
-  padding: 0.2rem 0;
+  font-size: 0.92rem;
+  padding: 0.28rem 0;
   color: var(--text);
   text-decoration: none;
-  line-height: 1.35;
+  line-height: 1.4;
   word-wrap: break-word;
   overflow-wrap: break-word;
   border-left: 2px solid transparent;
@@ -682,9 +683,9 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   text-decoration: none;
 }
 
-.docs-toc .toc-h2 a { padding-left: 0.35rem; font-size: 0.76rem; }
-.docs-toc .toc-h3 a { padding-left: 0.85rem; font-size: 0.74rem; }
-.docs-toc .toc-h4 a { padding-left: 1.35rem; font-size: 0.72rem; }
+.docs-toc .toc-h2 a { padding-left: 0.35rem; font-size: 0.88rem; }
+.docs-toc .toc-h3 a { padding-left: 0.85rem; font-size: 0.85rem; }
+.docs-toc .toc-h4 a { padding-left: 1.35rem; font-size: 0.82rem; }
 
 /* Footer */
 .site-footer {
