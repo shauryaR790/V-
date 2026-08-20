@@ -471,10 +471,9 @@ function mountHomeCode(key) {
   if (!pre) return;
 
   const padded = padToLineCount(sample.code, CODE_LINE_COUNT, sample.lang);
-  const highlights = key === "hello" ? [10, 14, 18, 22, 30] : [];
 
   pre.className = `language-${sample.lang} home-code-pre code-block-pre`;
-  renderLineBasedCode(pre, padded, sample.lang, highlights);
+  renderLineBasedCode(pre, padded, sample.lang, []);
 
   if (langLabel) langLabel.textContent = sample.label;
 

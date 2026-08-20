@@ -257,6 +257,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .page-home .home-main {
   background: transparent;
+  padding-bottom: 1.25rem;
 }
 
 .home-hero {
@@ -265,24 +266,30 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
   gap: 2rem;
-  align-items: stretch;
-  padding: 0.75rem 0;
+  align-items: center;
+  padding: 0.75rem 0 0;
 }
 
 .home-hero .code-panel {
   align-self: stretch;
+  max-height: calc(100vh - var(--header-h) - 5.75rem);
 }
 
 .page-home .code-panel {
   background: #010409;
   border-color: #1a1f2e;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
-  min-height: 510px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .page-home .code-panel pre,
 .page-home .code-panel pre.home-code-pre {
-  min-height: calc(30 * 1.5 * 0.875rem);
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .page-home .code-panel .code-line-row .code-ln,
