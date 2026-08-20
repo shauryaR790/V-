@@ -670,19 +670,6 @@ def shell(active: str, title: str, body: str, sidebar_html: str, toc_html: str, 
       <nav class="toc-tree" aria-label="On this page">{toc_html}</nav>
     </aside>
   </div>
-  <footer class="site-footer compact">
-    <div class="footer-inner">
-      <div class="footer-badges">
-        <span class="footer-badge">v0.5.0</span>
-        <span class="footer-badge yellow">Latest</span>
-      </div>
-      <div class="footer-links">
-        <a href="https://github.com/shauryaR790/V-">GitHub</a>
-        <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">VS Code</a>
-        <a href="https://github.com/shauryaR790/V-/blob/main/docs/PRIVACY.md">Privacy</a>
-      </div>
-    </div>
-  </footer>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-clike.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
