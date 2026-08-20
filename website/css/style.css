@@ -1600,7 +1600,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   border-radius: 50%;
   background: var(--yellow);
   border: 1px solid var(--yellow-dark);
-  color: var(--white);
+  color: var(--black);
   font-size: 0.5625rem;
   font-weight: 700;
   letter-spacing: -0.02em;
