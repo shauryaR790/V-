@@ -810,7 +810,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .docs-article .table-wrap {
   overflow-x: auto;
   margin: 1.25rem 0 1.75rem;
-  border: 1px solid var(--border-muted);
+  border: 1px solid #ffffff;
   border-radius: var(--radius);
 }
 
@@ -821,15 +821,14 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .docs-article th, .docs-article td {
-  border: none;
-  border-bottom: 1px solid var(--border-muted);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   padding: 0.75rem 1rem;
   text-align: left;
   color: var(--text);
 }
 
 .docs-article tr:last-child td,
-.docs-article tr:last-child th { border-bottom: none; }
+.docs-article tr:last-child th { border-bottom: 1px solid rgba(255, 255, 255, 0.35); }
 
 .docs-article th {
   background: rgba(255, 255, 255, 0.04);
