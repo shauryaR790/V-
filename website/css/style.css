@@ -1486,7 +1486,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   flex-direction: column;
   text-decoration: none;
   color: inherit;
-  background: rgba(255, 255, 255, 0.02);
+  background: #010409;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
   overflow: hidden;
