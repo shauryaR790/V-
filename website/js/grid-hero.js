@@ -23,8 +23,6 @@
 
   function draw(width, height) {
     ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = GRID_FILL;
-    ctx.fillRect(0, 0, width, height);
     ctx.strokeStyle = GRID_LINE;
     ctx.lineWidth = 1;
 

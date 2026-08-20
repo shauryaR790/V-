@@ -53,7 +53,7 @@ body.page-docs {
 }
 
 body.page-home {
-  background-color: #080806;
+  background-color: var(--bg);
   position: relative;
   overflow: hidden;
 }
