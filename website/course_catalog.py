@@ -77,16 +77,28 @@ def discover_course_projects() -> list[CourseProject]:
     return projects
 
 
-def code_block_html(code: str, lang: str = "vpp", filename: str = "main.vpp") -> str:
+def code_block_html(
+    code: str,
+    lang: str = "vpp",
+    filename: str = "main.vpp",
+    wrap_class: str = "",
+    code_class: str = "",
+) -> str:
     if not code.strip():
         return ""
     if code.strip().startswith("vpp "):
         lang = "bash"
         filename = "terminal"
     escaped = html.escape(code)
+    wrap_cls = "code-block-wrap"
+    if wrap_class:
+        wrap_cls += f" {wrap_class}"
+    code_cls = f"language-{lang}"
+    if code_class:
+        code_cls += f" {code_class}"
     return (
-        '<div class="code-block-wrap">'
+        f'<div class="{wrap_cls}">'
         f'<div class="code-block-header"><span class="code-block-filename">{html.escape(filename)}</span></div>'
-        f'<pre class="language-{lang}"><code class="language-{lang}">{escaped}</code></pre>'
+        f'<pre class="language-{lang}"><code class="{code_cls}">{escaped}</code></pre>'
         "</div>"
     )

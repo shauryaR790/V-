@@ -4,10 +4,8 @@
     return source.replace(/\r\n/g, "\n").trim();
   }
 
-  function autosizeSourceInput(el) {
-    if (!el) return;
-    el.style.height = "0";
-    el.style.height = `${el.scrollHeight}px`;
+  function getSource(codeEl, payload) {
+    return payload.source || (codeEl && codeEl.textContent) || "";
   }
 
   function readPayload(dataEl) {
@@ -18,6 +16,57 @@
     } catch {
       return null;
     }
+  }
+
+  function initCoursePlayground() {
+    const dataEl = document.getElementById("course-playground-data");
+    const playground = document.querySelector(".course-playground");
+    const codeEl = document.querySelector(".course-source-code");
+    if (!dataEl || !playground) return;
+
+    const payload = readPayload(dataEl);
+    if (!payload) {
+      renderTerminal(
+        playground.querySelector(".course-terminal-body"),
+        "vpp run main.vpp",
+        "Playground failed to load. Refresh the page.",
+        "",
+        true
+      );
+      return;
+    }
+
+    const terminalBody = playground.querySelector(".course-terminal-body");
+    const runBtn = playground.querySelector(".course-run-btn");
+    const resetBtn = playground.querySelector(".course-reset-btn");
+    if (!terminalBody || !runBtn || !resetBtn) return;
+
+    const cmd = payload.run_cmd || "vpp run main.vpp";
+
+    const renderIdle = () => {
+      renderTerminal(terminalBody, cmd, "Ready. Click Test program.", "", false);
+    };
+
+    renderIdle();
+
+    runBtn.addEventListener("click", () => {
+      runBtn.disabled = true;
+      resetBtn.disabled = true;
+      renderTerminal(terminalBody, cmd, "Running...", "", false);
+
+      window.setTimeout(() => {
+        const result = runSource(getSource(codeEl, payload), payload);
+        renderTerminal(terminalBody, cmd, "", result.output, !result.ok);
+        runBtn.disabled = false;
+        resetBtn.disabled = false;
+      }, 200);
+    });
+
+    resetBtn.addEventListener("click", () => {
+      renderIdle();
+      runBtn.disabled = false;
+      resetBtn.disabled = false;
+    });
   }
 
   function extractPrintCalls(source) {
@@ -194,64 +243,6 @@
       `<pre class="course-run-output${isError ? " course-terminal-err" : ""}"></pre>`;
     const outputEl = terminalBody.querySelector(".course-run-output");
     if (outputEl && output) outputEl.textContent = output;
-  }
-
-  function initCoursePlayground() {
-    const dataEl = document.getElementById("course-playground-data");
-    const playground = document.querySelector(".course-playground");
-    const sourceInput = document.querySelector(".course-source-input");
-    if (!dataEl || !playground || !sourceInput) return;
-
-    const payload = readPayload(dataEl);
-    if (!payload) {
-      renderTerminal(
-        playground.querySelector(".course-terminal-body"),
-        "vpp run main.vpp",
-        "Playground failed to load. Refresh the page.",
-        "",
-        true
-      );
-      return;
-    }
-
-    const terminalBody = playground.querySelector(".course-terminal-body");
-    const runBtn = playground.querySelector(".course-run-btn");
-    const resetBtn = playground.querySelector(".course-reset-btn");
-    if (!terminalBody || !runBtn || !resetBtn) return;
-
-    const originalSource = payload.source || "";
-    sourceInput.value = originalSource;
-    autosizeSourceInput(sourceInput);
-    sourceInput.addEventListener("input", () => autosizeSourceInput(sourceInput));
-
-    const cmd = payload.run_cmd || "vpp run main.vpp";
-
-    const renderIdle = () => {
-      renderTerminal(terminalBody, cmd, "Ready. Click Test program.", "", false);
-    };
-
-    renderIdle();
-
-    runBtn.addEventListener("click", () => {
-      runBtn.disabled = true;
-      resetBtn.disabled = true;
-      renderTerminal(terminalBody, cmd, "Running...", "", false);
-
-      window.setTimeout(() => {
-        const result = runSource(sourceInput.value, payload);
-        renderTerminal(terminalBody, cmd, "", result.output, !result.ok);
-        runBtn.disabled = false;
-        resetBtn.disabled = false;
-      }, 200);
-    });
-
-    resetBtn.addEventListener("click", () => {
-      sourceInput.value = originalSource;
-      autosizeSourceInput(sourceInput);
-      renderIdle();
-      runBtn.disabled = false;
-      resetBtn.disabled = false;
-    });
   }
 
   if (document.readyState === "loading") {

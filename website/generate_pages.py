@@ -1011,8 +1011,6 @@ def courses_hub_shell(
 def build_course_card(project: CourseProject) -> str:
     return f"""<a href="{ASSET_PREFIX}{project.page_name}" class="course-card" data-level="{html.escape(project.level_key)}">
   <div class="course-card-thumb" aria-hidden="true">
-    <div class="course-card-grid"></div>
-    <div class="course-card-glow"></div>
     <div class="course-card-cover">
       <img src="{ASSET_PREFIX}assets/logo-white.png" alt="" class="course-card-logo">
       <span class="course-card-thumb-label">{html.escape(project.title)}</span>
@@ -1095,7 +1093,6 @@ def build_course_page_body(project: CourseProject) -> str:
             "run_cmd": project.run_cmd,
         }
     )
-    escaped_source = html.escape(project.source)
     parts.append(
         f'<section class="course-finish" id="course-finish">'
         f'<div class="course-step-head course-finish-head">'
@@ -1103,10 +1100,8 @@ def build_course_page_body(project: CourseProject) -> str:
         f'<h2 class="course-finish-title" id="course-finish-title">Full program</h2>'
         f"</div>"
         f'<div class="course-source-editor">'
-        f'<div class="code-block-wrap course-source-wrap">'
-        f'<div class="code-block-header"><span class="code-block-filename">main.vpp</span></div>'
-        f'<textarea class="course-source-input" spellcheck="false" aria-label="Full program source">{escaped_source}</textarea>'
-        f"</div></div>"
+        f'{code_block_html(project.source, wrap_class="course-source-wrap", code_class="course-source-code")}'
+        f"</div>"
         f'<script type="application/json" id="course-playground-data">{output_json}</script>'
         f'<div class="course-playground">'
         f'<div class="course-playground-toolbar">'

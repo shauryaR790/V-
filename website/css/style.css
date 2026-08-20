@@ -1503,32 +1503,12 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .course-card-thumb {
   position: relative;
   aspect-ratio: 16 / 9;
-  background: #0a0e14;
+  background: var(--code-bg);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-}
-
-.course-card-grid {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image:
-    linear-gradient(rgba(251, 219, 90, 0.22) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(251, 219, 90, 0.22) 1px, transparent 1px);
-  background-size: 32px 32px;
-  mask-image: radial-gradient(ellipse 90% 80% at 50% 42%, #000 15%, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 42%, #000 15%, transparent 70%);
-}
-
-.course-card-glow {
-  position: absolute;
-  inset: 12% 8%;
-  z-index: 1;
-  background: radial-gradient(ellipse at center, rgba(251, 219, 90, 0.38), transparent 68%);
-  filter: blur(10px);
 }
 
 .course-card-cover {
@@ -1604,9 +1584,9 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;
-  background: var(--yellow-light);
-  border: 1px solid var(--border-accent);
-  color: var(--yellow);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
   font-size: 0.5625rem;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -1778,32 +1758,6 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .course-source-wrap {
   margin-bottom: 1.25rem;
-  overflow: visible;
-}
-
-.course-source-input {
-  display: block;
-  width: 100%;
-  min-height: 0;
-  height: auto;
-  margin: 0;
-  padding: 1rem 1.1rem;
-  border: none;
-  border-radius: 0 0 var(--btn-radius) var(--btn-radius);
-  background: var(--code-bg);
-  color: var(--text);
-  font-family: var(--mono);
-  font-size: 0.875rem;
-  line-height: 1.55;
-  resize: none;
-  overflow: hidden;
-  tab-size: 4;
-  field-sizing: content;
-}
-
-.course-source-input:focus {
-  outline: 2px solid var(--yellow);
-  outline-offset: -2px;
 }
 
 .course-playground {
@@ -1837,19 +1791,21 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .course-terminal {
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--btn-radius);
+  background: var(--code-slate, #010409);
+  border: 1px solid var(--code-slate-border, #1a1f2e);
+  border-radius: 8px;
   overflow: hidden;
-  background: #0a0e14;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  margin: 0;
 }
 
 .course-terminal-header {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.45rem 0.75rem;
-  background: rgba(255, 255, 255, 0.04);
-  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.5rem 1rem 0.65rem;
+  background: transparent;
+  border-bottom: 1px solid var(--code-slate-border, #1a1f2e);
 }
 
 .course-terminal-dot {
@@ -1875,17 +1831,19 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   margin-left: auto;
   font-family: var(--mono);
   font-size: 0.75rem;
-  color: var(--text-muted);
+  color: var(--code-muted, #94a3b8);
 }
 
 .course-terminal-body {
-  padding: 0.85rem 1rem 1rem;
+  padding: 1rem;
   font-family: var(--mono);
   font-size: 0.875rem;
-  line-height: 1.55;
+  line-height: 1.5;
   min-height: 8rem;
   max-height: 20rem;
   overflow-y: auto;
+  color: var(--code-fg, #e2e8f0);
+  background: transparent;
 }
 
 .course-terminal-line {
@@ -1895,7 +1853,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .course-terminal-muted {
-  color: var(--text-muted);
+  color: var(--code-muted, #94a3b8);
 }
 
 .course-terminal-cmd {
@@ -1915,7 +1873,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   padding: 0;
   margin: 0;
   white-space: pre-wrap;
-  color: #e6edf3;
+  color: var(--code-fg, #e2e8f0);
   min-height: 0;
 }
 
