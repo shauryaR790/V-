@@ -34,7 +34,7 @@
   --tree-row-active: rgba(251, 219, 90, 0.1);
   --tree-text: #8b949e;
   --tree-text-hover: #f0f6fc;
-  --tree-font: calc(0.8125rem + 10px);
+  --tree-font: calc(0.8125rem + 3px);
   --radius: 8px;
   --grid-yellow: rgba(251, 219, 90, 0.45);
   --code-bg: #010409;
