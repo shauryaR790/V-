@@ -1,9 +1,9 @@
-/* V++ code blocks — atomDark / Node.js quality (Prism) */
+/* V++ code blocks — black background, Prism syntax colors */
 
 .code-block-wrap,
 .code-panel {
-  background: #0d1117;
-  border: 1px solid #30363d;
+  background: #000000;
+  border: 1px solid var(--border-muted, #222222);
   border-radius: 10px;
   overflow: hidden;
   margin: 0.5rem 0 0.75rem;
@@ -16,8 +16,8 @@
   align-items: center;
   gap: 0;
   padding: 0 0.5rem;
-  background: #161b22;
-  border-bottom: 1px solid #30363d;
+  background: #000000;
+  border-bottom: 1px solid var(--border-muted, #222222);
   min-height: 42px;
 }
 
@@ -49,7 +49,7 @@
 .code-panel pre {
   margin: 0 !important;
   padding: 1rem 0 !important;
-  background: transparent !important;
+  background: #000000 !important;
   border: none !important;
   border-radius: 0 !important;
   overflow: hidden !important;
@@ -75,8 +75,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 1rem;
-  background: #161b22;
-  border-top: 1px solid #30363d;
+  background: #000000;
+  border-top: 1px solid var(--border-muted, #222222);
   font-size: 0.75rem;
   color: #8b949e;
 }
@@ -92,7 +92,7 @@ pre.has-line-numbers .code-ln-gutter {
   flex: 0 0 3.25rem;
   text-align: right;
   padding: 0 0.85rem 0 1rem;
-  border-right: 1px solid #30363d;
+  border-right: 1px solid var(--border-muted, #222222);
   user-select: none;
   pointer-events: none;
   align-self: stretch;
@@ -119,10 +119,11 @@ pre.has-line-numbers > code {
   padding: 0 1rem 0 0.85rem !important;
 }
 
-/* Prism token colors on #0d1117 */
+/* Prism token colors on black */
 code[class*="language-"],
 pre[class*="language-"] {
   color: #e6edf3;
+  background: #000000;
 }
 
 .token.comment, .token.prolog, .token.doctype, .token.cdata { color: #8b949e; font-style: italic; }
