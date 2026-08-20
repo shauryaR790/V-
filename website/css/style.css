@@ -31,7 +31,7 @@
   --content-max: 52rem;
   --docs-bg: #0D1117;
   --tree-row-hover: rgba(255, 255, 255, 0.06);
-  --tree-row-active: rgba(251, 219, 90, 0.1);
+  --tree-row-active: transparent;
   --tree-text: #8b949e;
   --tree-text-hover: #f0f6fc;
   --tree-font: calc(0.8125rem + 3px);
@@ -696,20 +696,37 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.22rem 0.45rem;
+  padding: 0.28rem 0.5rem;
   font-size: var(--tree-font);
   font-weight: 400;
   text-decoration: none;
   color: var(--tree-text);
   border-radius: 6px;
-  border-left: 2px solid transparent;
   line-height: 1.4;
-  transition: color 0.12s, background 0.12s, border-color 0.12s;
+  position: relative;
+  transition: color 0.15s, background 0.15s;
+}
+
+.tree-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--yellow);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.18s ease;
+  opacity: 0;
 }
 
 .tree-link .tree-icon-file {
   width: 14px;
   height: 14px;
+  flex-shrink: 0;
+  transition: color 0.15s;
 }
 
 @media (hover: hover) {
@@ -722,10 +739,15 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .tree-link.sidebar-current,
 .tree-link.toc-current {
-  color: var(--tree-text-hover);
-  background: var(--tree-row-active);
-  border-left-color: var(--yellow);
-  font-weight: 500;
+  color: var(--yellow);
+  background: transparent;
+  font-weight: 600;
+}
+
+.tree-link.sidebar-current::after,
+.tree-link.toc-current::after {
+  transform: scaleX(1);
+  opacity: 1;
 }
 
 .tree-link.sidebar-current .tree-icon-file,
