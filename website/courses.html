@@ -234,7 +234,7 @@ vpp doctor</code></pre>
     print(&quot;Hello, v++!&quot;)
     return 0
 }
-</code></pre>
+// Run: vpp run main.vpp</code></pre>
 </div>
 
 <h1 id="02-variables-math">02 — Variables &amp; Math</h1>
@@ -257,12 +257,10 @@ vpp doctor</code></pre>
     print(x + y)
     print(x - y)
     print(x * y)
-
     let name = &quot;v++&quot;
     print(&quot;Hello, &quot; + name + &quot;!&quot;)
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="03-functions">03 — Functions</h1>
@@ -282,17 +280,14 @@ vpp doctor</code></pre>
 <pre class="language-vpp"><code class="language-vpp">fn add(a: int, b: int) -&gt; int {
     return a + b
 }
-
 fn greet(name: string) -&gt; string {
     return &quot;Hello, &quot; + name
 }
-
 fn main() -&gt; int {
     print(add(10, 20))
     print(greet(&quot;Shaurya&quot;))
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="04-loops">04 — Loops</h1>
@@ -315,18 +310,15 @@ vpp doctor</code></pre>
         print(i)
         i = i + 1
     }
-
     for n in 0..3 {
         print(n)
     }
-
     let items = [10, 20, 30]
     for val in items {
         print(val)
     }
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="05-arrays">05 — Arrays</h1>
@@ -350,7 +342,6 @@ vpp doctor</code></pre>
     }
     return total
 }
-
 fn max_of(nums: array[int]) -&gt; int {
     let mut best = nums[0]
     for n in nums {
@@ -360,14 +351,12 @@ fn max_of(nums: array[int]) -&gt; int {
     }
     return best
 }
-
 fn main() -&gt; int {
     let nums = [3, 7, 2, 9, 4]
     print(sum(nums))
     print(max_of(nums))
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="06-structs">06 — Structs</h1>
@@ -388,26 +377,21 @@ vpp doctor</code></pre>
     x: int
     y: int
 }
-
 struct Rectangle {
     width: int
     height: int
 }
-
 fn area(rect: Rectangle) -&gt; int {
     return rect.width * rect.height
 }
-
 fn main() -&gt; int {
     let p = Point { x: 3, y: 4 }
     print(p.x)
     print(p.y)
-
     let box = Rectangle { width: 10, height: 5 }
     print(area(box))
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="07-enums">07 — Enums</h1>
@@ -429,11 +413,9 @@ vpp doctor</code></pre>
     Yellow
     Green
 }
-
 struct Signal {
     light: TrafficLight
 }
-
 fn action(signal: Signal) -&gt; string {
     match signal.light {
         Red =&gt; {
@@ -447,15 +429,13 @@ fn action(signal: Signal) -&gt; string {
         }
     }
 }
-
 fn main() -&gt; int {
     let stop = Signal { light: Red }
     let go = Signal { light: Green }
     print(action(stop))
     print(action(go))
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="08-option-result">08 — Option &amp; Result</h1>
@@ -478,7 +458,6 @@ vpp doctor</code></pre>
     }
     return Ok(a / b)
 }
-
 fn find_first(nums: array[int], target: int) -&gt; Option&lt;int&gt; {
     let mut i = 0
     while i &lt; len(nums) {
@@ -489,7 +468,6 @@ fn find_first(nums: array[int], target: int) -&gt; Option&lt;int&gt; {
     }
     return None
 }
-
 fn main() -&gt; int {
     let r = safe_div(10, 2)
     match r {
@@ -500,7 +478,6 @@ fn main() -&gt; int {
             print(e)
         }
     }
-
     let nums = [1, 5, 9]
     let found = find_first(nums, 5)
     match found {
@@ -512,8 +489,7 @@ fn main() -&gt; int {
         }
     }
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="09-pattern-matching">09 — Pattern Matching</h1>
@@ -539,11 +515,9 @@ vpp doctor</code></pre>
     Sat
     Sun
 }
-
 struct CalendarDay {
     day: Day
 }
-
 fn is_weekend(entry: CalendarDay) -&gt; bool {
     match entry.day {
         Sat =&gt; {
@@ -569,15 +543,13 @@ fn is_weekend(entry: CalendarDay) -&gt; bool {
         }
     }
 }
-
 fn main() -&gt; int {
     let weekend = CalendarDay { day: Sat }
     let weekday = CalendarDay { day: Wed }
     print(is_weekend(weekend))
     print(is_weekend(weekday))
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="10-fizzbuzz">10 — FizzBuzz</h1>
@@ -606,7 +578,6 @@ vpp doctor</code></pre>
     }
     return &quot;num&quot;
 }
-
 fn main() -&gt; int {
     let mut i = 1
     while i &lt;= 20 {
@@ -619,8 +590,7 @@ fn main() -&gt; int {
         i = i + 1
     }
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="11-fibonacci">11 — Fibonacci</h1>
@@ -643,15 +613,13 @@ vpp doctor</code></pre>
     }
     return fib(n - 1) + fib(n - 2)
 }
-
 fn main() -&gt; int {
     print(fib(0))
     print(fib(1))
     print(fib(10))
     print(fib(15))
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="12-generics">12 — Generics</h1>
@@ -671,20 +639,16 @@ vpp doctor</code></pre>
 <pre class="language-vpp"><code class="language-vpp">fn id[T](x: T) -&gt; T {
     return x
 }
-
 fn first[T](items: array[T]) -&gt; T {
     return items[0]
 }
-
 fn main() -&gt; int {
     print(id[int](42))
     print(id[string](&quot;v++&quot;))
-
     let words = [&quot;alpha&quot;, &quot;beta&quot;, &quot;gamma&quot;]
     print(first[string](words))
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="13-traits">13 — Traits</h1>
@@ -704,35 +668,29 @@ vpp doctor</code></pre>
 <pre class="language-vpp"><code class="language-vpp">struct Circle {
     radius: int
 }
-
 struct Square {
     side: int
 }
-
 trait Area {
     fn area(self) -&gt; int
 }
-
 impl Area for Circle {
     fn area(self) -&gt; int {
         return self.radius * self.radius * 3
     }
 }
-
 impl Area for Square {
     fn area(self) -&gt; int {
         return self.side * self.side
     }
 }
-
 fn main() -&gt; int {
     let c = Circle { radius: 5 }
     let s = Square { side: 4 }
     print(c.area())
     print(s.area())
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="14-modules">14 — Modules</h1>
@@ -750,15 +708,13 @@ vpp --version</code></pre>
 <div class="code-block-wrap">
 <div class="code-block-header"><span class="code-block-filename">main.vpp</span></div>
 <pre class="language-vpp"><code class="language-vpp">import &quot;math.vpp&quot;
-
 fn main() -&gt; int {
     let sum = add(10, 5)
     let product = mul(sum, 2)
     print(sum)
     print(product)
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="15-calculator">15 — Calculator</h1>
@@ -781,11 +737,9 @@ vpp doctor</code></pre>
     Mul
     Div
 }
-
 struct CalcOp {
     op: Op
 }
-
 fn apply(calc: CalcOp, a: int, b: int) -&gt; Result&lt;int, string&gt; {
     match calc.op {
         Add =&gt; {
@@ -805,7 +759,6 @@ fn apply(calc: CalcOp, a: int, b: int) -&gt; Result&lt;int, string&gt; {
         }
     }
 }
-
 fn main() -&gt; int {
     let calc = CalcOp { op: Mul }
     let r = apply(calc, 6, 7)
@@ -818,8 +771,7 @@ fn main() -&gt; int {
         }
     }
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="16-word-counter">16 — Word Counter</h1>
@@ -843,7 +795,6 @@ vpp doctor</code></pre>
     }
     return total
 }
-
 fn longest_word(words: array[string]) -&gt; string {
     let mut best = words[0]
     for w in words {
@@ -853,15 +804,13 @@ fn longest_word(words: array[string]) -&gt; string {
     }
     return best
 }
-
 fn main() -&gt; int {
     let words = [&quot;v++&quot;, &quot;is&quot;, &quot;a&quot;, &quot;compiled&quot;, &quot;language&quot;]
     print(len(words))
     print(total_chars(words))
     print(longest_word(words))
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="17-guessing-game">17 — Guessing Game</h1>
@@ -887,17 +836,14 @@ vpp doctor</code></pre>
     }
     return &quot;correct&quot;
 }
-
 fn play_round(secret: int, guess: int) -&gt; bool {
     let message = hint(guess, secret)
     print(message)
     return message == &quot;correct&quot;
 }
-
 fn main() -&gt; int {
     let secret = 42
     let guesses = [10, 30, 50, 42]
-
     for g in guesses {
         print(g)
         if play_round(secret, g) {
@@ -906,8 +852,7 @@ fn main() -&gt; int {
         }
     }
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="18-todo-list">18 — Todo List</h1>
@@ -928,7 +873,6 @@ vpp doctor</code></pre>
     title: string
     done: bool
 }
-
 fn print_todo(t: Todo) -&gt; int {
     if t.done {
         print(&quot;[x] &quot; + t.title)
@@ -937,24 +881,20 @@ fn print_todo(t: Todo) -&gt; int {
     }
     return 0
 }
-
 fn main() -&gt; int {
     let t1 = Todo { title: &quot;learn v++&quot;, done: true }
     let t2 = Todo { title: &quot;build a project&quot;, done: false }
     let t3 = Todo { title: &quot;ship v1.0&quot;, done: false }
-
     print_todo(t1)
     print_todo(t2)
     print_todo(t3)
-
     let mut done_count = 0
     if t1.done { done_count = done_count + 1 }
     if t2.done { done_count = done_count + 1 }
     if t3.done { done_count = done_count + 1 }
     print(done_count)
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="19-file-notes">19 — File Notes</h1>
@@ -972,19 +912,15 @@ vpp doctor</code></pre>
 <div class="code-block-wrap">
 <div class="code-block-header"><span class="code-block-filename">main.vpp</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.fs
-
 fn main() -&gt; int {
     let path = &quot;note.txt&quot;
     let body = &quot;v++ file notes\nBuilt by Shaurya\nOpen source on GitHub&quot;
-
     fs.write(path, body)
     print(fs.exists(path))
-
     let content = fs.read(path)
     print(content)
     return 0
-}
-</code></pre>
+}</code></pre>
 </div>
 
 <h1 id="20-json-config">20 — JSON Config</h1>
@@ -1002,22 +938,18 @@ vpp doctor</code></pre>
 <div class="code-block-wrap">
 <div class="code-block-header"><span class="code-block-filename">main.vpp</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.json
-
 struct AppConfig {
     name: string
     version: string
     debug: bool
 }
-
 fn parse_config(raw: string) -&gt; string {
     let doc = json.parse(raw)
     return json.stringify(doc)
 }
-
 fn main() -&gt; int {
     let raw = &quot;{\&quot;name\&quot;:\&quot;v++\&quot;,\&quot;version\&quot;:\&quot;0.5.0\&quot;,\&quot;debug\&quot;:false}&quot;
     print(parse_config(raw))
-
     let cfg = AppConfig {
         name: &quot;v++&quot;
         version: &quot;0.5.0&quot;
@@ -1026,8 +958,7 @@ fn main() -&gt; int {
     print(cfg.name)
     print(cfg.version)
     return 0
-}
-</code></pre>
+}</code></pre>
 </div></article>
     </main>
     <aside class="docs-toc">

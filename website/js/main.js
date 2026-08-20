@@ -160,11 +160,48 @@ debug = true
   },
 };
 
-function padToLineCount(code, target) {
+const COMMENT_LINES = {
+  bash: [
+    "# Verify install: vpp doctor",
+    "# Restart the terminal after PATH changes",
+    "# Type-check: vpp check main.vpp",
+    "# Format source: vpp fmt main.vpp",
+    "# Native build: vpp build src/main.vpp -o app.exe",
+  ],
+  vpp: [
+    "// Run: vpp run main.vpp",
+    "// Type-check only: vpp check main.vpp",
+    "// Format: vpp fmt main.vpp",
+    "// Tests: vpp test",
+    "// vpp calls main() when defined",
+  ],
+  toml: [
+    "# Package manifest for vpp run / vpp test / vpp build",
+    "# Add dependencies with: vpp add <name> --version <ver>",
+  ],
+};
+
+const MIN_DOC_CODE_LINES = 5;
+
+function finalizeCodeText(text, lang) {
+  const pool = COMMENT_LINES[lang] || COMMENT_LINES.bash;
+  let lines = text.split("\n").filter((l) => l.trim());
+  let ci = 0;
+  while (lines.length < MIN_DOC_CODE_LINES) {
+    lines.push(pool[ci % pool.length]);
+    ci += 1;
+  }
+  return lines.join("\n");
+}
+
+function padToLineCount(code, target, lang = "vpp") {
+  const pool = COMMENT_LINES[lang] || COMMENT_LINES.vpp;
   const lines = code.split("\n");
   if (lines.length > 1 && lines[lines.length - 1] === "") lines.pop();
+  let ci = 0;
   while (lines.length < target) {
-    lines.push("");
+    lines.push(pool[ci % pool.length]);
+    ci += 1;
   }
   return lines.slice(0, target).join("\n");
 }
@@ -343,12 +380,15 @@ function renderLineBasedCode(pre, rawText, lang, highlightLines = []) {
 
     const content = document.createElement("span");
     content.className = "code-line-content";
-    if (grammar && line) {
+    if (grammar && line.trim()) {
       content.innerHTML = Prism.highlight(line, grammar, lang);
-    } else if (line) {
+    } else if (line.trim()) {
       content.textContent = line;
     } else {
-      content.innerHTML = "&nbsp;";
+      const filler = (COMMENT_LINES[lang] || COMMENT_LINES.bash)[0];
+      content.innerHTML = grammar
+        ? Prism.highlight(filler, grammar, lang)
+        : filler;
     }
 
     row.appendChild(ln);
@@ -415,7 +455,7 @@ function initDocCodeBlocks() {
     if (!pre || !code) return;
 
     const lang = getCodeLanguage(code);
-    const raw = code.textContent || "";
+    const raw = finalizeCodeText(code.textContent || "", lang);
     const highlights = parseHighlightLines(pre.dataset.highlightLines);
     renderLineBasedCode(pre, raw, lang, highlights);
 
@@ -430,7 +470,7 @@ function mountHomeCode(key) {
   const langLabel = document.getElementById("code-lang");
   if (!pre) return;
 
-  const padded = padToLineCount(sample.code, CODE_LINE_COUNT);
+  const padded = padToLineCount(sample.code, CODE_LINE_COUNT, sample.lang);
   const highlights = key === "hello" ? [10, 14, 18, 22, 30] : [];
 
   pre.className = `language-${sample.lang} home-code-pre code-block-pre`;

@@ -156,12 +156,18 @@
 <div class="code-block-header"><span class="code-block-filename">terminal</span></div>
 <pre class="language-bash"><code class="language-bash">git clone https://github.com/shauryaR790/V-.git
 cd V-
-cargo build --release --features codegen,lsp</code></pre>
+cargo build --release --features codegen,lsp
+# Verify install: vpp doctor
+# Restart the terminal after PATH changes</code></pre>
 </div>
 <p>Windows:</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span class="code-block-filename">terminal</span></div>
-<pre class="language-bash"><code class="language-bash">$env:LLVM_SYS_221_PREFIX = &quot;C:\Program Files\LLVM&quot;</code></pre>
+<pre class="language-bash"><code class="language-bash">$env:LLVM_SYS_221_PREFIX = &quot;C:\Program Files\LLVM&quot;
+# Restart terminal after updating PATH
+vpp --version
+vpp doctor
+vpp run examples/hello.vpp</code></pre>
 </div>
 <p>Binaries: <code>target/release/vpp.exe</code>, <code>target/release/vppls.exe</code>.</p>
 <h2 id="features">Features</h2>
@@ -186,7 +192,11 @@ cargo build --release --features codegen,lsp</code></pre>
 <h2 id="install-locally">Install locally</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span class="code-block-filename">terminal</span></div>
-<pre class="language-bash"><code class="language-bash">cargo install --path . --features codegen,lsp</code></pre>
+<pre class="language-bash"><code class="language-bash">cargo install --path . --features codegen,lsp
+# Verify install: vpp doctor
+# Restart the terminal after PATH changes
+# Type-check: vpp check main.vpp
+# Format source: vpp fmt main.vpp</code></pre>
 </div>
 
 <h1 id="running-tests">Running tests</h1>
@@ -194,13 +204,10 @@ cargo build --release --features codegen,lsp</code></pre>
 <div class="code-block-header"><span class="code-block-filename">terminal</span></div>
 <pre class="language-bash"><code class="language-bash"># Interpreter + parser + typecheck (no LLVM)
 cargo test --all-targets
-
 # Native codegen (local LLVM required)
 cargo test --features codegen -- --test-threads=1
-
 # Parity: interpreter vs native stdout
 cargo test --features codegen parity
-
 # Stress script (Windows)
 .\stress.ps1</code></pre>
 </div>

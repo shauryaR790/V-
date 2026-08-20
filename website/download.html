@@ -100,12 +100,12 @@ vpp doctor</code></pre>
 </div>
 <p>If <code>vpp</code> is not found, add the install folder to PATH:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span class="code-block-filename">hello.vpp</span></div>
+<div class="code-block-header"><span class="code-block-filename">terminal</span></div>
 <pre class="language-bash"><code class="language-bash">$dir = &quot;$env:LOCALAPPDATA\Programs\vpp&quot;
 [Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path + &quot;;$dir;$dir\llvm\bin&quot;, &quot;User&quot;)
+# Restart terminal after updating PATH
 vpp --version
-vpp doctor
-vpp run examples/hello.vpp</code></pre>
+vpp doctor</code></pre>
 </div>
 <p>Restart the terminal.</p>
 <h2 id="vs-code-extension">VS Code extension</h2>

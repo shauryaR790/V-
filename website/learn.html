@@ -217,12 +217,12 @@ vpp doctor</code></pre>
 </div>
 <p>If <code>vpp</code> is not found, add the install folder to PATH:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span class="code-block-filename">hello.vpp</span></div>
+<div class="code-block-header"><span class="code-block-filename">terminal</span></div>
 <pre class="language-bash"><code class="language-bash">$dir = &quot;$env:LOCALAPPDATA\Programs\vpp&quot;
 [Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path + &quot;;$dir;$dir\llvm\bin&quot;, &quot;User&quot;)
+# Restart terminal after updating PATH
 vpp --version
-vpp doctor
-vpp run examples/hello.vpp</code></pre>
+vpp doctor</code></pre>
 </div>
 <p>Restart the terminal.</p>
 <h2 id="vs-code-extension">VS Code extension</h2>
@@ -379,7 +379,8 @@ vpp run examples/hello.vpp</code></pre>
 <pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     print(&quot;v++ program started&quot;)
     return 0
-}</code></pre>
+}
+// Run: vpp run main.vpp</code></pre>
 </div>
 <p>Every executable entry point is <code>fn main() -&gt; int</code>. The return value is the process exit code (<code>0</code> = success).</p>
 <h2 id="run-interpreter">Run (interpreter)</h2>
@@ -394,7 +395,7 @@ vpp doctor</code></pre>
 <p>Uses the built-in interpreter — no compile step. Best for learning and quick iteration.</p>
 <h2 id="type-check-only">Type-check only</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span class="code-block-filename">hello.vpp</span></div>
+<div class="code-block-header"><span class="code-block-filename">terminal</span></div>
 <pre class="language-bash"><code class="language-bash">vpp check hello.vpp
 vpp run hello.vpp
 vpp fmt hello.vpp
@@ -404,7 +405,7 @@ vpp build src/main.vpp -o app.exe</code></pre>
 <p>Reports type errors without running. Use this in CI or before committing.</p>
 <h2 id="compile-to-native">Compile to native</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span class="code-block-filename">app.vpp</span></div>
+<div class="code-block-header"><span class="code-block-filename">terminal</span></div>
 <pre class="language-bash"><code class="language-bash">vpp build hello.vpp -o hello.exe
 .\hello.exe
 ./app.exe
@@ -449,11 +450,12 @@ vpp build src/main.vpp -o myapp.exe</code></pre>
 <pre class="language-text"><code class="language-text">myapp/
   vpp.toml
   src/main.vpp
-  tests/smoke.vpp</code></pre>
+  tests/smoke.vpp
+# ...</code></pre>
 </div>
 <h2 id="run">Run</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span class="code-block-filename">hello.vpp</span></div>
+<div class="code-block-header"><span class="code-block-filename">terminal</span></div>
 <pre class="language-bash"><code class="language-bash">vpp run
 vpp --version
 vpp doctor
@@ -463,22 +465,22 @@ vpp check examples/hello.vpp</code></pre>
 <p>Runs the entry in <code>vpp.toml</code> (default <code>src/main.vpp</code>).</p>
 <h2 id="test">Test</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span class="code-block-filename">hello.vpp</span></div>
+<div class="code-block-header"><span class="code-block-filename">terminal</span></div>
 <pre class="language-bash"><code class="language-bash">vpp test
+vpp run
+vpp check src/main.vpp
 vpp --version
-vpp doctor
-vpp run examples/hello.vpp
-vpp check examples/hello.vpp</code></pre>
+# Inline test blocks supported</code></pre>
 </div>
 <p>Runs <code>test</code> blocks in <code>tests/</code> and inline tests.</p>
 <h2 id="add-a-dependency">Add a dependency</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span class="code-block-filename">hello.vpp</span></div>
+<div class="code-block-header"><span class="code-block-filename">terminal</span></div>
 <pre class="language-bash"><code class="language-bash">vpp add hello-lib --version 0.1.0
 vpp update
-vpp --version
-vpp doctor
-vpp run examples/hello.vpp</code></pre>
+vpp install
+vpp run
+vpp test</code></pre>
 </div>
 <p>See <a href="../guides/package-manager.md">Package manager</a>.</p>
 
@@ -493,7 +495,7 @@ vpp run examples/hello.vpp</code></pre>
 <h2 id="language-server-intellisense">Language server (IntelliSense)</h2>
 <p>Build <code>vppls</code> once (or use a release that includes it):</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span class="code-block-filename">hello.vpp</span></div>
+<div class="code-block-header"><span class="code-block-filename">terminal</span></div>
 <pre class="language-bash"><code class="language-bash">cargo build --release --features lsp --bin vppls
 vpp --version
 vpp doctor

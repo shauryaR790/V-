@@ -72,12 +72,47 @@ EXTRA_MD = [
 
 MIN_CODE_LINES = 5
 
+COMMENT_LINES: dict[str, list[str]] = {
+    "bash": [
+        "# Verify install: vpp doctor",
+        "# Restart the terminal after PATH changes",
+        "# Type-check: vpp check main.vpp",
+        "# Format source: vpp fmt main.vpp",
+        "# Native build: vpp build src/main.vpp -o app.exe",
+    ],
+    "vpp": [
+        "// Run: vpp run main.vpp",
+        "// Type-check only: vpp check main.vpp",
+        "// Format: vpp fmt main.vpp",
+        "// Tests: vpp test",
+        "// vpp calls main() when defined",
+    ],
+    "toml": [
+        "# Package manifest for vpp run / vpp test / vpp build",
+        "# Add dependencies with: vpp add <name> --version <ver>",
+        "# entry points to src/main.vpp by default",
+    ],
+    "rust": [
+        "// V++ compiler source (Rust)",
+        "// See ARCHITECTURE.md for the pipeline overview",
+    ],
+    "text": [
+        "# ...",
+        "# See docs for full examples",
+    ],
+}
+
+
+def comment_pad(plang: str, index: int) -> str:
+    pool = COMMENT_LINES.get(plang, COMMENT_LINES["text"])
+    return pool[index % len(pool)]
+
 
 def enrich_code_lines(lines: list[str], plang: str) -> list[str]:
-    """Expand very short shell snippets with real related commands — never blank lines."""
+    """Expand very short shell snippets with real related commands."""
     non_empty = [ln for ln in lines if ln.strip()]
     if len(non_empty) >= MIN_CODE_LINES:
-        return lines
+        return non_empty
 
     if not non_empty:
         return lines
@@ -112,11 +147,13 @@ def enrich_code_lines(lines: list[str], plang: str) -> list[str]:
                 "vpp fmt examples/hello.vpp",
             ]
         if first.startswith("vpp build"):
-            return non_empty + [
-                "./app.exe",
-                "vpp run app.vpp",
-                "vpp test",
-            ][:MIN_CODE_LINES]
+            merged = list(non_empty)
+            for extra in ("./app.exe", "vpp run app.vpp", "vpp test", "# Release binary"):
+                if len(merged) >= MIN_CODE_LINES:
+                    break
+                if extra not in merged:
+                    merged.append(extra)
+            return merged
         if first.startswith("vpp new"):
             return [
                 first,
@@ -126,27 +163,99 @@ def enrich_code_lines(lines: list[str], plang: str) -> list[str]:
                 "vpp build src/main.vpp -o myapp.exe",
             ]
         if first.startswith("cd ") and any("vpp run" in ln for ln in non_empty):
-            return non_empty + [
-                "vpp check main.vpp",
-                "vpp test",
+            merged = list(non_empty)
+            for extra in ("vpp check main.vpp", "vpp test", "vpp --version", "# Module project"):
+                if len(merged) >= MIN_CODE_LINES:
+                    break
+                if extra not in merged:
+                    merged.append(extra)
+            return merged
+        if first.startswith("$") or "$env:" in first or "[Environment]" in first:
+            merged = list(non_empty)
+            for extra in (
+                "# Restart terminal after updating PATH",
                 "vpp --version",
-            ][:MIN_CODE_LINES]
+                "vpp doctor",
+                "vpp run examples/hello.vpp",
+            ):
+                if len(merged) >= MIN_CODE_LINES:
+                    break
+                if extra not in merged:
+                    merged.append(extra)
+            return merged
+        if first.startswith("vpp add"):
+            merged = list(non_empty)
+            for extra in ("vpp install", "vpp run", "vpp test", "# Resolves deps from vpp.toml"):
+                if len(merged) >= MIN_CODE_LINES:
+                    break
+                if extra not in merged:
+                    merged.append(extra)
+            return merged
+        if first.startswith("vpp test"):
+            merged = list(non_empty)
+            for extra in ("vpp run", "vpp check src/main.vpp", "vpp --version", "# Inline test blocks supported"):
+                if len(merged) >= MIN_CODE_LINES:
+                    break
+                if extra not in merged:
+                    merged.append(extra)
+            return merged
+        if first.startswith("vpp fmt"):
+            merged = list(non_empty)
+            for extra in ("vpp check main.vpp", "vpp run main.vpp", "# Writes formatted source in place"):
+                if len(merged) >= MIN_CODE_LINES:
+                    break
+                if extra not in merged:
+                    merged.append(extra)
+            return merged
         if any("vpp" in ln for ln in non_empty):
-            extras = [
+            merged = list(non_empty)
+            for extra in (
                 "vpp --version",
                 "vpp doctor",
                 "vpp run examples/hello.vpp",
                 "vpp check examples/hello.vpp",
-            ]
-            merged = list(non_empty)
-            for ex in extras:
+            ):
                 if len(merged) >= MIN_CODE_LINES:
                     break
-                if ex not in merged:
-                    merged.append(ex)
+                if extra not in merged:
+                    merged.append(extra)
             return merged
 
-    return lines
+    if plang == "vpp" and len(non_empty) < MIN_CODE_LINES:
+        merged = list(non_empty)
+        for extra in (
+            "fn main() -> int {",
+            "    return 0",
+            "}",
+        ):
+            if len(merged) >= MIN_CODE_LINES:
+                break
+            if extra not in merged:
+                merged.append(extra)
+        if len(merged) < MIN_CODE_LINES:
+            i = 0
+            while len(merged) < MIN_CODE_LINES:
+                merged.append(comment_pad("vpp", i))
+                i += 1
+        return merged
+
+    return non_empty
+
+
+def finalize_code_lines(lines: list[str], plang: str) -> list[str]:
+    """No blank lines — pad short blocks with comments to MIN_CODE_LINES."""
+    cleaned = [ln for ln in lines if ln.strip()]
+    if not cleaned:
+        return [comment_pad(plang, i) for i in range(MIN_CODE_LINES)]
+
+    result = enrich_code_lines(cleaned, plang)
+    result = [ln for ln in result if ln.strip()]
+
+    i = 0
+    while len(result) < MIN_CODE_LINES:
+        result.append(comment_pad(plang, i))
+        i += 1
+    return result
 
 
 def code_filename(display: str, plang: str, lines: list[str]) -> str:
@@ -201,8 +310,8 @@ def md_to_html(text: str) -> str:
             "vpp": "vpp", "v++": "vpp",
             "toml": "toml", "bash": "bash", "rust": "rust",
         }.get(label, label or "text")
-        code_lines = enrich_code_lines(code_lines, plang)
         filename = code_filename(display, plang, code_lines)
+        code_lines = finalize_code_lines(code_lines, plang)
         code_text = html.escape("\n".join(code_lines))
         out.append('<div class="code-block-wrap">')
         out.append(

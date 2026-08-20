@@ -188,7 +188,8 @@ vpp doctor</code></pre>
 <pre class="language-bash"><code class="language-bash">git clone https://github.com/shauryaR790/V-.git
 cd V-
 cargo build --release --features codegen,lsp
-cargo test --all-targets</code></pre>
+cargo test --all-targets
+# Verify install: vpp doctor</code></pre>
 </div>
 <p>See <a href="docs/contributing/building-from-source.md">Building from source</a>.</p>
 <hr>
@@ -422,7 +423,9 @@ cargo test --all-targets</code></pre>
 <div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">let x = 10              // immutable int
 let mut total = 0       // mutable; required for reassignment
-total = total + 1</code></pre>
+total = total + 1
+# ...
+# See docs for full examples</code></pre>
 </div>
 <h2 id="functions">Functions</h2>
 <div class="code-block-wrap">
@@ -430,11 +433,9 @@ total = total + 1</code></pre>
 <pre class="language-text"><code class="language-text">fn add(a: int, b: int) -&gt; int {
     return a + b
 }
-
 fn id[T](x: T) -&gt; T {
     return x
 }
-
 fn main() -&gt; int {
     let n = id[int](42)
     return n
@@ -448,13 +449,11 @@ fn main() -&gt; int {
 <pre class="language-text"><code class="language-text">trait Display {
     fn to_text(self) -&gt; string
 }
-
 impl Display for User {
     fn to_text(self) -&gt; string {
         return self.name
     }
 }
-
 // method call (static dispatch)
 print(user.to_text())</code></pre>
 </div>
@@ -521,7 +520,9 @@ print(user.to_text())</code></pre>
 <div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">import std.io
 import std.fs
-import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
+import &quot;legacy/path.vpp&quot;   // still supported
+# ...
+# See docs for full examples</code></pre>
 </div>
 <ul>
 <li>Canonical paths: <code>import std.io</code> → <code>std/io.vpp</code></li>
