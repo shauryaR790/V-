@@ -22,7 +22,7 @@
   --mono: "IBM Plex Mono", "Consolas", monospace;
   --header-h: 72px;
   --home-vpad: 1.25rem;
-  --home-footer-h: 3.25rem;
+  --home-footer-h: 5.75rem;
   --nav-item-h: 44px;
   --btn-radius: 6px;
   --sidebar-w: 280px;
@@ -468,14 +468,70 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0.85rem 1.25rem;
+  padding: 0.75rem 1.25rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  font-size: 0.85rem;
+}
+
+.home-bottom-primary {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  font-size: 0.85rem;
+  width: 100%;
+}
+
+.home-bottom-legal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: 100%;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--border-muted);
+}
+
+.home-trademark {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.home-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  align-items: center;
+}
+
+.home-legal-links a {
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.home-legal-links a:hover {
+  color: var(--yellow);
+  background: transparent;
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+}
+
+.home-trademark a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--border-accent);
+}
+
+.home-trademark a:hover {
+  color: var(--yellow);
+  text-decoration-color: var(--yellow);
 }
 
 .version-pills {

@@ -502,9 +502,20 @@ def brand_text(s: str) -> str:
 
 def inline_md(s: str) -> str:
     s = html.escape(s)
+
+    def link_repl(match: re.Match[str]) -> str:
+        label, url = match.group(1), match.group(2)
+        if url.startswith(("http://", "https://", "mailto:", "#", "/")):
+            href = url
+        elif url.endswith(".html"):
+            href = f"{ASSET_PREFIX}{url}"
+        else:
+            href = url
+        return f'<a href="{href}">{label}</a>'
+
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
     s = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", s)
-    s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', s)
+    s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", link_repl, s)
     return brand_text(s)
 
 
@@ -625,6 +636,8 @@ def headings_from_html(content: str) -> list[tuple[str, str, str]]:
         toc.append((level, hid, title))
     return toc
 
+
+LEGAL_DIR = DOCS / "legal"
 
 LATEST_VERSION = "0.5.0"
 LATEST_TAG = "v0.5.0"
@@ -919,11 +932,22 @@ def all_doc_links() -> dict[str, list[tuple[str, str]]]:
         ("download.html", "Download"),
         ("contribute.html", "Contribute"),
     ]
+    legal = [
+        ("legal.html", "Legal overview"),
+        ("privacy.html", "Privacy Policy"),
+        ("terms.html", "Terms of Service"),
+        ("cookies.html", "Cookie Policy"),
+        ("license.html", "Open Source License"),
+        ("disclaimer.html", "Disclaimer"),
+        ("acceptable-use.html", "Acceptable Use"),
+        ("trademark.html", "Trademark"),
+    ]
     return {
         "Getting started": getting,
         "Language": language,
         "Guides": guides,
         "Project": project,
+        "Legal": legal,
     }
 
 
@@ -947,7 +971,7 @@ def main() -> None:
                    f"Complete {BRAND} language and toolchain documentation.", use_sources=True)
 
     about_paths = [ROOT / "README.md", ROOT / "ARCHITECTURE.md", ROOT / "MEMORY_MODEL.md",
-                   ROOT / "SPEC.md", DOCS / "project" / "roadmap.md", DOCS / "PRIVACY.md"]
+                   ROOT / "SPEC.md", DOCS / "project" / "roadmap.md"]
     write_doc_page(
         "about.html", "about.html", "About The Language", about_paths, sidebar, "about.html",
         "About The Language — design, architecture, memory model, and roadmap.",
@@ -974,6 +998,22 @@ def main() -> None:
                 courses_paths.append(p / "main.vpp")
     write_doc_page("courses.html", "courses.html", "Courses", courses_paths, sidebar, "courses.html",
                    f"Twenty {BRAND} projects from beginner to advanced.", use_sources=True)
+
+    legal_pages = [
+        ("legal.html", "legal.html", "Legal", LEGAL_DIR / "index.md"),
+        ("privacy.html", "privacy.html", "Privacy Policy", LEGAL_DIR / "privacy-policy.md"),
+        ("terms.html", "terms.html", "Terms of Service", LEGAL_DIR / "terms-of-service.md"),
+        ("cookies.html", "cookies.html", "Cookie Policy", LEGAL_DIR / "cookie-policy.md"),
+        ("license.html", "license.html", "Open Source License", LEGAL_DIR / "open-source-license.md"),
+        ("disclaimer.html", "disclaimer.html", "Disclaimer", LEGAL_DIR / "disclaimer.md"),
+        ("acceptable-use.html", "acceptable-use.html", "Acceptable Use", LEGAL_DIR / "acceptable-use.md"),
+        ("trademark.html", "trademark.html", "Trademark", LEGAL_DIR / "trademark.md"),
+    ]
+    for filename, active, title, md_path in legal_pages:
+        write_doc_page(
+            filename, active, title, [md_path], sidebar, filename,
+            f"{title} — {BRAND} open-source project.",
+        )
 
     # Download page
     download_body = build_download_page_body()
