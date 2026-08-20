@@ -92,12 +92,12 @@
 <p>2. <strong>Install</strong> <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">V++ Language</a> in VS Code (publisher: <strong>vpp-lang</strong>)</p>
 <p>3. <strong>Run:</strong></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">hello.vpp</span></div>
 <pre class="language-bash"><code class="language-bash">vpp run examples\hello.vpp
-
-
-
-</code></pre>
+vpp check examples\hello.vpp
+vpp --version
+# Verify your install
+vpp doctor</code></pre>
 </div>
 <p>Full guide: <strong><a href="docs/getting-started/hello-world.md">docs/getting-started/hello-world.md</a></strong></p>
 <hr>
@@ -182,12 +182,11 @@
 <hr>
 <h2 id="for-developers">For developers</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">terminal</span></div>
 <pre class="language-bash"><code class="language-bash">git clone https://github.com/shauryaR790/V-.git
 cd V-
 cargo build --release --features codegen,lsp
-cargo test --all-targets
-</code></pre>
+cargo test --all-targets</code></pre>
 </div>
 <p>See <a href="docs/contributing/building-from-source.md">Building from source</a>.</p>
 <hr>
@@ -421,9 +420,7 @@ cargo test --all-targets
 <div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">let x = 10              // immutable int
 let mut total = 0       // mutable; required for reassignment
-total = total + 1
-
-</code></pre>
+total = total + 1</code></pre>
 </div>
 <h2 id="functions">Functions</h2>
 <div class="code-block-wrap">
@@ -522,9 +519,7 @@ print(user.to_text())</code></pre>
 <div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">import std.io
 import std.fs
-import &quot;legacy/path.vpp&quot;   // still supported
-
-</code></pre>
+import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 </div>
 <ul>
 <li>Canonical paths: <code>import std.io</code> → <code>std/io.vpp</code></li>

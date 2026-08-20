@@ -1,13 +1,23 @@
-/* V++ code blocks — black background, Prism syntax colors */
+/* Code blocks — slate-900 card (matches shadcn CodeBlock / atomDark) */
+
+:root {
+  --code-slate: #0f172a;
+  --code-slate-border: #1e293b;
+  --code-fg: #e2e8f0;
+  --code-muted: #94a3b8;
+  --code-ln: #64748b;
+  --code-highlight: rgba(255, 255, 255, 0.08);
+}
 
 .code-block-wrap,
 .code-panel {
-  background: #000000;
-  border: 1px solid var(--border-muted, #222222);
-  border-radius: 10px;
+  background: var(--code-slate);
+  border: 1px solid var(--code-slate-border);
+  border-radius: 8px;
   overflow: hidden;
-  margin: 0.5rem 0 0.75rem;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  margin: 0.75rem 0 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
 }
 
 .code-block-header,
@@ -15,42 +25,39 @@
   display: flex;
   align-items: center;
   gap: 0;
-  padding: 0 0.5rem;
-  background: #000000;
-  border-bottom: 1px solid var(--border-muted, #222222);
-  min-height: 42px;
-}
-
-.code-block-header span,
-.code-block-header .code-block-filename,
-.code-panel .code-tab {
-  font-family: var(--font, "IBM Plex Sans", sans-serif);
-  font-size: 0.75rem;
-  color: #8b949e;
-  padding: 0.65rem 0.85rem;
+  padding: 0 0 0.5rem;
+  background: transparent;
+  border: none;
+  min-height: auto;
 }
 
 .code-block-header {
   justify-content: space-between;
 }
 
+.code-block-header .code-block-filename,
+.code-panel .code-tab {
+  font-family: var(--font, "IBM Plex Sans", sans-serif);
+  font-size: 0.75rem;
+  color: var(--code-muted);
+  padding: 0.25rem 0;
+}
+
 .code-copy-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-right: 0.5rem;
-  padding: 0.35rem 0.5rem;
+  padding: 0.25rem;
   background: none;
   border: none;
   border-radius: 4px;
-  color: #8b949e;
+  color: var(--code-muted);
   cursor: pointer;
-  transition: color 0.15s, background 0.15s;
+  transition: color 0.15s;
 }
 
 .code-copy-btn:hover {
-  color: #e6edf3;
-  background: rgba(255, 255, 255, 0.06);
+  color: var(--code-fg);
 }
 
 .code-copy-btn svg {
@@ -59,7 +66,14 @@
 }
 
 .code-copy-btn.copied {
-  color: #7ee787;
+  color: #86efac;
+}
+
+.code-panel .code-tabs {
+  border-bottom: 1px solid var(--code-slate-border);
+  padding-bottom: 0;
+  margin-bottom: 0.5rem;
+  overflow-x: auto;
 }
 
 .code-panel .code-tab {
@@ -67,34 +81,37 @@
   border: none;
   border-bottom: 2px solid transparent;
   cursor: pointer;
-  color: #8b949e;
+  padding: 0.5rem 0.75rem;
+  white-space: nowrap;
 }
 
-.code-panel .code-tab:hover { color: #e6edf3; }
+.code-panel .code-tab:hover {
+  color: #f1f5f9;
+}
 
 .code-panel .code-tab.active {
-  color: #e6edf3;
-  border-bottom-color: var(--yellow);
+  color: #f1f5f9;
+  border-bottom-color: var(--yellow, #FBDB5A);
   font-weight: 600;
 }
 
 .code-block-wrap pre,
 .code-panel pre {
   margin: 0 !important;
-  padding: 1rem 0 !important;
-  background: #000000 !important;
+  padding: 0 !important;
+  background: transparent !important;
   border: none !important;
   border-radius: 0 !important;
-  overflow: hidden !important;
+  overflow-x: auto !important;
   max-height: none !important;
   min-height: 0 !important;
 }
 
 .code-block-wrap pre code,
 .code-panel pre code {
-  font-family: var(--mono, "IBM Plex Mono", monospace) !important;
+  font-family: var(--mono, "IBM Plex Mono", "Consolas", monospace) !important;
   font-size: 0.875rem !important;
-  line-height: 1.65 !important;
+  line-height: 1.5 !important;
   background: transparent !important;
   padding: 0 !important;
   text-shadow: none !important;
@@ -102,170 +119,216 @@
   white-space: pre;
 }
 
+/* Per-line layout (react-syntax-highlighter style) */
+.code-line-rows {
+  display: block;
+  min-width: min-content;
+}
+
+.code-line-row {
+  display: flex;
+  align-items: flex-start;
+  min-height: 1.5em;
+  line-height: 1.5;
+}
+
+.code-line-row.code-line-highlight {
+  background: var(--code-highlight);
+  box-shadow: -1rem 0 0 var(--code-highlight), 1rem 0 0 var(--code-highlight);
+}
+
+.code-line-row .code-ln {
+  flex: 0 0 2.75rem;
+  text-align: right;
+  padding-right: 1rem;
+  color: var(--code-ln);
+  user-select: none;
+  font-family: var(--mono, "IBM Plex Mono", monospace);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.code-line-row .code-line-content {
+  flex: 1;
+  min-width: 0;
+  white-space: pre;
+  font-family: var(--mono, "IBM Plex Mono", monospace);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
 .code-block-footer,
 .code-panel .code-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1rem;
-  background: #000000;
-  border-top: 1px solid var(--border-muted, #222222);
+  padding: 0.65rem 0 0;
+  margin-top: 0.5rem;
+  background: transparent;
+  border-top: 1px solid var(--code-slate-border);
   font-size: 0.75rem;
-  color: #8b949e;
+  color: var(--code-muted);
 }
 
-/* Custom line numbers — full gutter, top to bottom */
-pre.has-line-numbers {
-  display: flex !important;
-  align-items: flex-start;
-  padding: 1rem 0 !important;
+.code-panel .copy-btn {
+  background: none;
+  border: none;
+  color: var(--code-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-family: var(--font);
 }
 
+.code-panel .copy-btn:hover {
+  color: var(--code-fg);
+}
+
+/* Legacy gutter (home fallback) */
 pre.has-line-numbers .code-ln-gutter {
-  flex: 0 0 3.25rem;
-  text-align: right;
-  padding: 0 0.85rem 0 1rem;
-  border-right: 1px solid var(--border-muted, #222222);
-  user-select: none;
-  pointer-events: none;
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
+  display: none;
 }
 
-pre.home-code-pre.has-line-numbers .code-ln-gutter {
-  min-height: calc(30 * 1.65em);
-}
-
-pre.has-line-numbers .code-ln {
-  display: block;
-  font-family: var(--mono, "IBM Plex Mono", monospace);
-  font-size: 0.875rem;
-  line-height: 1.65;
-  height: 1.65em;
-  color: #6e7681;
-}
-
-pre.has-line-numbers > code {
-  flex: 1;
-  min-width: 0;
-  padding: 0 1rem 0 0.85rem !important;
-}
-
-.code-block-wrap pre.has-line-numbers {
-  min-height: calc(5 * 1.65em + 2rem);
-}
-
-/* Prism token colors — professional mix of color + white */
+/* atomDark-style Prism tokens */
 code[class*="language-"],
-pre[class*="language-"] {
-  color: #e6edf3;
-  background: #000000;
+pre[class*="language-"],
+.code-line-content {
+  color: var(--code-fg);
 }
 
 .token.comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #8b949e;
+  color: #75715e;
   font-style: italic;
 }
 
 .token.punctuation,
-.token.operator,
-.token.entity,
-.token.url {
-  color: #e6edf3;
+.token.operator {
+  color: #f8f8f2;
 }
 
 .token.keyword,
 .token.atrule,
-.token.tag,
 .token.important {
-  color: #ff7b72;
+  color: #66d9ef;
+}
+
+.token.tag {
+  color: #66d9ef;
 }
 
 .token.string,
 .token.char,
 .token.attr-value,
 .token.regex {
-  color: #a5d6ff;
+  color: #e6db74;
 }
 
 .token.number,
 .token.boolean,
 .token.constant,
-.token.symbol,
-.token.builtin {
-  color: #ffa657;
+.token.symbol {
+  color: #ae81ff;
 }
 
 .token.function,
 .token.class-name,
 .token.maybe-class-name {
-  color: #d2a8ff;
+  color: #a6e22e;
 }
 
 .token.property,
 .token.attr-name,
 .token.selector,
 .token.key {
-  color: #79c0ff;
+  color: #a6e22e;
 }
 
 .token.variable,
 .token.parameter,
-.token.interpolation,
-.token.template-string {
-  color: #e6edf3;
+.token.builtin,
+.token.interpolation {
+  color: #fd971f;
 }
 
-.token.inserted { color: #7ee787; }
-.token.deleted { color: #ff7b72; }
+.token.inserted { color: #a6e22e; }
+.token.deleted { color: #f92672; }
+
+.token.entity,
+.token.url {
+  color: #66d9ef;
+}
 
 /* Shell / bash */
 .language-bash .token.function,
 .language-shell .token.function,
-.language-bash .token.command-name,
-.language-shell .token.command-name {
-  color: #d2a8ff;
+.language-bash .token.builtin,
+.language-shell .token.builtin {
+  color: #a6e22e;
 }
 
-.language-bash .token.flag,
-.language-shell .token.flag {
-  color: #ff7b72;
+.language-bash .token.string,
+.language-shell .token.string {
+  color: #e6db74;
 }
 
-.language-bash .token.variable,
-.language-shell .token.variable {
-  color: #79c0ff;
+.language-bash .token.comment,
+.language-shell .token.comment {
+  color: #75715e;
+  font-style: italic;
 }
 
 /* TOML */
 .language-toml .token.key,
 .language-toml .token.property {
-  color: #79c0ff;
+  color: #66d9ef;
 }
 
 .language-toml .token.table,
 .language-toml .token.table-array {
-  color: #d2a8ff;
+  color: #a6e22e;
+}
+
+.language-toml .token.string {
+  color: #e6db74;
 }
 
 /* Rust */
 .language-rust .token.lifetime {
-  color: #ffa657;
+  color: #ae81ff;
 }
 
 .language-rust .token.macro {
-  color: #d2a8ff;
+  color: #a6e22e;
 }
 
 /* V++ */
+.language-vpp .token.keyword {
+  color: #f92672;
+}
+
 .language-vpp .token.type {
-  color: #79c0ff;
+  color: #66d9ef;
+}
+
+.language-vpp .token.function {
+  color: #a6e22e;
+}
+
+.language-vpp .token.string {
+  color: #e6db74;
+}
+
+.language-vpp .token.number {
+  color: #ae81ff;
 }
 
 .language-vpp .token.builtin {
-  color: #d2a8ff;
+  color: #fd971f;
+}
+
+.language-vpp .token.comment {
+  color: #75715e;
+  font-style: italic;
 }

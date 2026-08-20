@@ -304,16 +304,73 @@ function initTocHighlight() {
 
 window.addEventListener("hashchange", initSidebarHighlight);
 
-function highlightAllCode() {
-  if (typeof Prism === "undefined") return;
-  document.querySelectorAll("pre code[class*='language-']").forEach((el) => {
-    Prism.highlightElement(el);
-    const pre = el.closest("pre");
-    syncLineNumbers(pre, countCodeLines(el.textContent));
-  });
+function escapeHtml(text) {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }
 
-const MIN_DOC_CODE_LINES = 5;
+function parseHighlightLines(value) {
+  if (!value) return [];
+  return value.split(",").map((n) => parseInt(n.trim(), 10)).filter((n) => !Number.isNaN(n));
+}
+
+function getCodeLanguage(codeEl) {
+  const match = [...codeEl.classList].find((c) => c.startsWith("language-"));
+  return match ? match.slice(9) : "text";
+}
+
+function renderLineBasedCode(pre, rawText, lang, highlightLines = []) {
+  if (typeof Prism === "undefined") return false;
+
+  const grammar = Prism.languages[lang];
+  const lines = rawText.split("\n");
+  if (lines.length > 1 && lines[lines.length - 1] === "") lines.pop();
+
+  const rows = document.createElement("div");
+  rows.className = "code-line-rows";
+
+  lines.forEach((line, idx) => {
+    const lineNo = idx + 1;
+    const row = document.createElement("div");
+    row.className = "code-line-row";
+    if (highlightLines.includes(lineNo)) row.classList.add("code-line-highlight");
+
+    const ln = document.createElement("span");
+    ln.className = "code-ln";
+    ln.textContent = String(lineNo);
+
+    const content = document.createElement("span");
+    content.className = "code-line-content";
+    if (grammar && line) {
+      content.innerHTML = Prism.highlight(line, grammar, lang);
+    } else if (line) {
+      content.textContent = line;
+    } else {
+      content.innerHTML = "&nbsp;";
+    }
+
+    row.appendChild(ln);
+    row.appendChild(content);
+    rows.appendChild(row);
+  });
+
+  pre.innerHTML = "";
+  pre.classList.add("code-block-pre");
+  pre.classList.remove("has-line-numbers");
+  pre.appendChild(rows);
+  return true;
+}
+
+function highlightAllCode() {
+  document.querySelectorAll("pre code[class*='language-']").forEach((el) => {
+    const pre = el.closest("pre");
+    if (!pre || pre.closest(".code-block-wrap") || pre.id === "code-display") return;
+    const lang = getCodeLanguage(el);
+    renderLineBasedCode(pre, el.textContent || "", lang, parseHighlightLines(pre.dataset.highlightLines));
+  });
+}
 
 const COPY_ICON = (
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
@@ -330,11 +387,25 @@ const CHECK_ICON = (
   + "</svg>"
 );
 
-function padCodeToMinimum(text, minimum) {
-  const lines = text.split("\n");
-  if (lines.length > 1 && lines[lines.length - 1] === "") lines.pop();
-  while (lines.length < minimum) lines.push("");
-  return lines.join("\n");
+function attachCopyButton(header, getText) {
+  if (!header || header.querySelector(".code-copy-btn")) return;
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "code-copy-btn";
+  btn.setAttribute("aria-label", "Copy code");
+  btn.innerHTML = COPY_ICON;
+  btn.addEventListener("click", () => {
+    const raw = getText().replace(/\s+$/, "");
+    navigator.clipboard.writeText(raw).then(() => {
+      btn.classList.add("copied");
+      btn.innerHTML = CHECK_ICON;
+      setTimeout(() => {
+        btn.classList.remove("copied");
+        btn.innerHTML = COPY_ICON;
+      }, 2000);
+    });
+  });
+  header.appendChild(btn);
 }
 
 function initDocCodeBlocks() {
@@ -343,35 +414,13 @@ function initDocCodeBlocks() {
     const code = pre?.querySelector("code");
     if (!pre || !code) return;
 
-    const padded = padCodeToMinimum(code.textContent || "", MIN_DOC_CODE_LINES);
-    if (padded !== code.textContent) {
-      code.textContent = padded;
-      if (typeof Prism !== "undefined") Prism.highlightElement(code);
-    }
+    const lang = getCodeLanguage(code);
+    const raw = code.textContent || "";
+    const highlights = parseHighlightLines(pre.dataset.highlightLines);
+    renderLineBasedCode(pre, raw, lang, highlights);
 
     const header = wrap.querySelector(".code-block-header");
-    if (header && !header.querySelector(".code-copy-btn")) {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "code-copy-btn";
-      btn.setAttribute("aria-label", "Copy code");
-      btn.innerHTML = COPY_ICON;
-      btn.addEventListener("click", () => {
-        const raw = (code.textContent || "").replace(/\s+$/, "");
-        navigator.clipboard.writeText(raw).then(() => {
-          btn.classList.add("copied");
-          btn.innerHTML = CHECK_ICON;
-          setTimeout(() => {
-            btn.classList.remove("copied");
-            btn.innerHTML = COPY_ICON;
-          }, 2000);
-        });
-      });
-      header.appendChild(btn);
-    }
-
-    pre.classList.add("has-line-numbers");
-    syncLineNumbers(pre, countCodeLines(code.textContent));
+    attachCopyButton(header, () => raw);
   });
 }
 
@@ -382,20 +431,15 @@ function mountHomeCode(key) {
   if (!pre) return;
 
   const padded = padToLineCount(sample.code, CODE_LINE_COUNT);
+  const highlights = key === "hello" ? [10, 14, 18, 22, 30] : [];
 
-  pre.className = `language-${sample.lang} home-code-pre`;
-  pre.innerHTML = "";
-  const code = document.createElement("code");
-  code.className = `language-${sample.lang}`;
-  code.textContent = padded;
-  pre.appendChild(code);
+  pre.className = `language-${sample.lang} home-code-pre code-block-pre`;
+  renderLineBasedCode(pre, padded, sample.lang, highlights);
 
   if (langLabel) langLabel.textContent = sample.label;
 
-  if (typeof Prism !== "undefined") {
-    Prism.highlightElement(code);
-  }
-  syncLineNumbers(pre, CODE_LINE_COUNT);
+  const filenameEl = document.getElementById("code-filename");
+  if (filenameEl) filenameEl.textContent = sample.label;
 
   return padded;
 }
@@ -414,7 +458,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initDocCodeBlocks();
 
   const tabs = document.querySelectorAll(".code-tab");
-  const copyBtn = document.querySelector(".copy-btn");
+  const copyHeader = document.getElementById("code-copy-header");
   let activeCode = CODE_SAMPLES.hello.code;
 
   if (document.getElementById("code-display")) {
@@ -429,11 +473,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  if (copyBtn) {
-    copyBtn.addEventListener("click", () => {
+  if (copyHeader) {
+    copyHeader.addEventListener("click", () => {
       navigator.clipboard.writeText(activeCode).then(() => {
-        copyBtn.textContent = "Copied!";
-        setTimeout(() => { copyBtn.textContent = "Copy to clipboard"; }, 1500);
+        copyHeader.classList.add("copied");
+        const prev = copyHeader.innerHTML;
+        copyHeader.innerHTML = CHECK_ICON;
+        setTimeout(() => {
+          copyHeader.classList.remove("copied");
+          copyHeader.innerHTML = prev;
+        }, 2000);
       });
     });
   }

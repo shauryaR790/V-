@@ -67,11 +67,98 @@ EXTRA_MD = [
 MIN_CODE_LINES = 5
 
 
-def pad_code_lines(lines: list[str], minimum: int = MIN_CODE_LINES) -> list[str]:
-    padded = list(lines)
-    while len(padded) < minimum:
-        padded.append("")
-    return padded
+def enrich_code_lines(lines: list[str], plang: str) -> list[str]:
+    """Expand very short shell snippets with real related commands — never blank lines."""
+    non_empty = [ln for ln in lines if ln.strip()]
+    if len(non_empty) >= MIN_CODE_LINES:
+        return lines
+
+    if not non_empty:
+        return lines
+
+    first = non_empty[0].strip()
+
+    if plang == "bash":
+        if first.startswith("vpp run "):
+            target = first[8:].strip()
+            return [
+                first,
+                f"vpp check {target}",
+                "vpp --version",
+                "# Verify your install",
+                "vpp doctor",
+            ]
+        if first.startswith("vpp check "):
+            target = first[10:].strip()
+            return [
+                first,
+                f"vpp run {target}",
+                f"vpp fmt {target}",
+                "vpp test",
+                "vpp build src/main.vpp -o app.exe",
+            ]
+        if first in ("vpp --version", "vpp doctor"):
+            return [
+                "vpp --version",
+                "vpp doctor",
+                "vpp run examples/hello.vpp",
+                "vpp check examples/hello.vpp",
+                "vpp fmt examples/hello.vpp",
+            ]
+        if first.startswith("vpp build"):
+            return non_empty + [
+                "./app.exe",
+                "vpp run app.vpp",
+                "vpp test",
+            ][:MIN_CODE_LINES]
+        if first.startswith("vpp new"):
+            return [
+                first,
+                "cd myapp",
+                "vpp run",
+                "vpp test",
+                "vpp build src/main.vpp -o myapp.exe",
+            ]
+        if first.startswith("cd ") and any("vpp run" in ln for ln in non_empty):
+            return non_empty + [
+                "vpp check main.vpp",
+                "vpp test",
+                "vpp --version",
+            ][:MIN_CODE_LINES]
+        if any("vpp" in ln for ln in non_empty):
+            extras = [
+                "vpp --version",
+                "vpp doctor",
+                "vpp run examples/hello.vpp",
+                "vpp check examples/hello.vpp",
+            ]
+            merged = list(non_empty)
+            for ex in extras:
+                if len(merged) >= MIN_CODE_LINES:
+                    break
+                if ex not in merged:
+                    merged.append(ex)
+            return merged
+
+    return lines
+
+
+def code_filename(display: str, plang: str, lines: list[str]) -> str:
+    if plang == "vpp":
+        return "main.vpp"
+    if plang == "toml":
+        return "vpp.toml"
+    if plang == "rust":
+        return "lib.rs"
+    if plang == "bash":
+        for ln in lines:
+            s = ln.strip()
+            if s.startswith("vpp run "):
+                path = s[8:].strip().replace("\\", "/")
+                name = path.split("/")[-1]
+                return name if name else "terminal"
+        return "terminal"
+    return display.lower()
 
 
 def md_to_html(text: str) -> str:
@@ -108,11 +195,13 @@ def md_to_html(text: str) -> str:
             "vpp": "vpp", "v++": "vpp",
             "toml": "toml", "bash": "bash", "rust": "rust",
         }.get(label, label or "text")
-        code_text = html.escape("\n".join(pad_code_lines(code_lines)))
+        code_lines = enrich_code_lines(code_lines, plang)
+        filename = code_filename(display, plang, code_lines)
+        code_text = html.escape("\n".join(code_lines))
         out.append('<div class="code-block-wrap">')
         out.append(
             f'<div class="code-block-header">'
-            f'<span class="code-block-filename">{html.escape(display)}</span>'
+            f'<span class="code-block-filename">{html.escape(filename)}</span>'
             f"</div>"
         )
         out.append(
