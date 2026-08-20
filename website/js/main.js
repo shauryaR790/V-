@@ -503,6 +503,19 @@ function mountHomeCode(key) {
   return padded;
 }
 
+function initFaqDeepLinks() {
+  const openFromHash = () => {
+    const id = location.hash.slice(1);
+    if (!id) return;
+    const item = document.getElementById(id);
+    if (item instanceof HTMLDetailsElement && item.classList.contains("faq-item")) {
+      item.open = true;
+    }
+  };
+  window.addEventListener("hashchange", openFromHash);
+  openFromHash();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".top-nav");
@@ -513,6 +526,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSidebarHighlight();
   initSidebarSearch();
   initTocHighlight();
+  initFaqDeepLinks();
   highlightAllCode();
   initDocCodeBlocks();
 

@@ -4,8 +4,15 @@
 from __future__ import annotations
 
 import html
+import json
 import re
 from pathlib import Path
+
+from course_catalog import (
+    CourseProject,
+    code_block_html,
+    discover_course_projects,
+)
 
 ROOT = Path(__file__).resolve().parent.parent
 WEBSITE = ROOT / "website"
@@ -57,6 +64,12 @@ TREE_SEARCH = (
 TREE_FILE = (
     '<svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">'
     '<path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/>'
+    '</svg>'
+)
+
+FAQ_CHEVRON = (
+    '<svg class="faq-chevron" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">'
+    '<path fill="currentColor" d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"/>'
     '</svg>'
 )
 
@@ -483,7 +496,7 @@ def md_to_html(text: str, slugs: SlugRegistry | None = None) -> str:
 
 
 def faq_md_to_html(text: str, slugs: SlugRegistry | None = None) -> str:
-    """Render FAQ markdown as a bordered Q&A card list."""
+    """Render FAQ markdown as a collapsible accordion."""
     registry = slugs or SlugRegistry()
     lines = text.splitlines()
     out: list[str] = []
@@ -497,19 +510,23 @@ def faq_md_to_html(text: str, slugs: SlugRegistry | None = None) -> str:
     out.append('<div class="faq-list">')
     question: str | None = None
     section_lines: list[str] = []
+    first_item = True
 
     def flush_section() -> None:
-        nonlocal question, section_lines
+        nonlocal question, section_lines, first_item
         if question is None:
             return
         body = "\n".join(section_lines).strip()
         body_html = md_to_html(body, registry) if body else ""
         qid = registry.unique(question)
+        open_attr = " open" if first_item else ""
+        first_item = False
         out.append(
-            f'<section class="faq-item" id="{qid}">'
-            f'<h2 class="faq-question">{inline_md(question)}</h2>'
+            f'<details class="faq-item" id="{qid}"{open_attr}>'
+            f'<summary class="faq-question">{FAQ_CHEVRON}'
+            f'<span class="faq-question-text">{inline_md(question)}</span></summary>'
             f'<div class="faq-answer">{body_html}</div>'
-            f"</section>"
+            f"</details>"
         )
         question = None
         section_lines = []
@@ -631,57 +648,25 @@ def dedupe_paths(paths: list[Path]) -> list[Path]:
     return out
 
 
-def all_reference_sources() -> list[Path]:
-    """Every real doc and source file in the repo for the master reference page."""
+def theory_doc_sources() -> list[Path]:
+    """Prose documentation for docs.html: spec, architecture, language reference."""
     paths: list[Path] = []
-    paths.extend(sorted(DOCS.rglob("*.md")))
-    for name in (
-        "README.md", "SPEC.md", "ARCHITECTURE.md", "MEMORY_MODEL.md",
-        "CHANGELOG.md", "CONTRIBUTING.md", "SECURITY.md", "CODE_OF_CONDUCT.md",
-    ):
-        paths.append(ROOT / name)
-    paths.extend(sorted((ROOT / "std").glob("*.vpp")))
-    paths.extend(sorted((ROOT / "examples").glob("*.vpp")))
-    paths.append(ROOT / "projects" / "README.md")
-    for i in range(1, 21):
-        for proj in sorted((ROOT / "projects").glob(f"{i:02d}-*")):
-            readme = proj / "README.md"
-            main_vpp = proj / "main.vpp"
-            toml = proj / "vpp.toml"
-            if readme.exists():
-                paths.append(readme)
-            if main_vpp.exists():
-                paths.append(main_vpp)
-            if toml.exists():
-                paths.append(toml)
-    for extra in (
-        ROOT / "stress.vpp",
-        ROOT / "editor" / "vscode-vpp" / "README.md",
-        ROOT / "editor" / "vscode-vpp" / "CHANGELOG.md",
-        ROOT / "registry" / "index.toml",
-        ROOT / "registry" / "fixtures" / "hello-lib" / "src" / "lib.vpp",
-        ROOT / "registry" / "fixtures" / "hello-lib" / "vpp.toml",
-    ):
-        paths.append(extra)
-    staging_std = ROOT / "staging" / "std"
-    if staging_std.exists():
-        paths.extend(sorted(staging_std.glob("*.vpp")))
-    staging_ex = ROOT / "staging" / "examples"
-    if staging_ex.exists():
-        paths.extend(sorted(staging_ex.glob("*.vpp")))
-    fixtures = ROOT / "tests" / "fixtures"
-    if fixtures.exists():
-        paths.extend(sorted(fixtures.glob("*.vpp")))
-    paths.extend(sorted((ROOT / "tests").glob("*.rs")))
     for rel in (
-        "Cargo.toml",
-        "build.rs",
-        "src/lib.rs",
-        "src/driver.rs",
-        "src/error.rs",
-        "src/bin/vppls.rs",
+        "SPEC.md",
+        "ARCHITECTURE.md",
+        "MEMORY_MODEL.md",
+        "CHANGELOG.md",
     ):
         paths.append(ROOT / rel)
+    for rel in (
+        "docs/README.md",
+        "docs/project/roadmap.md",
+    ):
+        paths.append(ROOT / rel)
+    for section in ("language", "guides", "stdlib"):
+        folder = DOCS / section
+        if folder.exists():
+            paths.extend(sorted(folder.rglob("*.md")))
     return dedupe_paths(paths)
 
 
@@ -956,7 +941,205 @@ def write_doc_page(
     print(f"Wrote {filename}: {lines} lines")
 
 
-def all_doc_links() -> dict[str, list[tuple[str, str]]]:
+def courses_hub_shell(
+    active: str,
+    title: str,
+    body: str,
+    desc: str = "",
+    extra_scripts: list[str] | None = None,
+) -> str:
+    nav_items = "\n".join(
+        f'<a href="{ASSET_PREFIX}{href}" class="nav-link{" active" if href == active else ""}">{label}</a>'
+        for href, label in NAV
+    )
+    meta = f'<meta name="description" content="{html.escape(clean_prose(desc))}">' if desc else ""
+    scripts = "".join(
+        f'  <script src="{ASSET_PREFIX}js/{s}"></script>\n' for s in (extra_scripts or [])
+    )
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{html.escape(clean_prose(title))} | {BRAND}</title>
+  {meta}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{ASSET_PREFIX}css/style.css">
+  <link rel="stylesheet" href="{ASSET_PREFIX}css/prism-vpp.css">
+  <link rel="icon" href="{ASSET_PREFIX}assets/favicon.png">
+  <link rel="apple-touch-icon" href="{ASSET_PREFIX}assets/logo-header.png">
+</head>
+<body class="page-courses-hub">
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="{ASSET_PREFIX}index.html" class="brand"><img src="{ASSET_PREFIX}assets/logo-header.png" alt="{BRAND}" class="brand-logo"></a>
+      <nav class="top-nav">{nav_items}</nav>
+      <div class="header-actions">
+        <a href="https://github.com/shauryaR790/V-" class="icon-btn" aria-label="GitHub" target="_blank" rel="noopener">
+          {GITHUB_SVG}
+        </a>
+      </div>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+    </div>
+  </header>
+  <main class="courses-hub-main">{body}</main>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-clike.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="{ASSET_PREFIX}js/prism-vpp.js"></script>
+  <script src="{ASSET_PREFIX}js/main.js"></script>
+{scripts}</body>
+</html>"""
+
+
+def build_course_card(project: CourseProject) -> str:
+    tag = project.level
+    return f"""<a href="{ASSET_PREFIX}{project.page_name}" class="course-card" data-level="{html.escape(project.level_key)}">
+  <div class="course-card-thumb" aria-hidden="true">
+    <div class="course-card-glow"></div>
+    <img src="{ASSET_PREFIX}assets/logo-header.png" alt="" class="course-card-logo">
+    <span class="course-card-thumb-label">{html.escape(project.title)}</span>
+  </div>
+  <div class="course-card-body">
+    <span class="course-card-tag">{html.escape(tag)}</span>
+    <h2 class="course-card-title">{html.escape(project.title)}</h2>
+    <p class="course-card-summary">{html.escape(clean_prose(project.summary))}</p>
+    <div class="course-card-meta">
+      <span class="course-card-avatar" aria-hidden="true">V+</span>
+      <div>
+        <span class="course-card-author">{BRAND} Curriculum</span>
+        <span class="course-card-date">Project {project.num:02d}</span>
+      </div>
+    </div>
+  </div>
+</a>"""
+
+
+def build_courses_hub_body(projects: list[CourseProject]) -> str:
+    cards = "\n".join(build_course_card(p) for p in projects)
+    return f"""<div class="courses-hub-inner">
+  <header class="courses-hub-header">
+    <h1>Courses &amp; Projects</h1>
+    <p>Twenty guided builds from first print to JSON configs. Open a project for step by step theory, incremental code, and a runnable playground.</p>
+  </header>
+  <nav class="courses-filter" aria-label="Filter projects">
+    <button type="button" class="courses-filter-btn active" data-filter="all">Everything</button>
+    <button type="button" class="courses-filter-btn" data-filter="beginner">Beginner</button>
+    <button type="button" class="courses-filter-btn" data-filter="intermediate">Intermediate</button>
+    <button type="button" class="courses-filter-btn" data-filter="advanced">Advanced</button>
+  </nav>
+  <div class="course-grid">{cards}</div>
+</div>"""
+
+
+def build_course_page_body(project: CourseProject) -> str:
+    parts = [
+        f'<div id="top"></div>',
+        f'<nav class="course-breadcrumb"><a href="{ASSET_PREFIX}courses.html">Courses</a>'
+        f' <span aria-hidden="true">/</span> '
+        f'<span>Project {project.num:02d}</span></nav>',
+        f'<header class="course-header">',
+        f'<span class="course-header-tag">{html.escape(project.level)}</span>',
+        f'<h1 id="course-title">{html.escape(project.title)}</h1>',
+        f'<p class="course-lead">{html.escape(clean_prose(project.summary))}</p>',
+    ]
+    if project.concepts:
+        chips = "".join(f'<span class="course-concept">{html.escape(c)}</span>' for c in project.concepts)
+        parts.append(f'<div class="course-concepts">{chips}</div>')
+    parts.append("</header>")
+
+    for idx, step in enumerate(project.steps, start=1):
+        parts.append(f'<section class="course-step" id="{html.escape(step.step_id)}">')
+        parts.append(f'<div class="course-step-head">')
+        parts.append(f'<span class="course-step-num">{idx}</span>')
+        parts.append(f'<h2 id="{html.escape(step.step_id)}-title">{html.escape(step.title)}</h2>')
+        parts.append("</div>")
+        parts.append(f'<div class="course-step-body"><p>{html.escape(step.theory)}</p>')
+        if step.code.strip():
+            parts.append(code_block_html(step.code))
+        parts.append("</div></section>")
+
+    output_json = html.escape(json.dumps({"output": project.output, "source": project.source}))
+    parts.append(
+        f'<section class="course-step course-step-final" id="full-program">'
+        f'<div class="course-step-head"><span class="course-step-num">✓</span>'
+        f'<h2 id="full-program-title">Full program &amp; run</h2></div>'
+        f'<div class="course-step-body">'
+        f'<p>Complete source for <strong>{html.escape(project.title)}</strong>. '
+        f'Run locally with <code>{html.escape(project.run_cmd)}</code> or use the playground below.</p>'
+        f'{code_block_html(project.source)}'
+        f'<script type="application/json" id="course-playground-data">{output_json}</script>'
+        f'<div class="course-playground">'
+        f'<div class="course-playground-toolbar">'
+        f'<span class="course-playground-label">Playground</span>'
+        f'<button type="button" class="btn btn-primary course-run-btn">Run program</button>'
+        f'<button type="button" class="btn btn-outline course-reset-btn" hidden>Reset</button>'
+        f'</div>'
+        f'<pre class="course-run-output" hidden aria-live="polite"></pre>'
+        f'<p class="course-run-hint">Simulated output matches <code>vpp run</code> on your machine after '
+        f'<a href="{ASSET_PREFIX}download.html">installing V++</a>.</p>'
+        f'</div></div></section>'
+    )
+    return "\n".join(parts)
+
+
+def build_course_sidebar(projects: list[CourseProject], active_page: str) -> str:
+    parts = [
+        '<div class="tree-search-wrap">',
+        '<div class="tree-search-field">',
+        TREE_SEARCH,
+        '<input type="search" class="tree-search" placeholder="Find project" aria-label="Filter projects">',
+        "</div></div>",
+        '<nav class="sidebar-tree" aria-label="Courses">',
+        '<details class="tree-folder" open>',
+        f'<summary class="tree-folder-label">{TREE_CHEVRON}{TREE_FOLDER}Projects</summary>',
+        '<ul class="tree-list">',
+        f'<li><a href="{ASSET_PREFIX}courses.html" class="tree-link">{TREE_FILE}All projects</a></li>',
+    ]
+    for p in projects:
+        parts.append(
+            f'<li><a href="{ASSET_PREFIX}{p.page_name}" class="tree-link">'
+            f"{TREE_FILE}{p.num:02d}. {html.escape(p.title)}</a></li>"
+        )
+    parts.extend(["</ul></details></nav>"])
+    return "\n".join(parts)
+
+
+def write_course_pages(projects: list[CourseProject], sidebar: dict[str, list[tuple[str, str]]]) -> None:
+    hub_body = build_courses_hub_body(projects)
+    hub_page = courses_hub_shell(
+        "courses.html",
+        "Courses",
+        hub_body,
+        f"Twenty guided {BRAND} projects with step by step lessons and runnable code.",
+        extra_scripts=["courses.js"],
+    )
+    (WEBSITE / "courses.html").write_text(hub_page, encoding="utf-8")
+    print(f"Wrote courses.html: {hub_page.count(chr(10))} lines")
+
+    course_sidebar = build_course_sidebar(projects, "")
+    for project in projects:
+        body = build_course_page_body(project)
+        headings = headings_from_html(body)
+        toc = build_toc(headings)
+        page = shell(
+            "courses.html",
+            f"Project {project.num:02d}: {project.title}",
+            body,
+            course_sidebar,
+            toc,
+            f"Step by step {BRAND} course: {project.title}.",
+            extra_scripts=["course-runner.js"],
+            body_class="page-docs page-course",
+        )
+        (WEBSITE / project.page_name).write_text(page, encoding="utf-8")
+        print(f"Wrote {project.page_name}: {page.count(chr(10))} lines")
+
+
+def all_doc_links(course_projects: list[CourseProject] | None = None) -> dict[str, list[tuple[str, str]]]:
     getting = [
         ("learn.html#introduction", "Introduction"),
         ("learn.html#install", "Install"),
@@ -993,7 +1176,6 @@ def all_doc_links() -> dict[str, list[tuple[str, str]]]:
     ]
     legal = [
         ("legal.html", "Legal overview"),
-        ("privacy.html", "Privacy Policy"),
         ("terms.html", "Terms of Service"),
         ("cookies.html", "Cookie Policy"),
         ("license.html", "Open Source License"),
@@ -1001,17 +1183,23 @@ def all_doc_links() -> dict[str, list[tuple[str, str]]]:
         ("acceptable-use.html", "Acceptable Use"),
         ("trademark.html", "Trademark"),
     ]
+    courses_links: list[tuple[str, str]] = [("courses.html", "All projects")]
+    if course_projects:
+        for p in course_projects:
+            courses_links.append((p.page_name, f"{p.num:02d}. {p.title}"))
     return {
         "Getting started": getting,
         "Language": language,
         "Guides": guides,
         "Project": project,
+        "Courses": courses_links,
         "Legal": legal,
     }
 
 
 def main() -> None:
-    sidebar = all_doc_links()
+    course_projects = discover_course_projects()
+    sidebar = all_doc_links(course_projects)
 
     learn_paths = [
         DOCS / "getting-started" / "introduction.md",
@@ -1025,9 +1213,9 @@ def main() -> None:
     write_doc_page("learn.html", "learn.html", "Learn", learn_paths, sidebar, "learn.html#introduction",
                    f"Learn {BRAND} — installation, syntax, and your first programs.")
 
-    docs_paths = all_reference_sources()
+    docs_paths = theory_doc_sources()
     write_doc_page("docs.html", "docs.html", "Documentation", docs_paths, sidebar, "docs.html",
-                   f"Complete {BRAND} language and toolchain documentation.", use_sources=True)
+                   f"{BRAND} specification, architecture, memory model, and language reference.")
 
     about_paths = [ROOT / "README.md", ROOT / "ARCHITECTURE.md", ROOT / "MEMORY_MODEL.md",
                    ROOT / "SPEC.md", DOCS / "project" / "roadmap.md"]
@@ -1048,15 +1236,7 @@ def main() -> None:
     write_doc_page("contribute.html", "contribute.html", "Contribute", contrib_paths, sidebar, "contribute.html",
                    f"Contribute to the {BRAND} compiler, docs, and ecosystem.")
 
-    courses_paths = [ROOT / "projects" / "README.md"]
-    for i in range(1, 21):
-        n = f"{i:02d}"
-        for p in (ROOT / "projects").glob(f"{n}-*"):
-            courses_paths.append(p / "README.md")
-            if (p / "main.vpp").exists():
-                courses_paths.append(p / "main.vpp")
-    write_doc_page("courses.html", "courses.html", "Courses", courses_paths, sidebar, "courses.html",
-                   f"Twenty {BRAND} projects from beginner to advanced.", use_sources=True)
+    write_course_pages(course_projects, sidebar)
 
     legal_pages = [
         ("legal.html", "legal.html", "Legal", LEGAL_DIR / "index.md"),
