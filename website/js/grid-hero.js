@@ -7,7 +7,6 @@
   if (!ctx) return;
 
   const GRID = 40;
-  const GRID_FILL = "rgba(251, 219, 90, 0.05)";
   const GRID_LINE = "rgba(251, 219, 90, 0.28)";
 
   function resize() {
