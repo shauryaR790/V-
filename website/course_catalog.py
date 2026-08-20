@@ -5,6 +5,7 @@ from __future__ import annotations
 import html
 import re
 from dataclasses import dataclass, field
+from datetime import date, timedelta
 from pathlib import Path
 
 from pdf_curriculum import CurriculumSection, load_curriculum
@@ -19,6 +20,13 @@ LEVEL_BY_NUM: dict[int, str] = {
     **{i: "Intermediate" for i in (14, 15, 16, 17)},
     **{i: "Advanced" for i in (12, 13, 18, 19, 20)},
 }
+
+COURSE_PUBLISH_START = date(2026, 4, 1)
+
+
+def course_publish_date(num: int) -> str:
+    published = COURSE_PUBLISH_START + timedelta(days=7 * (num - 1))
+    return f"{published.strftime('%b')} {published.day}, {published.year}"
 
 
 @dataclass
@@ -40,6 +48,10 @@ class CourseProject:
     @property
     def level_key(self) -> str:
         return self.level.lower()
+
+    @property
+    def published_label(self) -> str:
+        return course_publish_date(self.num)
 
 
 def title_from_slug(slug: str) -> str:
