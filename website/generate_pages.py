@@ -1023,7 +1023,7 @@ def build_course_card(project: CourseProject) -> str:
     <div class="course-card-meta">
       <span class="course-card-avatar" aria-hidden="true">V++</span>
       <div>
-        <span class="course-card-author">{BRAND} Curriculum</span>
+        <span class="course-card-author">Course Curriculum</span>
         <span class="course-card-date">Project {project.num:02d}</span>
       </div>
     </div>

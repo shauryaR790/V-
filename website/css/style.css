@@ -1598,9 +1598,9 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-muted);
+  background: var(--yellow);
+  border: 1px solid var(--yellow-dark);
+  color: var(--white);
   font-size: 0.5625rem;
   font-weight: 700;
   letter-spacing: -0.02em;
