@@ -34,7 +34,7 @@
   --tree-font: 0.8125rem;
   --radius: 8px;
   --grid-yellow: rgba(251, 219, 90, 0.45);
-  --code-bg: #000000;
+  --code-bg: #010409;
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-muted: #222222;
   --border-accent: rgba(251, 219, 90, 0.35);
@@ -295,7 +295,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .page-home .code-panel .code-footer,
 .page-home .code-panel .code-panel-header {
   background: transparent;
-  border-color: #1e293b;
+  border-color: #1a1f2e;
 }
 
 .page-home .code-panel .code-panel-header {
