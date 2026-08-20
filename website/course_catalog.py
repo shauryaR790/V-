@@ -7,7 +7,7 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from pdf_curriculum import CurriculumProject, CurriculumSection, load_curriculum_from_pdf
+from pdf_curriculum import CurriculumSection, load_curriculum
 
 ROOT = Path(__file__).resolve().parent.parent
 PROJECTS = ROOT / "projects"
@@ -48,7 +48,7 @@ def title_from_slug(slug: str) -> str:
 
 
 def discover_course_projects() -> list[CourseProject]:
-    pdf_by_num = {p.num: p for p in load_curriculum_from_pdf()}
+    pdf_by_num = {p.num: p for p in load_curriculum()}
     projects: list[CourseProject] = []
     for i in range(1, 21):
         num = i

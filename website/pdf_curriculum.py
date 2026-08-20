@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
+import json
 import re
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+WEBSITE = Path(__file__).resolve().parent
 PDF_PATH = ROOT / "vpp_20_course_deep_curriculum.pdf"
+JSON_PATH = WEBSITE / "curriculum.json"
 
 HEADER_RE = re.compile(r"v\+\+ 20 Course Deep Curriculum\s+\d+\s*", re.I)
 PROJECT_SPLIT_RE = re.compile(r"(?=Project \d{2}: )")
@@ -376,3 +379,56 @@ def load_curriculum_from_pdf() -> list[CurriculumProject]:
         projects.append(_parse_project(num, title, body))
     projects.sort(key=lambda p: p.num)
     return projects
+
+
+def export_curriculum_json(path: Path = JSON_PATH) -> None:
+    projects = load_curriculum_from_pdf()
+    payload = [asdict(project) for project in projects]
+    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def load_curriculum_from_json(path: Path = JSON_PATH) -> list[CurriculumProject]:
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    projects: list[CurriculumProject] = []
+    for item in raw:
+        sections = [
+            CurriculumSection(
+                section_id=section["section_id"],
+                title=section["title"],
+                paragraphs=section.get("paragraphs", []),
+                code=section.get("code", ""),
+                list_items=section.get("list_items", []),
+            )
+            for section in item["sections"]
+        ]
+        projects.append(
+            CurriculumProject(
+                num=item["num"],
+                title=item["title"],
+                goal=item["goal"],
+                sections=sections,
+                complete_source=item["complete_source"],
+                expected_output=item["expected_output"],
+                run_cmd=item["run_cmd"],
+            )
+        )
+    projects.sort(key=lambda p: p.num)
+    return projects
+
+
+def load_curriculum() -> list[CurriculumProject]:
+    """Load curriculum for site generation (JSON in CI, PDF when refreshing content)."""
+    if JSON_PATH.exists():
+        return load_curriculum_from_json()
+    if PDF_PATH.exists():
+        projects = load_curriculum_from_pdf()
+        export_curriculum_json()
+        return projects
+    raise FileNotFoundError(
+        f"Missing curriculum data. Add {JSON_PATH.name} or {PDF_PATH.name} to the repository."
+    )
+
+
+if __name__ == "__main__":
+    export_curriculum_json()
+    print(f"Wrote {JSON_PATH}")
