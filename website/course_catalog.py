@@ -101,6 +101,13 @@ def code_block_html(
     if code.strip().startswith("vpp "):
         lang = "bash"
         filename = "terminal"
+    if any(
+        line.strip().startswith(prefix)
+        for line in code.splitlines()
+        for prefix in ("git ", "cargo ", "cd ", ".\\")
+    ):
+        lang = "bash"
+        filename = "terminal"
     escaped = html.escape(code)
     wrap_cls = "code-block-wrap"
     if wrap_class:
