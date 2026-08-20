@@ -275,23 +275,23 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .page-home .code-panel pre,
 .page-home .code-panel pre.home-code-pre {
-  min-height: calc(0.75rem + 30 * 1.55 * 0.75rem);
+  min-height: calc(0.5rem + 30 * 1.52 * 0.875rem);
 }
 
 .page-home .code-panel pre code {
-  font-size: 0.75rem !important;
-  line-height: 1.55 !important;
+  font-size: 0.875rem !important;
+  line-height: 1.52 !important;
 }
 
 .page-home .code-panel pre.has-line-numbers .code-ln {
-  font-size: 0.75rem;
-  line-height: 1.55;
-  height: 1.55em;
+  font-size: 0.875rem;
+  line-height: 1.52;
+  height: 1.52em;
 }
 
 .page-home .code-panel pre.has-line-numbers .code-ln-gutter {
   border-right-color: var(--border-muted);
-  min-height: calc(30 * 1.55em);
+  min-height: calc(30 * 1.52em);
 }
 
 .page-home .code-panel .code-tabs,
