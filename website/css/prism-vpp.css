@@ -1,8 +1,9 @@
 /* Code blocks — slate-900 card (matches shadcn CodeBlock / atomDark) */
 
 :root {
-  --code-slate: #0f172a;
-  --code-slate-border: #1e293b;
+  --code-bg: #010409;
+  --code-slate: #010409;
+  --code-slate-border: #1a1f2e;
   --code-fg: #e2e8f0;
   --code-muted: #94a3b8;
   --code-ln: #64748b;

@@ -274,8 +274,8 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .page-home .code-panel {
-  background: #0f172a;
-  border-color: #1e293b;
+  background: #010409;
+  border-color: #1a1f2e;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
   min-height: 510px;
 }
