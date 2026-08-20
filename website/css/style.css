@@ -327,12 +327,13 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .btn-outline {
-  background: rgba(0, 0, 0, 0.85);
-  color: var(--text);
-  border-color: var(--gray-300);
+  background: var(--bg);
+  color: var(--yellow);
+  border-color: var(--yellow);
 }
 
 .btn-outline:hover {
+  background: var(--bg);
   border-color: var(--yellow);
   color: var(--yellow);
 }
