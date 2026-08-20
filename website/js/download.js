@@ -91,7 +91,7 @@ vpp check examples\\hello.vpp
 vpp --version
 # Verify your install
 vpp doctor`,
-          info: "Portable zip — extract anywhere. Run <code>GO.bat</code> or add the folder to PATH manually.",
+          info: "Portable zip: extract anywhere. Run <code>GO.bat</code> or add the folder to PATH manually.",
         },
       ],
     },
@@ -114,7 +114,7 @@ vpp check examples/hello.vpp
 vpp --version
 # Verify your install
 vpp doctor`,
-          info: "Linux x64 bundle — extract and run <code>./run.sh</code>. Add the folder to PATH for global use.",
+          info: "Linux x64 bundle: extract and run <code>./run.sh</code>. Add the folder to PATH for global use.",
         },
         {
           id: "source",
@@ -153,7 +153,7 @@ vpp check examples/hello.vpp
 vpp --version
 # Verify your install
 vpp doctor`,
-          info: "macOS Apple Silicon bundle — extract and run <code>./run.sh</code>. Intel Macs: build from source.",
+          info: "macOS Apple Silicon bundle: extract and run <code>./run.sh</code>. Intel Macs: build from source.",
         },
         {
           id: "source",

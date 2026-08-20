@@ -426,7 +426,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .code-panel pre.home-code-pre {
   flex: 1;
   overflow: hidden !important;
-  min-height: calc(1rem * 2 + 30 * 1.65 * 0.8125rem);
+  min-height: calc(1rem * 2 + 27 * 1.65 * 0.8125rem);
   scrollbar-width: none;
   -ms-overflow-style: none;
 }

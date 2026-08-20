@@ -1,10 +1,10 @@
-const CODE_LINE_COUNT = 30;
+const CODE_LINE_COUNT = 27;
 
 const CODE_SAMPLES = {
   hello: {
     lang: "vpp",
     label: "hello.vpp",
-    code: `// hello.vpp — run: vpp run hello.vpp
+    code: `// hello.vpp: run vpp run hello.vpp
 import std.io
 
 fn greet(name: string) -> string {

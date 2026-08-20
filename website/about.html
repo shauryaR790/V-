@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About The Language — V++</title>
-  <meta name="description" content="About The Language — design, architecture, memory model, and roadmap.">
+  <title>About The Language | V++</title>
+  <meta name="description" content="About The Language design, architecture, memory model, and roadmap.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -97,13 +97,13 @@
     <main class="docs-main">
       <article class="docs-article"><div id="top"></div>
 <h1 id="about-the-language">About The Language</h1>
-<p><strong>V++</strong> is a compiled programming language — Python-style readability, static typing, native performance.</p>
+<p><strong>V++</strong> is a compiled programming language Python style readability, static typing, native performance.</p>
 <p>&gt; Write it simply. Compile it natively. Grow into control when you need it.</p>
 <p><strong>Author:</strong> <a href="https://github.com/shauryaR790">Shaurya</a> · <strong>License:</strong> MIT · <strong>Version:</strong> 0.5.0</p>
 <hr>
 <h2 id="get-started-in-2-minutes">Get started in 2 minutes</h2>
-<p>1. <strong>Download</strong> <a href="https://github.com/shauryaR790/V-/releases/latest"><code>vpp-0.5.0-setup.exe</code></a> (Windows installer)</p>
-<p>2. <strong>Install</strong> <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">V++ Language</a> in VS Code (publisher: <strong>vpp-lang</strong>)</p>
+<p>1. <strong>Download</strong> <a href="https://github.com/shauryaR790/V-/releases/latest"> 0 </a> (Windows installer)</p>
+<p>2. <strong>Install</strong> <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">V++ Language</a> in VS Code (publisher: <strong>vpp lang</strong>)</p>
 <p>3. <strong>Run:</strong></p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span class="code-block-filename">hello.vpp</span></div>
@@ -158,7 +158,7 @@ vpp doctor</code></pre>
 <li><strong>Generics</strong>, <strong>traits</strong>, <strong><code>mut</code></strong> (v0.4)</li>
 <li><strong>Modules</strong> + <strong>package manager</strong> (<code>vpp.toml</code>)</li>
 <li><strong>Interpreter</strong> (<code>vpp run</code>) and <strong>native build</strong> (<code>vpp build</code>)</li>
-<li><strong>LSP</strong> — diagnostics, completion, go-to-definition</li>
+<li><strong>LSP</strong> diagnostics, completion, go to definition</li>
 <li><strong>VS Code extension</strong> on the Marketplace</li>
 </ul>
 <hr>
@@ -206,16 +206,16 @@ cargo test --all-targets
 <p>See <a href="docs/contributing/building-from-source.md">Building from source</a>.</p>
 <hr>
 <h2 id="roadmap">Roadmap</h2>
-<p><strong>v0.5</strong> — website, REPL, SignPath signing, expanded stdlib  </p>
-<p><strong>v1.0</strong> — stable spec, debugger, test explorer</p>
+<p><strong>v0.5</strong> website, REPL, SignPath signing, expanded stdlib</p>
+<p><strong>v1.0</strong> stable spec, debugger, test explorer</p>
 <p>Details: <a href="docs/project/roadmap.md">docs/project/roadmap.md</a></p>
 
 <h1 id="v-compiler-architecture-v0-2">V++ Compiler Architecture (v0.2)</h1>
 <h2 id="overview">Overview</h2>
-<p>V++ is a statically typed language with a single front-end and two backends:</p>
+<p>V++ is a statically typed language with a single front end and two backends:</p>
 <ul>
-<li><strong>Interpreter</strong> — tree-walking evaluation for development and teaching</li>
-<li><strong>Native compiler</strong> — lowers to V++ IR, then LLVM, links the C runtime</li>
+<li><strong>Interpreter</strong> tree walking evaluation for development and teaching</li>
+<li><strong>Native compiler</strong> lowers to V++ IR, then LLVM, links the C runtime</li>
 </ul>
 <p>Both backends consume the same <strong>typed AST</strong> produced by the type checker.</p>
 <div class="code-block-wrap">
@@ -251,13 +251,13 @@ cargo test --all-targets
 </div>
 <h2 id="components">Components</h2>
 <h3 id="lexer-parser">Lexer / Parser</h3>
-<p>Hand-written lexer with significant newlines. Recursive-descent parser with Pratt precedence for expressions.</p>
+<p>Hand written lexer with significant newlines. Recursive descent parser with Pratt precedence for expressions.</p>
 <h3 id="type-checker">Type checker</h3>
-<p>Two-pass: register types and functions, then check bodies. Uses <code>src/builtins</code> for builtin signatures.</p>
+<p>Two pass: register types and functions, then check bodies. Uses <code>src/builtins</code> for builtin signatures.</p>
 <h3 id="v-ir">V++ IR</h3>
 <p>Thin intermediate representation between typed AST and LLVM. Makes memory operations, control flow, and calling conventions explicit. See <code>src/ir/mod.rs</code>.</p>
 <h3 id="llvm-backend">LLVM backend</h3>
-<p>Inkwell-based. Emits LLVM IR, invokes <code>clang</code> to produce object files, links runtime. Feature-gated: <code>--features codegen</code>.</p>
+<p>Inkwell based. Emits LLVM IR, invokes <code>clang</code> to produce object files, links runtime. Feature gated: <code>--features codegen</code>.</p>
 <h3 id="runtime">Runtime</h3>
 <p>C ABI documented in <code>MEMORY_MODEL.md</code>. Heap strings and arrays use ARC reference counting.</p>
 <h3 id="builtins">Builtins</h3>
@@ -266,9 +266,9 @@ cargo test --all-targets
 <p>See <code>CHANGELOG.md</code> and <code>tests/parity/</code> for the live matrix. Native codegen must match interpreter output for all supported features.</p>
 <h2 id="version-notes">Version notes</h2>
 <ul>
-<li><strong>v0.2</strong> — native foundation, IR, ABI, parity tests</li>
-<li><strong>v0.3</strong> — module redesign, package manager (not in v0.2)</li>
-<li><strong>v0.4</strong> — generics, traits, <code>mut</code>, compile-time match exhaustiveness</li>
+<li><strong>v0.2</strong> native foundation, IR, ABI, parity tests</li>
+<li><strong>v0.3</strong> module redesign, package manager (not in v0.2)</li>
+<li><strong>v0.4</strong> generics, traits, <code>mut</code>, compile time match exhaustiveness</li>
 </ul>
 
 <h1 id="v-memory-model-v0-2-bootstrap">V++ Memory Model (v0.2 bootstrap)</h1>
@@ -291,20 +291,20 @@ cargo test --all-targets
 <tr>
 <td><code>int</code></td>
 <td><code>i64</code></td>
-<td>Signed 64-bit</td>
+<td>Signed 64 bit</td>
 </tr>
 <tr>
 <td><code>float</code></td>
 <td><code>double</code></td>
-<td>IEEE 64-bit</td>
+<td>IEEE 64 bit</td>
 </tr>
 <tr>
 <td><code>bool</code></td>
-<td><code>i1</code> / zero-extended</td>
+<td><code>i1</code> / zero extended</td>
 <td></td>
 </tr>
 <tr>
-<td>fixed-size struct</td>
+<td>fixed size struct</td>
 <td>LLVM struct</td>
 <td>Field layout computed by codegen</td>
 </tr>
@@ -328,29 +328,29 @@ cargo test --all-targets
 </tr>
 </tbody></table></div>
 <h2 id="string-abi-v0-2">String ABI (v0.2)</h2>
-<p>1. String <strong>literals</strong> — compiler emits a nul-terminated <code>i8*</code> constant, calls <code>vpp_string_new(cstr)</code> → <code>VppString*</code></p>
-<p>2. String <strong>locals</strong> — stored as <code>VppString*</code> (pointer to heap object)</p>
-<p>3. <strong><code>print(s)</code></strong> — calls <code>vpp_print_str(VppString* s)</code></p>
-<p>4. <strong><code>len(s)</code></strong> — calls <code>vpp_strlen(VppString* s)</code></p>
-<p>5. <strong>Concatenation</strong> — <code>vpp_string_concat(VppString* a, VppString* b)</code> → new <code>VppString*</code> (retain inputs during call)</p>
+<p>1. String <strong>literals</strong> compiler emits a nul terminated <code>i8*</code> constant, calls <code>vpp_string_new(cstr)</code> → <code>VppString*</code></p>
+<p>2. String <strong>locals</strong> stored as <code>VppString*</code> (pointer to heap object)</p>
+<p>3. <strong><code>print(s)</code></strong> calls <code>vpp_print_str(VppString* s)</code></p>
+<p>4. <strong><code>len(s)</code></strong> calls <code>vpp_strlen(VppString* s)</code></p>
+<p>5. <strong>Concatenation</strong> <code>vpp_string_concat(VppString* a, VppString* b)</code> → new <code>VppString*</code> (retain inputs during call)</p>
 <p>Never pass raw <code>i8*</code> to <code>vpp_print_str</code>.</p>
 <h2 id="array-abi-v0-2">Array ABI (v0.2)</h2>
-<p>1. <strong>Literals</strong> — <code>vpp_make_array(len, elem_size)</code> then fill element slots via typed GEP</p>
-<p>2. <strong>Value type</strong> — <code>VppArray*</code> everywhere (locals, parameters, returns)</p>
-<p>3. <strong>Elements</strong> — inline in buffer; <code>string</code> elements store <code>VppString*</code> (8 bytes); <code>bool</code> uses 1 byte</p>
-<p>4. <strong><code>len(a)</code></strong> — <code>vpp_array_len(VppArray*)</code></p>
-<p>5. <strong><code>a[i]</code></strong> — <code>vpp_array_index_ptr(arr, i)</code> with bounds check (abort on OOB, matches interpreter error)</p>
-<p>6. <strong>Ownership</strong> — <code>vpp_array_retain</code> on pass to functions; <code>vpp_array_release</code> at scope exit</p>
-<p>7. <strong>String elements</strong> — <code>vpp_string_retain</code> when stored into array literal</p>
+<p>1. <strong>Literals</strong> <code>vpp_make_array(len, elem_size)</code> then fill element slots via typed GEP</p>
+<p>2. <strong>Value type</strong> <code>VppArray*</code> everywhere (locals, parameters, returns)</p>
+<p>3. <strong>Elements</strong> inline in buffer; <code>string</code> elements store <code>VppString*</code> (8 bytes); <code>bool</code> uses 1 byte</p>
+<p>4. <strong><code>len(a)</code></strong> <code>vpp_array_len(VppArray*)</code></p>
+<p>5. <strong><code>a[i]</code></strong> <code>vpp_array_index_ptr(arr, i)</code> with bounds check (abort on OOB, matches interpreter error)</p>
+<p>6. <strong>Ownership</strong> <code>vpp_array_retain</code> on pass to functions; <code>vpp_array_release</code> at scope exit</p>
+<p>7. <strong>String elements</strong> <code>vpp_string_retain</code> when stored into array literal</p>
 <h2 id="arc-rules-v0-2-bootstrap">ARC rules (v0.2 bootstrap)</h2>
 <ul>
-<li><code>vpp_string_new</code> / <code>vpp_make_array</code> — ref_count = 1</li>
-<li><code>vpp_*_retain</code> — increment</li>
-<li><code>vpp_*_release</code> — decrement; free at zero</li>
+<li><code>vpp_string_new</code> / <code>vpp_make_array</code> ref_count = 1</li>
+<li><code>vpp_*_retain</code> increment</li>
+<li><code>vpp_*_release</code> decrement; free at zero</li>
 <li>Function arguments: retain on pass (caller keeps ownership)</li>
 <li>Scope exit: release heap locals (v0.2: strings in nested scopes)</li>
 </ul>
-<p>Full ARC at scope boundaries is implemented incrementally. Leaks are acceptable in v0.2 for top-level-only programs; crashes are not.</p>
+<p>Full ARC at scope boundaries is implemented incrementally. Leaks are acceptable in v0.2 for top level only programs; crashes are not.</p>
 <h2 id="interpreter-mapping">Interpreter mapping</h2>
 <div class="table-wrap"><table>
 <tr>
@@ -387,12 +387,12 @@ cargo test --all-targets
 <tr>
 <td>int</td>
 <td><code>int</code></td>
-<td>64-bit signed</td>
+<td>64 bit signed</td>
 </tr>
 <tr>
 <td>float</td>
 <td><code>float</code></td>
-<td>64-bit IEEE</td>
+<td>64 bit IEEE</td>
 </tr>
 <tr>
 <td>bool</td>
@@ -402,7 +402,7 @@ cargo test --all-targets
 <tr>
 <td>string</td>
 <td><code>string</code></td>
-<td>UTF-8 heap string (ARC native)</td>
+<td>UTF 8 heap string (ARC native)</td>
 </tr>
 <tr>
 <td>array</td>
@@ -412,12 +412,12 @@ cargo test --all-targets
 <tr>
 <td>struct</td>
 <td><code>Name</code></td>
-<td>User-defined product type</td>
+<td>User defined product type</td>
 </tr>
 <tr>
 <td>enum</td>
 <td><code>Name</code></td>
-<td>User-defined sum type</td>
+<td>User defined sum type</td>
 </tr>
 <tr>
 <td>Option</td>
@@ -470,7 +470,7 @@ impl Display for User {
 print(user.to_text())</code></pre>
 </div>
 <h2 id="control-flow">Control flow</h2>
-<p><code>if</code> / <code>else</code>, <code>while</code>, <code>for i in start..end</code> (half-open), <code>for item in arr</code>, <code>break</code>, <code>continue</code>, <code>match</code>.</p>
+<p><code>if</code> / <code>else</code>, <code>while</code>, <code>for i in start..end</code> (half open), <code>for item in arr</code>, <code>break</code>, <code>continue</code>, <code>match</code>.</p>
 <p>Match arms use blocks:</p>
 <div class="code-block-wrap">
 <div class="code-block-header"><span class="code-block-filename">text</span></div>
@@ -548,9 +548,9 @@ import &quot;legacy/path.vpp&quot;   // still supported
 <p><code>std/io</code>, <code>std/math</code>, <code>std/string</code>, <code>std/collections</code>, <code>std/fs</code>, <code>std/json</code>, <code>std/process</code>.</p>
 <h2 id="execution">Execution</h2>
 <ul>
-<li><code>vpp run file.vpp</code> — interpreter (calls <code>fn main()</code> when defined)</li>
-<li><code>vpp build file.vpp -o out.exe</code> — native executable (requires LLVM + codegen)</li>
-<li><code>.\stress.ps1</code> — compare interpreter vs native output for <code>stress.vpp</code></li>
+<li><code>vpp run file.vpp</code> interpreter (calls <code>fn main()</code> when defined)</li>
+<li><code>vpp build file.vpp -o out.exe</code> native executable (requires LLVM + codegen)</li>
+<li><code>.\stress.ps1</code> compare interpreter vs native output for <code>stress.vpp</code></li>
 </ul>
 <p>Interpreter and native must produce identical stdout for supported programs.</p>
 <h2 id="known-limitations-v0-4">Known limitations (v0.4)</h2>
@@ -578,7 +578,7 @@ import &quot;legacy/path.vpp&quot;   // still supported
 </ul>
 <h2 id="v1-0-stable">v1.0 (stable)</h2>
 <ul>
-<li>[ ] Frozen language spec — no breaking changes without major version</li>
+<li>[ ] Frozen language spec no breaking changes without major version</li>
 <li>[ ] Debugger extension (breakpoints)</li>
 <li>[ ] Test Explorer UI in VS Code</li>
 <li>[ ] Hosted package registry</li>

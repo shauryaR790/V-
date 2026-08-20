@@ -281,6 +281,28 @@ def slug(text: str) -> str:
     return s or "section"
 
 
+def clean_prose(text: str) -> str:
+    """Remove dashes and hyphens from user-visible prose (not inline code or URLs)."""
+    placeholders: list[str] = []
+
+    def stash(match: re.Match[str]) -> str:
+        placeholders.append(match.group(0))
+        return f"\x00{len(placeholders) - 1}\x00"
+
+    protected = text
+    protected = re.sub(r"`[^`]*`", stash, protected)
+    protected = re.sub(r"\[[^\]]*\]\([^)]*\)", stash, protected)
+    protected = re.sub(r"https?://[^\s)]+", stash, protected)
+    protected = protected.replace("—", " ")
+    protected = protected.replace("–", " ")
+    protected = protected.replace("--", " ")
+    protected = re.sub(r"-", " ", protected)
+    protected = re.sub(r" +", " ", protected)
+    for i, original in enumerate(placeholders):
+        protected = protected.replace(f"\x00{i}\x00", original)
+    return protected.strip()
+
+
 class SlugRegistry:
     """Assign unique HTML id slugs across a full generated page."""
 
@@ -539,6 +561,7 @@ def brand_text(s: str) -> str:
 
 
 def inline_md(s: str) -> str:
+    s = clean_prose(s)
     s = html.escape(s)
 
     def link_repl(match: re.Match[str]) -> str:
@@ -773,7 +796,7 @@ vpp doctor</code></pre>
   </tbody></table></div>
 
   <h2 id="vscode">VS Code extension</h2>
-  <p>Search <strong>v++ Language</strong> in VS Code Extensions (publisher: <strong>vpp-lang</strong>) or install from the
+  <p>Search <strong>v++ Language</strong> in VS Code Extensions (publisher: <strong>vpp lang</strong>) or install from the
   <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus" target="_blank" rel="noopener">Marketplace</a>.</p>
 </div>"""
 
@@ -792,13 +815,13 @@ def shell(
         f'<a href="{ASSET_PREFIX}{href}" class="nav-link{" active" if href == active else ""}">{label}</a>'
         for href, label in NAV
     )
-    meta = f'<meta name="description" content="{html.escape(desc)}">' if desc else ""
+    meta = f'<meta name="description" content="{html.escape(clean_prose(desc))}">' if desc else ""
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{html.escape(title)} — {BRAND}</title>
+  <title>{html.escape(clean_prose(title))} | {BRAND}</title>
   {meta}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -921,7 +944,7 @@ def write_doc_page(
     if page_h1:
         body = (
             f'<div id="top"></div>\n'
-            f'<h1 id="{slug_registry.unique(page_h1)}">{html.escape(page_h1)}</h1>\n{body}'
+            f'<h1 id="{slug_registry.unique(page_h1)}">{html.escape(clean_prose(page_h1))}</h1>\n{body}'
         )
     else:
         body = f'<div id="top"></div>\n' + body
