@@ -186,6 +186,7 @@
 <li><a href="../language/README.md">Language overview</a></li>
 <li><a href="../README.md">Full documentation</a></li>
 </ul>
+
 <h1 id="install-v">Install V++</h1>
 <h2 id="windows-recommended">Windows (recommended)</h2>
 <p>1. Download <strong><code>vpp-0.5.0-setup.exe</code></strong> from <a href="https://github.com/shauryaR790/V-/releases/latest">GitHub Releases</a>.</p>
@@ -231,6 +232,7 @@ vpp doctor</code></pre>
 <td>Rust + LLVM 22</td>
 </tr>
 </tbody></table></div>
+
 <h1 id="v-language-overview">V++ language overview</h1>
 <p>V++ combines readable syntax with static typing and optional native compilation.</p>
 <h2 id="design-goals">Design goals</h2>
@@ -284,11 +286,11 @@ vpp doctor</code></pre>
 </tr>
 </tbody></table></div>
 <p>Formal spec: <a href="../../SPEC.md">SPEC.md</a>.</p>
+
 <h1 id="faq">FAQ</h1>
-<h2 id="what-is-v">What is V++?</h2>
-<p>A statically typed language with readable syntax, an interpreter for development, and native compilation to <code>.exe</code> via LLVM. Open source (MIT), currently at <strong>v0.5</strong>.</p>
-<h2 id="how-is-v-different-from-python">How is V++ different from Python?</h2>
-<div class="table-wrap"><table>
+<div class="faq-list">
+<section class="faq-item" id="what-is-v"><h2 class="faq-question">What is V++?</h2><div class="faq-answer"><p>A statically typed language with readable syntax, an interpreter for development, and native compilation to <code>.exe</code> via LLVM. Open source (MIT), currently at <strong>v0.5</strong>.</p></div></section>
+<section class="faq-item" id="how-is-v-different-from-python"><h2 class="faq-question">How is V++ different from Python?</h2><div class="faq-answer"><div class="table-wrap"><table>
 <tr>
 <td></td>
 <td>Python</td>
@@ -320,44 +322,35 @@ vpp doctor</code></pre>
 <td>Learning, CLI tools, typed native programs</td>
 </tr>
 </tbody></table></div>
-<p>Python is better when you need libraries and speed of prototyping across domains. V++ is better when you want types and a native binary without switching languages later.</p>
-<h2 id="how-is-v-different-from-rust">How is V++ different from Rust?</h2>
-<p>Rust enforces ownership and borrowing at compile time for maximum safety and performance. V++ uses ARC for heap values in native mode and skips the borrow checker — easier to learn, less control over allocation patterns.</p>
-<p>Choose Rust for systems programming at scale. Choose V++ to learn typed languages or ship small native tools with Python-like syntax.</p>
-<h2 id="how-is-v-different-from-go-or-typescript">How is V++ different from Go or TypeScript?</h2>
-<p>Go is statically typed with a large ecosystem and goroutines. TypeScript adds types to JavaScript but still runs on Node/V8. V++ is a standalone language with its own interpreter and LLVM backend — not a host-VM language.</p>
-<h2 id="how-do-i-learn-v">How do I learn V++?</h2>
-<p>1. Read <a href="../getting-started/introduction.md">Introduction</a>.</p>
+<p>Python is better when you need libraries and speed of prototyping across domains. V++ is better when you want types and a native binary without switching languages later.</p></div></section>
+<section class="faq-item" id="how-is-v-different-from-rust"><h2 class="faq-question">How is V++ different from Rust?</h2><div class="faq-answer"><p>Rust enforces ownership and borrowing at compile time for maximum safety and performance. V++ uses ARC for heap values in native mode and skips the borrow checker — easier to learn, less control over allocation patterns.</p>
+<p>Choose Rust for systems programming at scale. Choose V++ to learn typed languages or ship small native tools with Python-like syntax.</p></div></section>
+<section class="faq-item" id="how-is-v-different-from-go-or-typescript"><h2 class="faq-question">How is V++ different from Go or TypeScript?</h2><div class="faq-answer"><p>Go is statically typed with a large ecosystem and goroutines. TypeScript adds types to JavaScript but still runs on Node/V8. V++ is a standalone language with its own interpreter and LLVM backend — not a host-VM language.</p></div></section>
+<section class="faq-item" id="how-do-i-learn-v"><h2 class="faq-question">How do I learn V++?</h2><div class="faq-answer"><p>1. Read <a href="../getting-started/introduction.md">Introduction</a>.</p>
 <p>2. <a href="../getting-started/install.md">Install</a> and write the <a href="../getting-started/hello-world.md">first program</a>.</p>
 <p>3. Complete the <a href="../../projects/README.md">20 projects</a>.</p>
 <p>4. Reference <a href="../language/README.md">language docs</a> and <a href="../guides/README.md">guides</a>.</p>
-<p>If you know Python or JavaScript, expect a few days for syntax; a few weeks for types, structs, and native builds.</p>
-<h2 id="what-are-the-main-difficulties">What are the main difficulties?</h2>
-<ul>
+<p>If you know Python or JavaScript, expect a few days for syntax; a few weeks for types, structs, and native builds.</p></div></section>
+<section class="faq-item" id="what-are-the-main-difficulties"><h2 class="faq-question">What are the main difficulties?</h2><div class="faq-answer"><ul>
 <li><strong>Strict types</strong> — function signatures and match exhaustiveness are enforced.</li>
 <li><strong>Native builds</strong> — require LLVM 22 + clang; Windows is the primary supported platform.</li>
 <li><strong>Young ecosystem</strong> — fewer third-party packages than Python or Rust.</li>
 <li><strong>Pre-1.0</strong> — syntax and stdlib may change; pin releases for serious work.</li>
-</ul>
-<h2 id="why-would-i-choose-v">Why would I choose V++?</h2>
-<ul>
+</ul></div></section>
+<section class="faq-item" id="why-would-i-choose-v"><h2 class="faq-question">Why would I choose V++?</h2><div class="faq-answer"><ul>
 <li>Readable syntax with real static typing.</li>
 <li>Same source for interpret (<code>vpp run</code>) and native ship (<code>vpp build</code>).</li>
 <li>Integrated toolchain: fmt, test, packages, LSP, VS Code extension.</li>
 <li>Full compiler source available to read and contribute to.</li>
-</ul>
-<h2 id="is-v-ready-for-production">Is V++ ready for production?</h2>
-<p><strong>v0.5</strong> — suitable for learning, personal tools, and experimentation. Not yet a replacement for Python or Rust in large production systems. See <a href="roadmap.md">roadmap</a>.</p>
-<h2 id="where-do-i-download">Where do I download?</h2>
-<p><a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a> — <code>vpp-0.5.0-setup.exe</code> for Windows.</p>
-<h2 id="which-vs-code-extension-is-official">Which VS Code extension is official?</h2>
-<p><strong>V++ Language</strong> — publisher <code>vpp-lang</code> (<code>vpp-lang.vplusplus</code>).</p>
-<h2 id="does-v-collect-data">Does V++ collect data?</h2>
-<p>No. See <a href="../PRIVACY.md">PRIVACY.md</a>.</p>
-<h2 id="how-do-i-report-bugs">How do I report bugs?</h2>
-<p><a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a></p>
-<h2 id="can-i-contribute">Can I contribute?</h2>
-<p>Yes — <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+</ul></div></section>
+<section class="faq-item" id="is-v-ready-for-production"><h2 class="faq-question">Is V++ ready for production?</h2><div class="faq-answer"><p><strong>v0.5</strong> — suitable for learning, personal tools, and experimentation. Not yet a replacement for Python or Rust in large production systems. See <a href="roadmap.md">roadmap</a>.</p></div></section>
+<section class="faq-item" id="where-do-i-download"><h2 class="faq-question">Where do I download?</h2><div class="faq-answer"><p><a href="https://github.com/shauryaR790/V-/releases">GitHub Releases</a> — <code>vpp-0.5.0-setup.exe</code> for Windows.</p></div></section>
+<section class="faq-item" id="which-vs-code-extension-is-official"><h2 class="faq-question">Which VS Code extension is official?</h2><div class="faq-answer"><p><strong>V++ Language</strong> — publisher <code>vpp-lang</code> (<code>vpp-lang.vplusplus</code>).</p></div></section>
+<section class="faq-item" id="does-v-collect-data"><h2 class="faq-question">Does V++ collect data?</h2><div class="faq-answer"><p>No. See <a href="../PRIVACY.md">PRIVACY.md</a>.</p></div></section>
+<section class="faq-item" id="how-do-i-report-bugs"><h2 class="faq-question">How do I report bugs?</h2><div class="faq-answer"><p><a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a></p></div></section>
+<section class="faq-item" id="can-i-contribute"><h2 class="faq-question">Can I contribute?</h2><div class="faq-answer"><p>Yes — <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a>.</p></div></section>
+</div>
+
 <h1 id="first-program">First program</h1>
 <p>Create a file named <code>hello.vpp</code>:</p>
 <div class="code-block-wrap">
@@ -407,6 +400,7 @@ vpp doctor</code></pre>
 </tr>
 </tbody></table></div>
 <p>Next: <a href="first-project.md">Your first project</a>.</p>
+
 <h1 id="your-first-v-project">Your first V++ project</h1>
 <h2 id="scaffold">Scaffold</h2>
 <div class="code-block-wrap">
@@ -441,6 +435,7 @@ cd myapp</code></pre>
 vpp update</code></pre>
 </div>
 <p>See <a href="../guides/package-manager.md">Package manager</a>.</p>
+
 <h1 id="vs-code-setup-for-v">VS Code setup for V++</h1>
 <h2 id="install">Install</h2>
 <p>1. Install the compiler (<a href="install.md">install guide</a>).</p>
@@ -516,19 +511,6 @@ vpp update</code></pre>
 <li class="toc-h2"><a href="#design-goals">Design goals</a></li>
 <li class="toc-h2"><a href="#quick-syntax-map">Quick syntax map</a></li>
 <li class=""><a href="#faq">FAQ</a></li>
-<li class="toc-h2"><a href="#what-is-v">What is V++?</a></li>
-<li class="toc-h2"><a href="#how-is-v-different-from-python">How is V++ different from Python?</a></li>
-<li class="toc-h2"><a href="#how-is-v-different-from-rust">How is V++ different from Rust?</a></li>
-<li class="toc-h2"><a href="#how-is-v-different-from-go-or-typescript">How is V++ different from Go or TypeScript?</a></li>
-<li class="toc-h2"><a href="#how-do-i-learn-v">How do I learn V++?</a></li>
-<li class="toc-h2"><a href="#what-are-the-main-difficulties">What are the main difficulties?</a></li>
-<li class="toc-h2"><a href="#why-would-i-choose-v">Why would I choose V++?</a></li>
-<li class="toc-h2"><a href="#is-v-ready-for-production">Is V++ ready for production?</a></li>
-<li class="toc-h2"><a href="#where-do-i-download">Where do I download?</a></li>
-<li class="toc-h2"><a href="#which-vs-code-extension-is-official">Which VS Code extension is official?</a></li>
-<li class="toc-h2"><a href="#does-v-collect-data">Does V++ collect data?</a></li>
-<li class="toc-h2"><a href="#how-do-i-report-bugs">How do I report bugs?</a></li>
-<li class="toc-h2"><a href="#can-i-contribute">Can I contribute?</a></li>
 <li class=""><a href="#first-program">First program</a></li>
 <li class="toc-h2"><a href="#run-interpreter">Run (interpreter)</a></li>
 <li class="toc-h2"><a href="#type-check-only">Type-check only</a></li>

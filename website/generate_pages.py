@@ -189,6 +189,67 @@ def md_to_html(text: str) -> str:
     return "\n".join(out)
 
 
+def faq_md_to_html(text: str) -> str:
+    """Render FAQ markdown as a bordered Q&A card list."""
+    lines = text.splitlines()
+    out: list[str] = []
+    i = 0
+
+    if i < len(lines) and lines[i].startswith("# "):
+        title = lines[i][2:].strip()
+        out.append(f'<h1 id="{slug(title)}">{inline_md(title)}</h1>')
+        i += 1
+
+    out.append('<div class="faq-list">')
+    question: str | None = None
+    section_lines: list[str] = []
+
+    def flush_section() -> None:
+        nonlocal question, section_lines
+        if question is None:
+            return
+        body = "\n".join(section_lines).strip()
+        body_html = md_to_html(body) if body else ""
+        qid = slug(question)
+        out.append(
+            f'<section class="faq-item" id="{qid}">'
+            f'<h2 class="faq-question">{inline_md(question)}</h2>'
+            f'<div class="faq-answer">{body_html}</div>'
+            f"</section>"
+        )
+        question = None
+        section_lines = []
+
+    while i < len(lines):
+        line = lines[i]
+        if line.startswith("## "):
+            flush_section()
+            question = line[3:].strip()
+            section_lines = []
+        elif question is not None:
+            section_lines.append(line)
+        i += 1
+
+    flush_section()
+    out.append("</div>")
+    return "\n".join(out)
+
+
+def render_paths(paths: list[Path], use_sources: bool = False) -> str:
+    parts: list[str] = []
+    for p in paths:
+        if not p.exists():
+            continue
+        if p.name == "faq.md":
+            parts.append(faq_md_to_html(p.read_text(encoding="utf-8")))
+            continue
+        if use_sources and p.suffix in (".vpp", ".toml", ".rs"):
+            parts.append(md_to_html(source_to_md(p)))
+        else:
+            parts.append(md_to_html(p.read_text(encoding="utf-8")))
+    return "\n\n".join(parts)
+
+
 def brand_text(s: str) -> str:
     return re.sub(r"v\+\+", BRAND, s)
 
@@ -437,10 +498,9 @@ def write_doc_page(
     use_sources: bool = False,
 ) -> None:
     if use_sources:
-        raw = collect_sources(md_paths)
+        body = render_paths(md_paths, use_sources=True)
     else:
-        raw = collect_md(md_paths)
-    body = md_to_html(raw)
+        body = render_paths(md_paths, use_sources=False)
     body = f'<div id="top"></div>\n' + body
     headings = headings_from_html(body)
     toc = build_toc(headings)
