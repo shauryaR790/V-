@@ -24,8 +24,7 @@
   --sidebar-w: 280px;
   --toc-w: 300px;
   --layout-max: 1920px;
-  --tree-bg: #0d1117;
-  --main-bg: #1B1F25;
+  --docs-bg: #1B1F25;
   --tree-row-hover: rgba(255, 255, 255, 0.06);
   --tree-row-active: rgba(251, 219, 90, 0.1);
   --tree-text: #8b949e;
@@ -57,7 +56,7 @@ body {
 body::-webkit-scrollbar { display: none; }
 
 body.page-docs {
-  background-color: var(--bg);
+  background-color: var(--docs-bg);
 }
 
 body.page-home {
@@ -510,7 +509,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   overflow-y: auto;
   padding: 0.75rem 0.5rem 2rem;
   border-right: 1px solid var(--border-muted);
-  background: var(--tree-bg);
+  background: var(--docs-bg);
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -643,7 +642,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .docs-main {
   padding: 2.25rem 2.75rem 3.5rem 2rem;
   min-width: 0;
-  background: var(--main-bg);
+  background: var(--docs-bg);
   border-right: 1px solid var(--border-muted);
 }
 
@@ -771,7 +770,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   overflow-x: hidden;
   padding: 0.75rem 0.65rem 3rem 0.5rem;
   border-left: none;
-  background: var(--tree-bg);
+  background: var(--docs-bg);
   width: var(--toc-w);
   scrollbar-width: none;
   -ms-overflow-style: none;
