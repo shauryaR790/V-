@@ -441,8 +441,8 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .version-pill {
-  padding: 0.25rem 0.65rem;
-  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--btn-radius);
   border: 1px solid var(--gray-300);
   font-weight: 600;
   font-size: 0.8rem;
