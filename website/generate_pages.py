@@ -235,8 +235,13 @@ def faq_md_to_html(text: str) -> str:
     return "\n".join(out)
 
 
-def render_paths(paths: list[Path], use_sources: bool = False) -> str:
+def render_paths(
+    paths: list[Path],
+    use_sources: bool = False,
+    strip_h1_from: set[str] | None = None,
+) -> str:
     parts: list[str] = []
+    strip = strip_h1_from or set()
     for p in paths:
         if not p.exists():
             continue
@@ -245,8 +250,13 @@ def render_paths(paths: list[Path], use_sources: bool = False) -> str:
             continue
         if use_sources and p.suffix in (".vpp", ".toml", ".rs"):
             parts.append(md_to_html(source_to_md(p)))
-        else:
-            parts.append(md_to_html(p.read_text(encoding="utf-8")))
+            continue
+        text = p.read_text(encoding="utf-8")
+        if p.name in strip:
+            lines = text.splitlines()
+            if lines and lines[0].startswith("# "):
+                text = "\n".join(lines[1:]).lstrip("\n")
+        parts.append(md_to_html(text))
     return "\n\n".join(parts)
 
 
@@ -496,12 +506,20 @@ def write_doc_page(
     sidebar_active: str,
     desc: str,
     use_sources: bool = False,
+    page_h1: str | None = None,
+    strip_h1_from: set[str] | None = None,
 ) -> None:
     if use_sources:
-        body = render_paths(md_paths, use_sources=True)
+        body = render_paths(md_paths, use_sources=True, strip_h1_from=strip_h1_from)
     else:
-        body = render_paths(md_paths, use_sources=False)
-    body = f'<div id="top"></div>\n' + body
+        body = render_paths(md_paths, use_sources=False, strip_h1_from=strip_h1_from)
+    if page_h1:
+        body = (
+            f'<div id="top"></div>\n'
+            f'<h1 id="{slug(page_h1)}">{html.escape(page_h1)}</h1>\n{body}'
+        )
+    else:
+        body = f'<div id="top"></div>\n' + body
     headings = headings_from_html(body)
     toc = build_toc(headings)
     page = shell(active, title, body, build_sidebar(sidebar, sidebar_active), toc, desc)
@@ -574,8 +592,12 @@ def main() -> None:
 
     about_paths = [ROOT / "README.md", ROOT / "ARCHITECTURE.md", ROOT / "MEMORY_MODEL.md",
                    ROOT / "SPEC.md", DOCS / "project" / "roadmap.md", DOCS / "PRIVACY.md"]
-    write_doc_page("about.html", "about.html", "About", about_paths, sidebar, "about.html",
-                   f"About {BRAND} — design, architecture, memory model, and roadmap.")
+    write_doc_page(
+        "about.html", "about.html", "About The Language", about_paths, sidebar, "about.html",
+        "About The Language — design, architecture, memory model, and roadmap.",
+        page_h1="About The Language",
+        strip_h1_from={"README.md"},
+    )
 
     blog_paths = [ROOT / "CHANGELOG.md", DOCS / "project" / "roadmap.md"]
     write_doc_page("blog.html", "blog.html", "Blog", blog_paths, sidebar, "blog.html",
