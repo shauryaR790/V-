@@ -531,21 +531,23 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .docs-main {
-  padding: 2rem 2.5rem 3.5rem;
+  padding: 2.25rem 2.75rem 3.5rem;
   min-width: 0;
   background: var(--bg);
   border-right: 1px solid var(--border-muted);
 }
 
 .docs-article {
-  max-width: 48rem;
+  max-width: none;
+  width: 100%;
+  font-size: 1.0625rem;
 }
 
 .docs-article h1 {
-  font-size: 1.85rem;
+  font-size: 2.15rem;
   font-weight: 700;
   letter-spacing: -0.03em;
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.85rem;
   color: var(--text);
 }
 
@@ -564,10 +566,10 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .docs-article h2 {
-  font-size: 1.2rem;
+  font-size: 1.45rem;
   font-weight: 600;
-  margin: 2rem 0 0.4rem;
-  padding-top: 1.25rem;
+  margin: 2.25rem 0 0.55rem;
+  padding-top: 1.35rem;
   border-top: 1px solid var(--border-muted);
   color: var(--text);
   letter-spacing: -0.02em;
@@ -579,8 +581,8 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   border-top: none;
 }
 
-.docs-article h3 { font-size: 1rem; font-weight: 600; margin: 1.1rem 0 0.35rem; color: var(--text); }
-.docs-article h4 { font-size: 0.9rem; font-weight: 600; margin: 0.85rem 0 0.25rem; color: var(--text); }
+.docs-article h3 { font-size: 1.2rem; font-weight: 600; margin: 1.35rem 0 0.45rem; color: var(--text); }
+.docs-article h4 { font-size: 1.05rem; font-weight: 600; margin: 1rem 0 0.35rem; color: var(--text); }
 
 /* FAQ — card layout, white question headings */
 .docs-article .faq-list {
@@ -599,10 +601,10 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .docs-article .faq-item .faq-question {
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 600;
   margin: 0;
-  padding: 1rem 1.2rem;
+  padding: 1.05rem 1.25rem;
   color: var(--text);
   background: rgba(255, 255, 255, 0.03);
   border-top: none;
@@ -610,7 +612,8 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .docs-article .faq-answer {
-  padding: 0 1.2rem 1.15rem;
+  padding: 0 1.25rem 1.2rem;
+  font-size: 1.0625rem;
 }
 
 .docs-article .faq-answer > *:first-child {
@@ -621,7 +624,13 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   margin: 0.75rem 0 0.5rem;
 }
 
-.docs-article p { margin-bottom: 0.55rem; color: var(--text-muted); max-width: 72ch; line-height: 1.55; }
+.docs-article p {
+  margin-bottom: 0.75rem;
+  color: var(--text-muted);
+  max-width: none;
+  line-height: 1.7;
+  font-size: 1.0625rem;
+}
 
 .docs-article blockquote {
   margin: 0.75rem 0 0.85rem;
@@ -633,8 +642,14 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   font-style: italic;
 }
 
-.docs-article ul, .docs-article ol { margin: 0 0 0.65rem 1.15rem; color: var(--text-muted); }
-.docs-article li { margin-bottom: 0.2rem; line-height: 1.5; }
+.docs-article ul, .docs-article ol {
+  margin: 0 0 0.85rem 1.25rem;
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.docs-article li { margin-bottom: 0.35rem; line-height: 1.7; }
 
 .docs-toc {
   position: sticky;
