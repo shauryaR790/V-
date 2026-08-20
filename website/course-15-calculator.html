@@ -258,7 +258,47 @@ fn main() -&gt; int {
 <p>Run the calculator with Div and b equal to zero. Confirm that Err is handled without crashing.</p>
 <p>A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution.</p>
 </div></section>
-<script type="application/json" id="course-playground-data">{&quot;output&quot;: &quot;42&quot;, &quot;source&quot;: &quot;enum Op {\n    Add\n    Sub\n    Mul\n    Div\n}\nstruct CalcOp {\n    op: Op\n}\nfn apply(calc: CalcOp, a: int, b: int) -&gt; Result&lt;int, string&gt; {\n    match calc.op {\n        Add =&gt; {\n            return Ok(a + b)\n        }\n        Sub =&gt; {\n            return Ok(a - b)\n        }\n        Mul =&gt; {\n            return Ok(a * b)\n        }\n        Div =&gt; {\n            if b == 0 {\n                return Err(\&quot;divide by zero\&quot;)\n            }\n            return Ok(a / b)\n        }\n    }\n}\nfn main() -&gt; int {\n    let calc = CalcOp { op: Mul }\n    let r = apply(calc, 6, 7)\n    match r {\n        Ok(n) =&gt; {\n            print(n)\n        }\n        Err(e) =&gt; {\n            print(e)\n        }\n    }\n    return 0\n}&quot;}</script><div class="course-playground"><div class="course-playground-toolbar"><button type="button" class="btn btn-primary course-run-btn">Test program</button><button type="button" class="btn btn-outline course-reset-btn">Reset</button></div><pre class="course-run-output" hidden aria-live="polite"></pre></div></article>
+<section class="course-finish" id="course-finish"><h2 class="course-finish-title" id="course-finish-title">Full program</h2><div class="course-source-editor"><div class="code-block-wrap course-source-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><textarea class="course-source-input" spellcheck="false" aria-label="Full program source">enum Op {
+    Add
+    Sub
+    Mul
+    Div
+}
+struct CalcOp {
+    op: Op
+}
+fn apply(calc: CalcOp, a: int, b: int) -&gt; Result&lt;int, string&gt; {
+    match calc.op {
+        Add =&gt; {
+            return Ok(a + b)
+        }
+        Sub =&gt; {
+            return Ok(a - b)
+        }
+        Mul =&gt; {
+            return Ok(a * b)
+        }
+        Div =&gt; {
+            if b == 0 {
+                return Err(&quot;divide by zero&quot;)
+            }
+            return Ok(a / b)
+        }
+    }
+}
+fn main() -&gt; int {
+    let calc = CalcOp { op: Mul }
+    let r = apply(calc, 6, 7)
+    match r {
+        Ok(n) =&gt; {
+            print(n)
+        }
+        Err(e) =&gt; {
+            print(e)
+        }
+    }
+    return 0
+}</textarea></div></div><script type="application/json" id="course-playground-data">{&quot;output&quot;: &quot;42&quot;, &quot;source&quot;: &quot;enum Op {\n    Add\n    Sub\n    Mul\n    Div\n}\nstruct CalcOp {\n    op: Op\n}\nfn apply(calc: CalcOp, a: int, b: int) -&gt; Result&lt;int, string&gt; {\n    match calc.op {\n        Add =&gt; {\n            return Ok(a + b)\n        }\n        Sub =&gt; {\n            return Ok(a - b)\n        }\n        Mul =&gt; {\n            return Ok(a * b)\n        }\n        Div =&gt; {\n            if b == 0 {\n                return Err(\&quot;divide by zero\&quot;)\n            }\n            return Ok(a / b)\n        }\n    }\n}\nfn main() -&gt; int {\n    let calc = CalcOp { op: Mul }\n    let r = apply(calc, 6, 7)\n    match r {\n        Ok(n) =&gt; {\n            print(n)\n        }\n        Err(e) =&gt; {\n            print(e)\n        }\n    }\n    return 0\n}&quot;, &quot;run_cmd&quot;: &quot;vpp run projects/15-calculator/main.vpp&quot;}</script><div class="course-playground"><div class="course-playground-toolbar"><button type="button" class="btn btn-primary course-run-btn">Test program</button><button type="button" class="btn btn-outline course-reset-btn">Reset</button></div><div class="course-terminal" aria-live="polite"><div class="course-terminal-header"><span class="course-terminal-dot"></span><span class="course-terminal-dot"></span><span class="course-terminal-dot"></span><span class="course-terminal-title">vpp</span></div><div class="course-terminal-body"><div class="course-terminal-line course-terminal-muted">$ ready — click Test program</div><pre class="course-run-output"></pre></div></div></div></section></article>
     </main>
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>

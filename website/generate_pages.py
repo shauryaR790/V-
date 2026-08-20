@@ -1082,16 +1082,41 @@ def build_course_page_body(project: CourseProject) -> str:
             parts.append(code_block_html(section.code))
         parts.append("</div></section>")
 
-    output_json = html.escape(json.dumps({"output": project.output, "source": project.source}))
+    output_json = html.escape(
+        json.dumps(
+            {
+                "output": project.output,
+                "source": project.source,
+                "run_cmd": project.run_cmd,
+            }
+        )
+    )
+    escaped_source = html.escape(project.source)
     parts.append(
+        f'<section class="course-finish" id="course-finish">'
+        f'<h2 class="course-finish-title" id="course-finish-title">Full program</h2>'
+        f'<div class="course-source-editor">'
+        f'<div class="code-block-wrap course-source-wrap">'
+        f'<div class="code-block-header"><span class="code-block-filename">main.vpp</span></div>'
+        f'<textarea class="course-source-input" spellcheck="false" aria-label="Full program source">{escaped_source}</textarea>'
+        f"</div></div>"
         f'<script type="application/json" id="course-playground-data">{output_json}</script>'
         f'<div class="course-playground">'
         f'<div class="course-playground-toolbar">'
         f'<button type="button" class="btn btn-primary course-run-btn">Test program</button>'
         f'<button type="button" class="btn btn-outline course-reset-btn">Reset</button>'
         f"</div>"
-        f'<pre class="course-run-output" hidden aria-live="polite"></pre>'
+        f'<div class="course-terminal" aria-live="polite">'
+        f'<div class="course-terminal-header">'
+        f'<span class="course-terminal-dot"></span>'
+        f'<span class="course-terminal-dot"></span>'
+        f'<span class="course-terminal-dot"></span>'
+        f'<span class="course-terminal-title">vpp</span>'
         f"</div>"
+        f'<div class="course-terminal-body">'
+        f'<div class="course-terminal-line course-terminal-muted">$ ready — click Test program</div>'
+        f'<pre class="course-run-output"></pre>'
+        f"</div></div></div></section>"
     )
     return "\n".join(parts)
 

@@ -222,7 +222,32 @@ fn main() -&gt; int {
 <p>Add a fourth task. Then change done_count to use a loop over an array if your current compiler supports arrays of structs in your project.</p>
 <p>A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution.</p>
 </div></section>
-<script type="application/json" id="course-playground-data">{&quot;output&quot;: &quot;[x] learn v++\n[ ] build a project\n[ ] ship v1.0\n1&quot;, &quot;source&quot;: &quot;struct Todo {\n    title: string\n    done: bool\n}\nfn print_todo(t: Todo) -&gt; int {\n    if t.done {\n        print(\&quot;[x] \&quot; + t.title)\n    } else {\n        print(\&quot;[ ] \&quot; + t.title)\n    }\n    return 0\n}\nfn main() -&gt; int {\n    let t1 = Todo { title: \&quot;learn v++\&quot;, done: true }\n    let t2 = Todo { title: \&quot;build a project\&quot;, done: false }\n    let t3 = Todo { title: \&quot;ship v1.0\&quot;, done: false }\n    print_todo(t1)\n    print_todo(t2)\n    print_todo(t3)\n    let mut done_count = 0\n    if t1.done { done_count = done_count + 1 }\n    if t2.done { done_count = done_count + 1 }\n    if t3.done { done_count = done_count + 1 }\n    print(done_count)\n    return 0\n}&quot;}</script><div class="course-playground"><div class="course-playground-toolbar"><button type="button" class="btn btn-primary course-run-btn">Test program</button><button type="button" class="btn btn-outline course-reset-btn">Reset</button></div><pre class="course-run-output" hidden aria-live="polite"></pre></div></article>
+<section class="course-finish" id="course-finish"><h2 class="course-finish-title" id="course-finish-title">Full program</h2><div class="course-source-editor"><div class="code-block-wrap course-source-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><textarea class="course-source-input" spellcheck="false" aria-label="Full program source">struct Todo {
+    title: string
+    done: bool
+}
+fn print_todo(t: Todo) -&gt; int {
+    if t.done {
+        print(&quot;[x] &quot; + t.title)
+    } else {
+        print(&quot;[ ] &quot; + t.title)
+    }
+    return 0
+}
+fn main() -&gt; int {
+    let t1 = Todo { title: &quot;learn v++&quot;, done: true }
+    let t2 = Todo { title: &quot;build a project&quot;, done: false }
+    let t3 = Todo { title: &quot;ship v1.0&quot;, done: false }
+    print_todo(t1)
+    print_todo(t2)
+    print_todo(t3)
+    let mut done_count = 0
+    if t1.done { done_count = done_count + 1 }
+    if t2.done { done_count = done_count + 1 }
+    if t3.done { done_count = done_count + 1 }
+    print(done_count)
+    return 0
+}</textarea></div></div><script type="application/json" id="course-playground-data">{&quot;output&quot;: &quot;[x] learn v++\n[ ] build a project\n[ ] ship v1.0\n1&quot;, &quot;source&quot;: &quot;struct Todo {\n    title: string\n    done: bool\n}\nfn print_todo(t: Todo) -&gt; int {\n    if t.done {\n        print(\&quot;[x] \&quot; + t.title)\n    } else {\n        print(\&quot;[ ] \&quot; + t.title)\n    }\n    return 0\n}\nfn main() -&gt; int {\n    let t1 = Todo { title: \&quot;learn v++\&quot;, done: true }\n    let t2 = Todo { title: \&quot;build a project\&quot;, done: false }\n    let t3 = Todo { title: \&quot;ship v1.0\&quot;, done: false }\n    print_todo(t1)\n    print_todo(t2)\n    print_todo(t3)\n    let mut done_count = 0\n    if t1.done { done_count = done_count + 1 }\n    if t2.done { done_count = done_count + 1 }\n    if t3.done { done_count = done_count + 1 }\n    print(done_count)\n    return 0\n}&quot;, &quot;run_cmd&quot;: &quot;vpp run projects/18-todo-list/main.vpp&quot;}</script><div class="course-playground"><div class="course-playground-toolbar"><button type="button" class="btn btn-primary course-run-btn">Test program</button><button type="button" class="btn btn-outline course-reset-btn">Reset</button></div><div class="course-terminal" aria-live="polite"><div class="course-terminal-header"><span class="course-terminal-dot"></span><span class="course-terminal-dot"></span><span class="course-terminal-dot"></span><span class="course-terminal-title">vpp</span></div><div class="course-terminal-body"><div class="course-terminal-line course-terminal-muted">$ ready — click Test program</div><pre class="course-run-output"></pre></div></div></div></section></article>
     </main>
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>

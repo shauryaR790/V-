@@ -216,7 +216,29 @@ compiled</pre>
 <p>Add a function that returns the shortest word. Test it with an additional word.</p>
 <p>A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution.</p>
 </div></section>
-<script type="application/json" id="course-playground-data">{&quot;output&quot;: &quot;5\n16\ncompiled&quot;, &quot;source&quot;: &quot;fn total_chars(words: array[string]) -&gt; int {\n    let mut total = 0\n    for w in words {\n        total = total + len(w)\n    }\n    return total\n}\nfn longest_word(words: array[string]) -&gt; string {\n    let mut best = words[0]\n    for w in words {\n        if len(w) &gt; len(best) {\n            best = w\n        }\n    }\n    return best\n}\nfn main() -&gt; int {\n    let words = [\&quot;v++\&quot;, \&quot;is\&quot;, \&quot;a\&quot;, \&quot;compiled\&quot;, \&quot;language\&quot;]\n    print(len(words))\n    print(total_chars(words))\n    print(longest_word(words))\n    return 0\n}&quot;}</script><div class="course-playground"><div class="course-playground-toolbar"><button type="button" class="btn btn-primary course-run-btn">Test program</button><button type="button" class="btn btn-outline course-reset-btn">Reset</button></div><pre class="course-run-output" hidden aria-live="polite"></pre></div></article>
+<section class="course-finish" id="course-finish"><h2 class="course-finish-title" id="course-finish-title">Full program</h2><div class="course-source-editor"><div class="code-block-wrap course-source-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><textarea class="course-source-input" spellcheck="false" aria-label="Full program source">fn total_chars(words: array[string]) -&gt; int {
+    let mut total = 0
+    for w in words {
+        total = total + len(w)
+    }
+    return total
+}
+fn longest_word(words: array[string]) -&gt; string {
+    let mut best = words[0]
+    for w in words {
+        if len(w) &gt; len(best) {
+            best = w
+        }
+    }
+    return best
+}
+fn main() -&gt; int {
+    let words = [&quot;v++&quot;, &quot;is&quot;, &quot;a&quot;, &quot;compiled&quot;, &quot;language&quot;]
+    print(len(words))
+    print(total_chars(words))
+    print(longest_word(words))
+    return 0
+}</textarea></div></div><script type="application/json" id="course-playground-data">{&quot;output&quot;: &quot;5\n16\ncompiled&quot;, &quot;source&quot;: &quot;fn total_chars(words: array[string]) -&gt; int {\n    let mut total = 0\n    for w in words {\n        total = total + len(w)\n    }\n    return total\n}\nfn longest_word(words: array[string]) -&gt; string {\n    let mut best = words[0]\n    for w in words {\n        if len(w) &gt; len(best) {\n            best = w\n        }\n    }\n    return best\n}\nfn main() -&gt; int {\n    let words = [\&quot;v++\&quot;, \&quot;is\&quot;, \&quot;a\&quot;, \&quot;compiled\&quot;, \&quot;language\&quot;]\n    print(len(words))\n    print(total_chars(words))\n    print(longest_word(words))\n    return 0\n}&quot;, &quot;run_cmd&quot;: &quot;vpp run projects/16-word-counter/main.vpp&quot;}</script><div class="course-playground"><div class="course-playground-toolbar"><button type="button" class="btn btn-primary course-run-btn">Test program</button><button type="button" class="btn btn-outline course-reset-btn">Reset</button></div><div class="course-terminal" aria-live="polite"><div class="course-terminal-header"><span class="course-terminal-dot"></span><span class="course-terminal-dot"></span><span class="course-terminal-dot"></span><span class="course-terminal-title">vpp</span></div><div class="course-terminal-body"><div class="course-terminal-line course-terminal-muted">$ ready — click Test program</div><pre class="course-run-output"></pre></div></div></div></section></article>
     </main>
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>
