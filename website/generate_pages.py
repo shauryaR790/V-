@@ -577,6 +577,14 @@ def brand_text(s: str) -> str:
     return re.sub(r"v\+\+", BRAND, s)
 
 
+def course_inline_md(s: str) -> str:
+    """Markdown subset for course lessons (preserves -> in signatures)."""
+    s = html.escape(s)
+    s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
+    s = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", s)
+    return brand_text(s)
+
+
 def inline_md(s: str) -> str:
     s = clean_prose(s)
     s = html.escape(s)
@@ -1050,7 +1058,10 @@ def build_course_page_body(project: CourseProject) -> str:
         f'<p class="course-lead">{html.escape(clean_prose(project.summary))}</p>',
     ]
     if project.concepts:
-        chips = "".join(f'<span class="course-concept">{html.escape(c)}</span>' for c in project.concepts)
+        chips = "".join(
+            f'<span class="course-concept">{html.escape(c.strip().strip("`"))}</span>'
+            for c in project.concepts
+        )
         parts.append(f'<div class="course-concepts">{chips}</div>')
     parts.append("</header>")
 
@@ -1060,7 +1071,11 @@ def build_course_page_body(project: CourseProject) -> str:
         parts.append(f'<span class="course-step-num">{idx}</span>')
         parts.append(f'<h2 id="{html.escape(step.step_id)}-title">{html.escape(step.title)}</h2>')
         parts.append("</div>")
-        parts.append(f'<div class="course-step-body"><p>{html.escape(step.theory)}</p>')
+        parts.append(f'<div class="course-step-body">')
+        for para in step.theory.split("\n\n"):
+            para = para.strip()
+            if para:
+                parts.append(f"<p>{course_inline_md(para)}</p>")
         if step.code.strip():
             parts.append(code_block_html(step.code))
         parts.append("</div></section>")

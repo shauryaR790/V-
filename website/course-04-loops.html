@@ -7,7 +7,7 @@
   <meta name="description" content="Step by step V++ course: Loops.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Shrikhand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/V-/css/style.css">
   <link rel="stylesheet" href="/V-/css/prism-vpp.css">
   <link rel="icon" href="/V-/assets/favicon.png">
@@ -71,28 +71,46 @@
 <span class="course-header-tag">Beginner</span>
 <h1 id="course-title">Loops</h1>
 <p class="course-lead">`while`, range loops, and `for` over arrays. Uses `let mut` for counters.</p>
-<div class="course-concepts"><span class="course-concept">`while`</span><span class="course-concept">`for`</span><span class="course-concept">`0..n`</span><span class="course-concept">`let mut`</span></div>
+<div class="course-concepts"><span class="course-concept">while</span><span class="course-concept">for</span><span class="course-concept">0..n</span><span class="course-concept">let mut</span></div>
 </header>
 <section class="course-step" id="overview">
 <div class="course-step-head">
 <span class="course-step-num">1</span>
 <h2 id="overview-title">What you will build</h2>
 </div>
-<div class="course-step-body"><p>`while`, range loops, and `for` over arrays. Uses `let mut` for counters. By the end you will understand `while`, `for`, `0..n`, `let mut`. We build the program in layers, run snippets mentally, then execute the full source.</p>
+<div class="course-step-body">
+<p><strong>Loops</strong> is project 04 in the V++ curriculum (Beginner level). <code>while</code>, range loops, and <code>for</code> over arrays. Uses <code>let mut</code> for counters.</p>
+<p>In this walkthrough you will not paste the whole file at once. Each step introduces one idea, explains what the lines mean, and shows only the new snippet. By the end you will combine everything into a complete program that produces <code>0</code>, <code>1</code>, <code>2</code>, and 2 more lines.</p>
+<p>The key ideas here are while, for, 0..n, and let mut. Read the prose under every heading before you look at code. When you reach the playground, run the full source with <code>vpp run projects/04-loops/main.vpp</code> on your machine or use the Run button to compare against the expected output.</p>
 </div></section>
 <section class="course-step" id="goal">
 <div class="course-step-head">
 <span class="course-step-num">2</span>
 <h2 id="goal-title">Learning goals</h2>
 </div>
-<div class="course-step-body"><p>Level: Beginner. Read each step before copying code. Types are enforced at compile time, so fix signature errors early with vpp check.</p>
+<div class="course-step-body">
+<p>After finishing <strong>Loops</strong>, you should be able to explain while, for, 0..n, and let mut in your own words and reproduce the program without copying blindly.</p>
+<p>This is an early project: focus on syntax, naming, and how the compiler reads your file top to bottom.</p>
+<p>Use <code>vpp check</code> on your file when something fails to compile. The type checker reports signature mismatches early. Fix one error at a time, then re-run.</p>
+<p>Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for braces, commas, and return types.</p>
 </div></section>
 <section class="course-step" id="step-1">
 <div class="course-step-head">
 <span class="course-step-num">3</span>
 <h2 id="step-1-title">Entry point: main</h2>
 </div>
-<div class="course-step-body"><p>Every executable program defines fn main() -&gt; int. The integer return value becomes the process exit code (0 means success). In this step we add entry point: main to the growing program.</p>
+<div class="course-step-body">
+<p>Step 1 of 1 for <strong>Loops</strong>. We now add <strong>Entry point: main</strong> to the program.</p>
+<p><code>fn main() -&gt; int</code> is the program entry point. The runtime calls it after your definitions are loaded. Everything inside the braces runs in order.</p>
+<p><code>let mut i = 0</code> creates a <strong>mutable</strong> binding. You can reassign <code>i</code> later (for example in a loop). The compiler still tracks its type after each assignment.</p>
+<p><code>while i &lt; 5 {</code> repeats its body while the condition stays true. Make sure something inside the loop eventually changes the condition to avoid infinite loops.</p>
+<p><code>print(i)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>i = i + 1</code> reassigns <code>i</code>. This only works when <code>i</code> was declared with <code>let mut</code>.</p>
+<p><code>print(n)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>let items = [10, 20, 30]</code> binds the name <code>items</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>print(val)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let mut i = 0
     while i &lt; 5 {

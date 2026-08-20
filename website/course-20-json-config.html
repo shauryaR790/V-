@@ -7,7 +7,7 @@
   <meta name="description" content="Step by step V++ course: JSON Config.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Shrikhand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/V-/css/style.css">
   <link rel="stylesheet" href="/V-/css/prism-vpp.css">
   <link rel="icon" href="/V-/assets/favicon.png">
@@ -71,28 +71,39 @@
 <span class="course-header-tag">Advanced</span>
 <h1 id="course-title">JSON Config</h1>
 <p class="course-lead">Parse JSON with `std.json` and model app configuration with structs.</p>
-<div class="course-concepts"><span class="course-concept">`std.json`</span><span class="course-concept">struct config</span><span class="course-concept">`vpp.toml` project layout</span></div>
+<div class="course-concepts"><span class="course-concept">std.json</span><span class="course-concept">struct config</span><span class="course-concept">vpp.toml` project layout</span></div>
 </header>
 <section class="course-step" id="overview">
 <div class="course-step-head">
 <span class="course-step-num">1</span>
 <h2 id="overview-title">What you will build</h2>
 </div>
-<div class="course-step-body"><p>Parse JSON with `std.json` and model app configuration with structs. By the end you will understand `std.json`, struct config, `vpp.toml` project layout. We build the program in layers, run snippets mentally, then execute the full source.</p>
+<div class="course-step-body">
+<p><strong>JSON Config</strong> is project 20 in the V++ curriculum (Advanced level). Parse JSON with <code>std.json</code> and model app configuration with structs.</p>
+<p>In this walkthrough you will not paste the whole file at once. Each step introduces one idea, explains what the lines mean, and shows only the new snippet. By the end you will combine everything into a complete program that produces <code>my-app</code>, <code>0.5.0</code>.</p>
+<p>The key ideas here are std.json, struct config, and vpp.toml<code> project layout. Read the prose under every heading before you look at code. When you reach the playground, run the full source with </code>vpp run projects/20-json-config/main.vpp` on your machine or use the Run button to compare against the expected output.</p>
 </div></section>
 <section class="course-step" id="goal">
 <div class="course-step-head">
 <span class="course-step-num">2</span>
 <h2 id="goal-title">Learning goals</h2>
 </div>
-<div class="course-step-body"><p>Level: Advanced. Read each step before copying code. Types are enforced at compile time, so fix signature errors early with vpp check.</p>
+<div class="course-step-body">
+<p>After finishing <strong>JSON Config</strong>, you should be able to explain std.json, struct config, and vpp.toml` project layout in your own words and reproduce the program without copying blindly.</p>
+<p>This project combines multiple features. Revisit earlier lessons if a concept feels unfamiliar.</p>
+<p>Use <code>vpp check</code> on your file when something fails to compile. The type checker reports signature mismatches early. Fix one error at a time, then re-run.</p>
+<p>Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for braces, commas, and return types.</p>
 </div></section>
 <section class="course-step" id="step-1">
 <div class="course-step-head">
 <span class="course-step-num">3</span>
 <h2 id="step-1-title">Imports</h2>
 </div>
-<div class="course-step-body"><p>Imports connect your file to the standard library or other modules. The compiler resolves paths and merges exported symbols. In this step we add imports to the growing program.</p>
+<div class="course-step-body">
+<p>Step 1 of 4 for <strong>JSON Config</strong>. We now add <strong>Imports</strong> to the program.</p>
+<p>This file begins with <code>std.json</code>. Imports must appear before functions and types.</p>
+<p>The compiler resolves standard library paths like <code>std.fs</code> or <code>std.json</code> automatically when you run <code>vpp run</code>. If an import is misspelled, you will get an unknown module error at compile time.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">import std.json</code></pre></div>
 </div></section>
 <section class="course-step" id="step-2">
@@ -100,10 +111,12 @@
 <span class="course-step-num">4</span>
 <h2 id="step-2-title">Struct: AppConfig</h2>
 </div>
-<div class="course-step-body"><p>Structs group related data into one typed value. Field names document intent and the type checker enforces shape at compile time. In this step we add struct: appconfig to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">import std.json
-
-struct AppConfig {
+<div class="course-step-body">
+<p>Step 2 of 4 for <strong>JSON Config</strong>. We now add <strong>Struct: AppConfig</strong> to the program.</p>
+<p><strong>Struct: AppConfig</strong> defines a product type: <code>struct AppConfig {</code>. Structs group fields that belong together so you pass one value instead of many separate parameters.</p>
+<p>Fields <code>name: string</code>, <code>version: string</code>, <code>debug: bool</code> are checked at compile time. You construct values with struct literal syntax <code>{ field: value }</code>.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct AppConfig {
     name: string
     version: string
     debug: bool
@@ -114,16 +127,13 @@ struct AppConfig {
 <span class="course-step-num">5</span>
 <h2 id="step-3-title">Function: parse_config</h2>
 </div>
-<div class="course-step-body"><p>Functions encapsulate reusable logic with explicit parameter and return types. V++ requires a typed signature; locals may be inferred. In this step we add function: parse_config to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">import std.json
-
-struct AppConfig {
-    name: string
-    version: string
-    debug: bool
-}
-
-fn parse_config(raw: string) -&gt; string {
+<div class="course-step-body">
+<p>Step 3 of 4 for <strong>JSON Config</strong>. We now add <strong>Function: parse_config</strong> to the program.</p>
+<p><strong>Function: parse_config</strong> adds <code>fn parse_config(raw: string) -&gt; string {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
+<p><code>let doc = json.parse(raw)</code> binds the name <code>doc</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>return json.stringify(doc)</code> sends a value back to the caller and ends the current function.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn parse_config(raw: string) -&gt; string {
     let doc = json.parse(raw)
     return json.stringify(doc)
 }</code></pre></div>
@@ -133,21 +143,17 @@ fn parse_config(raw: string) -&gt; string {
 <span class="course-step-num">6</span>
 <h2 id="step-4-title">Entry point: main</h2>
 </div>
-<div class="course-step-body"><p>Every executable program defines fn main() -&gt; int. The integer return value becomes the process exit code (0 means success). In this step we add entry point: main to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">import std.json
-
-struct AppConfig {
-    name: string
-    version: string
-    debug: bool
-}
-
-fn parse_config(raw: string) -&gt; string {
-    let doc = json.parse(raw)
-    return json.stringify(doc)
-}
-
-fn main() -&gt; int {
+<div class="course-step-body">
+<p>Step 4 of 4 for <strong>JSON Config</strong>. We now add <strong>Entry point: main</strong> to the program.</p>
+<p><code>fn main() -&gt; int</code> is the program entry point. The runtime calls it after your definitions are loaded. Everything inside the braces runs in order.</p>
+<p><code>let raw = &quot;{\&quot;name\&quot;:\&quot;V++\&quot;,\&quot;version\&quot;:\&quot;0.5.0\&quot;,\&quot;debug\&quot;:false}&quot;</code> stores a string value. V++ checks that <code>raw</code> stays a string if you use it again in concatenation or printing.</p>
+<p><code>print(parse_config(raw))</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>let cfg = AppConfig {</code> binds the name <code>cfg</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>print(cfg.name)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>print(cfg.version)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let raw = &quot;{\&quot;name\&quot;:\&quot;v++\&quot;,\&quot;version\&quot;:\&quot;0.5.0\&quot;,\&quot;debug\&quot;:false}&quot;
     print(parse_config(raw))
 

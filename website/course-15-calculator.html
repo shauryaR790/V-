@@ -7,7 +7,7 @@
   <meta name="description" content="Step by step V++ course: Calculator.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Shrikhand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/V-/css/style.css">
   <link rel="stylesheet" href="/V-/css/prism-vpp.css">
   <link rel="icon" href="/V-/assets/favicon.png">
@@ -71,28 +71,39 @@
 <span class="course-header-tag">Intermediate</span>
 <h1 id="course-title">Calculator</h1>
 <p class="course-lead">Enum driven operations with `Result` for errors.</p>
-<div class="course-concepts"><span class="course-concept">enum + match</span><span class="course-concept">`Result`</span></div>
+<div class="course-concepts"><span class="course-concept">enum + match</span><span class="course-concept">Result</span></div>
 </header>
 <section class="course-step" id="overview">
 <div class="course-step-head">
 <span class="course-step-num">1</span>
 <h2 id="overview-title">What you will build</h2>
 </div>
-<div class="course-step-body"><p>Enum-driven operations with `Result` for errors. By the end you will understand enum + match, `Result`. We build the program in layers, run snippets mentally, then execute the full source.</p>
+<div class="course-step-body">
+<p><strong>Calculator</strong> is project 15 in the V++ curriculum (Intermediate level). Enum-driven operations with <code>Result</code> for errors.</p>
+<p>In this walkthrough you will not paste the whole file at once. Each step introduces one idea, explains what the lines mean, and shows only the new snippet. By the end you will combine everything into a complete program that produces <code>42</code>.</p>
+<p>The key ideas here are enum + match, and Result. Read the prose under every heading before you look at code. When you reach the playground, run the full source with <code>vpp run projects/15-calculator/main.vpp</code> on your machine or use the Run button to compare against the expected output.</p>
 </div></section>
 <section class="course-step" id="goal">
 <div class="course-step-head">
 <span class="course-step-num">2</span>
 <h2 id="goal-title">Learning goals</h2>
 </div>
-<div class="course-step-body"><p>Level: Intermediate. Read each step before copying code. Types are enforced at compile time, so fix signature errors early with vpp check.</p>
+<div class="course-step-body">
+<p>After finishing <strong>Calculator</strong>, you should be able to explain enum + match, and Result in your own words and reproduce the program without copying blindly.</p>
+<p>You should already be comfortable with variables, functions, and loops from projects 01 through 05.</p>
+<p>Use <code>vpp check</code> on your file when something fails to compile. The type checker reports signature mismatches early. Fix one error at a time, then re-run.</p>
+<p>Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for braces, commas, and return types.</p>
 </div></section>
 <section class="course-step" id="step-1">
 <div class="course-step-head">
 <span class="course-step-num">3</span>
 <h2 id="step-1-title">Enum: Op</h2>
 </div>
-<div class="course-step-body"><p>Enums model a fixed set of named variants. They make invalid states unrepresentable and pair naturally with exhaustive match. In this step we add enum: op to the growing program.</p>
+<div class="course-step-body">
+<p>Step 1 of 4 for <strong>Calculator</strong>. We now add <strong>Enum: Op</strong> to the program.</p>
+<p>We introduce <strong>Enum: Op</strong> with <code>enum Op {</code>. An enum lists every legal variant up front, which prevents impossible states later when you <code>match</code> on it.</p>
+<p>Variants <code>Add</code>, <code>Sub</code>, <code>Mul</code>, <code>Div</code>, <code>}</code> are the only allowed values. Adding a new variant later means updating every <code>match</code> that uses this enum.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">enum Op {
     Add
     Sub
@@ -105,15 +116,12 @@
 <span class="course-step-num">4</span>
 <h2 id="step-2-title">Struct: CalcOp</h2>
 </div>
-<div class="course-step-body"><p>Structs group related data into one typed value. Field names document intent and the type checker enforces shape at compile time. In this step we add struct: calcop to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">enum Op {
-    Add
-    Sub
-    Mul
-    Div
-}
-
-struct CalcOp {
+<div class="course-step-body">
+<p>Step 2 of 4 for <strong>Calculator</strong>. We now add <strong>Struct: CalcOp</strong> to the program.</p>
+<p><strong>Struct: CalcOp</strong> defines a product type: <code>struct CalcOp {</code>. Structs group fields that belong together so you pass one value instead of many separate parameters.</p>
+<p>Fields <code>op: Op</code> are checked at compile time. You construct values with struct literal syntax <code>{ field: value }</code>.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct CalcOp {
     op: Op
 }</code></pre></div>
 </div></section>
@@ -122,19 +130,22 @@ struct CalcOp {
 <span class="course-step-num">5</span>
 <h2 id="step-3-title">Function: apply</h2>
 </div>
-<div class="course-step-body"><p>Functions encapsulate reusable logic with explicit parameter and return types. V++ requires a typed signature; locals may be inferred. In this step we add function: apply to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">enum Op {
-    Add
-    Sub
-    Mul
-    Div
-}
-
-struct CalcOp {
-    op: Op
-}
-
-fn apply(calc: CalcOp, a: int, b: int) -&gt; Result&lt;int, string&gt; {
+<div class="course-step-body">
+<p>Step 3 of 4 for <strong>Calculator</strong>. We now add <strong>Function: apply</strong> to the program.</p>
+<p><strong>Function: apply</strong> adds <code>fn apply(calc: CalcOp, a: int, b: int) -&gt; Result&lt;int, string&gt; {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
+<p><code>match calc.op {</code> inspects a value and selects the first arm whose pattern fits. V++ requires match expressions to be exhaustive over the type.</p>
+<p>The arm <code>Add =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
+<p><code>return Ok(a + b)</code> sends a value back to the caller and ends the current function.</p>
+<p>The arm <code>Sub =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
+<p><code>return Ok(a - b)</code> sends a value back to the caller and ends the current function.</p>
+<p>The arm <code>Mul =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
+<p><code>return Ok(a * b)</code> sends a value back to the caller and ends the current function.</p>
+<p>The arm <code>Div =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
+<p><code>if b == 0 {</code> starts a conditional block. The condition must be <code>bool</code>. Only the matching branch runs; other branches are skipped.</p>
+<p><code>return Err(&quot;divide by zero&quot;)</code> sends a value back to the caller and ends the current function.</p>
+<p><code>return Ok(a / b)</code> sends a value back to the caller and ends the current function.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn apply(calc: CalcOp, a: int, b: int) -&gt; Result&lt;int, string&gt; {
     match calc.op {
         Add =&gt; {
             return Ok(a + b)
@@ -159,39 +170,19 @@ fn apply(calc: CalcOp, a: int, b: int) -&gt; Result&lt;int, string&gt; {
 <span class="course-step-num">6</span>
 <h2 id="step-4-title">Entry point: main</h2>
 </div>
-<div class="course-step-body"><p>Every executable program defines fn main() -&gt; int. The integer return value becomes the process exit code (0 means success). In this step we add entry point: main to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">enum Op {
-    Add
-    Sub
-    Mul
-    Div
-}
-
-struct CalcOp {
-    op: Op
-}
-
-fn apply(calc: CalcOp, a: int, b: int) -&gt; Result&lt;int, string&gt; {
-    match calc.op {
-        Add =&gt; {
-            return Ok(a + b)
-        }
-        Sub =&gt; {
-            return Ok(a - b)
-        }
-        Mul =&gt; {
-            return Ok(a * b)
-        }
-        Div =&gt; {
-            if b == 0 {
-                return Err(&quot;divide by zero&quot;)
-            }
-            return Ok(a / b)
-        }
-    }
-}
-
-fn main() -&gt; int {
+<div class="course-step-body">
+<p>Step 4 of 4 for <strong>Calculator</strong>. We now add <strong>Entry point: main</strong> to the program.</p>
+<p><code>fn main() -&gt; int</code> is the program entry point. The runtime calls it after your definitions are loaded. Everything inside the braces runs in order.</p>
+<p><code>let calc = CalcOp { op: Mul }</code> binds the name <code>calc</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>let r = apply(calc, 6, 7)</code> binds the name <code>r</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>match r {</code> inspects a value and selects the first arm whose pattern fits. V++ requires match expressions to be exhaustive over the type.</p>
+<p>The arm <code>Ok(n) =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
+<p><code>print(n)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p>The arm <code>Err(e) =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
+<p><code>print(e)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let calc = CalcOp { op: Mul }
     let r = apply(calc, 6, 7)
     match r {

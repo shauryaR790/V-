@@ -7,7 +7,7 @@
   <meta name="description" content="Step by step V++ course: Guessing Game.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Shrikhand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/V-/css/style.css">
   <link rel="stylesheet" href="/V-/css/prism-vpp.css">
   <link rel="icon" href="/V-/assets/favicon.png">
@@ -78,21 +78,36 @@
 <span class="course-step-num">1</span>
 <h2 id="overview-title">What you will build</h2>
 </div>
-<div class="course-step-body"><p>Binary-search style hints — too low, too high, correct. By the end you will understand conditionals, arrays of guesses, game logic. We build the program in layers, run snippets mentally, then execute the full source.</p>
+<div class="course-step-body">
+<p><strong>Guessing Game</strong> is project 17 in the V++ curriculum (Intermediate level). Binary-search style hints — too low, too high, correct.</p>
+<p>In this walkthrough you will not paste the whole file at once. Each step introduces one idea, explains what the lines mean, and shows only the new snippet. By the end you will combine everything into a complete program that produces <code>too low</code>, <code>too high</code>, <code>correct</code>.</p>
+<p>The key ideas here are conditionals, arrays of guesses, and game logic. Read the prose under every heading before you look at code. When you reach the playground, run the full source with <code>vpp run projects/17-guessing-game/main.vpp</code> on your machine or use the Run button to compare against the expected output.</p>
 </div></section>
 <section class="course-step" id="goal">
 <div class="course-step-head">
 <span class="course-step-num">2</span>
 <h2 id="goal-title">Learning goals</h2>
 </div>
-<div class="course-step-body"><p>Level: Intermediate. Read each step before copying code. Types are enforced at compile time, so fix signature errors early with vpp check.</p>
+<div class="course-step-body">
+<p>After finishing <strong>Guessing Game</strong>, you should be able to explain conditionals, arrays of guesses, and game logic in your own words and reproduce the program without copying blindly.</p>
+<p>You should already be comfortable with variables, functions, and loops from projects 01 through 05.</p>
+<p>Use <code>vpp check</code> on your file when something fails to compile. The type checker reports signature mismatches early. Fix one error at a time, then re-run.</p>
+<p>Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for braces, commas, and return types.</p>
 </div></section>
 <section class="course-step" id="step-1">
 <div class="course-step-head">
 <span class="course-step-num">3</span>
 <h2 id="step-1-title">Function: hint</h2>
 </div>
-<div class="course-step-body"><p>Functions encapsulate reusable logic with explicit parameter and return types. V++ requires a typed signature; locals may be inferred. In this step we add function: hint to the growing program.</p>
+<div class="course-step-body">
+<p>Step 1 of 3 for <strong>Guessing Game</strong>. We now add <strong>Function: hint</strong> to the program.</p>
+<p><strong>Function: hint</strong> adds <code>fn hint(guess: int, secret: int) -&gt; string {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
+<p><code>if guess &lt; secret {</code> starts a conditional block. The condition must be <code>bool</code>. Only the matching branch runs; other branches are skipped.</p>
+<p><code>return &quot;too low&quot;</code> sends a value back to the caller and ends the current function.</p>
+<p><code>if guess &gt; secret {</code> starts a conditional block. The condition must be <code>bool</code>. Only the matching branch runs; other branches are skipped.</p>
+<p><code>return &quot;too high&quot;</code> sends a value back to the caller and ends the current function.</p>
+<p><code>return &quot;correct&quot;</code> sends a value back to the caller and ends the current function.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn hint(guess: int, secret: int) -&gt; string {
     if guess &lt; secret {
         return &quot;too low&quot;
@@ -108,18 +123,14 @@
 <span class="course-step-num">4</span>
 <h2 id="step-2-title">Function: play_round</h2>
 </div>
-<div class="course-step-body"><p>Functions encapsulate reusable logic with explicit parameter and return types. V++ requires a typed signature; locals may be inferred. In this step we add function: play_round to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn hint(guess: int, secret: int) -&gt; string {
-    if guess &lt; secret {
-        return &quot;too low&quot;
-    }
-    if guess &gt; secret {
-        return &quot;too high&quot;
-    }
-    return &quot;correct&quot;
-}
-
-fn play_round(secret: int, guess: int) -&gt; bool {
+<div class="course-step-body">
+<p>Step 2 of 3 for <strong>Guessing Game</strong>. We now add <strong>Function: play_round</strong> to the program.</p>
+<p><strong>Function: play_round</strong> adds <code>fn play_round(secret: int, guess: int) -&gt; bool {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
+<p><code>let message = hint(guess, secret)</code> binds the name <code>message</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>print(message)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>return message == &quot;correct&quot;</code> sends a value back to the caller and ends the current function.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn play_round(secret: int, guess: int) -&gt; bool {
     let message = hint(guess, secret)
     print(message)
     return message == &quot;correct&quot;
@@ -130,24 +141,18 @@ fn play_round(secret: int, guess: int) -&gt; bool {
 <span class="course-step-num">5</span>
 <h2 id="step-3-title">Entry point: main</h2>
 </div>
-<div class="course-step-body"><p>Every executable program defines fn main() -&gt; int. The integer return value becomes the process exit code (0 means success). In this step we add entry point: main to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn hint(guess: int, secret: int) -&gt; string {
-    if guess &lt; secret {
-        return &quot;too low&quot;
-    }
-    if guess &gt; secret {
-        return &quot;too high&quot;
-    }
-    return &quot;correct&quot;
-}
-
-fn play_round(secret: int, guess: int) -&gt; bool {
-    let message = hint(guess, secret)
-    print(message)
-    return message == &quot;correct&quot;
-}
-
-fn main() -&gt; int {
+<div class="course-step-body">
+<p>Step 3 of 3 for <strong>Guessing Game</strong>. We now add <strong>Entry point: main</strong> to the program.</p>
+<p><code>fn main() -&gt; int</code> is the program entry point. The runtime calls it after your definitions are loaded. Everything inside the braces runs in order.</p>
+<p><code>let secret = 42</code> binds the name <code>secret</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>let guesses = [10, 30, 50, 42]</code> binds the name <code>guesses</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>print(g)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>if play_round(secret, g) {</code> starts a conditional block. The condition must be <code>bool</code>. Only the matching branch runs; other branches are skipped.</p>
+<p><code>print(&quot;you win&quot;)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
+<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let secret = 42
     let guesses = [10, 30, 50, 42]
 

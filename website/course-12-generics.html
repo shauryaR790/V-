@@ -7,7 +7,7 @@
   <meta name="description" content="Step by step V++ course: Generics.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Shrikhand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/V-/css/style.css">
   <link rel="stylesheet" href="/V-/css/prism-vpp.css">
   <link rel="icon" href="/V-/assets/favicon.png">
@@ -71,28 +71,39 @@
 <span class="course-header-tag">Advanced</span>
 <h1 id="course-title">Generics</h1>
 <p class="course-lead">Type parameterized functions with monomorphization.</p>
-<div class="course-concepts"><span class="course-concept">`fn name[T]`</span><span class="course-concept">explicit type args `id[int](42)`</span></div>
+<div class="course-concepts"><span class="course-concept">fn name[T]</span><span class="course-concept">explicit type args `id[int](42)</span></div>
 </header>
 <section class="course-step" id="overview">
 <div class="course-step-head">
 <span class="course-step-num">1</span>
 <h2 id="overview-title">What you will build</h2>
 </div>
-<div class="course-step-body"><p>Type-parameterized functions with monomorphization. By the end you will understand `fn name[T]`, explicit type args `id[int](42)`. We build the program in layers, run snippets mentally, then execute the full source.</p>
+<div class="course-step-body">
+<p><strong>Generics</strong> is project 12 in the V++ curriculum (Advanced level). Type-parameterized functions with monomorphization.</p>
+<p>In this walkthrough you will not paste the whole file at once. Each step introduces one idea, explains what the lines mean, and shows only the new snippet. By the end you will combine everything into a complete program that produces <code>42</code>, <code>hello</code>.</p>
+<p>The key ideas here are fn name[T], and explicit type args <code>id[int](42). Read the prose under every heading before you look at code. When you reach the playground, run the full source with </code>vpp run projects/12-generics/main.vpp` on your machine or use the Run button to compare against the expected output.</p>
 </div></section>
 <section class="course-step" id="goal">
 <div class="course-step-head">
 <span class="course-step-num">2</span>
 <h2 id="goal-title">Learning goals</h2>
 </div>
-<div class="course-step-body"><p>Level: Advanced. Read each step before copying code. Types are enforced at compile time, so fix signature errors early with vpp check.</p>
+<div class="course-step-body">
+<p>After finishing <strong>Generics</strong>, you should be able to explain fn name[T], and explicit type args `id[int](42) in your own words and reproduce the program without copying blindly.</p>
+<p>This project combines multiple features. Revisit earlier lessons if a concept feels unfamiliar.</p>
+<p>Use <code>vpp check</code> on your file when something fails to compile. The type checker reports signature mismatches early. Fix one error at a time, then re-run.</p>
+<p>Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for braces, commas, and return types.</p>
 </div></section>
 <section class="course-step" id="step-1">
 <div class="course-step-head">
 <span class="course-step-num">3</span>
 <h2 id="step-1-title">Function: id</h2>
 </div>
-<div class="course-step-body"><p>Functions encapsulate reusable logic with explicit parameter and return types. V++ requires a typed signature; locals may be inferred. In this step we add function: id to the growing program.</p>
+<div class="course-step-body">
+<p>Step 1 of 3 for <strong>Generics</strong>. We now add <strong>Function: id</strong> to the program.</p>
+<p><strong>Function: id</strong> adds <code>fn id[T](x: T) -&gt; T {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
+<p><code>return x</code> sends a value back to the caller and ends the current function.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn id[T](x: T) -&gt; T {
     return x
 }</code></pre></div>
@@ -102,12 +113,12 @@
 <span class="course-step-num">4</span>
 <h2 id="step-2-title">Function: first</h2>
 </div>
-<div class="course-step-body"><p>Functions encapsulate reusable logic with explicit parameter and return types. V++ requires a typed signature; locals may be inferred. In this step we add function: first to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn id[T](x: T) -&gt; T {
-    return x
-}
-
-fn first[T](items: array[T]) -&gt; T {
+<div class="course-step-body">
+<p>Step 2 of 3 for <strong>Generics</strong>. We now add <strong>Function: first</strong> to the program.</p>
+<p><strong>Function: first</strong> adds <code>fn first[T](items: array[T]) -&gt; T {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
+<p><code>return items[0]</code> sends a value back to the caller and ends the current function.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn first[T](items: array[T]) -&gt; T {
     return items[0]
 }</code></pre></div>
 </div></section>
@@ -116,16 +127,16 @@ fn first[T](items: array[T]) -&gt; T {
 <span class="course-step-num">5</span>
 <h2 id="step-3-title">Entry point: main</h2>
 </div>
-<div class="course-step-body"><p>Every executable program defines fn main() -&gt; int. The integer return value becomes the process exit code (0 means success). In this step we add entry point: main to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn id[T](x: T) -&gt; T {
-    return x
-}
-
-fn first[T](items: array[T]) -&gt; T {
-    return items[0]
-}
-
-fn main() -&gt; int {
+<div class="course-step-body">
+<p>Step 3 of 3 for <strong>Generics</strong>. We now add <strong>Entry point: main</strong> to the program.</p>
+<p><code>fn main() -&gt; int</code> is the program entry point. The runtime calls it after your definitions are loaded. Everything inside the braces runs in order.</p>
+<p><code>print(id[int](42))</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>print(id[string](&quot;V++&quot;))</code> demonstrates string concatenation: <code>+</code> joins string pieces when both sides are strings.</p>
+<p><code>let words = [&quot;alpha&quot;, &quot;beta&quot;, &quot;gamma&quot;]</code> binds the name <code>words</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>print(first[string](words))</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     print(id[int](42))
     print(id[string](&quot;v++&quot;))
 

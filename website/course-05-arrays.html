@@ -7,7 +7,7 @@
   <meta name="description" content="Step by step V++ course: Arrays.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Shrikhand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/V-/css/style.css">
   <link rel="stylesheet" href="/V-/css/prism-vpp.css">
   <link rel="icon" href="/V-/assets/favicon.png">
@@ -71,28 +71,41 @@
 <span class="course-header-tag">Beginner</span>
 <h1 id="course-title">Arrays</h1>
 <p class="course-lead">Work with `array[int]`, iteration, and `std.collections.sum`.</p>
-<div class="course-concepts"><span class="course-concept">arrays</span><span class="course-concept">indexing</span><span class="course-concept">`import std.collections`</span></div>
+<div class="course-concepts"><span class="course-concept">arrays</span><span class="course-concept">indexing</span><span class="course-concept">import std.collections</span></div>
 </header>
 <section class="course-step" id="overview">
 <div class="course-step-head">
 <span class="course-step-num">1</span>
 <h2 id="overview-title">What you will build</h2>
 </div>
-<div class="course-step-body"><p>Work with `array[int]`, iteration, and `std.collections.sum`. By the end you will understand arrays, indexing, `import std.collections`. We build the program in layers, run snippets mentally, then execute the full source.</p>
+<div class="course-step-body">
+<p><strong>Arrays</strong> is project 05 in the V++ curriculum (Beginner level). Work with <code>array[int]</code>, iteration, and <code>std.collections.sum</code>.</p>
+<p>In this walkthrough you will not paste the whole file at once. Each step introduces one idea, explains what the lines mean, and shows only the new snippet. By the end you will combine everything into a complete program that produces <code>15</code>.</p>
+<p>The key ideas here are arrays, indexing, and import std.collections. Read the prose under every heading before you look at code. When you reach the playground, run the full source with <code>vpp run projects/05-arrays/main.vpp</code> on your machine or use the Run button to compare against the expected output.</p>
 </div></section>
 <section class="course-step" id="goal">
 <div class="course-step-head">
 <span class="course-step-num">2</span>
 <h2 id="goal-title">Learning goals</h2>
 </div>
-<div class="course-step-body"><p>Level: Beginner. Read each step before copying code. Types are enforced at compile time, so fix signature errors early with vpp check.</p>
+<div class="course-step-body">
+<p>After finishing <strong>Arrays</strong>, you should be able to explain arrays, indexing, and import std.collections in your own words and reproduce the program without copying blindly.</p>
+<p>This is an early project: focus on syntax, naming, and how the compiler reads your file top to bottom.</p>
+<p>Use <code>vpp check</code> on your file when something fails to compile. The type checker reports signature mismatches early. Fix one error at a time, then re-run.</p>
+<p>Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for braces, commas, and return types.</p>
 </div></section>
 <section class="course-step" id="step-1">
 <div class="course-step-head">
 <span class="course-step-num">3</span>
 <h2 id="step-1-title">Function: sum</h2>
 </div>
-<div class="course-step-body"><p>Functions encapsulate reusable logic with explicit parameter and return types. V++ requires a typed signature; locals may be inferred. In this step we add function: sum to the growing program.</p>
+<div class="course-step-body">
+<p>Step 1 of 3 for <strong>Arrays</strong>. We now add <strong>Function: sum</strong> to the program.</p>
+<p><strong>Function: sum</strong> adds <code>fn sum(nums: array[int]) -&gt; int {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
+<p><code>let mut total = 0</code> creates a <strong>mutable</strong> binding. You can reassign <code>total</code> later (for example in a loop). The compiler still tracks its type after each assignment.</p>
+<p><code>total = total + n</code> reassigns <code>total</code>. This only works when <code>total</code> was declared with <code>let mut</code>.</p>
+<p><code>return total</code> sends a value back to the caller and ends the current function.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn sum(nums: array[int]) -&gt; int {
     let mut total = 0
     for n in nums {
@@ -106,16 +119,15 @@
 <span class="course-step-num">4</span>
 <h2 id="step-2-title">Function: max_of</h2>
 </div>
-<div class="course-step-body"><p>Functions encapsulate reusable logic with explicit parameter and return types. V++ requires a typed signature; locals may be inferred. In this step we add function: max_of to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn sum(nums: array[int]) -&gt; int {
-    let mut total = 0
-    for n in nums {
-        total = total + n
-    }
-    return total
-}
-
-fn max_of(nums: array[int]) -&gt; int {
+<div class="course-step-body">
+<p>Step 2 of 3 for <strong>Arrays</strong>. We now add <strong>Function: max_of</strong> to the program.</p>
+<p><strong>Function: max_of</strong> adds <code>fn max_of(nums: array[int]) -&gt; int {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
+<p><code>let mut best = nums[0]</code> creates a <strong>mutable</strong> binding. You can reassign <code>best</code> later (for example in a loop). The compiler still tracks its type after each assignment.</p>
+<p><code>if n &gt; best {</code> starts a conditional block. The condition must be <code>bool</code>. Only the matching branch runs; other branches are skipped.</p>
+<p><code>best = n</code> reassigns <code>best</code>. This only works when <code>best</code> was declared with <code>let mut</code>.</p>
+<p><code>return best</code> sends a value back to the caller and ends the current function.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn max_of(nums: array[int]) -&gt; int {
     let mut best = nums[0]
     for n in nums {
         if n &gt; best {
@@ -130,26 +142,15 @@ fn max_of(nums: array[int]) -&gt; int {
 <span class="course-step-num">5</span>
 <h2 id="step-3-title">Entry point: main</h2>
 </div>
-<div class="course-step-body"><p>Every executable program defines fn main() -&gt; int. The integer return value becomes the process exit code (0 means success). In this step we add entry point: main to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn sum(nums: array[int]) -&gt; int {
-    let mut total = 0
-    for n in nums {
-        total = total + n
-    }
-    return total
-}
-
-fn max_of(nums: array[int]) -&gt; int {
-    let mut best = nums[0]
-    for n in nums {
-        if n &gt; best {
-            best = n
-        }
-    }
-    return best
-}
-
-fn main() -&gt; int {
+<div class="course-step-body">
+<p>Step 3 of 3 for <strong>Arrays</strong>. We now add <strong>Entry point: main</strong> to the program.</p>
+<p><code>fn main() -&gt; int</code> is the program entry point. The runtime calls it after your definitions are loaded. Everything inside the braces runs in order.</p>
+<p><code>let nums = [3, 7, 2, 9, 4]</code> binds the name <code>nums</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>print(sum(nums))</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>print(max_of(nums))</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let nums = [3, 7, 2, 9, 4]
     print(sum(nums))
     print(max_of(nums))

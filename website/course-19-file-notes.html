@@ -7,7 +7,7 @@
   <meta name="description" content="Step by step V++ course: File Notes.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Shrikhand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/V-/css/style.css">
   <link rel="stylesheet" href="/V-/css/prism-vpp.css">
   <link rel="icon" href="/V-/assets/favicon.png">
@@ -71,28 +71,39 @@
 <span class="course-header-tag">Advanced</span>
 <h1 id="course-title">File Notes</h1>
 <p class="course-lead">Read and write files with `std.fs`.</p>
-<div class="course-concepts"><span class="course-concept">`fs.write`</span><span class="course-concept">`fs.read`</span><span class="course-concept">`fs.exists`</span></div>
+<div class="course-concepts"><span class="course-concept">fs.write</span><span class="course-concept">fs.read</span><span class="course-concept">fs.exists</span></div>
 </header>
 <section class="course-step" id="overview">
 <div class="course-step-head">
 <span class="course-step-num">1</span>
 <h2 id="overview-title">What you will build</h2>
 </div>
-<div class="course-step-body"><p>Read and write files with `std.fs`. By the end you will understand `fs.write`, `fs.read`, `fs.exists`. We build the program in layers, run snippets mentally, then execute the full source.</p>
+<div class="course-step-body">
+<p><strong>File Notes</strong> is project 19 in the V++ curriculum (Advanced level). Read and write files with <code>std.fs</code>.</p>
+<p>In this walkthrough you will not paste the whole file at once. Each step introduces one idea, explains what the lines mean, and shows only the new snippet. By the end you will combine everything into a complete program that produces <code>note saved</code>.</p>
+<p>The key ideas here are fs.write, fs.read, and fs.exists. Read the prose under every heading before you look at code. When you reach the playground, run the full source with <code>vpp run projects/19-file-notes/main.vpp</code> on your machine or use the Run button to compare against the expected output.</p>
 </div></section>
 <section class="course-step" id="goal">
 <div class="course-step-head">
 <span class="course-step-num">2</span>
 <h2 id="goal-title">Learning goals</h2>
 </div>
-<div class="course-step-body"><p>Level: Advanced. Read each step before copying code. Types are enforced at compile time, so fix signature errors early with vpp check.</p>
+<div class="course-step-body">
+<p>After finishing <strong>File Notes</strong>, you should be able to explain fs.write, fs.read, and fs.exists in your own words and reproduce the program without copying blindly.</p>
+<p>This project combines multiple features. Revisit earlier lessons if a concept feels unfamiliar.</p>
+<p>Use <code>vpp check</code> on your file when something fails to compile. The type checker reports signature mismatches early. Fix one error at a time, then re-run.</p>
+<p>Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for braces, commas, and return types.</p>
 </div></section>
 <section class="course-step" id="step-1">
 <div class="course-step-head">
 <span class="course-step-num">3</span>
 <h2 id="step-1-title">Imports</h2>
 </div>
-<div class="course-step-body"><p>Imports connect your file to the standard library or other modules. The compiler resolves paths and merges exported symbols. In this step we add imports to the growing program.</p>
+<div class="course-step-body">
+<p>Step 1 of 2 for <strong>File Notes</strong>. We now add <strong>Imports</strong> to the program.</p>
+<p>This file begins with <code>std.fs</code>. Imports must appear before functions and types.</p>
+<p>The compiler resolves standard library paths like <code>std.fs</code> or <code>std.json</code> automatically when you run <code>vpp run</code>. If an import is misspelled, you will get an unknown module error at compile time.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">import std.fs</code></pre></div>
 </div></section>
 <section class="course-step" id="step-2">
@@ -100,10 +111,17 @@
 <span class="course-step-num">4</span>
 <h2 id="step-2-title">Entry point: main</h2>
 </div>
-<div class="course-step-body"><p>Every executable program defines fn main() -&gt; int. The integer return value becomes the process exit code (0 means success). In this step we add entry point: main to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">import std.fs
-
-fn main() -&gt; int {
+<div class="course-step-body">
+<p>Step 2 of 2 for <strong>File Notes</strong>. We now add <strong>Entry point: main</strong> to the program.</p>
+<p><code>fn main() -&gt; int</code> is the program entry point. The runtime calls it after your definitions are loaded. Everything inside the braces runs in order.</p>
+<p><code>let path = &quot;note.txt&quot;</code> stores a string value. V++ checks that <code>path</code> stays a string if you use it again in concatenation or printing.</p>
+<p><code>let body = &quot;V++ file notes\nBuilt by Shaurya\nOpen source on GitHub&quot;</code> stores a string value. V++ checks that <code>body</code> stays a string if you use it again in concatenation or printing.</p>
+<p><code>print(fs.exists(path))</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>let content = fs.read(path)</code> binds the name <code>content</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>print(content)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let path = &quot;note.txt&quot;
     let body = &quot;v++ file notes\nBuilt by Shaurya\nOpen source on GitHub&quot;
 

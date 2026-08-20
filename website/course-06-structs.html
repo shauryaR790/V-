@@ -7,7 +7,7 @@
   <meta name="description" content="Step by step V++ course: Structs.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Shrikhand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/V-/css/style.css">
   <link rel="stylesheet" href="/V-/css/prism-vpp.css">
   <link rel="icon" href="/V-/assets/favicon.png">
@@ -71,28 +71,39 @@
 <span class="course-header-tag">Intermediate</span>
 <h1 id="course-title">Structs</h1>
 <p class="course-lead">Custom product types with named fields.</p>
-<div class="course-concepts"><span class="course-concept">`struct`</span><span class="course-concept">field access</span><span class="course-concept">passing structs to functions</span></div>
+<div class="course-concepts"><span class="course-concept">struct</span><span class="course-concept">field access</span><span class="course-concept">passing structs to functions</span></div>
 </header>
 <section class="course-step" id="overview">
 <div class="course-step-head">
 <span class="course-step-num">1</span>
 <h2 id="overview-title">What you will build</h2>
 </div>
-<div class="course-step-body"><p>Custom product types with named fields. By the end you will understand `struct`, field access, passing structs to functions. We build the program in layers, run snippets mentally, then execute the full source.</p>
+<div class="course-step-body">
+<p><strong>Structs</strong> is project 06 in the V++ curriculum (Intermediate level). Custom product types with named fields.</p>
+<p>In this walkthrough you will not paste the whole file at once. Each step introduces one idea, explains what the lines mean, and shows only the new snippet. By the end you will combine everything into a complete program that produces <code>3</code>, <code>4</code>, <code>50</code>.</p>
+<p>The key ideas here are struct, field access, and passing structs to functions. Read the prose under every heading before you look at code. When you reach the playground, run the full source with <code>vpp run projects/06-structs/main.vpp</code> on your machine or use the Run button to compare against the expected output.</p>
 </div></section>
 <section class="course-step" id="goal">
 <div class="course-step-head">
 <span class="course-step-num">2</span>
 <h2 id="goal-title">Learning goals</h2>
 </div>
-<div class="course-step-body"><p>Level: Intermediate. Read each step before copying code. Types are enforced at compile time, so fix signature errors early with vpp check.</p>
+<div class="course-step-body">
+<p>After finishing <strong>Structs</strong>, you should be able to explain struct, field access, and passing structs to functions in your own words and reproduce the program without copying blindly.</p>
+<p>You should already be comfortable with variables, functions, and loops from projects 01 through 05.</p>
+<p>Use <code>vpp check</code> on your file when something fails to compile. The type checker reports signature mismatches early. Fix one error at a time, then re-run.</p>
+<p>Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for braces, commas, and return types.</p>
 </div></section>
 <section class="course-step" id="step-1">
 <div class="course-step-head">
 <span class="course-step-num">3</span>
 <h2 id="step-1-title">Struct: Point</h2>
 </div>
-<div class="course-step-body"><p>Structs group related data into one typed value. Field names document intent and the type checker enforces shape at compile time. In this step we add struct: point to the growing program.</p>
+<div class="course-step-body">
+<p>Step 1 of 4 for <strong>Structs</strong>. We now add <strong>Struct: Point</strong> to the program.</p>
+<p><strong>Struct: Point</strong> defines a product type: <code>struct Point {</code>. Structs group fields that belong together so you pass one value instead of many separate parameters.</p>
+<p>Fields <code>x: int</code>, <code>y: int</code> are checked at compile time. You construct values with struct literal syntax <code>{ field: value }</code>.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Point {
     x: int
     y: int
@@ -103,13 +114,12 @@
 <span class="course-step-num">4</span>
 <h2 id="step-2-title">Struct: Rectangle</h2>
 </div>
-<div class="course-step-body"><p>Structs group related data into one typed value. Field names document intent and the type checker enforces shape at compile time. In this step we add struct: rectangle to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Point {
-    x: int
-    y: int
-}
-
-struct Rectangle {
+<div class="course-step-body">
+<p>Step 2 of 4 for <strong>Structs</strong>. We now add <strong>Struct: Rectangle</strong> to the program.</p>
+<p><strong>Struct: Rectangle</strong> defines a product type: <code>struct Rectangle {</code>. Structs group fields that belong together so you pass one value instead of many separate parameters.</p>
+<p>Fields <code>width: int</code>, <code>height: int</code> are checked at compile time. You construct values with struct literal syntax <code>{ field: value }</code>.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Rectangle {
     width: int
     height: int
 }</code></pre></div>
@@ -119,18 +129,12 @@ struct Rectangle {
 <span class="course-step-num">5</span>
 <h2 id="step-3-title">Function: area</h2>
 </div>
-<div class="course-step-body"><p>Functions encapsulate reusable logic with explicit parameter and return types. V++ requires a typed signature; locals may be inferred. In this step we add function: area to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Point {
-    x: int
-    y: int
-}
-
-struct Rectangle {
-    width: int
-    height: int
-}
-
-fn area(rect: Rectangle) -&gt; int {
+<div class="course-step-body">
+<p>Step 3 of 4 for <strong>Structs</strong>. We now add <strong>Function: area</strong> to the program.</p>
+<p><strong>Function: area</strong> adds <code>fn area(rect: Rectangle) -&gt; int {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
+<p><code>return rect.width * rect.height</code> sends a value back to the caller and ends the current function.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn area(rect: Rectangle) -&gt; int {
     return rect.width * rect.height
 }</code></pre></div>
 </div></section>
@@ -139,22 +143,17 @@ fn area(rect: Rectangle) -&gt; int {
 <span class="course-step-num">6</span>
 <h2 id="step-4-title">Entry point: main</h2>
 </div>
-<div class="course-step-body"><p>Every executable program defines fn main() -&gt; int. The integer return value becomes the process exit code (0 means success). In this step we add entry point: main to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Point {
-    x: int
-    y: int
-}
-
-struct Rectangle {
-    width: int
-    height: int
-}
-
-fn area(rect: Rectangle) -&gt; int {
-    return rect.width * rect.height
-}
-
-fn main() -&gt; int {
+<div class="course-step-body">
+<p>Step 4 of 4 for <strong>Structs</strong>. We now add <strong>Entry point: main</strong> to the program.</p>
+<p><code>fn main() -&gt; int</code> is the program entry point. The runtime calls it after your definitions are loaded. Everything inside the braces runs in order.</p>
+<p><code>let p = Point { x: 3, y: 4 }</code> binds the name <code>p</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>print(p.x)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>print(p.y)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>let box = Rectangle { width: 10, height: 5 }</code> binds the name <code>box</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>print(area(box))</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let p = Point { x: 3, y: 4 }
     print(p.x)
     print(p.y)

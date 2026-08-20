@@ -47,6 +47,287 @@ OUTPUT_BY_SLUG: dict[str, str] = {
     "20-json-config": "my-app\n0.5.0",
 }
 
+def join_paragraphs(paragraphs: list[str]) -> str:
+    return "\n\n".join(p.strip() for p in paragraphs if p and p.strip())
+
+
+def preview_output(output: str, max_lines: int = 3) -> str:
+    lines = [ln for ln in output.splitlines() if ln.strip()]
+    if not lines:
+        return "program output"
+    sample = lines[:max_lines]
+    text = ", ".join(f"`{ln}`" for ln in sample)
+    if len(lines) > max_lines:
+        text += f", and {len(lines) - max_lines} more lines"
+    return text
+
+
+def concept_list_text(concepts: list[str]) -> str:
+    if not concepts:
+        return "core V++ syntax"
+    cleaned = [c.strip().strip("`") for c in concepts]
+    if len(cleaned) == 1:
+        return cleaned[0]
+    return ", ".join(cleaned[:-1]) + f", and {cleaned[-1]}"
+
+
+def build_overview_theory(project: CourseProject) -> str:
+    concepts = concept_list_text(project.concepts)
+    return join_paragraphs(
+        [
+            (
+                f"**{project.title}** is project {project.num:02d} in the V++ curriculum ({project.level} level). "
+                f"{project.summary}"
+            ),
+            (
+                f"In this walkthrough you will not paste the whole file at once. Each step introduces one idea, "
+                f"explains what the lines mean, and shows only the new snippet. By the end you will combine "
+                f"everything into a complete program that produces {preview_output(project.output)}."
+            ),
+            (
+                f"The key ideas here are {concepts}. Read the prose under every heading before you look at code. "
+                f"When you reach the playground, run the full source with `{project.run_cmd}` on your machine "
+                f"or use the Run button to compare against the expected output."
+            ),
+        ]
+    )
+
+
+def build_goals_theory(project: CourseProject) -> str:
+    level_hint = {
+        "Beginner": (
+            "This is an early project: focus on syntax, naming, and how the compiler reads your file top to bottom."
+        ),
+        "Intermediate": (
+            "You should already be comfortable with variables, functions, and loops from projects 01 through 05."
+        ),
+        "Advanced": (
+            "This project combines multiple features. Revisit earlier lessons if a concept feels unfamiliar."
+        ),
+    }.get(project.level, "Work at your own pace and experiment locally.")
+    concepts = concept_list_text(project.concepts)
+    return join_paragraphs(
+        [
+            (
+                f"After finishing **{project.title}**, you should be able to explain {concepts} in your own words "
+                f"and reproduce the program without copying blindly."
+            ),
+            level_hint,
+            (
+                "Use `vpp check` on your file when something fails to compile. The type checker reports "
+                "signature mismatches early. Fix one error at a time, then re-run."
+            ),
+            (
+                "Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for "
+                "braces, commas, and return types."
+            ),
+        ]
+    )
+
+
+def describe_let(line: str) -> str:
+    mut = "mut " if "let mut " in line else ""
+    match = re.match(r"let\s+(?:mut\s+)?(\w+)\s*=\s*(.+)", line.strip())
+    if not match:
+        return f"The binding `{line.strip()}` introduces a new local name in the current scope."
+    name, value = match.group(1), match.group(2).rstrip()
+    if mut:
+        return (
+            f"`let mut {name} = {value}` creates a **mutable** binding. You can reassign `{name}` later "
+            f"(for example in a loop). The compiler still tracks its type after each assignment."
+        )
+    if value.startswith('"') or ("+" in value and '"' in value):
+        return (
+            f"`let {name} = {value}` stores a string value. V++ checks that `{name}` stays a string if you "
+            f"use it again in concatenation or printing."
+        )
+    return (
+        f"`let {name} = {value}` binds the name `{name}` to a value. V++ infers the type from the right "
+        f"hand side so you rarely need to write it explicitly for simple literals."
+    )
+
+
+def describe_print(line: str) -> str:
+    inner = line.strip()[6:-1] if line.strip().endswith(")") else line.strip()
+    if any(op in inner for op in (" + ", " - ", " * ", " / ")):
+        return (
+            f"`print({inner})` evaluates the expression first, then prints the result on its own line. "
+            f"Arithmetic operators work on integers the way you expect from math class."
+        )
+    if "+" in inner and '"' in inner:
+        return (
+            f"`print({inner})` demonstrates string concatenation: `+` joins string pieces when both sides are strings."
+        )
+    return (
+        f"`print({inner})` writes to standard output followed by a newline. "
+        f"`print` accepts values such as integers and strings."
+    )
+
+
+def describe_return(line: str) -> str:
+    value = line.strip().removeprefix("return").strip()
+    if value == "0":
+        return (
+            "`return 0` exits `main` with status code 0, which operating systems treat as success. "
+            "Non-zero values signal an error."
+        )
+    return f"`return {value}` sends a value back to the caller and ends the current function."
+
+
+def describe_if(line: str) -> str:
+    return (
+        f"`{line.strip()}` starts a conditional block. The condition must be `bool`. "
+        f"Only the matching branch runs; other branches are skipped."
+    )
+
+
+def describe_while(line: str) -> str:
+    return (
+        f"`{line.strip()}` repeats its body while the condition stays true. "
+        f"Make sure something inside the loop eventually changes the condition to avoid infinite loops."
+    )
+
+
+def describe_match_line(line: str) -> str:
+    stripped = line.strip()
+    if stripped.startswith("match "):
+        return (
+            f"`{stripped}` inspects a value and selects the first arm whose pattern fits. "
+            f"V++ requires match expressions to be exhaustive over the type."
+        )
+    if "=>" in stripped:
+        return f"The arm `{stripped}` handles one case. When it matches, the code after `=>` runs."
+    return ""
+
+
+def describe_line(line: str) -> str | None:
+    stripped = line.strip()
+    if not stripped or stripped in ("{", "}"):
+        return None
+    if stripped.startswith("let "):
+        return describe_let(stripped)
+    if stripped.startswith("print("):
+        return describe_print(stripped)
+    if stripped.startswith("return "):
+        return describe_return(stripped)
+    if stripped.startswith("if "):
+        return describe_if(stripped)
+    if stripped.startswith("while "):
+        return describe_while(stripped)
+    if stripped.startswith("match ") or "=>" in stripped:
+        return describe_match_line(stripped)
+    if stripped.startswith("import "):
+        mod = stripped.removeprefix("import").strip()
+        return f"`import {mod}` brings that module's public symbols into this file so you can call its functions."
+    if re.match(r"\w+\s*=", stripped) and not stripped.startswith("let "):
+        name = stripped.split("=")[0].strip()
+        return f"`{stripped}` reassigns `{name}`. This only works when `{name}` was declared with `let mut`."
+    return None
+
+
+def explain_import_block(block: str) -> list[str]:
+    imports = [ln.strip() for ln in block.splitlines() if ln.strip().startswith("import")]
+    names = [ln.removeprefix("import").strip() for ln in imports]
+    joined = ", ".join(f"`{n}`" for n in names)
+    return [
+        f"This file begins with {joined}. Imports must appear before functions and types.",
+        (
+            "The compiler resolves standard library paths like `std.fs` or `std.json` automatically when "
+            "you run `vpp run`. If an import is misspelled, you will get an unknown module error at compile time."
+        ),
+    ]
+
+
+def explain_type_def_block(block: str, kind: str, title: str) -> list[str]:
+    first = block.lstrip().splitlines()[0].strip()
+    paragraphs = []
+    if kind == "enum":
+        paragraphs.append(
+            f"We introduce **{title}** with `{first}`. An enum lists every legal variant up front, "
+            f"which prevents impossible states later when you `match` on it."
+        )
+        variants = [ln.strip() for ln in block.splitlines()[1:] if ln.strip() and ln.strip() not in ("{", "")]
+        if variants:
+            paragraphs.append(
+                f"Variants {', '.join(f'`{v}`' for v in variants)} are the only allowed values. "
+                f"Adding a new variant later means updating every `match` that uses this enum."
+            )
+    elif kind == "struct":
+        paragraphs.append(
+            f"**{title}** defines a product type: `{first}`. Structs group fields that belong together "
+            f"so you pass one value instead of many separate parameters."
+        )
+        fields = [ln.strip().rstrip(",") for ln in block.splitlines()[1:] if ":" in ln]
+        if fields:
+            paragraphs.append(
+                "Fields " + ", ".join(f"`{f}`" for f in fields) + " are checked at compile time. "
+                "You construct values with struct literal syntax `{ field: value }`."
+            )
+    elif kind == "trait":
+        paragraphs.append(
+            f"**{title}** declares a trait with `{first}`. Traits describe behavior that multiple types "
+            f"can share. Implementations are resolved statically at compile time."
+        )
+    return paragraphs
+
+
+def explain_fn_block(block: str, title: str, is_main: bool) -> list[str]:
+    first = block.lstrip().splitlines()[0].strip()
+    paragraphs = []
+    if is_main:
+        paragraphs.append(
+            "`fn main() -> int` is the program entry point. The runtime calls it after your definitions "
+            "are loaded. Everything inside the braces runs in order."
+        )
+    else:
+        paragraphs.append(
+            f"**{title}** adds `{first}`. Parameters and return types are required on function signatures; "
+            f"the body must return a value compatible with that return type on every path."
+        )
+    body_lines = [
+        ln
+        for ln in block.splitlines()[1:]
+        if ln.strip() and ln.strip() not in ("{", "}")
+    ]
+    for ln in body_lines:
+        desc = describe_line(ln)
+        if desc:
+            paragraphs.append(desc)
+    if is_main and not any("return" in ln for ln in body_lines):
+        paragraphs.append(
+            "Remember to `return 0` from `main` when the program finishes successfully."
+        )
+    return paragraphs
+
+
+def explain_block_theory(
+    block: str,
+    kind: str,
+    title: str,
+    project: CourseProject,
+    step_index: int,
+    total_blocks: int,
+) -> str:
+    intro = (
+        f"Step {step_index} of {total_blocks} for **{project.title}**. "
+        f"We now add **{title}** to the program."
+    )
+    paragraphs = [intro]
+    if kind == "import":
+        paragraphs.extend(explain_import_block(block))
+    elif kind in ("enum", "struct", "trait"):
+        paragraphs.extend(explain_type_def_block(block, kind, title))
+    elif kind in ("fn", "main"):
+        paragraphs.extend(explain_fn_block(block, title, kind == "main"))
+    else:
+        paragraphs.append(THEORY_FOR_KIND.get(kind, THEORY_FOR_KIND["fn"]))
+    paragraphs.append(
+        "Study the snippet below. It is only the new piece for this step; earlier definitions are assumed "
+        "to exist above it in your file."
+    )
+    return join_paragraphs(paragraphs)
+
+
 THEORY_FOR_KIND: dict[str, str] = {
     "import": "Imports connect your file to the standard library or other modules. The compiler resolves paths and merges exported symbols.",
     "enum": "Enums model a fixed set of named variants. They make invalid states unrepresentable and pair naturally with exhaustive match.",
@@ -163,40 +444,32 @@ def split_vpp_blocks(source: str) -> list[str]:
 
 
 def build_lesson_steps(project: CourseProject) -> list[LessonStep]:
-    concepts = ", ".join(project.concepts) if project.concepts else "core V++ syntax"
     steps: list[LessonStep] = [
         LessonStep(
             "overview",
             "What you will build",
-            (
-                f"{project.summary} By the end you will understand {concepts}. "
-                f"We build the program in layers, run snippets mentally, then execute the full source."
-            ),
+            build_overview_theory(project),
             "",
         ),
         LessonStep(
             "goal",
             "Learning goals",
-            (
-                f"Level: {project.level}. "
-                "Read each step before copying code. Types are enforced at compile time, "
-                "so fix signature errors early with vpp check."
-            ),
+            build_goals_theory(project),
             "",
         ),
     ]
     blocks = split_vpp_blocks(project.source)
-    accumulated: list[str] = []
+    total = len(blocks)
     for idx, block in enumerate(blocks, start=1):
-        accumulated.append(block)
         kind = block_kind(block)
-        theory = THEORY_FOR_KIND.get(kind, THEORY_FOR_KIND["fn"])
+        title = block_title(block)
+        theory = explain_block_theory(block, kind, title, project, idx, total)
         steps.append(
             LessonStep(
                 f"step-{idx}",
-                block_title(block),
-                f"{theory} In this step we add {block_title(block).lower()} to the growing program.",
-                "\n\n".join(accumulated),
+                title,
+                theory,
+                block,
             )
         )
     return steps

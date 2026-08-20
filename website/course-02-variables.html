@@ -7,7 +7,7 @@
   <meta name="description" content="Step by step V++ course: Variables &amp; Math.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Shrikhand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/V-/css/style.css">
   <link rel="stylesheet" href="/V-/css/prism-vpp.css">
   <link rel="icon" href="/V-/assets/favicon.png">
@@ -71,28 +71,46 @@
 <span class="course-header-tag">Beginner</span>
 <h1 id="course-title">Variables &amp; Math</h1>
 <p class="course-lead">Variables, arithmetic, and string concatenation.</p>
-<div class="course-concepts"><span class="course-concept">`let`</span><span class="course-concept">type inference</span><span class="course-concept">`+` on int and string</span></div>
+<div class="course-concepts"><span class="course-concept">let</span><span class="course-concept">type inference</span><span class="course-concept">+` on int and string</span></div>
 </header>
 <section class="course-step" id="overview">
 <div class="course-step-head">
 <span class="course-step-num">1</span>
 <h2 id="overview-title">What you will build</h2>
 </div>
-<div class="course-step-body"><p>Variables, arithmetic, and string concatenation. By the end you will understand `let`, type inference, `+` on int and string. We build the program in layers, run snippets mentally, then execute the full source.</p>
+<div class="course-step-body">
+<p><strong>Variables &amp; Math</strong> is project 02 in the V++ curriculum (Beginner level). Variables, arithmetic, and string concatenation.</p>
+<p>In this walkthrough you will not paste the whole file at once. Each step introduces one idea, explains what the lines mean, and shows only the new snippet. By the end you will combine everything into a complete program that produces <code>13</code>, <code>7</code>, <code>30</code>, and 1 more lines.</p>
+<p>The key ideas here are let, type inference, and +<code> on int and string. Read the prose under every heading before you look at code. When you reach the playground, run the full source with </code>vpp run projects/02-variables/main.vpp` on your machine or use the Run button to compare against the expected output.</p>
 </div></section>
 <section class="course-step" id="goal">
 <div class="course-step-head">
 <span class="course-step-num">2</span>
 <h2 id="goal-title">Learning goals</h2>
 </div>
-<div class="course-step-body"><p>Level: Beginner. Read each step before copying code. Types are enforced at compile time, so fix signature errors early with vpp check.</p>
+<div class="course-step-body">
+<p>After finishing <strong>Variables &amp; Math</strong>, you should be able to explain let, type inference, and +` on int and string in your own words and reproduce the program without copying blindly.</p>
+<p>This is an early project: focus on syntax, naming, and how the compiler reads your file top to bottom.</p>
+<p>Use <code>vpp check</code> on your file when something fails to compile. The type checker reports signature mismatches early. Fix one error at a time, then re-run.</p>
+<p>Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for braces, commas, and return types.</p>
 </div></section>
 <section class="course-step" id="step-1">
 <div class="course-step-head">
 <span class="course-step-num">3</span>
 <h2 id="step-1-title">Entry point: main</h2>
 </div>
-<div class="course-step-body"><p>Every executable program defines fn main() -&gt; int. The integer return value becomes the process exit code (0 means success). In this step we add entry point: main to the growing program.</p>
+<div class="course-step-body">
+<p>Step 1 of 1 for <strong>Variables &amp; Math</strong>. We now add <strong>Entry point: main</strong> to the program.</p>
+<p><code>fn main() -&gt; int</code> is the program entry point. The runtime calls it after your definitions are loaded. Everything inside the braces runs in order.</p>
+<p><code>let x = 10</code> binds the name <code>x</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>let y = 3</code> binds the name <code>y</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>print(x + y)</code> evaluates the expression first, then prints the result on its own line. Arithmetic operators work on integers the way you expect from math class.</p>
+<p><code>print(x - y)</code> evaluates the expression first, then prints the result on its own line. Arithmetic operators work on integers the way you expect from math class.</p>
+<p><code>print(x * y)</code> evaluates the expression first, then prints the result on its own line. Arithmetic operators work on integers the way you expect from math class.</p>
+<p><code>let name = &quot;V++&quot;</code> stores a string value. V++ checks that <code>name</code> stays a string if you use it again in concatenation or printing.</p>
+<p><code>print(&quot;Hello, &quot; + name + &quot;!&quot;)</code> evaluates the expression first, then prints the result on its own line. Arithmetic operators work on integers the way you expect from math class.</p>
+<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let x = 10
     let y = 3

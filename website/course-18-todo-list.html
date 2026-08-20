@@ -7,7 +7,7 @@
   <meta name="description" content="Step by step V++ course: Todo List.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Shrikhand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/V-/css/style.css">
   <link rel="stylesheet" href="/V-/css/prism-vpp.css">
   <link rel="icon" href="/V-/assets/favicon.png">
@@ -78,21 +78,32 @@
 <span class="course-step-num">1</span>
 <h2 id="overview-title">What you will build</h2>
 </div>
-<div class="course-step-body"><p>Track tasks with structs and bool flags. By the end you will understand struct, bool, conditional printing. We build the program in layers, run snippets mentally, then execute the full source.</p>
+<div class="course-step-body">
+<p><strong>Todo List</strong> is project 18 in the V++ curriculum (Advanced level). Track tasks with structs and bool flags.</p>
+<p>In this walkthrough you will not paste the whole file at once. Each step introduces one idea, explains what the lines mean, and shows only the new snippet. By the end you will combine everything into a complete program that produces <code>Buy milk</code>, <code>Write code</code>, <code>Walk dog</code>.</p>
+<p>The key ideas here are struct, bool, and conditional printing. Read the prose under every heading before you look at code. When you reach the playground, run the full source with <code>vpp run projects/18-todo-list/main.vpp</code> on your machine or use the Run button to compare against the expected output.</p>
 </div></section>
 <section class="course-step" id="goal">
 <div class="course-step-head">
 <span class="course-step-num">2</span>
 <h2 id="goal-title">Learning goals</h2>
 </div>
-<div class="course-step-body"><p>Level: Advanced. Read each step before copying code. Types are enforced at compile time, so fix signature errors early with vpp check.</p>
+<div class="course-step-body">
+<p>After finishing <strong>Todo List</strong>, you should be able to explain struct, bool, and conditional printing in your own words and reproduce the program without copying blindly.</p>
+<p>This project combines multiple features. Revisit earlier lessons if a concept feels unfamiliar.</p>
+<p>Use <code>vpp check</code> on your file when something fails to compile. The type checker reports signature mismatches early. Fix one error at a time, then re-run.</p>
+<p>Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for braces, commas, and return types.</p>
 </div></section>
 <section class="course-step" id="step-1">
 <div class="course-step-head">
 <span class="course-step-num">3</span>
 <h2 id="step-1-title">Struct: Todo</h2>
 </div>
-<div class="course-step-body"><p>Structs group related data into one typed value. Field names document intent and the type checker enforces shape at compile time. In this step we add struct: todo to the growing program.</p>
+<div class="course-step-body">
+<p>Step 1 of 3 for <strong>Todo List</strong>. We now add <strong>Struct: Todo</strong> to the program.</p>
+<p><strong>Struct: Todo</strong> defines a product type: <code>struct Todo {</code>. Structs group fields that belong together so you pass one value instead of many separate parameters.</p>
+<p>Fields <code>title: string</code>, <code>done: bool</code> are checked at compile time. You construct values with struct literal syntax <code>{ field: value }</code>.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Todo {
     title: string
     done: bool
@@ -103,13 +114,15 @@
 <span class="course-step-num">4</span>
 <h2 id="step-2-title">Function: print_todo</h2>
 </div>
-<div class="course-step-body"><p>Functions encapsulate reusable logic with explicit parameter and return types. V++ requires a typed signature; locals may be inferred. In this step we add function: print_todo to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Todo {
-    title: string
-    done: bool
-}
-
-fn print_todo(t: Todo) -&gt; int {
+<div class="course-step-body">
+<p>Step 2 of 3 for <strong>Todo List</strong>. We now add <strong>Function: print_todo</strong> to the program.</p>
+<p><strong>Function: print_todo</strong> adds <code>fn print_todo(t: Todo) -&gt; int {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
+<p><code>if t.done {</code> starts a conditional block. The condition must be <code>bool</code>. Only the matching branch runs; other branches are skipped.</p>
+<p><code>print(&quot;[x] &quot; + t.title)</code> evaluates the expression first, then prints the result on its own line. Arithmetic operators work on integers the way you expect from math class.</p>
+<p><code>print(&quot;[ ] &quot; + t.title)</code> evaluates the expression first, then prints the result on its own line. Arithmetic operators work on integers the way you expect from math class.</p>
+<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn print_todo(t: Todo) -&gt; int {
     if t.done {
         print(&quot;[x] &quot; + t.title)
     } else {
@@ -123,22 +136,20 @@ fn print_todo(t: Todo) -&gt; int {
 <span class="course-step-num">5</span>
 <h2 id="step-3-title">Entry point: main</h2>
 </div>
-<div class="course-step-body"><p>Every executable program defines fn main() -&gt; int. The integer return value becomes the process exit code (0 means success). In this step we add entry point: main to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Todo {
-    title: string
-    done: bool
-}
-
-fn print_todo(t: Todo) -&gt; int {
-    if t.done {
-        print(&quot;[x] &quot; + t.title)
-    } else {
-        print(&quot;[ ] &quot; + t.title)
-    }
-    return 0
-}
-
-fn main() -&gt; int {
+<div class="course-step-body">
+<p>Step 3 of 3 for <strong>Todo List</strong>. We now add <strong>Entry point: main</strong> to the program.</p>
+<p><code>fn main() -&gt; int</code> is the program entry point. The runtime calls it after your definitions are loaded. Everything inside the braces runs in order.</p>
+<p><code>let t1 = Todo { title: &quot;learn V++&quot;, done: true }</code> stores a string value. V++ checks that <code>t1</code> stays a string if you use it again in concatenation or printing.</p>
+<p><code>let t2 = Todo { title: &quot;build a project&quot;, done: false }</code> binds the name <code>t2</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>let t3 = Todo { title: &quot;ship v1.0&quot;, done: false }</code> binds the name <code>t3</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>let mut done_count = 0</code> creates a <strong>mutable</strong> binding. You can reassign <code>done_count</code> later (for example in a loop). The compiler still tracks its type after each assignment.</p>
+<p><code>if t1.done { done_count = done_count + 1 }</code> starts a conditional block. The condition must be <code>bool</code>. Only the matching branch runs; other branches are skipped.</p>
+<p><code>if t2.done { done_count = done_count + 1 }</code> starts a conditional block. The condition must be <code>bool</code>. Only the matching branch runs; other branches are skipped.</p>
+<p><code>if t3.done { done_count = done_count + 1 }</code> starts a conditional block. The condition must be <code>bool</code>. Only the matching branch runs; other branches are skipped.</p>
+<p><code>print(done_count)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let t1 = Todo { title: &quot;learn v++&quot;, done: true }
     let t2 = Todo { title: &quot;build a project&quot;, done: false }
     let t3 = Todo { title: &quot;ship v1.0&quot;, done: false }

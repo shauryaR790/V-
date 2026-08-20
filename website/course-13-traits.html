@@ -7,7 +7,7 @@
   <meta name="description" content="Step by step V++ course: Traits.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Shrikhand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/V-/css/style.css">
   <link rel="stylesheet" href="/V-/css/prism-vpp.css">
   <link rel="icon" href="/V-/assets/favicon.png">
@@ -71,28 +71,39 @@
 <span class="course-header-tag">Advanced</span>
 <h1 id="course-title">Traits</h1>
 <p class="course-lead">Interfaces with static dispatch `trait`, `impl`, method calls.</p>
-<div class="course-concepts"><span class="course-concept">traits</span><span class="course-concept">impl blocks</span><span class="course-concept">`self.area()`</span></div>
+<div class="course-concepts"><span class="course-concept">traits</span><span class="course-concept">impl blocks</span><span class="course-concept">self.area()</span></div>
 </header>
 <section class="course-step" id="overview">
 <div class="course-step-head">
 <span class="course-step-num">1</span>
 <h2 id="overview-title">What you will build</h2>
 </div>
-<div class="course-step-body"><p>Interfaces with static dispatch — `trait`, `impl`, method calls. By the end you will understand traits, impl blocks, `self.area()`. We build the program in layers, run snippets mentally, then execute the full source.</p>
+<div class="course-step-body">
+<p><strong>Traits</strong> is project 13 in the V++ curriculum (Advanced level). Interfaces with static dispatch — <code>trait</code>, <code>impl</code>, method calls.</p>
+<p>In this walkthrough you will not paste the whole file at once. Each step introduces one idea, explains what the lines mean, and shows only the new snippet. By the end you will combine everything into a complete program that produces <code>Circle(5)</code>, <code>area=78</code>.</p>
+<p>The key ideas here are traits, impl blocks, and self.area(). Read the prose under every heading before you look at code. When you reach the playground, run the full source with <code>vpp run projects/13-traits/main.vpp</code> on your machine or use the Run button to compare against the expected output.</p>
 </div></section>
 <section class="course-step" id="goal">
 <div class="course-step-head">
 <span class="course-step-num">2</span>
 <h2 id="goal-title">Learning goals</h2>
 </div>
-<div class="course-step-body"><p>Level: Advanced. Read each step before copying code. Types are enforced at compile time, so fix signature errors early with vpp check.</p>
+<div class="course-step-body">
+<p>After finishing <strong>Traits</strong>, you should be able to explain traits, impl blocks, and self.area() in your own words and reproduce the program without copying blindly.</p>
+<p>This project combines multiple features. Revisit earlier lessons if a concept feels unfamiliar.</p>
+<p>Use <code>vpp check</code> on your file when something fails to compile. The type checker reports signature mismatches early. Fix one error at a time, then re-run.</p>
+<p>Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for braces, commas, and return types.</p>
 </div></section>
 <section class="course-step" id="step-1">
 <div class="course-step-head">
 <span class="course-step-num">3</span>
 <h2 id="step-1-title">Struct: Circle</h2>
 </div>
-<div class="course-step-body"><p>Structs group related data into one typed value. Field names document intent and the type checker enforces shape at compile time. In this step we add struct: circle to the growing program.</p>
+<div class="course-step-body">
+<p>Step 1 of 7 for <strong>Traits</strong>. We now add <strong>Struct: Circle</strong> to the program.</p>
+<p><strong>Struct: Circle</strong> defines a product type: <code>struct Circle {</code>. Structs group fields that belong together so you pass one value instead of many separate parameters.</p>
+<p>Fields <code>radius: int</code> are checked at compile time. You construct values with struct literal syntax <code>{ field: value }</code>.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Circle {
     radius: int
 }</code></pre></div>
@@ -102,12 +113,12 @@
 <span class="course-step-num">4</span>
 <h2 id="step-2-title">Struct: Square</h2>
 </div>
-<div class="course-step-body"><p>Structs group related data into one typed value. Field names document intent and the type checker enforces shape at compile time. In this step we add struct: square to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Circle {
-    radius: int
-}
-
-struct Square {
+<div class="course-step-body">
+<p>Step 2 of 7 for <strong>Traits</strong>. We now add <strong>Struct: Square</strong> to the program.</p>
+<p><strong>Struct: Square</strong> defines a product type: <code>struct Square {</code>. Structs group fields that belong together so you pass one value instead of many separate parameters.</p>
+<p>Fields <code>side: int</code> are checked at compile time. You construct values with struct literal syntax <code>{ field: value }</code>.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Square {
     side: int
 }</code></pre></div>
 </div></section>
@@ -116,34 +127,22 @@ struct Square {
 <span class="course-step-num">5</span>
 <h2 id="step-3-title">Trait: Area</h2>
 </div>
-<div class="course-step-body"><p>Traits describe behavior that types can implement. V++ uses static dispatch: the compiler knows the concrete type at compile time. In this step we add trait: area to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Circle {
-    radius: int
-}
-
-struct Square {
-    side: int
-}
-
-trait Area {</code></pre></div>
+<div class="course-step-body">
+<p>Step 3 of 7 for <strong>Traits</strong>. We now add <strong>Trait: Area</strong> to the program.</p>
+<p><strong>Trait: Area</strong> declares a trait with <code>trait Area {</code>. Traits describe behavior that multiple types can share. Implementations are resolved statically at compile time.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">trait Area {</code></pre></div>
 </div></section>
 <section class="course-step" id="step-4">
 <div class="course-step-head">
 <span class="course-step-num">6</span>
 <h2 id="step-4-title">Function: area</h2>
 </div>
-<div class="course-step-body"><p>Functions encapsulate reusable logic with explicit parameter and return types. V++ requires a typed signature; locals may be inferred. In this step we add function: area to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Circle {
-    radius: int
-}
-
-struct Square {
-    side: int
-}
-
-trait Area {
-
-fn area(self) -&gt; int
+<div class="course-step-body">
+<p>Step 4 of 7 for <strong>Traits</strong>. We now add <strong>Function: area</strong> to the program.</p>
+<p><strong>Function: area</strong> adds <code>fn area(self) -&gt; int</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn area(self) -&gt; int
 }
 
 impl Area for Circle {</code></pre></div>
@@ -153,23 +152,12 @@ impl Area for Circle {</code></pre></div>
 <span class="course-step-num">7</span>
 <h2 id="step-5-title">Function: area</h2>
 </div>
-<div class="course-step-body"><p>Functions encapsulate reusable logic with explicit parameter and return types. V++ requires a typed signature; locals may be inferred. In this step we add function: area to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Circle {
-    radius: int
-}
-
-struct Square {
-    side: int
-}
-
-trait Area {
-
-fn area(self) -&gt; int
-}
-
-impl Area for Circle {
-
-fn area(self) -&gt; int {
+<div class="course-step-body">
+<p>Step 5 of 7 for <strong>Traits</strong>. We now add <strong>Function: area</strong> to the program.</p>
+<p><strong>Function: area</strong> adds <code>fn area(self) -&gt; int {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
+<p><code>return self.radius * self.radius * 3</code> sends a value back to the caller and ends the current function.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn area(self) -&gt; int {
         return self.radius * self.radius * 3
     }
 }
@@ -181,30 +169,12 @@ impl Area for Square {</code></pre></div>
 <span class="course-step-num">8</span>
 <h2 id="step-6-title">Function: area</h2>
 </div>
-<div class="course-step-body"><p>Functions encapsulate reusable logic with explicit parameter and return types. V++ requires a typed signature; locals may be inferred. In this step we add function: area to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Circle {
-    radius: int
-}
-
-struct Square {
-    side: int
-}
-
-trait Area {
-
-fn area(self) -&gt; int
-}
-
-impl Area for Circle {
-
-fn area(self) -&gt; int {
-        return self.radius * self.radius * 3
-    }
-}
-
-impl Area for Square {
-
-fn area(self) -&gt; int {
+<div class="course-step-body">
+<p>Step 6 of 7 for <strong>Traits</strong>. We now add <strong>Function: area</strong> to the program.</p>
+<p><strong>Function: area</strong> adds <code>fn area(self) -&gt; int {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
+<p><code>return self.side * self.side</code> sends a value back to the caller and ends the current function.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn area(self) -&gt; int {
         return self.side * self.side
     }
 }</code></pre></div>
@@ -214,35 +184,16 @@ fn area(self) -&gt; int {
 <span class="course-step-num">9</span>
 <h2 id="step-7-title">Entry point: main</h2>
 </div>
-<div class="course-step-body"><p>Every executable program defines fn main() -&gt; int. The integer return value becomes the process exit code (0 means success). In this step we add entry point: main to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Circle {
-    radius: int
-}
-
-struct Square {
-    side: int
-}
-
-trait Area {
-
-fn area(self) -&gt; int
-}
-
-impl Area for Circle {
-
-fn area(self) -&gt; int {
-        return self.radius * self.radius * 3
-    }
-}
-
-impl Area for Square {
-
-fn area(self) -&gt; int {
-        return self.side * self.side
-    }
-}
-
-fn main() -&gt; int {
+<div class="course-step-body">
+<p>Step 7 of 7 for <strong>Traits</strong>. We now add <strong>Entry point: main</strong> to the program.</p>
+<p><code>fn main() -&gt; int</code> is the program entry point. The runtime calls it after your definitions are loaded. Everything inside the braces runs in order.</p>
+<p><code>let c = Circle { radius: 5 }</code> binds the name <code>c</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>let s = Square { side: 4 }</code> binds the name <code>s</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>print(c.area())</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>print(s.area())</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let c = Circle { radius: 5 }
     let s = Square { side: 4 }
     print(c.area())

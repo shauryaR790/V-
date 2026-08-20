@@ -7,7 +7,7 @@
   <meta name="description" content="Step by step V++ course: Option &amp; Result.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Shrikhand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/V-/css/style.css">
   <link rel="stylesheet" href="/V-/css/prism-vpp.css">
   <link rel="icon" href="/V-/assets/favicon.png">
@@ -71,28 +71,41 @@
 <span class="course-header-tag">Intermediate</span>
 <h1 id="course-title">Option &amp; Result</h1>
 <p class="course-lead">Safe error handling without exceptions.</p>
-<div class="course-concepts"><span class="course-concept">`Option`</span><span class="course-concept">`Result`</span><span class="course-concept">`Some`/`None`</span><span class="course-concept">`Ok`/`Err`</span></div>
+<div class="course-concepts"><span class="course-concept">Option</span><span class="course-concept">Result</span><span class="course-concept">Some`/`None</span><span class="course-concept">Ok`/`Err</span></div>
 </header>
 <section class="course-step" id="overview">
 <div class="course-step-head">
 <span class="course-step-num">1</span>
 <h2 id="overview-title">What you will build</h2>
 </div>
-<div class="course-step-body"><p>Safe error handling without exceptions. By the end you will understand `Option`, `Result`, `Some`/`None`, `Ok`/`Err`. We build the program in layers, run snippets mentally, then execute the full source.</p>
+<div class="course-step-body">
+<p><strong>Option &amp; Result</strong> is project 08 in the V++ curriculum (Intermediate level). Safe error handling without exceptions.</p>
+<p>In this walkthrough you will not paste the whole file at once. Each step introduces one idea, explains what the lines mean, and shows only the new snippet. By the end you will combine everything into a complete program that produces <code>5</code>, <code>Err: division by zero</code>.</p>
+<p>The key ideas here are Option, Result, Some<code>/</code>None, and Ok<code>/</code>Err. Read the prose under every heading before you look at code. When you reach the playground, run the full source with <code>vpp run projects/08-option-result/main.vpp</code> on your machine or use the Run button to compare against the expected output.</p>
 </div></section>
 <section class="course-step" id="goal">
 <div class="course-step-head">
 <span class="course-step-num">2</span>
 <h2 id="goal-title">Learning goals</h2>
 </div>
-<div class="course-step-body"><p>Level: Intermediate. Read each step before copying code. Types are enforced at compile time, so fix signature errors early with vpp check.</p>
+<div class="course-step-body">
+<p>After finishing <strong>Option &amp; Result</strong>, you should be able to explain Option, Result, Some<code>/</code>None, and Ok<code>/</code>Err in your own words and reproduce the program without copying blindly.</p>
+<p>You should already be comfortable with variables, functions, and loops from projects 01 through 05.</p>
+<p>Use <code>vpp check</code> on your file when something fails to compile. The type checker reports signature mismatches early. Fix one error at a time, then re-run.</p>
+<p>Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for braces, commas, and return types.</p>
 </div></section>
 <section class="course-step" id="step-1">
 <div class="course-step-head">
 <span class="course-step-num">3</span>
 <h2 id="step-1-title">Function: safe_div</h2>
 </div>
-<div class="course-step-body"><p>Functions encapsulate reusable logic with explicit parameter and return types. V++ requires a typed signature; locals may be inferred. In this step we add function: safe_div to the growing program.</p>
+<div class="course-step-body">
+<p>Step 1 of 3 for <strong>Option &amp; Result</strong>. We now add <strong>Function: safe_div</strong> to the program.</p>
+<p><strong>Function: safe_div</strong> adds <code>fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
+<p><code>if b == 0 {</code> starts a conditional block. The condition must be <code>bool</code>. Only the matching branch runs; other branches are skipped.</p>
+<p><code>return Err(&quot;division by zero&quot;)</code> sends a value back to the caller and ends the current function.</p>
+<p><code>return Ok(a / b)</code> sends a value back to the caller and ends the current function.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {
     if b == 0 {
         return Err(&quot;division by zero&quot;)
@@ -105,15 +118,17 @@
 <span class="course-step-num">4</span>
 <h2 id="step-2-title">Function: find_first</h2>
 </div>
-<div class="course-step-body"><p>Functions encapsulate reusable logic with explicit parameter and return types. V++ requires a typed signature; locals may be inferred. In this step we add function: find_first to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {
-    if b == 0 {
-        return Err(&quot;division by zero&quot;)
-    }
-    return Ok(a / b)
-}
-
-fn find_first(nums: array[int], target: int) -&gt; Option&lt;int&gt; {
+<div class="course-step-body">
+<p>Step 2 of 3 for <strong>Option &amp; Result</strong>. We now add <strong>Function: find_first</strong> to the program.</p>
+<p><strong>Function: find_first</strong> adds <code>fn find_first(nums: array[int], target: int) -&gt; Option&lt;int&gt; {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
+<p><code>let mut i = 0</code> creates a <strong>mutable</strong> binding. You can reassign <code>i</code> later (for example in a loop). The compiler still tracks its type after each assignment.</p>
+<p><code>while i &lt; len(nums) {</code> repeats its body while the condition stays true. Make sure something inside the loop eventually changes the condition to avoid infinite loops.</p>
+<p><code>if nums[i] == target {</code> starts a conditional block. The condition must be <code>bool</code>. Only the matching branch runs; other branches are skipped.</p>
+<p><code>return Some(nums[i])</code> sends a value back to the caller and ends the current function.</p>
+<p><code>i = i + 1</code> reassigns <code>i</code>. This only works when <code>i</code> was declared with <code>let mut</code>.</p>
+<p><code>return None</code> sends a value back to the caller and ends the current function.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn find_first(nums: array[int], target: int) -&gt; Option&lt;int&gt; {
     let mut i = 0
     while i &lt; len(nums) {
         if nums[i] == target {
@@ -129,26 +144,25 @@ fn find_first(nums: array[int], target: int) -&gt; Option&lt;int&gt; {
 <span class="course-step-num">5</span>
 <h2 id="step-3-title">Entry point: main</h2>
 </div>
-<div class="course-step-body"><p>Every executable program defines fn main() -&gt; int. The integer return value becomes the process exit code (0 means success). In this step we add entry point: main to the growing program.</p>
-<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {
-    if b == 0 {
-        return Err(&quot;division by zero&quot;)
-    }
-    return Ok(a / b)
-}
-
-fn find_first(nums: array[int], target: int) -&gt; Option&lt;int&gt; {
-    let mut i = 0
-    while i &lt; len(nums) {
-        if nums[i] == target {
-            return Some(nums[i])
-        }
-        i = i + 1
-    }
-    return None
-}
-
-fn main() -&gt; int {
+<div class="course-step-body">
+<p>Step 3 of 3 for <strong>Option &amp; Result</strong>. We now add <strong>Entry point: main</strong> to the program.</p>
+<p><code>fn main() -&gt; int</code> is the program entry point. The runtime calls it after your definitions are loaded. Everything inside the braces runs in order.</p>
+<p><code>let r = safe_div(10, 2)</code> binds the name <code>r</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>match r {</code> inspects a value and selects the first arm whose pattern fits. V++ requires match expressions to be exhaustive over the type.</p>
+<p>The arm <code>Ok(n) =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
+<p><code>print(n)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p>The arm <code>Err(e) =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
+<p><code>print(e)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>let nums = [1, 5, 9]</code> binds the name <code>nums</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>let found = find_first(nums, 5)</code> binds the name <code>found</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
+<p><code>match found {</code> inspects a value and selects the first arm whose pattern fits. V++ requires match expressions to be exhaustive over the type.</p>
+<p>The arm <code>Some(n) =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
+<p><code>print(n)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p>The arm <code>None =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
+<p><code>print(&quot;not found&quot;)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
+<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
+<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let r = safe_div(10, 2)
     match r {
         Ok(n) =&gt; {
