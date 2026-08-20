@@ -21,8 +21,8 @@
   --header-h: 72px;
   --nav-item-h: 44px;
   --btn-radius: 6px;
-  --sidebar-w: 300px;
-  --toc-w: 340px;
+  --sidebar-w: 340px;
+  --toc-w: 380px;
   --radius: 8px;
   --grid-yellow: rgba(251, 219, 90, 0.45);
   --code-bg: #000000;
@@ -298,7 +298,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .home-copy .lead {
   font-size: 1.05rem;
-  color: var(--text-muted);
+  color: var(--text);
   margin-bottom: 1.75rem;
   max-width: 520px;
   line-height: 1.7;
@@ -491,13 +491,13 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .docs-sidebar::-webkit-scrollbar { display: none; }
 
 .sidebar-group {
-  font-size: 0.82rem;
+  font-size: 1rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--text);
-  opacity: 0.65;
-  margin: 1.15rem 0 0.45rem 0.5rem;
+  opacity: 1;
+  margin: 1.25rem 0 0.55rem 0.5rem;
 }
 
 .sidebar-group:first-child { margin-top: 0; }
@@ -683,13 +683,13 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .docs-article table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.875rem;
+  font-size: 0.975rem;
 }
 
 .docs-article th, .docs-article td {
   border: none;
   border-bottom: 1px solid var(--border-muted);
-  padding: 0.65rem 0.85rem;
+  padding: 0.75rem 1rem;
   text-align: left;
 }
 
