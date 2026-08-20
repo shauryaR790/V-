@@ -656,15 +656,24 @@ def build_download_page_body() -> str:
 
   <p class="download-picker-line">
     Get
-    <select id="dl-version" class="dl-select" aria-label="Version">{version_opts}</select>
+    <span class="dl-select-wrap">
+      <span class="dl-select-icon" id="dl-version-icon" aria-hidden="true"></span>
+      <select id="dl-version" class="dl-select dl-select-iconed" aria-label="Version">{version_opts}</select>
+    </span>
     for
-    <select id="dl-os" class="dl-select" aria-label="Operating system">
-      <option value="windows">Windows</option>
-      <option value="linux">Linux</option>
-      <option value="macos">macOS</option>
-    </select>
+    <span class="dl-select-wrap">
+      <span class="dl-select-icon" id="dl-os-icon" aria-hidden="true"></span>
+      <select id="dl-os" class="dl-select dl-select-iconed" aria-label="Operating system">
+        <option value="windows">Windows</option>
+        <option value="linux">Linux</option>
+        <option value="macos">macOS</option>
+      </select>
+    </span>
     using
-    <select id="dl-format" class="dl-select" aria-label="Package type"></select>
+    <span class="dl-select-wrap">
+      <span class="dl-select-icon" id="dl-format-icon" aria-hidden="true"></span>
+      <select id="dl-format" class="dl-select dl-select-iconed" aria-label="Package type"></select>
+    </span>
   </p>
 
   <div class="download-info" id="dl-info" role="status"></div>
@@ -690,10 +699,11 @@ vpp doctor</code></pre>
 
   <div class="download-actions">
     <a id="dl-primary" class="btn-dl-primary" href="#" download>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+      <span class="btn-dl-icon" id="dl-primary-icon" aria-hidden="true"></span>
       <span id="dl-primary-label">Download</span>
     </a>
     <a id="dl-secondary" class="btn-dl-secondary" href="#" hidden>
+      <span class="btn-dl-icon" id="dl-secondary-icon" aria-hidden="true"></span>
       <span id="dl-secondary-label">Alternative download</span>
     </a>
   </div>
