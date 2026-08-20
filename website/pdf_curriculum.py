@@ -9,6 +9,19 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 WEBSITE = Path(__file__).resolve().parent
+PDF_CANDIDATES = (
+    ROOT / "course.pdf",
+    ROOT / "vpp_20_course_deep_curriculum.pdf",
+)
+
+
+def _find_pdf() -> Path | None:
+    for path in PDF_CANDIDATES:
+        if path.exists():
+            return path
+    return None
+
+
 PDF_PATH = ROOT / "vpp_20_course_deep_curriculum.pdf"
 JSON_PATH = WEBSITE / "curriculum.json"
 
@@ -77,7 +90,10 @@ class CurriculumProject:
 def _pdf_text() -> str:
     from pypdf import PdfReader
 
-    reader = PdfReader(str(PDF_PATH))
+    pdf_path = _find_pdf()
+    if pdf_path is None:
+        raise FileNotFoundError("No curriculum PDF found (course.pdf or vpp_20_course_deep_curriculum.pdf).")
+    reader = PdfReader(str(pdf_path))
     raw = "\n".join((page.extract_text() or "") for page in reader.pages)
     raw = HEADER_RE.sub("", raw)
     raw = re.sub(r"\n{3,}", "\n\n", raw)
@@ -376,6 +392,9 @@ def load_curriculum_from_pdf() -> list[CurriculumProject]:
         num = int(head.group(1))
         title = head.group(2).strip()
         body = chunk[head.end() :].strip()
+        epilogue_idx = body.find("Implementation Notes for Cursor")
+        if epilogue_idx >= 0:
+            body = body[:epilogue_idx].strip()
         projects.append(_parse_project(num, title, body))
     projects.sort(key=lambda p: p.num)
     return projects
@@ -420,12 +439,12 @@ def load_curriculum() -> list[CurriculumProject]:
     """Load curriculum for site generation (JSON in CI, PDF when refreshing content)."""
     if JSON_PATH.exists():
         return load_curriculum_from_json()
-    if PDF_PATH.exists():
+    if _find_pdf() is not None:
         projects = load_curriculum_from_pdf()
         export_curriculum_json()
         return projects
     raise FileNotFoundError(
-        f"Missing curriculum data. Add {JSON_PATH.name} or {PDF_PATH.name} to the repository."
+        f"Missing curriculum data. Add {JSON_PATH.name} or course.pdf to the repository."
     )
 
 

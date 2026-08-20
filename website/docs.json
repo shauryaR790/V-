@@ -1,0 +1,2387 @@
+{
+  "title": "Twenty Course Deep Curriculum",
+  "intro_paragraphs": [
+    "A detailed teaching blueprint for the v++ course system. Each project is expanded",
+    "into concepts, step by step reasoning, code blocks, complete source, expected",
+    "behavior, common mistakes, and practice.",
+    "Purpose: give Cursor enough structured teaching content to build course pages that",
+    "feel like a real programming curriculum instead of five short snippets.",
+    "Language basis: the current v++ course pages supplied by the project website, expanded into a deeper instructional format."
+  ],
+  "map_intro": "The twenty projects progress from the smallest executable program to typed data modeling, safe error handling, generic programming, traits, modules, practical algorithms, filesystem work, and JSON configuration. The sequence intentionally reuses earlier ideas so each project adds a small number of new concepts while increasing the size of the program. Global v++ Conventions Used Throughout the Curriculum Program entry: Executable examples use fn main() -> int as the entry point and return 0 for successful completion. Local inference: let infers the local type from the initializer. Use let mut when a local binding must be reassigned. Functions: Function parameters and return types are explicit. This keeps public function contracts visible while locals remain concise. Blocks: Braces define function, conditional, loop, match, struct, trait, and implementation bodies. Printing: print evaluates its argument and writes the result to standard output. Checking: When an example fails, use vpp check first. Fix the first diagnostic before changing unrelated code. Native execution: The same source can be run through the v++ toolchain and compiled to native code. Course pages should encourage learners to verify both paths when practical.",
+  "map_rows": [
+    {
+      "num": 1,
+      "course": "Hello World",
+      "level": "Beginner",
+      "ideas": "fn main() -> int, print, return, program entry point"
+    },
+    {
+      "num": 2,
+      "course": "Variables & Math",
+      "level": "Beginner",
+      "ideas": "let, type inference, +, -"
+    },
+    {
+      "num": 3,
+      "course": "Functions",
+      "level": "Beginner",
+      "ideas": "fn, typed parameters, return values, function signatures"
+    },
+    {
+      "num": 4,
+      "course": "Loops",
+      "level": "Beginner",
+      "ideas": "let mut, while, for, 0..n"
+    },
+    {
+      "num": 5,
+      "course": "Arrays",
+      "level": "Beginner",
+      "ideas": "array[int], indexing, for, let mut"
+    },
+    {
+      "num": 6,
+      "course": "Structs",
+      "level": "Intermediate",
+      "ideas": "struct, fields, struct literals, field access"
+    },
+    {
+      "num": 7,
+      "course": "Enums",
+      "level": "Intermediate",
+      "ideas": "enum, variants, match, exhaustiveness"
+    },
+    {
+      "num": 8,
+      "course": "Option & Result",
+      "level": "Intermediate",
+      "ideas": "Option<T>, Some, None, Result<T, E>"
+    },
+    {
+      "num": 9,
+      "course": "Pattern Matching",
+      "level": "Intermediate",
+      "ideas": "exhaustive match, enum patterns, struct wrapping an enum"
+    },
+    {
+      "num": 10,
+      "course": "FizzBuzz",
+      "level": "Intermediate",
+      "ideas": "%, while, if, else"
+    },
+    {
+      "num": 11,
+      "course": "Fibonacci",
+      "level": "Intermediate",
+      "ideas": "recursion, base case, recursive call"
+    },
+    {
+      "num": 12,
+      "course": "Generics",
+      "level": "Advanced",
+      "ideas": "type parameters, fn name[T], generic arrays, explicit type arguments"
+    },
+    {
+      "num": 13,
+      "course": "Traits",
+      "level": "Advanced",
+      "ideas": "trait, impl, self, method calls"
+    },
+    {
+      "num": 14,
+      "course": "Modules",
+      "level": "Intermediate",
+      "ideas": "import, pub fn, local module, project layout"
+    },
+    {
+      "num": 15,
+      "course": "Calculator",
+      "level": "Intermediate",
+      "ideas": "enum, struct, match, Result"
+    },
+    {
+      "num": 16,
+      "course": "Word Counter",
+      "level": "Intermediate",
+      "ideas": "array[string], len, loops, string comparison"
+    },
+    {
+      "num": 17,
+      "course": "Guessing Game",
+      "level": "Intermediate",
+      "ideas": "conditionals, arrays, function composition, early return"
+    },
+    {
+      "num": 18,
+      "course": "Todo List",
+      "level": "Advanced",
+      "ideas": "struct, bool, conditional printing, mutable counter"
+    },
+    {
+      "num": 19,
+      "course": "File Notes",
+      "level": "Advanced",
+      "ideas": "import std.fs, fs.write, fs.exists, fs.read"
+    },
+    {
+      "num": 20,
+      "course": "JSON Config",
+      "level": "Advanced",
+      "ideas": "std.json, json.parse, json.stringify, struct config"
+    }
+  ],
+  "teaching_rule": "Teaching rule for every page: explain the idea before showing the code, introduce one meaningful change at a time, explain every important line, show the complete program, show how to run it, then give a small modification task.",
+  "conventions": [],
+  "projects": [
+    {
+      "num": 1,
+      "title": "Hello World",
+      "goal": "Build the smallest complete v++ program and understand the program entry point, output, and exit status.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "fn main() -> int, print, return, program entry point"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Create the entry point",
+          "paragraphs": [
+            "Every executable v++ program needs a place where execution begins. The function named main is that entry point.",
+            "Its return type is int because the operating system receives the integer status when the program finishes.",
+            "The braces define the body of main. Statements inside the body execute in order. The print call sends a string to standard output. The return statement finishes main and gives the operating system a success status.",
+            "Type the code yourself first. Then run it with vpp run.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "fn main() -> int {\n    print(\"Hello, v++!\")\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "fn main() -> int {\n    print(\"Hello, v++!\")\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/01-hello-world/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "Execution starts at main. A function signature is part of the language contract. Printing and returning are separate operations."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Forgetting the main function",
+            "Forgetting the return type",
+            "Putting statements outside a function body"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Change the message, then create a second print call. Keep the return statement at the end and explain why main returns an integer.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "fn main() -> int {\n    print(\"Hello, v++!\")\n    return 0\n}",
+      "expected_output": "Hello, v++!",
+      "run_cmd": "vpp run projects/01-hello-world/main.vpp"
+    },
+    {
+      "num": 2,
+      "title": "Variables & Math",
+      "goal": "Learn local bindings, type inference, integer arithmetic, and string concatenation.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "let, type inference, +, -, *, string concatenation"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Bind values and evaluate expressions",
+          "paragraphs": [
+            "let creates a local binding. v++ looks at the value on the right side and infers the type, so x becomes an int because 10 is an integer literal.",
+            "Arithmetic is evaluated before print receives the result. The string binding demonstrates that inference also works for strings. When both sides of + are strings, v++ joins them instead of performing numeric addition.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "fn main() -> int {\n    let x = 10\n    let y = 3\n    print(x + y)\n    print(x - y)\n    print(x * y)\n    let name = \"v++\"\n    print(\"Hello, \" + name + \"!\")\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "fn main() -> int {\n    let x = 10\n    let y = 3\n    print(x + y)\n    print(x - y)\n    print(x * y)\n    let name = \"v++\"\n    print(\"Hello, \" + name + \"!\")\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/02-variables/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "A binding gives a value a name. Type inference removes repetitive annotations without removing static type checking. Expressions can be combined before their result is printed."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Trying to reassign an immutable let binding",
+            "Mixing numeric addition with string concatenation",
+            "Expecting print to change the value of an expression"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Change x and y and predict every numeric result before running. Then concatenate two separately defined strings.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "fn main() -> int {\n    let x = 10\n    let y = 3\n    print(x + y)\n    print(x - y)\n    print(x * y)\n    let name = \"v++\"\n    print(\"Hello, \" + name + \"!\")\n    return 0\n}",
+      "expected_output": "13\n7\n30\nHello, v++!",
+      "run_cmd": "vpp run projects/02-variables/main.vpp"
+    },
+    {
+      "num": 3,
+      "title": "Functions",
+      "goal": "Define reusable functions with explicit parameter types and return types.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "fn, typed parameters, return values, function signatures"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Create add",
+          "paragraphs": [
+            "A function signature tells the compiler the function name, its parameters, and its return type. v++ requires explicit parameter and return types for function declarations.",
+            "The body can use the parameters just like local values. return sends the computed value back to the caller.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "fn add(a: int, b: int) -> int {\n    return a + b\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Create greet",
+          "paragraphs": [
+            "Functions can return strings as well as numbers. The parameter name is local to the function. The compiler checks that the returned expression is compatible with string.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn greet(name: string) -> string {\n    return \"Hello, \" + name\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-3",
+          "title": "Step 3: Call both functions from main",
+          "paragraphs": [
+            "main calls add and greet. Each call produces a value which is passed to print. This separates reusable logic from the entry point.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn main() -> int {\n    print(add(10, 20))\n    print(greet(\"Shaurya\"))\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "fn add(a: int, b: int) -> int {\n    return a + b\n}\nfn greet(name: string) -> string {\n    return \"Hello, \" + name\n}\nfn main() -> int {\n    print(add(10, 20))\n    print(greet(\"Shaurya\"))\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/03-functions/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "Functions let a program separate reusable logic from the entry point. Explicit signatures make the intended input and output types visible."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Missing parameter types",
+            "Returning a value with the wrong type",
+            "Calling a function with the wrong number of arguments"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Write a multiply function and a welcome function. Call both from main.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "fn add(a: int, b: int) -> int {\n    return a + b\n}\nfn greet(name: string) -> string {\n    return \"Hello, \" + name\n}\nfn main() -> int {\n    print(add(10, 20))\n    print(greet(\"Shaurya\"))\n    return 0\n}",
+      "expected_output": "30\nHello, Shaurya",
+      "run_cmd": "vpp run projects/03-functions/main.vpp"
+    },
+    {
+      "num": 4,
+      "title": "Loops",
+      "goal": "Repeat work with while, range based for, and array iteration while using mutable bindings.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "let mut, while, for, 0..n, array iteration"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Use while and for",
+          "paragraphs": [
+            "A binding declared with let is immutable. A counter that changes must use let mut. The while condition is checked before every iteration, so the body must eventually change i.",
+            "A range such as 0..3 produces the integer sequence used by the for loop. The array loop visits each value in the array directly, so no index is required.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "fn main() -> int {\n    let mut i = 0\n    while i < 5 {\n        print(i)\n        i = i + 1\n    }\n    for n in 0..3 {\n        print(n)\n    }\n    let items = [10, 20, 30]\n    for val in items {\n        print(val)\n    }\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "fn main() -> int {\n    let mut i = 0\n    while i < 5 {\n        print(i)\n        i = i + 1\n    }\n    for n in 0..3 {\n        print(n)\n    }\n    let items = [10, 20, 30]\n    for val in items {\n        print(val)\n    }\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/04-loops/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "Mutation is deliberate. A changing counter must be declared mutable, and every loop must have a clear termination condition."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Using let instead of let mut for a changing counter",
+            "Creating a while loop whose condition never becomes false",
+            "Assuming a range loop behaves like an array index"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Make a countdown from 5 to 1. Then make a range loop that prints only even numbers by using a conditional.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "fn main() -> int {\n    let mut i = 0\n    while i < 5 {\n        print(i)\n        i = i + 1\n    }\n    for n in 0..3 {\n        print(n)\n    }\n    let items = [10, 20, 30]\n    for val in items {\n        print(val)\n    }\n    return 0\n}",
+      "expected_output": "0\n1\n2\n3\n4\n0\n1\n2\n10\n20\n30",
+      "run_cmd": "vpp run projects/04-loops/main.vpp"
+    },
+    {
+      "num": 5,
+      "title": "Arrays",
+      "goal": "Create arrays, iterate over them, index elements, and pass arrays to typed functions.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "array[int], indexing, for, let mut, function parameters"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Sum an array",
+          "paragraphs": [
+            "An array type describes the element type inside square brackets. The sum function accepts array[int], so the compiler knows every element is an integer.",
+            "total must be mutable because each loop iteration updates it. The for loop gives n one element at a time.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "fn sum(nums: array[int]) -> int {\n    let mut total = 0\n    for n in nums {\n        total = total + n\n    }\n    return total\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Find the largest value",
+          "paragraphs": [
+            "Indexing uses square brackets. nums[0] reads the first element and gives best its inferred integer type.",
+            "Each element is compared with best. When a larger value is found, best is replaced. This demonstrates how arrays and mutable local state work together.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn max_of(nums: array[int]) -> int {\n    let mut best = nums[0]\n    for n in nums {\n        if n > best {\n            best = n\n        }\n    }\n    return best\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-3",
+          "title": "Step 3: Call the array functions",
+          "paragraphs": [
+            "The array literal gives nums the type array[int]. The same array can be passed to both functions because their signatures expect the same element type.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn main() -> int {\n    let nums = [3, 7, 2, 9, 4]\n    print(sum(nums))\n    print(max_of(nums))\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "fn sum(nums: array[int]) -> int {\n    let mut total = 0\n    for n in nums {\n        total = total + n\n    }\n    return total\n}\nfn max_of(nums: array[int]) -> int {\n    let mut best = nums[0]\n    for n in nums {\n        if n > best {\n            best = n\n        }\n    }\n    return best\n}\nfn main() -> int {\n    let nums = [3, 7, 2, 9, 4]\n    print(sum(nums))\n    print(max_of(nums))\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/05-arrays/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "Arrays provide ordered collections of values with one element type. Iteration and indexing are two different ways to access that collection."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Indexing beyond the available elements",
+            "Passing an array with the wrong element type",
+            "Trying to update a non mutable accumulator"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Write a function that returns the first array element and another that counts how many values are greater than 5.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "fn sum(nums: array[int]) -> int {\n    let mut total = 0\n    for n in nums {\n        total = total + n\n    }\n    return total\n}\nfn max_of(nums: array[int]) -> int {\n    let mut best = nums[0]\n    for n in nums {\n        if n > best {\n            best = n\n        }\n    }\n    return best\n}\nfn main() -> int {\n    let nums = [3, 7, 2, 9, 4]\n    print(sum(nums))\n    print(max_of(nums))\n    return 0\n}",
+      "expected_output": "25\n9",
+      "run_cmd": "vpp run projects/05-arrays/main.vpp"
+    },
+    {
+      "num": 6,
+      "title": "Structs",
+      "goal": "Model related data with named fields and pass structured values into functions.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "struct, fields, struct literals, field access"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Define Point",
+          "paragraphs": [
+            "A struct groups related values into one named type. Point contains two integer fields. The compiler checks that every constructed Point supplies compatible values.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "struct Point {\n    x: int\n    y: int\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Define Rectangle",
+          "paragraphs": [
+            "Rectangle is another product type. Its fields represent dimensions, and the field names make the meaning of each integer explicit.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "struct Rectangle {\n    width: int\n    height: int\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-3",
+          "title": "Step 3: Pass a struct to a function",
+          "paragraphs": [
+            "A function can accept a struct as one parameter. Field access uses dot notation, so rect.width and rect.height read the named fields.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn area(rect: Rectangle) -> int {\n    return rect.width * rect.height\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-4",
+          "title": "Step 4: Construct values and use fields",
+          "paragraphs": [
+            "Struct literals use the type name followed by field assignments. Local type inference means p and box do not need explicit local type annotations.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn main() -> int {\n    let p = Point { x: 3, y: 4 }\n    print(p.x)\n    print(p.y)\n    let box = Rectangle { width: 10, height: 5 }\n    print(area(box))\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "struct Point {\n    x: int\n    y: int\n}\nstruct Rectangle {\n    width: int\n    height: int\n}\nfn area(rect: Rectangle) -> int {\n    return rect.width * rect.height\n}\nfn main() -> int {\n    let p = Point { x: 3, y: 4 }\n    print(p.x)\n    print(p.y)\n    let box = Rectangle { width: 10, height: 5 }\n    print(area(box))\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/06-structs/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "Structs model data with named fields. They make function parameters easier to understand because one typed value can carry several related fields."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Using a field name that is not defined",
+            "Supplying a value with the wrong field type",
+            "Forgetting that the function parameter is a whole struct"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Create a Student struct with name and age. Write a function that prints the student's name.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "struct Point {\n    x: int\n    y: int\n}\nstruct Rectangle {\n    width: int\n    height: int\n}\nfn area(rect: Rectangle) -> int {\n    return rect.width * rect.height\n}\nfn main() -> int {\n    let p = Point { x: 3, y: 4 }\n    print(p.x)\n    print(p.y)\n    let box = Rectangle { width: 10, height: 5 }\n    print(area(box))\n    return 0\n}",
+      "expected_output": "3\n4\n50",
+      "run_cmd": "vpp run projects/06-structs/main.vpp"
+    },
+    {
+      "num": 7,
+      "title": "Enums",
+      "goal": "Represent a closed set of named states and use match to handle each variant.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "enum, variants, match, exhaustiveness"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Define TrafficLight",
+          "paragraphs": [
+            "An enum represents one value chosen from a fixed set of variants. The compiler knows the complete set, which makes exhaustive matching possible.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "enum TrafficLight {\n    Red\n    Yellow\n    Green\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Put the enum inside a struct",
+          "paragraphs": [
+            "A struct field can use a user defined enum type. Signal now represents a value that carries a TrafficLight.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "struct Signal {\n    light: TrafficLight\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-3",
+          "title": "Step 3: Match every variant",
+          "paragraphs": [
+            "match inspects signal.light and selects the arm corresponding to the active variant. Every TrafficLight variant is covered, so the match is exhaustive.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn action(signal: Signal) -> string {\n    match signal.light {\n        Red => {\n            return \"stop\"\n        }\n        Yellow => {\n            return \"slow\"\n        }\n        Green => {\n            return \"go\"\n        }\n    }\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-4",
+          "title": "Step 4: Construct and evaluate signals",
+          "paragraphs": [
+            "The main function creates two Signal values and sends them through action. The returned strings show how enum state can drive program behavior.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn main() -> int {\n    let stop = Signal { light: Red }\n    let go = Signal { light: Green }\n    print(action(stop))\n    print(action(go))\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "enum TrafficLight {\n    Red\n    Yellow\n    Green\n}\nstruct Signal {\n    light: TrafficLight\n}\nfn action(signal: Signal) -> string {\n    match signal.light {\n        Red => {\n            return \"stop\"\n        }\n        Yellow => {\n            return \"slow\"\n        }\n        Green => {\n            return \"go\"\n        }\n    }\n}\nfn main() -> int {\n    let stop = Signal { light: Red }\n    let go = Signal { light: Green }\n    print(action(stop))\n    print(action(go))\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/07-enums/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "Enums model a closed set of states. match makes those states visible in code and lets the compiler reason about coverage."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Leaving an enum variant out of match",
+            "Using a variant that belongs to another enum",
+            "Constructing a struct with an incompatible enum value"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Add a fourth traffic state and observe which match sites the compiler requires you to update.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "enum TrafficLight {\n    Red\n    Yellow\n    Green\n}\nstruct Signal {\n    light: TrafficLight\n}\nfn action(signal: Signal) -> string {\n    match signal.light {\n        Red => {\n            return \"stop\"\n        }\n        Yellow => {\n            return \"slow\"\n        }\n        Green => {\n            return \"go\"\n        }\n    }\n}\nfn main() -> int {\n    let stop = Signal { light: Red }\n    let go = Signal { light: Green }\n    print(action(stop))\n    print(action(go))\n    return 0\n}",
+      "expected_output": "stop\ngo",
+      "run_cmd": "vpp run projects/07-enums/main.vpp"
+    },
+    {
+      "num": 8,
+      "title": "Option & Result",
+      "goal": "Represent successful values, missing values, and recoverable errors without exceptions.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "Option<T>, Some, None, Result<T, E>, Ok, Err, match"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Return Result from division",
+          "paragraphs": [
+            "Result is useful when a function can either produce a value or explain why it could not. safe_div returns Result<int, string>. A zero divisor becomes Err, while a valid division becomes Ok.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "fn safe_div(a: int, b: int) -> Result<int, string> {\n    if b == 0 {\n        return Err(\"division by zero\")\n    }\n    return Ok(a / b)\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Return Option from a search",
+          "paragraphs": [
+            "Option represents presence or absence. find_first returns Some when it finds the target and None when the loop finishes without finding it.",
+            "The mutable index is necessary because the search advances one position at a time.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn find_first(nums: array[int], target: int) -> Option<int> {\n    let mut i = 0\n    while i < len(nums) {\n        if nums[i] == target {\n            return Some(nums[i])\n        }\n        i = i + 1\n    }\n    return None\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-3",
+          "title": "Step 3: Match both safe values",
+          "paragraphs": [
+            "The caller must handle the alternatives. Matching Result extracts the successful integer from Ok or the error string from Err. Matching Option extracts the value from Some or handles None.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn main() -> int {\n    let r = safe_div(10, 2)\n    match r {\n        Ok(n) => {\n            print(n)\n        }\n        Err(e) => {\n            print(e)\n        }\n    }\n    let nums = [1, 5, 9]\n    let found = find_first(nums, 5)\n    match found {\n        Some(n) => {\n            print(n)\n        }\n        None => {\n            print(\"not found\")\n        }\n    }\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "fn safe_div(a: int, b: int) -> Result<int, string> {\n    if b == 0 {\n        return Err(\"division by zero\")\n    }\n    return Ok(a / b)\n}\nfn find_first(nums: array[int], target: int) -> Option<int> {\n    let mut i = 0\n    while i < len(nums) {\n        if nums[i] == target {\n            return Some(nums[i])\n        }\n        i = i + 1\n    }\n    return None\n}\nfn main() -> int {\n    let r = safe_div(10, 2)\n    match r {\n        Ok(n) => {\n            print(n)\n        }\n        Err(e) => {\n            print(e)\n        }\n    }\n    let nums = [1, 5, 9]\n    let found = find_first(nums, 5)\n    match found {\n        Some(n) => {\n            print(n)\n        }\n        None => {\n            print(\"not found\")\n        }\n    }\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/08-option-result/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "Option models presence or absence. Result models success or failure. Matching makes the caller handle each alternative explicitly."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Handling only Ok and forgetting Err",
+            "Handling only Some and forgetting None",
+            "Returning a plain value from a function that promises Option or Result"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Call safe_div with zero and handle Err. Search for a value that is not present and handle None.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "fn safe_div(a: int, b: int) -> Result<int, string> {\n    if b == 0 {\n        return Err(\"division by zero\")\n    }\n    return Ok(a / b)\n}\nfn find_first(nums: array[int], target: int) -> Option<int> {\n    let mut i = 0\n    while i < len(nums) {\n        if nums[i] == target {\n            return Some(nums[i])\n        }\n        i = i + 1\n    }\n    return None\n}\nfn main() -> int {\n    let r = safe_div(10, 2)\n    match r {\n        Ok(n) => {\n            print(n)\n        }\n        Err(e) => {\n            print(e)\n        }\n    }\n    let nums = [1, 5, 9]\n    let found = find_first(nums, 5)\n    match found {\n        Some(n) => {\n            print(n)\n        }\n        None => {\n            print(\"not found\")\n        }\n    }\n    return 0\n}",
+      "expected_output": "5\n5",
+      "run_cmd": "vpp run projects/08-option-result/main.vpp"
+    },
+    {
+      "num": 9,
+      "title": "Pattern Matching",
+      "goal": "Use exhaustive matching over enums so every legal state has defined behavior.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "exhaustive match, enum patterns, struct wrapping an enum"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Define Day",
+          "paragraphs": [
+            "The Day enum lists every day. Because the compiler knows all seven variants, a match can be checked for completeness.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "enum Day {\n    Mon\n    Tue\n    Wed\n    Thu\n    Fri\n    Sat\n    Sun\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Wrap Day in a struct",
+          "paragraphs": [
+            "CalendarDay gives the example a named field. This is useful when a larger model eventually contains more information about a date.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "struct CalendarDay {\n    day: Day\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-3",
+          "title": "Step 3: Write an exhaustive weekend check",
+          "paragraphs": [
+            "The function returns true for Sat and Sun and false for every weekday. There is no default branch because the compiler can verify that all seven variants are covered explicitly.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn is_weekend(entry: CalendarDay) -> bool {\n    match entry.day {\n        Sat => {\n            return true\n        }\n        Sun => {\n            return true\n        }\n        Mon => {\n            return false\n        }\n        Tue => {\n            return false\n        }\n        Wed => {\n            return false\n        }\n        Thu => {\n            return false\n        }\n        Fri => {\n            return false\n        }\n    }\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-4",
+          "title": "Step 4: Test two cases",
+          "paragraphs": [
+            "The main function constructs one weekend value and one weekday value. Calling the same function with both demonstrates that the enum controls behavior without unsafe integer codes.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn main() -> int {\n    let weekend = CalendarDay { day: Sat }\n    let weekday = CalendarDay { day: Wed }\n    print(is_weekend(weekend))\n    print(is_weekend(weekday))\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "enum Day {\n    Mon\n    Tue\n    Wed\n    Thu\n    Fri\n    Sat\n    Sun\n}\nstruct CalendarDay {\n    day: Day\n}\nfn is_weekend(entry: CalendarDay) -> bool {\n    match entry.day {\n        Sat => {\n            return true\n        }\n        Sun => {\n            return true\n        }\n        Mon => {\n            return false\n        }\n        Tue => {\n            return false\n        }\n        Wed => {\n            return false\n        }\n        Thu => {\n            return false\n        }\n        Fri => {\n            return false\n        }\n    }\n}\nfn main() -> int {\n    let weekend = CalendarDay { day: Sat }\n    let weekday = CalendarDay { day: Wed }\n    print(is_weekend(weekend))\n    print(is_weekend(weekday))\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/09-match/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "Exhaustiveness is a compile time safety property. Adding a new enum variant creates a deliberate reminder to update affected match expressions."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Removing a match arm and ignoring the exhaustiveness error",
+            "Confusing the enum value with the struct that contains it",
+            "Returning the wrong boolean for a variant"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Intentionally remove one match arm and run vpp check. Study the compiler error, then restore the missing case.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "enum Day {\n    Mon\n    Tue\n    Wed\n    Thu\n    Fri\n    Sat\n    Sun\n}\nstruct CalendarDay {\n    day: Day\n}\nfn is_weekend(entry: CalendarDay) -> bool {\n    match entry.day {\n        Sat => {\n            return true\n        }\n        Sun => {\n            return true\n        }\n        Mon => {\n            return false\n        }\n        Tue => {\n            return false\n        }\n        Wed => {\n            return false\n        }\n        Thu => {\n            return false\n        }\n        Fri => {\n            return false\n        }\n    }\n}\nfn main() -> int {\n    let weekend = CalendarDay { day: Sat }\n    let weekday = CalendarDay { day: Wed }\n    print(is_weekend(weekend))\n    print(is_weekend(weekday))\n    return 0\n}",
+      "expected_output": "true\nfalse",
+      "run_cmd": "vpp run projects/09-match/main.vpp"
+    },
+    {
+      "num": 10,
+      "title": "FizzBuzz",
+      "goal": "Combine modulo arithmetic, conditionals, functions, and a mutable loop counter.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "%, while, if, else, function composition"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Encode FizzBuzz rules",
+          "paragraphs": [
+            "The order of checks matters. A number divisible by both 3 and 5 must be recognized as FizzBuzz before the individual Fizz or Buzz cases. The modulo operator returns the remainder, so a remainder of zero means exact divisibility.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "fn fizzbuzz(n: int) -> string {\n    if n % 15 == 0 {\n        return \"FizzBuzz\"\n    }\n    if n % 3 == 0 {\n        return \"Fizz\"\n    }\n    if n % 5 == 0 {\n        return \"Buzz\"\n    }\n    return \"num\"\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Run the rule through a loop",
+          "paragraphs": [
+            "The loop owns the sequence of inputs while fizzbuzz owns the decision logic. Separating those responsibilities keeps the function easy to test and the loop easy to read.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn main() -> int {\n    let mut i = 1\n    while i <= 20 {\n        let label = fizzbuzz(i)\n        if label == \"num\" {\n            print(i)\n        } else {\n            print(label)\n        }\n        i = i + 1\n    }\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "fn fizzbuzz(n: int) -> string {\n    if n % 15 == 0 {\n        return \"FizzBuzz\"\n    }\n    if n % 3 == 0 {\n        return \"Fizz\"\n    }\n    if n % 5 == 0 {\n        return \"Buzz\"\n    }\n    return \"num\"\n}\nfn main() -> int {\n    let mut i = 1\n    while i <= 20 {\n        let label = fizzbuzz(i)\n        if label == \"num\" {\n            print(i)\n        } else {\n            print(label)\n        }\n        i = i + 1\n    }\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/10-fizzbuzz/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "Good small programs separate decision logic from iteration. The fizzbuzz function owns the rule while main owns the sequence."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Checking 3 and 5 before 15",
+            "Forgetting to increment the loop counter",
+            "Returning a string that the caller does not interpret correctly"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Extend the loop to 50. Then change the labels and add another divisibility rule.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "fn fizzbuzz(n: int) -> string {\n    if n % 15 == 0 {\n        return \"FizzBuzz\"\n    }\n    if n % 3 == 0 {\n        return \"Fizz\"\n    }\n    if n % 5 == 0 {\n        return \"Buzz\"\n    }\n    return \"num\"\n}\nfn main() -> int {\n    let mut i = 1\n    while i <= 20 {\n        let label = fizzbuzz(i)\n        if label == \"num\" {\n            print(i)\n        } else {\n            print(label)\n        }\n        i = i + 1\n    }\n    return 0\n}",
+      "expected_output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz",
+      "run_cmd": "vpp run projects/10-fizzbuzz/main.vpp"
+    },
+    {
+      "num": 11,
+      "title": "Fibonacci",
+      "goal": "Understand recursion, base cases, and how a function can call itself.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "recursion, base case, recursive call"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Define the recursive function",
+          "paragraphs": [
+            "A recursive function needs a base case that stops recursion. Here n values of zero and one are already known, so the function returns n immediately.",
+            "For larger n, the function reduces the problem into two smaller Fibonacci problems. Each call creates more work until the base cases are reached.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "fn fib(n: int) -> int {\n    if n <= 1 {\n        return n\n    }\n    return fib(n - 1) + fib(n - 2)\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Evaluate several inputs",
+          "paragraphs": [
+            "Calling fib with small values is useful for understanding the sequence. fib(10) and fib(15) also show that the compiler supports nested recursive calls and integer expression evaluation.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn main() -> int {\n    print(fib(0))\n    print(fib(1))\n    print(fib(10))\n    print(fib(15))\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "fn fib(n: int) -> int {\n    if n <= 1 {\n        return n\n    }\n    return fib(n - 1) + fib(n - 2)\n}\nfn main() -> int {\n    print(fib(0))\n    print(fib(1))\n    print(fib(10))\n    print(fib(15))\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/11-fibonacci/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "Recursion needs a base case. Every recursive call should move toward that base case so evaluation can finish."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "No base case",
+            "Recursive calls that do not approach the base case",
+            "Testing very large inputs before understanding the recursive cost"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Trace fib(5) by hand. Then write a second recursive function that calculates factorial.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "fn fib(n: int) -> int {\n    if n <= 1 {\n        return n\n    }\n    return fib(n - 1) + fib(n - 2)\n}\nfn main() -> int {\n    print(fib(0))\n    print(fib(1))\n    print(fib(10))\n    print(fib(15))\n    return 0\n}",
+      "expected_output": "0\n1\n55\n610",
+      "run_cmd": "vpp run projects/11-fibonacci/main.vpp"
+    },
+    {
+      "num": 12,
+      "title": "Generics",
+      "goal": "Write functions that work across types and understand explicit type arguments with monomorphization.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "type parameters, fn name[T], generic arrays, explicit type arguments"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Identity function",
+          "paragraphs": [
+            "T is a type parameter. The function accepts a value of any concrete type and returns that same type. The compiler can specialize the generic function for each concrete use.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "fn id[T](x: T) -> T {\n    return x\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Generic first element",
+          "paragraphs": [
+            "The same type parameter can describe an array element and the return value. first therefore works for arrays of integers, strings, or other supported types.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn first[T](items: array[T]) -> T {\n    return items[0]\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-3",
+          "title": "Step 3: Instantiate generic functions",
+          "paragraphs": [
+            "Explicit type arguments make the intended specialization visible. id[int] creates an integer use and id[string] creates a string use. first[string] accepts an array of strings.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn main() -> int {\n    print(id[int](42))\n    print(id[string](\"v++\"))\n    let words = [\"alpha\", \"beta\", \"gamma\"]\n    print(first[string](words))\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "fn id[T](x: T) -> T {\n    return x\n}\nfn first[T](items: array[T]) -> T {\n    return items[0]\n}\nfn main() -> int {\n    print(id[int](42))\n    print(id[string](\"v++\"))\n    let words = [\"alpha\", \"beta\", \"gamma\"]\n    print(first[string](words))\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/12-generics/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "Generics let one function describe a family of concrete functions. Monomorphization means concrete uses can be compiled with concrete types."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Using a concrete type where T is required",
+            "Forgetting explicit type arguments when the example requires them",
+            "Passing an array whose element type does not match T"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Create a generic last[T] function. Test it with an integer array and a string array.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "fn id[T](x: T) -> T {\n    return x\n}\nfn first[T](items: array[T]) -> T {\n    return items[0]\n}\nfn main() -> int {\n    print(id[int](42))\n    print(id[string](\"v++\"))\n    let words = [\"alpha\", \"beta\", \"gamma\"]\n    print(first[string](words))\n    return 0\n}",
+      "expected_output": "42\nv++\nalpha",
+      "run_cmd": "vpp run projects/12-generics/main.vpp"
+    },
+    {
+      "num": 13,
+      "title": "Traits",
+      "goal": "Define shared behavior and provide statically dispatched implementations for different structs.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "trait, impl, self, method calls, static dispatch"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Define Circle",
+          "paragraphs": [
+            "Circle is a concrete type that will later implement Area. Keeping the data definition separate from the behavior makes the role of the trait easier to see.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "struct Circle {\n    radius: int\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Define Square",
+          "paragraphs": [
+            "Square is another concrete type that can provide its own implementation of the same Area behavior.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "struct Square {\n    side: int\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-3",
+          "title": "Step 3: Declare the Area trait",
+          "paragraphs": [
+            "The trait declares a required method. It describes behavior rather than storage. Implementations are selected statically by the compiler.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "trait Area {\n    fn area(self) -> int\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-4",
+          "title": "Step 4: Begin the Circle implementation",
+          "paragraphs": [
+            "The impl block connects Area to Circle. The method signature must satisfy the trait requirement.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "impl Area for Circle {\n    fn area(self) -> int {\n        return self.radius * self.radius * 3\n    }\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-5",
+          "title": "Step 5: Implement Area for Square",
+          "paragraphs": [
+            "Square uses the same method name but a different calculation. Static dispatch means the compiler knows which implementation belongs to the concrete type.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "impl Area for Square {\n    fn area(self) -> int {\n        return self.side * self.side\n    }\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-6",
+          "title": "Step 6: Call methods from main",
+          "paragraphs": [
+            "Method syntax makes the trait behavior easy to use. c.area selects the Circle implementation and s.area selects the Square implementation.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn main() -> int {\n    let c = Circle { radius: 5 }\n    let s = Square { side: 4 }\n    print(c.area())\n    print(s.area())\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "struct Circle {\n    radius: int\n}\nstruct Square {\n    side: int\n}\ntrait Area {\n    fn area(self) -> int\n}\nimpl Area for Circle {\n    fn area(self) -> int {\n        return self.radius * self.radius * 3\n    }\n}\nimpl Area for Square {\n    fn area(self) -> int {\n        return self.side * self.side\n    }\n}\nfn main() -> int {\n    let c = Circle { radius: 5 }\n    let s = Square { side: 4 }\n    print(c.area())\n    print(s.area())\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/13-traits/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "Traits describe shared behavior while impl blocks provide concrete behavior. Static dispatch lets the compiler resolve the method for a known concrete type."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Trait method signature not matching the trait",
+            "Implementing the trait for the wrong type",
+            "Calling a method that the type does not implement"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Create a Rectangle struct and implement Area for it. Explain why the method name can remain the same.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "struct Circle {\n    radius: int\n}\nstruct Square {\n    side: int\n}\ntrait Area {\n    fn area(self) -> int\n}\nimpl Area for Circle {\n    fn area(self) -> int {\n        return self.radius * self.radius * 3\n    }\n}\nimpl Area for Square {\n    fn area(self) -> int {\n        return self.side * self.side\n    }\n}\nfn main() -> int {\n    let c = Circle { radius: 5 }\n    let s = Square { side: 4 }\n    print(c.area())\n    print(s.area())\n    return 0\n}",
+      "expected_output": "75\n16",
+      "run_cmd": "vpp run projects/13-traits/main.vpp"
+    },
+    {
+      "num": 14,
+      "title": "Modules",
+      "goal": "Split a program across files and import reusable public functions.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "import, pub fn, local module, project layout"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Create the module file",
+          "paragraphs": [
+            "A module contains reusable definitions. Functions intended for another file must be public. The module example uses a small math file that exports add and mul.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "pub fn add(a: int, b: int) -> int {\n    return a + b\n}\npub fn mul(a: int, b: int) -> int {\n    return a * b\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Import and call the module",
+          "paragraphs": [
+            "Imports appear before functions and types. Once math.vpp is imported, the exported functions are available to main.",
+            "The compiler resolves the local module path as part of the project.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "import \"math.vpp\"\nfn main() -> int {\n    let sum = add(10, 5)\n    let product = mul(sum, 2)\n    print(sum)\n    print(product)\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [
+            "Main file main.vpp:",
+            "import \"math.vpp\" fn main() -> int { let sum = add(10, 5) let product = mul(sum, 2) print(sum) print(product) return 0 }"
+          ],
+          "code": "pub fn add(a: int, b: int) -> int {\n    return a + b\n}\npub fn mul(a: int, b: int) -> int {\n    return a * b\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [
+            "cd projects/14-modules && vpp run main.vpp"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "Modules separate code into files and make public APIs explicit. Imports become the connection between reusable code and the application entry point."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Importing after a function declaration",
+            "Forgetting pub on a function that must be visible outside the module",
+            "Running the command from the wrong project directory"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Add a subtract function to math.vpp, export it, import it through main, and call it.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "pub fn add(a: int, b: int) -> int {\n    return a + b\n}\npub fn mul(a: int, b: int) -> int {\n    return a * b\n}",
+      "expected_output": "15\n30",
+      "run_cmd": "vpp run projects/14-modules/main.vpp"
+    },
+    {
+      "num": 15,
+      "title": "Calculator",
+      "goal": "Build a small calculator using enums, match, and Result based error handling.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "enum, struct, match, Result, error handling"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Define operations",
+          "paragraphs": [
+            "The Op enum limits the calculator to four legal operations. This makes the operation selection explicit and lets match be checked for completeness.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "enum Op {\n    Add\n    Sub\n    Mul\n    Div\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Store an operation",
+          "paragraphs": [
+            "CalcOp wraps the selected operation in a named struct. This creates a natural value to pass into the calculation function.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "struct CalcOp {\n    op: Op\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-3",
+          "title": "Step 3: Apply the operation safely",
+          "paragraphs": [
+            "The apply function matches every operation. Division receives an additional runtime condition because division by zero is an error. Result lets the caller handle that error explicitly.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn apply(calc: CalcOp, a: int, b: int) -> Result<int, string> {\n    match calc.op {\n        Add => {\n            return Ok(a + b)\n        }\n        Sub => {\n            return Ok(a - b)\n        }\n        Mul => {\n            return Ok(a * b)\n        }\n        Div => {\n            if b == 0 {\n                return Err(\"divide by zero\")\n            }\n            return Ok(a / b)\n        }\n    }\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-4",
+          "title": "Step 4: Run the calculator",
+          "paragraphs": [
+            "The caller receives a Result and matches it. Ok contains the calculated integer. Err contains the explanation when an operation cannot be completed.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn main() -> int {\n    let calc = CalcOp { op: Mul }\n    let r = apply(calc, 6, 7)\n    match r {\n        Ok(n) => {\n            print(n)\n        }\n        Err(e) => {\n            print(e)\n        }\n    }\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "enum Op {\n    Add\n    Sub\n    Mul\n    Div\n}\nstruct CalcOp {\n    op: Op\n}\nfn apply(calc: CalcOp, a: int, b: int) -> Result<int, string> {\n    match calc.op {\n        Add => {\n            return Ok(a + b)\n        }\n        Sub => {\n            return Ok(a - b)\n        }\n        Mul => {\n            return Ok(a * b)\n        }\n        Div => {\n            if b == 0 {\n                return Err(\"divide by zero\")\n            }\n            return Ok(a / b)\n        }\n    }\n}\nfn main() -> int {\n    let calc = CalcOp { op: Mul }\n    let r = apply(calc, 6, 7)\n    match r {\n        Ok(n) => {\n            print(n)\n        }\n        Err(e) => {\n            print(e)\n        }\n    }\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/15-calculator/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "A calculator is a useful example of combining enums, match, structs, and Result into a small domain model."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Leaving an enum operation unhandled",
+            "Dividing by zero",
+            "Printing a Result without matching its alternatives"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Run the calculator with Div and b equal to zero. Confirm that Err is handled without crashing.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "enum Op {\n    Add\n    Sub\n    Mul\n    Div\n}\nstruct CalcOp {\n    op: Op\n}\nfn apply(calc: CalcOp, a: int, b: int) -> Result<int, string> {\n    match calc.op {\n        Add => {\n            return Ok(a + b)\n        }\n        Sub => {\n            return Ok(a - b)\n        }\n        Mul => {\n            return Ok(a * b)\n        }\n        Div => {\n            if b == 0 {\n                return Err(\"divide by zero\")\n            }\n            return Ok(a / b)\n        }\n    }\n}\nfn main() -> int {\n    let calc = CalcOp { op: Mul }\n    let r = apply(calc, 6, 7)\n    match r {\n        Ok(n) => {\n            print(n)\n        }\n        Err(e) => {\n            print(e)\n        }\n    }\n    return 0\n}",
+      "expected_output": "42",
+      "run_cmd": "vpp run projects/15-calculator/main.vpp"
+    },
+    {
+      "num": 16,
+      "title": "Word Counter",
+      "goal": "Analyze an array of strings using len, iteration, mutable accumulators, and comparisons.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "array[string], len, loops, string comparison"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Count total characters",
+          "paragraphs": [
+            "len works on a string and returns its character count for the purpose of this lesson. The accumulator starts at zero and adds each word length.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "fn total_chars(words: array[string]) -> int {\n    let mut total = 0\n    for w in words {\n        total = total + len(w)\n    }\n    return total\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Find the longest word",
+          "paragraphs": [
+            "The first word becomes the initial best candidate. Each later word is compared by length. When a longer word appears, best is updated.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn longest_word(words: array[string]) -> string {\n    let mut best = words[0]\n    for w in words {\n        if len(w) > len(best) {\n            best = w\n        }\n    }\n    return best\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-3",
+          "title": "Step 3: Analyze the input",
+          "paragraphs": [
+            "The main function creates the word list and asks for the number of elements, total character count, and longest word.",
+            "Keeping each calculation in a separate function makes the program easier to extend.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn main() -> int {\n    let words = [\"v++\", \"is\", \"a\", \"compiled\", \"language\"]\n    print(len(words))\n    print(total_chars(words))\n    print(longest_word(words))\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "fn total_chars(words: array[string]) -> int {\n    let mut total = 0\n    for w in words {\n        total = total + len(w)\n    }\n    return total\n}\nfn longest_word(words: array[string]) -> string {\n    let mut best = words[0]\n    for w in words {\n        if len(w) > len(best) {\n            best = w\n        }\n    }\n    return best\n}\nfn main() -> int {\n    let words = [\"v++\", \"is\", \"a\", \"compiled\", \"language\"]\n    print(len(words))\n    print(total_chars(words))\n    print(longest_word(words))\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/16-word-counter/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "String analysis is a practical example of combining arrays, loops, len, comparisons, and mutable accumulators."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Reading words[0] from an empty array",
+            "Forgetting to update the accumulator",
+            "Comparing strings when the algorithm needs their lengths"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Add a function that returns the shortest word. Test it with an additional word.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "fn total_chars(words: array[string]) -> int {\n    let mut total = 0\n    for w in words {\n        total = total + len(w)\n    }\n    return total\n}\nfn longest_word(words: array[string]) -> string {\n    let mut best = words[0]\n    for w in words {\n        if len(w) > len(best) {\n            best = w\n        }\n    }\n    return best\n}\nfn main() -> int {\n    let words = [\"v++\", \"is\", \"a\", \"compiled\", \"language\"]\n    print(len(words))\n    print(total_chars(words))\n    print(longest_word(words))\n    return 0\n}",
+      "expected_output": "5\n16\ncompiled",
+      "run_cmd": "vpp run projects/16-word-counter/main.vpp"
+    },
+    {
+      "num": 17,
+      "title": "Guessing Game",
+      "goal": "Combine functions, conditionals, arrays, and early loop termination into game logic.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "conditionals, arrays, function composition, early return"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Produce a hint",
+          "paragraphs": [
+            "The hint function compares a guess against a secret. It returns one of three strings. Because the equality case is the only case left after the two comparisons, the final return is correct.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "fn hint(guess: int, secret: int) -> string {\n    if guess < secret {\n        return \"too low\"\n    }\n    if guess > secret {\n        return \"too high\"\n    }\n    return \"correct\"\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Turn the hint into a round result",
+          "paragraphs": [
+            "play_round delegates the comparison to hint, prints the message, and converts the message into a bool. The bool tells the outer loop whether the game is finished.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn play_round(secret: int, guess: int) -> bool {\n    let message = hint(guess, secret)\n    print(message)\n    return message == \"correct\"\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-3",
+          "title": "Step 3: Try guesses until correct",
+          "paragraphs": [
+            "The guesses array acts as predetermined input for this lesson. Each guess is printed and passed to play_round.",
+            "When the function returns true, main prints the win message and returns immediately.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn main() -> int {\n    let secret = 42\n    let guesses = [10, 30, 50, 42]\n    for g in guesses {\n        print(g)\n        if play_round(secret, g) {\n            print(\"you win\")\n            return 0\n        }\n    }\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "fn hint(guess: int, secret: int) -> string {\n    if guess < secret {\n        return \"too low\"\n    }\n    if guess > secret {\n        return \"too high\"\n    }\n    return \"correct\"\n}\nfn play_round(secret: int, guess: int) -> bool {\n    let message = hint(guess, secret)\n    print(message)\n    return message == \"correct\"\n}\nfn main() -> int {\n    let secret = 42\n    let guesses = [10, 30, 50, 42]\n    for g in guesses {\n        print(g)\n        if play_round(secret, g) {\n            print(\"you win\")\n            return 0\n        }\n    }\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/17-guessing-game/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "Small games are good for learning control flow because they turn simple comparisons into a stateful sequence of decisions."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Reversing the low and high messages",
+            "Never stopping after the correct guess",
+            "Changing the secret without updating the test guesses"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Change the secret and guesses. Then add an attempt counter using let mut.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "fn hint(guess: int, secret: int) -> string {\n    if guess < secret {\n        return \"too low\"\n    }\n    if guess > secret {\n        return \"too high\"\n    }\n    return \"correct\"\n}\nfn play_round(secret: int, guess: int) -> bool {\n    let message = hint(guess, secret)\n    print(message)\n    return message == \"correct\"\n}\nfn main() -> int {\n    let secret = 42\n    let guesses = [10, 30, 50, 42]\n    for g in guesses {\n        print(g)\n        if play_round(secret, g) {\n            print(\"you win\")\n            return 0\n        }\n    }\n    return 0\n}",
+      "expected_output": "10\ntoo low\n30\ntoo low\n50\ntoo high\n42\ncorrect\nyou win",
+      "run_cmd": "vpp run projects/17-guessing-game/main.vpp"
+    },
+    {
+      "num": 18,
+      "title": "Todo List",
+      "goal": "Model tasks with structs and booleans, print state conditionally, and count completed tasks.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "struct, bool, conditional printing, mutable counter"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Define Todo",
+          "paragraphs": [
+            "Todo stores the task title and whether the task is complete. This is a small example of using a struct to keep data and its state together.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "struct Todo {\n    title: string\n    done: bool\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Print one task",
+          "paragraphs": [
+            "The printer chooses a visual prefix based on done. The string concatenation joins the prefix and task title.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn print_todo(t: Todo) -> int {\n    if t.done {\n        print(\"[x] \" + t.title)\n    } else {\n        print(\"[ ] \" + t.title)\n    }\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-3",
+          "title": "Step 3: Create tasks and count completion",
+          "paragraphs": [
+            "main creates three Todo values. The counter is mutable because each completed task increments it. The same data can be passed to print_todo for consistent output.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn main() -> int {\n    let t1 = Todo { title: \"learn v++\", done: true }\n    let t2 = Todo { title: \"build a project\", done: false }\n    let t3 = Todo { title: \"ship v1.0\", done: false }\n    print_todo(t1)\n    print_todo(t2)\n    print_todo(t3)\n    let mut done_count = 0\n    if t1.done { done_count = done_count + 1 }\n    if t2.done { done_count = done_count + 1 }\n    if t3.done { done_count = done_count + 1 }\n    print(done_count)\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "struct Todo {\n    title: string\n    done: bool\n}\nfn print_todo(t: Todo) -> int {\n    if t.done {\n        print(\"[x] \" + t.title)\n    } else {\n        print(\"[ ] \" + t.title)\n    }\n    return 0\n}\nfn main() -> int {\n    let t1 = Todo { title: \"learn v++\", done: true }\n    let t2 = Todo { title: \"build a project\", done: false }\n    let t3 = Todo { title: \"ship v1.0\", done: false }\n    print_todo(t1)\n    print_todo(t2)\n    print_todo(t3)\n    let mut done_count = 0\n    if t1.done { done_count = done_count + 1 }\n    if t2.done { done_count = done_count + 1 }\n    if t3.done { done_count = done_count + 1 }\n    print(done_count)\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/18-todo-list/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "Structs can represent real application records. A bool field can drive display logic while a mutable counter summarizes state."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Using the wrong field type",
+            "Forgetting that done is a bool",
+            "Trying to increment an immutable counter"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Add a fourth task. Then change done_count to use a loop over an array if your current compiler supports arrays of structs in your project.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "struct Todo {\n    title: string\n    done: bool\n}\nfn print_todo(t: Todo) -> int {\n    if t.done {\n        print(\"[x] \" + t.title)\n    } else {\n        print(\"[ ] \" + t.title)\n    }\n    return 0\n}\nfn main() -> int {\n    let t1 = Todo { title: \"learn v++\", done: true }\n    let t2 = Todo { title: \"build a project\", done: false }\n    let t3 = Todo { title: \"ship v1.0\", done: false }\n    print_todo(t1)\n    print_todo(t2)\n    print_todo(t3)\n    let mut done_count = 0\n    if t1.done { done_count = done_count + 1 }\n    if t2.done { done_count = done_count + 1 }\n    if t3.done { done_count = done_count + 1 }\n    print(done_count)\n    return 0\n}",
+      "expected_output": "[x] learn v++\n[ ] build a project\n[ ] ship v1.0\n1",
+      "run_cmd": "vpp run projects/18-todo-list/main.vpp"
+    },
+    {
+      "num": 19,
+      "title": "File Notes",
+      "goal": "Use the filesystem standard library to write a file, check its existence, and read it back.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "import std.fs, fs.write, fs.exists, fs.read"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Import std.fs",
+          "paragraphs": [
+            "Standard library modules are imported before program definitions. std.fs exposes the filesystem operations used in this project.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "import std.fs",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Write, check, and read",
+          "paragraphs": [
+            "The program creates a path and a text body. fs.write stores the text. fs.exists verifies that the path exists. fs.read loads the content back into the program.",
+            "The sequence demonstrates a common application pattern: prepare data, perform an external operation, verify or inspect the result, then continue.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "import std.fs\nfn main() -> int {\n    let path = \"note.txt\"\n    let body = \"v++ file notes\nBuilt by Shaurya\nOpen source on GitHub\"\n    fs.write(path, body)\n    print(fs.exists(path))\n    let content = fs.read(path)\n    print(content)\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "import std.fs\nfn main() -> int {\n    let path = \"note.txt\"\n    let body = \"v++ file notes\nBuilt by Shaurya\nOpen source on GitHub\"\n    fs.write(path, body)\n    print(fs.exists(path))\n    let content = fs.read(path)\n    print(content)\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/19-file-notes/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "Filesystem operations cross the boundary between pure program logic and the outside world. The code must treat paths and file contents as external data."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Reading a file before writing it",
+            "Using the wrong path",
+            "Ignoring the difference between a path and the file contents"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Write a second file, read it, and print both contents. Then change the path to a nested path if your environment permits it.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "import std.fs\nfn main() -> int {\n    let path = \"note.txt\"\n    let body = \"v++ file notes\nBuilt by Shaurya\nOpen source on GitHub\"\n    fs.write(path, body)\n    print(fs.exists(path))\n    let content = fs.read(path)\n    print(content)\n    return 0\n}",
+      "expected_output": "true\nv++ file notes\nBuilt by Shaurya\nOpen source on GitHub",
+      "run_cmd": "vpp run projects/19-file-notes/main.vpp"
+    },
+    {
+      "num": 20,
+      "title": "JSON Config",
+      "goal": "Parse JSON, stringify it, and model configuration data with a typed struct.",
+      "sections": [
+        {
+          "section_id": "core-concepts",
+          "title": "Core concepts",
+          "paragraphs": [
+            "std.json, json.parse, json.stringify, struct config, project layout"
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "approach",
+          "title": "How the learner should approach this project",
+          "paragraphs": [
+            "Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "step-1",
+          "title": "Step 1: Import std.json",
+          "paragraphs": [
+            "The standard JSON module provides parse and stringify operations. Imports must appear before functions and types.",
+            "After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs."
+          ],
+          "code": "import std.json",
+          "list_items": []
+        },
+        {
+          "section_id": "step-2",
+          "title": "Step 2: Define AppConfig",
+          "paragraphs": [
+            "The struct gives the configuration a typed shape. name and version are strings, while debug is a boolean. This is the point where unstructured configuration data becomes a clearly named application model.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "struct AppConfig {\n    name: string\n    version: string\n    debug: bool\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-3",
+          "title": "Step 3: Parse and stringify JSON",
+          "paragraphs": [
+            "parse receives raw JSON text and produces a JSON document value. stringify converts that document back into text.",
+            "This function demonstrates a clean boundary between raw configuration text and structured processing.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn parse_config(raw: string) -> string {\n    let doc = json.parse(raw)\n    return json.stringify(doc)\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "step-4",
+          "title": "Step 4: Use JSON and typed configuration together",
+          "paragraphs": [
+            "main starts with a JSON string containing name, version, and debug. It passes the raw text through parse_config and prints the resulting JSON. It then creates a typed AppConfig value and accesses its fields directly.",
+            "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
+          ],
+          "code": "fn main() -> int {\n    let raw = \"{\"name\":\"v++\",\"version\":\"0.5.0\",\"debug\":false}\"\n    print(parse_config(raw))\n    let cfg = AppConfig {\n        name: \"v++\"\n        version: \"0.5.0\"\n        debug: true\n    }\n    print(cfg.name)\n    print(cfg.version)\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "complete-source",
+          "title": "Complete source",
+          "paragraphs": [],
+          "code": "import std.json\nstruct AppConfig {\n    name: string\n    version: string\n    debug: bool\n}\nfn parse_config(raw: string) -> string {\n    let doc = json.parse(raw)\n    return json.stringify(doc)\n}\nfn main() -> int {\n    let raw = \"{\"name\":\"v++\",\"version\":\"0.5.0\",\"debug\":false}\"\n    print(parse_config(raw))\n    let cfg = AppConfig {\n        name: \"v++\"\n        version: \"0.5.0\"\n        debug: true\n    }\n    print(cfg.name)\n    print(cfg.version)\n    return 0\n}",
+          "list_items": []
+        },
+        {
+          "section_id": "expected-behavior",
+          "title": "Expected behavior",
+          "paragraphs": [
+            "The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current v++ runtime."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "run-the-project",
+          "title": "Run the project",
+          "paragraphs": [],
+          "code": "vpp run projects/20-json-config/main.vpp",
+          "list_items": []
+        },
+        {
+          "section_id": "understanding",
+          "title": "What the learner should understand after this project",
+          "paragraphs": [
+            "JSON is unstructured text at the boundary, while a struct provides a typed model inside the program. Keeping those roles separate makes configuration easier to reason about."
+          ],
+          "code": "",
+          "list_items": []
+        },
+        {
+          "section_id": "common-mistakes",
+          "title": "Common mistakes to teach",
+          "paragraphs": [],
+          "code": "",
+          "list_items": [
+            "Malformed JSON text",
+            "Using a JSON field as if it were already a typed struct field",
+            "Changing the struct without updating construction sites"
+          ]
+        },
+        {
+          "section_id": "practice",
+          "title": "Practice extension",
+          "paragraphs": [
+            "Add a port field to AppConfig as an int and update the example configuration.",
+            "A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution."
+          ],
+          "code": "",
+          "list_items": []
+        }
+      ],
+      "complete_source": "import std.json\nstruct AppConfig {\n    name: string\n    version: string\n    debug: bool\n}\nfn parse_config(raw: string) -> string {\n    let doc = json.parse(raw)\n    return json.stringify(doc)\n}\nfn main() -> int {\n    let raw = \"{\"name\":\"v++\",\"version\":\"0.5.0\",\"debug\":false}\"\n    print(parse_config(raw))\n    let cfg = AppConfig {\n        name: \"v++\"\n        version: \"0.5.0\"\n        debug: true\n    }\n    print(cfg.name)\n    print(cfg.version)\n    return 0\n}",
+      "expected_output": "{\"name\":\"v++\",\"version\":\"0.5.0\",\"debug\":false}\nv++\n0.5.0",
+      "run_cmd": "vpp run projects/20-json-config/main.vpp"
+    }
+  ],
+  "implementation_intro": "Use this document as the content specification for the twenty course pages. The page layout should preserve the curriculum sequence while making each project substantially deeper than a short five step tutorial.",
+  "implementation_items": [
+    "Every project needs a clear project goal before code.",
+    "Every new concept needs a plain English explanation before its first code block.",
+    "Every step needs a meaningful code block and a line by line explanation of the important lines.",
+    "Every project needs the complete source after the incremental steps.",
+    "Every project needs an expected output block and an exact run command.",
+    "Every project needs common mistakes and a practice extension.",
+    "Do not silently invent language syntax that is not supported by the current v++ implementation.",
+    "If the current source page and the executable example disagree, preserve the executable code and flag the documentation inconsistency for review.",
+    "Do not make all explanations identical. Advanced projects need more explanation of type behavior, compile time checking, and how the pieces interact.",
+    "Keep code blocks copyable. Do not put prose inside code blocks.",
+    "Keep the curriculum cumulative. Earlier concepts should be reused instead of reintroduced as if they are new.",
+    "The goal is that a learner can finish all twenty projects and understand how to build a small v++ application without relying on blind copying."
+  ],
+  "consistency_intro": "The current course pages contain several places where the prose summary does not exactly match the code shown on the page. This PDF deliberately keeps the code shown by the course source and derives the expected output from that code where necessary. Cursor should not silently copy a conflicting summary into a new page.",
+  "consistency_items": [
+    "Project 05 describes a single output in its summary, while the shown complete program prints the sum and maximum.",
+    "Project 08 describes an error example in its summary, while the shown complete program uses safe_div with a nonzero divisor and prints the successful value.",
+    "Project 13 describes a Circle example with an area value that does not match the shown integer implementation. The complete code is the authoritative teaching example.",
+    "Project 20 describes a final summary that does not include the complete JSON output shown by the actual program."
+  ],
+  "end_state_paragraphs": [
+    "After Project 20, a learner should have seen the complete progression from a minimal executable to reusable",
+    "functions, collections, structured data, closed state machines, safe result handling, generic code, traits, modules,",
+    "practical algorithms, filesystem access, and JSON configuration. The curriculum should make the language feel",
+    "coherent rather than like a list of unrelated features."
+  ],
+  "footer": "Prepared from the current v++ course material and expanded for curriculum generation."
+}

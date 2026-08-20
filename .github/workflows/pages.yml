@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "website/**"
+      - "course.pdf"
       - "vpp_20_course_deep_curriculum.pdf"
       - "docs/**"
       - "projects/**"

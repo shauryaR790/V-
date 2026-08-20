@@ -13,6 +13,8 @@ from course_catalog import (
     code_block_html,
     discover_course_projects,
 )
+from pdf_docs import DocsDocument, load_docs
+from pdf_curriculum import CurriculumProject
 
 ROOT = Path(__file__).resolve().parent.parent
 WEBSITE = ROOT / "website"
@@ -1223,6 +1225,122 @@ def write_course_pages(projects: list[CourseProject], sidebar: dict[str, list[tu
         print(f"Wrote {project.page_name}: {page.count(chr(10))} lines")
 
 
+def project_docs_id(num: int, title: str) -> str:
+    slug_part = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+    return f"project-{num:02d}-{slug_part}"
+
+
+def render_docs_project(project: CurriculumProject, map_rows: list) -> str:
+    parts = [
+        f'<h2 id="{project_docs_id(project.num, project.title)}">'
+        f"Project {project.num:02d}: {html.escape(project.title)}</h2>",
+    ]
+    level = next((row.level for row in map_rows if row.num == project.num), "")
+    if level:
+        parts.append(f"<p><strong>Level:</strong> {html.escape(level)}</p>")
+    if project.goal:
+        parts.append(f"<p><strong>Project goal:</strong> {course_inline_md(project.goal)}</p>")
+    for section in project.sections:
+        parts.append(f'<h3 id="{html.escape(section.section_id)}-{project.num:02d}">'
+                     f"{html.escape(section.title)}</h3>")
+        for para in section.paragraphs:
+            para = para.strip()
+            if para:
+                parts.append(f"<p>{course_inline_md(para)}</p>")
+        if section.list_items:
+            parts.append("<ol>")
+            for item in section.list_items:
+                parts.append(f"<li>{course_inline_md(item)}</li>")
+            parts.append("</ol>")
+        if section.section_id == "expected-behavior" and project.expected_output.strip():
+            parts.append(
+                f'<pre class="course-expected-output">{html.escape(project.expected_output)}</pre>'
+            )
+        if section.code.strip():
+            parts.append(code_block_html(section.code))
+    return "\n".join(parts)
+
+
+def build_docs_page_body(doc: DocsDocument) -> str:
+    parts = [
+        '<div id="top"></div>',
+        f'<h1 id="twenty-course-deep-curriculum">{html.escape(clean_prose(doc.title))}</h1>',
+    ]
+    for para in doc.intro_paragraphs:
+        parts.append(f"<p>{course_inline_md(para)}</p>")
+
+    parts.append('<h2 id="curriculum-map">Curriculum Map</h2>')
+    if doc.map_intro:
+        parts.append(f"<p>{course_inline_md(doc.map_intro)}</p>")
+    if doc.map_rows:
+        parts.append('<div class="table-wrap"><table>')
+        parts.append(
+            "<thead><tr><th>Project</th><th>Course</th><th>Level</th><th>Primary ideas</th></tr></thead><tbody>"
+        )
+        for row in doc.map_rows:
+            parts.append(
+                f"<tr><td>{row.num}</td><td>{html.escape(row.course)}</td>"
+                f"<td>{html.escape(row.level)}</td><td>{course_inline_md(row.ideas)}</td></tr>"
+            )
+        parts.append("</tbody></table></div>")
+    if doc.teaching_rule:
+        parts.append(f"<p>{course_inline_md(doc.teaching_rule)}</p>")
+
+    parts.append('<h2 id="global-conventions">Global v++ Conventions Used Throughout the Curriculum</h2>')
+    for item in doc.conventions:
+        parts.append(f"<p><strong>{html.escape(item.label)}:</strong> {course_inline_md(item.text)}</p>")
+
+    for project in doc.projects:
+        parts.append(render_docs_project(project, doc.map_rows))
+
+    if doc.implementation_intro or doc.implementation_items:
+        parts.append('<h2 id="implementation-notes">Implementation Notes for Cursor</h2>')
+        if doc.implementation_intro:
+            parts.append(f"<p>{course_inline_md(doc.implementation_intro)}</p>")
+        if doc.implementation_items:
+            parts.append("<ol>")
+            for item in doc.implementation_items:
+                parts.append(f"<li>{course_inline_md(item)}</li>")
+            parts.append("</ol>")
+
+    if doc.consistency_intro or doc.consistency_items:
+        parts.append('<h2 id="documentation-consistency-checks">Documentation Consistency Checks</h2>')
+        if doc.consistency_intro:
+            parts.append(f"<p>{course_inline_md(doc.consistency_intro)}</p>")
+        if doc.consistency_items:
+            parts.append("<ol>")
+            for item in doc.consistency_items:
+                parts.append(f"<li>{course_inline_md(item)}</li>")
+            parts.append("</ol>")
+
+    if doc.end_state_paragraphs:
+        parts.append('<h2 id="end-state">End State</h2>')
+        for para in doc.end_state_paragraphs:
+            parts.append(f"<p>{course_inline_md(para)}</p>")
+
+    if doc.footer:
+        parts.append(f"<p>{course_inline_md(doc.footer)}</p>")
+
+    return "\n".join(parts)
+
+
+def write_docs_page(
+    filename: str,
+    active: str,
+    title: str,
+    doc: DocsDocument,
+    sidebar: dict[str, list[tuple[str, str]]],
+    sidebar_active: str,
+    desc: str,
+) -> None:
+    body = build_docs_page_body(doc)
+    headings = headings_from_html(body)
+    toc = build_toc(headings)
+    page = shell(active, title, body, build_sidebar(sidebar, sidebar_active), toc, desc)
+    (WEBSITE / filename).write_text(page, encoding="utf-8")
+    print(f"Wrote {filename}: {page.count(chr(10))} lines")
+
+
 def all_doc_links(course_projects: list[CourseProject] | None = None) -> dict[str, list[tuple[str, str]]]:
     getting = [
         ("learn.html#introduction", "Introduction"),
@@ -1232,24 +1350,17 @@ def all_doc_links(course_projects: list[CourseProject] | None = None) -> dict[st
         ("courses.html", "Courses & projects"),
     ]
     language = [
-        ("docs.html#types", "Types & inference"),
-        ("docs.html#functions", "Functions"),
-        ("docs.html#control-flow", "Control flow"),
-        ("docs.html#structs-and-enums", "Structs & enums"),
-        ("docs.html#option-result-match", "Option & Result"),
-        ("docs.html#generics", "Generics"),
-        ("docs.html#traits", "Traits"),
-        ("docs.html#mut-and-immutability", "Mutability"),
-        ("docs.html#modules", "Modules"),
+        ("docs.html#curriculum-map", "Curriculum map"),
+        ("docs.html#global-conventions", "Global conventions"),
+        ("docs.html#implementation-notes", "Implementation notes"),
+        ("docs.html#documentation-consistency-checks", "Consistency checks"),
+        ("docs.html#end-state", "End state"),
     ]
-    guides = [
-        ("docs.html#cli-reference", "CLI reference"),
-        ("docs.html#package-manager", "Package manager"),
-        ("docs.html#testing", "Testing"),
-        ("docs.html#native-compilation", "Native compilation"),
-        ("docs.html#language-server", "Language server"),
-        ("docs.html#troubleshooting", "Troubleshooting"),
-    ]
+    guides: list[tuple[str, str]] = []
+    if course_projects:
+        for p in course_projects:
+            pid = project_docs_id(p.num, p.title)
+            guides.append((f"docs.html#{pid}", f"{p.num:02d}. {p.title}"))
     project = [
         ("about.html", f"About {BRAND}"),
         ("about.html#architecture", "Architecture"),
@@ -1273,8 +1384,8 @@ def all_doc_links(course_projects: list[CourseProject] | None = None) -> dict[st
             courses_links.append((p.page_name, f"{p.num:02d}. {p.title}"))
     return {
         "Getting started": getting,
-        "Language": language,
-        "Guides": guides,
+        "Curriculum": language,
+        "Projects": guides,
         "Project": project,
         "Courses": courses_links,
         "Legal": legal,
@@ -1297,9 +1408,16 @@ def main() -> None:
     write_doc_page("learn.html", "learn.html", "Learn", learn_paths, sidebar, "learn.html#introduction",
                    f"Learn {BRAND} — installation, syntax, and your first programs.")
 
-    docs_paths = theory_doc_sources()
-    write_doc_page("docs.html", "docs.html", "Documentation", docs_paths, sidebar, "docs.html",
-                   f"{BRAND} specification, architecture, memory model, and language reference.")
+    docs_doc = load_docs()
+    write_docs_page(
+        "docs.html",
+        "docs.html",
+        "Documentation",
+        docs_doc,
+        sidebar,
+        "docs.html",
+        f"{BRAND} twenty project deep curriculum — teaching blueprint and course specification.",
+    )
 
     about_paths = [ROOT / "README.md", ROOT / "ARCHITECTURE.md", ROOT / "MEMORY_MODEL.md",
                    ROOT / "SPEC.md", DOCS / "project" / "roadmap.md"]
