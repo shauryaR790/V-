@@ -21,6 +21,7 @@
   --font: "IBM Plex Sans", system-ui, sans-serif;
   --mono: "IBM Plex Mono", "Consolas", monospace;
   --header-h: 72px;
+  --home-footer-gap: 3.5rem;
   --nav-item-h: 44px;
   --btn-radius: 6px;
   --sidebar-w: 280px;
@@ -257,7 +258,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .page-home .home-main {
   background: transparent;
-  padding-bottom: 1.25rem;
+  padding-bottom: var(--home-footer-gap);
 }
 
 .home-hero {
@@ -267,12 +268,13 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   grid-template-columns: 0.95fr 1.05fr;
   gap: 2rem;
   align-items: center;
-  padding: 0.75rem 0 0;
+  padding: 1rem 0 0;
 }
 
 .home-hero .code-panel {
-  align-self: stretch;
-  max-height: calc(100vh - var(--header-h) - 5.75rem);
+  align-self: center;
+  max-height: calc(100vh - var(--header-h) - var(--home-footer-gap) - 5.5rem);
+  margin-bottom: 0.75rem;
 }
 
 .page-home .code-panel {
