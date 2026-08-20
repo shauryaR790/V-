@@ -313,6 +313,68 @@ function highlightAllCode() {
   });
 }
 
+const MIN_DOC_CODE_LINES = 5;
+
+const COPY_ICON = (
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+  + 'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+  + '<rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>'
+  + '<path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>'
+  + "</svg>"
+);
+
+const CHECK_ICON = (
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+  + 'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+  + '<path d="M20 6 9 17l-5-5"/>'
+  + "</svg>"
+);
+
+function padCodeToMinimum(text, minimum) {
+  const lines = text.split("\n");
+  if (lines.length > 1 && lines[lines.length - 1] === "") lines.pop();
+  while (lines.length < minimum) lines.push("");
+  return lines.join("\n");
+}
+
+function initDocCodeBlocks() {
+  document.querySelectorAll(".code-block-wrap").forEach((wrap) => {
+    const pre = wrap.querySelector("pre");
+    const code = pre?.querySelector("code");
+    if (!pre || !code) return;
+
+    const padded = padCodeToMinimum(code.textContent || "", MIN_DOC_CODE_LINES);
+    if (padded !== code.textContent) {
+      code.textContent = padded;
+      if (typeof Prism !== "undefined") Prism.highlightElement(code);
+    }
+
+    const header = wrap.querySelector(".code-block-header");
+    if (header && !header.querySelector(".code-copy-btn")) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "code-copy-btn";
+      btn.setAttribute("aria-label", "Copy code");
+      btn.innerHTML = COPY_ICON;
+      btn.addEventListener("click", () => {
+        const raw = (code.textContent || "").replace(/\s+$/, "");
+        navigator.clipboard.writeText(raw).then(() => {
+          btn.classList.add("copied");
+          btn.innerHTML = CHECK_ICON;
+          setTimeout(() => {
+            btn.classList.remove("copied");
+            btn.innerHTML = COPY_ICON;
+          }, 2000);
+        });
+      });
+      header.appendChild(btn);
+    }
+
+    pre.classList.add("has-line-numbers");
+    syncLineNumbers(pre, countCodeLines(code.textContent));
+  });
+}
+
 function mountHomeCode(key) {
   const sample = CODE_SAMPLES[key] || CODE_SAMPLES.hello;
   const pre = document.getElementById("code-display");
@@ -349,6 +411,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSidebarSearch();
   initTocHighlight();
   highlightAllCode();
+  initDocCodeBlocks();
 
   const tabs = document.querySelectorAll(".code-tab");
   const copyBtn = document.querySelector(".copy-btn");

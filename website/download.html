@@ -89,15 +89,21 @@
 <p>2. Run the installer. If Windows SmartScreen appears, choose <strong>More info → Run anyway</strong>.</p>
 <p>3. Open a <strong>new</strong> terminal:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">vpp run examples\hello.vpp
-vpp doctor</code></pre>
+vpp doctor
+
+
+</code></pre>
 </div>
 <p>If <code>vpp</code> is not found, add the install folder to PATH:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">$dir = &quot;$env:LOCALAPPDATA\Programs\vpp&quot;
-[Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path + &quot;;$dir;$dir\llvm\bin&quot;, &quot;User&quot;)</code></pre>
+[Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path + &quot;;$dir;$dir\llvm\bin&quot;, &quot;User&quot;)
+
+
+</code></pre>
 </div>
 <p>Restart the terminal.</p>
 <h2 id="vs-code-extension">VS Code extension</h2>

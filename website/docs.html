@@ -91,15 +91,21 @@
 </ul>
 <h2 id="build">Build</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">git clone https://github.com/shauryaR790/V-.git
 cd V-
-cargo build --release --features codegen,lsp</code></pre>
+cargo build --release --features codegen,lsp
+
+</code></pre>
 </div>
 <p>Windows:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">$env:LLVM_SYS_221_PREFIX = &quot;C:\Program Files\LLVM&quot;</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">$env:LLVM_SYS_221_PREFIX = &quot;C:\Program Files\LLVM&quot;
+
+
+
+</code></pre>
 </div>
 <p>Binaries: <code>target/release/vpp.exe</code>, <code>target/release/vppls.exe</code>.</p>
 <h2 id="features">Features</h2>
@@ -123,8 +129,12 @@ cargo build --release --features codegen,lsp</code></pre>
 </tbody></table></div>
 <h2 id="install-locally">Install locally</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">cargo install --path . --features codegen,lsp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">cargo install --path . --features codegen,lsp
+
+
+
+</code></pre>
 </div>
 
 <h1 id="contributing-docs">Contributing docs</h1>
@@ -136,7 +146,7 @@ cargo build --release --features codegen,lsp</code></pre>
 
 <h1 id="running-tests">Running tests</h1>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash"># Interpreter + parser + typecheck (no LLVM)
 cargo test --all-targets
 
@@ -154,65 +164,92 @@ cargo test --features codegen parity
 <h1 id="your-first-v-project">Your first V++ project</h1>
 <h2 id="scaffold">Scaffold</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">vpp new myapp --path myapp
-cd myapp</code></pre>
+cd myapp
+
+
+</code></pre>
 </div>
 <p>Creates:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>text</span></div>
+<div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">myapp/
   vpp.toml
   src/main.vpp
-  tests/smoke.vpp</code></pre>
+  tests/smoke.vpp
+</code></pre>
 </div>
 <h2 id="run">Run</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run
+
+
+
+</code></pre>
 </div>
 <p>Runs the entry in <code>vpp.toml</code> (default <code>src/main.vpp</code>).</p>
 <h2 id="test">Test</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp test</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp test
+
+
+
+</code></pre>
 </div>
 <p>Runs <code>test</code> blocks in <code>tests/</code> and inline tests.</p>
 <h2 id="add-a-dependency">Add a dependency</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">vpp add hello-lib --version 0.1.0
-vpp update</code></pre>
+vpp update
+
+
+</code></pre>
 </div>
 <p>See <a href="../guides/package-manager.md">Package manager</a>.</p>
 
 <h1 id="first-program">First program</h1>
 <p>Create a file named <code>hello.vpp</code>:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     print(&quot;v++ program started&quot;)
     return 0
-}</code></pre>
+}
+</code></pre>
 </div>
 <p>Every executable entry point is <code>fn main() -&gt; int</code>. The return value is the process exit code (<code>0</code> = success).</p>
 <h2 id="run-interpreter">Run (interpreter)</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run hello.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run hello.vpp
+
+
+
+</code></pre>
 </div>
 <p>Uses the built-in interpreter — no compile step. Best for learning and quick iteration.</p>
 <h2 id="type-check-only">Type-check only</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp check hello.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp check hello.vpp
+
+
+
+</code></pre>
 </div>
 <p>Reports type errors without running. Use this in CI or before committing.</p>
 <h2 id="compile-to-native">Compile to native</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">vpp build hello.vpp -o hello.exe
-.\hello.exe</code></pre>
+.\hello.exe
+
+
+</code></pre>
 </div>
 <p>Requires LLVM and clang on your PATH. Produces a standalone <code>.exe</code> with no V++ runtime dependency.</p>
 <h2 id="commands-summary">Commands summary</h2>
@@ -242,15 +279,21 @@ vpp update</code></pre>
 <p>2. Run the installer. If Windows SmartScreen appears, choose <strong>More info → Run anyway</strong>.</p>
 <p>3. Open a <strong>new</strong> terminal:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">vpp run examples\hello.vpp
-vpp doctor</code></pre>
+vpp doctor
+
+
+</code></pre>
 </div>
 <p>If <code>vpp</code> is not found, add the install folder to PATH:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">$dir = &quot;$env:LOCALAPPDATA\Programs\vpp&quot;
-[Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path + &quot;;$dir;$dir\llvm\bin&quot;, &quot;User&quot;)</code></pre>
+[Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path + &quot;;$dir;$dir\llvm\bin&quot;, &quot;User&quot;)
+
+
+</code></pre>
 </div>
 <p>Restart the terminal.</p>
 <h2 id="vs-code-extension">VS Code extension</h2>
@@ -418,8 +461,12 @@ vpp doctor</code></pre>
 <h2 id="language-server-intellisense">Language server (IntelliSense)</h2>
 <p>Build <code>vppls</code> once (or use a release that includes it):</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">cargo build --release --features lsp --bin vppls</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">cargo build --release --features lsp --bin vppls
+
+
+
+</code></pre>
 </div>
 <p>Settings (<code>File → Preferences → Settings</code>, search <code>vpp</code>):</p>
 <div class="table-wrap"><table>
@@ -463,7 +510,7 @@ vpp doctor</code></pre>
 
 <h1 id="cli-reference">CLI reference</h1>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>text</span></div>
+<div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">vpp run [file.vpp]     Run via interpreter (calls main if present)
 vpp build [file] -o X  Compile native executable
 vpp check [file]       Type-check only
@@ -497,7 +544,7 @@ vpp lsp                Start language server (stdio)</code></pre>
 </tbody></table></div>
 <h2 id="examples">Examples</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">vpp run examples/hello.vpp
 vpp check examples/lesson02_functions.vpp
 vpp build examples/hello.vpp -o hello.exe
@@ -507,8 +554,12 @@ vpp doctor</code></pre>
 
 <h1 id="formatting">Formatting</h1>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp fmt path/to/file.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp fmt path/to/file.vpp
+
+
+
+</code></pre>
 </div>
 <p>Re-indents blocks and normalizes spacing. Does not change semantics.</p>
 <p>Format before committing. IDE format-on-save can call <code>vpp fmt</code> via tasks (manual setup today).</p>
@@ -522,8 +573,12 @@ vpp doctor</code></pre>
 </ul>
 <h2 id="build">Build</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">cargo build --release --features lsp --bin vppls</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">cargo build --release --features lsp --bin vppls
+
+
+
+</code></pre>
 </div>
 <p>Release bundles include <code>vppls.exe</code>.</p>
 <h2 id="vs-code">VS Code</h2>
@@ -535,9 +590,12 @@ vpp doctor</code></pre>
 <h1 id="native-compilation">Native compilation</h1>
 <p><code>vpp build</code> lowers code to LLVM IR, compiles with clang, and links the V++ C runtime.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">vpp build examples/hello.vpp -o hello.exe
-.\hello.exe</code></pre>
+.\hello.exe
+
+
+</code></pre>
 </div>
 <h2 id="requirements">Requirements</h2>
 <ul>
@@ -545,9 +603,12 @@ vpp doctor</code></pre>
 <li><strong>From source</strong> — LLVM 22 + <code>LLVM_SYS_221_PREFIX</code></li>
 </ul>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">$env:LLVM_SYS_221_PREFIX = &quot;C:\Program Files\LLVM&quot;
-cargo build --release --features codegen</code></pre>
+cargo build --release --features codegen
+
+
+</code></pre>
 </div>
 <h2 id="interpreter-vs-native">Interpreter vs native</h2>
 <div class="table-wrap"><table>
@@ -579,7 +640,7 @@ cargo build --release --features codegen</code></pre>
 <h1 id="package-manager">Package manager</h1>
 <h2 id="vpp-toml">vpp.toml</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>TOML</span></div>
+<div class="code-block-header"><span class="code-block-filename">TOML</span></div>
 <pre class="language-toml"><code class="language-toml">name = &quot;myapp&quot;
 version = &quot;0.1.0&quot;
 entry = &quot;src/main.vpp&quot;
@@ -591,7 +652,7 @@ remote = { git = &quot;https://github.com/example/lib&quot;, tag = &quot;v1.0.0&
 </div>
 <h2 id="commands">Commands</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">vpp new myapp --path myapp
 vpp add hello-lib --version 0.1.0
 vpp add helper --path ../helper
@@ -618,24 +679,33 @@ vpp remove hello-lib</code></pre>
 <h1 id="testing">Testing</h1>
 <h2 id="inline-test-blocks">Inline test blocks</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">test &quot;addition works&quot; {
     assert_eq(add(2, 3), 5)
-}</code></pre>
+}
+
+</code></pre>
 </div>
 <h2 id="project-tests">Project tests</h2>
 <p>Place files under <code>tests/</code> or use inline blocks, then:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp test</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp test
+
+
+
+</code></pre>
 </div>
 <h2 id="vs-code">VS Code</h2>
 <p>Command Palette → <strong>V++: Run Tests</strong></p>
 <h2 id="ci">CI</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">cargo test --all-targets
-cargo test --features codegen parity</code></pre>
+cargo test --features codegen parity
+
+
+</code></pre>
 </div>
 <p>See <a href="../contributing/running-tests.md">Running tests</a>.</p>
 
@@ -666,15 +736,19 @@ cargo test --features codegen parity</code></pre>
 <h2 id="native-vs-interpreter-mismatch">Native vs interpreter mismatch</h2>
 <p>Run parity check:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">.\stress.ps1</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">.\stress.ps1
+
+
+
+</code></pre>
 </div>
 <p>File issues: <a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a>.</p>
 
 <h1 id="control-flow">Control flow</h1>
 <h2 id="if-else">if / else</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">if x &gt; 0 {
     print(&quot;positive&quot;)
 } else {
@@ -683,7 +757,7 @@ cargo test --features codegen parity</code></pre>
 </div>
 <h2 id="while">while</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">let mut i = 0
 while i &lt; 3 {
     print(i)
@@ -692,25 +766,30 @@ while i &lt; 3 {
 </div>
 <h2 id="for-range">for (range)</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">for i in 0..3 {
     print(i)
-}</code></pre>
+}
+
+</code></pre>
 </div>
 <h2 id="for-array">for (array)</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">for name in [&quot;Alex&quot;, &quot;Sam&quot;] {
     print(name)
-}</code></pre>
+}
+
+</code></pre>
 </div>
 <h2 id="match">match</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">match status {
     Active =&gt; print(&quot;on&quot;),
     Idle =&gt; print(&quot;off&quot;),
-}</code></pre>
+}
+</code></pre>
 </div>
 <p>Enums, <code>Option</code>, and <code>Result</code> matches must be <strong>exhaustive</strong> or use <code>_</code> (compile error E0107).</p>
 <p>See <a href="option-result-match.md">option-result-match.md</a>.</p>
@@ -719,23 +798,25 @@ while i &lt; 3 {
 
 <h1 id="functions">Functions</h1>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn greet(name: string) -&gt; int {
     print(name)
     return 0
-}</code></pre>
+}
+</code></pre>
 </div>
 <h2 id="main">Main</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     print(&quot;starting&quot;)
     return 0
-}</code></pre>
+}
+</code></pre>
 </div>
 <h2 id="generic-functions-v0-4">Generic functions (v0.4+)</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn id[T](x: T) -&gt; T {
     return x
 }
@@ -748,7 +829,7 @@ print(id[int](42))</code></pre>
 <h1 id="generics-v0-4">Generics (v0.4+)</h1>
 <p>V++ uses <strong>monomorphization</strong> — generic functions are specialized at each call site.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn first[T](items: array[T]) -&gt; Option[T] {
     if len(items) == 0 {
         return None
@@ -758,15 +839,19 @@ print(id[int](42))</code></pre>
 </div>
 <p>Call with explicit type args:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
-<pre class="language-vpp"><code class="language-vpp">let word = first[string]([&quot;a&quot;, &quot;b&quot;])</code></pre>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
+<pre class="language-vpp"><code class="language-vpp">let word = first[string]([&quot;a&quot;, &quot;b&quot;])
+
+
+
+</code></pre>
 </div>
 <p>Example: <a href="../../examples/generics.vpp"><code>examples/generics.vpp</code></a>.</p>
 
 <h1 id="modules">Modules</h1>
 <h2 id="standard-library-imports">Standard library imports</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.io
 import std.math
 
@@ -779,46 +864,58 @@ fn main() -&gt; int {
 <h2 id="public-exports">Public exports</h2>
 <p>In a module file, mark items with <code>pub</code>:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">pub fn helper() -&gt; int {
     return 1
-}</code></pre>
+}
+
+</code></pre>
 </div>
 <h2 id="project-layout">Project layout</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>text</span></div>
+<div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">myapp/
   vpp.toml
   src/main.vpp
-  src/util.vpp</code></pre>
+  src/util.vpp
+</code></pre>
 </div>
 <p>See <a href="../guides/package-manager.md">Package manager</a> for <code>vpp.toml</code> and dependencies.</p>
 
 <h1 id="mut-and-immutability-v0-4">mut and immutability (v0.4+)</h1>
 <p>Bindings are <strong>immutable by default</strong>.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">let x = 1
-// x = 2   // error: cannot reassign immutable binding</code></pre>
+// x = 2   // error: cannot reassign immutable binding
+
+
+</code></pre>
 </div>
 <p>Use <code>mut</code> when you need to reassign:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">let mut count = 0
-count = count + 1</code></pre>
+count = count + 1
+
+
+</code></pre>
 </div>
 <p>Loop counters and accumulators typically need <code>mut</code>.</p>
 
 <h1 id="option-result-and-match">Option, Result, and match</h1>
 <h2 id="option">Option</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">let some = Some(42)
-let none: Option[int] = None</code></pre>
+let none: Option[int] = None
+
+
+</code></pre>
 </div>
 <h2 id="result">Result</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn divide(a: int, b: int) -&gt; Result[int, string] {
     if b == 0 {
         return Err(&quot;division by zero&quot;)
@@ -829,11 +926,12 @@ let none: Option[int] = None</code></pre>
 <h2 id="exhaustive-match">Exhaustive match</h2>
 <p>The compiler rejects non-exhaustive matches on enums, <code>Option</code>, and <code>Result</code>:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">match opt {
     Some(x) =&gt; print(x),
     None =&gt; print(&quot;empty&quot;),
-}</code></pre>
+}
+</code></pre>
 </div>
 <p>Missing <code>None</code> → <strong>E0107</strong>.</p>
 <p>Use <code>_</code> for a catch-all when appropriate.</p>
@@ -895,7 +993,7 @@ let none: Option[int] = None</code></pre>
 <h1 id="structs-and-enums">Structs and enums</h1>
 <h2 id="struct">Struct</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">struct User {
     name: string,
     age: int,
@@ -906,7 +1004,7 @@ print(u.name)</code></pre>
 </div>
 <h2 id="enum">Enum</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">enum Status {
     Active,
     Idle,
@@ -920,18 +1018,19 @@ match s {
 </div>
 <h2 id="enum-with-payloads">Enum with payloads</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">enum Message {
     Text(string),
     Count(int),
-}</code></pre>
+}
+</code></pre>
 </div>
 <p>All variants must be handled in <code>match</code> or use <code>_</code>.</p>
 
 <h1 id="traits-and-impls-v0-4">Traits and impls (v0.4+)</h1>
 <p>Static dispatch — no virtual tables at runtime.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">trait Display {
     fn to_text(self) -&gt; string
 }
@@ -989,31 +1088,40 @@ print(u.to_text())</code></pre>
 </tbody></table></div>
 <h2 id="local-inference">Local inference</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">let x = 10        // int
 let name = &quot;v++&quot;  // string
-let active = true // bool</code></pre>
+let active = true // bool
+
+</code></pre>
 </div>
 <h2 id="explicit-annotations">Explicit annotations</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">let count: int = 0
-let items: array[string] = [&quot;a&quot;, &quot;b&quot;]</code></pre>
+let items: array[string] = [&quot;a&quot;, &quot;b&quot;]
+
+
+</code></pre>
 </div>
 <h2 id="function-signatures">Function signatures</h2>
 <p>Parameters and return types are <strong>always explicit</strong>:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn add(a: int, b: int) -&gt; int {
     return a + b
-}</code></pre>
+}
+
+</code></pre>
 </div>
 <h2 id="entry-point">Entry point</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     return 0
-}</code></pre>
+}
+
+</code></pre>
 </div>
 <p><code>vpp run</code> calls <code>main()</code> when defined.</p>
 
@@ -1159,15 +1267,19 @@ let items: array[string] = [&quot;a&quot;, &quot;b&quot;]</code></pre>
 <h1 id="std-collections">std.collections</h1>
 <p>Collection helpers. See <a href="../../std/collections.vpp"><code>std/collections.vpp</code></a>.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
-<pre class="language-vpp"><code class="language-vpp">import std.collections</code></pre>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
+<pre class="language-vpp"><code class="language-vpp">import std.collections
+
+
+
+</code></pre>
 </div>
 <p>Arrays are first-class: <code>[1, 2, 3]</code>, <code>len(arr)</code>, <code>for x in arr</code>.</p>
 
 <h1 id="std-fs">std.fs</h1>
 <p>File system access (native codegen supported).</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.fs
 
 let text = fs.read_file(&quot;data.txt&quot;)
@@ -1178,7 +1290,7 @@ let exists = fs.file_exists(&quot;data.txt&quot;)</code></pre>
 
 <h1 id="std-io">std.io</h1>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.io
 
 fn main() -&gt; int {
@@ -1191,17 +1303,18 @@ fn main() -&gt; int {
 <h1 id="std-json">std.json</h1>
 <p>JSON parse and stringify (native codegen supported).</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.json
 
 let obj = json.parse(&quot;{\&quot;name\&quot;:\&quot;v++\&quot;}&quot;)
-let s = json.stringify(obj)</code></pre>
+let s = json.stringify(obj)
+</code></pre>
 </div>
 <p>For production JSON workloads, validate outputs against your schema in tests.</p>
 
 <h1 id="std-math">std.math</h1>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.math
 
 print(math.abs(-5))
@@ -1213,10 +1326,12 @@ print(math.pow(2, 10))</code></pre>
 <h1 id="std-process">std.process</h1>
 <p>Run external processes (native codegen supported).</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.process
 
-let code = process.run(&quot;echo hello&quot;)</code></pre>
+let code = process.run(&quot;echo hello&quot;)
+
+</code></pre>
 </div>
 <p>Use with care — sandbox and validate commands in user-facing apps.</p>
 
@@ -1261,8 +1376,12 @@ let code = process.run(&quot;echo hello&quot;)</code></pre>
 <h1 id="std-string">std.string</h1>
 <p>String operations via the stdlib module. See <a href="../../std/string.vpp"><code>std/string.vpp</code></a> for current exports.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
-<pre class="language-vpp"><code class="language-vpp">import std.string</code></pre>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
+<pre class="language-vpp"><code class="language-vpp">import std.string
+
+
+
+</code></pre>
 </div>
 <p>Built-in <code>string</code> type supports concatenation with <code>+</code> in the language.</p>
 
@@ -1276,8 +1395,12 @@ let code = process.run(&quot;echo hello&quot;)</code></pre>
 <p>2. <strong>Install</strong> <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">V++ Language</a> in VS Code (publisher: <strong>vpp-lang</strong>)</p>
 <p>3. <strong>Run:</strong></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run examples\hello.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run examples\hello.vpp
+
+
+
+</code></pre>
 </div>
 <p>Full guide: <strong><a href="docs/getting-started/hello-world.md">docs/getting-started/hello-world.md</a></strong></p>
 <hr>
@@ -1362,11 +1485,12 @@ let code = process.run(&quot;echo hello&quot;)</code></pre>
 <hr>
 <h2 id="for-developers">For developers</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">git clone https://github.com/shauryaR790/V-.git
 cd V-
 cargo build --release --features codegen,lsp
-cargo test --all-targets</code></pre>
+cargo test --all-targets
+</code></pre>
 </div>
 <p>See <a href="docs/contributing/building-from-source.md">Building from source</a>.</p>
 <hr>
@@ -1432,14 +1556,16 @@ cargo test --all-targets</code></pre>
 </tbody></table></div>
 <h2 id="variables">Variables</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>text</span></div>
+<div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">let x = 10              // immutable int
 let mut total = 0       // mutable; required for reassignment
-total = total + 1</code></pre>
+total = total + 1
+
+</code></pre>
 </div>
 <h2 id="functions">Functions</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>text</span></div>
+<div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">fn add(a: int, b: int) -&gt; int {
     return a + b
 }
@@ -1457,7 +1583,7 @@ fn main() -&gt; int {
 <p>When present, <code>fn main() -&gt; int</code> is the program entry point (interpreter and native both invoke it).</p>
 <h2 id="traits">Traits</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>text</span></div>
+<div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">trait Display {
     fn to_text(self) -&gt; string
 }
@@ -1475,7 +1601,7 @@ print(user.to_text())</code></pre>
 <p><code>if</code> / <code>else</code>, <code>while</code>, <code>for i in start..end</code> (half-open), <code>for item in arr</code>, <code>break</code>, <code>continue</code>, <code>match</code>.</p>
 <p>Match arms use blocks:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>text</span></div>
+<div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">match status {
     Active =&gt; {
         print(&quot;active&quot;)
@@ -1531,10 +1657,12 @@ print(user.to_text())</code></pre>
 </tbody></table></div>
 <h2 id="modules-v0-3">Modules (v0.3)</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>text</span></div>
+<div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">import std.io
 import std.fs
-import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
+import &quot;legacy/path.vpp&quot;   // still supported
+
+</code></pre>
 </div>
 <ul>
 <li>Canonical paths: <code>import std.io</code> → <code>std/io.vpp</code></li>
@@ -1569,7 +1697,7 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 </ul>
 <p>Both backends consume the same <strong>typed AST</strong> produced by the type checker.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>text</span></div>
+<div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">.vpp source
     │
     ▼
@@ -1962,7 +2090,7 @@ import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
 
 <h3 id="std-assert-vpp"><code>std/assert.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">// Re-exports assert helpers (implemented as compiler builtins).
 // Import this module to use assert / assert_eq in tests.
 
@@ -1977,7 +2105,7 @@ fn assert_true(condition: bool) -&gt; int {
 
 <h3 id="std-collections-vpp"><code>std/collections.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">pub fn make_int_array(values: array[int]) -&gt; array[int] {
     return values
 }
@@ -2009,7 +2137,7 @@ pub fn sum(arr: array[int]) -&gt; int {
 
 <h3 id="std-fs-vpp"><code>std/fs.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">// File I/O via compiler/runtime builtins (read_file, write_file, file_exists).
 
 pub fn read(path: string) -&gt; string {
@@ -2029,7 +2157,7 @@ pub fn exists(path: string) -&gt; bool {
 
 <h3 id="std-io-vpp"><code>std/io.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">pub fn greet(name: string) -&gt; int {
     print(&quot;Hello, &quot; + name + &quot;!&quot;)
     return 0
@@ -2049,7 +2177,7 @@ pub fn print_int(n: int) -&gt; int {
 
 <h3 id="std-json-vpp"><code>std/json.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">// Minimal JSON helpers via runtime builtins.
 
 pub fn parse(raw: string) -&gt; string {
@@ -2064,7 +2192,7 @@ pub fn stringify(raw: string) -&gt; string {
 
 <h3 id="std-math-vpp"><code>std/math.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">pub fn add(a: int, b: int) -&gt; int {
     return a + b
 }
@@ -2114,7 +2242,7 @@ pub fn clamp(n: int, lo: int, hi: int) -&gt; int {
 
 <h3 id="std-process-vpp"><code>std/process.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">// Process helpers via runtime builtins.
 
 pub fn run(cmd: string) -&gt; int {
@@ -2129,7 +2257,7 @@ pub fn exit_code(cmd: string) -&gt; int {
 
 <h3 id="std-string-vpp"><code>std/string.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">pub fn upper(s: string) -&gt; string {
     return s
 }
@@ -2156,7 +2284,7 @@ pub fn is_empty(s: string) -&gt; bool {
 
 <h3 id="examples-arrays-vpp"><code>examples/arrays.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">let users = [&quot;Alex&quot;, &quot;Sam&quot;, &quot;John&quot;]
 
 for user in users {
@@ -2181,7 +2309,7 @@ for i in 0..3 {
 
 <h3 id="examples-arrays-fn-vpp"><code>examples/arrays_fn.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn sum_nums(nums: array[int]) -&gt; int {
     let mut total = 0
     for n in nums {
@@ -2205,7 +2333,7 @@ print(first(words))
 
 <h3 id="examples-fib-vpp"><code>examples/fib.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn fib(n: int) -&gt; int {
     if n &lt;= 1 {
         return n
@@ -2220,7 +2348,7 @@ print(result)
 
 <h3 id="examples-generics-vpp"><code>examples/generics.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn id[T](x: T) -&gt; T {
     return x
 }
@@ -2242,7 +2370,7 @@ fn main() -&gt; int {
 
 <h3 id="examples-hello-vpp"><code>examples/hello.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.fs
 import std.json
 import std.process
@@ -2330,7 +2458,7 @@ fn main() -&gt; int {
 
 <h3 id="examples-lesson01-basics-vpp"><code>examples/lesson01_basics.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">// Lesson 1: Variables, math, and printing
 
 let x = 10
@@ -2347,7 +2475,7 @@ print(&quot;Hello, &quot; + name + &quot;!&quot;)
 
 <h3 id="examples-lesson02-functions-vpp"><code>examples/lesson02_functions.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">// Lesson 2: Functions and conditionals
 
 import &quot;std/math.vpp&quot;
@@ -2375,7 +2503,7 @@ main()
 
 <h3 id="examples-lesson03-loops-vpp"><code>examples/lesson03_loops.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">// Lesson 3: Loops, arrays, and break/continue
 
 let mut total = 0
@@ -2399,7 +2527,7 @@ for item in nums {
 
 <h3 id="examples-match-test-vpp"><code>examples/match_test.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn ok_val() -&gt; Result&lt;int, string&gt; {
     return Ok(42)
 }
@@ -2418,7 +2546,7 @@ match r {
 
 <h3 id="examples-math-vpp"><code>examples/math.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">pub fn add(a: int, b: int) -&gt; int {
     return a + b
 }
@@ -2431,7 +2559,7 @@ pub fn mul(a: int, b: int) -&gt; int {
 
 <h3 id="examples-modules-main-vpp"><code>examples/modules_main.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import &quot;math.vpp&quot;
 
 let x = add(2, 3)
@@ -2442,7 +2570,7 @@ print(y)
 
 <h3 id="examples-option-result-vpp"><code>examples/option_result.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn divide(a: int, b: int) -&gt; Result&lt;int, string&gt; {
     if b == 0 {
         return Err(&quot;division by zero&quot;)
@@ -2481,7 +2609,7 @@ match m {
 
 <h3 id="examples-scope-shadow-vpp"><code>examples/scope_shadow.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">// Scope shadowing: inner block must not leak bindings.
 let x = 10
 if true {
@@ -2494,7 +2622,7 @@ print(x)
 
 <h3 id="examples-std-builtins-vpp"><code>examples/std_builtins.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.fs
 import std.json
 
@@ -2513,7 +2641,7 @@ fn main() -&gt; int {
 
 <h3 id="examples-structs-vpp"><code>examples/structs.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">struct Person {
     name: string
     age: int
@@ -2533,7 +2661,7 @@ print(greet(alex))
 
 <h3 id="examples-traits-vpp"><code>examples/traits.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">enum Status {
     Active
     Inactive
@@ -2702,13 +2830,17 @@ fn main() -&gt; int {
 <h1 id="01-hello-world">01 — Hello World</h1>
 <p>Your first V++ program.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/01-hello-world/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/01-hello-world/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn main</code>, <code>print</code>, return code</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     print(&quot;Hello, v++!&quot;)
     return 0
@@ -2719,13 +2851,17 @@ fn main() -&gt; int {
 <h1 id="02-variables-math">02 — Variables &amp; Math</h1>
 <p>Variables, arithmetic, and string concatenation.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/02-variables/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/02-variables/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>let</code>, type inference, <code>+</code> on int and string</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let x = 10
     let y = 3
@@ -2743,13 +2879,17 @@ fn main() -&gt; int {
 <h1 id="03-functions">03 — Functions</h1>
 <p>Define functions with typed parameters and return values.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/03-functions/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/03-functions/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn</code>, <code>return</code>, function signatures</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn add(a: int, b: int) -&gt; int {
     return a + b
 }
@@ -2769,13 +2909,17 @@ fn main() -&gt; int {
 <h1 id="04-loops">04 — Loops</h1>
 <p><code>while</code>, range loops, and <code>for</code> over arrays. Uses <code>let mut</code> for counters.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/04-loops/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/04-loops/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>while</code>, <code>for</code>, <code>0..n</code>, <code>let mut</code></p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let mut i = 0
     while i &lt; 5 {
@@ -2799,13 +2943,17 @@ fn main() -&gt; int {
 <h1 id="05-arrays">05 — Arrays</h1>
 <p>Work with <code>array[int]</code>, iteration, and <code>std.collections.sum</code>.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/05-arrays/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/05-arrays/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> arrays, indexing, <code>import std.collections</code></p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn sum(nums: array[int]) -&gt; int {
     let mut total = 0
     for n in nums {
@@ -2836,13 +2984,17 @@ fn main() -&gt; int {
 <h1 id="06-structs">06 — Structs</h1>
 <p>Custom product types with named fields.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/06-structs/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/06-structs/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>struct</code>, field access, passing structs to functions</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">struct Point {
     x: int
     y: int
@@ -2872,13 +3024,17 @@ fn main() -&gt; int {
 <h1 id="07-enums">07 — Enums</h1>
 <p>Sum types with named variants and pattern matching.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/07-enums/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/07-enums/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>enum</code>, variants, <code>match</code></p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">enum TrafficLight {
     Red
     Yellow
@@ -2916,13 +3072,17 @@ fn main() -&gt; int {
 <h1 id="08-option-result">08 — Option &amp; Result</h1>
 <p>Safe error handling without exceptions.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/08-option-result/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/08-option-result/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>Option</code>, <code>Result</code>, <code>Some</code>/<code>None</code>, <code>Ok</code>/<code>Err</code></p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {
     if b == 0 {
         return Err(&quot;division by zero&quot;)
@@ -2970,13 +3130,17 @@ fn main() -&gt; int {
 <h1 id="09-pattern-matching">09 — Pattern Matching</h1>
 <p>Exhaustive <code>match</code> on enums — compiler checks all variants are covered.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/09-match/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/09-match/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> exhaustive match, enum patterns</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">enum Day {
     Mon
     Tue
@@ -3030,13 +3194,17 @@ fn main() -&gt; int {
 <h1 id="10-fizzbuzz">10 — FizzBuzz</h1>
 <p>Classic loop exercise — divisibility and conditionals.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/10-fizzbuzz/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/10-fizzbuzz/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>%</code>, <code>while</code>, functions</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn fizzbuzz(n: int) -&gt; string {
     if n % 15 == 0 {
         return &quot;FizzBuzz&quot;
@@ -3069,13 +3237,17 @@ fn main() -&gt; int {
 <h1 id="11-fibonacci">11 — Fibonacci</h1>
 <p>Recursive functions — classic algorithm interview question.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/11-fibonacci/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/11-fibonacci/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> recursion, base case</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn fib(n: int) -&gt; int {
     if n &lt;= 1 {
         return n
@@ -3096,13 +3268,17 @@ fn main() -&gt; int {
 <h1 id="12-generics">12 — Generics</h1>
 <p>Type-parameterized functions with monomorphization.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/12-generics/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/12-generics/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn name[T]</code>, explicit type args <code>id<a href="42">int</a></code></p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn id[T](x: T) -&gt; T {
     return x
 }
@@ -3125,13 +3301,17 @@ fn main() -&gt; int {
 <h1 id="13-traits">13 — Traits</h1>
 <p>Interfaces with static dispatch — <code>trait</code>, <code>impl</code>, method calls.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/13-traits/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/13-traits/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> traits, impl blocks, <code>self.area()</code></p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">struct Circle {
     radius: int
 }
@@ -3169,14 +3349,17 @@ fn main() -&gt; int {
 <h1 id="14-modules">14 — Modules</h1>
 <p>Split code across files with <code>import</code> and <code>pub fn</code>.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">cd projects/14-modules
-vpp run main.vpp</code></pre>
+vpp run main.vpp
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> local imports, <code>pub</code> exports</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import &quot;math.vpp&quot;
 
 fn main() -&gt; int {
@@ -3192,13 +3375,17 @@ fn main() -&gt; int {
 <h1 id="15-calculator">15 — Calculator</h1>
 <p>Enum-driven operations with <code>Result</code> for errors.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/15-calculator/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/15-calculator/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> enum + match, <code>Result</code></p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">enum Op {
     Add
     Sub
@@ -3249,13 +3436,17 @@ fn main() -&gt; int {
 <h1 id="16-word-counter">16 — Word Counter</h1>
 <p>Analyze an array of words — count, total characters, longest word.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/16-word-counter/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/16-word-counter/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>array[string]</code>, <code>len</code>, loops</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn total_chars(words: array[string]) -&gt; int {
     let mut total = 0
     for w in words {
@@ -3287,13 +3478,17 @@ fn main() -&gt; int {
 <h1 id="17-guessing-game">17 — Guessing Game</h1>
 <p>Binary-search style hints — too low, too high, correct.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/17-guessing-game/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/17-guessing-game/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> conditionals, arrays of guesses, game logic</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn hint(guess: int, secret: int) -&gt; string {
     if guess &lt; secret {
         return &quot;too low&quot;
@@ -3329,13 +3524,17 @@ fn main() -&gt; int {
 <h1 id="18-todo-list">18 — Todo List</h1>
 <p>Track tasks with structs and bool flags.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/18-todo-list/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/18-todo-list/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> struct, bool, conditional printing</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">struct Todo {
     title: string
     done: bool
@@ -3372,13 +3571,17 @@ fn main() -&gt; int {
 <h1 id="19-file-notes">19 — File Notes</h1>
 <p>Read and write files with <code>std.fs</code>.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/19-file-notes/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/19-file-notes/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fs.write</code>, <code>fs.read</code>, <code>fs.exists</code></p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.fs
 
 fn main() -&gt; int {
@@ -3398,13 +3601,17 @@ fn main() -&gt; int {
 <h1 id="20-json-config">20 — JSON Config</h1>
 <p>Parse JSON with <code>std.json</code> and model app configuration with structs.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/20-json-config/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/20-json-config/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>std.json</code>, struct config, <code>vpp.toml</code> project layout</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.json
 
 struct AppConfig {
@@ -3436,7 +3643,7 @@ fn main() -&gt; int {
 
 <h3 id="projects-20-json-config-vpp-toml"><code>projects/20-json-config/vpp.toml</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>TOML</span></div>
+<div class="code-block-header"><span class="code-block-filename">TOML</span></div>
 <pre class="language-toml"><code class="language-toml">name = &quot;json-config-demo&quot;
 version = &quot;0.1.0&quot;
 entry = &quot;main.vpp&quot;
@@ -3447,7 +3654,7 @@ entry = &quot;main.vpp&quot;
 
 <h3 id="stress-vpp"><code>stress.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.fs
 import std.json
 import std.process
@@ -3542,8 +3749,12 @@ fn main() -&gt; int {
 <p><strong>Step 2.</strong> Install <strong>V++ Language</strong> from the Marketplace (publisher: <strong>vpp-lang</strong>).</p>
 <p><strong>Step 3.</strong> Open a folder with <code>.vpp</code> files, open a file, press <strong>F5</strong> to run.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run examples\hello.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run examples\hello.vpp
+
+
+
+</code></pre>
 </div>
 <p>Full docs: <a href="https://github.com/shauryaR790/V-/tree/main/docs">github.com/shauryaR790/V-/tree/main/docs</a></p>
 <hr>
@@ -3705,7 +3916,7 @@ fn main() -&gt; int {
 
 <h3 id="registry-index-toml"><code>registry/index.toml</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>TOML</span></div>
+<div class="code-block-header"><span class="code-block-filename">TOML</span></div>
 <pre class="language-toml"><code class="language-toml"># v++ central package registry (v0.3)
 # Packages listed here resolve bare semver deps: helper = &quot;0.1.0&quot;
 
@@ -3718,25 +3929,27 @@ path = &quot;fixtures/hello-lib&quot;
 
 <h3 id="registry-fixtures-hello-lib-src-lib-vpp"><code>registry/fixtures/hello-lib/src/lib.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">pub fn greet(name: string) -&gt; string {
     return &quot;hello, &quot; + name
 }
+
 </code></pre>
 </div>
 
 <h3 id="registry-fixtures-hello-lib-vpp-toml"><code>registry/fixtures/hello-lib/vpp.toml</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>TOML</span></div>
+<div class="code-block-header"><span class="code-block-filename">TOML</span></div>
 <pre class="language-toml"><code class="language-toml">name = &quot;hello-lib&quot;
 version = &quot;0.1.0&quot;
 entry = &quot;src/lib.vpp&quot;
+
 </code></pre>
 </div>
 
 <h3 id="staging-std-assert-vpp"><code>staging/std/assert.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">// Re-exports assert helpers (implemented as compiler builtins).
 // Import this module to use assert / assert_eq in tests.
 
@@ -3751,7 +3964,7 @@ fn assert_true(condition: bool) -&gt; int {
 
 <h3 id="staging-std-collections-vpp"><code>staging/std/collections.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">pub fn make_int_array(values: array[int]) -&gt; array[int] {
     return values
 }
@@ -3783,7 +3996,7 @@ pub fn sum(arr: array[int]) -&gt; int {
 
 <h3 id="staging-std-fs-vpp"><code>staging/std/fs.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">// File I/O via compiler/runtime builtins (read_file, write_file, file_exists).
 
 pub fn read(path: string) -&gt; string {
@@ -3803,7 +4016,7 @@ pub fn exists(path: string) -&gt; bool {
 
 <h3 id="staging-std-io-vpp"><code>staging/std/io.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">pub fn greet(name: string) -&gt; int {
     print(&quot;Hello, &quot; + name + &quot;!&quot;)
     return 0
@@ -3823,7 +4036,7 @@ pub fn print_int(n: int) -&gt; int {
 
 <h3 id="staging-std-json-vpp"><code>staging/std/json.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">// Minimal JSON helpers via runtime builtins.
 
 pub fn parse(raw: string) -&gt; string {
@@ -3838,7 +4051,7 @@ pub fn stringify(raw: string) -&gt; string {
 
 <h3 id="staging-std-math-vpp"><code>staging/std/math.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">pub fn add(a: int, b: int) -&gt; int {
     return a + b
 }
@@ -3888,7 +4101,7 @@ pub fn clamp(n: int, lo: int, hi: int) -&gt; int {
 
 <h3 id="staging-std-process-vpp"><code>staging/std/process.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">// Process helpers via runtime builtins.
 
 pub fn run(cmd: string) -&gt; int {
@@ -3903,7 +4116,7 @@ pub fn exit_code(cmd: string) -&gt; int {
 
 <h3 id="staging-std-string-vpp"><code>staging/std/string.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">pub fn upper(s: string) -&gt; string {
     return s
 }
@@ -3930,7 +4143,7 @@ pub fn is_empty(s: string) -&gt; bool {
 
 <h3 id="staging-examples-hello-vpp"><code>staging/examples/hello.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.fs
 import std.json
 import std.process
@@ -4018,7 +4231,7 @@ fn main() -&gt; int {
 
 <h3 id="tests-fixtures-module-bad-vpp"><code>tests/fixtures/module_bad.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.math
 
 fn main() -&gt; int {
@@ -4029,7 +4242,7 @@ fn main() -&gt; int {
 
 <h3 id="tests-fixtures-module-math-vpp"><code>tests/fixtures/module_math.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.math
 
 fn main() -&gt; int {
@@ -4041,7 +4254,7 @@ fn main() -&gt; int {
 
 <h3 id="tests-fixtures-smoke-vpp"><code>tests/fixtures/smoke.vpp</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import &quot;std/math.vpp&quot;
 
 test &quot;addition&quot; {
@@ -4056,7 +4269,7 @@ test &quot;power&quot; {
 
 <h3 id="tests-arrays-rs"><code>tests/arrays.rs</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>rust</span></div>
+<div class="code-block-header"><span class="code-block-filename">rust</span></div>
 <pre class="language-rust"><code class="language-rust">use std::path::PathBuf;
 
 use vpp::check_path;
@@ -4090,7 +4303,7 @@ fn array_type_maps_to_heap_ir_type() {
 
 <h3 id="tests-end-to-end-rs"><code>tests/end_to_end.rs</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>rust</span></div>
+<div class="code-block-header"><span class="code-block-filename">rust</span></div>
 <pre class="language-rust"><code class="language-rust">#[cfg(feature = &quot;codegen&quot;)]
 mod native {
     use std::path::PathBuf;
@@ -4158,7 +4371,7 @@ mod native {
 
 <h3 id="tests-lexer-rs"><code>tests/lexer.rs</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>rust</span></div>
+<div class="code-block-header"><span class="code-block-filename">rust</span></div>
 <pre class="language-rust"><code class="language-rust">use vpp::lexer::Lexer;
 use vpp::lexer::TokenKind;
 
@@ -4185,7 +4398,7 @@ fn lexes_operators() {
 
 <h3 id="tests-modules-rs"><code>tests/modules.rs</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>rust</span></div>
+<div class="code-block-header"><span class="code-block-filename">rust</span></div>
 <pre class="language-rust"><code class="language-rust">//! Module system integration tests.
 
 use std::path::PathBuf;
@@ -4222,7 +4435,7 @@ fn rejects_unqualified_module_function() {
 
 <h3 id="tests-parity-rs"><code>tests/parity.rs</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>rust</span></div>
+<div class="code-block-header"><span class="code-block-filename">rust</span></div>
 <pre class="language-rust"><code class="language-rust">//! Interpreter vs native output parity tests.
 //! Run: cargo test --features codegen parity -- --nocapture
 
@@ -4359,7 +4572,7 @@ fn traits_parity() {
 
 <h3 id="tests-parser-rs"><code>tests/parser.rs</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>rust</span></div>
+<div class="code-block-header"><span class="code-block-filename">rust</span></div>
 <pre class="language-rust"><code class="language-rust">use vpp::parse;
 
 #[test]
@@ -4396,7 +4609,7 @@ fn parses_array_literal() {
 
 <h3 id="tests-pkg-rs"><code>tests/pkg.rs</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>rust</span></div>
+<div class="code-block-header"><span class="code-block-filename">rust</span></div>
 <pre class="language-rust"><code class="language-rust">//! Package manager tests.
 
 use std::fs;
@@ -4476,7 +4689,7 @@ fn registry_version_dependency() {
 
 <h3 id="tests-stdlib-rs"><code>tests/stdlib.rs</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>rust</span></div>
+<div class="code-block-header"><span class="code-block-filename">rust</span></div>
 <pre class="language-rust"><code class="language-rust">//! Stdlib fs/json/process parity and registry tests.
 
 #![cfg(feature = &quot;codegen&quot;)]
@@ -4604,7 +4817,7 @@ fn registry_resolves_hello_lib() {
 
 <h3 id="tests-test-runner-rs"><code>tests/test_runner.rs</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>rust</span></div>
+<div class="code-block-header"><span class="code-block-filename">rust</span></div>
 <pre class="language-rust"><code class="language-rust">use std::path::PathBuf;
 
 #[test]
@@ -4641,7 +4854,7 @@ fn init_scaffold_typechecks() {
 
 <h3 id="tests-typecheck-rs"><code>tests/typecheck.rs</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>rust</span></div>
+<div class="code-block-header"><span class="code-block-filename">rust</span></div>
 <pre class="language-rust"><code class="language-rust">use vpp::check;
 use vpp::VppError;
 
@@ -4740,7 +4953,7 @@ fn accepts_trait_impl() {
 
 <h3 id="cargo-toml"><code>Cargo.toml</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>TOML</span></div>
+<div class="code-block-header"><span class="code-block-filename">TOML</span></div>
 <pre class="language-toml"><code class="language-toml">[package]
 name = &quot;vpp&quot;
 version = &quot;0.5.0&quot;
@@ -4808,7 +5021,7 @@ insta = { version = &quot;1&quot;, features = [&quot;glob&quot;] }
 
 <h3 id="build-rs"><code>build.rs</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>rust</span></div>
+<div class="code-block-header"><span class="code-block-filename">rust</span></div>
 <pre class="language-rust"><code class="language-rust">fn main() {
     if !cfg!(feature = &quot;codegen&quot;) {
         return;
@@ -4862,7 +5075,7 @@ insta = { version = &quot;1&quot;, features = [&quot;glob&quot;] }
 
 <h3 id="src-lib-rs"><code>src/lib.rs</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>rust</span></div>
+<div class="code-block-header"><span class="code-block-filename">rust</span></div>
 <pre class="language-rust"><code class="language-rust">pub mod ast;
 pub mod builtins;
 pub mod codegen;
@@ -4910,7 +5123,7 @@ pub use error::{VppError, VppResult};
 
 <h3 id="src-driver-rs"><code>src/driver.rs</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>rust</span></div>
+<div class="code-block-header"><span class="code-block-filename">rust</span></div>
 <pre class="language-rust"><code class="language-rust">use std::path::{Path, PathBuf};
 
 use crate::error::{VppError, VppResult};
@@ -5132,7 +5345,7 @@ pub use crate::project::init_project;
 
 <h3 id="src-error-rs"><code>src/error.rs</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>rust</span></div>
+<div class="code-block-header"><span class="code-block-filename">rust</span></div>
 <pre class="language-rust"><code class="language-rust">use miette::{Diagnostic, SourceSpan};
 use thiserror::Error;
 
@@ -5376,7 +5589,7 @@ pub fn type_mismatch(
 
 <h3 id="src-bin-vppls-rs"><code>src/bin/vppls.rs</code></h3>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>rust</span></div>
+<div class="code-block-header"><span class="code-block-filename">rust</span></div>
 <pre class="language-rust"><code class="language-rust">#[cfg(feature = &quot;lsp&quot;)]
 #[tokio::main]
 async fn main() {

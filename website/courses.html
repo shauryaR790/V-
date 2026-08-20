@@ -217,13 +217,17 @@
 <h1 id="01-hello-world">01 — Hello World</h1>
 <p>Your first V++ program.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/01-hello-world/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/01-hello-world/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn main</code>, <code>print</code>, return code</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     print(&quot;Hello, v++!&quot;)
     return 0
@@ -234,13 +238,17 @@
 <h1 id="02-variables-math">02 — Variables &amp; Math</h1>
 <p>Variables, arithmetic, and string concatenation.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/02-variables/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/02-variables/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>let</code>, type inference, <code>+</code> on int and string</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let x = 10
     let y = 3
@@ -258,13 +266,17 @@
 <h1 id="03-functions">03 — Functions</h1>
 <p>Define functions with typed parameters and return values.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/03-functions/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/03-functions/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn</code>, <code>return</code>, function signatures</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn add(a: int, b: int) -&gt; int {
     return a + b
 }
@@ -284,13 +296,17 @@ fn main() -&gt; int {
 <h1 id="04-loops">04 — Loops</h1>
 <p><code>while</code>, range loops, and <code>for</code> over arrays. Uses <code>let mut</code> for counters.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/04-loops/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/04-loops/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>while</code>, <code>for</code>, <code>0..n</code>, <code>let mut</code></p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let mut i = 0
     while i &lt; 5 {
@@ -314,13 +330,17 @@ fn main() -&gt; int {
 <h1 id="05-arrays">05 — Arrays</h1>
 <p>Work with <code>array[int]</code>, iteration, and <code>std.collections.sum</code>.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/05-arrays/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/05-arrays/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> arrays, indexing, <code>import std.collections</code></p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn sum(nums: array[int]) -&gt; int {
     let mut total = 0
     for n in nums {
@@ -351,13 +371,17 @@ fn main() -&gt; int {
 <h1 id="06-structs">06 — Structs</h1>
 <p>Custom product types with named fields.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/06-structs/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/06-structs/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>struct</code>, field access, passing structs to functions</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">struct Point {
     x: int
     y: int
@@ -387,13 +411,17 @@ fn main() -&gt; int {
 <h1 id="07-enums">07 — Enums</h1>
 <p>Sum types with named variants and pattern matching.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/07-enums/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/07-enums/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>enum</code>, variants, <code>match</code></p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">enum TrafficLight {
     Red
     Yellow
@@ -431,13 +459,17 @@ fn main() -&gt; int {
 <h1 id="08-option-result">08 — Option &amp; Result</h1>
 <p>Safe error handling without exceptions.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/08-option-result/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/08-option-result/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>Option</code>, <code>Result</code>, <code>Some</code>/<code>None</code>, <code>Ok</code>/<code>Err</code></p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {
     if b == 0 {
         return Err(&quot;division by zero&quot;)
@@ -485,13 +517,17 @@ fn main() -&gt; int {
 <h1 id="09-pattern-matching">09 — Pattern Matching</h1>
 <p>Exhaustive <code>match</code> on enums — compiler checks all variants are covered.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/09-match/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/09-match/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> exhaustive match, enum patterns</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">enum Day {
     Mon
     Tue
@@ -545,13 +581,17 @@ fn main() -&gt; int {
 <h1 id="10-fizzbuzz">10 — FizzBuzz</h1>
 <p>Classic loop exercise — divisibility and conditionals.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/10-fizzbuzz/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/10-fizzbuzz/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>%</code>, <code>while</code>, functions</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn fizzbuzz(n: int) -&gt; string {
     if n % 15 == 0 {
         return &quot;FizzBuzz&quot;
@@ -584,13 +624,17 @@ fn main() -&gt; int {
 <h1 id="11-fibonacci">11 — Fibonacci</h1>
 <p>Recursive functions — classic algorithm interview question.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/11-fibonacci/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/11-fibonacci/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> recursion, base case</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn fib(n: int) -&gt; int {
     if n &lt;= 1 {
         return n
@@ -611,13 +655,17 @@ fn main() -&gt; int {
 <h1 id="12-generics">12 — Generics</h1>
 <p>Type-parameterized functions with monomorphization.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/12-generics/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/12-generics/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fn name[T]</code>, explicit type args <code>id<a href="42">int</a></code></p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn id[T](x: T) -&gt; T {
     return x
 }
@@ -640,13 +688,17 @@ fn main() -&gt; int {
 <h1 id="13-traits">13 — Traits</h1>
 <p>Interfaces with static dispatch — <code>trait</code>, <code>impl</code>, method calls.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/13-traits/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/13-traits/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> traits, impl blocks, <code>self.area()</code></p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">struct Circle {
     radius: int
 }
@@ -684,14 +736,17 @@ fn main() -&gt; int {
 <h1 id="14-modules">14 — Modules</h1>
 <p>Split code across files with <code>import</code> and <code>pub fn</code>.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">cd projects/14-modules
-vpp run main.vpp</code></pre>
+vpp run main.vpp
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> local imports, <code>pub</code> exports</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import &quot;math.vpp&quot;
 
 fn main() -&gt; int {
@@ -707,13 +762,17 @@ fn main() -&gt; int {
 <h1 id="15-calculator">15 — Calculator</h1>
 <p>Enum-driven operations with <code>Result</code> for errors.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/15-calculator/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/15-calculator/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> enum + match, <code>Result</code></p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">enum Op {
     Add
     Sub
@@ -764,13 +823,17 @@ fn main() -&gt; int {
 <h1 id="16-word-counter">16 — Word Counter</h1>
 <p>Analyze an array of words — count, total characters, longest word.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/16-word-counter/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/16-word-counter/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>array[string]</code>, <code>len</code>, loops</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn total_chars(words: array[string]) -&gt; int {
     let mut total = 0
     for w in words {
@@ -802,13 +865,17 @@ fn main() -&gt; int {
 <h1 id="17-guessing-game">17 — Guessing Game</h1>
 <p>Binary-search style hints — too low, too high, correct.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/17-guessing-game/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/17-guessing-game/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> conditionals, arrays of guesses, game logic</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">fn hint(guess: int, secret: int) -&gt; string {
     if guess &lt; secret {
         return &quot;too low&quot;
@@ -844,13 +911,17 @@ fn main() -&gt; int {
 <h1 id="18-todo-list">18 — Todo List</h1>
 <p>Track tasks with structs and bool flags.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/18-todo-list/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/18-todo-list/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> struct, bool, conditional printing</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">struct Todo {
     title: string
     done: bool
@@ -887,13 +958,17 @@ fn main() -&gt; int {
 <h1 id="19-file-notes">19 — File Notes</h1>
 <p>Read and write files with <code>std.fs</code>.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/19-file-notes/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/19-file-notes/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>fs.write</code>, <code>fs.read</code>, <code>fs.exists</code></p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.fs
 
 fn main() -&gt; int {
@@ -913,13 +988,17 @@ fn main() -&gt; int {
 <h1 id="20-json-config">20 — JSON Config</h1>
 <p>Parse JSON with <code>std.json</code> and model app configuration with structs.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run projects/20-json-config/main.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run projects/20-json-config/main.vpp
+
+
+
+</code></pre>
 </div>
 <p><strong>Concepts:</strong> <code>std.json</code>, struct config, <code>vpp.toml</code> project layout</p>
 
 <div class="code-block-wrap">
-<div class="code-block-header"><span>V++</span></div>
+<div class="code-block-header"><span class="code-block-filename">V++</span></div>
 <pre class="language-vpp"><code class="language-vpp">import std.json
 
 struct AppConfig {

@@ -92,8 +92,12 @@
 <p>2. <strong>Install</strong> <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">V++ Language</a> in VS Code (publisher: <strong>vpp-lang</strong>)</p>
 <p>3. <strong>Run:</strong></p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
-<pre class="language-bash"><code class="language-bash">vpp run examples\hello.vpp</code></pre>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
+<pre class="language-bash"><code class="language-bash">vpp run examples\hello.vpp
+
+
+
+</code></pre>
 </div>
 <p>Full guide: <strong><a href="docs/getting-started/hello-world.md">docs/getting-started/hello-world.md</a></strong></p>
 <hr>
@@ -178,11 +182,12 @@
 <hr>
 <h2 id="for-developers">For developers</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>Shell</span></div>
+<div class="code-block-header"><span class="code-block-filename">Shell</span></div>
 <pre class="language-bash"><code class="language-bash">git clone https://github.com/shauryaR790/V-.git
 cd V-
 cargo build --release --features codegen,lsp
-cargo test --all-targets</code></pre>
+cargo test --all-targets
+</code></pre>
 </div>
 <p>See <a href="docs/contributing/building-from-source.md">Building from source</a>.</p>
 <hr>
@@ -200,7 +205,7 @@ cargo test --all-targets</code></pre>
 </ul>
 <p>Both backends consume the same <strong>typed AST</strong> produced by the type checker.</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>text</span></div>
+<div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">.vpp source
     │
     ▼
@@ -413,14 +418,16 @@ cargo test --all-targets</code></pre>
 </tbody></table></div>
 <h2 id="variables">Variables</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>text</span></div>
+<div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">let x = 10              // immutable int
 let mut total = 0       // mutable; required for reassignment
-total = total + 1</code></pre>
+total = total + 1
+
+</code></pre>
 </div>
 <h2 id="functions">Functions</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>text</span></div>
+<div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">fn add(a: int, b: int) -&gt; int {
     return a + b
 }
@@ -438,7 +445,7 @@ fn main() -&gt; int {
 <p>When present, <code>fn main() -&gt; int</code> is the program entry point (interpreter and native both invoke it).</p>
 <h2 id="traits">Traits</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>text</span></div>
+<div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">trait Display {
     fn to_text(self) -&gt; string
 }
@@ -456,7 +463,7 @@ print(user.to_text())</code></pre>
 <p><code>if</code> / <code>else</code>, <code>while</code>, <code>for i in start..end</code> (half-open), <code>for item in arr</code>, <code>break</code>, <code>continue</code>, <code>match</code>.</p>
 <p>Match arms use blocks:</p>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>text</span></div>
+<div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">match status {
     Active =&gt; {
         print(&quot;active&quot;)
@@ -512,10 +519,12 @@ print(user.to_text())</code></pre>
 </tbody></table></div>
 <h2 id="modules-v0-3">Modules (v0.3)</h2>
 <div class="code-block-wrap">
-<div class="code-block-header"><span>text</span></div>
+<div class="code-block-header"><span class="code-block-filename">text</span></div>
 <pre class="language-text"><code class="language-text">import std.io
 import std.fs
-import &quot;legacy/path.vpp&quot;   // still supported</code></pre>
+import &quot;legacy/path.vpp&quot;   // still supported
+
+</code></pre>
 </div>
 <ul>
 <li>Canonical paths: <code>import std.io</code> → <code>std/io.vpp</code></li>

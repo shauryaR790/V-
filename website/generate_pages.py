@@ -64,6 +64,16 @@ EXTRA_MD = [
 ]
 
 
+MIN_CODE_LINES = 5
+
+
+def pad_code_lines(lines: list[str], minimum: int = MIN_CODE_LINES) -> list[str]:
+    padded = list(lines)
+    while len(padded) < minimum:
+        padded.append("")
+    return padded
+
+
 def md_to_html(text: str) -> str:
     """Minimal markdown to HTML — enough for our docs."""
     lines = text.splitlines()
@@ -98,9 +108,13 @@ def md_to_html(text: str) -> str:
             "vpp": "vpp", "v++": "vpp",
             "toml": "toml", "bash": "bash", "rust": "rust",
         }.get(label, label or "text")
-        code_text = html.escape("\n".join(code_lines))
+        code_text = html.escape("\n".join(pad_code_lines(code_lines)))
         out.append('<div class="code-block-wrap">')
-        out.append(f'<div class="code-block-header"><span>{html.escape(display)}</span></div>')
+        out.append(
+            f'<div class="code-block-header">'
+            f'<span class="code-block-filename">{html.escape(display)}</span>'
+            f"</div>"
+        )
         out.append(
             f'<pre class="language-{plang}">'
             f'<code class="language-{plang}">{code_text}</code></pre>'
