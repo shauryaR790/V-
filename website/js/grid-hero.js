@@ -7,6 +7,8 @@
   if (!ctx) return;
 
   const GRID = 40;
+  const GRID_FILL = "rgba(251, 219, 90, 0.05)";
+  const GRID_LINE = "rgba(251, 219, 90, 0.28)";
 
   function resize() {
     const dpr = window.devicePixelRatio || 1;
@@ -22,7 +24,9 @@
 
   function draw(width, height) {
     ctx.clearRect(0, 0, width, height);
-    ctx.strokeStyle = "#333333";
+    ctx.fillStyle = GRID_FILL;
+    ctx.fillRect(0, 0, width, height);
+    ctx.strokeStyle = GRID_LINE;
     ctx.lineWidth = 1;
 
     const centerX = width / 2;
