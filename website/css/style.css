@@ -1422,7 +1422,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 
 .page-courses-hub .course-card-thumb-label {
-  font-size: 1.35rem;
+  font-size: 1.65rem;
   line-height: 1.2;
 }
 
@@ -1432,16 +1432,15 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .page-courses-hub .course-card-body {
   padding: 0.85rem 0.9rem 0.95rem;
-  border-top: 1px solid var(--border-subtle);
 }
 
 .page-courses-hub .course-card-title {
-  font-size: 1.125rem;
+  font-size: 1.3125rem;
   font-weight: 500;
 }
 
 .page-courses-hub .course-card-summary {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   line-height: 1.55;
   -webkit-line-clamp: 2;
 }
