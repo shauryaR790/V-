@@ -487,8 +487,11 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .home-bottom-legal {
   display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.25rem;
   width: 100%;
   padding-top: 0.55rem;
   border-top: 1px solid var(--border-muted);
@@ -496,6 +499,8 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .home-trademark {
   margin: 0;
+  flex: 1 1 16rem;
+  min-width: 0;
   font-size: 0.75rem;
   color: var(--text-muted);
   line-height: 1.45;
@@ -506,6 +511,9 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   flex-wrap: wrap;
   gap: 0.35rem 0.85rem;
   align-items: center;
+  justify-content: flex-end;
+  flex: 0 1 auto;
+  margin-left: auto;
 }
 
 .home-legal-links a {
@@ -1281,6 +1289,14 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   }
   .docs-main { padding: 1.25rem; border-right: none; }
   .footer-links { margin-left: 0; width: 100%; }
+  .home-bottom-legal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .home-legal-links {
+    margin-left: 0;
+    justify-content: flex-start;
+  }
 }
 
 @media (max-height: 700px) {
