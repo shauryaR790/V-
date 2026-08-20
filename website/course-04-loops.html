@@ -68,60 +68,43 @@
       <article class="docs-article"><div id="top"></div>
 <nav class="course-breadcrumb"><a href="/V-/courses.html">Courses</a> <span aria-hidden="true">/</span> <span>Project 04</span></nav>
 <header class="course-header">
-<span class="course-header-tag">Beginner</span>
 <h1 id="course-title">Loops</h1>
-<p class="course-lead">`while`, range loops, and `for` over arrays. Uses `let mut` for counters.</p>
-<div class="course-concepts"><span class="course-concept">while</span><span class="course-concept">for</span><span class="course-concept">0..n</span><span class="course-concept">let mut</span></div>
+<p class="course-lead">Repeat work with while, range based for, and array iteration while using mutable bindings.</p>
 </header>
-<section class="course-step" id="overview">
+<section class="course-step" id="core-concepts">
 <div class="course-step-head">
 <span class="course-step-num">1</span>
-<h2 id="overview-title">What you will build</h2>
+<h2 id="core-concepts-title">Core concepts</h2>
 </div>
 <div class="course-step-body">
-<p><strong>Loops</strong> is project 04 in the V++ curriculum (Beginner level). <code>while</code>, range loops, and <code>for</code> over arrays. Uses <code>let mut</code> for counters.</p>
-<p>In this walkthrough you will not paste the whole file at once. Each step introduces one idea, explains what the lines mean, and shows only the new snippet. By the end you will combine everything into a complete program that produces <code>0</code>, <code>1</code>, <code>2</code>, and 2 more lines.</p>
-<p>The key ideas here are while, for, 0..n, and let mut. Read the prose under every heading before you look at code. When you reach the playground, run the full source with <code>vpp run projects/04-loops/main.vpp</code> on your machine or use the Run button to compare against the expected output.</p>
+<p>let mut, while, for, 0..n, array iteration</p>
 </div></section>
-<section class="course-step" id="goal">
+<section class="course-step" id="approach">
 <div class="course-step-head">
 <span class="course-step-num">2</span>
-<h2 id="goal-title">Learning goals</h2>
+<h2 id="approach-title">How the learner should approach this project</h2>
 </div>
 <div class="course-step-body">
-<p>After finishing <strong>Loops</strong>, you should be able to explain while, for, 0..n, and let mut in your own words and reproduce the program without copying blindly.</p>
-<p>This is an early project: focus on syntax, naming, and how the compiler reads your file top to bottom.</p>
-<p>Use <code>vpp check</code> on your file when something fails to compile. The type checker reports signature mismatches early. Fix one error at a time, then re-run.</p>
-<p>Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for braces, commas, and return types.</p>
+<p>Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump.</p>
 </div></section>
 <section class="course-step" id="step-1">
 <div class="course-step-head">
 <span class="course-step-num">3</span>
-<h2 id="step-1-title">Entry point: main</h2>
+<h2 id="step-1-title">Step 1: Use while and for</h2>
 </div>
 <div class="course-step-body">
-<p>Step 1 of 1 for <strong>Loops</strong>. We now add <strong>Entry point: main</strong> to the program.</p>
-<p><code>fn main() -&gt; int</code> is the program entry point. The runtime calls it after your definitions are loaded. Everything inside the braces runs in order.</p>
-<p><code>let mut i = 0</code> creates a <strong>mutable</strong> binding. You can reassign <code>i</code> later (for example in a loop). The compiler still tracks its type after each assignment.</p>
-<p><code>while i &lt; 5 {</code> repeats its body while the condition stays true. Make sure something inside the loop eventually changes the condition to avoid infinite loops.</p>
-<p><code>print(i)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
-<p><code>i = i + 1</code> reassigns <code>i</code>. This only works when <code>i</code> was declared with <code>let mut</code>.</p>
-<p><code>print(n)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
-<p><code>let items = [10, 20, 30]</code> binds the name <code>items</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
-<p><code>print(val)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
-<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
-<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<p>A binding declared with let is immutable. A counter that changes must use let mut. The while condition is checked before every iteration, so the body must eventually change i.</p>
+<p>A range such as 0..3 produces the integer sequence used by the for loop. The array loop visits each value in the array directly, so no index is required.</p>
+<p>After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let mut i = 0
     while i &lt; 5 {
         print(i)
         i = i + 1
     }
-
     for n in 0..3 {
         print(n)
     }
-
     let items = [10, 20, 30]
     for val in items {
         print(val)
@@ -129,32 +112,99 @@
     return 0
 }</code></pre></div>
 </div></section>
-<section class="course-step course-step-final" id="full-program"><div class="course-step-head"><span class="course-step-num">✓</span><h2 id="full-program-title">Full program &amp; run</h2></div><div class="course-step-body"><p>Complete source for <strong>Loops</strong>. Run locally with <code>vpp run projects/04-loops/main.vpp</code> or use the playground below.</p><div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
+<section class="course-step" id="complete-source">
+<div class="course-step-head">
+<span class="course-step-num">4</span>
+<h2 id="complete-source-title">Complete source</h2>
+</div>
+<div class="course-step-body">
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let mut i = 0
     while i &lt; 5 {
         print(i)
         i = i + 1
     }
-
     for n in 0..3 {
         print(n)
     }
-
     let items = [10, 20, 30]
     for val in items {
         print(val)
     }
     return 0
-}</code></pre></div><script type="application/json" id="course-playground-data">{&quot;output&quot;: &quot;0\n1\n2\n3\n4&quot;, &quot;source&quot;: &quot;fn main() -&gt; int {\n    let mut i = 0\n    while i &lt; 5 {\n        print(i)\n        i = i + 1\n    }\n\n    for n in 0..3 {\n        print(n)\n    }\n\n    let items = [10, 20, 30]\n    for val in items {\n        print(val)\n    }\n    return 0\n}&quot;}</script><div class="course-playground"><div class="course-playground-toolbar"><span class="course-playground-label">Playground</span><button type="button" class="btn btn-primary course-run-btn">Run program</button><button type="button" class="btn btn-outline course-reset-btn" hidden>Reset</button></div><pre class="course-run-output" hidden aria-live="polite"></pre><p class="course-run-hint">Simulated output matches <code>vpp run</code> on your machine after <a href="/V-/download.html">installing V++</a>.</p></div></div></section></article>
+}</code></pre></div>
+</div></section>
+<section class="course-step" id="expected-behavior">
+<div class="course-step-head">
+<span class="course-step-num">5</span>
+<h2 id="expected-behavior-title">Expected behavior</h2>
+</div>
+<div class="course-step-body">
+<p>The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current V++ runtime.</p>
+<pre class="course-expected-output">0
+1
+2
+3
+4
+0
+1
+2
+10
+20
+30</pre>
+</div></section>
+<section class="course-step" id="run-the-project">
+<div class="course-step-head">
+<span class="course-step-num">6</span>
+<h2 id="run-the-project-title">Run the project</h2>
+</div>
+<div class="course-step-body">
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">terminal</span></div><pre class="language-bash"><code class="language-bash">vpp run projects/04-loops/main.vpp</code></pre></div>
+</div></section>
+<section class="course-step" id="understanding">
+<div class="course-step-head">
+<span class="course-step-num">7</span>
+<h2 id="understanding-title">What the learner should understand after this project</h2>
+</div>
+<div class="course-step-body">
+<p>Mutation is deliberate. A changing counter must be declared mutable, and every loop must have a clear termination condition.</p>
+</div></section>
+<section class="course-step" id="common-mistakes">
+<div class="course-step-head">
+<span class="course-step-num">8</span>
+<h2 id="common-mistakes-title">Common mistakes to teach</h2>
+</div>
+<div class="course-step-body">
+<ol class="course-step-list">
+<li>Using let instead of let mut for a changing counter</li>
+<li>Creating a while loop whose condition never becomes false</li>
+<li>Assuming a range loop behaves like an array index</li>
+</ol>
+</div></section>
+<section class="course-step" id="practice">
+<div class="course-step-head">
+<span class="course-step-num">9</span>
+<h2 id="practice-title">Practice extension</h2>
+</div>
+<div class="course-step-body">
+<p>Make a countdown from 5 to 1. Then make a range loop that prints only even numbers by using a conditional.</p>
+<p>A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution.</p>
+</div></section>
+<script type="application/json" id="course-playground-data">{&quot;output&quot;: &quot;0\n1\n2\n3\n4\n0\n1\n2\n10\n20\n30&quot;, &quot;source&quot;: &quot;fn main() -&gt; int {\n    let mut i = 0\n    while i &lt; 5 {\n        print(i)\n        i = i + 1\n    }\n    for n in 0..3 {\n        print(n)\n    }\n    let items = [10, 20, 30]\n    for val in items {\n        print(val)\n    }\n    return 0\n}&quot;}</script><div class="course-playground"><div class="course-playground-toolbar"><button type="button" class="btn btn-primary course-run-btn">Test program</button><button type="button" class="btn btn-outline course-reset-btn">Reset</button></div><pre class="course-run-output" hidden aria-live="polite"></pre></div></article>
     </main>
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>
       <nav class="toc-tree" aria-label="On this page"><ul>
 <li class=""><a href="#course-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Loops</a></li>
-<li class="toc-h2"><a href="#overview-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>What you will build</a></li>
-<li class="toc-h2"><a href="#goal-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Learning goals</a></li>
-<li class="toc-h2"><a href="#step-1-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Entry point: main</a></li>
-<li class="toc-h2"><a href="#full-program-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Full program & run</a></li>
+<li class="toc-h2"><a href="#core-concepts-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Core concepts</a></li>
+<li class="toc-h2"><a href="#approach-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>How the learner should approach this project</a></li>
+<li class="toc-h2"><a href="#step-1-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Step 1: Use while and for</a></li>
+<li class="toc-h2"><a href="#complete-source-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Complete source</a></li>
+<li class="toc-h2"><a href="#expected-behavior-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Expected behavior</a></li>
+<li class="toc-h2"><a href="#run-the-project-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Run the project</a></li>
+<li class="toc-h2"><a href="#understanding-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>What the learner should understand after this project</a></li>
+<li class="toc-h2"><a href="#common-mistakes-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Common mistakes to teach</a></li>
+<li class="toc-h2"><a href="#practice-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Practice extension</a></li>
 </ul></nav>
     </aside>
   </div>

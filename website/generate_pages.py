@@ -1004,18 +1004,16 @@ def courses_hub_shell(
 
 
 def build_course_card(project: CourseProject) -> str:
-    tag = project.level
     return f"""<a href="{ASSET_PREFIX}{project.page_name}" class="course-card" data-level="{html.escape(project.level_key)}">
   <div class="course-card-thumb" aria-hidden="true">
     <div class="course-card-grid"></div>
     <div class="course-card-glow"></div>
     <div class="course-card-cover">
-      <img src="{ASSET_PREFIX}assets/logo-header.png" alt="" class="course-card-logo">
+      <img src="{ASSET_PREFIX}assets/logo-white.png" alt="" class="course-card-logo">
       <span class="course-card-thumb-label">{html.escape(project.title)}</span>
     </div>
   </div>
   <div class="course-card-body">
-    <span class="course-card-tag">{html.escape(tag)}</span>
     <h2 class="course-card-title">{html.escape(project.title)}</h2>
     <p class="course-card-summary">{html.escape(clean_prose(project.summary))}</p>
     <div class="course-card-meta">
@@ -1053,53 +1051,47 @@ def build_course_page_body(project: CourseProject) -> str:
         f' <span aria-hidden="true">/</span> '
         f'<span>Project {project.num:02d}</span></nav>',
         f'<header class="course-header">',
-        f'<span class="course-header-tag">{html.escape(project.level)}</span>',
         f'<h1 id="course-title">{html.escape(project.title)}</h1>',
         f'<p class="course-lead">{html.escape(clean_prose(project.summary))}</p>',
+        "</header>",
     ]
-    if project.concepts:
-        chips = "".join(
-            f'<span class="course-concept">{html.escape(c.strip().strip("`"))}</span>'
-            for c in project.concepts
-        )
-        parts.append(f'<div class="course-concepts">{chips}</div>')
-    parts.append("</header>")
 
-    for idx, step in enumerate(project.steps, start=1):
-        parts.append(f'<section class="course-step" id="{html.escape(step.step_id)}">')
+    for idx, section in enumerate(project.sections, start=1):
+        parts.append(f'<section class="course-step" id="{html.escape(section.section_id)}">')
         parts.append(f'<div class="course-step-head">')
         parts.append(f'<span class="course-step-num">{idx}</span>')
-        parts.append(f'<h2 id="{html.escape(step.step_id)}-title">{html.escape(step.title)}</h2>')
+        parts.append(
+            f'<h2 id="{html.escape(section.section_id)}-title">{html.escape(section.title)}</h2>'
+        )
         parts.append("</div>")
-        parts.append(f'<div class="course-step-body">')
-        for para in step.theory.split("\n\n"):
+        parts.append('<div class="course-step-body">')
+        for para in section.paragraphs:
             para = para.strip()
             if para:
                 parts.append(f"<p>{course_inline_md(para)}</p>")
-        if step.code.strip():
-            parts.append(code_block_html(step.code))
+        if section.list_items:
+            parts.append("<ol class=\"course-step-list\">")
+            for item in section.list_items:
+                parts.append(f"<li>{course_inline_md(item)}</li>")
+            parts.append("</ol>")
+        if section.section_id == "expected-behavior" and project.output.strip():
+            parts.append(
+                f'<pre class="course-expected-output">{html.escape(project.output)}</pre>'
+            )
+        if section.code.strip():
+            parts.append(code_block_html(section.code))
         parts.append("</div></section>")
 
     output_json = html.escape(json.dumps({"output": project.output, "source": project.source}))
     parts.append(
-        f'<section class="course-step course-step-final" id="full-program">'
-        f'<div class="course-step-head"><span class="course-step-num">✓</span>'
-        f'<h2 id="full-program-title">Full program &amp; run</h2></div>'
-        f'<div class="course-step-body">'
-        f'<p>Complete source for <strong>{html.escape(project.title)}</strong>. '
-        f'Run locally with <code>{html.escape(project.run_cmd)}</code> or use the playground below.</p>'
-        f'{code_block_html(project.source)}'
         f'<script type="application/json" id="course-playground-data">{output_json}</script>'
         f'<div class="course-playground">'
         f'<div class="course-playground-toolbar">'
-        f'<span class="course-playground-label">Playground</span>'
-        f'<button type="button" class="btn btn-primary course-run-btn">Run program</button>'
-        f'<button type="button" class="btn btn-outline course-reset-btn" hidden>Reset</button>'
-        f'</div>'
+        f'<button type="button" class="btn btn-primary course-run-btn">Test program</button>'
+        f'<button type="button" class="btn btn-outline course-reset-btn">Reset</button>'
+        f"</div>"
         f'<pre class="course-run-output" hidden aria-live="polite"></pre>'
-        f'<p class="course-run-hint">Simulated output matches <code>vpp run</code> on your machine after '
-        f'<a href="{ASSET_PREFIX}download.html">installing V++</a>.</p>'
-        f'</div></div></section>'
+        f"</div>"
     )
     return "\n".join(parts)
 
@@ -1127,18 +1119,23 @@ def build_course_sidebar(projects: list[CourseProject], active_page: str) -> str
 
 
 def write_course_pages(projects: list[CourseProject], sidebar: dict[str, list[tuple[str, str]]]) -> None:
+    course_sidebar = build_course_sidebar(projects, "")
     hub_body = build_courses_hub_body(projects)
-    hub_page = courses_hub_shell(
+    hub_headings = headings_from_html(hub_body)
+    hub_toc = build_toc(hub_headings)
+    hub_page = shell(
         "courses.html",
         "Courses",
         hub_body,
+        course_sidebar,
+        hub_toc,
         f"Twenty guided {BRAND} projects with step by step lessons and runnable code.",
         extra_scripts=["courses.js"],
+        body_class="page-docs page-courses-hub",
     )
     (WEBSITE / "courses.html").write_text(hub_page, encoding="utf-8")
     print(f"Wrote courses.html: {hub_page.count(chr(10))} lines")
 
-    course_sidebar = build_course_sidebar(projects, "")
     for project in projects:
         body = build_course_page_body(project)
         headings = headings_from_html(body)

@@ -68,44 +68,33 @@
       <article class="docs-article"><div id="top"></div>
 <nav class="course-breadcrumb"><a href="/V-/courses.html">Courses</a> <span aria-hidden="true">/</span> <span>Project 08</span></nav>
 <header class="course-header">
-<span class="course-header-tag">Intermediate</span>
 <h1 id="course-title">Option &amp; Result</h1>
-<p class="course-lead">Safe error handling without exceptions.</p>
-<div class="course-concepts"><span class="course-concept">Option</span><span class="course-concept">Result</span><span class="course-concept">Some`/`None</span><span class="course-concept">Ok`/`Err</span></div>
+<p class="course-lead">Represent successful values, missing values, and recoverable errors without exceptions.</p>
 </header>
-<section class="course-step" id="overview">
+<section class="course-step" id="core-concepts">
 <div class="course-step-head">
 <span class="course-step-num">1</span>
-<h2 id="overview-title">What you will build</h2>
+<h2 id="core-concepts-title">Core concepts</h2>
 </div>
 <div class="course-step-body">
-<p><strong>Option &amp; Result</strong> is project 08 in the V++ curriculum (Intermediate level). Safe error handling without exceptions.</p>
-<p>In this walkthrough you will not paste the whole file at once. Each step introduces one idea, explains what the lines mean, and shows only the new snippet. By the end you will combine everything into a complete program that produces <code>5</code>, <code>Err: division by zero</code>.</p>
-<p>The key ideas here are Option, Result, Some<code>/</code>None, and Ok<code>/</code>Err. Read the prose under every heading before you look at code. When you reach the playground, run the full source with <code>vpp run projects/08-option-result/main.vpp</code> on your machine or use the Run button to compare against the expected output.</p>
+<p>Option&lt;T&gt;, Some, None, Result&lt;T, E&gt;, Ok, Err, match</p>
 </div></section>
-<section class="course-step" id="goal">
+<section class="course-step" id="approach">
 <div class="course-step-head">
 <span class="course-step-num">2</span>
-<h2 id="goal-title">Learning goals</h2>
+<h2 id="approach-title">How the learner should approach this project</h2>
 </div>
 <div class="course-step-body">
-<p>After finishing <strong>Option &amp; Result</strong>, you should be able to explain Option, Result, Some<code>/</code>None, and Ok<code>/</code>Err in your own words and reproduce the program without copying blindly.</p>
-<p>You should already be comfortable with variables, functions, and loops from projects 01 through 05.</p>
-<p>Use <code>vpp check</code> on your file when something fails to compile. The type checker reports signature mismatches early. Fix one error at a time, then re-run.</p>
-<p>Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for braces, commas, and return types.</p>
+<p>Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump.</p>
 </div></section>
 <section class="course-step" id="step-1">
 <div class="course-step-head">
 <span class="course-step-num">3</span>
-<h2 id="step-1-title">Function: safe_div</h2>
+<h2 id="step-1-title">Step 1: Return Result from division</h2>
 </div>
 <div class="course-step-body">
-<p>Step 1 of 3 for <strong>Option &amp; Result</strong>. We now add <strong>Function: safe_div</strong> to the program.</p>
-<p><strong>Function: safe_div</strong> adds <code>fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
-<p><code>if b == 0 {</code> starts a conditional block. The condition must be <code>bool</code>. Only the matching branch runs; other branches are skipped.</p>
-<p><code>return Err(&quot;division by zero&quot;)</code> sends a value back to the caller and ends the current function.</p>
-<p><code>return Ok(a / b)</code> sends a value back to the caller and ends the current function.</p>
-<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<p>Result is useful when a function can either produce a value or explain why it could not. safe_div returns Result&lt;int, string&gt;. A zero divisor becomes Err, while a valid division becomes Ok.</p>
+<p>After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {
     if b == 0 {
         return Err(&quot;division by zero&quot;)
@@ -116,18 +105,12 @@
 <section class="course-step" id="step-2">
 <div class="course-step-head">
 <span class="course-step-num">4</span>
-<h2 id="step-2-title">Function: find_first</h2>
+<h2 id="step-2-title">Step 2: Return Option from a search</h2>
 </div>
 <div class="course-step-body">
-<p>Step 2 of 3 for <strong>Option &amp; Result</strong>. We now add <strong>Function: find_first</strong> to the program.</p>
-<p><strong>Function: find_first</strong> adds <code>fn find_first(nums: array[int], target: int) -&gt; Option&lt;int&gt; {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
-<p><code>let mut i = 0</code> creates a <strong>mutable</strong> binding. You can reassign <code>i</code> later (for example in a loop). The compiler still tracks its type after each assignment.</p>
-<p><code>while i &lt; len(nums) {</code> repeats its body while the condition stays true. Make sure something inside the loop eventually changes the condition to avoid infinite loops.</p>
-<p><code>if nums[i] == target {</code> starts a conditional block. The condition must be <code>bool</code>. Only the matching branch runs; other branches are skipped.</p>
-<p><code>return Some(nums[i])</code> sends a value back to the caller and ends the current function.</p>
-<p><code>i = i + 1</code> reassigns <code>i</code>. This only works when <code>i</code> was declared with <code>let mut</code>.</p>
-<p><code>return None</code> sends a value back to the caller and ends the current function.</p>
-<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<p>Option represents presence or absence. find_first returns Some when it finds the target and None when the loop finishes without finding it.</p>
+<p>The mutable index is necessary because the search advances one position at a time.</p>
+<p>Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn find_first(nums: array[int], target: int) -&gt; Option&lt;int&gt; {
     let mut i = 0
     while i &lt; len(nums) {
@@ -142,26 +125,11 @@
 <section class="course-step" id="step-3">
 <div class="course-step-head">
 <span class="course-step-num">5</span>
-<h2 id="step-3-title">Entry point: main</h2>
+<h2 id="step-3-title">Step 3: Match both safe values</h2>
 </div>
 <div class="course-step-body">
-<p>Step 3 of 3 for <strong>Option &amp; Result</strong>. We now add <strong>Entry point: main</strong> to the program.</p>
-<p><code>fn main() -&gt; int</code> is the program entry point. The runtime calls it after your definitions are loaded. Everything inside the braces runs in order.</p>
-<p><code>let r = safe_div(10, 2)</code> binds the name <code>r</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
-<p><code>match r {</code> inspects a value and selects the first arm whose pattern fits. V++ requires match expressions to be exhaustive over the type.</p>
-<p>The arm <code>Ok(n) =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
-<p><code>print(n)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
-<p>The arm <code>Err(e) =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
-<p><code>print(e)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
-<p><code>let nums = [1, 5, 9]</code> binds the name <code>nums</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
-<p><code>let found = find_first(nums, 5)</code> binds the name <code>found</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
-<p><code>match found {</code> inspects a value and selects the first arm whose pattern fits. V++ requires match expressions to be exhaustive over the type.</p>
-<p>The arm <code>Some(n) =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
-<p><code>print(n)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
-<p>The arm <code>None =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
-<p><code>print(&quot;not found&quot;)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
-<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
-<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<p>The caller must handle the alternatives. Matching Result extracts the successful integer from Ok or the error string from Err. Matching Option extracts the value from Some or handles None.</p>
+<p>Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let r = safe_div(10, 2)
     match r {
@@ -172,7 +140,6 @@
             print(e)
         }
     }
-
     let nums = [1, 5, 9]
     let found = find_first(nums, 5)
     match found {
@@ -186,13 +153,18 @@
     return 0
 }</code></pre></div>
 </div></section>
-<section class="course-step course-step-final" id="full-program"><div class="course-step-head"><span class="course-step-num">✓</span><h2 id="full-program-title">Full program &amp; run</h2></div><div class="course-step-body"><p>Complete source for <strong>Option &amp; Result</strong>. Run locally with <code>vpp run projects/08-option-result/main.vpp</code> or use the playground below.</p><div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {
+<section class="course-step" id="complete-source">
+<div class="course-step-head">
+<span class="course-step-num">6</span>
+<h2 id="complete-source-title">Complete source</h2>
+</div>
+<div class="course-step-body">
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {
     if b == 0 {
         return Err(&quot;division by zero&quot;)
     }
     return Ok(a / b)
 }
-
 fn find_first(nums: array[int], target: int) -&gt; Option&lt;int&gt; {
     let mut i = 0
     while i &lt; len(nums) {
@@ -203,7 +175,6 @@ fn find_first(nums: array[int], target: int) -&gt; Option&lt;int&gt; {
     }
     return None
 }
-
 fn main() -&gt; int {
     let r = safe_div(10, 2)
     match r {
@@ -214,7 +185,6 @@ fn main() -&gt; int {
             print(e)
         }
     }
-
     let nums = [1, 5, 9]
     let found = find_first(nums, 5)
     match found {
@@ -226,18 +196,72 @@ fn main() -&gt; int {
         }
     }
     return 0
-}</code></pre></div><script type="application/json" id="course-playground-data">{&quot;output&quot;: &quot;5\nErr: division by zero&quot;, &quot;source&quot;: &quot;fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {\n    if b == 0 {\n        return Err(\&quot;division by zero\&quot;)\n    }\n    return Ok(a / b)\n}\n\nfn find_first(nums: array[int], target: int) -&gt; Option&lt;int&gt; {\n    let mut i = 0\n    while i &lt; len(nums) {\n        if nums[i] == target {\n            return Some(nums[i])\n        }\n        i = i + 1\n    }\n    return None\n}\n\nfn main() -&gt; int {\n    let r = safe_div(10, 2)\n    match r {\n        Ok(n) =&gt; {\n            print(n)\n        }\n        Err(e) =&gt; {\n            print(e)\n        }\n    }\n\n    let nums = [1, 5, 9]\n    let found = find_first(nums, 5)\n    match found {\n        Some(n) =&gt; {\n            print(n)\n        }\n        None =&gt; {\n            print(\&quot;not found\&quot;)\n        }\n    }\n    return 0\n}&quot;}</script><div class="course-playground"><div class="course-playground-toolbar"><span class="course-playground-label">Playground</span><button type="button" class="btn btn-primary course-run-btn">Run program</button><button type="button" class="btn btn-outline course-reset-btn" hidden>Reset</button></div><pre class="course-run-output" hidden aria-live="polite"></pre><p class="course-run-hint">Simulated output matches <code>vpp run</code> on your machine after <a href="/V-/download.html">installing V++</a>.</p></div></div></section></article>
+}</code></pre></div>
+</div></section>
+<section class="course-step" id="expected-behavior">
+<div class="course-step-head">
+<span class="course-step-num">7</span>
+<h2 id="expected-behavior-title">Expected behavior</h2>
+</div>
+<div class="course-step-body">
+<p>The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current V++ runtime.</p>
+<pre class="course-expected-output">5
+5</pre>
+</div></section>
+<section class="course-step" id="run-the-project">
+<div class="course-step-head">
+<span class="course-step-num">8</span>
+<h2 id="run-the-project-title">Run the project</h2>
+</div>
+<div class="course-step-body">
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">terminal</span></div><pre class="language-bash"><code class="language-bash">vpp run projects/08-option-result/main.vpp</code></pre></div>
+</div></section>
+<section class="course-step" id="understanding">
+<div class="course-step-head">
+<span class="course-step-num">9</span>
+<h2 id="understanding-title">What the learner should understand after this project</h2>
+</div>
+<div class="course-step-body">
+<p>Option models presence or absence. Result models success or failure. Matching makes the caller handle each alternative explicitly.</p>
+</div></section>
+<section class="course-step" id="common-mistakes">
+<div class="course-step-head">
+<span class="course-step-num">10</span>
+<h2 id="common-mistakes-title">Common mistakes to teach</h2>
+</div>
+<div class="course-step-body">
+<ol class="course-step-list">
+<li>Handling only Ok and forgetting Err</li>
+<li>Handling only Some and forgetting None</li>
+<li>Returning a plain value from a function that promises Option or Result</li>
+</ol>
+</div></section>
+<section class="course-step" id="practice">
+<div class="course-step-head">
+<span class="course-step-num">11</span>
+<h2 id="practice-title">Practice extension</h2>
+</div>
+<div class="course-step-body">
+<p>Call safe_div with zero and handle Err. Search for a value that is not present and handle None.</p>
+<p>A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution.</p>
+</div></section>
+<script type="application/json" id="course-playground-data">{&quot;output&quot;: &quot;5\n5&quot;, &quot;source&quot;: &quot;fn safe_div(a: int, b: int) -&gt; Result&lt;int, string&gt; {\n    if b == 0 {\n        return Err(\&quot;division by zero\&quot;)\n    }\n    return Ok(a / b)\n}\nfn find_first(nums: array[int], target: int) -&gt; Option&lt;int&gt; {\n    let mut i = 0\n    while i &lt; len(nums) {\n        if nums[i] == target {\n            return Some(nums[i])\n        }\n        i = i + 1\n    }\n    return None\n}\nfn main() -&gt; int {\n    let r = safe_div(10, 2)\n    match r {\n        Ok(n) =&gt; {\n            print(n)\n        }\n        Err(e) =&gt; {\n            print(e)\n        }\n    }\n    let nums = [1, 5, 9]\n    let found = find_first(nums, 5)\n    match found {\n        Some(n) =&gt; {\n            print(n)\n        }\n        None =&gt; {\n            print(\&quot;not found\&quot;)\n        }\n    }\n    return 0\n}&quot;}</script><div class="course-playground"><div class="course-playground-toolbar"><button type="button" class="btn btn-primary course-run-btn">Test program</button><button type="button" class="btn btn-outline course-reset-btn">Reset</button></div><pre class="course-run-output" hidden aria-live="polite"></pre></div></article>
     </main>
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>
       <nav class="toc-tree" aria-label="On this page"><ul>
 <li class=""><a href="#course-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Option & Result</a></li>
-<li class="toc-h2"><a href="#overview-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>What you will build</a></li>
-<li class="toc-h2"><a href="#goal-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Learning goals</a></li>
-<li class="toc-h2"><a href="#step-1-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Function: safe_div</a></li>
-<li class="toc-h2"><a href="#step-2-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Function: find_first</a></li>
-<li class="toc-h2"><a href="#step-3-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Entry point: main</a></li>
-<li class="toc-h2"><a href="#full-program-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Full program & run</a></li>
+<li class="toc-h2"><a href="#core-concepts-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Core concepts</a></li>
+<li class="toc-h2"><a href="#approach-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>How the learner should approach this project</a></li>
+<li class="toc-h2"><a href="#step-1-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Step 1: Return Result from division</a></li>
+<li class="toc-h2"><a href="#step-2-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Step 2: Return Option from a search</a></li>
+<li class="toc-h2"><a href="#step-3-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Step 3: Match both safe values</a></li>
+<li class="toc-h2"><a href="#complete-source-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Complete source</a></li>
+<li class="toc-h2"><a href="#expected-behavior-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Expected behavior</a></li>
+<li class="toc-h2"><a href="#run-the-project-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Run the project</a></li>
+<li class="toc-h2"><a href="#understanding-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>What the learner should understand after this project</a></li>
+<li class="toc-h2"><a href="#common-mistakes-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Common mistakes to teach</a></li>
+<li class="toc-h2"><a href="#practice-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Practice extension</a></li>
 </ul></nav>
     </aside>
   </div>

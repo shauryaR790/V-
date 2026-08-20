@@ -68,54 +68,43 @@
       <article class="docs-article"><div id="top"></div>
 <nav class="course-breadcrumb"><a href="/V-/courses.html">Courses</a> <span aria-hidden="true">/</span> <span>Project 20</span></nav>
 <header class="course-header">
-<span class="course-header-tag">Advanced</span>
 <h1 id="course-title">JSON Config</h1>
-<p class="course-lead">Parse JSON with `std.json` and model app configuration with structs.</p>
-<div class="course-concepts"><span class="course-concept">std.json</span><span class="course-concept">struct config</span><span class="course-concept">vpp.toml` project layout</span></div>
+<p class="course-lead">Parse JSON, stringify it, and model configuration data with a typed struct.</p>
 </header>
-<section class="course-step" id="overview">
+<section class="course-step" id="core-concepts">
 <div class="course-step-head">
 <span class="course-step-num">1</span>
-<h2 id="overview-title">What you will build</h2>
+<h2 id="core-concepts-title">Core concepts</h2>
 </div>
 <div class="course-step-body">
-<p><strong>JSON Config</strong> is project 20 in the V++ curriculum (Advanced level). Parse JSON with <code>std.json</code> and model app configuration with structs.</p>
-<p>In this walkthrough you will not paste the whole file at once. Each step introduces one idea, explains what the lines mean, and shows only the new snippet. By the end you will combine everything into a complete program that produces <code>my-app</code>, <code>0.5.0</code>.</p>
-<p>The key ideas here are std.json, struct config, and vpp.toml<code> project layout. Read the prose under every heading before you look at code. When you reach the playground, run the full source with </code>vpp run projects/20-json-config/main.vpp` on your machine or use the Run button to compare against the expected output.</p>
+<p>std.json, json.parse, json.stringify, struct config, project layout</p>
 </div></section>
-<section class="course-step" id="goal">
+<section class="course-step" id="approach">
 <div class="course-step-head">
 <span class="course-step-num">2</span>
-<h2 id="goal-title">Learning goals</h2>
+<h2 id="approach-title">How the learner should approach this project</h2>
 </div>
 <div class="course-step-body">
-<p>After finishing <strong>JSON Config</strong>, you should be able to explain std.json, struct config, and vpp.toml` project layout in your own words and reproduce the program without copying blindly.</p>
-<p>This project combines multiple features. Revisit earlier lessons if a concept feels unfamiliar.</p>
-<p>Use <code>vpp check</code> on your file when something fails to compile. The type checker reports signature mismatches early. Fix one error at a time, then re-run.</p>
-<p>Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for braces, commas, and return types.</p>
+<p>Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump.</p>
 </div></section>
 <section class="course-step" id="step-1">
 <div class="course-step-head">
 <span class="course-step-num">3</span>
-<h2 id="step-1-title">Imports</h2>
+<h2 id="step-1-title">Step 1: Import std.json</h2>
 </div>
 <div class="course-step-body">
-<p>Step 1 of 4 for <strong>JSON Config</strong>. We now add <strong>Imports</strong> to the program.</p>
-<p>This file begins with <code>std.json</code>. Imports must appear before functions and types.</p>
-<p>The compiler resolves standard library paths like <code>std.fs</code> or <code>std.json</code> automatically when you run <code>vpp run</code>. If an import is misspelled, you will get an unknown module error at compile time.</p>
-<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<p>The standard JSON module provides parse and stringify operations. Imports must appear before functions and types.</p>
+<p>After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">import std.json</code></pre></div>
 </div></section>
 <section class="course-step" id="step-2">
 <div class="course-step-head">
 <span class="course-step-num">4</span>
-<h2 id="step-2-title">Struct: AppConfig</h2>
+<h2 id="step-2-title">Step 2: Define AppConfig</h2>
 </div>
 <div class="course-step-body">
-<p>Step 2 of 4 for <strong>JSON Config</strong>. We now add <strong>Struct: AppConfig</strong> to the program.</p>
-<p><strong>Struct: AppConfig</strong> defines a product type: <code>struct AppConfig {</code>. Structs group fields that belong together so you pass one value instead of many separate parameters.</p>
-<p>Fields <code>name: string</code>, <code>version: string</code>, <code>debug: bool</code> are checked at compile time. You construct values with struct literal syntax <code>{ field: value }</code>.</p>
-<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<p>The struct gives the configuration a typed shape. name and version are strings, while debug is a boolean. This is the point where unstructured configuration data becomes a clearly named application model.</p>
+<p>Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct AppConfig {
     name: string
     version: string
@@ -125,14 +114,12 @@
 <section class="course-step" id="step-3">
 <div class="course-step-head">
 <span class="course-step-num">5</span>
-<h2 id="step-3-title">Function: parse_config</h2>
+<h2 id="step-3-title">Step 3: Parse and stringify JSON</h2>
 </div>
 <div class="course-step-body">
-<p>Step 3 of 4 for <strong>JSON Config</strong>. We now add <strong>Function: parse_config</strong> to the program.</p>
-<p><strong>Function: parse_config</strong> adds <code>fn parse_config(raw: string) -&gt; string {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
-<p><code>let doc = json.parse(raw)</code> binds the name <code>doc</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
-<p><code>return json.stringify(doc)</code> sends a value back to the caller and ends the current function.</p>
-<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<p>parse receives raw JSON text and produces a JSON document value. stringify converts that document back into text.</p>
+<p>This function demonstrates a clean boundary between raw configuration text and structured processing.</p>
+<p>Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn parse_config(raw: string) -&gt; string {
     let doc = json.parse(raw)
     return json.stringify(doc)
@@ -141,22 +128,14 @@
 <section class="course-step" id="step-4">
 <div class="course-step-head">
 <span class="course-step-num">6</span>
-<h2 id="step-4-title">Entry point: main</h2>
+<h2 id="step-4-title">Step 4: Use JSON and typed configuration together</h2>
 </div>
 <div class="course-step-body">
-<p>Step 4 of 4 for <strong>JSON Config</strong>. We now add <strong>Entry point: main</strong> to the program.</p>
-<p><code>fn main() -&gt; int</code> is the program entry point. The runtime calls it after your definitions are loaded. Everything inside the braces runs in order.</p>
-<p><code>let raw = &quot;{\&quot;name\&quot;:\&quot;V++\&quot;,\&quot;version\&quot;:\&quot;0.5.0\&quot;,\&quot;debug\&quot;:false}&quot;</code> stores a string value. V++ checks that <code>raw</code> stays a string if you use it again in concatenation or printing.</p>
-<p><code>print(parse_config(raw))</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
-<p><code>let cfg = AppConfig {</code> binds the name <code>cfg</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
-<p><code>print(cfg.name)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
-<p><code>print(cfg.version)</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
-<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
-<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<p>main starts with a JSON string containing name, version, and debug. It passes the raw text through parse_config and prints the resulting JSON. It then creates a typed AppConfig value and accesses its fields directly.</p>
+<p>Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
-    let raw = &quot;{\&quot;name\&quot;:\&quot;v++\&quot;,\&quot;version\&quot;:\&quot;0.5.0\&quot;,\&quot;debug\&quot;:false}&quot;
+    let raw = &quot;{&quot;name&quot;:&quot;v++&quot;,&quot;version&quot;:&quot;0.5.0&quot;,&quot;debug&quot;:false}&quot;
     print(parse_config(raw))
-
     let cfg = AppConfig {
         name: &quot;v++&quot;
         version: &quot;0.5.0&quot;
@@ -167,23 +146,25 @@
     return 0
 }</code></pre></div>
 </div></section>
-<section class="course-step course-step-final" id="full-program"><div class="course-step-head"><span class="course-step-num">✓</span><h2 id="full-program-title">Full program &amp; run</h2></div><div class="course-step-body"><p>Complete source for <strong>JSON Config</strong>. Run locally with <code>vpp run projects/20-json-config/main.vpp</code> or use the playground below.</p><div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">import std.json
-
+<section class="course-step" id="complete-source">
+<div class="course-step-head">
+<span class="course-step-num">7</span>
+<h2 id="complete-source-title">Complete source</h2>
+</div>
+<div class="course-step-body">
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">import std.json
 struct AppConfig {
     name: string
     version: string
     debug: bool
 }
-
 fn parse_config(raw: string) -&gt; string {
     let doc = json.parse(raw)
     return json.stringify(doc)
 }
-
 fn main() -&gt; int {
-    let raw = &quot;{\&quot;name\&quot;:\&quot;v++\&quot;,\&quot;version\&quot;:\&quot;0.5.0\&quot;,\&quot;debug\&quot;:false}&quot;
+    let raw = &quot;{&quot;name&quot;:&quot;v++&quot;,&quot;version&quot;:&quot;0.5.0&quot;,&quot;debug&quot;:false}&quot;
     print(parse_config(raw))
-
     let cfg = AppConfig {
         name: &quot;v++&quot;
         version: &quot;0.5.0&quot;
@@ -192,19 +173,95 @@ fn main() -&gt; int {
     print(cfg.name)
     print(cfg.version)
     return 0
-}</code></pre></div><script type="application/json" id="course-playground-data">{&quot;output&quot;: &quot;my-app\n0.5.0&quot;, &quot;source&quot;: &quot;import std.json\n\nstruct AppConfig {\n    name: string\n    version: string\n    debug: bool\n}\n\nfn parse_config(raw: string) -&gt; string {\n    let doc = json.parse(raw)\n    return json.stringify(doc)\n}\n\nfn main() -&gt; int {\n    let raw = \&quot;{\\\&quot;name\\\&quot;:\\\&quot;v++\\\&quot;,\\\&quot;version\\\&quot;:\\\&quot;0.5.0\\\&quot;,\\\&quot;debug\\\&quot;:false}\&quot;\n    print(parse_config(raw))\n\n    let cfg = AppConfig {\n        name: \&quot;v++\&quot;\n        version: \&quot;0.5.0\&quot;\n        debug: true\n    }\n    print(cfg.name)\n    print(cfg.version)\n    return 0\n}&quot;}</script><div class="course-playground"><div class="course-playground-toolbar"><span class="course-playground-label">Playground</span><button type="button" class="btn btn-primary course-run-btn">Run program</button><button type="button" class="btn btn-outline course-reset-btn" hidden>Reset</button></div><pre class="course-run-output" hidden aria-live="polite"></pre><p class="course-run-hint">Simulated output matches <code>vpp run</code> on your machine after <a href="/V-/download.html">installing V++</a>.</p></div></div></section></article>
+}</code></pre></div>
+</div></section>
+<section class="course-step" id="expected-behavior">
+<div class="course-step-head">
+<span class="course-step-num">8</span>
+<h2 id="expected-behavior-title">Expected behavior</h2>
+</div>
+<div class="course-step-body">
+<p>The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current V++ runtime.</p>
+<pre class="course-expected-output">{&quot;name&quot;:&quot;v++&quot;,&quot;version&quot;:&quot;0.5.0&quot;,&quot;debug&quot;:false}
+v++
+0.5.0</pre>
+</div></section>
+<section class="course-step" id="run-the-project">
+<div class="course-step-head">
+<span class="course-step-num">9</span>
+<h2 id="run-the-project-title">Run the project</h2>
+</div>
+<div class="course-step-body">
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">terminal</span></div><pre class="language-bash"><code class="language-bash">vpp run projects/20-json-config/main.vpp</code></pre></div>
+</div></section>
+<section class="course-step" id="understanding">
+<div class="course-step-head">
+<span class="course-step-num">10</span>
+<h2 id="understanding-title">What the learner should understand after this project</h2>
+</div>
+<div class="course-step-body">
+<p>JSON is unstructured text at the boundary, while a struct provides a typed model inside the program. Keeping those roles separate makes configuration easier to reason about.</p>
+</div></section>
+<section class="course-step" id="common-mistakes">
+<div class="course-step-head">
+<span class="course-step-num">11</span>
+<h2 id="common-mistakes-title">Common mistakes to teach</h2>
+</div>
+<div class="course-step-body">
+<ol class="course-step-list">
+<li>Malformed JSON text</li>
+<li>Using a JSON field as if it were already a typed struct field</li>
+<li>Changing the struct without updating construction sites</li>
+</ol>
+</div></section>
+<section class="course-step" id="practice">
+<div class="course-step-head">
+<span class="course-step-num">12</span>
+<h2 id="practice-title">Practice extension</h2>
+</div>
+<div class="course-step-body">
+<p>Add a port field to AppConfig as an int and update the example configuration.</p>
+<p>A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution.</p>
+<p>Implementation Notes for Cursor Use this document as the content specification for the twenty course pages. The page layout should preserve the curriculum sequence while making each project substantially deeper than a short five step tutorial.</p>
+<p>1. Every project needs a clear project goal before code.</p>
+<p>2. Every new concept needs a plain English explanation before its first code block.</p>
+<p>3. Every step needs a meaningful code block and a line by line explanation of the important lines.</p>
+<p>4. Every project needs the complete source after the incremental steps.</p>
+<p>5. Every project needs an expected output block and an exact run command.</p>
+<p>6. Every project needs common mistakes and a practice extension.</p>
+<p>7. Do not silently invent language syntax that is not supported by the current V++ implementation.</p>
+<p>8. If the current source page and the executable example disagree, preserve the executable code and flag the documentation inconsistency for review.</p>
+<p>9. Do not make all explanations identical. Advanced projects need more explanation of type behavior, compile time checking, and how the pieces interact.</p>
+<p>10. Keep code blocks copyable. Do not put prose inside code blocks.</p>
+<p>11. Keep the curriculum cumulative. Earlier concepts should be reused instead of reintroduced as if they are new.</p>
+<p>12. The goal is that a learner can finish all twenty projects and understand how to build a small V++ application without relying on blind copying.</p>
+<p>Documentation Consistency Checks The current course pages contain several places where the prose summary does not exactly match the code shown on the page. This PDF deliberately keeps the code shown by the course source and derives the expected output from that code where necessary. Cursor should not silently copy a conflicting summary into a new page.</p>
+<p>1. Project 05 describes a single output in its summary, while the shown complete program prints the sum and maximum.</p>
+<p>2. Project 08 describes an error example in its summary, while the shown complete program uses safe_div with a nonzero divisor and prints the successful value.</p>
+<p>3. Project 13 describes a Circle example with an area value that does not match the shown integer implementation.</p>
+<p>The complete code is the authoritative teaching example.</p>
+<p>4. Project 20 describes a final summary that does not include the complete JSON output shown by the actual program.</p>
+<p>End State After Project 20, a learner should have seen the complete progression from a minimal executable to reusable functions, collections, structured data, closed state machines, safe result handling, generic code, traits, modules, practical algorithms, filesystem access, and JSON configuration. The curriculum should make the language feel coherent rather than like a list of unrelated features.</p>
+<p>Prepared from the current V++ course material and expanded for curriculum generation.</p>
+</div></section>
+<script type="application/json" id="course-playground-data">{&quot;output&quot;: &quot;{\&quot;name\&quot;:\&quot;v++\&quot;,\&quot;version\&quot;:\&quot;0.5.0\&quot;,\&quot;debug\&quot;:false}\nv++\n0.5.0&quot;, &quot;source&quot;: &quot;import std.json\nstruct AppConfig {\n    name: string\n    version: string\n    debug: bool\n}\nfn parse_config(raw: string) -&gt; string {\n    let doc = json.parse(raw)\n    return json.stringify(doc)\n}\nfn main() -&gt; int {\n    let raw = \&quot;{\&quot;name\&quot;:\&quot;v++\&quot;,\&quot;version\&quot;:\&quot;0.5.0\&quot;,\&quot;debug\&quot;:false}\&quot;\n    print(parse_config(raw))\n    let cfg = AppConfig {\n        name: \&quot;v++\&quot;\n        version: \&quot;0.5.0\&quot;\n        debug: true\n    }\n    print(cfg.name)\n    print(cfg.version)\n    return 0\n}&quot;}</script><div class="course-playground"><div class="course-playground-toolbar"><button type="button" class="btn btn-primary course-run-btn">Test program</button><button type="button" class="btn btn-outline course-reset-btn">Reset</button></div><pre class="course-run-output" hidden aria-live="polite"></pre></div></article>
     </main>
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>
       <nav class="toc-tree" aria-label="On this page"><ul>
 <li class=""><a href="#course-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>JSON Config</a></li>
-<li class="toc-h2"><a href="#overview-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>What you will build</a></li>
-<li class="toc-h2"><a href="#goal-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Learning goals</a></li>
-<li class="toc-h2"><a href="#step-1-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Imports</a></li>
-<li class="toc-h2"><a href="#step-2-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Struct: AppConfig</a></li>
-<li class="toc-h2"><a href="#step-3-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Function: parse_config</a></li>
-<li class="toc-h2"><a href="#step-4-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Entry point: main</a></li>
-<li class="toc-h2"><a href="#full-program-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Full program & run</a></li>
+<li class="toc-h2"><a href="#core-concepts-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Core concepts</a></li>
+<li class="toc-h2"><a href="#approach-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>How the learner should approach this project</a></li>
+<li class="toc-h2"><a href="#step-1-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Step 1: Import std.json</a></li>
+<li class="toc-h2"><a href="#step-2-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Step 2: Define AppConfig</a></li>
+<li class="toc-h2"><a href="#step-3-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Step 3: Parse and stringify JSON</a></li>
+<li class="toc-h2"><a href="#step-4-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Step 4: Use JSON and typed configuration together</a></li>
+<li class="toc-h2"><a href="#complete-source-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Complete source</a></li>
+<li class="toc-h2"><a href="#expected-behavior-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Expected behavior</a></li>
+<li class="toc-h2"><a href="#run-the-project-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Run the project</a></li>
+<li class="toc-h2"><a href="#understanding-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>What the learner should understand after this project</a></li>
+<li class="toc-h2"><a href="#common-mistakes-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Common mistakes to teach</a></li>
+<li class="toc-h2"><a href="#practice-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Practice extension</a></li>
 </ul></nav>
     </aside>
   </div>

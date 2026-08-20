@@ -42,26 +42,23 @@
     const outputEl = playground.querySelector(".course-run-output");
     const runBtn = playground.querySelector(".course-run-btn");
     const resetBtn = playground.querySelector(".course-reset-btn");
-    if (!outputEl || !runBtn) return;
+    if (!outputEl || !runBtn || !resetBtn) return;
 
     runBtn.addEventListener("click", () => {
       runBtn.disabled = true;
       runBtn.textContent = "Running…";
-      if (resetBtn) resetBtn.hidden = true;
       typeOutput(outputEl, payload.output || "", () => {
         runBtn.disabled = false;
-        runBtn.textContent = "Run program";
-        if (resetBtn) resetBtn.hidden = false;
+        runBtn.textContent = "Test program";
       });
     });
 
-    if (resetBtn) {
-      resetBtn.addEventListener("click", () => {
-        outputEl.hidden = true;
-        outputEl.textContent = "";
-        resetBtn.hidden = true;
-      });
-    }
+    resetBtn.addEventListener("click", () => {
+      outputEl.hidden = true;
+      outputEl.textContent = "";
+      runBtn.disabled = false;
+      runBtn.textContent = "Test program";
+    });
   }
 
   document.addEventListener("DOMContentLoaded", initCoursePlayground);

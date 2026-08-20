@@ -68,42 +68,33 @@
       <article class="docs-article"><div id="top"></div>
 <nav class="course-breadcrumb"><a href="/V-/courses.html">Courses</a> <span aria-hidden="true">/</span> <span>Project 07</span></nav>
 <header class="course-header">
-<span class="course-header-tag">Intermediate</span>
 <h1 id="course-title">Enums</h1>
-<p class="course-lead">Sum types with named variants and pattern matching.</p>
-<div class="course-concepts"><span class="course-concept">enum</span><span class="course-concept">variants</span><span class="course-concept">match</span></div>
+<p class="course-lead">Represent a closed set of named states and use match to handle each variant.</p>
 </header>
-<section class="course-step" id="overview">
+<section class="course-step" id="core-concepts">
 <div class="course-step-head">
 <span class="course-step-num">1</span>
-<h2 id="overview-title">What you will build</h2>
+<h2 id="core-concepts-title">Core concepts</h2>
 </div>
 <div class="course-step-body">
-<p><strong>Enums</strong> is project 07 in the V++ curriculum (Intermediate level). Sum types with named variants and pattern matching.</p>
-<p>In this walkthrough you will not paste the whole file at once. Each step introduces one idea, explains what the lines mean, and shows only the new snippet. By the end you will combine everything into a complete program that produces <code>Stop</code>, <code>Go</code>.</p>
-<p>The key ideas here are enum, variants, and match. Read the prose under every heading before you look at code. When you reach the playground, run the full source with <code>vpp run projects/07-enums/main.vpp</code> on your machine or use the Run button to compare against the expected output.</p>
+<p>enum, variants, match, exhaustiveness</p>
 </div></section>
-<section class="course-step" id="goal">
+<section class="course-step" id="approach">
 <div class="course-step-head">
 <span class="course-step-num">2</span>
-<h2 id="goal-title">Learning goals</h2>
+<h2 id="approach-title">How the learner should approach this project</h2>
 </div>
 <div class="course-step-body">
-<p>After finishing <strong>Enums</strong>, you should be able to explain enum, variants, and match in your own words and reproduce the program without copying blindly.</p>
-<p>You should already be comfortable with variables, functions, and loops from projects 01 through 05.</p>
-<p>Use <code>vpp check</code> on your file when something fails to compile. The type checker reports signature mismatches early. Fix one error at a time, then re-run.</p>
-<p>Tip: type out each snippet yourself instead of copy-pasting. Muscle memory matters for braces, commas, and return types.</p>
+<p>Do not paste the complete program immediately. Create the file, type the first step, run vpp check, and then run the program when a complete entry point exists. Read the explanation before looking at the snippet. After each step, predict what the new code should do. This turns the page into a lesson rather than a code dump.</p>
 </div></section>
 <section class="course-step" id="step-1">
 <div class="course-step-head">
 <span class="course-step-num">3</span>
-<h2 id="step-1-title">Enum: TrafficLight</h2>
+<h2 id="step-1-title">Step 1: Define TrafficLight</h2>
 </div>
 <div class="course-step-body">
-<p>Step 1 of 4 for <strong>Enums</strong>. We now add <strong>Enum: TrafficLight</strong> to the program.</p>
-<p>We introduce <strong>Enum: TrafficLight</strong> with <code>enum TrafficLight {</code>. An enum lists every legal variant up front, which prevents impossible states later when you <code>match</code> on it.</p>
-<p>Variants <code>Red</code>, <code>Yellow</code>, <code>Green</code>, <code>}</code> are the only allowed values. Adding a new variant later means updating every <code>match</code> that uses this enum.</p>
-<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<p>An enum represents one value chosen from a fixed set of variants. The compiler knows the complete set, which makes exhaustive matching possible.</p>
+<p>After typing the snippet, identify the new names introduced by the step. Ask what each name represents, what type the compiler should infer or check, and what value should exist after the code runs.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">enum TrafficLight {
     Red
     Yellow
@@ -113,13 +104,11 @@
 <section class="course-step" id="step-2">
 <div class="course-step-head">
 <span class="course-step-num">4</span>
-<h2 id="step-2-title">Struct: Signal</h2>
+<h2 id="step-2-title">Step 2: Put the enum inside a struct</h2>
 </div>
 <div class="course-step-body">
-<p>Step 2 of 4 for <strong>Enums</strong>. We now add <strong>Struct: Signal</strong> to the program.</p>
-<p><strong>Struct: Signal</strong> defines a product type: <code>struct Signal {</code>. Structs group fields that belong together so you pass one value instead of many separate parameters.</p>
-<p>Fields <code>light: TrafficLight</code> are checked at compile time. You construct values with struct literal syntax <code>{ field: value }</code>.</p>
-<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<p>A struct field can use a user defined enum type. Signal now represents a value that carries a TrafficLight.</p>
+<p>Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">struct Signal {
     light: TrafficLight
 }</code></pre></div>
@@ -127,19 +116,11 @@
 <section class="course-step" id="step-3">
 <div class="course-step-head">
 <span class="course-step-num">5</span>
-<h2 id="step-3-title">Function: action</h2>
+<h2 id="step-3-title">Step 3: Match every variant</h2>
 </div>
 <div class="course-step-body">
-<p>Step 3 of 4 for <strong>Enums</strong>. We now add <strong>Function: action</strong> to the program.</p>
-<p><strong>Function: action</strong> adds <code>fn action(signal: Signal) -&gt; string {</code>. Parameters and return types are required on function signatures; the body must return a value compatible with that return type on every path.</p>
-<p><code>match signal.light {</code> inspects a value and selects the first arm whose pattern fits. V++ requires match expressions to be exhaustive over the type.</p>
-<p>The arm <code>Red =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
-<p><code>return &quot;stop&quot;</code> sends a value back to the caller and ends the current function.</p>
-<p>The arm <code>Yellow =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
-<p><code>return &quot;slow&quot;</code> sends a value back to the caller and ends the current function.</p>
-<p>The arm <code>Green =&gt; {</code> handles one case. When it matches, the code after <code>=&gt;</code> runs.</p>
-<p><code>return &quot;go&quot;</code> sends a value back to the caller and ends the current function.</p>
-<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<p>match inspects signal.light and selects the arm corresponding to the active variant. Every TrafficLight variant is covered, so the match is exhaustive.</p>
+<p>Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn action(signal: Signal) -&gt; string {
     match signal.light {
         Red =&gt; {
@@ -157,17 +138,11 @@
 <section class="course-step" id="step-4">
 <div class="course-step-head">
 <span class="course-step-num">6</span>
-<h2 id="step-4-title">Entry point: main</h2>
+<h2 id="step-4-title">Step 4: Construct and evaluate signals</h2>
 </div>
 <div class="course-step-body">
-<p>Step 4 of 4 for <strong>Enums</strong>. We now add <strong>Entry point: main</strong> to the program.</p>
-<p><code>fn main() -&gt; int</code> is the program entry point. The runtime calls it after your definitions are loaded. Everything inside the braces runs in order.</p>
-<p><code>let stop = Signal { light: Red }</code> binds the name <code>stop</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
-<p><code>let go = Signal { light: Green }</code> binds the name <code>go</code> to a value. V++ infers the type from the right hand side so you rarely need to write it explicitly for simple literals.</p>
-<p><code>print(action(stop))</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
-<p><code>print(action(go))</code> writes to standard output followed by a newline. <code>print</code> accepts values such as integers and strings.</p>
-<p><code>return 0</code> exits <code>main</code> with status code 0, which operating systems treat as success. Non-zero values signal an error.</p>
-<p>Study the snippet below. It is only the new piece for this step; earlier definitions are assumed to exist above it in your file.</p>
+<p>The main function creates two Signal values and sends them through action. The returned strings show how enum state can drive program behavior.</p>
+<p>Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system.</p>
 <div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">fn main() -&gt; int {
     let stop = Signal { light: Red }
     let go = Signal { light: Green }
@@ -176,16 +151,20 @@
     return 0
 }</code></pre></div>
 </div></section>
-<section class="course-step course-step-final" id="full-program"><div class="course-step-head"><span class="course-step-num">✓</span><h2 id="full-program-title">Full program &amp; run</h2></div><div class="course-step-body"><p>Complete source for <strong>Enums</strong>. Run locally with <code>vpp run projects/07-enums/main.vpp</code> or use the playground below.</p><div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">enum TrafficLight {
+<section class="course-step" id="complete-source">
+<div class="course-step-head">
+<span class="course-step-num">7</span>
+<h2 id="complete-source-title">Complete source</h2>
+</div>
+<div class="course-step-body">
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">main.vpp</span></div><pre class="language-vpp"><code class="language-vpp">enum TrafficLight {
     Red
     Yellow
     Green
 }
-
 struct Signal {
     light: TrafficLight
 }
-
 fn action(signal: Signal) -&gt; string {
     match signal.light {
         Red =&gt; {
@@ -199,26 +178,79 @@ fn action(signal: Signal) -&gt; string {
         }
     }
 }
-
 fn main() -&gt; int {
     let stop = Signal { light: Red }
     let go = Signal { light: Green }
     print(action(stop))
     print(action(go))
     return 0
-}</code></pre></div><script type="application/json" id="course-playground-data">{&quot;output&quot;: &quot;Stop\nGo&quot;, &quot;source&quot;: &quot;enum TrafficLight {\n    Red\n    Yellow\n    Green\n}\n\nstruct Signal {\n    light: TrafficLight\n}\n\nfn action(signal: Signal) -&gt; string {\n    match signal.light {\n        Red =&gt; {\n            return \&quot;stop\&quot;\n        }\n        Yellow =&gt; {\n            return \&quot;slow\&quot;\n        }\n        Green =&gt; {\n            return \&quot;go\&quot;\n        }\n    }\n}\n\nfn main() -&gt; int {\n    let stop = Signal { light: Red }\n    let go = Signal { light: Green }\n    print(action(stop))\n    print(action(go))\n    return 0\n}&quot;}</script><div class="course-playground"><div class="course-playground-toolbar"><span class="course-playground-label">Playground</span><button type="button" class="btn btn-primary course-run-btn">Run program</button><button type="button" class="btn btn-outline course-reset-btn" hidden>Reset</button></div><pre class="course-run-output" hidden aria-live="polite"></pre><p class="course-run-hint">Simulated output matches <code>vpp run</code> on your machine after <a href="/V-/download.html">installing V++</a>.</p></div></div></section></article>
+}</code></pre></div>
+</div></section>
+<section class="course-step" id="expected-behavior">
+<div class="course-step-head">
+<span class="course-step-num">8</span>
+<h2 id="expected-behavior-title">Expected behavior</h2>
+</div>
+<div class="course-step-body">
+<p>The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current V++ runtime.</p>
+<pre class="course-expected-output">stop
+go</pre>
+</div></section>
+<section class="course-step" id="run-the-project">
+<div class="course-step-head">
+<span class="course-step-num">9</span>
+<h2 id="run-the-project-title">Run the project</h2>
+</div>
+<div class="course-step-body">
+<div class="code-block-wrap"><div class="code-block-header"><span class="code-block-filename">terminal</span></div><pre class="language-bash"><code class="language-bash">vpp run projects/07-enums/main.vpp</code></pre></div>
+</div></section>
+<section class="course-step" id="understanding">
+<div class="course-step-head">
+<span class="course-step-num">10</span>
+<h2 id="understanding-title">What the learner should understand after this project</h2>
+</div>
+<div class="course-step-body">
+<p>Enums model a closed set of states. match makes those states visible in code and lets the compiler reason about coverage.</p>
+</div></section>
+<section class="course-step" id="common-mistakes">
+<div class="course-step-head">
+<span class="course-step-num">11</span>
+<h2 id="common-mistakes-title">Common mistakes to teach</h2>
+</div>
+<div class="course-step-body">
+<ol class="course-step-list">
+<li>Leaving an enum variant out of match</li>
+<li>Using a variant that belongs to another enum</li>
+<li>Constructing a struct with an incompatible enum value</li>
+</ol>
+</div></section>
+<section class="course-step" id="practice">
+<div class="course-step-head">
+<span class="course-step-num">12</span>
+<h2 id="practice-title">Practice extension</h2>
+</div>
+<div class="course-step-body">
+<p>Add a fourth traffic state and observe which match sites the compiler requires you to update.</p>
+<p>A strong learner should be able to explain the program without looking at the code, rebuild the core idea from memory, and make the practice change without copying a solution.</p>
+</div></section>
+<script type="application/json" id="course-playground-data">{&quot;output&quot;: &quot;stop\ngo&quot;, &quot;source&quot;: &quot;enum TrafficLight {\n    Red\n    Yellow\n    Green\n}\nstruct Signal {\n    light: TrafficLight\n}\nfn action(signal: Signal) -&gt; string {\n    match signal.light {\n        Red =&gt; {\n            return \&quot;stop\&quot;\n        }\n        Yellow =&gt; {\n            return \&quot;slow\&quot;\n        }\n        Green =&gt; {\n            return \&quot;go\&quot;\n        }\n    }\n}\nfn main() -&gt; int {\n    let stop = Signal { light: Red }\n    let go = Signal { light: Green }\n    print(action(stop))\n    print(action(go))\n    return 0\n}&quot;}</script><div class="course-playground"><div class="course-playground-toolbar"><button type="button" class="btn btn-primary course-run-btn">Test program</button><button type="button" class="btn btn-outline course-reset-btn">Reset</button></div><pre class="course-run-output" hidden aria-live="polite"></pre></div></article>
     </main>
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>
       <nav class="toc-tree" aria-label="On this page"><ul>
 <li class=""><a href="#course-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Enums</a></li>
-<li class="toc-h2"><a href="#overview-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>What you will build</a></li>
-<li class="toc-h2"><a href="#goal-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Learning goals</a></li>
-<li class="toc-h2"><a href="#step-1-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Enum: TrafficLight</a></li>
-<li class="toc-h2"><a href="#step-2-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Struct: Signal</a></li>
-<li class="toc-h2"><a href="#step-3-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Function: action</a></li>
-<li class="toc-h2"><a href="#step-4-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Entry point: main</a></li>
-<li class="toc-h2"><a href="#full-program-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Full program & run</a></li>
+<li class="toc-h2"><a href="#core-concepts-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Core concepts</a></li>
+<li class="toc-h2"><a href="#approach-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>How the learner should approach this project</a></li>
+<li class="toc-h2"><a href="#step-1-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Step 1: Define TrafficLight</a></li>
+<li class="toc-h2"><a href="#step-2-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Step 2: Put the enum inside a struct</a></li>
+<li class="toc-h2"><a href="#step-3-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Step 3: Match every variant</a></li>
+<li class="toc-h2"><a href="#step-4-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Step 4: Construct and evaluate signals</a></li>
+<li class="toc-h2"><a href="#complete-source-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Complete source</a></li>
+<li class="toc-h2"><a href="#expected-behavior-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Expected behavior</a></li>
+<li class="toc-h2"><a href="#run-the-project-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Run the project</a></li>
+<li class="toc-h2"><a href="#understanding-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>What the learner should understand after this project</a></li>
+<li class="toc-h2"><a href="#common-mistakes-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Common mistakes to teach</a></li>
+<li class="toc-h2"><a href="#practice-title" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Practice extension</a></li>
 </ul></nav>
     </aside>
   </div>
