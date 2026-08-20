@@ -361,13 +361,13 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   gap: 1rem;
   align-items: center;
   font-size: 0.8rem;
-  color: var(--gray-500);
+  color: var(--text);
 }
 
 .home-partners a {
   text-decoration: none;
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--text);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
 }
