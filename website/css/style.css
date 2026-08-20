@@ -1080,23 +1080,38 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   border: 2px solid var(--yellow-dark);
 }
 
-.btn-dl-primary:hover {
-  background: var(--yellow-dark);
+.download-hub .btn-dl-primary,
+.download-hub .btn-dl-primary:hover,
+.download-hub .btn-dl-primary:focus-visible {
+  background: var(--yellow);
   color: var(--black);
+  border-color: var(--yellow-dark);
   text-decoration: none;
-  transform: translateY(-1px);
+  transform: none;
+}
+
+.download-hub .btn-dl-secondary,
+.download-hub .btn-dl-secondary:hover,
+.download-hub .btn-dl-secondary:focus-visible {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--gray-300);
+  text-decoration: none;
+  transform: none;
+}
+
+.download-hub .btn-dl-primary .btn-dl-icon svg {
+  stroke: var(--black);
+}
+
+.download-hub .btn-dl-secondary .btn-dl-icon svg {
+  stroke: currentColor;
 }
 
 .btn-dl-secondary {
   background: transparent;
   color: var(--text);
   border: 1px solid var(--gray-300);
-}
-
-.btn-dl-secondary:hover {
-  border-color: var(--yellow);
-  color: var(--yellow);
-  text-decoration: none;
 }
 
 .download-detect {
