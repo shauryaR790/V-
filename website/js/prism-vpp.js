@@ -18,6 +18,10 @@
   });
 
   if (Prism.languages.bash) {
+    Prism.languages.powershell = Prism.languages.bash;
+    Prism.languages.shell = Prism.languages.bash;
+    Prism.languages.text = Prism.languages.bash;
+
     Prism.languages.bash = Prism.languages.extend("bash", {
       "command-name": {
         pattern: /(?:^|[\s|;&(])(?:vpp|cargo|clang|llvm|git|cd|mkdir|rm|cp|mv|python|node|npm|curl|wget|tar|unzip|make|cmake)(?=$|[\s|;&()])/m,

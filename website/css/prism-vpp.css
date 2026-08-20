@@ -19,6 +19,13 @@
   margin: 0.75rem 0 1rem;
   padding: 1rem;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.code-block-wrap::-webkit-scrollbar,
+.code-panel::-webkit-scrollbar {
+  display: none;
 }
 
 .code-block-header,
@@ -103,9 +110,16 @@
   background: transparent !important;
   border: none !important;
   border-radius: 0 !important;
-  overflow-x: auto !important;
+  overflow: hidden !important;
   max-height: none !important;
   min-height: 0 !important;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.code-block-wrap pre::-webkit-scrollbar,
+.code-panel pre::-webkit-scrollbar {
+  display: none;
 }
 
 .code-block-wrap pre code,
@@ -123,7 +137,13 @@
 /* Per-line layout (react-syntax-highlighter style) */
 .code-line-rows {
   display: block;
-  min-width: min-content;
+  overflow: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.code-line-rows::-webkit-scrollbar {
+  display: none;
 }
 
 .code-line-row {
@@ -152,10 +172,13 @@
 .code-line-row .code-line-content {
   flex: 1;
   min-width: 0;
-  white-space: pre;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
   font-family: var(--mono, "IBM Plex Mono", monospace);
   font-size: 0.875rem;
   line-height: 1.5;
+  color: #cdd6f4;
 }
 
 .code-block-footer,
@@ -191,145 +214,174 @@ pre.has-line-numbers .code-ln-gutter {
 
 /* atomDark-style Prism tokens */
 code[class*="language-"],
-pre[class*="language-"],
-.code-line-content {
-  color: var(--code-fg);
+pre[class*="language-"] {
+  color: #cdd6f4;
 }
 
-.token.comment,
+.code-block-wrap .code-line-content .token,
+.code-panel .code-line-content .token {
+  text-shadow: none;
+}
+
+.code-block-wrap .token.comment,
+.code-panel .token.comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #75715e;
+  color: #6272a4;
   font-style: italic;
 }
 
-.token.punctuation,
-.token.operator {
+.code-block-wrap .token.punctuation,
+.code-panel .token.punctuation,
+.code-block-wrap .token.operator,
+.code-panel .token.operator {
   color: #f8f8f2;
 }
 
-.token.keyword,
+.code-block-wrap .token.keyword,
+.code-panel .token.keyword,
 .token.atrule,
 .token.important {
-  color: #66d9ef;
+  color: #ff79c6;
 }
 
-.token.tag {
-  color: #66d9ef;
+.code-block-wrap .token.tag,
+.code-panel .token.tag {
+  color: #ff79c6;
 }
 
-.token.string,
+.code-block-wrap .token.string,
+.code-panel .token.string,
 .token.char,
 .token.attr-value,
 .token.regex {
-  color: #e6db74;
+  color: #f1fa8c;
 }
 
-.token.number,
+.code-block-wrap .token.number,
+.code-panel .token.number,
 .token.boolean,
 .token.constant,
 .token.symbol {
-  color: #ae81ff;
+  color: #bd93f9;
 }
 
-.token.function,
+.code-block-wrap .token.function,
+.code-panel .token.function,
 .token.class-name,
 .token.maybe-class-name {
-  color: #a6e22e;
+  color: #50fa7b;
 }
 
-.token.property,
+.code-block-wrap .token.property,
+.code-panel .token.property,
 .token.attr-name,
 .token.selector,
 .token.key {
-  color: #a6e22e;
+  color: #50fa7b;
 }
 
-.token.variable,
+.code-block-wrap .token.variable,
+.code-panel .token.variable,
 .token.parameter,
 .token.builtin,
 .token.interpolation {
-  color: #fd971f;
+  color: #ffb86c;
 }
 
-.token.inserted { color: #a6e22e; }
-.token.deleted { color: #f92672; }
+.token.inserted { color: #50fa7b; }
+.token.deleted { color: #ff5555; }
 
 .token.entity,
 .token.url {
-  color: #66d9ef;
+  color: #8be9fd;
 }
 
-/* Shell / bash */
+/* Shell / bash / powershell */
 .language-bash .token.function,
 .language-shell .token.function,
+.language-powershell .token.function,
 .language-bash .token.builtin,
-.language-shell .token.builtin {
-  color: #a6e22e;
+.language-shell .token.builtin,
+.language-powershell .token.builtin {
+  color: #50fa7b;
 }
 
 .language-bash .token.string,
-.language-shell .token.string {
-  color: #e6db74;
+.language-shell .token.string,
+.language-powershell .token.string {
+  color: #f1fa8c;
 }
 
 .language-bash .token.comment,
-.language-shell .token.comment {
-  color: #75715e;
+.language-shell .token.comment,
+.language-powershell .token.comment {
+  color: #6272a4;
   font-style: italic;
+}
+
+.language-bash .token.variable,
+.language-powershell .token.variable {
+  color: #ffb86c;
+}
+
+.language-bash .token.keyword,
+.language-powershell .token.keyword {
+  color: #ff79c6;
 }
 
 /* TOML */
 .language-toml .token.key,
 .language-toml .token.property {
-  color: #66d9ef;
+  color: #8be9fd;
 }
 
 .language-toml .token.table,
 .language-toml .token.table-array {
-  color: #a6e22e;
+  color: #50fa7b;
 }
 
 .language-toml .token.string {
-  color: #e6db74;
+  color: #f1fa8c;
 }
 
 /* Rust */
 .language-rust .token.lifetime {
-  color: #ae81ff;
+  color: #bd93f9;
 }
 
 .language-rust .token.macro {
-  color: #a6e22e;
+  color: #50fa7b;
 }
 
 /* V++ */
 .language-vpp .token.keyword {
-  color: #f92672;
+  color: #ff79c6;
 }
 
 .language-vpp .token.type {
-  color: #66d9ef;
+  color: #8be9fd;
 }
 
-.language-vpp .token.function {
-  color: #a6e22e;
+.language-vpp .token.function,
+.language-vpp .token.builtin {
+  color: #50fa7b;
 }
 
 .language-vpp .token.string {
-  color: #e6db74;
+  color: #f1fa8c;
 }
 
 .language-vpp .token.number {
-  color: #ae81ff;
+  color: #bd93f9;
 }
 
-.language-vpp .token.builtin {
-  color: #fd971f;
+.language-vpp .token.operator {
+  color: #ff79c6;
 }
 
 .language-vpp .token.comment {
-  color: #75715e;
+  color: #6272a4;
   font-style: italic;
 }

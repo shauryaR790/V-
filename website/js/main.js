@@ -358,10 +358,25 @@ function getCodeLanguage(codeEl) {
   return match ? match.slice(9) : "text";
 }
 
+function resolveCodeLang(lang) {
+  const aliases = {
+    powershell: "bash",
+    shell: "bash",
+    sh: "bash",
+    text: "bash",
+    terminal: "bash",
+  };
+  const resolved = aliases[lang] || lang;
+  if (typeof Prism !== "undefined" && Prism.languages[resolved]) return resolved;
+  if (typeof Prism !== "undefined" && Prism.languages.bash) return "bash";
+  return lang;
+}
+
 function renderLineBasedCode(pre, rawText, lang, highlightLines = []) {
   if (typeof Prism === "undefined") return false;
 
-  const grammar = Prism.languages[lang];
+  const resolvedLang = resolveCodeLang(lang);
+  const grammar = Prism.languages[resolvedLang];
   const lines = rawText.split("\n");
   if (lines.length > 1 && lines[lines.length - 1] === "") lines.pop();
 
@@ -381,7 +396,7 @@ function renderLineBasedCode(pre, rawText, lang, highlightLines = []) {
     const content = document.createElement("span");
     content.className = "code-line-content";
     if (grammar && line.trim()) {
-      content.innerHTML = Prism.highlight(line, grammar, lang);
+      content.innerHTML = Prism.highlight(line, grammar, resolvedLang);
     } else if (line.trim()) {
       content.textContent = line;
     } else {

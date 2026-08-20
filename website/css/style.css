@@ -296,7 +296,13 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .page-home .code-panel pre.home-code-pre {
   min-height: 0;
   flex: 1;
-  overflow-y: auto;
+  overflow: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.page-home .code-panel pre::-webkit-scrollbar {
+  display: none;
 }
 
 .page-home .code-panel .code-line-row .code-ln,
@@ -421,6 +427,12 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   flex: 1;
   overflow: hidden !important;
   min-height: calc(1rem * 2 + 30 * 1.65 * 0.8125rem);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.code-panel pre::-webkit-scrollbar {
+  display: none;
 }
 
 .code-footer {
