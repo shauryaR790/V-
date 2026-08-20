@@ -4,6 +4,8 @@
   --white: #ffffff;
   --black: #000000;
   --bg: #000000;
+  --nav-bg: #010409;
+  --panel-bg: #0D1117;
   --surface: #0a0a0a;
   --gray-100: #111111;
   --gray-200: #1a1a1a;
@@ -24,7 +26,7 @@
   --sidebar-w: 280px;
   --toc-w: 300px;
   --layout-max: 1920px;
-  --docs-bg: #0d1117;
+  --docs-bg: #0D1117;
   --tree-row-hover: rgba(255, 255, 255, 0.06);
   --tree-row-active: rgba(251, 219, 90, 0.1);
   --tree-text: #8b949e;
@@ -60,7 +62,7 @@ body.page-docs {
 }
 
 body.page-home {
-  background-color: var(--bg);
+  background-color: var(--panel-bg);
   position: relative;
   overflow: hidden;
 }
@@ -112,7 +114,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   position: sticky;
   top: 0;
   z-index: 200;
-  background: var(--bg);
+  background: var(--nav-bg);
   border-bottom: 3px solid var(--yellow);
   height: var(--header-h);
 }
@@ -235,13 +237,11 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .page-home .site-header {
   flex-shrink: 0;
-  background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(8px);
+  background: var(--nav-bg);
 }
 
 .page-docs .site-header {
-  background: rgba(0, 0, 0, 0.92);
-  backdrop-filter: blur(6px);
+  background: var(--nav-bg);
 }
 
 .home-main {
@@ -434,7 +434,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 .page-home .home-bottom {
   flex-shrink: 0;
   width: 100%;
-  background: #000000;
+  background: var(--nav-bg);
   border-top: 3px solid var(--yellow);
 }
 
@@ -515,13 +515,29 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
   padding: 0 0.35rem 0.65rem;
 }
 
+.tree-search-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.tree-search-icon {
+  position: absolute;
+  left: 0.65rem;
+  width: 14px;
+  height: 14px;
+  color: var(--tree-text);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
 .tree-search {
   width: 100%;
-  padding: 0.35rem 0.65rem;
+  padding: 0.4rem 0.65rem 0.4rem 2.1rem;
   font-family: var(--font);
   font-size: var(--tree-font);
   color: var(--tree-text-hover);
-  background: var(--bg);
+  background: var(--panel-bg);
   border: 1px solid var(--border-muted);
   border-radius: 6px;
   outline: none;
@@ -841,7 +857,7 @@ code, pre { font-family: var(--mono); font-size: 0.875em; }
 /* Footer */
 .site-footer {
   border-top: 1px solid var(--border-muted);
-  background: var(--bg);
+  background: var(--nav-bg);
   padding: 0.85rem 1.25rem;
 }
 
