@@ -55,7 +55,7 @@ If you know Python or JavaScript, expect a few days for syntax; a few weeks for 
 
 ## Where do I download?
 
-[GitHub Releases](https://github.com/shauryaR790/V-/releases) — `vpp-0.5.0-setup.exe` for Windows.
+[GitHub Releases](https://github.com/shauryaR790/V-/releases) — `vpp-1.0.0-setup.exe` for Windows (Linux/macOS tarballs on the same page).
 
 ## Which VS Code extension is official?
 

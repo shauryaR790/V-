@@ -12,12 +12,12 @@ fn parse_config(raw: string) -> string {
 }
 
 fn main() -> int {
-    let raw = "{\"name\":\"v++\",\"version\":\"0.5.0\",\"debug\":false}"
+    let raw = "{\"name\":\"v++\",\"version\":\"1.0.0\",\"debug\":false}"
     print(parse_config(raw))
 
     let cfg = AppConfig {
         name: "v++"
-        version: "0.5.0"
+        version: "1.0.0"
         debug: true
     }
     print(cfg.name)

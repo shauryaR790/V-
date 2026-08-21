@@ -94,7 +94,8 @@ pub fn format(source: &str) -> VppResult<String> {
             }
             other => {
                 out.push_str(&other.to_string());
-                if needs_space_after(other) {
+                let next = tokens.get(i + 1).map(|t| &t.kind);
+                if needs_space_after(other, next) {
                     out.push(' ');
                 }
             }
@@ -110,10 +111,27 @@ pub fn format(source: &str) -> VppResult<String> {
     Ok(out)
 }
 
-fn needs_space_after(kind: &TokenKind) -> bool {
+fn needs_space_after(kind: &TokenKind, next: Option<&TokenKind>) -> bool {
+    if matches!(
+        next,
+        Some(
+            TokenKind::DotDot
+                | TokenKind::Comma
+                | TokenKind::RParen
+                | TokenKind::RBracket
+                | TokenKind::RBrace
+                | TokenKind::Colon
+                | TokenKind::Newline
+                | TokenKind::Eof
+        )
+    ) {
+        return false;
+    }
+
     matches!(
         kind,
         TokenKind::Let
+            | TokenKind::Mut
             | TokenKind::Fn
             | TokenKind::If
             | TokenKind::Else
@@ -127,8 +145,6 @@ fn needs_space_after(kind: &TokenKind) -> bool {
             | TokenKind::FloatType
             | TokenKind::BoolType
             | TokenKind::StringType
-            | TokenKind::IntLit(_)
-            | TokenKind::FloatLit(_)
             | TokenKind::Ident(_)
     )
 }
@@ -142,6 +158,15 @@ pub fn format_file(path: &std::path::Path) -> VppResult<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn formats_mut_and_range() {
+        let out = format("let mut total = 0\nfor n in 1..6 { print(n) }").unwrap();
+        assert!(out.contains("let mut total"), "got: {out}");
+        assert!(out.contains("1..6"), "got: {out}");
+        assert!(!out.contains("muttotal"));
+        assert!(!out.contains("1 ..6"));
+    }
 
     #[test]
     fn formats_block_indentation() {

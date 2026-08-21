@@ -1,4 +1,4 @@
-// Lesson 3: Loops, arrays, and break/continue
+// Lesson 3: loops, break, continue, for-in
 
 let mut total = 0
 for n in 1..6 {

@@ -2158,14 +2158,14 @@
           "main starts with a JSON string containing name, version, and debug. It passes the raw text through parse_config and prints the resulting JSON. It then creates a typed AppConfig value and accesses its fields directly.",
           "Before moving forward, explain how this step connects to the previous one. In particular, identify which values cross a function boundary, which values change, and which values are guaranteed by the type system."
         ],
-        "code": "fn main() -> int {\n    let raw = \"{\"name\":\"v++\",\"version\":\"0.5.0\",\"debug\":false}\"\n    print(parse_config(raw))\n    let cfg = AppConfig {\n        name: \"v++\"\n        version: \"0.5.0\"\n        debug: true\n    }\n    print(cfg.name)\n    print(cfg.version)\n    return 0\n}",
+        "code": "fn main() -> int {\n    let raw = \"{\"name\":\"v++\",\"version\":\"1.0.0\",\"debug\":false}\"\n    print(parse_config(raw))\n    let cfg = AppConfig {\n        name: \"v++\"\n        version: \"1.0.0\"\n        debug: true\n    }\n    print(cfg.name)\n    print(cfg.version)\n    return 0\n}",
         "list_items": []
       },
       {
         "section_id": "complete-source",
         "title": "Complete source",
         "paragraphs": [],
-        "code": "import std.json\nstruct AppConfig {\n    name: string\n    version: string\n    debug: bool\n}\nfn parse_config(raw: string) -> string {\n    let doc = json.parse(raw)\n    return json.stringify(doc)\n}\nfn main() -> int {\n    let raw = \"{\"name\":\"v++\",\"version\":\"0.5.0\",\"debug\":false}\"\n    print(parse_config(raw))\n    let cfg = AppConfig {\n        name: \"v++\"\n        version: \"0.5.0\"\n        debug: true\n    }\n    print(cfg.name)\n    print(cfg.version)\n    return 0\n}",
+        "code": "import std.json\nstruct AppConfig {\n    name: string\n    version: string\n    debug: bool\n}\nfn parse_config(raw: string) -> string {\n    let doc = json.parse(raw)\n    return json.stringify(doc)\n}\nfn main() -> int {\n    let raw = \"{\"name\":\"v++\",\"version\":\"1.0.0\",\"debug\":false}\"\n    print(parse_config(raw))\n    let cfg = AppConfig {\n        name: \"v++\"\n        version: \"1.0.0\"\n        debug: true\n    }\n    print(cfg.name)\n    print(cfg.version)\n    return 0\n}",
         "list_items": []
       },
       {
@@ -2215,8 +2215,8 @@
         "list_items": []
       }
     ],
-    "complete_source": "import std.json\nstruct AppConfig {\n    name: string\n    version: string\n    debug: bool\n}\nfn parse_config(raw: string) -> string {\n    let doc = json.parse(raw)\n    return json.stringify(doc)\n}\nfn main() -> int {\n    let raw = \"{\"name\":\"v++\",\"version\":\"0.5.0\",\"debug\":false}\"\n    print(parse_config(raw))\n    let cfg = AppConfig {\n        name: \"v++\"\n        version: \"0.5.0\"\n        debug: true\n    }\n    print(cfg.name)\n    print(cfg.version)\n    return 0\n}",
-    "expected_output": "{\"name\":\"v++\",\"version\":\"0.5.0\",\"debug\":false}\nv++\n0.5.0",
+    "complete_source": "import std.json\nstruct AppConfig {\n    name: string\n    version: string\n    debug: bool\n}\nfn parse_config(raw: string) -> string {\n    let doc = json.parse(raw)\n    return json.stringify(doc)\n}\nfn main() -> int {\n    let raw = \"{\"name\":\"v++\",\"version\":\"1.0.0\",\"debug\":false}\"\n    print(parse_config(raw))\n    let cfg = AppConfig {\n        name: \"v++\"\n        version: \"1.0.0\"\n        debug: true\n    }\n    print(cfg.name)\n    print(cfg.version)\n    return 0\n}",
+    "expected_output": "{\"name\":\"v++\",\"version\":\"1.0.0\",\"debug\":false}\nv++\n0.5.0",
     "run_cmd": "vpp run projects/20-json-config/main.vpp"
   }
 ]

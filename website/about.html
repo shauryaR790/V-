@@ -123,7 +123,7 @@
 <h1 id="about-the-language">About The Language</h1>
 <p><strong>V++</strong> is a compiled programming language Python style readability, static typing, native performance.</p>
 <p>&gt; Write it simply. Compile it natively. Grow into control when you need it.</p>
-<p><strong>Author:</strong> <a href="https://github.com/shauryaR790">Shaurya</a> · <strong>License:</strong> MIT · <strong>Version:</strong> 0.5.0</p>
+<p><strong>Author:</strong> <a href="https://github.com/shauryaR790">Shaurya</a> · <strong>License:</strong> MIT · <strong>Version:</strong> 1.0.0</p>
 <hr>
 <h2 id="get-started-in-2-minutes">Get started in 2 minutes</h2>
 <p>1. <strong>Download</strong> <a href="https://github.com/shauryaR790/V-/releases/latest"> 0 </a> (Windows installer)</p>
@@ -399,8 +399,9 @@ cargo test --all-targets
 <li>No hidden GC</li>
 </ul>
 
-<h1 id="v-language-specification-v0-4">V++ Language Specification (v0.4)</h1>
-<p>This document describes V++ as implemented in v0.4. If code and spec disagree, parity tests and native execution are authoritative.</p>
+<h1 id="v-language-specification">V++ Language Specification</h1>
+<p>&gt; <strong>v1.0 FROZEN (2026 08 21).</strong> Breaking changes require v2.0. See <a href="docs/project/PARITY_PROMISE.md">PARITY_PROMISE.md</a>.</p>
+<p>This document describes V++ as implemented in v1.0. If code and spec disagree, parity tests and native execution are authoritative.</p>
 <h2 id="types">Types</h2>
 <div class="table-wrap"><table>
 <tr>
@@ -585,30 +586,46 @@ import &quot;legacy/path.vpp&quot;   // still supported
 </ul>
 
 <h1 id="roadmap-2">Roadmap</h1>
-<h2 id="shipped-v0-4-4">Shipped (v0.4.4)</h2>
+<h2 id="v1-0-shipped">v1.0 (shipped)</h2>
 <ul>
-<li>Language: mut, generics, traits, exhaustive match</li>
-<li>Toolchain: vpp, vppls, package manager, stdlib</li>
-<li>Distribution: Windows installer, VS Code extension, CI/CD</li>
+<li>[x] Frozen language spec <a href="../SPEC.md">SPEC.md</a></li>
+<li>[x] Parity Promise <a href="PARITY_PROMISE.md">PARITY_PROMISE.md</a></li>
+<li>[x] Compatibility CI all examples on every push</li>
+<li>[x] Debugger (CLI + VS Code F5)</li>
+<li>[x] Test Explorer UI</li>
+<li>[x] Package registry search (<code>vpp search</code>)</li>
 </ul>
-<h2 id="v0-5-current">v0.5 (current)</h2>
+<h2 id="v0-9-shipped">v0.9 (shipped)</h2>
 <ul>
-<li>[x] Documentation hub and install guides</li>
-<li>[x] Website (landing, learn, 20 projects, downloads, history)</li>
-<li>[ ] SignPath code signing</li>
-<li>[ ] REPL (<code>vpp repl</code>)</li>
-<li>[ ] Expanded stdlib (maps, time)</li>
-<li>[ ] Linux/macOS release polish</li>
+<li>[x] Test Explorer UI</li>
+<li>[x] <code>vpp test --list</code> for IDE integration</li>
+<li>[x] <code>vpp search</code> registry command</li>
+<li>[x] SPEC v1.0 release candidate</li>
 </ul>
-<h2 id="v1-0-stable">v1.0 (stable)</h2>
+<h2 id="v0-8-shipped">v0.8 (shipped)</h2>
 <ul>
-<li>[ ] Frozen language spec no breaking changes without major version</li>
-<li>[ ] Debugger extension (breakpoints)</li>
-<li>[ ] Test Explorer UI in VS Code</li>
-<li>[ ] Hosted package registry</li>
-<li>[ ] Curriculum + interactive tutorial</li>
+<li>[x] Interpreter line debugger (<code>vpp debug</code>)</li>
+<li>[x] VS Code debug launch (DAP)</li>
 </ul>
-<p>Track progress in <a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a>.</p></article>
+<h2 id="v0-7-shipped">v0.7 (shipped)</h2>
+<ul>
+<li>[x] <strong><code>vpp watch</code></strong> live re run on save</li>
+<li>[x] <strong><code>vpp bench</code></strong> interpreter timing</li>
+<li>[x] Cross platform doctor hints</li>
+<li>[x] Extension 0.7 Watch + Benchmark commands</li>
+</ul>
+<h2 id="v0-6-shipped">v0.6 (shipped)</h2>
+<ul>
+<li>[x] <strong><code>vpp repl</code></strong> interactive interpreter session</li>
+<li>[x] Extension 0.6 format on save, REPL command, snippets, lazy LSP</li>
+</ul>
+<h2 id="post-v1-0-ideas">Post v1.0 (ideas)</h2>
+<ul>
+<li>Native debug symbols</li>
+<li>Hosted registry on GitHub Pages</li>
+<li>v2.0 language extensions (only with major version)</li>
+</ul>
+<p>Track issues: <a href="https://github.com/shauryaR790/V-/issues">GitHub Issues</a></p></article>
     </main>
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>
@@ -641,7 +658,7 @@ import &quot;legacy/path.vpp&quot;   // still supported
 <li class="toc-h2"><a href="#arc-rules-v0-2-bootstrap" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>ARC rules (v0.2 bootstrap)</a></li>
 <li class="toc-h2"><a href="#interpreter-mapping" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Interpreter mapping</a></li>
 <li class="toc-h2"><a href="#future-v1-0" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Future (v1.0)</a></li>
-<li class=""><a href="#v-language-specification-v0-4" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>V++ Language Specification (v0.4)</a></li>
+<li class=""><a href="#v-language-specification" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>V++ Language Specification</a></li>
 <li class="toc-h2"><a href="#types" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Types</a></li>
 <li class="toc-h2"><a href="#variables" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Variables</a></li>
 <li class="toc-h2"><a href="#functions" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Functions</a></li>
@@ -654,9 +671,12 @@ import &quot;legacy/path.vpp&quot;   // still supported
 <li class="toc-h2"><a href="#execution" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Execution</a></li>
 <li class="toc-h2"><a href="#known-limitations-v0-4" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Known limitations (v0.4)</a></li>
 <li class=""><a href="#roadmap-2" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Roadmap</a></li>
-<li class="toc-h2"><a href="#shipped-v0-4-4" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Shipped (v0.4.4)</a></li>
-<li class="toc-h2"><a href="#v0-5-current" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>v0.5 (current)</a></li>
-<li class="toc-h2"><a href="#v1-0-stable" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>v1.0 (stable)</a></li>
+<li class="toc-h2"><a href="#v1-0-shipped" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>v1.0 (shipped)</a></li>
+<li class="toc-h2"><a href="#v0-9-shipped" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>v0.9 (shipped)</a></li>
+<li class="toc-h2"><a href="#v0-8-shipped" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>v0.8 (shipped)</a></li>
+<li class="toc-h2"><a href="#v0-7-shipped" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>v0.7 (shipped)</a></li>
+<li class="toc-h2"><a href="#v0-6-shipped" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>v0.6 (shipped)</a></li>
+<li class="toc-h2"><a href="#post-v1-0-ideas" class="tree-link"><svg class="tree-icon tree-icon-file" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 12.25 16h-8.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 8 4.25V1.5Z"/></svg>Post v1.0 (ideas)</a></li>
 </ul></nav>
     </aside>
   </div>

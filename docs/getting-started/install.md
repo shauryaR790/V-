@@ -2,7 +2,7 @@
 
 ## Windows (recommended)
 
-1. Download **`vpp-0.5.0-setup.exe`** from [GitHub Releases](https://github.com/shauryaR790/V-/releases/latest).
+1. Download **`vpp-1.0.0-setup.exe`** from [GitHub Releases](https://github.com/shauryaR790/V-/releases/latest).
 2. Run the installer. If Windows SmartScreen appears, choose **More info → Run anyway**.
 3. Open a **new** terminal:
 
@@ -30,7 +30,7 @@ See [VS Code setup](vscode-setup.md).
 
 ## Portable zip (advanced)
 
-Download `vpp-v0.5.0-windows-x64.zip`, extract, run `GO.bat` or add the folder to PATH manually.
+Download `vpp-v1.0.0-windows-x64.zip`, extract, run `GO.bat` or add the folder to PATH manually.
 
 ## Build from source
 
