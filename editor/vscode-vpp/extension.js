@@ -212,6 +212,11 @@ function startLanguageServer(context) {
 function activate(context) {
   startLanguageServer(context);
 
+  const iconTheme = vscode.workspace.getConfiguration("workbench").get("iconTheme");
+  if (!iconTheme) {
+    vscode.workspace.getConfiguration("workbench").update("iconTheme", "vpp-icons", true);
+  }
+
   context.subscriptions.push(
     vscode.commands.registerCommand("vpp.runFile", () => {
       const editor = vscode.window.activeTextEditor;

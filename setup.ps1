@@ -15,7 +15,7 @@ if (-not (Test-Path "$env:USERPROFILE\.cargo\bin\cargo.exe")) {
 Write-Host "Building v++ compiler (interpreter + native codegen + LSP)..." -ForegroundColor Yellow
 Push-Location $PSScriptRoot
 
-# LLVM required for `vpp build` (native compile)
+$extSrc = Join-Path $PSScriptRoot "editor\vscode-vpp"
 if ($env:LLVM_SYS_221_PREFIX) {
     $env:PATH = "$env:LLVM_SYS_221_PREFIX\bin;$env:PATH"
 } elseif (Test-Path "C:\Program Files\LLVM\bin") {
@@ -33,13 +33,28 @@ if (-not $hasLlvm) {
 cargo build --release --features codegen,lsp
 Pop-Location
 
-$extVersion = "0.4.0"
-$extSrc = Join-Path $PSScriptRoot "editor\vscode-vpp"
+$pkg = Get-Content (Join-Path $extSrc "package.json") -Raw | ConvertFrom-Json
+$extVersion = $pkg.version
+$extId = "$($pkg.publisher).$($pkg.name)"
 $extTargets = @(
-    (Join-Path $env:USERPROFILE ".vscode\extensions\vpp-lang.vplusplus-$extVersion"),
-    (Join-Path $env:USERPROFILE ".cursor\extensions\vpp-lang.vplusplus-$extVersion")
+    (Join-Path $env:USERPROFILE ".vscode\extensions\$extId-$extVersion"),
+    (Join-Path $env:USERPROFILE ".cursor\extensions\$extId-$extVersion")
 )
-Write-Host "Installing v++ editor extension..." -ForegroundColor Yellow
+Write-Host "Installing v++ editor extension ($extId@$extVersion)..." -ForegroundColor Yellow
+
+# Remove legacy manually-copied extension folders that shadow the current package.
+$legacyRoots = @(
+    (Join-Path $env:USERPROFILE ".vscode\extensions"),
+    (Join-Path $env:USERPROFILE ".cursor\extensions")
+)
+foreach ($legacyRoot in $legacyRoots) {
+    if (-not (Test-Path $legacyRoot)) { continue }
+    Get-ChildItem $legacyRoot -Directory -Filter "vpp-lang.vpp-*" -ErrorAction SilentlyContinue | ForEach-Object {
+        Write-Host "  removing legacy $($_.Name)" -ForegroundColor DarkYellow
+        Remove-Item -Recurse -Force $_.FullName
+    }
+}
+
 foreach ($extDest in $extTargets) {
     $parent = Split-Path $extDest -Parent
     if (-not (Test-Path $parent)) {

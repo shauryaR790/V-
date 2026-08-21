@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.5.3
+
+- Remove legacy `vpp-lang.vpp` installs during setup; install the correct `vpp-lang.vplusplus` package
+- Enable the v++ file icon theme automatically when no icon theme is selected
+
 ## 0.5.2
 
 - File and language icons updated to the official V++ logo (Explorer, tabs, and icon theme)
