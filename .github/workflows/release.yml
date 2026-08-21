@@ -49,15 +49,11 @@ jobs:
           Start-Process -FilePath .\innosetup.exe -ArgumentList "/VERYSILENT","/SUPPRESSMSGBOXES","/DIR=C:\InnoSetup6" -Wait
           $iscc = "C:\InnoSetup6\ISCC.exe"
           if (-not (Test-Path $iscc)) { throw "ISCC not found at $iscc" }
-          & $iscc /? | Select-Object -First 3
 
       - name: Build Windows installer
         shell: pwsh
         run: |
           $iscc = "C:\InnoSetup6\ISCC.exe"
-          Get-ChildItem staging -Recurse | Select-Object FullName
-          if (-not (Test-Path "staging/LICENSE")) { throw "staging/LICENSE missing" }
-          if (-not (Test-Path "staging/vpp.exe")) { throw "staging/vpp.exe missing" }
           New-Item -ItemType Directory -Force -Path output | Out-Null
           Push-Location installer
           try {
@@ -66,7 +62,6 @@ jobs:
           } finally {
             Pop-Location
           }
-          Get-ChildItem output
 
       - name: Package portable zip
         shell: pwsh
@@ -80,28 +75,6 @@ jobs:
           Get-FileHash $zip -Algorithm SHA256 | ForEach-Object { "$($_.Hash)  $(Split-Path $zip -Leaf)" } | Set-Content "$zip.sha256"
           Get-FileHash "output/vpp-$env:VERSION-setup.exe" -Algorithm SHA256 | ForEach-Object { "$($_.Hash)  vpp-$($env:VERSION)-setup.exe" } | Set-Content "output/vpp-$env:VERSION-setup.exe.sha256"
 
-      - name: Upload unsigned installer
-        id: upload-installer
-        uses: actions/upload-artifact@v4
-        with:
-          name: vpp-setup-unsigned
-          path: output/vpp-*-setup.exe
-          if-no-files-found: error
-
-      - name: Sign installer (SignPath)
-        if: vars.SIGNPATH_ENABLED == 'true'
-        uses: signpath/github-action-submit-signing-request@v1
-        with:
-          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
-          organization-id: ${{ secrets.SIGNPATH_ORGANIZATION_ID }}
-          project-slug: ${{ secrets.SIGNPATH_PROJECT_SLUG }}
-          signing-policy-slug: ${{ secrets.SIGNPATH_SIGNING_POLICY_SLUG }}
-          artifact-configuration-slug: release-signing
-          github-artifact-id: ${{ steps.upload-installer.outputs.artifact-id }}
-          wait-for-completion: true
-          wait-for-completion-timeout-in-seconds: 600
-          output-artifact-directory: signed
-
       - name: Upload Windows release artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -113,33 +86,13 @@ jobs:
             vpp-*-windows-x64.zip
             vpp-*-windows-x64.zip.sha256
 
-      - name: Upload signed installer
-        if: vars.SIGNPATH_ENABLED == 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: vpp-setup-signed
-          if-no-files-found: error
-          path: signed/vpp-*-setup.exe
-
-  build-unix:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: ubuntu-latest
-            slug: linux-x64
-          - os: macos-latest
-            slug: macos-arm64
-            llvm_archive: LLVM-22.1.8-macOS-ARM64.tar.xz
-            llvm_dir: LLVM-22.1.8-macOS-ARM64
-    runs-on: ${{ matrix.os }}
-    continue-on-error: true
+  build-linux:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
 
-      - name: Install LLVM 22 (Linux)
-        if: runner.os == 'Linux'
+      - name: Install LLVM 22
         run: |
           sudo apt-get update
           sudo apt-get install -y wget gnupg lsb-release software-properties-common
@@ -149,38 +102,74 @@ jobs:
           sudo apt-get install -y clang-22 lld-22 llvm-22-dev libclang-22-dev
           echo "LLVM_SYS_221_PREFIX=$(llvm-config-22 --prefix)" >> "$GITHUB_ENV"
           echo "$(llvm-config-22 --prefix)/bin" >> "$GITHUB_PATH"
-
-      - name: Install LLVM 22 (macOS)
-        if: runner.os == 'macOS'
-        run: |
-          curl -L -o llvm.tar.xz "https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.8/${{ matrix.llvm_archive }}"
-          tar xf llvm.tar.xz
-          echo "LLVM_SYS_221_PREFIX=$PWD/${{ matrix.llvm_dir }}" >> "$GITHUB_ENV"
-          echo "$PWD/${{ matrix.llvm_dir }}/bin" >> "$GITHUB_PATH"
+          llvm-config-22 --version
 
       - name: Build release
         run: cargo build --release --features codegen,lsp --bin vpp --bin vppls
 
-      - name: Package bundle
+      - name: Package Linux bundle
         run: |
           VERSION="${GITHUB_REF_NAME}"
-          DIR="vpp-${VERSION}-${{ matrix.slug }}"
+          DIR="vpp-${VERSION}-linux-x64"
           mkdir -p "$DIR/examples"
           cp target/release/vpp target/release/vppls "$DIR/"
           cp -r std registry runtime "$DIR/"
           cp examples/hello.vpp "$DIR/examples/"
-          cp RELEASE.txt run.sh "$DIR/"
+          cp LICENSE RELEASE.txt run.sh "$DIR/"
           chmod +x "$DIR/run.sh" "$DIR/vpp" "$DIR/vppls"
           tar -czf "${DIR}.tar.gz" "$DIR"
+          sha256sum "${DIR}.tar.gz" > "${DIR}.tar.gz.sha256"
 
-      - name: Upload bundle
+      - name: Upload Linux bundle
         uses: actions/upload-artifact@v4
         with:
-          name: vpp-${{ matrix.slug }}
-          path: vpp-*-${{ matrix.slug }}.tar.gz
+          name: vpp-linux-x64
+          path: |
+            vpp-*-linux-x64.tar.gz
+            vpp-*-linux-x64.tar.gz.sha256
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Install LLVM 22
+        run: |
+          curl -L -o llvm.tar.xz "https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.8/LLVM-22.1.8-macOS-ARM64.tar.xz"
+          tar xf llvm.tar.xz
+          echo "LLVM_SYS_221_PREFIX=$PWD/LLVM-22.1.8-macOS-ARM64" >> "$GITHUB_ENV"
+          echo "$PWD/LLVM-22.1.8-macOS-ARM64/bin" >> "$GITHUB_PATH"
+          ./LLVM-22.1.8-macOS-ARM64/bin/clang --version
+
+      - name: Build release
+        run: cargo build --release --features codegen,lsp --bin vpp --bin vppls
+
+      - name: Package macOS bundle
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+          DIR="vpp-${VERSION}-macos-arm64"
+          mkdir -p "$DIR/examples" "$DIR/llvm/bin"
+          cp target/release/vpp target/release/vppls "$DIR/"
+          cp -r std registry runtime "$DIR/"
+          cp examples/hello.vpp "$DIR/examples/"
+          cp LICENSE RELEASE.txt run.sh "$DIR/"
+          cp LLVM-22.1.8-macOS-ARM64/bin/clang LLVM-22.1.8-macOS-ARM64/bin/clang++ LLVM-22.1.8-macOS-ARM64/bin/lld \
+             LLVM-22.1.8-macOS-ARM64/lib/libLLVM*.dylib "$DIR/llvm/bin/" 2>/dev/null || true
+          chmod +x "$DIR/run.sh" "$DIR/vpp" "$DIR/vppls"
+          tar -czf "${DIR}.tar.gz" "$DIR"
+          shasum -a 256 "${DIR}.tar.gz" > "${DIR}.tar.gz.sha256"
+
+      - name: Upload macOS bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: vpp-macos-arm64
+          path: |
+            vpp-*-macos-arm64.tar.gz
+            vpp-*-macos-arm64.tar.gz.sha256
 
   release:
-    needs: [build-windows]
+    needs: [build-windows, build-linux, build-macos]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
@@ -190,12 +179,7 @@ jobs:
       - name: Flatten artifacts
         shell: bash
         run: |
-          find artifacts -type f \( -name '*.zip' -o -name '*.tar.gz' -o -name '*.sha256' \) -exec cp {} . \;
-          if find artifacts -path '*/signed/*-setup.exe' | grep -q .; then
-            find artifacts -path '*/signed/*-setup.exe' -exec cp {} . \;
-          else
-            find artifacts -name '*-setup.exe' ! -path '*/signed/*' -exec cp {} . \;
-          fi
+          find artifacts -type f \( -name '*.zip' -o -name '*.tar.gz' -o -name '*.sha256' -o -name '*-setup.exe' \) -exec cp {} . \;
           ls -la
 
       - name: Create GitHub Release
@@ -207,6 +191,7 @@ jobs:
             vpp-*-windows-x64.zip
             vpp-*-windows-x64.zip.sha256
             vpp-*-linux-x64.tar.gz
+            vpp-*-linux-x64.tar.gz.sha256
             vpp-*-macos-arm64.tar.gz
+            vpp-*-macos-arm64.tar.gz.sha256
           generate_release_notes: true
-

@@ -2,6 +2,14 @@
 
 All notable changes to v++ are documented here.
 
+## [0.7.1] — 2026-08-21
+
+### Fixed — Linux & macOS GitHub Releases
+
+- **Cross-platform `build.rs`** — Unix/macOS no longer use Windows-only `.lib` / `/INCLUDE` linker flags (root cause of failed Linux/macOS release builds)
+- **Release workflow** — separate Linux + macOS jobs (required); bundles include LICENSE + checksums
+- **CI** — `test-native-linux` job catches codegen regressions on Ubuntu
+
 ## [0.7.0] — 2026-08-21
 
 ### Added — Live development (v0.7 milestone)

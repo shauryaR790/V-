@@ -15,28 +15,34 @@ fn main() {
         .file("src/codegen/llvm_stubs.c")
         .compile("vpp_llvm_stubs");
 
-    let out_dir = std::env::var("OUT_DIR").expect("OUT_DIR");
-    let stub_lib = std::path::Path::new(&out_dir).join("vpp_llvm_stubs.lib");
-    println!("cargo:rustc-link-arg={}", stub_lib.display());
-    for sym in [
-        "LLVM_InitializeAllTargets",
-        "LLVM_InitializeAllTargetInfos",
-        "LLVM_InitializeAllTargetMCs",
-        "LLVM_InitializeAllAsmPrinters",
-        "LLVM_InitializeAllAsmParsers",
-        "LLVM_InitializeAllDisassemblers",
-        "LLVM_InitializeNativeTarget",
-        "LLVM_InitializeNativeAsmPrinter",
-        "LLVM_InitializeNativeAsmParser",
-        "LLVM_InitializeNativeDisassembler",
-    ] {
-        println!("cargo:rustc-link-arg=/INCLUDE:{sym}");
+    if cfg!(all(target_os = "windows", target_env = "msvc")) {
+        let out_dir = std::env::var("OUT_DIR").expect("OUT_DIR");
+        let stub_lib = std::path::Path::new(&out_dir).join("vpp_llvm_stubs.lib");
+        println!("cargo:rustc-link-arg={}", stub_lib.display());
+        for sym in [
+            "LLVM_InitializeAllTargets",
+            "LLVM_InitializeAllTargetInfos",
+            "LLVM_InitializeAllTargetMCs",
+            "LLVM_InitializeAllAsmPrinters",
+            "LLVM_InitializeAllAsmParsers",
+            "LLVM_InitializeAllDisassemblers",
+            "LLVM_InitializeNativeTarget",
+            "LLVM_InitializeNativeAsmPrinter",
+            "LLVM_InitializeNativeAsmParser",
+            "LLVM_InitializeNativeDisassembler",
+        ] {
+            println!("cargo:rustc-link-arg=/INCLUDE:{sym}");
+        }
+    } else {
+        println!("cargo:rustc-link-lib=static=vpp_llvm_stubs");
     }
 
-    let lib_dir = std::path::Path::new(&prefix).join("lib");
-    if lib_dir.exists() {
-        println!("cargo:rustc-link-search=native={}", lib_dir.display());
-        println!("cargo:rustc-link-lib=dylib=LLVM-C");
+    let prefix_path = std::path::Path::new(&prefix);
+    for lib_dir in [prefix_path.join("lib"), prefix_path.join("lib64")] {
+        if lib_dir.exists() {
+            println!("cargo:rustc-link-search=native={}", lib_dir.display());
+            println!("cargo:rustc-link-lib=dylib=LLVM-C");
+        }
     }
 
     if cfg!(target_env = "gnu") {

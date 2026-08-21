@@ -47,3 +47,23 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - run: cargo build --features lsp --bin vppls
+
+  test-native-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install LLVM 22
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget gnupg software-properties-common
+          wget -q https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          sudo ./llvm.sh 22
+          sudo apt-get install -y clang-22 lld-22 llvm-22-dev libclang-22-dev
+          echo "LLVM_SYS_221_PREFIX=$(llvm-config-22 --prefix)" >> "$GITHUB_ENV"
+          echo "$(llvm-config-22 --prefix)/bin" >> "$GITHUB_PATH"
+      - name: Native smoke test
+        run: |
+          cargo build --release --features codegen,lsp --bin vpp
+          cargo run --features codegen -- run examples/hello.vpp
