@@ -267,6 +267,14 @@ cargo build --release --features codegen,lsp
     }
   }
 
+  function applyReleaseLink(anchor, url) {
+    if (!anchor) return;
+    anchor.href = url;
+    anchor.target = "_blank";
+    anchor.rel = "noopener";
+    anchor.removeAttribute("download");
+  }
+
   function updateUI() {
     const version = $("dl-version")?.value || "1.0.3";
     const osKey = $("dl-os")?.value || "windows";
@@ -317,18 +325,14 @@ cargo build --release --features codegen,lsp
     } else {
       const filename = fmt.file(version);
       const url = releaseUrl(tag, filename);
-      if (primary) {
-        primary.href = url;
-        primary.setAttribute("download", filename);
-      }
+      applyReleaseLink(primary, url);
       if (primaryLabel) primaryLabel.textContent = `Download ${filename}`;
 
       const altFmt = platform.formats.find((f) => f.id !== fmt.id && !f.source);
       if (altFmt && secondary && secondaryLabel) {
         const altName = altFmt.file(version);
-        secondary.href = releaseUrl(tag, altName);
+        applyReleaseLink(secondary, releaseUrl(tag, altName));
         secondary.hidden = false;
-        secondary.setAttribute("download", altName);
         secondaryLabel.textContent = altFmt.label;
         updateButtonIcons(fmt, altFmt);
       } else if (secondary) {

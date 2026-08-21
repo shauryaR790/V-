@@ -699,11 +699,14 @@ LATEST_TAG = "v1.0.3"
 EXTENSION_VERSION = "1.2.0"
 RELEASE_VERSIONS = [
     ("1.0.3", "v1.0.3", True),
+    ("1.0.2", "v1.0.2", False),
     ("0.7.0", "v0.7.0", False),
     ("0.6.2", "v0.6.2", False),
     ("0.5.0", "v0.5.0", False),
     ("0.4.4", "v0.4.4", False),
 ]
+
+GITHUB_RELEASE = "https://github.com/shauryaR790/V-/releases/download"
 
 
 def build_download_page_body() -> str:
@@ -769,13 +772,13 @@ vpp doctor</code></pre>
   </div>
 
   <div class="download-actions">
-    <a id="dl-primary" class="btn-dl-primary" href="#" download>
+    <a id="dl-primary" class="btn-dl-primary" href="{GITHUB_RELEASE}/{LATEST_TAG}/vpp-{LATEST_VERSION}-setup.exe" target="_blank" rel="noopener">
       <span class="btn-dl-icon" id="dl-primary-icon" aria-hidden="true"></span>
-      <span id="dl-primary-label">Download</span>
+      <span id="dl-primary-label">Download vpp-{LATEST_VERSION}-setup.exe</span>
     </a>
-    <a id="dl-secondary" class="btn-dl-secondary" href="#" hidden>
+    <a id="dl-secondary" class="btn-dl-secondary" href="{GITHUB_RELEASE}/{LATEST_TAG}/vpp-v{LATEST_VERSION}-windows-x64.zip" target="_blank" rel="noopener">
       <span class="btn-dl-icon" id="dl-secondary-icon" aria-hidden="true"></span>
-      <span id="dl-secondary-label">Alternative download</span>
+      <span id="dl-secondary-label">Portable (.zip)</span>
     </a>
   </div>
 
@@ -1453,7 +1456,7 @@ def main() -> None:
         build_sidebar(sidebar, "download.html"),
         build_toc(headings),
         f"Download {BRAND} prebuilt binaries for Windows, Linux, and macOS.",
-        extra_scripts=["download.js"],
+        extra_scripts=[f"download.js?v={LATEST_VERSION}"],
         body_class="page-docs page-download",
     )
     (WEBSITE / "download.html").write_text(page, encoding="utf-8")
