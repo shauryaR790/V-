@@ -4,15 +4,26 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing tag to build (e.g. v1.0.2)"
+        required: true
+        type: string
 
 permissions:
   contents: write
+
+env:
+  RELEASE_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
 
 jobs:
   build-windows:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref }}
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: x86_64-pc-windows-msvc
@@ -31,7 +42,7 @@ jobs:
       - name: Stage Windows files
         shell: pwsh
         run: |
-          $version = $env:GITHUB_REF_NAME -replace '^v',''
+          $version = $env:RELEASE_TAG -replace '^v',''
           $staging = "staging"
           New-Item -ItemType Directory -Force -Path "$staging/examples" | Out-Null
           Copy-Item target/release/vpp.exe, target/release/vppls.exe $staging/
@@ -88,8 +99,11 @@ jobs:
 
   build-linux:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref }}
       - uses: dtolnay/rust-toolchain@stable
 
       - name: Install LLVM 22
@@ -111,7 +125,7 @@ jobs:
 
       - name: Package Linux bundle
         run: |
-          VERSION="${GITHUB_REF_NAME}"
+          VERSION="${RELEASE_TAG}"
           DIR="vpp-${VERSION}-linux-x64"
           mkdir -p "$DIR/examples"
           cp target/release/vpp target/release/vppls "$DIR/"
@@ -135,6 +149,8 @@ jobs:
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref }}
       - uses: dtolnay/rust-toolchain@stable
 
       - name: Install LLVM 22
@@ -150,7 +166,7 @@ jobs:
 
       - name: Package macOS bundle
         run: |
-          VERSION="${GITHUB_REF_NAME}"
+          VERSION="${RELEASE_TAG}"
           DIR="vpp-${VERSION}-macos-arm64"
           mkdir -p "$DIR/examples" "$DIR/llvm/bin"
           cp target/release/vpp target/release/vppls "$DIR/"
@@ -173,12 +189,14 @@ jobs:
 
   release:
     needs: [build-windows, build-linux, build-macos]
-    if: ${{ !cancelled() && needs.build-windows.result == 'success' && needs.build-linux.result == 'success' }}
+    if: ${{ !cancelled() && needs.build-windows.result == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
         with:
           path: artifacts
+          pattern: vpp-*
+          merge-multiple: true
 
       - name: Flatten artifacts
         shell: bash
@@ -189,6 +207,7 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
           fail_on_unmatched_files: false
           files: |
             vpp-*-setup.exe

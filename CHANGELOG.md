@@ -2,6 +2,14 @@
 
 All notable changes to v++ are documented here.
 
+## [1.0.2] — 2026-08-21
+
+### Fixed — GitHub Releases actually publish
+
+- **Release workflow** publishes when **Windows build succeeds** (Linux/macOS optional add-ons)
+- Manual re-run via Actions → Release → Run workflow
+- Unix `-l:libLLVM…` link flags from `llvm-config`
+
 ## [1.0.1] — 2026-08-21
 
 ### Fixed — CI green + fmt corruption

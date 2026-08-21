@@ -111,7 +111,11 @@ fn emit_link_flags(flags: &str) {
         if let Some(path) = flag.strip_prefix("-L") {
             println!("cargo:rustc-link-search=native={path}");
         } else if let Some(lib) = flag.strip_prefix("-l") {
-            println!("cargo:rustc-link-lib=dylib={lib}");
+            if lib.starts_with(':') {
+                println!("cargo:rustc-link-arg=-l{lib}");
+            } else {
+                println!("cargo:rustc-link-lib=dylib={lib}");
+            }
         } else if flag.starts_with('-') {
             println!("cargo:rustc-link-arg={flag}");
         }
