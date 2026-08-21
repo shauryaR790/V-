@@ -3,19 +3,12 @@ fn main() {
         return;
     }
 
-    let prefix = std::env::var("LLVM_SYS_221_PREFIX").unwrap_or_else(|_| {
-        if cfg!(target_os = "windows") {
-            "C:\\Program Files\\LLVM".to_string()
-        } else {
-            "/usr/lib/llvm-22".to_string()
-        }
-    });
-
-    cc::Build::new()
-        .file("src/codegen/llvm_stubs.c")
-        .compile("vpp_llvm_stubs");
-
+    // Windows LLVM-C.dll omits target-init symbols; Unix/macOS link full libLLVM.
     if cfg!(all(target_os = "windows", target_env = "msvc")) {
+        cc::Build::new()
+            .file("src/codegen/llvm_stubs.c")
+            .compile("vpp_llvm_stubs");
+
         let out_dir = std::env::var("OUT_DIR").expect("OUT_DIR");
         let stub_lib = std::path::Path::new(&out_dir).join("vpp_llvm_stubs.lib");
         println!("cargo:rustc-link-arg={}", stub_lib.display());
@@ -33,20 +26,15 @@ fn main() {
         ] {
             println!("cargo:rustc-link-arg=/INCLUDE:{sym}");
         }
-    } else {
-        println!("cargo:rustc-link-lib=static=vpp_llvm_stubs");
-    }
 
-    let prefix_path = std::path::Path::new(&prefix);
-    for lib_dir in [prefix_path.join("lib"), prefix_path.join("lib64")] {
+        let prefix = std::env::var("LLVM_SYS_221_PREFIX").unwrap_or_else(|_| {
+            "C:\\Program Files\\LLVM".to_string()
+        });
+        let lib_dir = std::path::Path::new(&prefix).join("lib");
         if lib_dir.exists() {
             println!("cargo:rustc-link-search=native={}", lib_dir.display());
             println!("cargo:rustc-link-lib=dylib=LLVM-C");
         }
-    }
-
-    if cfg!(target_env = "gnu") {
-        println!("cargo:rustc-link-lib=dylib=stdc++");
     }
 
     println!("cargo:rerun-if-env-changed=LLVM_SYS_221_PREFIX");

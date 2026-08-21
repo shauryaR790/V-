@@ -2,6 +2,12 @@
 
 All notable changes to v++ are documented here.
 
+## [0.7.2] — 2026-08-21
+
+### Fixed — Linux/macOS link failure
+
+- **LLVM stubs are Windows-only** — linking stub symbols on Unix duplicated real `libLLVM` exports and broke CI + release builds
+
 ## [0.7.1] — 2026-08-21
 
 ### Fixed — Linux & macOS GitHub Releases
