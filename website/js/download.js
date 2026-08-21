@@ -268,7 +268,7 @@ cargo build --release --features codegen,lsp
   }
 
   function updateUI() {
-    const version = $("dl-version")?.value || "1.0.0";
+    const version = $("dl-version")?.value || "1.0.3";
     const osKey = $("dl-os")?.value || "windows";
     const formatId = $("dl-format")?.value;
     const tag = releaseTag(version);

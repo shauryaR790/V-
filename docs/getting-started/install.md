@@ -2,7 +2,7 @@
 
 ## Windows (recommended)
 
-1. Download **`vpp-1.0.0-setup.exe`** from [GitHub Releases](https://github.com/shauryaR790/V-/releases/latest).
+1. Download **`vpp-1.0.3-setup.exe`** from [GitHub Releases](https://github.com/shauryaR790/V-/releases/latest).
 2. Run the installer. If Windows SmartScreen appears, choose **More info → Run anyway**.
 3. Open a **new** terminal:
 
@@ -23,14 +23,18 @@ Restart the terminal.
 ## VS Code extension
 
 1. Extensions → search **v++ Language**
-2. Publisher must be **vpp-lang**
+2. Publisher must be **vpp-lang** (version **1.2.0** recommended)
 3. [Marketplace link](https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus)
 
 See [VS Code setup](vscode-setup.md).
 
 ## Portable zip (advanced)
 
-Download `vpp-v1.0.0-windows-x64.zip`, extract, run `GO.bat` or add the folder to PATH manually.
+Download `vpp-v1.0.3-windows-x64.zip`, extract, run `GO.bat` or add the folder to PATH manually.
+
+## Linux / macOS
+
+Interpreter and LSP work from source today. Prebuilt native bundles for Unix are improving — see [GitHub Releases](https://github.com/shauryaR790/V-/releases) when available, or [build from source](../contributing/building-from-source.md).
 
 ## Build from source
 
@@ -40,6 +44,6 @@ See [Building from source](../contributing/building-from-source.md).
 
 | Task | Needs |
 |------|--------|
-| `vpp run`, `check`, `test` | Installer only |
+| `vpp run`, `check`, `test`, `debug`, `watch` | Installer (Windows) or built `vpp` |
 | `vpp build` (native `.exe`) | Bundled `clang` in installer, or LLVM 22 |
 | Hack on compiler | Rust + LLVM 22 |

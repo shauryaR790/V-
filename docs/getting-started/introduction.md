@@ -19,7 +19,7 @@ The toolchain includes a type checker, formatter, package manager, test runner, 
 | First run | Interpreter | Compile | Compile | Interpreter (`vpp run`) |
 | Native output | No (without extra tools) | Yes | Yes | Yes (`vpp build`) |
 | Learning curve | Low | High | Medium–high | Low → medium |
-| Ecosystem | Massive | Large | Huge | Early (v0.5) |
+| Ecosystem | Massive | Large | Huge | Growing (v1.0+) |
 
 **vs Python:** v++ catches type errors before run, produces native binaries, and keeps similar control-flow and function syntax. You trade PyPI's scale for a smaller, focused stdlib and a compiler that fits in one repo.
 
@@ -33,7 +33,7 @@ The toolchain includes a type checker, formatter, package manager, test runner, 
 - **Errors before run** — static types and exhaustiveness checking on `match`.
 - **Real toolchain** — CLI, LSP, VS Code extension, packages, tests, not a toy parser.
 - **Open source** — MIT licensed, compiler and docs in one repository.
-- **Honest scope** — v0.5 is early; the language is usable for learning, CLI tools, and small native programs.
+- **Honest scope** — v1.0 SPEC is frozen; Windows is the primary native platform; Unix bundles improving.
 
 ## How to learn v++
 
@@ -60,7 +60,7 @@ Expect **1–2 weeks** to feel comfortable with syntax and types if you know Pyt
 
 - You need a mature package ecosystem (use Python, Node, or Rust).
 - You need mobile, WebAssembly, or embedded targets today (not primary focus).
-- You need guaranteed production stability before v1.0 (we're at v0.5).
+- You need Linux/macOS prebuilt native bundles today (Windows installer is fully supported).
 
 ## Next steps
 

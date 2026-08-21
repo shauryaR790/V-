@@ -2,7 +2,7 @@
 
 ## What is v++?
 
-A statically typed language with readable syntax, an interpreter for development, and native compilation to `.exe` via LLVM. Open source (MIT), currently at **v0.5**.
+A statically typed language with readable syntax, an interpreter for development, and native compilation to `.exe` via LLVM. Open source (MIT). **Compiler v1.0.3**, **VS Code extension 1.2.0**.
 
 ## How is v++ different from Python?
 
@@ -38,28 +38,28 @@ If you know Python or JavaScript, expect a few days for syntax; a few weeks for 
 ## What are the main difficulties?
 
 - **Strict types** — function signatures and match exhaustiveness are enforced.
-- **Native builds** — require LLVM 22 + clang; Windows is the primary supported platform.
+- **Native builds** — require LLVM 22 + clang; **Windows** has full installer support today.
 - **Young ecosystem** — fewer third-party packages than Python or Rust.
-- **Pre-1.0** — syntax and stdlib may change; pin releases for serious work.
+- **Unix bundles** — Linux/macOS native tarballs are still maturing on CI.
 
 ## Why would I choose v++?
 
 - Readable syntax with real static typing.
-- Same source for interpret (`vpp run`) and native ship (`vpp build`).
-- Integrated toolchain: fmt, test, packages, LSP, VS Code extension.
+- Same source for interpret (`vpp run`), debug (F5), and native ship (`vpp build`).
+- Integrated toolchain: fmt, test, debug, watch, packages, LSP, VS Code extension.
 - Full compiler source available to read and contribute to.
 
 ## Is v++ ready for production?
 
-**v0.5** — suitable for learning, personal tools, and experimentation. Not yet a replacement for Python or Rust in large production systems. See [roadmap](roadmap.md).
+**v1.0** — SPEC frozen, Parity Promise, debugger, Test Explorer. Best on **Windows** for native builds. Suitable for learning, personal tools, and small native programs. Not a drop-in replacement for Python or Rust at huge scale. See [roadmap](roadmap.md).
 
 ## Where do I download?
 
-[GitHub Releases](https://github.com/shauryaR790/V-/releases) — `vpp-1.0.0-setup.exe` for Windows (Linux/macOS tarballs on the same page).
+[GitHub Releases](https://github.com/shauryaR790/V-/releases) — **`vpp-1.0.3-setup.exe`** for Windows (portable zip on the same page).
 
 ## Which VS Code extension is official?
 
-**v++ Language** — publisher `vpp-lang` (`vpp-lang.vplusplus`).
+**v++ Language** — publisher `vpp-lang` (`vpp-lang.vplusplus`). Upload **1.2.0** on Marketplace when available.
 
 ## Does v++ collect data?
 

@@ -694,14 +694,13 @@ def headings_from_html(content: str) -> list[tuple[str, str, str]]:
 
 LEGAL_DIR = DOCS / "legal"
 
-LATEST_VERSION = "1.0.0"
-LATEST_TAG = "v1.0.0"
+LATEST_VERSION = "1.0.3"
+LATEST_TAG = "v1.0.3"
+EXTENSION_VERSION = "1.2.0"
 RELEASE_VERSIONS = [
-    ("1.0.0", "v1.0.0", True),
-    ("0.9.0", "v0.9.0", False),
-    ("0.8.0", "v0.8.0", False),
-    ("0.7.3", "v0.7.3", False),
+    ("1.0.3", "v1.0.3", True),
     ("0.7.0", "v0.7.0", False),
+    ("0.6.2", "v0.6.2", False),
     ("0.5.0", "v0.5.0", False),
     ("0.4.4", "v0.4.4", False),
 ]
@@ -799,8 +798,9 @@ vpp doctor</code></pre>
   </tbody></table></div>
 
   <h2 id="vscode">VS Code extension</h2>
-  <p>Search <strong>v++ Language</strong> in VS Code Extensions (publisher: <strong>vpp lang</strong>) or install from the
+  <p>Search <strong>v++ Language</strong> in VS Code Extensions (publisher: <strong>vpp-lang</strong>, version <strong>{EXTENSION_VERSION}</strong>) or install from the
   <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus" target="_blank" rel="noopener">Marketplace</a>.</p>
+  <p>Pair with compiler <strong>v{LATEST_VERSION}</strong> from GitHub Releases for debug (F5), Test Explorer, and format-on-save.</p>
 </div>"""
 
 
