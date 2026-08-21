@@ -1,0 +1,54 @@
+{
+  "Main function": {
+    "prefix": "main",
+    "body": [
+      "fn main() {",
+      "    ${0:println(\"hello\")}",
+      "}"
+    ],
+    "description": "v++ entry point"
+  },
+  "Function": {
+    "prefix": "fn",
+    "body": [
+      "fn ${1:name}(${2:args}) -> ${3:()} {",
+      "    ${0}",
+      "}"
+    ],
+    "description": "Function definition"
+  },
+  "Struct": {
+    "prefix": "struct",
+    "body": [
+      "struct ${1:Name} {",
+      "    ${2:field}: ${3:i64},",
+      "    $0",
+      "}"
+    ],
+    "description": "Struct definition"
+  },
+  "Match": {
+    "prefix": "match",
+    "body": [
+      "match ${1:expr} {",
+      "    ${2:pat} => ${3:expr},",
+      "    $0",
+      "}"
+    ],
+    "description": "Match expression"
+  },
+  "Test block": {
+    "prefix": "test",
+    "body": [
+      "test ${1:name} {",
+      "    ${0:assert_eq(1, 1)}",
+      "}"
+    ],
+    "description": "Inline test block"
+  },
+  "Println": {
+    "prefix": "println",
+    "body": ["println(${0:\"message\"})"],
+    "description": "Print line"
+  }
+}

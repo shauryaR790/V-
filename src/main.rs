@@ -77,6 +77,8 @@ enum Commands {
     Update,
     /// Check toolchain and project health
     Doctor,
+    /// Interactive read-eval-print loop (interpreter; same language as run/build)
+    Repl,
 }
 
 fn read_source(path: &Path) -> miette::Result<String> {
@@ -155,6 +157,7 @@ fn main() -> ExitCode {
         Commands::Remove { name } => cmd_remove(&name),
         Commands::Update => cmd_update(),
         Commands::Doctor => cmd_doctor(),
+        Commands::Repl => cmd_repl(),
     };
 
     match result {
@@ -289,6 +292,10 @@ fn cmd_update() -> miette::Result<()> {
 fn cmd_doctor() -> miette::Result<()> {
     let root = vpp::find_project_root(&std::env::current_dir().unwrap_or_default());
     vpp::run_doctor(root.as_deref()).map_err(miette::Report::new)
+}
+
+fn cmd_repl() -> miette::Result<()> {
+    vpp::interp::run_repl().map_err(miette::Report::new)
 }
 
 fn cmd_compile(file: &PathBuf, output: Option<PathBuf>) -> miette::Result<()> {

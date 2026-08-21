@@ -1,8 +1,8 @@
 {
   "name": "vplusplus",
   "displayName": "v++ Language",
-  "description": "Official v++ language support for VS Code — syntax highlighting, run/debug, diagnostics, IntelliSense, go-to-definition, formatting, and project testing for .vpp files.",
-  "version": "0.5.7",
+  "description": "Official v++ — Python-readable syntax, native compilation, real toolchain. Run, check, format, test, and LSP IntelliSense for .vpp files. Write simply. Compile natively.",
+  "version": "0.6.0",
   "publisher": "vpp-lang",
   "license": "MIT",
   "icon": "icon.png",
@@ -14,7 +14,10 @@
     "vpp",
     "v++",
     "programming language",
-    "vpp-lang"
+    "vpp-lang",
+    "native",
+    "compiled",
+    "python-like"
   ],
   "repository": {
     "type": "git",
@@ -27,7 +30,7 @@
   "engines": {
     "vscode": "^1.80.0"
   },
-  "categories": ["Programming Languages", "Debuggers", "Formatters", "Testing"],
+  "categories": ["Programming Languages", "Formatters", "Testing"],
   "activationEvents": [
     "onLanguage:vpp",
     "workspaceContains:**/*.vpp"
@@ -56,6 +59,12 @@
         "path": "./syntaxes/vpp.tmLanguage.json"
       }
     ],
+    "snippets": [
+      {
+        "language": "vpp",
+        "path": "./snippets/vpp.code-snippets"
+      }
+    ],
     "iconThemes": [
       {
         "id": "vpp-icons",
@@ -75,9 +84,31 @@
         "icon": "$(check)"
       },
       {
+        "command": "vpp.formatDocument",
+        "title": "v++: Format Document",
+        "icon": "$(symbol-keyword)"
+      },
+      {
+        "command": "vpp.startRepl",
+        "title": "v++: Start REPL",
+        "icon": "$(terminal)"
+      },
+      {
         "command": "vpp.testProject",
         "title": "v++: Run Tests",
         "icon": "$(beaker)"
+      },
+      {
+        "command": "vpp.showOutput",
+        "title": "v++: Show Output"
+      },
+      {
+        "command": "vpp.openSettings",
+        "title": "v++: Open Settings"
+      },
+      {
+        "command": "vpp.openDocs",
+        "title": "v++: Open Documentation"
       }
     ],
     "menus": {
@@ -98,6 +129,11 @@
           "command": "vpp.checkFile",
           "when": "resourceLangId == vpp",
           "group": "navigation@2"
+        },
+        {
+          "command": "vpp.formatDocument",
+          "when": "resourceLangId == vpp",
+          "group": "1_modification@1"
         }
       ],
       "commandPalette": [
@@ -110,7 +146,23 @@
           "when": "resourceLangId == vpp"
         },
         {
+          "command": "vpp.formatDocument",
+          "when": "resourceLangId == vpp"
+        },
+        {
+          "command": "vpp.startRepl"
+        },
+        {
           "command": "vpp.testProject"
+        },
+        {
+          "command": "vpp.showOutput"
+        },
+        {
+          "command": "vpp.openSettings"
+        },
+        {
+          "command": "vpp.openDocs"
         }
       ]
     },
@@ -123,6 +175,11 @@
       {
         "command": "vpp.runFile",
         "key": "f5",
+        "when": "resourceLangId == vpp && editorTextFocus"
+      },
+      {
+        "command": "vpp.formatDocument",
+        "key": "shift+alt+f",
         "when": "resourceLangId == vpp && editorTextFocus"
       }
     ],
@@ -142,7 +199,12 @@
         "vpp.enableLanguageServer": {
           "type": "boolean",
           "default": true,
-          "description": "Start vppls automatically for diagnostics, completion, and go-to-definition."
+          "description": "Start vppls for diagnostics, completion, and go-to-definition when a .vpp file is opened."
+        },
+        "vpp.formatOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Format .vpp files with vpp fmt on save."
         }
       }
     }

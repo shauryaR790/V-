@@ -1,0 +1,17 @@
+#!/bin/sh
+# Strip Cursor agent attribution from commit messages (local + cloud agents).
+# Installed by scripts/install-git-hooks.ps1
+
+MSG_FILE="$1"
+if [ ! -f "$MSG_FILE" ]; then
+  exit 0
+fi
+
+# Remove Co-authored-by / Made-with lines from Cursor
+sed -i.bak '/[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]ursor/d' "$MSG_FILE" 2>/dev/null || \
+  sed -i '/[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]ursor/d' "$MSG_FILE" 2>/dev/null || true
+sed -i.bak '/cursoragent@cursor\.com/d' "$MSG_FILE" 2>/dev/null || \
+  sed -i '/cursoragent@cursor\.com/d' "$MSG_FILE" 2>/dev/null || true
+sed -i.bak '/Made-with: Cursor/d' "$MSG_FILE" 2>/dev/null || \
+  sed -i '/Made-with: Cursor/d' "$MSG_FILE" 2>/dev/null || true
+rm -f "${MSG_FILE}.bak"

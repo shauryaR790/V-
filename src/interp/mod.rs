@@ -819,6 +819,118 @@ impl PartialEq for Value {
     }
 }
 
+/// Persistent REPL state: accumulates accepted source and runs only new statements.
+pub struct ReplSession {
+    source: String,
+    executed_stmts: usize,
+    interp: Interpreter,
+    session_path: std::path::PathBuf,
+}
+
+impl ReplSession {
+    pub fn new() -> crate::VppResult<Self> {
+        let cwd = std::env::current_dir().map_err(|e| VppError::Other {
+            message: format!("repl needs a working directory: {e}"),
+        })?;
+        let session_path = cwd.join(".vpp").join("repl_session.vpp");
+        if let Some(parent) = session_path.parent() {
+            std::fs::create_dir_all(parent).map_err(|e| VppError::Other {
+                message: format!("failed to create {}: {e}", parent.display()),
+            })?;
+        }
+        let session = Self {
+            source: String::from("import std.io\n"),
+            executed_stmts: 0,
+            interp: Interpreter::new(HashMap::new()),
+            session_path,
+        };
+        std::fs::write(&session.session_path, &session.source).ok();
+        Ok(session)
+    }
+
+    pub fn reset(&mut self) -> crate::VppResult<()> {
+        self.source = String::from("import std.io\n");
+        self.executed_stmts = 0;
+        self.interp = Interpreter::new(HashMap::new());
+        std::fs::write(&self.session_path, &self.source).ok();
+        Ok(())
+    }
+
+    pub fn eval(&mut self, input: &str) -> crate::VppResult<()> {
+        let line = input.trim();
+        if line.is_empty() {
+            return Ok(());
+        }
+        self.source.push_str(line);
+        self.source.push('\n');
+        std::fs::write(&self.session_path, &self.source).map_err(|e| VppError::Other {
+            message: format!("failed to write {}: {e}", self.session_path.display()),
+        })?;
+        let typed = crate::driver::check_path(&self.session_path)?;
+        self.interp.functions = typed.functions.clone();
+        for stmt in typed.top_level.iter().skip(self.executed_stmts) {
+            self.interp.exec_stmt(stmt)?;
+            if self.interp.returning {
+                self.interp.returning = false;
+                break;
+            }
+        }
+        self.executed_stmts = typed.top_level.len();
+        Ok(())
+    }
+}
+
+pub fn run_repl() -> crate::VppResult<()> {
+    use std::io::{self, BufRead, Write};
+
+    println!("v++ REPL v0.6 — readable code, instant feedback");
+    println!("  Same language as `vpp run` and `vpp build`. Type :help for commands.\n");
+
+    let mut session = ReplSession::new()?;
+    let stdin = io::stdin();
+    loop {
+        print!("v++> ");
+        io::stdout().flush().ok();
+        let mut line = String::new();
+        let n = stdin.read_line(&mut line).map_err(|e| VppError::Other {
+            message: format!("repl read error: {e}"),
+        })?;
+        if n == 0 {
+            break;
+        }
+        let trimmed = line.trim();
+        match trimmed {
+            "" => continue,
+            ":quit" | ":exit" | ":q" => break,
+            ":reset" => {
+                session.reset()?;
+                println!("(session reset)");
+            }
+            ":help" | ":h" => {
+                println!("  :quit     exit repl");
+                println!("  :reset    clear session");
+                println!("  :help     this message");
+                println!("  print(x)  show a value");
+                println!("  fn/let/…  definitions persist across lines");
+            }
+            _ => match session.eval(trimmed) {
+                Ok(()) => {}
+                Err(e) => {
+                    if session.source.ends_with(&format!("{trimmed}\n")) {
+                        session.source.truncate(session.source.len() - trimmed.len() - 1);
+                        let _ = std::fs::write(&session.session_path, &session.source);
+                        if let Ok(typed) = crate::driver::check_path(&session.session_path) {
+                            session.executed_stmts = typed.top_level.len();
+                        }
+                    }
+                    eprintln!("{e}");
+                }
+            },
+        }
+    }
+    Ok(())
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -856,6 +968,13 @@ mod tests {
             }
         ));
         assert_eq!(func.body.len(), 1);
+    }
+
+    #[test]
+    fn repl_session_eval() {
+        let mut session = ReplSession::new().unwrap();
+        session.eval("fn double(n: int) -> int { return n + n }").unwrap();
+        session.eval("print(double(21))").unwrap();
     }
 
     #[test]

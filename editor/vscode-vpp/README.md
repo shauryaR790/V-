@@ -1,113 +1,116 @@
-# v++ Language extension for Visual Studio Code
+# v++ Language — official VS Code extension
 
-Official language support for **[v++](https://github.com/shauryaR790/V-)** — a compiled language with Python-style simplicity and native performance. Edit `.vpp` files with syntax highlighting, integrated run, static diagnostics, language-server IntelliSense, and project test discovery.
+**Write it simply. Compile it natively.**
 
-> **Install the compiler separately** — this extension does not bundle `vpp`. See [Quick start](#quick-start).
+Official language support for **[v++](https://github.com/shauryaR790/V-)** — a compiled language that reads like Python but ships native binaries. Not a transpiler, not a toy highlighter: a real `vpp` toolchain wired into your editor.
+
+> Install the **compiler** separately — this extension connects VS Code to `vpp`. [Quick start ↓](#quick-start)
+
+---
+
+## Why v++ is different
+
+| | Scripting (Python) | Systems (Rust/C++) | **v++** |
+|---|-------------------|-------------------|---------|
+| Readability | High | Moderate | **Python-style syntax** |
+| Output | Interpreted / VM | Native binary | **Native binary** |
+| Learning curve | Gentle | Steep | **Gentle → grow into control** |
+| Toolchain in editor | Mature | Mature | **Run · check · fmt · test · LSP** |
+
+**One sentence:** v++ is the language for people who want Python's clarity without giving up native speed — with generics, traits, and compile-time checks when you're ready.
+
+**Official extension:** publisher **`vpp-lang`** · ID **`vpp-lang.vplusplus`**  
+Other Marketplace entries named "V++" are unrelated.
 
 ---
 
 ## Quick start
 
-**Step 1.** Install the v++ compiler from [GitHub Releases](https://github.com/shauryaR790/V-/releases) (`vpp-*-setup.exe` recommended).
-
-**Step 2.** Install **v++ Language** from the Marketplace (publisher: **vpp-lang**).
-
-**Step 3.** Open a folder with `.vpp` files, open a file, press **F5** to run.
+1. **Compiler** — [GitHub Releases](https://github.com/shauryaR790/V-/releases) (`vpp-*-setup.exe` on Windows) or build from source.
+2. **Extension** — install **v++ Language** by **vpp-lang** from the Marketplace.
+3. **Run** — open a `.vpp` file, press **F5**.
 
 ```powershell
 vpp run examples\hello.vpp
+vpp check examples\hello.vpp
+vpp fmt examples\hello.vpp
+vpp test
 ```
 
-Full docs: [github.com/shauryaR790/V-/tree/main/docs](https://github.com/shauryaR790/V-/tree/main/docs)
+Docs: [github.com/shauryaR790/V-/tree/main/docs](https://github.com/shauryaR790/V-/tree/main/docs)
 
 ---
 
-## Feature details
+## Features (v0.6)
 
-| Feature | Description |
-|---------|-------------|
-| **Syntax highlighting** | Keywords, types, strings, comments, `mut`, generics, traits |
-| **Run** | **F5** / **Ctrl+Shift+R** runs the active file via `vpp run` |
-| **Type-check** | **v++: Check File** — errors without executing |
-| **Language server** | Diagnostics, completion, go-to-definition via `vppls` |
-| **Project tests** | **v++: Run Tests** runs `vpp test` in the workspace |
-| **File icons** | Yellow **v** icon for `.vpp` files |
-| **Toolbar** | Run button in the editor title bar |
-
----
-
-## Useful commands
-
-Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`):
-
-| Command | Description |
-|---------|-------------|
-| **v++: Run File** | Run the active `.vpp` file (`F5`, `Ctrl+Shift+R`) |
-| **v++: Check File** | Type-check without running |
-| **v++: Run Tests** | Run test blocks in the project |
-
-Type `v++` in the Command Palette to see all commands.
+| Feature | What you get |
+|---------|----------------|
+| **Syntax + snippets** | Keywords, types, `mut`, generics, traits; tab completions for `fn`, `struct`, `match`, `test` |
+| **Run (F5)** | Executes the active file via `vpp run` |
+| **Type-check** | `vpp check` without running |
+| **Format** | `vpp fmt` — format-on-save (default) or **Shift+Alt+F** |
+| **Tests** | `vpp test` in integrated terminal |
+| **Language server** | Diagnostics, completion, go-to-definition via `vppls` (starts when you open a `.vpp` file) |
+| **Status bar** | Shows active compiler + LSP state |
+| **File icons** | Official transparent **V++** wordmark for `.vpp` files |
 
 ---
 
-## Extension settings
+## Commands
+
+`Ctrl+Shift+P` → type `v++`:
+
+| Command | Shortcut |
+|---------|----------|
+| **v++: Run File** | F5, Ctrl+Shift+R |
+| **v++: Check File** | — |
+| **v++: Format Document** | Shift+Alt+F |
+| **v++: Run Tests** | — |
+| **v++: Show Output** | — |
+| **v++: Open Documentation** | — |
+
+---
+
+## Settings
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| `vpp.compilerPath` | *(auto)* | Path to `vpp` / `vpp.exe`. Auto-detects workspace scripts. |
-| `vpp.languageServerPath` | `vppls` | Path to the v++ language server |
+| `vpp.compilerPath` | *(auto)* | Path to `vpp`. Auto-detects `vpp.ps1`, `target/debug/vpp.exe`, etc. |
+| `vpp.languageServerPath` | `vppls` | Language server binary |
 | `vpp.enableLanguageServer` | `true` | Diagnostics, completion, go-to-definition |
+| `vpp.formatOnSave` | `true` | Run `vpp fmt` when saving `.vpp` files |
+
+Click the **v++** item in the status bar to jump to settings.
 
 ---
 
 ## Requirements
 
-| Component | Required for | Notes |
-|-----------|--------------|-------|
-| **vpp** | Run, check, build | [Releases](https://github.com/shauryaR790/V-/releases) or build from source |
-| **vppls** | IntelliSense | Included in release bundle or `cargo build --features lsp --bin vppls` |
-| **LLVM/clang** | `vpp build` only | Bundled in Windows installer under `llvm\` |
+| Component | Used for |
+|-----------|----------|
+| **vpp** | Run, check, format, test |
+| **vppls** | IntelliSense (included in release bundle or `cargo build --features lsp --bin vppls`) |
+| **LLVM/clang** | `vpp build` native codegen only |
 
 ---
 
-## Set up your environment
+## Roadmap
 
-1. Install v++ ([install guide](https://github.com/shauryaR790/V-/blob/main/docs/getting-started/install.md))
-2. Reload VS Code after installing this extension
-3. Open any `.vpp` file — language mode should show **v++**
-4. Optional: set `vpp.compilerPath` if `vpp` is not on PATH
+| Version | Focus |
+|---------|--------|
+| **v0.6** *(now)* | Format-on-save, status bar, snippets, faster lazy LSP |
+| v0.7 | Linux/macOS releases, signed Windows builds |
+| v0.8 | Debugger integration |
+| v1.0 | Frozen spec, Test Explorer, hosted registry |
 
----
-
-## Which extension is official?
-
-Search **v++ Language** published by **vpp-lang** (`vpp-lang.vplusplus`).
-
-Other Marketplace extensions named "V++" are unrelated — verify publisher **vpp-lang**.
+[Full roadmap](https://github.com/shauryaR790/V-/blob/main/docs/project/roadmap.md)
 
 ---
 
-## Documentation & support
+## Support
 
-- [Documentation hub](https://github.com/shauryaR790/V-/tree/main/docs)
+- [Documentation](https://github.com/shauryaR790/V-/tree/main/docs)
 - [VS Code setup guide](https://github.com/shauryaR790/V-/blob/main/docs/getting-started/vscode-setup.md)
-- [Language reference](https://github.com/shauryaR790/V-/tree/main/docs/language)
-- [Troubleshooting](https://github.com/shauryaR790/V-/blob/main/docs/guides/troubleshooting.md)
 - [Report issues](https://github.com/shauryaR790/V-/issues)
-
----
-
-## Planned (road to v1.0)
-
-- Integrated **debugger** (breakpoints, step-through)
-- **Test Explorer** UI
-- Format-on-save via `vpp fmt`
-- Environment / toolchain picker in status bar
-
-Track progress: [roadmap](https://github.com/shauryaR790/V-/blob/main/docs/project/roadmap.md)
-
----
-
-## License
 
 MIT — see [LICENSE](https://github.com/shauryaR790/V-/blob/main/LICENSE).

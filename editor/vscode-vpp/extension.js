@@ -2,8 +2,26 @@ const vscode = require("vscode");
 const { execFile, exec } = require("child_process");
 const path = require("path");
 const fs = require("fs");
+const os = require("os");
 
+/** @type {import("vscode-languageclient/node").LanguageClient | undefined} */
 let languageClient;
+/** @type {vscode.OutputChannel | undefined} */
+let outputChannel;
+/** @type {vscode.StatusBarItem | undefined} */
+let toolchainStatus;
+/** @type {vscode.StatusBarItem | undefined} */
+let lspStatus;
+/** @type {{ root: string, runner: { kind: string, path: string } } | undefined} */
+let runnerCache;
+let lspStarted = false;
+
+function getOutput() {
+  if (!outputChannel) {
+    outputChannel = vscode.window.createOutputChannel("v++");
+  }
+  return outputChannel;
+}
 
 /** @returns {string | undefined} */
 function workspaceRoot() {
@@ -14,56 +32,77 @@ function workspaceRoot() {
   return folders[0].uri.fsPath;
 }
 
+function invalidateRunnerCache() {
+  runnerCache = undefined;
+}
+
 /** @param {string} root */
 function resolveRunner(root) {
+  if (runnerCache && runnerCache.root === root) {
+    return runnerCache.runner;
+  }
+
   const config = vscode.workspace.getConfiguration("vpp");
   const configured = config.get("compilerPath", "");
   if (configured && fs.existsSync(configured)) {
-    return { kind: "exe", path: configured };
+    runnerCache = { root, runner: { kind: "exe", path: configured } };
+    return runnerCache.runner;
   }
 
   const ps1 = path.join(root, "vpp.ps1");
   if (fs.existsSync(ps1)) {
-    return { kind: "ps1", path: ps1 };
+    runnerCache = { root, runner: { kind: "ps1", path: ps1 } };
+    return runnerCache.runner;
   }
 
   const cmd = path.join(root, "vpp.cmd");
   if (fs.existsSync(cmd)) {
-    return { kind: "cmd", path: cmd };
+    runnerCache = { root, runner: { kind: "cmd", path: cmd } };
+    return runnerCache.runner;
   }
 
-  for (const sub of ["target/release/vpp.exe", "target/debug/vpp.exe", "target/release/vppls.exe", "target/debug/vppls.exe", "target/release/vpp", "target/debug/vpp"]) {
+  for (const sub of [
+    "target/release/vpp.exe",
+    "target/debug/vpp.exe",
+    "target/release/vpp",
+    "target/debug/vpp",
+  ]) {
     const candidate = path.join(root, sub);
     if (fs.existsSync(candidate)) {
-      return { kind: "exe", path: candidate };
+      runnerCache = { root, runner: { kind: "exe", path: candidate } };
+      return runnerCache.runner;
     }
   }
 
   return undefined;
 }
 
-/** @param {string} root */
+/** @param {string} root @returns {string | undefined} */
 function resolveLanguageServer(root) {
   const config = vscode.workspace.getConfiguration("vpp");
   const configured = config.get("languageServerPath", "vppls");
-  if (configured && (path.isAbsolute(configured) ? fs.existsSync(configured) : true)) {
-    if (path.isAbsolute(configured) && fs.existsSync(configured)) {
-      return configured;
-    }
-    if (!path.isAbsolute(configured)) {
-      for (const sub of [`target/debug/${configured}.exe`, `target/release/${configured}.exe`, `target/debug/${configured}`, `target/release/${configured}`]) {
-        const candidate = path.join(root, sub);
-        if (fs.existsSync(candidate)) {
-          return candidate;
-        }
-      }
+
+  if (path.isAbsolute(configured)) {
+    return fs.existsSync(configured) ? configured : undefined;
+  }
+
+  for (const sub of [
+    `target/debug/${configured}.exe`,
+    `target/release/${configured}.exe`,
+    `target/debug/${configured}`,
+    `target/release/${configured}`,
+  ]) {
+    const candidate = path.join(root, sub);
+    if (fs.existsSync(candidate)) {
+      return candidate;
     }
   }
-  return configured;
+
+  return undefined;
 }
 
-/** @param {{ kind: string, path: string }} runner @param {string[]} args @param {string} cwd */
-function runRunner(runner, args, cwd) {
+/** @param {{ kind: string, path: string }} runner @param {string[]} args */
+function runRunner(runner, args) {
   if (runner.kind === "ps1") {
     return {
       command: "powershell",
@@ -86,40 +125,44 @@ function runRunner(runner, args, cwd) {
 async function runVpp(subcommand, filePath) {
   const root = workspaceRoot();
   if (!root) {
-    vscode.window.showErrorMessage("Open the v++ project folder in Cursor first.");
-    return;
+    vscode.window.showErrorMessage("Open the v++ project folder first.");
+    return false;
   }
 
   if (!filePath || !filePath.endsWith(".vpp")) {
-    vscode.window.showErrorMessage("Open a .vpp file to run it.");
-    return;
+    vscode.window.showErrorMessage("Open a .vpp file first.");
+    return false;
   }
 
   let runner = resolveRunner(root);
   if (!runner) {
-    const build = "Build v++ compiler now? (one time, ~30 seconds)";
-    const choice = await vscode.window.showInformationMessage(build, "Build", "Cancel");
+    const choice = await vscode.window.showInformationMessage(
+      "Build v++ compiler now? (one time, ~30 seconds)",
+      "Build",
+      "Cancel"
+    );
     if (choice !== "Build") {
-      return;
+      return false;
     }
     await buildCompiler(root);
+    invalidateRunnerCache();
     runner = resolveRunner(root);
     if (!runner) {
       vscode.window.showErrorMessage("Build finished but vpp was not found. Run .\\setup.ps1 in the project folder.");
-      return;
+      return false;
     }
   }
 
-  const output = vscode.window.createOutputChannel("v++");
+  const output = getOutput();
   output.clear();
   output.show(true);
   output.appendLine(`> vpp ${subcommand} ${filePath}`);
   output.appendLine("");
 
-  const { command, argv } = runRunner(runner, [subcommand, filePath], root);
+  const { command, argv } = runRunner(runner, [subcommand, filePath]);
   const execOpts = { cwd: root, maxBuffer: 10 * 1024 * 1024 };
 
-  await new Promise((resolve) => {
+  return new Promise((resolve) => {
     execFile(command, argv, execOpts, (err, stdout, stderr) => {
       if (stdout) {
         output.append(stdout);
@@ -131,16 +174,82 @@ async function runVpp(subcommand, filePath) {
         output.appendLine("");
         output.appendLine(`Exit code: ${err.code ?? 1}`);
         vscode.window.showErrorMessage(
-          `v++ ${subcommand} failed — see the "v++" output panel for details`
+          `v++ ${subcommand} failed — see the "v++" output panel`
         );
-      } else if (subcommand === "run" && !stdout.trim()) {
-        output.appendLine("(program finished with no stdout)");
-      } else if (subcommand === "check") {
-        vscode.window.showInformationMessage("✓ File type-checks successfully");
+        resolve(false);
+      } else {
+        if (subcommand === "run" && !stdout.trim()) {
+          output.appendLine("(program finished with no stdout)");
+        } else if (subcommand === "check") {
+          vscode.window.showInformationMessage("File type-checks successfully");
+        }
+        resolve(true);
       }
-      resolve(undefined);
     });
   });
+}
+
+/** @param {vscode.TextDocument} document */
+async function formatDocument(document) {
+  const filePath = document.uri.fsPath;
+  if (!filePath.endsWith(".vpp")) {
+    return [];
+  }
+
+  const root = workspaceRoot();
+  if (!root) {
+    return [];
+  }
+
+  const runner = resolveRunner(root);
+  if (!runner) {
+    vscode.window.showWarningMessage("v++ compiler not found — cannot format.");
+    return [];
+  }
+
+  // Format via a temp copy so we never touch the open file on disk (avoids save conflicts).
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "vpp-fmt-"));
+  const tmpFile = path.join(tmpDir, path.basename(filePath));
+  try {
+    fs.writeFileSync(tmpFile, document.getText(), "utf8");
+
+    const { command, argv } = runRunner(runner, ["fmt", tmpFile]);
+    const execOpts = { cwd: root, maxBuffer: 10 * 1024 * 1024 };
+
+    const ok = await new Promise((resolve) => {
+      execFile(command, argv, execOpts, (err, stdout, stderr) => {
+        const output = getOutput();
+        if (stdout || stderr || err) {
+          output.appendLine(`> vpp fmt ${path.basename(filePath)}`);
+          if (stdout) {
+            output.append(stdout);
+          }
+          if (stderr) {
+            output.append(stderr);
+          }
+        }
+        resolve(!err);
+      });
+    });
+
+    if (!ok) {
+      vscode.window.showErrorMessage("v++ fmt failed — see the v++ output panel");
+      return [];
+    }
+
+    const formatted = fs.readFileSync(tmpFile, "utf8");
+    if (formatted === document.getText()) {
+      return [];
+    }
+
+    const fullRange = new vscode.Range(
+      document.positionAt(0),
+      document.positionAt(document.getText().length)
+    );
+    return [vscode.TextEdit.replace(fullRange, formatted)];
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
 }
 
 /** @param {string} root */
@@ -152,18 +261,64 @@ function buildCompiler(root) {
       env.PATH = `${cargoBin};${env.PATH || ""}`;
     }
 
-    exec("cargo build --features lsp,codegen", { cwd: root, env }, (err, stdout, stderr) => {
+    exec("cargo build --features lsp,codegen", { cwd: root, env }, (err, _stdout, stderr) => {
       if (err) {
         vscode.window.showErrorMessage(`cargo build failed: ${stderr || err.message}`);
         reject(err);
         return;
       }
-      resolve(stdout);
+      invalidateRunnerCache();
+      resolve(undefined);
     });
   });
 }
 
+function updateStatusBar() {
+  const root = workspaceRoot();
+  if (!toolchainStatus) {
+    return;
+  }
+
+  if (!root) {
+    toolchainStatus.text = "$(symbol-method) v++";
+    toolchainStatus.tooltip = "Open a v++ workspace";
+    if (lspStatus) {
+      lspStatus.hide();
+    }
+    return;
+  }
+
+  const runner = resolveRunner(root);
+  if (runner) {
+    const name = path.basename(runner.path);
+    toolchainStatus.text = `$(zap) ${name}`;
+    toolchainStatus.tooltip = `v++ compiler: ${runner.path}\nClick to open settings`;
+  } else {
+    toolchainStatus.text = "$(warning) v++ not found";
+    toolchainStatus.tooltip = "v++ compiler not found — click to configure";
+  }
+  toolchainStatus.show();
+
+  if (lspStatus) {
+    if (languageClient && lspStarted) {
+      lspStatus.text = "$(check) LSP";
+      lspStatus.tooltip = "v++ language server running";
+      lspStatus.show();
+    } else if (vscode.workspace.getConfiguration("vpp").get("enableLanguageServer", true)) {
+      lspStatus.text = "$(circle-outline) LSP";
+      lspStatus.tooltip = "Language server idle or unavailable";
+      lspStatus.show();
+    } else {
+      lspStatus.hide();
+    }
+  }
+}
+
 function startLanguageServer(context) {
+  if (lspStarted) {
+    return;
+  }
+
   const root = workspaceRoot();
   if (!root) {
     return;
@@ -174,18 +329,20 @@ function startLanguageServer(context) {
     return;
   }
 
+  const serverPath = resolveLanguageServer(root);
+  if (!serverPath) {
+    return;
+  }
+
   let LanguageClient;
   let TransportKind;
   try {
     ({ LanguageClient, TransportKind } = require("vscode-languageclient/node"));
   } catch {
-    vscode.window.showWarningMessage(
-      "v++ LSP: run `npm install` in editor/vscode-vpp to enable language server integration."
-    );
     return;
   }
 
-  const serverPath = resolveLanguageServer(root);
+  lspStarted = true;
   languageClient = new LanguageClient(
     "vppLanguageServer",
     "v++ Language Server",
@@ -200,39 +357,131 @@ function startLanguageServer(context) {
       synchronize: {
         fileEvents: vscode.workspace.createFileSystemWatcher("**/*.vpp"),
       },
+      outputChannel: getOutput(),
     }
   );
 
-  languageClient.start();
+  languageClient.start().then(
+    () => updateStatusBar(),
+    () => {
+      lspStarted = false;
+      updateStatusBar();
+    }
+  );
+
   context.subscriptions.push({
-    dispose: () => languageClient && languageClient.stop(),
+    dispose: () => {
+      if (languageClient) {
+        return languageClient.stop();
+      }
+    },
   });
 }
 
-function activate(context) {
+function ensureLanguageServer(context) {
   startLanguageServer(context);
+  updateStatusBar();
+}
+
+function activate(context) {
+  toolchainStatus = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 50);
+  toolchainStatus.command = "vpp.openSettings";
+  context.subscriptions.push(toolchainStatus);
+
+  lspStatus = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 50);
+  context.subscriptions.push(lspStatus);
+
+  updateStatusBar();
 
   const iconTheme = vscode.workspace.getConfiguration("workbench").get("iconTheme");
   if (!iconTheme) {
     vscode.workspace.getConfiguration("workbench").update("iconTheme", "vpp-icons", true);
   }
 
+  const maybeStartLsp = () => ensureLanguageServer(context);
+  if (vscode.window.activeTextEditor?.document.languageId === "vpp") {
+    maybeStartLsp();
+  }
+
   context.subscriptions.push(
-    vscode.commands.registerCommand("vpp.runFile", () => {
-      const editor = vscode.window.activeTextEditor;
-      if (!editor) {
-        vscode.window.showErrorMessage("No file open.");
-        return;
+    vscode.window.onDidChangeActiveTextEditor((editor) => {
+      if (editor?.document.languageId === "vpp") {
+        maybeStartLsp();
       }
-      runVpp("run", editor.document.uri.fsPath);
+      updateStatusBar();
     }),
-    vscode.commands.registerCommand("vpp.checkFile", () => {
+    vscode.workspace.onDidOpenTextDocument((doc) => {
+      if (doc.languageId === "vpp") {
+        maybeStartLsp();
+      }
+    }),
+    vscode.workspace.onDidChangeConfiguration((e) => {
+      if (e.affectsConfiguration("vpp")) {
+        invalidateRunnerCache();
+        updateStatusBar();
+      }
+    }),
+    vscode.workspace.onDidChangeWorkspaceFolders(() => {
+      invalidateRunnerCache();
+      updateStatusBar();
+    }),
+    vscode.languages.registerDocumentFormattingEditProvider("vpp", {
+      provideDocumentFormattingEdits: (document) => formatDocument(document),
+    }),
+    vscode.workspace.onWillSaveTextDocument((event) => {
+      if (event.document.languageId !== "vpp") {
+        return;
+      }
+      const formatOnSave = vscode.workspace.getConfiguration("vpp").get("formatOnSave", true);
+      if (formatOnSave) {
+        event.waitUntil(formatDocument(event.document));
+      }
+    }),
+    vscode.commands.registerCommand("vpp.runFile", async () => {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
         vscode.window.showErrorMessage("No file open.");
         return;
       }
-      runVpp("check", editor.document.uri.fsPath);
+      await runVpp("run", editor.document.uri.fsPath);
+    }),
+    vscode.commands.registerCommand("vpp.checkFile", async () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        vscode.window.showErrorMessage("No file open.");
+        return;
+      }
+      await runVpp("check", editor.document.uri.fsPath);
+    }),
+    vscode.commands.registerCommand("vpp.formatDocument", async () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor || editor.document.languageId !== "vpp") {
+        return;
+      }
+      const edits = await formatDocument(editor.document);
+      if (edits.length > 0) {
+        await editor.edit((builder) => {
+          for (const edit of edits) {
+            builder.replace(edit.range, edit.newText);
+          }
+        });
+      }
+    }),
+    vscode.commands.registerCommand("vpp.startRepl", () => {
+      const root = workspaceRoot();
+      if (!root) {
+        vscode.window.showErrorMessage("Open the v++ project folder first.");
+        return;
+      }
+      const runner = resolveRunner(root);
+      if (!runner) {
+        vscode.window.showErrorMessage("v++ compiler not found. Run .\\setup.ps1 once.");
+        return;
+      }
+      const { command, argv } = runRunner(runner, ["repl"]);
+      const term = vscode.window.createTerminal({ name: "v++ REPL", cwd: root });
+      term.show(true);
+      term.sendText([command, ...argv].join(" "));
     }),
     vscode.commands.registerCommand("vpp.testProject", () => {
       const root = workspaceRoot();
@@ -244,12 +493,39 @@ function activate(context) {
         vscode.window.showErrorMessage("v++ compiler not found. Run .\\setup.ps1 once.");
         return;
       }
-      const { command, argv } = runRunner(runner, ["test"], root);
+      const { command, argv } = runRunner(runner, ["test"]);
       const term = vscode.window.createTerminal({ name: "vpp test", cwd: root });
       term.show(true);
       term.sendText([command, ...argv].join(" "));
+    }),
+    vscode.commands.registerCommand("vpp.showOutput", () => {
+      getOutput().show(true);
+    }),
+    vscode.commands.registerCommand("vpp.openSettings", () => {
+      vscode.commands.executeCommand("workbench.action.openSettings", "vpp");
+    }),
+    vscode.commands.registerCommand("vpp.openDocs", () => {
+      vscode.env.openExternal(vscode.Uri.parse("https://github.com/shauryaR790/V-/tree/main/docs"));
     })
   );
+
+  const welcomeKey = "vpp.welcomeShown";
+  if (!context.globalState.get(welcomeKey)) {
+    context.globalState.update(welcomeKey, true);
+    vscode.window
+      .showInformationMessage(
+        "v++ Language 0.6 — Python-readable syntax, native compilation. Press F5 to run.",
+        "Open docs",
+        "Settings"
+      )
+      .then((choice) => {
+        if (choice === "Open docs") {
+          vscode.commands.executeCommand("vpp.openDocs");
+        } else if (choice === "Settings") {
+          vscode.commands.executeCommand("vpp.openSettings");
+        }
+      });
+  }
 }
 
 function deactivate() {

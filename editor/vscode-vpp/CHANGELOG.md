@@ -1,47 +1,70 @@
 # Change Log
 
+## 0.6.1
+
+- Fix format-on-save conflicting with VS Code save (format via temp file, no disk overwrite during save)
+
+## 0.6.0
+
+**Write simply. Compile natively.** — v0.6 aligns the extension with the language's interactive-development milestone.
+
+### New
+- **Format on save** — `vpp fmt` runs automatically (toggle: `vpp.formatOnSave`)
+- **Format document** command and **Shift+Alt+F** keybinding
+- **Status bar** — active compiler path + LSP indicator (click to open settings)
+- **Code snippets** — `main`, `fn`, `struct`, `match`, `test`, `println`
+- **Welcome prompt** on first install with docs link
+- **v++: Show Output**, **Open Settings**, **Open Documentation** commands
+
+### Improved
+- **Lazy LSP** — language server starts only when a `.vpp` file is opened (faster startup)
+- **Runner cache** — compiler path resolved once per workspace change
+- **Shared output channel** — run, check, fmt, and LSP logs in one panel
+- LSP skipped when `vppls` binary is not found (no silent failures)
+- Honest Marketplace categories (removed Debuggers until v0.8)
+- README repositioned: Python readability + native compilation + real toolchain
+
+## 0.6.0
+
+**Interactive development** — compiler + extension aligned at v0.6.
+
+### Compiler
+- **`vpp repl`** — persistent REPL (same interpreter as `vpp run`; definitions carry across lines)
+
+### Extension
+- Format-on-save (`vpp fmt`), **Shift+Alt+F**, temp-file fix (no save conflicts)
+- **v++: Start REPL** terminal command
+- Code snippets, status bar, lazy LSP, welcome prompt
+- Transparent official V++ wordmark icons
+
+## 0.5.10
+
+- Force-refresh extension header icon (clears stale Marketplace cache from 0.5.0)
+
+## 0.5.9
+
+- Fix icons: regenerate from the true transparent removebg asset (previous copy had an opaque black matte)
+
+## 0.5.8
+
+- Extension icons use the transparent official V++ wordmark (no black background)
+
 ## 0.5.7
 
 - Official V++ wordmark only (no generated circle badge); larger mark on black background
 
 ## 0.5.6
 
-- Activate extension when the workspace contains `.vpp` files (fixes Plain Text before first open)
+- Activate when workspace contains `.vpp` files
 
 ## 0.5.5
 
-- Restore the official yellow V++ wordmark for marketplace and file icons (replaces the placeholder circle badge)
+- Official wordmark icons from transparent logo asset
 
 ## 0.5.4
 
-- Larger file and marketplace icons: yellow circle badge with bold black V++ text for readability in Explorer
-
-## 0.5.3
-
-- Remove legacy `vpp-lang.vpp` installs during setup; install the correct `vpp-lang.vplusplus` package
-- Enable the v++ file icon theme automatically when no icon theme is selected
-
-## 0.5.2
-
-- File and language icons updated to the official V++ logo (Explorer, tabs, and icon theme)
-
-## 0.5.1
-
-- Marketplace extension icon updated to the official V++ logo (128×128)
+- Placeholder circle badge (superseded)
 
 ## 0.5.0
 
-- Comprehensive documentation links in README
-- Syntax highlighting for `mut`, `trait`, `impl`
-- Marketplace metadata aligned with docs hub
-
-## 0.4.1
-
-- Marketplace publisher `vpp-lang`, extension id `vplusplus`
-- Professional README and gallery banner
-
-## 0.4.0
-
-- LSP integration via `vppls`
-- Run, check, and test commands
-- Yellow v file icons
+- Initial Marketplace release: syntax, run, check, test, LSP

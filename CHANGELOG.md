@@ -2,6 +2,18 @@
 
 All notable changes to v++ are documented here.
 
+## [0.6.0] — 2026-08-21
+
+### Added — Interactive development (v0.6 milestone)
+
+- **`vpp repl`** — persistent read-eval-print loop using the same interpreter as `vpp run`
+- **Parity promise** documented: same `.vpp` source for `run`, `repl`, and `build` ([VERSION_ROADMAP.md](docs/project/VERSION_ROADMAP.md))
+- **VS Code extension 0.6.0** — format-on-save, REPL terminal command, snippets, status bar, lazy LSP
+
+### Unique differentiator
+
+v++ is the readable compiled language where **one file** teaches (`repl`/`run`) and ships (`build`) — with CI parity tests proving both paths match.
+
 ## [0.5.0] — 2026-08-18
 
 ### Added
