@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.5.5
+
+- Restore the official yellow V++ wordmark for marketplace and file icons (replaces the placeholder circle badge)
+
 ## 0.5.4
 
 - Larger file and marketplace icons: yellow circle badge with bold black V++ text for readability in Explorer
