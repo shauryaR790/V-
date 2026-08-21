@@ -2,72 +2,60 @@
 
 **Write it simply. Compile it natively.**
 
-Official language support for **[v++](https://github.com/shauryaR790/V-)** — a compiled language that reads like Python but ships native binaries. Not a transpiler, not a toy highlighter: a real `vpp` toolchain wired into your editor.
+Official language support for **[v++](https://github.com/shauryaR790/V-)** — a compiled language that reads like Python but ships native binaries.
 
-> Install the **compiler** separately — this extension connects VS Code to `vpp`. [Quick start ↓](#quick-start)
+> **Parity Promise:** the same `.vpp` file runs in **REPL**, **watch**, **debug (F5)**, and **`vpp build`**.
 
----
-
-## Why v++ is different
-
-| | Scripting (Python) | Systems (Rust/C++) | **v++** |
-|---|-------------------|-------------------|---------|
-| Readability | High | Moderate | **Python-style syntax** |
-| Output | Interpreted / VM | Native binary | **Native binary** |
-| Learning curve | Gentle | Steep | **Gentle → grow into control** |
-| Toolchain in editor | Mature | Mature | **Run · check · fmt · test · LSP** |
-
-**One sentence:** v++ is the language for people who want Python's clarity without giving up native speed — with generics, traits, and compile-time checks when you're ready.
-
-**Official extension:** publisher **`vpp-lang`** · ID **`vpp-lang.vplusplus`**  
-Other Marketplace entries named "V++" are unrelated.
+**Official extension:** publisher **`vpp-lang`** · ID **`vpp-lang.vplusplus`**
 
 ---
 
 ## Quick start
 
-1. **Compiler** — [GitHub Releases](https://github.com/shauryaR790/V-/releases) (`vpp-*-setup.exe` on Windows) or build from source.
-2. **Extension** — install **v++ Language** by **vpp-lang** from the Marketplace.
-3. **Run** — open a `.vpp` file, press **F5**.
+1. **Compiler** — [GitHub Releases](https://github.com/shauryaR790/V-/releases) (`vpp-*-setup.exe` on Windows).
+2. **Extension** — install **v++ Language** by **vpp-lang**.
+3. **Debug** — open a `.vpp` file, press **F5**. **Ctrl+F5** runs without breakpoints.
 
 ```powershell
 vpp run examples\hello.vpp
-vpp check examples\hello.vpp
-vpp fmt examples\hello.vpp
+vpp debug examples\hello.vpp
+vpp watch examples\hello.vpp
+vpp repl
 vpp test
+vpp search hello
 ```
-
-Docs: [github.com/shauryaR790/V-/tree/main/docs](https://github.com/shauryaR790/V-/tree/main/docs)
 
 ---
 
-## Features (v0.6)
+## Features (v1.0)
 
 | Feature | What you get |
 |---------|----------------|
-| **Syntax + snippets** | Keywords, types, `mut`, generics, traits; tab completions for `fn`, `struct`, `match`, `test` |
-| **Run (F5)** | Executes the active file via `vpp run` |
-| **Type-check** | `vpp check` without running |
-| **Format** | `vpp fmt` — format-on-save (default) or **Shift+Alt+F** |
-| **Tests** | `vpp test` in integrated terminal |
-| **Language server** | Diagnostics, completion, go-to-definition via `vppls` (starts when you open a `.vpp` file) |
-| **Status bar** | Shows active compiler + LSP state |
-| **File icons** | Official transparent **V++** wordmark for `.vpp` files |
+| **Debug (F5)** | Breakpoints, step, next, locals — same interpreter as `vpp run` |
+| **Run (Ctrl+F5)** | `vpp run` on active file |
+| **Watch** | Live re-run on save (`vpp watch`) |
+| **REPL** | Interactive session in terminal |
+| **Benchmark** | `vpp bench` timing |
+| **Test Explorer** | Sidebar tests from `test "..."` blocks |
+| **Format on save** | `vpp fmt` via Shift+Alt+F or on save |
+| **LSP** | Diagnostics, completion, go-to-definition (`vppls`) |
+| **Registry search** | `vpp search` from command palette |
+| **Snippets + icons** | Official V++ wordmark |
 
 ---
 
 ## Commands
 
-`Ctrl+Shift+P` → type `v++`:
+`Ctrl+Shift+P` → `v++`:
 
 | Command | Shortcut |
 |---------|----------|
-| **v++: Run File** | F5, Ctrl+Shift+R |
-| **v++: Check File** | — |
-| **v++: Format Document** | Shift+Alt+F |
-| **v++: Run Tests** | — |
-| **v++: Show Output** | — |
-| **v++: Open Documentation** | — |
+| **Debug File** | F5 |
+| **Run File** | Ctrl+F5, Ctrl+Shift+R |
+| **Watch File** | toolbar eye icon |
+| **Format Document** | Shift+Alt+F |
+| **Refresh Test Explorer** | — |
+| **Search Package Registry** | — |
 
 ---
 
@@ -75,42 +63,25 @@ Docs: [github.com/shauryaR790/V-/tree/main/docs](https://github.com/shauryaR790/
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| `vpp.compilerPath` | *(auto)* | Path to `vpp`. Auto-detects `vpp.ps1`, `target/debug/vpp.exe`, etc. |
-| `vpp.languageServerPath` | `vppls` | Language server binary |
-| `vpp.enableLanguageServer` | `true` | Diagnostics, completion, go-to-definition |
-| `vpp.formatOnSave` | `true` | Run `vpp fmt` when saving `.vpp` files |
-
-Click the **v++** item in the status bar to jump to settings.
+| `vpp.compilerPath` | *(auto)* | Path to `vpp` |
+| `vpp.languageServerPath` | `vppls` | Language server |
+| `vpp.enableLanguageServer` | `true` | IntelliSense |
+| `vpp.formatOnSave` | `true` | Format `.vpp` on save |
 
 ---
 
 ## Requirements
 
-| Component | Used for |
-|-----------|----------|
-| **vpp** | Run, check, format, test |
-| **vppls** | IntelliSense (included in release bundle or `cargo build --features lsp --bin vppls`) |
-| **LLVM/clang** | `vpp build` native codegen only |
+- **vpp** — run, debug, check, fmt, test, watch, bench
+- **vppls** — LSP (bundled in release or `cargo build --features lsp --bin vppls`)
+- **LLVM** — only for `vpp build` native codegen
 
 ---
 
-## Roadmap
-
-| Version | Focus |
-|---------|--------|
-| **v0.6** *(now)* | Format-on-save, status bar, snippets, faster lazy LSP |
-| v0.7 | Linux/macOS releases, signed Windows builds |
-| v0.8 | Debugger integration |
-| v1.0 | Frozen spec, Test Explorer, hosted registry |
-
-[Full roadmap](https://github.com/shauryaR790/V-/blob/main/docs/project/roadmap.md)
-
----
-
-## Support
+## Docs
 
 - [Documentation](https://github.com/shauryaR790/V-/tree/main/docs)
-- [VS Code setup guide](https://github.com/shauryaR790/V-/blob/main/docs/getting-started/vscode-setup.md)
+- [Parity Promise](https://github.com/shauryaR790/V-/blob/main/docs/project/PARITY_PROMISE.md)
 - [Report issues](https://github.com/shauryaR790/V-/issues)
 
 MIT — see [LICENSE](https://github.com/shauryaR790/V-/blob/main/LICENSE).
