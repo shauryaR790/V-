@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.5.6
+
+- Activate extension when the workspace contains `.vpp` files (fixes Plain Text before first open)
+
 ## 0.5.5
 
 - Restore the official yellow V++ wordmark for marketplace and file icons (replaces the placeholder circle badge)
