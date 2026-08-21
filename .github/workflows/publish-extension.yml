@@ -1,0 +1,33 @@
+name: Publish VS Code extension
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "editor/vscode-vpp/**"
+      - ".github/workflows/publish-extension.yml"
+
+jobs:
+  publish:
+    if: ${{ secrets.VSCE_PAT != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install vsce
+        run: npm install -g @vscode/vsce
+
+      - name: Install extension dependencies
+        working-directory: editor/vscode-vpp
+        run: npm install
+
+      - name: Publish to Visual Studio Marketplace
+        working-directory: editor/vscode-vpp
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: vsce publish -p "$VSCE_PAT"
