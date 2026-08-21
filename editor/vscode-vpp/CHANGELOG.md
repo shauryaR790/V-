@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.5.1
+
+- Marketplace extension icon updated to the official V++ logo (128×128)
+
 ## 0.5.0
 
 - Comprehensive documentation links in README
