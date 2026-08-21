@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.5.7
+
+- Official V++ wordmark only (no generated circle badge); larger mark on black background
+
 ## 0.5.6
 
 - Activate extension when the workspace contains `.vpp` files (fixes Plain Text before first open)

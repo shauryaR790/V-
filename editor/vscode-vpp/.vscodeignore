@@ -3,5 +3,6 @@
 *.vsix
 publish.ps1
 upload-marketplace.ps1
+branding/
 .gitignore
 package-lock.json
