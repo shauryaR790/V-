@@ -2,6 +2,10 @@
 
 All notable changes to v++ are documented here.
 
+## [0.6.2] — 2026-08-21
+
+- Version alignment for Marketplace (extension + compiler)
+
 ## [0.6.0] — 2026-08-21
 
 ### Added — Interactive development (v0.6 milestone)

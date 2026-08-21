@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.2
+
+- Version bump for Marketplace upload (0.6.0 VSIX filename already used)
+
 ## 0.6.1
 
 - Fix format-on-save conflicting with VS Code save (format via temp file, no disk overwrite during save)

@@ -514,7 +514,7 @@ function activate(context) {
     context.globalState.update(welcomeKey, true);
     vscode.window
       .showInformationMessage(
-        "v++ Language 0.6 — Python-readable syntax, native compilation. Press F5 to run.",
+        "v++ Language 0.6.2 — Python-readable syntax, native compilation. Press F5 to run.",
         "Open docs",
         "Settings"
       )
