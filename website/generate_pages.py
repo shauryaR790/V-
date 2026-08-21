@@ -29,7 +29,9 @@ NAV = [
     ("courses.html", "Courses"),
 ]
 
-ASSET_PREFIX = "/V-/"
+ASSET_PREFIX = "/VPP/"
+
+GITHUB_REPO = "shauryaR790/VPP"
 
 BRAND = "V++"
 
@@ -706,7 +708,7 @@ RELEASE_VERSIONS = [
     ("0.4.4", "v0.4.4", False),
 ]
 
-GITHUB_RELEASE = "https://github.com/shauryaR790/V-/releases/download"
+GITHUB_RELEASE = f"https://github.com/{GITHUB_REPO}/releases/download"
 
 
 def build_download_page_body() -> str:
@@ -717,11 +719,11 @@ def build_download_page_body() -> str:
     )
     releases_table = "\n".join(
         f'<tr><td>{tag}</td>'
-        f'<td><a href="https://github.com/shauryaR790/V-/releases/download/{tag}/vpp-{ver}-setup.exe">'
+        f'<td><a href="https://github.com/{GITHUB_REPO}/releases/download/{tag}/vpp-{ver}-setup.exe">'
         f'vpp-{ver}-setup.exe</a></td>'
-        f'<td><a href="https://github.com/shauryaR790/V-/releases/download/{tag}/'
+        f'<td><a href="https://github.com/{GITHUB_REPO}/releases/download/{tag}/'
         f'vpp-v{ver}-windows-x64.zip">zip</a></td>'
-        f'<td><a href="https://github.com/shauryaR790/V-/releases/tag/{tag}">Release page</a></td></tr>'
+        f'<td><a href="https://github.com/{GITHUB_REPO}/releases/tag/{tag}">Release page</a></td></tr>'
         for ver, tag, _ in RELEASE_VERSIONS
     )
     return f"""<div id="top"></div>
@@ -786,7 +788,7 @@ vpp doctor</code></pre>
 
   <div class="download-footlinks">
     <p>Read the <a href="{ASSET_PREFIX}blog.html">changelog</a> for release notes.</p>
-    <p>Learn more about <a href="https://github.com/shauryaR790/V-/releases" target="_blank" rel="noopener">all releases</a> on GitHub.</p>
+    <p>Learn more about <a href="https://github.com/{GITHUB_REPO}/releases" target="_blank" rel="noopener">all releases</a> on GitHub.</p>
     <p>Need to hack on the compiler? See <a href="{ASSET_PREFIX}contribute.html">building from source</a>.</p>
   </div>
 
@@ -795,9 +797,9 @@ vpp doctor</code></pre>
   <thead><tr><th>Version</th><th>Windows installer</th><th>Portable zip</th><th>Notes</th></tr></thead>
   <tbody>
   {releases_table}
-  <tr><td>v0.3.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.3.0">Modules, package manager, stdlib</a></td></tr>
-  <tr><td>v0.2.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.2.0">Native IR + LLVM</a></td></tr>
-  <tr><td>v0.1.0</td><td colspan="3"><a href="https://github.com/shauryaR790/V-/releases/tag/v0.1.0">Initial release</a></td></tr>
+  <tr><td>v0.3.0</td><td colspan="3"><a href="https://github.com/{GITHUB_REPO}/releases/tag/v0.3.0">Modules, package manager, stdlib</a></td></tr>
+  <tr><td>v0.2.0</td><td colspan="3"><a href="https://github.com/{GITHUB_REPO}/releases/tag/v0.2.0">Native IR + LLVM</a></td></tr>
+  <tr><td>v0.1.0</td><td colspan="3"><a href="https://github.com/{GITHUB_REPO}/releases/tag/v0.1.0">Initial release</a></td></tr>
   </tbody></table></div>
 
   <h2 id="vscode">VS Code extension</h2>
@@ -843,7 +845,7 @@ def shell(
       <a href="{ASSET_PREFIX}index.html" class="brand"><img src="{ASSET_PREFIX}assets/logo-header.png" alt="{BRAND}" class="brand-logo"></a>
       <nav class="top-nav">{nav_items}</nav>
       <div class="header-actions">
-        <a href="https://github.com/shauryaR790/V-" class="icon-btn" aria-label="GitHub" target="_blank" rel="noopener">
+        <a href="https://github.com/{GITHUB_REPO}" class="icon-btn" aria-label="GitHub" target="_blank" rel="noopener">
           {GITHUB_SVG}
         </a>
       </div>
@@ -998,7 +1000,7 @@ def courses_hub_shell(
       <a href="{ASSET_PREFIX}index.html" class="brand"><img src="{ASSET_PREFIX}assets/logo-header.png" alt="{BRAND}" class="brand-logo"></a>
       <nav class="top-nav">{nav_items}</nav>
       <div class="header-actions">
-        <a href="https://github.com/shauryaR790/V-" class="icon-btn" aria-label="GitHub" target="_blank" rel="noopener">
+        <a href="https://github.com/{GITHUB_REPO}" class="icon-btn" aria-label="GitHub" target="_blank" rel="noopener">
           {GITHUB_SVG}
         </a>
       </div>

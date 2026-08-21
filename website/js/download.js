@@ -1,7 +1,7 @@
 /** Download hub — version/OS picker and one-click release links. */
 (function () {
-  const REPO = "shauryaR790/V-";
-  const SOURCE_URL = "/V-/contribute.html";
+  const REPO = "shauryaR790/VPP";
+  const SOURCE_URL = "/VPP/contribute.html";
 
   const ICONS = {
     version:
@@ -124,8 +124,8 @@ vpp doctor`,
           filename: "terminal",
           install: () =>
             `# Clone and build (requires Rust + LLVM 22)
-git clone https://github.com/shauryaR790/V-.git
-cd V-
+git clone https://github.com/shauryaR790/VPP.git
+cd VPP
 cargo build --release --features codegen,lsp
 ./target/release/vpp --version
 # Verify your install
@@ -163,8 +163,8 @@ vpp doctor`,
           filename: "terminal",
           install: () =>
             `# Clone and build (requires Rust + LLVM 22)
-git clone https://github.com/shauryaR790/V-.git
-cd V-
+git clone https://github.com/shauryaR790/VPP.git
+cd VPP
 cargo build --release --features codegen,lsp
 ./target/release/vpp --version
 # Verify your install

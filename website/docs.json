@@ -702,7 +702,7 @@
         {
           "kind": "faq",
           "question": "Is v++ v1.0?",
-          "answer": "No. The current repository release is v0.5.0 and the roadmap still contains stability, debugging, package ecosystem, and specification work."
+          "answer": "Yes. SPEC v1.0 is frozen, debugger and Test Explorer ship in the VS Code extension, and v1.0.3 is on GitHub Releases for Windows. Linux/macOS prebuilt bundles are still improving."
         }
       ]
     },
