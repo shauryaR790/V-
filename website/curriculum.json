@@ -2216,7 +2216,7 @@
       }
     ],
     "complete_source": "import std.json\nstruct AppConfig {\n    name: string\n    version: string\n    debug: bool\n}\nfn parse_config(raw: string) -> string {\n    let doc = json.parse(raw)\n    return json.stringify(doc)\n}\nfn main() -> int {\n    let raw = \"{\"name\":\"v++\",\"version\":\"1.0.0\",\"debug\":false}\"\n    print(parse_config(raw))\n    let cfg = AppConfig {\n        name: \"v++\"\n        version: \"1.0.0\"\n        debug: true\n    }\n    print(cfg.name)\n    print(cfg.version)\n    return 0\n}",
-    "expected_output": "{\"name\":\"v++\",\"version\":\"1.0.0\",\"debug\":false}\nv++\n0.5.0",
+    "expected_output": "{\"name\":\"v++\",\"version\":\"1.0.0\",\"debug\":false}\nv++\n1.0.0",
     "run_cmd": "vpp run projects/20-json-config/main.vpp"
   }
 ]

@@ -138,7 +138,7 @@
     print(parse_config(raw))
     let cfg = AppConfig {
         name: &quot;v++&quot;
-        version: &quot;0.5.0&quot;
+        version: &quot;1.0.0&quot;
         debug: true
     }
     print(cfg.name)
@@ -167,7 +167,7 @@ fn main() -&gt; int {
     print(parse_config(raw))
     let cfg = AppConfig {
         name: &quot;v++&quot;
-        version: &quot;0.5.0&quot;
+        version: &quot;1.0.0&quot;
         debug: true
     }
     print(cfg.name)
@@ -184,7 +184,7 @@ fn main() -&gt; int {
 <p>The complete program should produce the following output when run with the command shown below. Exact formatting should follow the current V++ runtime.</p>
 <pre class="course-expected-output">{&quot;name&quot;:&quot;v++&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;debug&quot;:false}
 v++
-0.5.0</pre>
+1.0.0</pre>
 </div></section>
 <section class="course-step" id="run-the-project">
 <div class="course-step-head">
@@ -238,13 +238,13 @@ fn main() -&gt; int {
     print(parse_config(raw))
     let cfg = AppConfig {
         name: &quot;v++&quot;
-        version: &quot;0.5.0&quot;
+        version: &quot;1.0.0&quot;
         debug: true
     }
     print(cfg.name)
     print(cfg.version)
     return 0
-}</code></pre></div></div><script type="application/json" id="course-playground-data">{"output": "{\"name\":\"v++\",\"version\":\"1.0.0\",\"debug\":false}\nv++\n0.5.0", "source": "import std.json\nstruct AppConfig {\n    name: string\n    version: string\n    debug: bool\n}\nfn parse_config(raw: string) -> string {\n    let doc = json.parse(raw)\n    return json.stringify(doc)\n}\nfn main() -> int {\n    let raw = \"{\"name\":\"v++\",\"version\":\"1.0.0\",\"debug\":false}\"\n    print(parse_config(raw))\n    let cfg = AppConfig {\n        name: \"v++\"\n        version: \"0.5.0\"\n        debug: true\n    }\n    print(cfg.name)\n    print(cfg.version)\n    return 0\n}", "run_cmd": "vpp run projects/20-json-config/main.vpp"}</script><div class="course-playground"><div class="course-playground-toolbar"><button type="button" class="btn btn-primary course-run-btn">Test program</button><button type="button" class="btn btn-outline course-reset-btn">Reset</button></div><div class="course-terminal" aria-live="polite"><div class="course-terminal-header"><span class="course-terminal-dot"></span><span class="course-terminal-dot"></span><span class="course-terminal-dot"></span><span class="course-terminal-title">vpp</span></div><div class="course-terminal-body"><div class="course-terminal-line course-terminal-muted">$ ready. Click Test program.</div><pre class="course-run-output"></pre></div></div></div></section></article>
+}</code></pre></div></div><script type="application/json" id="course-playground-data">{"output": "{\"name\":\"v++\",\"version\":\"1.0.0\",\"debug\":false}\nv++\n1.0.0", "source": "import std.json\nstruct AppConfig {\n    name: string\n    version: string\n    debug: bool\n}\nfn parse_config(raw: string) -> string {\n    let doc = json.parse(raw)\n    return json.stringify(doc)\n}\nfn main() -> int {\n    let raw = \"{\"name\":\"v++\",\"version\":\"1.0.0\",\"debug\":false}\"\n    print(parse_config(raw))\n    let cfg = AppConfig {\n        name: \"v++\"\n        version: \"1.0.0\"\n        debug: true\n    }\n    print(cfg.name)\n    print(cfg.version)\n    return 0\n}", "run_cmd": "vpp run projects/20-json-config/main.vpp"}</script><div class="course-playground"><div class="course-playground-toolbar"><button type="button" class="btn btn-primary course-run-btn">Test program</button><button type="button" class="btn btn-outline course-reset-btn">Reset</button></div><div class="course-terminal" aria-live="polite"><div class="course-terminal-header"><span class="course-terminal-dot"></span><span class="course-terminal-dot"></span><span class="course-terminal-dot"></span><span class="course-terminal-title">vpp</span></div><div class="course-terminal-body"><div class="course-terminal-line course-terminal-muted">$ ready. Click Test program.</div><pre class="course-run-output"></pre></div></div></div></section></article>
     </main>
     <aside class="docs-toc">
       <p class="toc-label">On this page</p>
