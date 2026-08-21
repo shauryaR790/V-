@@ -1,16 +1,37 @@
+## 1.2.0
+
+**Recommended for Reddit / new users** — stable debugger + tests + formatter fix.
+
+### Fixed
+- **Format on save** no longer corrupts code (`let mut x` stayed broken as `let mutx`; ranges like `1..6` were split incorrectly). Rebuild or install `vpp` ≥ 1.0.1 before relying on format-on-save.
+- Extension version aligned with compiler release line (GitHub **v1.0.3** Windows installer).
+
+### Extension
+- **F5 Debug** — breakpoints, step, next, locals (DAP via `vpp debug --dap`)
+- **Ctrl+F5 Run** — run without debugging
+- **Test Explorer** — sidebar discovery via `vpp test --list`
+- **Watch / REPL / Bench** — toolbar + command palette
+- **Registry search** — `vpp search` from palette
+- **LSP** — diagnostics, completion, go-to-definition (`vppls`)
+
+### Compiler (bundled workflow)
+- Frozen SPEC v1.0 + Parity Promise (same `.vpp` for run, repl, watch, debug, build)
+- Full CLI: run, repl, watch, debug, bench, build, test, search, doctor, packages, fmt
+
+### Known limits (honest)
+- **Windows** — full native build + GitHub Releases installer (primary platform)
+- **Linux / macOS** — interpreter + LSP work; native codegen bundles still improving on CI
+
 ## 1.0.0
 
-**Stable release** — Parity Promise frozen. Same `.vpp` for run, repl, watch, debug, and native build.
+**Stable release** — Parity Promise frozen.
 
 ### Compiler
 - Frozen SPEC v1.0 + compatibility CI on all examples
 - Full CLI: run, repl, watch, debug, bench, build, test, search, doctor, packages
 
 ### Extension
-- **F5 Debug** — interpreter breakpoints, step, locals (DAP via `vpp debug --dap`)
-- **Test Explorer** — discovers `test` blocks via `vpp test --list`
-- **Registry search** — `vpp search` from command palette
-- Marketplace category: Debuggers
+- Debug, Test Explorer, registry search (see 1.2.0 for consolidated list)
 
 ## 0.9.0
 
@@ -21,23 +42,23 @@
 
 ## 0.8.0
 
-### Insight — debugger
+### Debugger
 - **`vpp debug`** CLI — step, break, locals (interpreter)
-- **VS Code debug launch** — F5 starts DAP session (`vpp debug --dap`)
+- **VS Code debug launch** — F5 starts DAP session
 - Ctrl+F5 run without debugging
 
 ## 0.7.0
 
-**Live development** — v0.7's differentiator: compiled languages rarely offer instant save-to-run loops.
+**Live development** — save-to-run loops without recompile.
 
 ### Compiler
-- **`vpp watch`** — re-runs your file every time you save (live dev loop; same interpreter as run/repl)
-- **`vpp bench`** — time repeated interpreter runs; see iteration speed before native build
-- **`vpp doctor`** — shows OS/arch, cross-platform LLVM install hints
+- **`vpp watch`** — re-runs on save
+- **`vpp bench`** — interpreter timing
+- **`vpp doctor`** — OS/arch + LLVM hints
 
 ### Extension
-- **v++: Watch File** — eye icon in editor toolbar; opens live watch terminal
-- **v++: Benchmark File** — runs `vpp bench` on active file
-- Marketplace description updated for watch/REPL/bench workflow
+- Watch File, Benchmark File commands
 
 ## 0.6.2
+
+Initial Marketplace-quality release: LSP, format-on-save, snippets, syntax highlighting.

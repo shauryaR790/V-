@@ -27,7 +27,7 @@ vpp search hello
 
 ---
 
-## Features (v1.0)
+## Features (v1.2)
 
 | Feature | What you get |
 |---------|----------------|
@@ -37,10 +37,12 @@ vpp search hello
 | **REPL** | Interactive session in terminal |
 | **Benchmark** | `vpp bench` timing |
 | **Test Explorer** | Sidebar tests from `test "..."` blocks |
-| **Format on save** | `vpp fmt` via Shift+Alt+F or on save |
+| **Format on save** | `vpp fmt` — fixed in 1.2.0 (requires `vpp` ≥ 1.0.1) |
 | **LSP** | Diagnostics, completion, go-to-definition (`vppls`) |
 | **Registry search** | `vpp search` from command palette |
 | **Snippets + icons** | Official V++ wordmark |
+
+**Download compiler:** [GitHub Releases v1.0.3+](https://github.com/shauryaR790/V-/releases) (Windows installer + portable zip).
 
 ---
 
