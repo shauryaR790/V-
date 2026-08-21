@@ -2,6 +2,31 @@
 
 All notable changes to v++ are documented here.
 
+## [1.0.0] — 2026-08-21
+
+### Stable — Parity Promise frozen
+
+- **SPEC v1.0 frozen** — breaking changes require v2.0 ([SPEC.md](SPEC.md), [PARITY_PROMISE.md](docs/project/PARITY_PROMISE.md))
+- **Compatibility CI** — all `examples/*.vpp` run on every push
+- **Full toolchain:** run · repl · watch · debug · bench · build · test · search · packages
+
+## [0.9.0] — 2026-08-21
+
+### Ecosystem
+
+- **`vpp test --list`** — JSON listing for VS Code Test Explorer
+- **`vpp search`** — search bundled / `VPP_REGISTRY` package index
+- **Registry index** expanded for hosted packages
+- **SPEC release candidate** language surface documented
+
+## [0.8.0] — 2026-08-21
+
+### Insight — line debugger
+
+- **`vpp debug`** — breakpoints, step, next, continue, locals, print, list (interpreter)
+- **`vpp debug --dap`** — Debug Adapter Protocol for VS Code (F5)
+- **Same engine as run/repl/watch** — debug what you ship
+
 ## [0.7.3] — 2026-08-21
 
 ### Fixed — Unix LLVM linking (CI + releases)

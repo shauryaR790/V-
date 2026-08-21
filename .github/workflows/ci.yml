@@ -48,6 +48,23 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - run: cargo build --features lsp --bin vppls
 
+  compat-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Run all examples (interpreter parity)
+        run: |
+          for f in examples/*.vpp; do
+            echo ">> vpp run $f"
+            cargo run -- run "$f"
+          done
+      - name: Type-check lessons
+        run: |
+          cargo run -- check examples/lesson02_functions.vpp
+          cargo run -- check examples/lesson03_loops.vpp
+          cargo run -- check examples/arrays_fn.vpp
+
   test-native-linux:
     runs-on: ubuntu-latest
     steps:

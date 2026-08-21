@@ -42,6 +42,9 @@ enum Commands {
     /// Run tests in the current v++ project
     Test {
         path: Option<PathBuf>,
+        /// JSON test listing for IDE Test Explorer
+        #[arg(long)]
+        list: bool,
     },
     /// Create a new v++ project
     New {
@@ -91,6 +94,20 @@ enum Commands {
         file: PathBuf,
         #[arg(short, long, default_value_t = 5)]
         runs: u32,
+    },
+    /// Line debugger (interpreter; breakpoints, step, locals)
+    Debug {
+        file: PathBuf,
+        /// Breakpoint line numbers (repeatable)
+        #[arg(short, long = "break")]
+        breakpoints: Vec<u32>,
+        /// Debug Adapter Protocol on stdio (VS Code)
+        #[arg(long, hide = true)]
+        dap: bool,
+    },
+    /// Search the v++ package registry
+    Search {
+        query: String,
     },
 }
 
@@ -155,7 +172,7 @@ fn main() -> ExitCode {
         Commands::Compile { file, output } => cmd_compile(&file, output),
         Commands::Fmt { file } => cmd_fmt(&file),
         Commands::Lsp => cmd_lsp(),
-        Commands::Test { path } => cmd_test(path.as_deref()),
+        Commands::Test { path, list } => cmd_test(path.as_deref(), list),
         Commands::New { name, path } | Commands::Init { name, path } => {
             cmd_init(name.as_deref(), path.as_deref())
         }
@@ -173,6 +190,12 @@ fn main() -> ExitCode {
         Commands::Repl => cmd_repl(),
         Commands::Watch { file, debounce_ms } => cmd_watch(&file, debounce_ms),
         Commands::Bench { file, runs } => cmd_bench(&file, runs),
+        Commands::Debug {
+            file,
+            breakpoints,
+            dap,
+        } => cmd_debug(&file, &breakpoints, dap),
+        Commands::Search { query } => cmd_search(&query),
     };
 
     match result {
@@ -236,11 +259,30 @@ fn cmd_lsp() -> miette::Result<()> {
     }
 }
 
-fn cmd_test(path: Option<&Path>) -> miette::Result<()> {
+fn cmd_test(path: Option<&Path>, list: bool) -> miette::Result<()> {
     let start = path
         .map(Path::to_path_buf)
         .unwrap_or_else(|| std::env::current_dir().expect("current dir"));
+    if list {
+        let tests = vpp::list_project_tests(&start).map_err(miette::Report::new)?;
+        println!("{}", serde_json::to_string_pretty(&tests).into_diagnostic()?);
+        return Ok(());
+    }
     vpp::run_tests_in_project(&start).map_err(miette::Report::new)
+}
+
+fn cmd_search(query: &str) -> miette::Result<()> {
+    let root = project_root()?;
+    let hits = vpp::search_registry(&root, query).map_err(miette::Report::new)?;
+    if hits.is_empty() {
+        println!("No packages matching `{query}`");
+        return Ok(());
+    }
+    println!("v++ registry — {} hit(s) for `{query}`\n", hits.len());
+    for pkg in hits {
+        println!("  {} {}", pkg.name, pkg.version);
+    }
+    Ok(())
 }
 
 fn cmd_init(name: Option<&str>, path: Option<&Path>) -> miette::Result<()> {
@@ -321,6 +363,15 @@ fn cmd_watch(file: &PathBuf, debounce_ms: u64) -> miette::Result<()> {
 fn cmd_bench(file: &PathBuf, runs: u32) -> miette::Result<()> {
     let path = resolve_user_file(file.clone())?;
     vpp::bench_file(&path, runs).map_err(miette::Report::new)
+}
+
+fn cmd_debug(file: &PathBuf, breakpoints: &[u32], dap: bool) -> miette::Result<()> {
+    let path = resolve_user_file(file.clone())?;
+    if dap {
+        vpp::debug_dap(&path).map_err(miette::Report::new)
+    } else {
+        vpp::debug_file(&path, breakpoints).map_err(miette::Report::new)
+    }
 }
 
 fn cmd_compile(file: &PathBuf, output: Option<PathBuf>) -> miette::Result<()> {

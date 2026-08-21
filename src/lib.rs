@@ -1,3 +1,4 @@
+pub mod debug;
 pub mod watch;
 pub mod bench;
 pub mod ast;
@@ -33,14 +34,17 @@ pub fn ensure_llvm_stubs_linked() {
 
 pub use driver::{
     check, check_file, check_path, check_with_index, compile, format_source, init_project,
-    parse, project_entry, run, run_tests_in_project, emit_ir, CompileOptions,
+    list_project_tests, parse, project_entry, run, run_tests_in_project, emit_ir, CompileOptions,
+    TestListing,
 };
 pub use pkg::{
     add_dependency, parse_manifest_toml, remove_dependency, resolve_and_lock, resolve_dependencies,
-    resolve_from_registry, update_dependencies, DependencySpec, Lockfile, Manifest,
+    resolve_from_registry, search_registry, update_dependencies, DependencySpec, Lockfile, Manifest,
+    RegistryPackage,
 };
 pub use project::find_project_root;
 pub use doctor::run_doctor;
 pub use watch::watch_file;
 pub use bench::bench_file;
+pub use debug::{debug_dap, debug_file};
 pub use error::{VppError, VppResult};

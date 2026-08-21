@@ -1,8 +1,8 @@
 {
   "name": "vplusplus",
   "displayName": "v++ Language",
-  "description": "Official v++ — Python-readable syntax, native compilation. Run, watch, REPL, bench, format, test, LSP. Write simply. Compile natively.",
-  "version": "0.7.0",
+  "description": "Official v++ — Python-readable syntax, native compilation. Debug, watch, REPL, bench, format, test, LSP.",
+  "version": "1.0.0",
   "publisher": "vpp-lang",
   "license": "MIT",
   "icon": "icon.png",
@@ -17,7 +17,8 @@
     "vpp-lang",
     "native",
     "compiled",
-    "python-like"
+    "python-like",
+    "debugger"
   ],
   "repository": {
     "type": "git",
@@ -30,7 +31,7 @@
   "engines": {
     "vscode": "^1.80.0"
   },
-  "categories": ["Programming Languages", "Formatters", "Testing"],
+  "categories": ["Programming Languages", "Formatters", "Testing", "Debuggers"],
   "activationEvents": [
     "onLanguage:vpp",
     "workspaceContains:**/*.vpp"
@@ -74,6 +75,11 @@
     ],
     "commands": [
       {
+        "command": "vpp.debugFile",
+        "title": "v++: Debug File",
+        "icon": "$(debug-alt)"
+      },
+      {
         "command": "vpp.runFile",
         "title": "v++: Run File",
         "icon": "$(play)"
@@ -109,6 +115,16 @@
         "icon": "$(beaker)"
       },
       {
+        "command": "vpp.refreshTests",
+        "title": "v++: Refresh Test Explorer",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "vpp.searchPackages",
+        "title": "v++: Search Package Registry",
+        "icon": "$(search)"
+      },
+      {
         "command": "vpp.showOutput",
         "title": "v++: Show Output"
       },
@@ -123,6 +139,11 @@
     ],
     "menus": {
       "editor/title/run": [
+        {
+          "command": "vpp.debugFile",
+          "when": "resourceLangId == vpp",
+          "group": "navigation@0"
+        },
         {
           "command": "vpp.runFile",
           "when": "resourceLangId == vpp",
@@ -196,14 +217,51 @@
         "when": "resourceLangId == vpp && editorTextFocus"
       },
       {
-        "command": "vpp.runFile",
+        "command": "vpp.debugFile",
         "key": "f5",
+        "when": "resourceLangId == vpp && editorTextFocus"
+      },
+      {
+        "command": "vpp.runFile",
+        "key": "ctrl+f5",
         "when": "resourceLangId == vpp && editorTextFocus"
       },
       {
         "command": "vpp.formatDocument",
         "key": "shift+alt+f",
         "when": "resourceLangId == vpp && editorTextFocus"
+      }
+    ],
+    "debuggers": [
+      {
+        "type": "vpp",
+        "label": "v++",
+        "languages": ["vpp"],
+        "configurationAttributes": {
+          "launch": {
+            "required": ["program"],
+            "properties": {
+              "program": {
+                "type": "string",
+                "description": "Path to a .vpp file to debug (interpreter; same as run/repl)"
+              },
+              "stopOnEntry": {
+                "type": "boolean",
+                "default": true,
+                "description": "Pause on first line"
+              }
+            }
+          }
+        },
+        "initialConfigurations": [
+          {
+            "type": "vpp",
+            "request": "launch",
+            "name": "Debug v++ file",
+            "program": "${file}",
+            "stopOnEntry": true
+          }
+        ]
       }
     ],
     "configuration": {

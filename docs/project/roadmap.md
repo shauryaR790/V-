@@ -1,10 +1,25 @@
 # Roadmap
 
-## Shipped (v0.4.4)
+## v1.0 (shipped)
 
-- Language: mut, generics, traits, exhaustive match
-- Toolchain: vpp, vppls, package manager, stdlib
-- Distribution: Windows installer, VS Code extension, CI/CD
+- [x] Frozen language spec — [SPEC.md](../SPEC.md)
+- [x] Parity Promise — [PARITY_PROMISE.md](PARITY_PROMISE.md)
+- [x] Compatibility CI — all examples on every push
+- [x] Debugger (CLI + VS Code F5)
+- [x] Test Explorer UI
+- [x] Package registry search (`vpp search`)
+
+## v0.9 (shipped)
+
+- [x] Test Explorer UI
+- [x] `vpp test --list` for IDE integration
+- [x] `vpp search` registry command
+- [x] SPEC v1.0 release candidate
+
+## v0.8 (shipped)
+
+- [x] Interpreter line debugger (`vpp debug`)
+- [x] VS Code debug launch (DAP)
 
 ## v0.7 (shipped)
 
@@ -17,27 +32,11 @@
 
 - [x] **`vpp repl`** — interactive interpreter session
 - [x] Extension 0.6 — format-on-save, REPL command, snippets, lazy LSP
-- [x] Version roadmap through v1.0 ([VERSION_ROADMAP.md](VERSION_ROADMAP.md))
 
-## v0.8 (next)
+## Post v1.0 (ideas)
 
-- [ ] Interpreter line debugger (step, break, locals)
-- [ ] VS Code debug launch configuration
+- Native debug symbols
+- Hosted registry on GitHub Pages
+- v2.0 language extensions (only with major version)
 
-## v0.9
-
-- [ ] Test Explorer UI
-- [ ] Hosted static package registry (GitHub Pages index)
-- [ ] SPEC v1.0 release candidate
-
-## v1.0 (stable)
-
-- [ ] Frozen language spec — no breaking changes without major version
-- [ ] Debugger extension (full)
-- [ ] Test Explorer UI in VS Code
-- [ ] Hosted package registry
-- [ ] Curriculum + interactive tutorial
-
-## v0.5 (shipped)
-
-Track progress in [GitHub Issues](https://github.com/shauryaR790/V-/issues).
+Track issues: [GitHub Issues](https://github.com/shauryaR790/V-/issues)

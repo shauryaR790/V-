@@ -383,6 +383,114 @@ function ensureLanguageServer(context) {
   updateStatusBar();
 }
 
+function setupTestExplorer(context) {
+  if (!vscode.tests?.createTestController) {
+    return;
+  }
+
+  const controller = vscode.tests.createTestController("vppTests", "v++ Tests");
+  context.subscriptions.push(controller);
+
+  /** @type {Map<string, import("vscode").TestItem>} */
+  const itemsById = new Map();
+
+  async function refreshTests() {
+    controller.items.replace([]);
+    itemsById.clear();
+    const root = workspaceRoot();
+    if (!root) {
+      return;
+    }
+    const runner = resolveRunner(root);
+    if (!runner) {
+      return;
+    }
+    const { command, argv } = runRunner(runner, ["test", "--list"]);
+    const json = await new Promise((resolve) => {
+      execFile(command, argv, { cwd: root, maxBuffer: 4 * 1024 * 1024 }, (err, stdout) => {
+        resolve(err ? "[]" : stdout);
+      });
+    });
+    /** @type {{ file: string, tests: string[] }[]} */
+    let listings = [];
+    try {
+      listings = JSON.parse(json);
+    } catch {
+      listings = [];
+    }
+    for (const entry of listings) {
+      const fileUri = vscode.Uri.file(path.join(root, entry.file));
+      let fileItem = itemsById.get(entry.file);
+      if (!fileItem) {
+        fileItem = controller.createTestItem(entry.file, path.basename(entry.file), fileUri);
+        fileItem.canResolveChildren = false;
+        controller.items.add(fileItem);
+        itemsById.set(entry.file, fileItem);
+      }
+      for (const name of entry.tests) {
+        const id = `${entry.file}::${name}`;
+        const testItem = controller.createTestItem(id, name, fileUri);
+        testItem.range = new vscode.Range(0, 0, 0, 0);
+        fileItem.children.add(testItem);
+        itemsById.set(id, testItem);
+      }
+    }
+  }
+
+  controller.createRunProfile(
+    "Run v++ tests",
+    vscode.TestRunProfileKind.Run,
+    async (request, token) => {
+      const root = workspaceRoot();
+      if (!root) {
+        return;
+      }
+      const runner = resolveRunner(root);
+      if (!runner) {
+        vscode.window.showErrorMessage("v++ compiler not found.");
+        return;
+      }
+      const run = controller.createTestRun(request);
+      const queue = [];
+      if (request.include) {
+        request.include.forEach((t) => queue.push(t));
+      } else {
+        controller.items.forEach((t) => queue.push(t));
+      }
+      for (const test of queue) {
+        if (token.isCancellationRequested) {
+          break;
+        }
+        if (test.children.size > 0) {
+          test.children.forEach((c) => queue.push(c));
+          continue;
+        }
+        run.started(test);
+        const { command, argv } = runRunner(runner, ["test"]);
+        const ok = await new Promise((resolve) => {
+          execFile(command, argv, { cwd: root }, (err) => resolve(!err));
+        });
+        if (ok) {
+          run.passed(test);
+        } else {
+          run.failed(test, new vscode.TestMessage("vpp test failed — see terminal"));
+        }
+      }
+      run.end();
+    }
+  );
+
+  refreshTests();
+  context.subscriptions.push(
+    vscode.workspace.onDidSaveTextDocument((doc) => {
+      if (doc.languageId === "vpp") {
+        refreshTests();
+      }
+    }),
+    vscode.commands.registerCommand("vpp.refreshTests", refreshTests)
+  );
+}
+
 function activate(context) {
   toolchainStatus = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 50);
   toolchainStatus.command = "vpp.openSettings";
@@ -391,12 +499,38 @@ function activate(context) {
   lspStatus = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 50);
   context.subscriptions.push(lspStatus);
 
+  context.subscriptions.push(
+    vscode.debug.registerDebugAdapterDescriptorFactory("vpp", {
+      createDebugAdapterDescriptor(session) {
+        const root = workspaceRoot();
+        if (!root) {
+          vscode.window.showErrorMessage("Open a v++ workspace to debug.");
+          return undefined;
+        }
+        const runner = resolveRunner(root);
+        if (!runner) {
+          vscode.window.showErrorMessage("v++ compiler not found — run setup or set vpp.compilerPath.");
+          return undefined;
+        }
+        const program = session.configuration.program;
+        if (!program) {
+          vscode.window.showErrorMessage("Debug configuration needs a program path.");
+          return undefined;
+        }
+        const { command, argv } = runRunner(runner, ["debug", "--dap", program]);
+        return new vscode.DebugAdapterExecutable(command, argv, { cwd: root });
+      },
+    })
+  );
+
   updateStatusBar();
 
   const iconTheme = vscode.workspace.getConfiguration("workbench").get("iconTheme");
   if (!iconTheme) {
     vscode.workspace.getConfiguration("workbench").update("iconTheme", "vpp-icons", true);
   }
+
+  setupTestExplorer(context);
 
   const maybeStartLsp = () => ensureLanguageServer(context);
   if (vscode.window.activeTextEditor?.document.languageId === "vpp") {
@@ -436,6 +570,20 @@ function activate(context) {
       if (formatOnSave) {
         event.waitUntil(formatDocument(event.document));
       }
+    }),
+    vscode.commands.registerCommand("vpp.debugFile", () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor || editor.document.languageId !== "vpp") {
+        vscode.window.showErrorMessage("Open a .vpp file to debug.");
+        return;
+      }
+      vscode.debug.startDebugging(undefined, {
+        type: "vpp",
+        request: "launch",
+        name: "Debug v++ file",
+        program: editor.document.uri.fsPath,
+        stopOnEntry: true,
+      });
     }),
     vscode.commands.registerCommand("vpp.runFile", async () => {
       const editor = vscode.window.activeTextEditor;
@@ -532,6 +680,28 @@ function activate(context) {
     vscode.commands.registerCommand("vpp.openSettings", () => {
       vscode.commands.executeCommand("workbench.action.openSettings", "vpp");
     }),
+    vscode.commands.registerCommand("vpp.searchPackages", async () => {
+      const root = workspaceRoot();
+      if (!root) {
+        return;
+      }
+      const query = await vscode.window.showInputBox({
+        prompt: "Search v++ registry",
+        placeHolder: "package name",
+      });
+      if (!query) {
+        return;
+      }
+      const runner = resolveRunner(root);
+      if (!runner) {
+        vscode.window.showErrorMessage("v++ compiler not found.");
+        return;
+      }
+      const { command, argv } = runRunner(runner, ["search", query]);
+      const term = vscode.window.createTerminal({ name: "v++ registry", cwd: root });
+      term.show(true);
+      term.sendText([command, ...argv].join(" "));
+    }),
     vscode.commands.registerCommand("vpp.openDocs", () => {
       vscode.env.openExternal(vscode.Uri.parse("https://github.com/shauryaR790/V-/tree/main/docs"));
     })
@@ -542,7 +712,7 @@ function activate(context) {
     context.globalState.update(welcomeKey, true);
     vscode.window
       .showInformationMessage(
-        "v++ Language 0.6.2 — Python-readable syntax, native compilation. Press F5 to run.",
+        "v++ Language 1.0.0 — stable. F5 debug, Test Explorer, registry search. Same .vpp for run/repl/watch/build.",
         "Open docs",
         "Settings"
       )

@@ -5,3 +5,8 @@
 name = "hello-lib"
 version = "0.1.0"
 path = "fixtures/hello-lib"
+
+[[packages]]
+name = "json-utils"
+version = "0.1.0"
+path = "fixtures/hello-lib"

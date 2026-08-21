@@ -1,6 +1,8 @@
-# v++ Language Specification (v0.4)
+# v++ Language Specification
 
-This document describes v++ as implemented in v0.4. If code and spec disagree, parity tests and native execution are authoritative.
+> **v1.0 — FROZEN (2026-08-21).** Breaking changes require v2.0. See [PARITY_PROMISE.md](docs/project/PARITY_PROMISE.md).
+
+This document describes v++ as implemented in v1.0. If code and spec disagree, parity tests and native execution are authoritative.
 
 ## Types
 

@@ -126,6 +126,37 @@ pub fn run(source: &str, source_path: &Path) -> VppResult<()> {
     crate::interp::run(&typed)
 }
 
+#[derive(serde::Serialize)]
+pub struct TestListing {
+    pub file: PathBuf,
+    pub tests: Vec<String>,
+}
+
+pub fn list_project_tests(start: &Path) -> VppResult<Vec<TestListing>> {
+    let root = find_project_root(start).ok_or_else(|| VppError::Other {
+        message: "not in a v++ project (no vpp.toml found)".to_string(),
+    })?;
+
+    let mut files = Vec::new();
+    collect_vpp_files(&root.join("tests"), &mut files)?;
+    if files.is_empty() {
+        collect_vpp_files(&root.join("src"), &mut files)?;
+    }
+
+    let mut listings = Vec::new();
+    for file in files {
+        let typed = check_path(&file)?;
+        if typed.tests.is_empty() {
+            continue;
+        }
+        listings.push(TestListing {
+            file: file.strip_prefix(&root).unwrap_or(&file).to_path_buf(),
+            tests: typed.tests.iter().map(|t| t.name.clone()).collect(),
+        });
+    }
+    Ok(listings)
+}
+
 pub fn run_tests_in_project(start: &Path) -> VppResult<()> {
     let root = find_project_root(start).ok_or_else(|| VppError::Other {
         message: "not in a v++ project (no vpp.toml found)".to_string(),

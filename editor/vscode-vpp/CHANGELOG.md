@@ -1,3 +1,31 @@
+## 1.0.0
+
+**Stable release** — Parity Promise frozen. Same `.vpp` for run, repl, watch, debug, and native build.
+
+### Compiler
+- Frozen SPEC v1.0 + compatibility CI on all examples
+- Full CLI: run, repl, watch, debug, bench, build, test, search, doctor, packages
+
+### Extension
+- **F5 Debug** — interpreter breakpoints, step, locals (DAP via `vpp debug --dap`)
+- **Test Explorer** — discovers `test` blocks via `vpp test --list`
+- **Registry search** — `vpp search` from command palette
+- Marketplace category: Debuggers
+
+## 0.9.0
+
+### Ecosystem
+- Test Explorer UI (`vpp test --list` JSON)
+- `vpp search` for package registry
+- SPEC v1.0 release candidate
+
+## 0.8.0
+
+### Insight — debugger
+- **`vpp debug`** CLI — step, break, locals (interpreter)
+- **VS Code debug launch** — F5 starts DAP session (`vpp debug --dap`)
+- Ctrl+F5 run without debugging
+
 ## 0.7.0
 
 **Live development** — v0.7's differentiator: compiled languages rarely offer instant save-to-run loops.

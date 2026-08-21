@@ -1,14 +1,57 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::rc::Rc;
 
 use crate::ast::{BinOp, UnOp};
 use crate::error::{VppError, VppResult};
+use crate::span::line_col;
 use crate::types::{
     FunctionInfo, TypedExpr, TypedPattern, TypedProgram, TypedStmt, Type,
 };
 
 #[derive(Debug, Clone)]
-enum Value {
+pub enum StepMode {
+    Continue,
+    StepInto,
+    StepOver(u32),
+}
+
+#[derive(Debug, Clone)]
+pub enum SavedExec {
+    Block { stmts: Vec<TypedStmt>, ip: usize },
+}
+
+#[derive(Debug, Clone)]
+pub struct DebugState {
+    pub source: String,
+    pub breakpoints: HashSet<u32>,
+    pub step_mode: StepMode,
+    pub call_depth: u32,
+    pub paused_line: Option<u32>,
+    pub resume_pending: bool,
+    pub saved: Option<SavedExec>,
+}
+
+impl DebugState {
+    fn should_pause(&mut self, line: u32) -> bool {
+        if self.resume_pending {
+            self.resume_pending = false;
+            return false;
+        }
+        let pause = match self.step_mode {
+            StepMode::Continue => self.breakpoints.contains(&line),
+            StepMode::StepInto => true,
+            StepMode::StepOver(depth) => self.call_depth <= depth,
+        };
+        if pause {
+            self.paused_line = Some(line);
+            self.step_mode = StepMode::Continue;
+        }
+        pause
+    }
+}
+
+#[derive(Debug, Clone)]
+pub(crate) enum Value {
     Int(i64),
     Float(f64),
     Bool(bool),
@@ -45,7 +88,7 @@ impl Value {
         }
     }
 
-    fn display_string(&self) -> String {
+    pub(crate) fn display_string(&self) -> String {
         match self {
             Value::Int(n) => n.to_string(),
             Value::Float(n) => n.to_string(),
@@ -91,13 +134,14 @@ impl Value {
     }
 }
 
-struct Interpreter {
+pub(crate) struct Interpreter {
     functions: HashMap<String, FunctionInfo>,
     scopes: Vec<HashMap<String, Value>>,
     return_value: Option<Value>,
     returning: bool,
     breaking: bool,
     continuing: bool,
+    debug: Option<DebugState>,
 }
 
 pub fn run(program: &TypedProgram) -> VppResult<()> {
@@ -144,6 +188,84 @@ pub fn run_tests(program: &TypedProgram) -> VppResult<usize> {
 }
 
 impl Interpreter {
+    pub fn new_debug(
+        functions: HashMap<String, FunctionInfo>,
+        source: String,
+        breakpoints: HashSet<u32>,
+    ) -> Self {
+        Self {
+            functions,
+            scopes: vec![HashMap::new()],
+            return_value: None,
+            returning: false,
+            breaking: false,
+            continuing: false,
+            debug: Some(DebugState {
+                source,
+                breakpoints,
+                step_mode: StepMode::Continue,
+                call_depth: 0,
+                paused_line: None,
+                resume_pending: false,
+                saved: None,
+            }),
+        }
+    }
+
+    pub fn debug_mut(&mut self) -> &mut DebugState {
+        self.debug.as_mut().expect("debug session")
+    }
+
+    pub fn debug_call_depth(&self) -> u32 {
+        self.debug.as_ref().map(|d| d.call_depth).unwrap_or(0)
+    }
+
+    pub fn is_debug_paused(&self) -> bool {
+        self.debug
+            .as_ref()
+            .and_then(|d| d.paused_line)
+            .is_some()
+    }
+
+    pub fn debug_paused_line(&self) -> Option<u32> {
+        self.debug.as_ref().and_then(|d| d.paused_line)
+    }
+
+    pub fn maybe_pause(&mut self, line: u32) -> VppResult<bool> {
+        if let Some(dbg) = &mut self.debug {
+            if dbg.should_pause(line) {
+                return Ok(true);
+            }
+        }
+        Ok(false)
+    }
+
+    pub fn take_saved(&mut self) -> Option<SavedExec> {
+        self.debug.as_mut()?.saved.take()
+    }
+
+    pub fn exec_saved(&mut self, saved: SavedExec) -> VppResult<()> {
+        match saved {
+            SavedExec::Block { stmts, ip } => self.exec_block_from(&stmts, ip),
+        }
+    }
+
+    pub fn debug_locals(&self) -> Vec<(String, String)> {
+        let mut out = Vec::new();
+        for scope in self.scopes.iter().rev() {
+            for (name, val) in scope {
+                if !out.iter().any(|(n, _)| n == name) {
+                    out.push((name.clone(), val.display_string()));
+                }
+            }
+        }
+        out
+    }
+
+    pub fn eval_expr_display(&mut self, expr: &TypedExpr) -> VppResult<String> {
+        Ok(self.eval_expr(expr)?.display_string())
+    }
+
     fn new(functions: HashMap<String, FunctionInfo>) -> Self {
         Self {
             functions,
@@ -152,9 +274,26 @@ impl Interpreter {
             returning: false,
             breaking: false,
             continuing: false,
+            debug: None,
         }
     }
-    fn exec_stmt(&mut self, stmt: &TypedStmt) -> VppResult<()> {
+
+    fn stmt_line(&self, stmt: &TypedStmt) -> u32 {
+        let Some(src) = self.debug.as_ref().map(|d| d.source.as_str()) else {
+            return 1;
+        };
+        stmt_line(src, stmt)
+    }
+
+    pub(crate) fn exec_stmt(&mut self, stmt: &TypedStmt) -> VppResult<()> {
+        let line = self.stmt_line(stmt);
+        if self.maybe_pause(line)? {
+            return Ok(());
+        }
+        self.exec_stmt_inner(stmt)
+    }
+
+    fn exec_stmt_inner(&mut self, stmt: &TypedStmt) -> VppResult<()> {
         match stmt {
             TypedStmt::Let { name, value, .. } => {
                 let val = self.eval_expr(value)?;
@@ -273,12 +412,38 @@ impl Interpreter {
     }
 
     fn exec_block(&mut self, stmts: &[TypedStmt]) -> VppResult<()> {
+        self.exec_block_from(stmts, 0)
+    }
+
+    fn exec_block_from(&mut self, stmts: &[TypedStmt], start: usize) -> VppResult<()> {
         self.push_scope();
-        for stmt in stmts {
-            self.exec_stmt(stmt)?;
+        let mut i = start;
+        while i < stmts.len() {
+            let stmt = &stmts[i];
+            let line = self.stmt_line(stmt);
+            if self.maybe_pause(line)? {
+                if let Some(dbg) = &mut self.debug {
+                    dbg.saved = Some(SavedExec::Block {
+                        stmts: stmts.to_vec(),
+                        ip: i,
+                    });
+                }
+                return Ok(());
+            }
+            self.exec_stmt_inner(stmt)?;
+            if self.is_debug_paused() {
+                if let Some(dbg) = &mut self.debug {
+                    dbg.saved = Some(SavedExec::Block {
+                        stmts: stmts.to_vec(),
+                        ip: i,
+                    });
+                }
+                return Ok(());
+            }
             if self.returning || self.breaking || self.continuing {
                 break;
             }
+            i += 1;
         }
         self.pop_scope();
         Ok(())
@@ -353,7 +518,7 @@ impl Interpreter {
         }
     }
 
-    fn call_function(&mut self, name: &str, args: &[TypedExpr]) -> VppResult<Value> {
+    pub(crate) fn call_function(&mut self, name: &str, args: &[TypedExpr]) -> VppResult<Value> {
         if name == "print" {
             for arg in args {
                 let val = self.eval_expr(arg)?;
@@ -517,6 +682,12 @@ impl Interpreter {
                 message: format!("undefined function `{name}`"),
             })?;
 
+        if self.debug.is_some() && !matches!(name, "print" | "len" | "assert" | "assert_eq" | "read_file" | "write_file" | "file_exists" | "json_parse" | "json_stringify" | "process_run") {
+            if let Some(dbg) = &mut self.debug {
+                dbg.call_depth += 1;
+            }
+        }
+
         let mut arg_values = Vec::new();
         for arg in args {
             arg_values.push(self.eval_expr(arg)?);
@@ -549,6 +720,12 @@ impl Interpreter {
         self.returning = saved_returning;
         self.return_value = saved_return;
         self.pop_scope();
+
+        if self.debug.is_some() && !matches!(name, "print" | "len" | "assert" | "assert_eq" | "read_file" | "write_file" | "file_exists" | "json_parse" | "json_stringify" | "process_run") {
+            if let Some(dbg) = &mut self.debug {
+                dbg.call_depth = dbg.call_depth.saturating_sub(1);
+            }
+        }
 
         Ok(result)
     }
@@ -787,6 +964,35 @@ impl Interpreter {
             }
         }
         None
+    }
+}
+
+pub fn stmt_line(source: &str, stmt: &TypedStmt) -> u32 {
+    match stmt {
+        TypedStmt::Let { span, .. } => line_col(source, span.start).0 as u32,
+        TypedStmt::Expr(expr) => expr_line(source, expr),
+        TypedStmt::If { condition, .. } => expr_line(source, condition),
+        TypedStmt::While { condition, .. } => expr_line(source, condition),
+        TypedStmt::ForInt { .. } => 1,
+        TypedStmt::ForArray { array, .. } => expr_line(source, array),
+        TypedStmt::Return { value: Some(v) } => expr_line(source, v),
+        TypedStmt::Return { value: None } => 1,
+        TypedStmt::Match { scrutinee, .. } => expr_line(source, scrutinee),
+        TypedStmt::Break | TypedStmt::Continue | TypedStmt::Block(_) => 1,
+    }
+}
+
+fn expr_line(source: &str, expr: &TypedExpr) -> u32 {
+    match expr {
+        TypedExpr::Ident { span, .. } => line_col(source, span.start).0 as u32,
+        TypedExpr::Binary { left, .. } => expr_line(source, left),
+        TypedExpr::Unary { expr, .. } => expr_line(source, expr),
+        TypedExpr::Call { .. } => 1,
+        TypedExpr::Index { target, .. } => expr_line(source, target),
+        TypedExpr::Field { target, .. } => expr_line(source, target),
+        TypedExpr::Assign { value, .. } => expr_line(source, value),
+        TypedExpr::Match { scrutinee, .. } => expr_line(source, scrutinee),
+        _ => 1,
     }
 }
 

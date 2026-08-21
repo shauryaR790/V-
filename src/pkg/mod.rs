@@ -6,7 +6,7 @@ mod registry;
 mod resolver;
 
 pub use lockfile::{load_lockfile, write_lockfile, Lockfile, LockedPackage};
-pub use registry::{load_index, registry_search_paths, resolve_from_registry, RegistryIndex};
+pub use registry::{load_index, registry_search_paths, resolve_from_registry, search_registry, RegistryIndex, RegistryPackage};
 pub use manifest::{parse_manifest_toml, write_manifest, DependencySpec, Manifest};
 pub use resolver::{resolve_dependencies, vendor_dir, VendorLayout};
 

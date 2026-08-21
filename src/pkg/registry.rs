@@ -126,3 +126,29 @@ pub fn resolve_from_registry(
         ),
     })
 }
+
+/// Search the local/ bundled registry index (hosted index via `VPP_REGISTRY` env).
+pub fn search_registry(project_root: &Path, query: &str) -> VppResult<Vec<RegistryPackage>> {
+    let q = query.trim().to_lowercase();
+    let mut seen = std::collections::HashSet::new();
+    let mut out = Vec::new();
+
+    for index_path in registry_search_paths(Some(project_root)) {
+        let index = load_index(&index_path)?;
+        for pkg in index.packages {
+            if !q.is_empty()
+                && !pkg.name.to_lowercase().contains(&q)
+                && !pkg.version.to_lowercase().contains(&q)
+            {
+                continue;
+            }
+            let key = format!("{}@{}", pkg.name, pkg.version);
+            if seen.insert(key) {
+                out.push(pkg);
+            }
+        }
+    }
+
+    out.sort_by(|a, b| a.name.cmp(&b.name).then(a.version.cmp(&b.version)));
+    Ok(out)
+}
