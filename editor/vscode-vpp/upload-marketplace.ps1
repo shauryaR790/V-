@@ -28,9 +28,10 @@ Write-Host "  $outPath" -ForegroundColor White
 Write-Host "`nOpening Marketplace upload page..." -ForegroundColor Cyan
 Write-Host "  1. Sign in if asked" -ForegroundColor Yellow
 Write-Host "  2. Click 'Upload' / drag the VSIX file" -ForegroundColor Yellow
-Write-Host "  3. Submit — new version goes live in a few minutes`n" -ForegroundColor Yellow
+Write-Host "  3. Submit - new version goes live in a few minutes`n" -ForegroundColor Yellow
 
 Start-Process $manageUrl
-Start-Process explorer.exe -ArgumentList "/select,`"$outPath`""
+Invoke-Item (Split-Path $outPath -Parent)
+Write-Host "Select file: $(Split-Path $outPath -Leaf)" -ForegroundColor White
 
 Pop-Location

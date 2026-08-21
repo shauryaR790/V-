@@ -2,5 +2,6 @@
 .vscode-test/**
 *.vsix
 publish.ps1
+upload-marketplace.ps1
 .gitignore
 package-lock.json
