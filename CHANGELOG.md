@@ -2,6 +2,12 @@
 
 All notable changes to v++ are documented here.
 
+## [1.0.3] — 2026-08-21
+
+### Fixed — GitHub Release publishes immediately after Windows build
+
+Release job no longer waits for Linux/macOS. Windows installer + zip ship first; Unix assets attach later if builds succeed.
+
 ## [1.0.2] — 2026-08-21
 
 ### Fixed — GitHub Releases actually publish

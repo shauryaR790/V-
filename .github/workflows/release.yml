@@ -97,8 +97,36 @@ jobs:
             vpp-*-windows-x64.zip
             vpp-*-windows-x64.zip.sha256
 
+  release:
+    needs: [build-windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: vpp-windows-x64
+          path: artifacts
+
+      - name: Flatten artifacts
+        shell: bash
+        run: |
+          find artifacts -type f -exec cp {} . \;
+          ls -la
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}
+          fail_on_unmatched_files: false
+          files: |
+            vpp-*-setup.exe
+            vpp-*-setup.exe.sha256
+            vpp-*-windows-x64.zip
+            vpp-*-windows-x64.zip.sha256
+          generate_release_notes: true
+
   build-linux:
     runs-on: ubuntu-latest
+    needs: [release]
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
@@ -118,7 +146,6 @@ jobs:
           sudo apt-get install -y clang-22 lld-22 llvm-22-dev libclang-22-dev
           echo "LLVM_SYS_221_PREFIX=$(llvm-config-22 --prefix)" >> "$GITHUB_ENV"
           echo "$(llvm-config-22 --prefix)/bin" >> "$GITHUB_PATH"
-          llvm-config-22 --version
 
       - name: Build release
         run: cargo build --release --features codegen,lsp --bin vpp --bin vppls
@@ -136,16 +163,18 @@ jobs:
           tar -czf "${DIR}.tar.gz" "$DIR"
           sha256sum "${DIR}.tar.gz" > "${DIR}.tar.gz.sha256"
 
-      - name: Upload Linux bundle
-        uses: actions/upload-artifact@v4
+      - name: Attach Linux bundle to release
+        uses: softprops/action-gh-release@v2
         with:
-          name: vpp-linux-x64
-          path: |
+          tag_name: ${{ env.RELEASE_TAG }}
+          fail_on_unmatched_files: false
+          files: |
             vpp-*-linux-x64.tar.gz
             vpp-*-linux-x64.tar.gz.sha256
 
   build-macos:
     runs-on: macos-latest
+    needs: [release]
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
@@ -159,7 +188,6 @@ jobs:
           tar xf llvm.tar.xz
           echo "LLVM_SYS_221_PREFIX=$PWD/LLVM-22.1.8-macOS-ARM64" >> "$GITHUB_ENV"
           echo "$PWD/LLVM-22.1.8-macOS-ARM64/bin" >> "$GITHUB_PATH"
-          ./LLVM-22.1.8-macOS-ARM64/bin/clang --version
 
       - name: Build release
         run: cargo build --release --features codegen,lsp --bin vpp --bin vppls
@@ -179,43 +207,11 @@ jobs:
           tar -czf "${DIR}.tar.gz" "$DIR"
           shasum -a 256 "${DIR}.tar.gz" > "${DIR}.tar.gz.sha256"
 
-      - name: Upload macOS bundle
-        uses: actions/upload-artifact@v4
-        with:
-          name: vpp-macos-arm64
-          path: |
-            vpp-*-macos-arm64.tar.gz
-            vpp-*-macos-arm64.tar.gz.sha256
-
-  release:
-    needs: [build-windows, build-linux, build-macos]
-    if: ${{ !cancelled() && needs.build-windows.result == 'success' }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          path: artifacts
-          pattern: vpp-*
-          merge-multiple: true
-
-      - name: Flatten artifacts
-        shell: bash
-        run: |
-          find artifacts -type f \( -name '*.zip' -o -name '*.tar.gz' -o -name '*.sha256' -o -name '*-setup.exe' \) -exec cp {} . \;
-          ls -la
-
-      - name: Create GitHub Release
+      - name: Attach macOS bundle to release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+          tag_name: ${{ env.RELEASE_TAG }}
           fail_on_unmatched_files: false
           files: |
-            vpp-*-setup.exe
-            vpp-*-setup.exe.sha256
-            vpp-*-windows-x64.zip
-            vpp-*-windows-x64.zip.sha256
-            vpp-*-linux-x64.tar.gz
-            vpp-*-linux-x64.tar.gz.sha256
             vpp-*-macos-arm64.tar.gz
             vpp-*-macos-arm64.tar.gz.sha256
-          generate_release_notes: true
