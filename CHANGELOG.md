@@ -2,6 +2,13 @@
 
 All notable changes to v++ are documented here.
 
+## [0.7.3] — 2026-08-21
+
+### Fixed — Unix LLVM linking (CI + releases)
+
+- **`llvm-sys` uses `no-llvm-linking`** — v0.7.2 dropped all Unix link flags, leaving hundreds of unresolved LLVM symbols
+- **`build.rs` now runs `llvm-config`** on Linux/macOS for `--ldflags`, `--libs`, and `--system-libs` (stubs remain Windows-only)
+
 ## [0.7.2] — 2026-08-21
 
 ### Fixed — Linux/macOS link failure
