@@ -2,6 +2,19 @@
 
 All notable changes to v++ are documented here.
 
+## [1.2.0] — 2026-08-21
+
+### Extension + polish (Reddit-ready)
+
+- VS Code extension **1.2.0** — changelog, readme, formatter warning
+- **`.gitignore`** — VSIX, PDFs, staging, local artifacts excluded from repo
+
+### Includes compiler fixes through [1.0.3]
+
+- GitHub Releases publish on Windows build (v1.0.3 on Releases)
+- `vpp fmt` corruption fixed (v1.0.1)
+- Debugger, Test Explorer, frozen SPEC (v1.0.0)
+
 ## [1.0.3] — 2026-08-21
 
 ### Fixed — GitHub Release publishes immediately after Windows build

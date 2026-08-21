@@ -11,3 +11,27 @@ interpreter.txt
 native.txt
 vpp_test.txt
 vpp_std_fs_test.txt
+
+# Local build / release artifacts (never commit)
+*.vsix
+/staging/
+/manual-releases/
+/output/
+
+# Course PDFs and draft assets (keep sources in repo docs, not binaries)
+*.pdf
+!docs/**/*.pdf
+
+# Python cache
+__pycache__/
+*.pyc
+website/pdf_extract.txt
+
+# Scratch / one-off local files
+global.vpp
+*_removebg*.png
+_icon_*.png
+_marketplace_icon_*.png
+
+# Accidental nested clone — must never be committed
+.github/V-/
