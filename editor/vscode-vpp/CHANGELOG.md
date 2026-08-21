@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.5.4
+
+- Larger file and marketplace icons: yellow circle badge with bold black V++ text for readability in Explorer
+
 ## 0.5.3
 
 - Remove legacy `vpp-lang.vpp` installs during setup; install the correct `vpp-lang.vplusplus` package
