@@ -1,7 +1,7 @@
 {
   "title": "v++ Documentation Master Content",
   "subtitle": "Complete source content for the official Docs hub",
-  "meta_line": "Current release: v0.5.0    License: MIT    Stage: pre v1.0",
+  "meta_line": "Current release: v1.0.3 (compiler) · extension 1.2.0 · License: MIT · Stage: v1.0 stable",
   "sections": [
     {
       "num": 1,
@@ -391,17 +391,29 @@
           "text": "Added the official website, twenty guided projects, GitHub Pages deployment, a documentation hub with more than thirty guides, contributing, security and code of conduct paperwork, a v0.5.0 extension update, and installer PATH handling for vpp and bundled clang.",
           "version": "v0.5.0",
           "title": "Documentation and project experience"
+        },
+        {
+          "kind": "version",
+          "text": "Debugger (F5), Test Explorer, frozen SPEC v1.0, Parity Promise, compat CI on all examples.",
+          "version": "v1.0.0",
+          "title": "Stable language"
+        },
+        {
+          "kind": "version",
+          "text": "Formatter fix, GitHub Releases publish reliably on Windows, extension 1.2.0 for Marketplace.",
+          "version": "v1.0.3",
+          "title": "Release polish"
         }
       ]
     },
     {
       "num": 17,
-      "title": "Current v0.5.0 status",
-      "slug": "current-v0-5-0-status",
+      "title": "Current v1.0.3 status",
+      "slug": "current-v1-0-3-status",
       "blocks": [
         {
           "kind": "paragraph",
-          "text": "The repository currently reports v0.5.0. The project now includes a compiler, interpreter, native backend, language server, VS Code extension, package manager, standard library, release tooling, website, documentation hub, and twenty guided projects. The repository roadmap still lists SignPath code signing, a REPL, expanded standard library work such as maps and time, and Linux/macOS release polish as v0.5 work. These should not be displayed as shipped until the repository marks them complete."
+          "text": "The repository ships compiler v1.0.3 on GitHub Releases (Windows installer + portable zip). VS Code extension 1.2.0 adds debug, Test Explorer, watch, and a formatter fix. SPEC v1.0 is frozen with a Parity Promise: the same .vpp file runs in the interpreter, debugger, and native build. Linux and macOS native bundles are optional CI targets; build from source on Unix today."
         }
       ]
     },

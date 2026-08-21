@@ -586,15 +586,13 @@ def load_docs_from_json(path: Path = JSON_PATH) -> DocsDocument:
 
 
 def load_docs() -> DocsDocument:
-    """Load docs page content (JSON in CI, PDF when refreshing)."""
-    if JSON_PATH.exists() and _find_pdf() is None:
+    """Load docs page content. Prefer docs.json when present (PDF is for one-time import)."""
+    if JSON_PATH.exists():
         return load_docs_from_json()
     if _find_pdf() is not None:
         doc = load_docs_from_pdf()
         export_docs_json()
         return doc
-    if JSON_PATH.exists():
-        return load_docs_from_json()
     raise FileNotFoundError(
         f"Missing docs data. Add {JSON_PATH.name} or vpp_docs_page_master_content.pdf."
     )
