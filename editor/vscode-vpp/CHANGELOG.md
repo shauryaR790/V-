@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.5.2
+
+- File and language icons updated to the official V++ logo (Explorer, tabs, and icon theme)
+
 ## 0.5.1
 
 - Marketplace extension icon updated to the official V++ logo (128×128)
