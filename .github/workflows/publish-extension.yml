@@ -1,16 +1,12 @@
 name: Publish VS Code extension
 
+# Marketplace publish is manual only (upload VSIX in browser, or run this with VSCE_PAT set).
+# Auto-push was failing because GitHub rejects `if: secrets.*` when the secret is missing.
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "editor/vscode-vpp/**"
-      - ".github/workflows/publish-extension.yml"
 
 jobs:
   publish:
-    if: ${{ secrets.VSCE_PAT != '' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,4 +26,9 @@ jobs:
         working-directory: editor/vscode-vpp
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
-        run: vsce publish -p "$VSCE_PAT"
+        run: |
+          if [ -z "$VSCE_PAT" ]; then
+            echo "::error::Add VSCE_PAT to repo secrets (Settings → Secrets → Actions), or upload the VSIX manually."
+            exit 1
+          fi
+          vsce publish -p "$VSCE_PAT"
