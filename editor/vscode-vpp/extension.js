@@ -483,6 +483,34 @@ function activate(context) {
       term.show(true);
       term.sendText([command, ...argv].join(" "));
     }),
+    vscode.commands.registerCommand("vpp.watchFile", () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor || editor.document.languageId !== "vpp") {
+        return;
+      }
+      const root = workspaceRoot();
+      if (!root) {
+        return;
+      }
+      const runner = resolveRunner(root);
+      if (!runner) {
+        vscode.window.showErrorMessage("v++ compiler not found.");
+        return;
+      }
+      const file = editor.document.uri.fsPath;
+      const { command, argv } = runRunner(runner, ["watch", file]);
+      const term = vscode.window.createTerminal({ name: "v++ watch", cwd: root });
+      term.show(true);
+      term.sendText([command, ...argv].join(" "));
+      vscode.window.showInformationMessage("Watching — save the file to re-run (Ctrl+C in terminal to stop)");
+    }),
+    vscode.commands.registerCommand("vpp.benchFile", async () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor || editor.document.languageId !== "vpp") {
+        return;
+      }
+      await runVpp("bench", editor.document.uri.fsPath);
+    }),
     vscode.commands.registerCommand("vpp.testProject", () => {
       const root = workspaceRoot();
       if (!root) {

@@ -6,19 +6,20 @@
 - Toolchain: vpp, vppls, package manager, stdlib
 - Distribution: Windows installer, VS Code extension, CI/CD
 
+## v0.7 (shipped)
+
+- [x] **`vpp watch`** — live re-run on save
+- [x] **`vpp bench`** — interpreter timing
+- [x] Cross-platform doctor hints
+- [x] Extension 0.7 — Watch + Benchmark commands
+
 ## v0.6 (shipped)
 
 - [x] **`vpp repl`** — interactive interpreter session
 - [x] Extension 0.6 — format-on-save, REPL command, snippets, lazy LSP
 - [x] Version roadmap through v1.0 ([VERSION_ROADMAP.md](VERSION_ROADMAP.md))
 
-## v0.7 (next)
-
-- [ ] Linux/macOS release artifacts (blocking CI, not continue-on-error)
-- [ ] SignPath signing enabled for production Windows builds
-- [ ] Extension 0.7 — cross-platform doctor hints in status bar
-
-## v0.8
+## v0.8 (next)
 
 - [ ] Interpreter line debugger (step, break, locals)
 - [ ] VS Code debug launch configuration

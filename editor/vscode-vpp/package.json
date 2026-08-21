@@ -1,8 +1,8 @@
 {
   "name": "vplusplus",
   "displayName": "v++ Language",
-  "description": "Official v++ — Python-readable syntax, native compilation, real toolchain. Run, check, format, test, and LSP IntelliSense for .vpp files. Write simply. Compile natively.",
-  "version": "0.6.2",
+  "description": "Official v++ — Python-readable syntax, native compilation. Run, watch, REPL, bench, format, test, LSP. Write simply. Compile natively.",
+  "version": "0.7.0",
   "publisher": "vpp-lang",
   "license": "MIT",
   "icon": "icon.png",
@@ -94,6 +94,16 @@
         "icon": "$(terminal)"
       },
       {
+        "command": "vpp.watchFile",
+        "title": "v++: Watch File (live re-run on save)",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "vpp.benchFile",
+        "title": "v++: Benchmark File",
+        "icon": "$(dashboard)"
+      },
+      {
         "command": "vpp.testProject",
         "title": "v++: Run Tests",
         "icon": "$(beaker)"
@@ -115,6 +125,11 @@
       "editor/title/run": [
         {
           "command": "vpp.runFile",
+          "when": "resourceLangId == vpp",
+          "group": "navigation"
+        },
+        {
+          "command": "vpp.watchFile",
           "when": "resourceLangId == vpp",
           "group": "navigation"
         }
@@ -147,6 +162,14 @@
         },
         {
           "command": "vpp.formatDocument",
+          "when": "resourceLangId == vpp"
+        },
+        {
+          "command": "vpp.watchFile",
+          "when": "resourceLangId == vpp"
+        },
+        {
+          "command": "vpp.benchFile",
           "when": "resourceLangId == vpp"
         },
         {

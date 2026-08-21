@@ -1,3 +1,5 @@
+pub mod watch;
+pub mod bench;
 pub mod ast;
 pub mod builtins;
 pub mod codegen;
@@ -39,4 +41,6 @@ pub use pkg::{
 };
 pub use project::find_project_root;
 pub use doctor::run_doctor;
+pub use watch::watch_file;
+pub use bench::bench_file;
 pub use error::{VppError, VppResult};

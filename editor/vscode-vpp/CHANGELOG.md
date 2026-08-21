@@ -1,74 +1,15 @@
-# Change Log
+## 0.7.0
 
-## 0.6.2
-
-- Version bump for Marketplace upload (0.6.0 VSIX filename already used)
-
-## 0.6.1
-
-- Fix format-on-save conflicting with VS Code save (format via temp file, no disk overwrite during save)
-
-## 0.6.0
-
-**Write simply. Compile natively.** — v0.6 aligns the extension with the language's interactive-development milestone.
-
-### New
-- **Format on save** — `vpp fmt` runs automatically (toggle: `vpp.formatOnSave`)
-- **Format document** command and **Shift+Alt+F** keybinding
-- **Status bar** — active compiler path + LSP indicator (click to open settings)
-- **Code snippets** — `main`, `fn`, `struct`, `match`, `test`, `println`
-- **Welcome prompt** on first install with docs link
-- **v++: Show Output**, **Open Settings**, **Open Documentation** commands
-
-### Improved
-- **Lazy LSP** — language server starts only when a `.vpp` file is opened (faster startup)
-- **Runner cache** — compiler path resolved once per workspace change
-- **Shared output channel** — run, check, fmt, and LSP logs in one panel
-- LSP skipped when `vppls` binary is not found (no silent failures)
-- Honest Marketplace categories (removed Debuggers until v0.8)
-- README repositioned: Python readability + native compilation + real toolchain
-
-## 0.6.0
-
-**Interactive development** — compiler + extension aligned at v0.6.
+**Live development** — v0.7's differentiator: compiled languages rarely offer instant save-to-run loops.
 
 ### Compiler
-- **`vpp repl`** — persistent REPL (same interpreter as `vpp run`; definitions carry across lines)
+- **`vpp watch`** — re-runs your file every time you save (live dev loop; same interpreter as run/repl)
+- **`vpp bench`** — time repeated interpreter runs; see iteration speed before native build
+- **`vpp doctor`** — shows OS/arch, cross-platform LLVM install hints
 
 ### Extension
-- Format-on-save (`vpp fmt`), **Shift+Alt+F**, temp-file fix (no save conflicts)
-- **v++: Start REPL** terminal command
-- Code snippets, status bar, lazy LSP, welcome prompt
-- Transparent official V++ wordmark icons
+- **v++: Watch File** — eye icon in editor toolbar; opens live watch terminal
+- **v++: Benchmark File** — runs `vpp bench` on active file
+- Marketplace description updated for watch/REPL/bench workflow
 
-## 0.5.10
-
-- Force-refresh extension header icon (clears stale Marketplace cache from 0.5.0)
-
-## 0.5.9
-
-- Fix icons: regenerate from the true transparent removebg asset (previous copy had an opaque black matte)
-
-## 0.5.8
-
-- Extension icons use the transparent official V++ wordmark (no black background)
-
-## 0.5.7
-
-- Official V++ wordmark only (no generated circle badge); larger mark on black background
-
-## 0.5.6
-
-- Activate when workspace contains `.vpp` files
-
-## 0.5.5
-
-- Official wordmark icons from transparent logo asset
-
-## 0.5.4
-
-- Placeholder circle badge (superseded)
-
-## 0.5.0
-
-- Initial Marketplace release: syntax, run, check, test, LSP
+## 0.6.2

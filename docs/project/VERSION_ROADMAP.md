@@ -5,7 +5,7 @@
 | Version | Codename | Purpose | Ship criteria |
 |---------|----------|---------|---------------|
 | **v0.6** | Interactive | REPL + extension polish | `vpp repl`, format-on-save, snippets, VSIX 0.6.x |
-| **v0.7** | Everywhere | Cross-platform releases | Linux/macOS release artifacts blocking in CI; `vpp doctor` OS matrix |
+| **v0.7** | **Live** | **`vpp watch`** + **`vpp bench`** — instant save-to-run on a compiled language |
 | **v0.8** | Insight | Line debugger | Interpreter step/break; VS Code debug launch |
 | **v0.9** | Ecosystem | Tests + registry | Test Explorer; static hosted registry; SPEC rc |
 | **v1.0** | Stable | Frozen contract | SPEC freeze; semver gate CI; extension 1.0.0 |

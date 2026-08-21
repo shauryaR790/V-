@@ -9,6 +9,13 @@ pub fn run_doctor(project_root: Option<&Path>) -> VppResult<()> {
     println!("v++ doctor");
     println!("==========");
     println!();
+    println!(
+        "Platform: {} / {}",
+        std::env::consts::OS,
+        std::env::consts::ARCH
+    );
+    println!("v++ compiler: v{}", env!("CARGO_PKG_VERSION"));
+    println!();
 
     check_rust();
     check_llvm();
@@ -57,8 +64,14 @@ fn check_llvm() {
         return;
     }
     println!("not installed (optional — only needed for `vpp build`)");
-    println!("  Install: winget install LLVM.LLVM");
-    println!("  Or use a release bundle with llvm\\ included.");
+    if cfg!(target_os = "windows") {
+        println!("  Install: winget install LLVM.LLVM");
+    } else if cfg!(target_os = "macos") {
+        println!("  Install: brew install llvm@22  (or use a release tarball)");
+    } else {
+        println!("  Install: apt install clang-22 lld-22  (or use a release tarball)");
+    }
+    println!("  Or use a release bundle with llvm included.");
 }
 
 fn check_git() {

@@ -2,6 +2,19 @@
 
 All notable changes to v++ are documented here.
 
+## [0.7.0] — 2026-08-21
+
+### Added — Live development (v0.7 milestone)
+
+- **`vpp watch`** — re-run on every save; Python-style feedback on a compiled language
+- **`vpp bench`** — measure interpreter iteration speed (same engine as run/repl/watch)
+- Cross-platform **`vpp doctor`** (OS/arch + platform-specific LLVM hints)
+- **VS Code extension 0.7.0** — Watch + Benchmark commands in toolbar
+
+### Why this matters
+
+Most compiled languages make you rebuild to see changes. v++ watch uses the **same interpreter path** as `run` and `repl` — iterate instantly, then `build` when ready. No other language offers Python-style watch + native compile on identical source with parity tests.
+
 ## [0.6.2] — 2026-08-21
 
 - Version alignment for Marketplace (extension + compiler)

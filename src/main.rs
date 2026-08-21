@@ -79,6 +79,19 @@ enum Commands {
     Doctor,
     /// Interactive read-eval-print loop (interpreter; same language as run/build)
     Repl,
+    /// Re-run a file automatically whenever you save it (live dev loop)
+    Watch {
+        file: PathBuf,
+        /// Debounce milliseconds between save detection and re-run
+        #[arg(long, default_value_t = 300)]
+        debounce_ms: u64,
+    },
+    /// Time repeated interpreter runs (same engine as run/repl/watch)
+    Bench {
+        file: PathBuf,
+        #[arg(short, long, default_value_t = 5)]
+        runs: u32,
+    },
 }
 
 fn read_source(path: &Path) -> miette::Result<String> {
@@ -158,6 +171,8 @@ fn main() -> ExitCode {
         Commands::Update => cmd_update(),
         Commands::Doctor => cmd_doctor(),
         Commands::Repl => cmd_repl(),
+        Commands::Watch { file, debounce_ms } => cmd_watch(&file, debounce_ms),
+        Commands::Bench { file, runs } => cmd_bench(&file, runs),
     };
 
     match result {
@@ -296,6 +311,16 @@ fn cmd_doctor() -> miette::Result<()> {
 
 fn cmd_repl() -> miette::Result<()> {
     vpp::interp::run_repl().map_err(miette::Report::new)
+}
+
+fn cmd_watch(file: &PathBuf, debounce_ms: u64) -> miette::Result<()> {
+    let path = resolve_user_file(file.clone())?;
+    vpp::watch_file(&path, debounce_ms).map_err(miette::Report::new)
+}
+
+fn cmd_bench(file: &PathBuf, runs: u32) -> miette::Result<()> {
+    let path = resolve_user_file(file.clone())?;
+    vpp::bench_file(&path, runs).map_err(miette::Report::new)
 }
 
 fn cmd_compile(file: &PathBuf, output: Option<PathBuf>) -> miette::Result<()> {
