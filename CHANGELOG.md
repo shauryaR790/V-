@@ -2,6 +2,15 @@
 
 All notable changes to v++ are documented here.
 
+## [1.0.1] — 2026-08-21
+
+### Fixed — CI green + fmt corruption
+
+- **`vpp fmt`** no longer breaks `let mut total` → `muttotal` or `1..6` → `1 ..6`
+- **Unix LLVM linking** — pass through full `llvm-config --libs` / linker flags
+- **CI** — fmt regression test; Linux LLVM install hardened
+- **Release** — Windows + Linux required; macOS optional until ARM64 bundle stabilizes
+
 ## [1.0.0] — 2026-08-21
 
 ### Stable — Parity Promise frozen

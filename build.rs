@@ -53,6 +53,9 @@ fn link_llvm_via_config() {
     emit_link_flags(&run_llvm_config(&config, &["--ldflags"]));
     emit_link_flags(&run_llvm_config(&config, &["--libs"]));
     emit_link_flags(&run_llvm_config(&config, &["--system-libs"]));
+    if cfg!(target_env = "gnu") {
+        println!("cargo:rustc-link-lib=dylib=stdc++");
+    }
 }
 
 fn find_llvm_config() -> String {
@@ -109,6 +112,8 @@ fn emit_link_flags(flags: &str) {
             println!("cargo:rustc-link-search=native={path}");
         } else if let Some(lib) = flag.strip_prefix("-l") {
             println!("cargo:rustc-link-lib=dylib={lib}");
+        } else if flag.starts_with('-') {
+            println!("cargo:rustc-link-arg={flag}");
         }
     }
 }

@@ -9,7 +9,7 @@ use serde_json::{json, Value};
 use crate::driver::check_path;
 use crate::error::{VppError, VppResult};
 use crate::interp::{Interpreter, StepMode, stmt_line};
-use crate::types::{TypedExpr, TypedProgram, TypedStmt};
+use crate::types::{TypedProgram, TypedStmt};
 
 /// Run an interactive CLI debugger on a `.vpp` file.
 pub fn debug_file(path: &Path, breakpoints: &[u32]) -> VppResult<()> {
@@ -227,7 +227,7 @@ impl DebugSession {
         let stdin = io::stdin();
         let mut stdout = io::stdout();
         let mut seq = 1u64;
-        let mut threads = json!([{ "id": 1, "name": "v++ interpreter" }]);
+        let threads = json!([{ "id": 1, "name": "v++ interpreter" }]);
 
         for line in stdin.lock().lines() {
             let line = line.map_err(|e| VppError::Other {

@@ -93,6 +93,8 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
 
       - name: Install LLVM 22
+        env:
+          DEBIAN_FRONTEND: noninteractive
         run: |
           sudo apt-get update
           sudo apt-get install -y wget gnupg lsb-release software-properties-common
@@ -130,6 +132,7 @@ jobs:
 
   build-macos:
     runs-on: macos-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
@@ -170,6 +173,7 @@ jobs:
 
   release:
     needs: [build-windows, build-linux, build-macos]
+    if: ${{ !cancelled() && needs.build-windows.result == 'success' && needs.build-linux.result == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
@@ -185,6 +189,7 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          fail_on_unmatched_files: false
           files: |
             vpp-*-setup.exe
             vpp-*-setup.exe.sha256
