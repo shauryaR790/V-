@@ -4,7 +4,7 @@
 
 Official language support for **[v++](https://github.com/shauryaR790/VPP)** — a compiled language that reads like Python but ships native binaries.
 
-> **v1.0.4** (compiler) · extension **1.0.5** (Marketplace)
+> **v1.0.4** (compiler) · extension **1.2.1** (Marketplace)
 
 > **Parity Promise:** the same `.vpp` file runs in **REPL**, **watch**, **debug (F5)**, and **`vpp build`**.
 

@@ -2,11 +2,19 @@
 
 Compiler and VS Code extension versions track together; extension may patch ahead on Marketplace when a version is immutable.
 
+## 1.2.1 — 2026-08-22
+
+**Current Marketplace release.** Corrected changelog and docs. Pairs with compiler **v1.0.4** on GitHub Releases.
+
+> Note: 1.2.0 remains in version history but 1.2.1 is the recommended install (same features + fixed release notes).
+
+## 1.2.0 — 2026-08-21
+
+Superseded by 1.2.1 for changelog accuracy. Same extension features.
+
 ## 1.0.5 — 2026-08-22
 
-**Marketplace republish** — corrected changelog (full 1.0.4 history, aligned version notes). Pairs with compiler **v1.0.4** on GitHub Releases.
-
-No extension code changes from 1.0.4.
+Changelog-only upload; not shown as latest because Marketplace semver prefers 1.2.x over 1.0.x.
 
 ## 1.0.4 — 2026-08-22
 
