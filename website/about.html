@@ -123,10 +123,10 @@
 <h1 id="about-the-language">About The Language</h1>
 <p><strong>V++</strong> is a compiled programming language Python style readability, static typing, native performance.</p>
 <p>&gt; Write it simply. Compile it natively. Grow into control when you need it.</p>
-<p><strong>Author:</strong> <a href="https://github.com/shauryaR790">Shaurya</a> · <strong>License:</strong> MIT · <strong>Version:</strong> 1.0.0</p>
+<p><strong>Author:</strong> <a href="https://github.com/shauryaR790">Shaurya</a> · <strong>License:</strong> MIT · <strong>Version:</strong> 1.0.4</p>
 <hr>
 <h2 id="get-started-in-2-minutes">Get started in 2 minutes</h2>
-<p>1. <strong>Download</strong> <a href="https://github.com/shauryaR790/V-/releases/latest"> 0 </a> (Windows installer)</p>
+<p>1. <strong>Download</strong> <a href="https://github.com/shauryaR790/VPP/releases/latest"> 0 </a> (Windows installer)</p>
 <p>2. <strong>Install</strong> <a href="https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus">V++ Language</a> in VS Code (publisher: <strong>vpp lang</strong>)</p>
 <p>3. <strong>Run:</strong></p>
 <div class="code-block-wrap">
@@ -146,7 +146,7 @@ vpp doctor</code></pre>
 <td>Index of all guides</td>
 </tr>
 <tr>
-<td><strong><a href="https://shauryaR790.github.io/V-/">Website</a></strong></td>
+<td><strong><a href="https://shauryaR790.github.io/VPP/">Website</a></strong></td>
 <td>Learn, projects, downloads, history</td>
 </tr>
 <tr>
@@ -160,6 +160,10 @@ vpp doctor</code></pre>
 <tr>
 <td><a href="docs/guides/cli-reference.md">CLI reference</a></td>
 <td>Every <code>vpp</code> command</td>
+</tr>
+<tr>
+<td><a href="docs/guides/cmake.md">CMake integration</a></td>
+<td>Build V++ targets with CMake</td>
 </tr>
 <tr>
 <td><a href="docs/stdlib/README.md">Standard library</a></td>
@@ -194,7 +198,7 @@ vpp doctor</code></pre>
 </tr>
 <tr>
 <td>Releases</td>
-<td>https://github.com/shauryaR790/V-/releases</td>
+<td>https://github.com/shauryaR790/VPP/releases</td>
 </tr>
 <tr>
 <td>VS Code extension</td>
@@ -202,7 +206,7 @@ vpp doctor</code></pre>
 </tr>
 <tr>
 <td>Issues</td>
-<td>https://github.com/shauryaR790/V-/issues</td>
+<td>https://github.com/shauryaR790/VPP/issues</td>
 </tr>
 <tr>
 <td>Contributing</td>
@@ -221,13 +225,22 @@ vpp doctor</code></pre>
 <h2 id="for-developers">For developers</h2>
 <div class="code-block-wrap">
 <div class="code-block-header"><span class="code-block-filename">terminal</span></div>
-<pre class="language-bash"><code class="language-bash">git clone https://github.com/shauryaR790/V-.git
-cd V-
+<pre class="language-bash"><code class="language-bash">git clone https://github.com/shauryaR790/VPP.git
+cd VPP
 cargo build --release --features codegen,lsp
 cargo test --all-targets
 # Verify install: vpp doctor</code></pre>
 </div>
 <p>See <a href="docs/contributing/building-from-source.md">Building from source</a>.</p>
+<p><strong>CMake:</strong> modules ship under <code>cmake/</code> (also in the Windows installer). See <a href="docs/guides/cmake.md">CMake integration</a>.</p>
+<div class="code-block-wrap">
+<div class="code-block-header"><span class="code-block-filename">terminal</span></div>
+<pre class="language-bash"><code class="language-bash">cmake -S examples/cmake-demo -B build/cmake-demo -DVPP_HOME=&quot;.&quot;
+cmake --build build/cmake-demo
+# Verify install: vpp doctor
+# Restart the terminal after PATH changes
+# Type-check: vpp check main.vpp</code></pre>
+</div>
 <hr>
 <h2 id="roadmap">Roadmap</h2>
 <p><strong>v0.5</strong> website, REPL, SignPath signing, expanded stdlib</p>

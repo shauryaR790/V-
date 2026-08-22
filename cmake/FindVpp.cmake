@@ -42,6 +42,6 @@ endif()
 include("${CMAKE_CURRENT_LIST_DIR}/Vpp.cmake")
 
 set(Vpp_FOUND TRUE)
-set(Vpp_VERSION "1.0.3")
+set(Vpp_VERSION "1.0.4")
 
 mark_as_advanced(VPP_EXECUTABLE VPP_HOME)

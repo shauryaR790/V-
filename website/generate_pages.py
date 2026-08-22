@@ -696,11 +696,12 @@ def headings_from_html(content: str) -> list[tuple[str, str, str]]:
 
 LEGAL_DIR = DOCS / "legal"
 
-LATEST_VERSION = "1.0.3"
-LATEST_TAG = "v1.0.3"
+LATEST_VERSION = "1.0.4"
+LATEST_TAG = "v1.0.4"
 EXTENSION_VERSION = "1.2.0"
 RELEASE_VERSIONS = [
-    ("1.0.3", "v1.0.3", True),
+    ("1.0.4", "v1.0.4", True),
+    ("1.0.3", "v1.0.3", False),
     ("1.0.2", "v1.0.2", False),
     ("0.7.0", "v0.7.0", False),
     ("0.6.2", "v0.6.2", False),

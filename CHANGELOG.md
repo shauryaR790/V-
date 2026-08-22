@@ -2,6 +2,14 @@
 
 All notable changes to v++ are documented here.
 
+## [1.0.4] — 2026-08-22
+
+### Added — CMake integration
+
+- **`cmake/FindVpp.cmake`** and **`cmake/Vpp.cmake`** — `find_package(Vpp)`, `vpp_add_executable()`, `vpp_add_project()`
+- **`examples/cmake-demo`** — working CMake sample
+- Windows installer and portable zip now bundle **`cmake/`** for installed projects
+
 ## [1.2.0] — 2026-08-21
 
 ### Extension + polish (Reddit-ready)

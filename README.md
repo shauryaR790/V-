@@ -4,13 +4,13 @@
 
 > Write it simply. Compile it natively. Grow into control when you need it.
 
-**Author:** [Shaurya](https://github.com/shauryaR790) · **License:** MIT · **Version:** 1.0.0
+**Author:** [Shaurya](https://github.com/shauryaR790) · **License:** MIT · **Version:** 1.0.4
 
 ---
 
 ## Get started in 2 minutes
 
-1. **Download** [`vpp-1.0.0-setup.exe`](https://github.com/shauryaR790/V-/releases/latest) (Windows installer)
+1. **Download** [`vpp-1.0.4-setup.exe`](https://github.com/shauryaR790/VPP/releases/latest) (Windows installer)
 2. **Install** [v++ Language](https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus) in VS Code (publisher: **vpp-lang**)
 3. **Run:**
 
@@ -27,7 +27,7 @@ Full guide: **[docs/getting-started/hello-world.md](docs/getting-started/hello-w
 | | |
 |---|---|
 | **[Documentation hub](docs/README.md)** | Index of all guides |
-| **[Website](https://shauryaR790.github.io/V-/)** | Learn, projects, downloads, history |
+| **[Website](https://shauryaR790.github.io/VPP/)** | Learn, projects, downloads, history |
 | [Install](docs/getting-started/install.md) | Installer, PATH, extension |
 | [Language reference](docs/language/README.md) | Types, control flow, generics, traits |
 | [CLI reference](docs/guides/cli-reference.md) | Every `vpp` command |
@@ -54,9 +54,9 @@ Full guide: **[docs/getting-started/hello-world.md](docs/getting-started/hello-w
 
 | Resource | URL |
 |----------|-----|
-| Releases | https://github.com/shauryaR790/V-/releases |
+| Releases | https://github.com/shauryaR790/VPP/releases |
 | VS Code extension | https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus |
-| Issues | https://github.com/shauryaR790/V-/issues |
+| Issues | https://github.com/shauryaR790/VPP/issues |
 | Contributing | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | Security | [SECURITY.md](SECURITY.md) |
 | Privacy | [docs/PRIVACY.md](docs/PRIVACY.md) |
@@ -66,8 +66,8 @@ Full guide: **[docs/getting-started/hello-world.md](docs/getting-started/hello-w
 ## For developers
 
 ```powershell
-git clone https://github.com/shauryaR790/V-.git
-cd V-
+git clone https://github.com/shauryaR790/VPP.git
+cd VPP
 cargo build --release --features codegen,lsp
 cargo test --all-targets
 ```

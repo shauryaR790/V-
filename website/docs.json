@@ -1,7 +1,7 @@
 {
   "title": "v++ Documentation Master Content",
   "subtitle": "Complete source content for the official Docs hub",
-  "meta_line": "Current release: v1.0.3 (compiler) · extension 1.2.0 · License: MIT · Stage: v1.0 stable",
+  "meta_line": "Current release: v1.0.4 (compiler) · extension 1.2.0 · License: MIT · Stage: v1.0 stable",
   "sections": [
     {
       "num": 1,
@@ -403,17 +403,23 @@
           "text": "Formatter fix, GitHub Releases publish reliably on Windows, extension 1.2.0 for Marketplace.",
           "version": "v1.0.3",
           "title": "Release polish"
+        },
+        {
+          "kind": "version",
+          "text": "CMake modules (FindVpp, vpp_add_executable) ship in the Windows installer and portable zip.",
+          "version": "v1.0.4",
+          "title": "CMake integration"
         }
       ]
     },
     {
       "num": 17,
-      "title": "Current v1.0.3 status",
-      "slug": "current-v1-0-3-status",
+      "title": "Current v1.0.4 status",
+      "slug": "current-v1-0-4-status",
       "blocks": [
         {
           "kind": "paragraph",
-          "text": "The repository ships compiler v1.0.3 on GitHub Releases (Windows installer + portable zip). VS Code extension 1.2.0 adds debug, Test Explorer, watch, and a formatter fix. SPEC v1.0 is frozen with a Parity Promise: the same .vpp file runs in the interpreter, debugger, and native build. Linux and macOS native bundles are optional CI targets; build from source on Unix today."
+          "text": "The repository ships compiler v1.0.4 on GitHub Releases (Windows installer + portable zip). v1.0.4 adds CMake integration: FindVpp.cmake and Vpp.cmake are bundled under the install folder. VS Code extension 1.2.0 adds debug, Test Explorer, watch, and a formatter fix. SPEC v1.0 is frozen with a Parity Promise: the same .vpp file runs in the interpreter, debugger, and native build. Linux and macOS native bundles are optional CI targets; build from source on Unix today."
         }
       ]
     },
@@ -702,7 +708,7 @@
         {
           "kind": "faq",
           "question": "Is v++ v1.0?",
-          "answer": "Yes. SPEC v1.0 is frozen, debugger and Test Explorer ship in the VS Code extension, and v1.0.3 is on GitHub Releases for Windows. Linux/macOS prebuilt bundles are still improving."
+          "answer": "Yes. SPEC v1.0 is frozen, debugger and Test Explorer ship in the VS Code extension, and v1.0.4 is on GitHub Releases for Windows. Linux/macOS prebuilt bundles are still improving."
         }
       ]
     },
