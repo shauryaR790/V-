@@ -2,7 +2,9 @@
 
 **Write it simply. Compile it natively.**
 
-Official language support for **[v++](https://github.com/shauryaR790/V-)** — a compiled language that reads like Python but ships native binaries.
+Official language support for **[v++](https://github.com/shauryaR790/VPP)** — a compiled language that reads like Python but ships native binaries.
+
+> **Extension 1.2.0** pairs with **compiler v1.0.4** on [GitHub Releases](https://github.com/shauryaR790/VPP/releases/latest). Version numbers are independent — install both.
 
 > **Parity Promise:** the same `.vpp` file runs in **REPL**, **watch**, **debug (F5)**, and **`vpp build`**.
 
@@ -12,7 +14,7 @@ Official language support for **[v++](https://github.com/shauryaR790/V-)** — a
 
 ## Quick start
 
-1. **Compiler** — [GitHub Releases](https://github.com/shauryaR790/V-/releases) (`vpp-*-setup.exe` on Windows).
+1. **Compiler** — [GitHub Releases v1.0.4](https://github.com/shauryaR790/VPP/releases/latest) (`vpp-1.0.4-setup.exe` on Windows).
 2. **Extension** — install **v++ Language** by **vpp-lang**.
 3. **Debug** — open a `.vpp` file, press **F5**. **Ctrl+F5** runs without breakpoints.
 
@@ -42,7 +44,7 @@ vpp search hello
 | **Registry search** | `vpp search` from command palette |
 | **Snippets + icons** | Official V++ wordmark |
 
-**Download compiler:** [GitHub Releases v1.0.3+](https://github.com/shauryaR790/V-/releases) (Windows installer + portable zip).
+**Download compiler:** [GitHub Releases v1.0.4](https://github.com/shauryaR790/VPP/releases/latest) (Windows installer + portable zip).
 
 ---
 

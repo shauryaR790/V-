@@ -28,4 +28,4 @@ unsigned open-source software — not because anything is malicious.
    vpp build examples\hello.vpp -o hello.exe
    (uses llvm\bin\clang if bundled, else install: winget install LLVM.LLVM)
 
-Docs: https://github.com/shauryaR790/V-/tree/main/docs
+Docs: https://github.com/shauryaR790/VPP/tree/main/docs

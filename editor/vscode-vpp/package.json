@@ -22,12 +22,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/shauryaR790/V-.git"
+    "url": "https://github.com/shauryaR790/VPP.git"
   },
   "bugs": {
-    "url": "https://github.com/shauryaR790/V-/issues"
+    "url": "https://github.com/shauryaR790/VPP/issues"
   },
-  "homepage": "https://github.com/shauryaR790/V-#readme",
+  "homepage": "https://github.com/shauryaR790/VPP#readme",
   "engines": {
     "vscode": "^1.80.0"
   },

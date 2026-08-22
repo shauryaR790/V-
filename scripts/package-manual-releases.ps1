@@ -5,7 +5,7 @@ $ErrorActionPreference = "Stop"
 $Root = Split-Path $PSScriptRoot -Parent
 Set-Location $Root
 
-$Versions = @("0.8.0", "0.9.0", "1.0.0", "1.0.1", "1.0.2", "1.0.3")
+$Versions = @("0.8.0", "0.9.0", "1.0.0", "1.0.1", "1.0.2", "1.0.3", "1.0.4")
 $OutRoot = Join-Path $Root "manual-releases"
 New-Item -ItemType Directory -Force -Path $OutRoot | Out-Null
 
