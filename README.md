@@ -31,6 +31,7 @@ Full guide: **[docs/getting-started/hello-world.md](docs/getting-started/hello-w
 | [Install](docs/getting-started/install.md) | Installer, PATH, extension |
 | [Language reference](docs/language/README.md) | Types, control flow, generics, traits |
 | [CLI reference](docs/guides/cli-reference.md) | Every `vpp` command |
+| [CMake integration](docs/guides/cmake.md) | Build v++ targets with CMake |
 | [Standard library](docs/stdlib/README.md) | std.io, fs, json, … |
 | [FAQ](docs/project/faq.md) | Common questions |
 | [SPEC.md](SPEC.md) | Formal language spec |
@@ -72,6 +73,13 @@ cargo test --all-targets
 ```
 
 See [Building from source](docs/contributing/building-from-source.md).
+
+**CMake:** modules ship under `cmake/` (also in the Windows installer). See [CMake integration](docs/guides/cmake.md).
+
+```powershell
+cmake -S examples/cmake-demo -B build/cmake-demo -DVPP_HOME="."
+cmake --build build/cmake-demo
+```
 
 ---
 

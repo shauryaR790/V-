@@ -1,0 +1,4 @@
+fn main() -> int {
+    print("Hello from v++ via CMake")
+    return 0
+}

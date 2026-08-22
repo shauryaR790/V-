@@ -1,0 +1,5 @@
+name = "cmake-demo"
+version = "0.1.0"
+entry = "src/main.vpp"
+
+[dependencies]

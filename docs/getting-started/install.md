@@ -20,6 +20,10 @@ $dir = "$env:LOCALAPPDATA\Programs\vpp"
 
 Restart the terminal.
 
+## CMake
+
+The installer includes `cmake/FindVpp.cmake` and `cmake/Vpp.cmake` under your install folder (same directory as `vpp.exe`). See [CMake integration](../guides/cmake.md).
+
 ## VS Code extension
 
 1. Extensions → search **v++ Language**

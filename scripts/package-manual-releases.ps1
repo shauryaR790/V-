@@ -19,6 +19,7 @@ if (Test-Path $staging) { Remove-Item $staging -Recurse -Force }
 New-Item -ItemType Directory -Force -Path "$staging/examples", "$staging/llvm/bin" | Out-Null
 Copy-Item target/release/vpp.exe, target/release/vppls.exe $staging/
 Copy-Item -Recurse std, registry, runtime $staging/
+Copy-Item -Recurse cmake $staging/
 Copy-Item examples/hello.vpp $staging/examples/
 Copy-Item LICENSE $staging/
 
