@@ -4,13 +4,13 @@ All notable changes to v++ are documented here.
 
 ## [1.0.4] — 2026-08-22
 
-### Added — CMake integration
+### Added — CMake integration + aligned extension version
 
-- **`cmake/FindVpp.cmake`** and **`cmake/Vpp.cmake`** — `find_package(Vpp)`, `vpp_add_executable()`, `vpp_add_project()`
+- **`cmake/FindVpp.cmake`** and **`cmake/Vpp.cmake`** — bundled in Windows installer and zip
+- **VS Code extension 1.0.4** — same version as compiler (debug, Test Explorer, formatter fix)
 - **`examples/cmake-demo`** — working CMake sample
-- Windows installer and portable zip now bundle **`cmake/`** for installed projects
 
-## [1.2.0] — 2026-08-21
+## [1.2.0] — 2026-08-21 (superseded — extension renumbered to 1.0.4)
 
 ### Extension + polish (Reddit-ready)
 

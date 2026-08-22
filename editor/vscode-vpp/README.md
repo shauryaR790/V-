@@ -4,7 +4,7 @@
 
 Official language support for **[v++](https://github.com/shauryaR790/VPP)** — a compiled language that reads like Python but ships native binaries.
 
-> **Extension 1.2.0** pairs with **compiler v1.0.4** on [GitHub Releases](https://github.com/shauryaR790/VPP/releases/latest). Version numbers are independent — install both.
+> **v1.0.4** — compiler and extension use the same version number. Install both from GitHub Releases and Marketplace.
 
 > **Parity Promise:** the same `.vpp` file runs in **REPL**, **watch**, **debug (F5)**, and **`vpp build`**.
 
@@ -29,7 +29,7 @@ vpp search hello
 
 ---
 
-## Features (v1.2)
+## Features (v1.0.4)
 
 | Feature | What you get |
 |---------|----------------|
@@ -39,7 +39,7 @@ vpp search hello
 | **REPL** | Interactive session in terminal |
 | **Benchmark** | `vpp bench` timing |
 | **Test Explorer** | Sidebar tests from `test "..."` blocks |
-| **Format on save** | `vpp fmt` — fixed in 1.2.0 (requires `vpp` ≥ 1.0.1) |
+| **Format on save** | `vpp fmt` — fixed in 1.0.4 (requires `vpp` ≥ 1.0.1) |
 | **LSP** | Diagnostics, completion, go-to-definition (`vppls`) |
 | **Registry search** | `vpp search` from command palette |
 | **Snippets + icons** | Official V++ wordmark |

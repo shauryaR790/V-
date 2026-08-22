@@ -1,7 +1,7 @@
 {
   "title": "v++ Documentation Master Content",
   "subtitle": "Complete source content for the official Docs hub",
-  "meta_line": "Current release: v1.0.4 (compiler) · extension 1.2.0 · License: MIT · Stage: v1.0 stable",
+  "meta_line": "Current release: v1.0.4 (compiler + extension) · License: MIT · Stage: v1.0 stable",
   "sections": [
     {
       "num": 1,
@@ -419,7 +419,7 @@
       "blocks": [
         {
           "kind": "paragraph",
-          "text": "The repository ships compiler v1.0.4 on GitHub Releases (Windows installer + portable zip). v1.0.4 adds CMake integration: FindVpp.cmake and Vpp.cmake are bundled under the install folder. VS Code extension 1.2.0 adds debug, Test Explorer, watch, and a formatter fix. SPEC v1.0 is frozen with a Parity Promise: the same .vpp file runs in the interpreter, debugger, and native build. Linux and macOS native bundles are optional CI targets; build from source on Unix today."
+          "text": "The repository ships compiler and VS Code extension v1.0.4. v1.0.4 adds CMake integration: FindVpp.cmake and Vpp.cmake are bundled under the install folder, plus debug, Test Explorer, watch, and a formatter fix. SPEC v1.0 is frozen with a Parity Promise: the same .vpp file runs in the interpreter, debugger, and native build. Linux and macOS native bundles are optional CI targets; build from source on Unix today."
         }
       ]
     },

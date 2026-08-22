@@ -122,7 +122,7 @@
       <article class="docs-article"><div id="top"></div>
 <h1 id="documentation">v++ Documentation Master Content</h1>
 <p>Complete source content for the official Docs hub</p>
-<p>Current release: v1.0.4 (compiler) · extension 1.2.0 · License: MIT · Stage: v1.0 stable</p>
+<p>Current release: v1.0.4 (compiler + extension) · License: MIT · Stage: v1.0 stable</p>
 <h2 id="what-is-vpp">1. What is v++?</h2>
 <p>V++ is a compiled programming language designed around readable source code, static typing, local type inference, and native compilation. Its project tagline is Write it simply. Compile it natively. Grow into control when you need it. The compiler has one front end and two execution paths. The interpreter is useful for development and teaching. The native path lowers checked programs into V++ IR, then LLVM, and finally a native executable linked with the V++ runtime. The goal is not to become Python or Rust. V++ is its own language whose identity comes from readable syntax, explicit types where useful, local inference, native compilation, and an integrated toolchain.</p>
 <h2 id="core-design-goals">2. Core design goals</h2>
@@ -313,7 +313,7 @@ vpp build stress.vpp -o stress.exe
 <p><strong>v1.0.4</strong> CMake integration</p>
 <p>CMake modules (FindVpp, vpp_add_executable) ship in the Windows installer and portable zip.</p>
 <h2 id="current-v1-0-4-status">17. Current v1.0.4 status</h2>
-<p>The repository ships compiler v1.0.4 on GitHub Releases (Windows installer + portable zip). v1.0.4 adds CMake integration: FindVpp.cmake and Vpp.cmake are bundled under the install folder. VS Code extension 1.2.0 adds debug, Test Explorer, watch, and a formatter fix. SPEC v1.0 is frozen with a Parity Promise: the same .vpp file runs in the interpreter, debugger, and native build. Linux and macOS native bundles are optional CI targets; build from source on Unix today.</p>
+<p>The repository ships compiler and VS Code extension v1.0.4. v1.0.4 adds CMake integration: FindVpp.cmake and Vpp.cmake are bundled under the install folder, plus debug, Test Explorer, watch, and a formatter fix. SPEC v1.0 is frozen with a Parity Promise: the same .vpp file runs in the interpreter, debugger, and native build. Linux and macOS native bundles are optional CI targets; build from source on Unix today.</p>
 <h2 id="future-roadmap">18. Future roadmap</h2>
 <p>Future versions are plans, not promises. The Docs page should visually distinguish roadmap items from shipped features.</p>
 <p><strong>v0.6</strong> Interactive development</p>

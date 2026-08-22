@@ -1,30 +1,19 @@
 # Version numbers
 
-v++ uses **two independent version lines**. This confuses people if we do not say it plainly.
+Compiler and VS Code extension **use the same version** (currently **v1.0.4**).
 
-| Product | Current | Where |
+| Product | Version | Where |
 |---------|---------|--------|
-| **Compiler** (`vpp`) | **v1.0.4** | [GitHub Releases](https://github.com/shauryaR790/VPP/releases) — installer, portable zip |
-| **VS Code extension** | **1.2.0** | [Marketplace](https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus) — debug, LSP, Test Explorer |
+| **Compiler** (`vpp`) | **v1.0.4** | [GitHub Releases](https://github.com/shauryaR790/VPP/releases) |
+| **VS Code extension** | **1.0.4** | [Marketplace](https://marketplace.visualstudio.com/items?itemName=vpp-lang.vplusplus) |
 
-## What to install
-
-1. **Compiler v1.0.4** from GitHub Releases (`vpp-1.0.4-setup.exe` or zip).
-2. **Extension 1.2.0** from VS Code Marketplace (publisher: `vpp-lang`).
-
-Extension **1.2.0** is tested with compiler **v1.0.4**. Older compilers (≥ 1.0.1) work for most features; use the latest compiler for CMake bundles and fixes.
-
-## Why two numbers?
-
-- **Compiler** semver tracks the language, CLI, and native toolchain (SPEC, `vpp build`, releases).
-- **Extension** semver tracks VS Code UI, DAP, Test Explorer, and Marketplace packaging.
-
-They do not bump in lockstep. Changelog entries always state the **paired compiler release** for each extension version.
+Install both for the full toolchain: `vpp` CLI + debug, LSP, Test Explorer.
 
 ## Releasing (maintainers)
 
-1. Bump `Cargo.toml` version → commit → `git tag vX.Y.Z` → `git push origin vX.Y.Z`
-2. CI (`.github/workflows/release.yml`) builds installer, zip, and VSIX → creates GitHub Release
-3. Upload VSIX to Marketplace separately (or use `publish-extension.yml` with VSCE PAT)
+1. Bump `Cargo.toml` **and** `editor/vscode-vpp/package.json` to the same version
+2. Commit → `git tag vX.Y.Z` → `git push origin vX.Y.Z`
+3. CI builds installer, zip, and `vplusplus-X.Y.Z.vsix` → GitHub Release
+4. Upload the same VSIX to Marketplace
 
 Local fallback: `.\scripts\publish-release.ps1 -Version X.Y.Z` → `manual-releases/vX.Y.Z/`

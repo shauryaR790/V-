@@ -698,7 +698,7 @@ LEGAL_DIR = DOCS / "legal"
 
 LATEST_VERSION = "1.0.4"
 LATEST_TAG = "v1.0.4"
-EXTENSION_VERSION = "1.2.0"
+EXTENSION_VERSION = "1.0.4"
 RELEASE_VERSIONS = [
     ("1.0.4", "v1.0.4", True),
     ("1.0.3", "v1.0.3", False),
