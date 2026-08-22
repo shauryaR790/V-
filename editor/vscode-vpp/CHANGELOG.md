@@ -1,6 +1,12 @@
 # Changelog
 
-Compiler and VS Code extension share the same version number.
+Compiler and VS Code extension versions track together; extension may patch ahead on Marketplace when a version is immutable.
+
+## 1.0.5 — 2026-08-22
+
+**Marketplace republish** — corrected changelog (full 1.0.4 history, aligned version notes). Pairs with compiler **v1.0.4** on GitHub Releases.
+
+No extension code changes from 1.0.4.
 
 ## 1.0.4 — 2026-08-22
 
