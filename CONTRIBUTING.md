@@ -1,13 +1,29 @@
 # Contributing to v++
 
-Thanks for helping improve v++!
+**Yes — contributions are welcome.** v++ is MIT-licensed and open source. Issues and pull requests are accepted on GitHub.
+
+This is a young project (small maintainer team, fast-moving `main`). We review PRs as we can; small, focused changes merge faster than large rewrites.
+
+## Good first contributions
+
+| Area | Examples |
+|------|----------|
+| **Docs** | Fix typos, clarify guides, add examples |
+| **Tests** | `.vpp` test cases, `cargo test` coverage |
+| **Stdlib** | `std/*` modules, registry packages |
+| **Extension** | `editor/vscode-vpp/` — UX, snippets, docs |
+| **Examples** | `examples/`, `projects/` |
+| **Bug fixes** | Link a repro in the issue first |
+
+Language-design changes (new syntax, breaking SPEC) — **open an issue first** so we can discuss before you invest time.
 
 ## Quick links
 
 - [Documentation hub](docs/README.md)
 - [Build from source](docs/contributing/building-from-source.md)
 - [Run tests](docs/contributing/running-tests.md)
-- [Report a bug](https://github.com/shauryaR790/V-/issues/new)
+- [Report a bug](https://github.com/shauryaR790/VPP/issues/new)
+- [Contribute page](https://shauryaR790.github.io/VPP/contribute.html)
 
 ## How to contribute
 
@@ -35,10 +51,10 @@ Use clear summaries: `Fix …`, `Add …`, `Docs: …` — same style as existin
 
 ## Releases (maintainers)
 
-1. Bump versions in `Cargo.toml` and `editor/vscode-vpp/package.json`
-2. Update `CHANGELOG.md` and commit
-3. Tag and push: `git tag v0.x.y && git push origin main && git push origin v0.x.y`
-4. Confirm the [Release workflow](https://github.com/shauryaR790/V-/actions) succeeds and assets appear on [GitHub Releases](https://github.com/shauryaR790/V-/releases)
+1. Bump **the same version** in `Cargo.toml` and `editor/vscode-vpp/package.json`
+2. Update `CHANGELOG.md` and `editor/vscode-vpp/CHANGELOG.md`
+3. Tag and push: `git tag vX.Y.Z && git push origin main && git push origin vX.Y.Z`
+4. Confirm the [Release workflow](https://github.com/shauryaR790/VPP/actions/workflows/release.yml) succeeds on [GitHub Releases](https://github.com/shauryaR790/VPP/releases)
 
 ## License
 

@@ -55,11 +55,15 @@ If you know Python or JavaScript, expect a few days for syntax; a few weeks for 
 
 ## Where do I download?
 
-[GitHub Releases](https://github.com/shauryaR790/V-/releases) — **`vpp-1.0.3-setup.exe`** for Windows (portable zip on the same page).
+[GitHub Releases](https://github.com/shauryaR790/VPP/releases/latest) — **`vpp-1.0.4-setup.exe`** for Windows (portable zip on the same page).
 
 ## Which VS Code extension is official?
 
 **v++ Language** — publisher `vpp-lang` (`vpp-lang.vplusplus`). Current version **1.0.4**.
+
+## Can I contribute?
+
+**Yes.** The project is open source (MIT). Open an [issue](https://github.com/shauryaR790/VPP/issues) or PR — see [CONTRIBUTING.md](../../CONTRIBUTING.md). Docs, tests, stdlib, examples, and extension polish are great starting points. Language-design changes should be discussed in an issue first.
 
 ## Does v++ collect data?
 
@@ -67,8 +71,4 @@ No. See [PRIVACY.md](../PRIVACY.md).
 
 ## How do I report bugs?
 
-[GitHub Issues](https://github.com/shauryaR790/V-/issues)
-
-## Can I contribute?
-
-Yes — [CONTRIBUTING.md](../../CONTRIBUTING.md).
+[GitHub Issues](https://github.com/shauryaR790/VPP/issues)
